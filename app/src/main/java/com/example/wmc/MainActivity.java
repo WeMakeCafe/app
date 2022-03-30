@@ -1,10 +1,12 @@
 package com.example.wmc;
 
 import android.os.Bundle;
+import android.view.Window;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -12,7 +14,8 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.wmc.databinding.ActivityMainBinding;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends FragmentActivity {
+    //상속 fragment로 변경. 기존엔 App어쩌구였음
 
     private ActivityMainBinding binding;
 
@@ -30,7 +33,8 @@ public class MainActivity extends AppCompatActivity {
                 R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+        //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+        //frag로 변경하며 주석처리했음
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
 
