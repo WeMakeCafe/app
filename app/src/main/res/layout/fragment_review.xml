@@ -7,7 +7,7 @@
     tools:context=".ui.review.ReviewFragment">
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/backspace_button"
         android:layout_width="34dp"
         android:layout_height="34dp"
         android:layout_marginStart="52dp"
@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/delete_request"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
@@ -31,7 +31,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/line"
         android:layout_width="0dp"
         android:layout_height="2dp"
         android:layout_marginTop="24dp"
@@ -39,10 +39,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/delete_request" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/requester"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="124dp"
@@ -57,7 +57,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/delete_cafe_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -69,10 +69,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.083"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/requester" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/delete_cafe_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -84,10 +84,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.083"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/delete_cafe_name" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/delete_cafe_reason"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -99,10 +99,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.079"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5" />
+        app:layout_constraintTop_toBottomOf="@+id/delete_cafe_address_input" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName4"
+        android:id="@+id/requester_input"
         android:layout_width="280dp"
         android:layout_height="27dp"
         android:layout_marginTop="124dp"
@@ -110,11 +110,11 @@
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintStart_toEndOf="@+id/requester"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/delete_cafe_name_input"
         android:layout_width="220dp"
         android:layout_height="27dp"
         android:layout_marginTop="10dp"
@@ -122,11 +122,11 @@
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4" />
+        app:layout_constraintStart_toEndOf="@+id/delete_cafe_name"
+        app:layout_constraintTop_toBottomOf="@+id/requester_input" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName5"
+        android:id="@+id/delete_cafe_address_input"
         android:layout_width="370dp"
         android:layout_height="27dp"
         android:layout_marginTop="10dp"
@@ -135,10 +135,10 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/delete_cafe_address" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName6"
+        android:id="@+id/delete_cafe_reason_input"
         android:layout_width="370dp"
         android:layout_height="300dp"
         android:layout_marginTop="10dp"
@@ -148,10 +148,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/delete_cafe_reason" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/request_button"
         android:layout_width="108dp"
         android:layout_height="45dp"
         android:layout_marginTop="10dp"
@@ -162,6 +162,6 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName6" />
+        app:layout_constraintTop_toBottomOf="@+id/delete_cafe_reason_input" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
