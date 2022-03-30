@@ -13,13 +13,13 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.example.wmc.ui.dashboard.DashboardFragment"
+        android:name="com.example.wmc.ui.list.ListFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_list" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.wmc.ui.notifications.NotificationsFragment"
+        android:name="com.example.wmc.ui.review.ReviewFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_wirteReview" />
 </navigation>

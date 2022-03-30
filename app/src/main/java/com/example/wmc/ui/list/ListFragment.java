@@ -1,4 +1,4 @@
-package com.example.wmc.ui.dashboard;
+package com.example.wmc.ui.list;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,14 +12,14 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.wmc.databinding.FragmentListBinding;
 
-public class DashboardFragment extends Fragment {
+public class ListFragment extends Fragment {
 
     private FragmentListBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        DashboardViewModel dashboardViewModel =
-                new ViewModelProvider(this).get(DashboardViewModel.class);
+        ListViewModel dashboardViewModel =
+                new ViewModelProvider(this).get(ListViewModel.class);
 
         binding = FragmentListBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
