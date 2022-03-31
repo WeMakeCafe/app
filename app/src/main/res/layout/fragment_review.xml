@@ -130,7 +130,7 @@
         android:id="@+id/dessert"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="136dp"
+        android:layout_marginStart="160dp"
         android:layout_marginTop="40dp"
         android:text="디저트"
         android:textColor="#000000"
@@ -141,7 +141,7 @@
         android:id="@+id/beverage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="95dp"
+        android:layout_marginStart="120dp"
         android:layout_marginTop="16dp"
         android:text="기타음료"
         android:textColor="#000000"
@@ -197,7 +197,7 @@
         android:id="@+id/manyseat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="136dp"
+        android:layout_marginStart="156dp"
         android:layout_marginTop="152dp"
         android:text="다인좌석"
         android:textColor="#000000"
@@ -208,11 +208,11 @@
         android:id="@+id/toilet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="110dp"
         android:layout_marginTop="128dp"
+        android:layout_marginLeft="164dp"
         android:text="화장실"
         android:textColor="#000000"
-        app:layout_constraintStart_toEndOf="@+id/acerbity"
+        app:layout_constraintStart_toEndOf="@+id/seat_image"
         app:layout_constraintTop_toBottomOf="@+id/dessert" />
 
     <TextView
@@ -264,7 +264,7 @@
         android:id="@+id/quiet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="144dp"
+        android:layout_marginStart="164dp"
         android:layout_marginTop="264dp"
         android:text="조용함"
         android:textColor="#000000"
@@ -275,7 +275,7 @@
         android:id="@+id/light"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="117dp"
+        android:layout_marginStart="136dp"
         android:layout_marginTop="240dp"
         android:text="조명"
         android:textColor="#000000"
@@ -422,4 +422,174 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:menu="@menu/bottom_nav_menu" />
+
+    <RatingBar
+        android:id="@+id/rating_sour"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="42dp"
+        android:isIndicator="false"
+        android:numStars="5"
+        android:progressDrawable="@drawable/rating_custom"
+        android:stepSize="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.403"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/line" />
+
+    <RatingBar
+        android:id="@+id/rating_acerbity"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="78dp"
+        android:isIndicator="false"
+        android:numStars="5"
+        android:progressDrawable="@drawable/rating_custom"
+        android:stepSize="1"
+        app:layout_constraintStart_toEndOf="@+id/acerbity"
+        app:layout_constraintTop_toBottomOf="@+id/line" />
+
+    <RatingBar
+        android:id="@+id/rating_dessert"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="42dp"
+        android:isIndicator="false"
+        android:numStars="5"
+        android:progressDrawable="@drawable/rating_custom"
+        android:stepSize="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.913"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/line" />
+
+    <RatingBar
+        android:id="@+id/rating_beverage"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="78dp"
+        android:isIndicator="false"
+        android:numStars="5"
+        android:progressDrawable="@drawable/rating_custom"
+        android:stepSize="1"
+        app:layout_constraintStart_toEndOf="@+id/beverage"
+        app:layout_constraintTop_toBottomOf="@+id/line" />
+
+    <RatingBar
+        android:id="@+id/rating_twoseat"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="154dp"
+        android:isIndicator="false"
+        android:numStars="5"
+        android:progressDrawable="@drawable/rating_custom"
+        android:stepSize="1"
+        app:layout_constraintStart_toEndOf="@+id/twoseat"
+        app:layout_constraintTop_toBottomOf="@+id/line" />
+
+    <RatingBar
+        android:id="@+id/rating_fourseat"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="190dp"
+        android:isIndicator="false"
+        android:numStars="5"
+        android:progressDrawable="@drawable/rating_custom"
+        android:stepSize="1"
+        app:layout_constraintStart_toEndOf="@+id/twoseat"
+        app:layout_constraintTop_toBottomOf="@+id/line" />
+
+    <RatingBar
+        android:id="@+id/rating_manyseat"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="154dp"
+        android:isIndicator="false"
+        android:numStars="5"
+        android:progressDrawable="@drawable/rating_custom"
+        android:stepSize="1"
+        app:layout_constraintStart_toEndOf="@+id/manyseat"
+        app:layout_constraintTop_toBottomOf="@+id/line" />
+
+    <RatingBar
+        android:id="@+id/rating_toilet"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="190dp"
+        android:isIndicator="false"
+        android:numStars="5"
+        android:progressDrawable="@drawable/rating_custom"
+        android:stepSize="1"
+        app:layout_constraintStart_toEndOf="@+id/manyseat"
+        app:layout_constraintTop_toBottomOf="@+id/line" />
+
+    <RatingBar
+        android:id="@+id/rating_wifi"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="266dp"
+        android:isIndicator="false"
+        android:numStars="5"
+        android:progressDrawable="@drawable/rating_custom"
+        android:stepSize="1"
+        app:layout_constraintStart_toEndOf="@+id/twoseat"
+        app:layout_constraintTop_toBottomOf="@+id/line" />
+
+    <RatingBar
+        android:id="@+id/rating_plug"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="302dp"
+        android:isIndicator="false"
+        android:numStars="5"
+        android:progressDrawable="@drawable/rating_custom"
+        android:stepSize="1"
+        app:layout_constraintStart_toEndOf="@+id/twoseat"
+        app:layout_constraintTop_toBottomOf="@+id/line" />
+
+    <RatingBar
+        android:id="@+id/rating_quiet"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="266dp"
+        android:isIndicator="false"
+        android:numStars="5"
+        android:progressDrawable="@drawable/rating_custom"
+        android:stepSize="1"
+        app:layout_constraintStart_toEndOf="@+id/manyseat"
+        app:layout_constraintTop_toBottomOf="@+id/line" />
+
+    <RatingBar
+        android:id="@+id/rating_light"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="302dp"
+        android:isIndicator="false"
+        android:numStars="5"
+        android:progressDrawable="@drawable/rating_custom"
+        android:stepSize="1"
+        app:layout_constraintStart_toEndOf="@+id/manyseat"
+        app:layout_constraintTop_toBottomOf="@+id/line" />
 </androidx.constraintlayout.widget.ConstraintLayout>
