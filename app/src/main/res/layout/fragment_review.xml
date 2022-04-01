@@ -5,6 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
     <Button
         android:id="@+id/backspace_button"
         android:layout_width="34dp"
@@ -33,7 +37,7 @@
         android:layout_width="250dp"
         android:layout_height="40dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/edge_edittext"
+        android:background="@drawable/edge_top_back"
         android:ems="10"
         android:hint="이름, 주소 검색"
         android:inputType="textPersonName"
@@ -112,6 +116,7 @@
         android:layout_marginTop="40dp"
         android:text="산미"
         android:textColor="#000000"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/taste_image"
         app:layout_constraintTop_toBottomOf="@+id/line" />
 
@@ -123,6 +128,7 @@
         android:layout_marginTop="16dp"
         android:text="쓴맛"
         android:textColor="#000000"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/taste_image"
         app:layout_constraintTop_toBottomOf="@+id/sour" />
 
@@ -134,6 +140,7 @@
         android:layout_marginTop="40dp"
         android:text="디저트"
         android:textColor="#000000"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/taste_image"
         app:layout_constraintTop_toBottomOf="@+id/line" />
 
@@ -145,6 +152,7 @@
         android:layout_marginTop="16dp"
         android:text="기타음료"
         android:textColor="#000000"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/acerbity"
         app:layout_constraintTop_toBottomOf="@+id/dessert" />
 
@@ -179,6 +187,7 @@
         android:layout_marginTop="152dp"
         android:text="2인좌석"
         android:textColor="#000000"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/taste_image"
         app:layout_constraintTop_toBottomOf="@+id/line" />
 
@@ -190,6 +199,7 @@
         android:layout_marginTop="128dp"
         android:text="4인좌석"
         android:textColor="#000000"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/taste_image"
         app:layout_constraintTop_toBottomOf="@+id/sour" />
 
@@ -201,6 +211,7 @@
         android:layout_marginTop="152dp"
         android:text="다인좌석"
         android:textColor="#000000"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/taste_image"
         app:layout_constraintTop_toBottomOf="@+id/line" />
 
@@ -208,10 +219,11 @@
         android:id="@+id/toilet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="128dp"
         android:layout_marginLeft="164dp"
+        android:layout_marginTop="128dp"
         android:text="화장실"
         android:textColor="#000000"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/seat_image"
         app:layout_constraintTop_toBottomOf="@+id/dessert" />
 
@@ -246,6 +258,7 @@
         android:layout_marginTop="264dp"
         android:text="와이파이"
         android:textColor="#000000"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/taste_image"
         app:layout_constraintTop_toBottomOf="@+id/line" />
 
@@ -257,6 +270,7 @@
         android:layout_marginTop="240dp"
         android:text="콘센트"
         android:textColor="#000000"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/taste_image"
         app:layout_constraintTop_toBottomOf="@+id/sour" />
 
@@ -268,6 +282,7 @@
         android:layout_marginTop="264dp"
         android:text="조용함"
         android:textColor="#000000"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/taste_image"
         app:layout_constraintTop_toBottomOf="@+id/line" />
 
@@ -279,6 +294,7 @@
         android:layout_marginTop="240dp"
         android:text="조명"
         android:textColor="#000000"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/acerbity"
         app:layout_constraintTop_toBottomOf="@+id/dessert" />
 
@@ -392,9 +408,11 @@
         android:layout_marginStart="68dp"
         android:layout_marginTop="25dp"
         android:background="@drawable/brown_button"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:text="코멘터리 >"
         android:textColor="#FFFFFF"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/line3" />
