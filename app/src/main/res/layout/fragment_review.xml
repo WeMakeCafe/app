@@ -7,429 +7,553 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
-    <Button
-        android:id="@+id/backspace_button"
-        android:layout_width="34dp"
-        android:layout_height="34dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="13dp"
-        android:background="@drawable/back"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/write_review" />
-
-    <TextView
-        android:id="@+id/write_review"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="리뷰 작성"
-        android:textColor="#000000"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/requester_input"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/edge_top_back"
-        android:ems="10"
-        android:hint="이름, 주소 검색"
-        android:inputType="textPersonName"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.093"
-        app:layout_constraintStart_toEndOf="@+id/backspace_button"
-        app:layout_constraintTop_toBottomOf="@+id/write_review" />
-
-    <Button
-        android:id="@+id/search_button"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="2dp"
-        android:background="@drawable/search"
-        app:layout_constraintBottom_toBottomOf="@+id/requester_input"
-        app:layout_constraintEnd_toEndOf="@+id/requester_input"
-        app:layout_constraintTop_toTopOf="@+id/requester_input"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/location_button"
-        android:layout_width="80dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/yellow_button"
-        android:padding="10dp"
-        android:text="위치인증"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/write_review" />
-
-    <TextView
-        android:id="@+id/line"
-        android:layout_width="0dp"
-        android:layout_height="2dp"
-        android:layout_marginTop="15dp"
-        android:background="#3B2314"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/requester_input" />
+        app:layout_constraintStart_toStartOf="parent">
 
-    <TextView
-        android:id="@+id/taste_textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="16dp"
-        android:text="맛"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/line" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/taste_image"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/taste_score"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/line" />
+            <TextView
+                android:id="@+id/manyseat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="60dp"
+                android:text="다인좌석"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/rating_twoseat"
+                app:layout_constraintTop_toBottomOf="@+id/beverage" />
 
-    <TextView
-        android:id="@+id/sour"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="40dp"
-        android:text="산미"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/taste_image"
-        app:layout_constraintTop_toBottomOf="@+id/line" />
+            <RatingBar
+                android:id="@+id/rating_quiet"
+                style="@style/Widget.AppCompat.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:isIndicator="false"
+                android:numStars="5"
+                android:progressDrawable="@drawable/rating_custom"
+                android:stepSize="1"
+                tools:layout_editor_absoluteX="310dp"
+                tools:layout_editor_absoluteY="385dp" />
 
-    <TextView
-        android:id="@+id/acerbity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:text="쓴맛"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/taste_image"
-        app:layout_constraintTop_toBottomOf="@+id/sour" />
+            <TextView
+                android:id="@+id/acerbity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="16dp"
+                android:text="쓴맛"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/taste_image"
+                app:layout_constraintTop_toBottomOf="@+id/sour" />
 
-    <TextView
-        android:id="@+id/dessert"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="40dp"
-        android:text="디저트"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/taste_image"
-        app:layout_constraintTop_toBottomOf="@+id/line" />
+            <RatingBar
+                android:id="@+id/rating_dessert"
+                style="@style/Widget.AppCompat.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="62dp"
+                android:isIndicator="false"
+                android:numStars="5"
+                android:progressDrawable="@drawable/rating_custom"
+                android:stepSize="1"
+                app:layout_constraintStart_toEndOf="@+id/dessert"
+                app:layout_constraintTop_toBottomOf="@+id/requester_input" />
 
-    <TextView
-        android:id="@+id/beverage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="16dp"
-        android:text="기타음료"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/acerbity"
-        app:layout_constraintTop_toBottomOf="@+id/dessert" />
+            <RatingBar
+                android:id="@+id/rating_wifi"
+                style="@style/Widget.AppCompat.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:isIndicator="false"
+                android:numStars="5"
+                android:progressDrawable="@drawable/rating_custom"
+                android:stepSize="1"
+                tools:layout_editor_absoluteX="157dp"
+                tools:layout_editor_absoluteY="385dp" />
 
-    <TextView
-        android:id="@+id/seat_textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="20dp"
-        android:text="좌석"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/taste_image" />
+            <RatingBar
+                android:id="@+id/rating_toilet"
+                style="@style/Widget.AppCompat.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:isIndicator="false"
+                android:numStars="5"
+                android:progressDrawable="@drawable/rating_custom"
+                android:stepSize="1"
+                app:layout_constraintStart_toEndOf="@+id/toilet"
+                app:layout_constraintTop_toBottomOf="@+id/rating_manyseat" />
 
-    <Button
-        android:id="@+id/seat_image"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="144dp"
-        android:background="@drawable/sit_score"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/line" />
+            <TextView
+                android:id="@+id/toilet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="16dp"
+                android:text="화장실"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/rating_fourseat"
+                app:layout_constraintTop_toBottomOf="@+id/manyseat" />
 
-    <TextView
-        android:id="@+id/twoseat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="152dp"
-        android:text="2인좌석"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/taste_image"
-        app:layout_constraintTop_toBottomOf="@+id/line" />
+            <RatingBar
+                android:id="@+id/rating_plug"
+                style="@style/Widget.AppCompat.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:isIndicator="false"
+                android:numStars="5"
+                android:progressDrawable="@drawable/rating_custom"
+                android:stepSize="1"
+                tools:layout_editor_absoluteX="157dp"
+                tools:layout_editor_absoluteY="421dp" />
 
-    <TextView
-        android:id="@+id/fourseat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="128dp"
-        android:text="4인좌석"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/taste_image"
-        app:layout_constraintTop_toBottomOf="@+id/sour" />
+            <TextView
+                android:id="@+id/line"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:background="#3B2314"
+                tools:layout_editor_absoluteY="117dp" />
 
-    <TextView
-        android:id="@+id/manyseat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="156dp"
-        android:layout_marginTop="152dp"
-        android:text="다인좌석"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/taste_image"
-        app:layout_constraintTop_toBottomOf="@+id/line" />
+            <Button
+                android:id="@+id/backspace_button"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/back"
+                app:layout_constraintEnd_toStartOf="@+id/requester_input"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/write_review" />
 
-    <TextView
-        android:id="@+id/toilet"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="164dp"
-        android:layout_marginTop="128dp"
-        android:text="화장실"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/seat_image"
-        app:layout_constraintTop_toBottomOf="@+id/dessert" />
+            <TextView
+                android:id="@+id/tag_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="태그 추가"
+                android:textColor="#000000"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="479dp" />
 
-    <TextView
-        android:id="@+id/study_textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="13dp"
-        android:layout_marginTop="136dp"
-        android:text="스터디"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/taste_image" />
+            <TextView
+                android:id="@+id/caution_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="※ 최대 3개까지 추가 가능해요!"
+                android:textColor="#000000"
+                android:textSize="15sp"
+                tools:layout_editor_absoluteX="165dp"
+                tools:layout_editor_absoluteY="493dp" />
 
-    <Button
-        android:id="@+id/study_image"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="256dp"
-        android:background="@drawable/study_score"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/line" />
+            <RatingBar
+                android:id="@+id/rating_sour"
+                style="@style/Widget.AppCompat.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="62dp"
+                android:isIndicator="false"
+                android:numStars="5"
+                android:progressDrawable="@drawable/rating_custom"
+                android:stepSize="1"
+                app:layout_constraintStart_toEndOf="@+id/sour"
+                app:layout_constraintTop_toBottomOf="@+id/requester_input" />
 
-    <TextView
-        android:id="@+id/wifi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="264dp"
-        android:text="와이파이"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/taste_image"
-        app:layout_constraintTop_toBottomOf="@+id/line" />
+            <RatingBar
+                android:id="@+id/rating_manyseat"
+                style="@style/Widget.AppCompat.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="60dp"
+                android:isIndicator="false"
+                android:numStars="5"
+                android:progressDrawable="@drawable/rating_custom"
+                android:stepSize="1"
+                app:layout_constraintStart_toEndOf="@+id/manyseat"
+                app:layout_constraintTop_toBottomOf="@+id/rating_beverage" />
 
-    <TextView
-        android:id="@+id/plug"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="240dp"
-        android:text="콘센트"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/taste_image"
-        app:layout_constraintTop_toBottomOf="@+id/sour" />
+            <Button
+                android:id="@+id/finish_button"
+                android:layout_width="108dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="600dp"
+                android:layout_marginEnd="56dp"
+                android:background="@drawable/brown_button"
+                android:text="작성완료"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/requester_input" />
 
-    <TextView
-        android:id="@+id/quiet"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="164dp"
-        android:layout_marginTop="264dp"
-        android:text="조용함"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/taste_image"
-        app:layout_constraintTop_toBottomOf="@+id/line" />
+            <EditText
+                android:id="@+id/requester_input"
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/edge_top_back"
+                android:ems="10"
+                android:hint="이름, 주소 검색"
+                android:inputType="textPersonName"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/location_button"
+                app:layout_constraintTop_toBottomOf="@+id/write_review" />
 
-    <TextView
-        android:id="@+id/light"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="136dp"
-        android:layout_marginTop="240dp"
-        android:text="조명"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/acerbity"
-        app:layout_constraintTop_toBottomOf="@+id/dessert" />
+            <Button
+                android:id="@+id/seat_image"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="12dp"
+                android:background="@drawable/sit_score"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/seat_textView" />
 
-    <TextView
-        android:id="@+id/line2"
-        android:layout_width="0dp"
-        android:layout_height="2dp"
-        android:background="#3B2314"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/study_image" />
+            <TextView
+                android:id="@+id/fourseat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="4인좌석"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/seat_image"
+                app:layout_constraintTop_toBottomOf="@+id/twoseat" />
 
-    <TextView
-        android:id="@+id/tag_textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:text="태그 추가"
-        android:textColor="#000000"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/line2" />
+            <RatingBar
+                android:id="@+id/rating_fourseat"
+                style="@style/Widget.AppCompat.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="20dp"
+                android:isIndicator="false"
+                android:numStars="5"
+                android:progressDrawable="@drawable/rating_custom"
+                android:stepSize="1"
+                app:layout_constraintStart_toEndOf="@+id/fourseat"
+                app:layout_constraintTop_toBottomOf="@+id/rating_twoseat" />
 
-    <TextView
-        android:id="@+id/caution_textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="280dp"
-        android:text="※ 최대 3개까지 추가 가능해요!"
-        android:textColor="#000000"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tag_textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tag_textView"
-        app:layout_constraintTop_toBottomOf="@+id/taste_image" />
+            <TextView
+                android:id="@+id/twoseat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="60dp"
+                android:text="2인좌석"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/seat_image"
+                app:layout_constraintTop_toBottomOf="@+id/acerbity" />
 
-    <TextView
-        android:id="@+id/select_tag1"
-        android:layout_width="100dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="25dp"
-        android:background="@drawable/selected_tag_textview"
-        android:text=""
-        android:textColor="#000000"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tag_textView" />
+            <Button
+                android:id="@+id/taste_image"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="43dp"
+                android:background="@drawable/taste_score"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/backspace_button" />
 
-    <TextView
-        android:id="@+id/select_tag2"
-        android:layout_width="100dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="25dp"
-        android:background="@drawable/selected_tag_textview"
-        android:text=""
-        android:textColor="#000000"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/select_tag3"
-        app:layout_constraintStart_toEndOf="@+id/select_tag1"
-        app:layout_constraintTop_toBottomOf="@+id/tag_textView" />
+            <TextView
+                android:id="@+id/select_tag3"
+                android:layout_width="100dp"
+                android:layout_height="35dp"
+                android:background="@drawable/selected_tag_textview"
+                android:text=""
+                android:textColor="#000000"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="235dp"
+                tools:layout_editor_absoluteY="537dp" />
 
-    <TextView
-        android:id="@+id/select_tag3"
-        android:layout_width="100dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/selected_tag_textview"
-        android:text=""
-        android:textColor="#000000"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/add_button"
-        app:layout_constraintTop_toBottomOf="@+id/tag_textView" />
+            <Button
+                android:id="@+id/study_image"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:background="@drawable/study_score"
+                tools:layout_editor_absoluteX="20dp"
+                tools:layout_editor_absoluteY="375dp" />
 
-    <Button
-        android:id="@+id/add_button"
-        android:layout_width="60dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/brown_button"
-        android:text="추가"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tag_textView" />
+            <RatingBar
+                android:id="@+id/rating_acerbity"
+                style="@style/Widget.AppCompat.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="20dp"
+                android:isIndicator="false"
+                android:numStars="5"
+                android:progressDrawable="@drawable/rating_custom"
+                android:stepSize="1"
+                app:layout_constraintStart_toEndOf="@+id/acerbity"
+                app:layout_constraintTop_toBottomOf="@+id/rating_sour" />
 
-    <TextView
-        android:id="@+id/line3"
-        android:layout_width="0dp"
-        android:layout_height="2dp"
-        android:background="#3B2314"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/select_tag2" />
+            <Button
+                android:id="@+id/search_button"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/search"
+                app:layout_constraintBottom_toBottomOf="@+id/requester_input"
+                app:layout_constraintEnd_toEndOf="@+id/requester_input" />
 
-    <Button
-        android:id="@+id/request_button"
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_marginStart="68dp"
-        android:layout_marginTop="25dp"
-        android:background="@drawable/brown_button"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:text="코멘터리 >"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/line3" />
+            <RatingBar
+                android:id="@+id/rating_twoseat"
+                style="@style/Widget.AppCompat.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="60dp"
+                android:isIndicator="false"
+                android:numStars="5"
+                android:progressDrawable="@drawable/rating_custom"
+                android:stepSize="1"
+                app:layout_constraintStart_toEndOf="@+id/twoseat"
+                app:layout_constraintTop_toBottomOf="@+id/rating_acerbity" />
 
-    <Button
-        android:id="@+id/finish_button"
-        android:layout_width="108dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginRight="68dp"
-        android:background="@drawable/brown_button"
-        android:text="작성완료"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/line3" />
+            <TextView
+                android:id="@+id/plug"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="콘센트"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="105dp"
+                tools:layout_editor_absoluteY="419dp" />
+
+            <TextView
+                android:id="@+id/line2"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:background="#3B2314"
+                tools:layout_editor_absoluteY="461dp" />
+
+            <TextView
+                android:id="@+id/line3"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:background="#3B2314"
+                tools:layout_editor_absoluteY="589dp" />
+
+            <Button
+                android:id="@+id/add_button"
+                android:layout_width="60dp"
+                android:layout_height="35dp"
+                android:background="@drawable/brown_button"
+                android:text="추가"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                tools:layout_editor_absoluteX="343dp"
+                tools:layout_editor_absoluteY="537dp" />
+
+            <TextView
+                android:id="@+id/seat_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="28dp"
+                android:text="좌석"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/taste_image" />
+
+            <TextView
+                android:id="@+id/select_tag2"
+                android:layout_width="100dp"
+                android:layout_height="35dp"
+                android:background="@drawable/selected_tag_textview"
+                android:text=""
+                android:textColor="#000000"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="123dp"
+                tools:layout_editor_absoluteY="538dp" />
+
+            <Button
+                android:id="@+id/request_button"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="36dp"
+                android:background="@drawable/brown_button"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="코멘터리 >"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/select_tag1" />
+
+            <TextView
+                android:id="@+id/wifi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="와이파이"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="98dp"
+                tools:layout_editor_absoluteY="383dp" />
+
+            <TextView
+                android:id="@+id/light"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="조명"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="260dp"
+                tools:layout_editor_absoluteY="419dp" />
+
+            <TextView
+                android:id="@+id/taste_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:text="맛"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/backspace_button" />
+
+            <TextView
+                android:id="@+id/study_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="스터디"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="13dp"
+                tools:layout_editor_absoluteY="349dp" />
+
+            <Button
+                android:id="@+id/location_button"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/yellow_button"
+                android:padding="10dp"
+                android:text="위치인증"
+                android:textColor="#FFFFFF"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/write_review" />
+
+            <TextView
+                android:id="@+id/select_tag1"
+                android:layout_width="100dp"
+                android:layout_height="35dp"
+                android:background="@drawable/selected_tag_textview"
+                android:text=""
+                android:textColor="#000000"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="10dp"
+                tools:layout_editor_absoluteY="538dp" />
+
+            <RatingBar
+                android:id="@+id/rating_beverage"
+                style="@style/Widget.AppCompat.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:isIndicator="false"
+                android:numStars="5"
+                android:progressDrawable="@drawable/rating_custom"
+                android:stepSize="1"
+                app:layout_constraintStart_toEndOf="@+id/beverage"
+                app:layout_constraintTop_toBottomOf="@+id/rating_dessert" />
+
+            <RatingBar
+                android:id="@+id/rating_light"
+                style="@style/Widget.AppCompat.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:isIndicator="false"
+                android:numStars="5"
+                android:progressDrawable="@drawable/rating_custom"
+                android:stepSize="1"
+                tools:layout_editor_absoluteX="310dp"
+                tools:layout_editor_absoluteY="421dp" />
+
+            <TextView
+                android:id="@+id/beverage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="34dp"
+                android:layout_marginTop="16dp"
+                android:text="기타음료"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/rating_acerbity"
+                app:layout_constraintTop_toBottomOf="@+id/dessert" />
+
+            <TextView
+                android:id="@+id/sour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="60dp"
+                android:text="산미"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/taste_image"
+                app:layout_constraintTop_toBottomOf="@+id/requester_input" />
+
+            <TextView
+                android:id="@+id/quiet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="조용함"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="254dp"
+                tools:layout_editor_absoluteY="383dp" />
+
+            <TextView
+                android:id="@+id/write_review"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="리뷰 작성"
+                android:textColor="#000000"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/dessert"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="60dp"
+                android:text="디저트"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/rating_sour"
+                app:layout_constraintTop_toBottomOf="@+id/requester_input" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
@@ -440,174 +564,4 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:menu="@menu/bottom_nav_menu" />
-
-    <RatingBar
-        android:id="@+id/rating_sour"
-        style="@style/Widget.AppCompat.RatingBar.Small"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="42dp"
-        android:isIndicator="false"
-        android:numStars="5"
-        android:progressDrawable="@drawable/rating_custom"
-        android:stepSize="1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.403"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/line" />
-
-    <RatingBar
-        android:id="@+id/rating_acerbity"
-        style="@style/Widget.AppCompat.RatingBar.Small"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="78dp"
-        android:isIndicator="false"
-        android:numStars="5"
-        android:progressDrawable="@drawable/rating_custom"
-        android:stepSize="1"
-        app:layout_constraintStart_toEndOf="@+id/acerbity"
-        app:layout_constraintTop_toBottomOf="@+id/line" />
-
-    <RatingBar
-        android:id="@+id/rating_dessert"
-        style="@style/Widget.AppCompat.RatingBar.Small"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="42dp"
-        android:isIndicator="false"
-        android:numStars="5"
-        android:progressDrawable="@drawable/rating_custom"
-        android:stepSize="1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.913"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/line" />
-
-    <RatingBar
-        android:id="@+id/rating_beverage"
-        style="@style/Widget.AppCompat.RatingBar.Small"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="78dp"
-        android:isIndicator="false"
-        android:numStars="5"
-        android:progressDrawable="@drawable/rating_custom"
-        android:stepSize="1"
-        app:layout_constraintStart_toEndOf="@+id/beverage"
-        app:layout_constraintTop_toBottomOf="@+id/line" />
-
-    <RatingBar
-        android:id="@+id/rating_twoseat"
-        style="@style/Widget.AppCompat.RatingBar.Small"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="154dp"
-        android:isIndicator="false"
-        android:numStars="5"
-        android:progressDrawable="@drawable/rating_custom"
-        android:stepSize="1"
-        app:layout_constraintStart_toEndOf="@+id/twoseat"
-        app:layout_constraintTop_toBottomOf="@+id/line" />
-
-    <RatingBar
-        android:id="@+id/rating_fourseat"
-        style="@style/Widget.AppCompat.RatingBar.Small"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="190dp"
-        android:isIndicator="false"
-        android:numStars="5"
-        android:progressDrawable="@drawable/rating_custom"
-        android:stepSize="1"
-        app:layout_constraintStart_toEndOf="@+id/twoseat"
-        app:layout_constraintTop_toBottomOf="@+id/line" />
-
-    <RatingBar
-        android:id="@+id/rating_manyseat"
-        style="@style/Widget.AppCompat.RatingBar.Small"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="154dp"
-        android:isIndicator="false"
-        android:numStars="5"
-        android:progressDrawable="@drawable/rating_custom"
-        android:stepSize="1"
-        app:layout_constraintStart_toEndOf="@+id/manyseat"
-        app:layout_constraintTop_toBottomOf="@+id/line" />
-
-    <RatingBar
-        android:id="@+id/rating_toilet"
-        style="@style/Widget.AppCompat.RatingBar.Small"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="190dp"
-        android:isIndicator="false"
-        android:numStars="5"
-        android:progressDrawable="@drawable/rating_custom"
-        android:stepSize="1"
-        app:layout_constraintStart_toEndOf="@+id/manyseat"
-        app:layout_constraintTop_toBottomOf="@+id/line" />
-
-    <RatingBar
-        android:id="@+id/rating_wifi"
-        style="@style/Widget.AppCompat.RatingBar.Small"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="266dp"
-        android:isIndicator="false"
-        android:numStars="5"
-        android:progressDrawable="@drawable/rating_custom"
-        android:stepSize="1"
-        app:layout_constraintStart_toEndOf="@+id/twoseat"
-        app:layout_constraintTop_toBottomOf="@+id/line" />
-
-    <RatingBar
-        android:id="@+id/rating_plug"
-        style="@style/Widget.AppCompat.RatingBar.Small"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="302dp"
-        android:isIndicator="false"
-        android:numStars="5"
-        android:progressDrawable="@drawable/rating_custom"
-        android:stepSize="1"
-        app:layout_constraintStart_toEndOf="@+id/twoseat"
-        app:layout_constraintTop_toBottomOf="@+id/line" />
-
-    <RatingBar
-        android:id="@+id/rating_quiet"
-        style="@style/Widget.AppCompat.RatingBar.Small"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="266dp"
-        android:isIndicator="false"
-        android:numStars="5"
-        android:progressDrawable="@drawable/rating_custom"
-        android:stepSize="1"
-        app:layout_constraintStart_toEndOf="@+id/manyseat"
-        app:layout_constraintTop_toBottomOf="@+id/line" />
-
-    <RatingBar
-        android:id="@+id/rating_light"
-        style="@style/Widget.AppCompat.RatingBar.Small"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="302dp"
-        android:isIndicator="false"
-        android:numStars="5"
-        android:progressDrawable="@drawable/rating_custom"
-        android:stepSize="1"
-        app:layout_constraintStart_toEndOf="@+id/manyseat"
-        app:layout_constraintTop_toBottomOf="@+id/line" />
 </androidx.constraintlayout.widget.ConstraintLayout>
