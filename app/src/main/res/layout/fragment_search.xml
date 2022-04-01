@@ -10,17 +10,17 @@
         android:id="@+id/backspace_button"
         android:layout_width="34dp"
         android:layout_height="34dp"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/back"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="23dp"
+        android:background="@drawable/back_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/requester_input"
-        android:layout_width="310dp"
+        android:layout_width="330dp"
         android:layout_height="40dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/edge_top_back"
         android:ems="10"
@@ -28,10 +28,8 @@
         android:inputType="textPersonName"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.036" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/search_button"
