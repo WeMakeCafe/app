@@ -37,7 +37,7 @@
         android:layout_width="250dp"
         android:layout_height="40dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/edge_edittext"
+        android:background="@drawable/edge_top_back"
         android:ems="10"
         android:hint="이름, 주소 검색"
         android:inputType="textPersonName"
