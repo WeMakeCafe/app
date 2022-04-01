@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.review.ReviewFragment">
 
+
     <EditText
         android:id="@+id/requester_input2"
         android:layout_width="350dp"
