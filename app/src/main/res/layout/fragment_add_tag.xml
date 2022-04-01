@@ -10,7 +10,7 @@
         android:id="@+id/requester_input2"
         android:layout_width="350dp"
         android:layout_height="40dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/edge_top_back"
         android:ems="10"
         android:inputType="textPersonName"
@@ -61,7 +61,7 @@
         android:layout_height="45dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/brown_button"
-        android:text="요청하기"
+        android:text="추가하기"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -73,7 +73,7 @@
         android:id="@+id/imageView3"
         android:layout_width="350dp"
         android:layout_height="0dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:layout_marginBottom="10dp"
         android:scaleType="fitXY"
         android:src="@drawable/tag_v2"
@@ -103,6 +103,7 @@
         android:id="@+id/imageView13"
         android:layout_width="100dp"
         android:layout_height="26dp"
+        android:background="@drawable/edge_top_bottom"
         android:clickable="true"
         android:src="@drawable/edge_top_back"
         app:layout_constraintBottom_toTopOf="@+id/imageView7"
@@ -111,6 +112,7 @@
         app:layout_constraintStart_toStartOf="@+id/imageView7" />
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
@@ -503,5 +505,47 @@
         app:layout_constraintEnd_toEndOf="@+id/imageView2"
         app:layout_constraintStart_toStartOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="@+id/imageView2" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="34dp"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:background="@drawable/selected_tag_textview_v2"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+        app:layout_constraintEnd_toEndOf="@+id/imageView3"
+        app:layout_constraintStart_toStartOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/imageView7" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="34dp"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:background="@drawable/selected_tag_textview_v2"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+        app:layout_constraintEnd_toStartOf="@+id/button4"
+        app:layout_constraintStart_toStartOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/imageView7" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="wrap_content"
+        android:layout_height="34dp"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:background="@drawable/selected_tag_textview_v2"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+        app:layout_constraintEnd_toEndOf="@+id/imageView3"
+        app:layout_constraintStart_toEndOf="@+id/button4"
+        app:layout_constraintTop_toBottomOf="@+id/imageView7" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
