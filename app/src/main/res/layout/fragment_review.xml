@@ -8,16 +8,15 @@
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:overScrollMode="always"
         app:layout_constraintBottom_toTopOf="@+id/nav_view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="10000dp">
 
             <TextView
                 android:id="@+id/manyseat"
@@ -182,20 +181,6 @@
                 android:stepSize="1"
                 app:layout_constraintStart_toEndOf="@+id/manyseat"
                 app:layout_constraintTop_toBottomOf="@+id/rating_beverage" />
-
-            <Button
-                android:id="@+id/finish_button"
-                android:layout_width="108dp"
-                android:layout_height="45dp"
-                android:layout_marginTop="600dp"
-                android:layout_marginEnd="56dp"
-                android:background="@drawable/brown_button"
-                android:text="작성완료"
-                android:textColor="#FFFFFF"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/requester_input" />
 
             <EditText
                 android:id="@+id/requester_input"
@@ -555,6 +540,19 @@
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/rating_sour"
                 app:layout_constraintTop_toBottomOf="@+id/requester_input" />
+
+            <Button
+                android:id="@+id/finish_button"
+                android:layout_width="108dp"
+                android:layout_height="45dp"
+                android:background="@drawable/brown_button"
+                android:text="작성완료"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="235dp"
+                tools:layout_editor_absoluteY="661dp" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
@@ -566,5 +564,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:menu="@menu/bottom_nav_menu" />
+        app:menu="@menu/bottom_nav_menu" >
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 </androidx.constraintlayout.widget.ConstraintLayout>

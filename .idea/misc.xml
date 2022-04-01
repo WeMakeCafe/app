@@ -21,15 +21,16 @@
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/drawable/yellow_button.xml" value="0.282" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/cafe_list_item.xml" value="0.3052536231884058" />
-        <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_add_tag.xml" value="0.67" />
+        <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_add_tag.xml" value="0.33" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_dashboard.xml" value="0.1656534954407295" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_delete.xml" value="0.3052536231884058" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_deletecafe.xml" value="0.33" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_home.xml" value="0.1656534954407295" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_list.xml" value="0.22" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_review.xml" value="0.33" />
-        <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_search.xml" value="0.9" />
-        <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_search_default.xml" value="0.3052536231884058" />
+        <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_review_comment.xml" value="0.5" />
+        <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_search.xml" value="0.33" />
+        <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_search_default.xml" value="0.33" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_search_list.xml" value="0.3052536231884058" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_wirteReview.xml" value="0.1656534954407295" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/recent_searches_item.xml" value="0.3052536231884058" />
