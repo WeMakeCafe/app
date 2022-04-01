@@ -22,8 +22,8 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.cafe_list_item); // 페이지 확인하기
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(R.layout.fragment_add_tag); }} //페이지 확인하기
+        /*binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
@@ -38,4 +38,4 @@ public class MainActivity extends FragmentActivity {
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
 
-}
+}*/
