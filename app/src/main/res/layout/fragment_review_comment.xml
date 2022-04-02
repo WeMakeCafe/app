@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -108,7 +109,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/line10" />
 
             <TextView
-                android:id="@+id/caution_textView2"
+                android:id="@+id/caution_textView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -117,7 +118,7 @@
                 android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.2"
-                app:layout_constraintStart_toEndOf="@+id/tag_textView2"
+                app:layout_constraintStart_toEndOf="@+id/image_registration"
                 app:layout_constraintTop_toBottomOf="@+id/line10" />
 
             <TextView
@@ -134,7 +135,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tag_textView2"
+                android:id="@+id/image_registration"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -164,14 +165,14 @@
                 app:layout_constraintTop_toBottomOf="@+id/line14" />
 
             <Button
-                android:id="@+id/button7"
+                android:id="@+id/add_image_button"
                 android:layout_width="88dp"
                 android:layout_height="88dp"
                 android:layout_marginStart="30dp"
                 android:background="@drawable/add_image"
                 app:layout_constraintBottom_toTopOf="@+id/line14"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tag_textView2" />
+                app:layout_constraintTop_toBottomOf="@+id/image_registration" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

@@ -152,20 +152,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="15dp"
                 android:text="태그 추가"
                 android:textColor="#000000"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/line2" />
 
             <TextView
-                android:id="@+id/caution_textView"
+                android:id="@+id/caution_textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="52dp"
-                android:layout_marginTop="26dp"
+                android:layout_marginTop="17dp"
                 android:layout_marginEnd="60dp"
                 android:text="※ 최대 3개까지 추가 가능해요!"
                 android:textColor="#000000"
@@ -301,7 +301,7 @@
                 android:textColor="#000000"
                 android:textSize="25sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/add_button"
+                app:layout_constraintEnd_toStartOf="@+id/duplicate_button"
                 app:layout_constraintTop_toBottomOf="@+id/tag_textView" />
 
             <Button
@@ -382,7 +382,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/select_tag2" />
 
             <Button
-                android:id="@+id/add_button"
+                android:id="@+id/duplicate_button"
                 android:layout_width="60dp"
                 android:layout_height="35dp"
                 android:layout_marginTop="16dp"
