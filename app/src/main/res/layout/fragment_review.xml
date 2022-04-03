@@ -301,7 +301,7 @@
                 android:textColor="#000000"
                 android:textSize="25sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/duplicate_button"
+                app:layout_constraintEnd_toStartOf="@+id/add_cafe_button"
                 app:layout_constraintTop_toBottomOf="@+id/tag_textView" />
 
             <Button
@@ -382,7 +382,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/select_tag2" />
 
             <Button
-                android:id="@+id/duplicate_button"
+                android:id="@+id/add_cafe_button"
                 android:layout_width="60dp"
                 android:layout_height="35dp"
                 android:layout_marginTop="16dp"

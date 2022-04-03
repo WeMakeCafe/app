@@ -151,7 +151,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/caution_required_fields_textView" />
 
             <Button
-                android:id="@+id/duplicate_button"
+                android:id="@+id/add_cafe_button"
                 android:layout_width="70dp"
                 android:layout_height="27dp"
                 android:layout_marginStart="10dp"
