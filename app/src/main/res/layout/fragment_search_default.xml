@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/requester_input"
+        android:id="@+id/cafe_search_input"
         android:layout_width="310dp"
         android:layout_height="40dp"
         android:layout_marginTop="20dp"
@@ -39,9 +39,9 @@
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="2dp"
         android:background="@drawable/search"
-        app:layout_constraintBottom_toBottomOf="@+id/requester_input"
-        app:layout_constraintEnd_toEndOf="@+id/requester_input"
-        app:layout_constraintTop_toTopOf="@+id/requester_input"
+        app:layout_constraintBottom_toBottomOf="@+id/cafe_search_input"
+        app:layout_constraintEnd_toEndOf="@+id/cafe_search_input"
+        app:layout_constraintTop_toTopOf="@+id/cafe_search_input"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -70,7 +70,7 @@
         app:layout_constraintVertical_bias="0.511" />
 
     <Button
-        android:id="@+id/duplicate_button"
+        android:id="@+id/add_cafe_button"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginTop="10dp"
