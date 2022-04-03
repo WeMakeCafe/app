@@ -20,6 +20,9 @@
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/recent_searches_item.xml" value="0.33" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/review.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/drawable-v24/edge_button.xml" value="0.293" />
+        <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/drawable/edge_top_back.xml" value="0.295" />
+        <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/drawable/edge_top_back_brown.xml" value="0.367" />
+        <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/drawable/edge_top_back_shadow.xml" value="0.295" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/drawable/input_textbox_edge.xml" value="0.293" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/activity_main.xml" value="0.1656534954407295" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/cafe_list_item.xml" value="0.36614583333333334" />
@@ -29,8 +32,9 @@
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_dashboard.xml" value="0.1656534954407295" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_delete.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_deletecafe.xml" value="0.33" />
+        <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_grade.xml" value="0.33" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_home.xml" value="0.1656534954407295" />
-        <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_list.xml" value="0.22" />
+        <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_list.xml" value="0.33" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_more_review.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_review.xml" value="0.33" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_review_comment.xml" value="0.36614583333333334" />
