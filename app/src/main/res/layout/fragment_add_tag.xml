@@ -453,7 +453,7 @@
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/nickName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="음료, 맛"
@@ -465,7 +465,7 @@
         app:layout_constraintTop_toTopOf="@+id/imageView13" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/profile_image"
         android:layout_width="100dp"
         android:layout_height="26dp"
         android:src="@drawable/edge_top_back_brown"
@@ -480,10 +480,10 @@
         android:text="분위기"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
+        app:layout_constraintBottom_toBottomOf="@+id/profile_image"
+        app:layout_constraintEnd_toEndOf="@+id/profile_image"
+        app:layout_constraintStart_toStartOf="@+id/profile_image"
+        app:layout_constraintTop_toTopOf="@+id/profile_image" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -496,7 +496,7 @@
         app:layout_constraintStart_toStartOf="@+id/imageView7" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/level_and_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="서비스"
