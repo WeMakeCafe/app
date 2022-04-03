@@ -67,8 +67,8 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="544dp"
+                android:layout_width="0dp"
+                android:layout_height="520dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="15dp"
                 app:layout_constraintBottom_toTopOf="@+id/addCafe_button"
@@ -76,7 +76,9 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/search_input"
-                app:layout_constraintVertical_bias="0.433"></androidx.recyclerview.widget.RecyclerView>
+                app:layout_constraintVertical_bias="0.433">
+
+            </androidx.recyclerview.widget.RecyclerView>
 
             <Button
                 android:id="@+id/addCafe_button"
