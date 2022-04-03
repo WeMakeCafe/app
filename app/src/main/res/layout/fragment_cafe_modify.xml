@@ -144,11 +144,11 @@
                 android:layout_marginTop="15dp"
                 android:background="@drawable/edge_top_back"
                 android:ems="10"
-                android:hint="카페 이름은 수정 불가능합니다."
                 android:paddingLeft="10dp"
                 android:paddingTop="5dp"
                 android:paddingRight="10dp"
-                android:textColor="#000000"
+                android:text="카페 이름은 수정 불가능합니다."
+                android:textColor="#7C000000"
                 app:layout_constraintStart_toEndOf="@+id/cafe_name"
                 app:layout_constraintTop_toBottomOf="@+id/caution_required_fields_textView" />
 
@@ -197,11 +197,11 @@
                 android:layout_marginTop="20dp"
                 android:background="@drawable/edge_top_back"
                 android:ems="10"
-                android:hint="카페 주소는 수정 불가능합니다."
                 android:paddingLeft="10dp"
                 android:paddingTop="5dp"
                 android:paddingRight="10dp"
-                android:textColor="#000000"
+                android:text="카페 주소는 수정 불가능합니다."
+                android:textColor="#7C000000"
                 app:layout_constraintStart_toEndOf="@+id/cafe_address"
                 app:layout_constraintTop_toBottomOf="@+id/cafe_name_input" />
 
