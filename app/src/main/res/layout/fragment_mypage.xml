@@ -290,13 +290,14 @@
         android:layout_width="409dp"
         android:layout_height="204dp"
         app:layout_constraintBottom_toTopOf="@+id/nav_view"
-        app:layout_constraintTop_toBottomOf="@+id/myReview"
-        tools:layout_editor_absoluteX="1dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/myReview">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
