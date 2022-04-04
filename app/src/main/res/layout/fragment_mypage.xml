@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/line5"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="20dp"
+        android:background="#3B2314"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/line6"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="184dp"
+        android:background="#3B2314"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/edge_circle_brown" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imageView6"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="7dp"
+        android:layout_marginBottom="7dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        android:src="@drawable/ic_launcher_background" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:text="2등급 원두"
+        android:textColor="#F6921E"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:text="수제커피머신 님"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/yellow_button"
+        android:text="정보수정"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <Button
+        android:id="@+id/button9"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/yellow_button"
+        android:text="로그아웃"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.29"
+        app:layout_constraintStart_toEndOf="@+id/button7"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <HorizontalScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/line6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/line5"
+        app:layout_constraintVertical_bias="0.0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/button16"
+                android:layout_width="110dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/selected_tag_textview"
+                app:layout_constraintStart_toEndOf="@+id/button10"
+                app:layout_constraintTop_toBottomOf="@+id/button12" />
+
+            <Button
+                android:id="@+id/button18"
+                android:layout_width="110dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="20dp"
+                android:background="@drawable/selected_tag_textview"
+                app:layout_constraintStart_toEndOf="@+id/button12"
+                app:layout_constraintTop_toTopOf="@+id/button16" />
+
+            <Button
+                android:id="@+id/button15"
+                android:layout_width="110dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="20dp"
+                android:background="@drawable/selected_tag_textview"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/button16" />
+
+            <TextView
+                android:id="@+id/taste_textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:text="찜한 카페"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/button10"
+                android:layout_width="110dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="20dp"
+                android:background="@drawable/selected_tag_textview"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/button12" />
+
+            <Button
+                android:id="@+id/button12"
+                android:layout_width="110dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/selected_tag_textview"
+                app:layout_constraintStart_toEndOf="@+id/button10"
+                app:layout_constraintTop_toBottomOf="@+id/taste_textView3" />
+
+            <Button
+                android:id="@+id/button13"
+                android:layout_width="110dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="20dp"
+                android:background="@drawable/selected_tag_textview"
+                app:layout_constraintStart_toEndOf="@+id/button12"
+                app:layout_constraintTop_toTopOf="@+id/button12" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </HorizontalScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
