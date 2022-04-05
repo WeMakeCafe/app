@@ -21,7 +21,7 @@
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/fragment_cafe_registration.xml" value="0.33" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/fragment_delete.xml" value="0.33" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/fragment_grade.xml" value="0.33" />
-        <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/fragment_home.xml" value="0.36614583333333334" />
+        <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/fragment_list.xml" value="0.33" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/fragment_more_review.xml" value="0.33" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/fragment_mypage.xml" value="0.36614583333333334" />
@@ -31,8 +31,11 @@
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/fragment_search_default.xml" value="0.33" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/fragment_search_list.xml" value="0.33" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/item_cafe_list.xml" value="0.36614583333333334" />
+        <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/item_home_favorite.xml" value="0.36614583333333334" />
+        <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/item_home_taglist.xml" value="0.36614583333333334" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/item_more_review.xml" value="0.36614583333333334" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/item_recent_searches.xml" value="0.36614583333333334" />
+        <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/item_review_more.xml" value="0.36614583333333334" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/more_review_item.xml" value="0.25" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/recent_searches_item.xml" value="0.33" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/review.xml" value="0.36614583333333334" />
