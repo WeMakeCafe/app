@@ -21,7 +21,9 @@ public class MainActivity extends FragmentActivity { //상속 fragmentActivity�
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_home);  //페이지 확인하기
+
+        setContentView(R.layout.fragment_cafe_detail);  //페이지 확인하기
+
 //        binding = ActivityMainBinding.inflate(getLayoutInflater());
 //        setContentView(binding.getRoot());
 //
