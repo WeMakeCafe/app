@@ -55,22 +55,22 @@
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="30dp"
         app:layout_constraintBottom_toTopOf="@+id/nav_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cafe_search_input"
         app:layout_constraintVertical_bias="0.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/scrollLayout"
             android:layout_width="match_parent"
-            android:layout_height="500dp">
+            android:layout_height="match_parent">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="0dp"
-                android:layout_height="510dp"
-                android:layout_marginTop="90dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -80,19 +80,18 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
-    <Button
-        android:id="@+id/addCafe_button"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="15dp"
-        android:background="@drawable/yellow_button"
-        android:text="카페추가"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="16dp"
+        android:backgroundTint="#F6921E"
+        android:contentDescription="@string/add_cafe"
+        android:src="@drawable/add_cafe_flaoting_button"
         app:layout_constraintBottom_toBottomOf="@+id/scrollView"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:rippleColor="@color/white" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
