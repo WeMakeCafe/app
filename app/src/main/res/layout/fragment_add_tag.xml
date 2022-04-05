@@ -465,7 +465,7 @@
         app:layout_constraintTop_toTopOf="@+id/imageView13" />
 
     <ImageView
-        android:id="@+id/profile_image"
+        android:id="@+id/cafe_image"
         android:layout_width="100dp"
         android:layout_height="26dp"
         android:src="@drawable/edge_top_back_brown"
@@ -480,10 +480,10 @@
         android:text="분위기"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/profile_image"
-        app:layout_constraintEnd_toEndOf="@+id/profile_image"
-        app:layout_constraintStart_toStartOf="@+id/profile_image"
-        app:layout_constraintTop_toTopOf="@+id/profile_image" />
+        app:layout_constraintBottom_toBottomOf="@+id/cafe_image"
+        app:layout_constraintEnd_toEndOf="@+id/cafe_image"
+        app:layout_constraintStart_toStartOf="@+id/cafe_image"
+        app:layout_constraintTop_toTopOf="@+id/cafe_image" />
 
     <ImageView
         android:id="@+id/imageView2"
