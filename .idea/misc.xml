@@ -52,6 +52,7 @@
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/drawable/yellow_button.xml" value="0.295" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/activity_main.xml" value="0.1656534954407295" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/cafe_list_item.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_add_tag.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_cafe_modify.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_cafe_registration.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_dashboard.xml" value="0.1656534954407295" />
@@ -64,6 +65,7 @@
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_mypage.xml" value="0.33" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_review.xml" value="0.33" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_review_comment.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_search.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_search_default.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_wirteReview.xml" value="0.1656534954407295" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/more_review_item.xml" value="0.36614583333333334" />
