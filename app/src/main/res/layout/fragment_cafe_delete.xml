@@ -168,24 +168,13 @@
         android:id="@+id/request_button"
         android:layout_width="108dp"
         android:layout_height="45dp"
-        android:layout_marginBottom="20dp"
         android:background="@drawable/brown_button"
         android:text="요청하기"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/nav_view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="?android:attr/windowBackground"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:menu="@menu/bottom_nav_menu" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="610dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
