@@ -15,9 +15,9 @@
         android:backgroundTint="#F6921E"
         android:contentDescription="@string/add_cafe"
         android:src="@drawable/add_cafe_flaoting_button"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:rippleColor="@color/white"
-        tools:layout_editor_absoluteY="603dp" />
+        app:rippleColor="@color/white" />
 
     <TextView
         android:id="@+id/line8"
@@ -173,7 +173,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="#스터디"
-                    android:textColor="#F6921E"
+                    android:textColor="@color/orange"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"

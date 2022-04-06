@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:text="카페주소"
-                android:textColor="#F6921E"
+                android:textColor="@color/orange"
                 android:textSize="15sp" />
 
         </LinearLayout>
