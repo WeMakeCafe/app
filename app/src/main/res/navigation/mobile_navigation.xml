@@ -7,19 +7,25 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.wmc.ui.home.HomeFragment"
+        android:name="com.example.wmc.ui.Fragment.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.wmc.ui.list.ListFragment"
-        android:label="@string/title_dashboard"
+        android:id="@+id/navigation_list"
+        android:name="com.example.wmc.ui.Fragment.ListFragment"
+        android:label="@string/title_list"
         tools:layout="@layout/fragment_list" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.wmc.ui.review.ReviewFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_wirteReview" />
+        android:id="@+id/navigation_review"
+        android:name="com.example.wmc.ui.Fragment.ReviewFragment"
+        android:label="@string/title_review"
+        tools:layout="@layout/fragment_review" />
+
+    <fragment
+        android:id="@+id/navigation_myPage"
+        android:name="com.example.wmc.ui.Fragment.MyPageFragment"
+        android:label="@string/title_myPage"
+        tools:layout="@layout/fragment_mypage" />
 </navigation>

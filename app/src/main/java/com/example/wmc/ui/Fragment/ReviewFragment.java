@@ -1,31 +1,26 @@
-package com.example.wmc.ui.list;
+package com.example.wmc.ui.Fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.wmc.databinding.FragmentListBinding;
+import com.example.wmc.databinding.FragmentReviewBinding;
 
-public class ListFragment extends Fragment {
+public class ReviewFragment extends Fragment {
 
-    private FragmentListBinding binding;
+    private FragmentReviewBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        ListViewModel dashboardViewModel =
-                new ViewModelProvider(this).get(ListViewModel.class);
 
-        binding = FragmentListBinding.inflate(inflater, container, false);
+        binding = FragmentReviewBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textList;
-        dashboardViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 
