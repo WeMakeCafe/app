@@ -1,26 +1,25 @@
-package com.example.wmc.ui.review;
+package com.example.wmc.ui.Fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.wmc.databinding.FragmentReviewBinding;
+import com.example.wmc.databinding.FragmentListBinding;
 
-public class ReviewFragment extends Fragment {
+public class ListFragment extends Fragment {
 
-    private FragmentReviewBinding binding;
+    private FragmentListBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        ReviewViewModel notificationsViewModel =
-                new ViewModelProvider(this).get(ReviewViewModel.class);
 
-        binding = FragmentReviewBinding.inflate(inflater, container, false);
+        binding = FragmentListBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         return root;

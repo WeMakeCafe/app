@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">WMC</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_home">홈</string>
+    <string name="title_list">카페 목록</string>
+    <string name="title_review">리뷰 작성</string>
+    <string name="title_myPage">마이페이지</string>
     <string name="add_cafe">카페추가</string>
 </resources>
