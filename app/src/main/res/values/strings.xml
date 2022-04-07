@@ -5,4 +5,5 @@
     <string name="title_review">리뷰 작성</string>
     <string name="title_myPage">마이페이지</string>
     <string name="add_cafe">카페추가</string>
+    <string name="title_cafe_detail">카페 디테일</string>
 </resources>
