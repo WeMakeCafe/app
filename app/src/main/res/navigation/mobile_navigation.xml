@@ -45,6 +45,6 @@
     <fragment
         android:id="@+id/navigation_cafe_detail"
         android:name="com.example.wmc.ui.Fragment.CafeDetailFragment"
-        android:label="@string/title_cafe_detail"
+        android:label="@string/cafe_detail"
         tools:layout="@layout/fragment_cafe_detail" />
 </navigation>
