@@ -19,6 +19,7 @@
             android:orientation="vertical" >
 
             <LinearLayout
+                android:id="@+id/logoLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
@@ -37,8 +38,8 @@
                     android:id="@+id/logo"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_marginTop="50dp"
                     android:layout_marginStart="105dp"
+                    android:layout_marginTop="50dp"
                     android:src="@drawable/logo_v2"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -46,6 +47,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/requiredLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
@@ -72,6 +74,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/idLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
@@ -83,8 +86,8 @@
                     android:layout_height="match_parent"
                     android:gravity="right"
                     android:paddingLeft="50dp"
-                    android:paddingRight="5dp"
                     android:paddingTop="10dp"
+                    android:paddingRight="5dp"
                     android:text="*"
                     android:textColor="#FF0000" />
 
@@ -97,6 +100,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/pwLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
@@ -108,8 +112,8 @@
                     android:layout_height="match_parent"
                     android:gravity="right"
                     android:paddingLeft="50dp"
-                    android:paddingRight="5dp"
                     android:paddingTop="10dp"
+                    android:paddingRight="5dp"
                     android:text="*"
                     android:textColor="#FF0000" />
 
@@ -122,6 +126,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/verifyPwLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
@@ -133,8 +138,8 @@
                     android:layout_height="match_parent"
                     android:gravity="right"
                     android:paddingLeft="50dp"
-                    android:paddingRight="5dp"
                     android:paddingTop="10dp"
+                    android:paddingRight="5dp"
                     android:text="*"
                     android:textColor="#FF0000" />
 
@@ -147,6 +152,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/nickNameLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
@@ -158,8 +164,8 @@
                     android:layout_height="match_parent"
                     android:gravity="right"
                     android:paddingLeft="50dp"
-                    android:paddingRight="5dp"
                     android:paddingTop="10dp"
+                    android:paddingRight="5dp"
                     android:text="*"
                     android:textColor="#FF0000" />
 
@@ -172,6 +178,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/phoneNumLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
@@ -183,8 +190,8 @@
                     android:layout_height="match_parent"
                     android:gravity="right"
                     android:paddingLeft="50dp"
-                    android:paddingRight="5dp"
                     android:paddingTop="10dp"
+                    android:paddingRight="5dp"
                     android:text="*"
                     android:textColor="#FF0000" />
 
@@ -193,11 +200,12 @@
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:hint="전화번호"
-                    android:maxLength="11"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:maxLength="11" />
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/addressLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
@@ -209,8 +217,8 @@
                     android:layout_height="match_parent"
                     android:gravity="right"
                     android:paddingLeft="50dp"
-                    android:paddingRight="5dp"
                     android:paddingTop="10dp"
+                    android:paddingRight="5dp"
                     android:text="*"
                     android:textColor="#FF0000" />
 
@@ -223,6 +231,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/preferenceLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
@@ -234,8 +243,8 @@
                     android:layout_height="match_parent"
                     android:gravity="right"
                     android:paddingLeft="50dp"
-                    android:paddingRight="5dp"
                     android:paddingTop="10dp"
+                    android:paddingRight="5dp"
                     android:text="*"
                     android:textColor="#FF0000" />
 
@@ -243,11 +252,11 @@
                     android:id="@+id/signUp_preference_textView"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:inputType="textPersonName"
                     android:paddingTop="10dp"
-                    android:textSize="16sp"
-                    android:textColor="@color/black"
                     android:text="우선순위"
-                    android:inputType="textPersonName" />
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
 
                 <RadioGroup
                     android:id="@+id/preferenceGroup"
@@ -278,6 +287,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/profileImageLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
@@ -289,8 +299,8 @@
                     android:layout_height="match_parent"
                     android:gravity="right"
                     android:paddingLeft="50dp"
-                    android:paddingRight="5dp"
                     android:paddingTop="10dp"
+                    android:paddingRight="5dp"
                     android:text="*"
                     android:textColor="@color/login_background_color" />
 
@@ -298,8 +308,8 @@
                     android:id="@+id/signUp_profileImage_input"
                     android:layout_width="280dp"
                     android:layout_height="wrap_content"
-                    android:hint="프로필 사진"
                     android:enabled="false"
+                    android:hint="프로필 사진"
                     android:inputType="textPersonName" />
 
                 <Button
