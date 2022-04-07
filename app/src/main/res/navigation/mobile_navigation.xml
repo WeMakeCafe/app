@@ -28,7 +28,14 @@
         android:id="@+id/navigation_list"
         android:name="com.example.wmc.ui.Fragment.ListFragment"
         android:label="@string/title_list"
-        tools:layout="@layout/fragment_list" />
+        tools:layout="@layout/fragment_list" >
+        <action
+            android:id="@+id/list_to_list_search"
+            app:destination="@id/navigation_list_search" />
+        <action
+            android:id="@+id/list_to_cafe_registration"
+            app:destination="@id/navigation_cafe_registration" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_review"
@@ -46,5 +53,40 @@
         android:id="@+id/navigation_cafe_detail"
         android:name="com.example.wmc.ui.Fragment.CafeDetailFragment"
         android:label="@string/cafe_detail"
-        tools:layout="@layout/fragment_cafe_detail" />
+        tools:layout="@layout/fragment_cafe_detail" >
+        <action
+            android:id="@+id/cafe_detail_to_cafe_detail_more"
+            app:destination="@id/navigation_cafe_detail_more" />
+        <action
+            android:id="@+id/cafe_detail_to_cafe_modify"
+            app:destination="@id/navigation_cafe_modify" />
+        <action
+            android:id="@+id/cafe_detail_to_review"
+            app:destination="@id/navigation_review" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_list_search"
+        android:name="com.example.wmc.ui.Fragment.ListSearchFragment"
+        android:label="@string/list_search"
+        tools:layout="@layout/fragment_list_search" />
+
+    <fragment
+        android:id="@+id/navigation_cafe_registration"
+        android:name="com.example.wmc.ui.Fragment.CafeRegistrationFragment"
+        android:label="@string/cafe_registration"
+        tools:layout="@layout/fragment_cafe_registration" />
+
+    <fragment
+        android:id="@+id/navigation_cafe_detail_more"
+        android:name="com.example.wmc.ui.Fragment.CafeDetailMoreFragment"
+        android:label="@string/cafe_detail_more"
+        tools:layout="@layout/fragment_cafe_detail_more" />
+
+    <fragment
+        android:id="@+id/navigation_cafe_modify"
+        android:name="com.example.wmc.ui.Fragment.CafeModifyFragment"
+        android:label="@string/cafe_modify"
+        tools:layout="@layout/fragment_cafe_modify" />
+
 </navigation>

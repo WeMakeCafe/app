@@ -10,7 +10,7 @@
     <string name="cafe_modify">카페 수정</string>
     <string name="cafe_registration">카페 추가</string>
     <string name="cafe_list">카페 리스트</string>
-    <string name="search">카페 검색</string>
+    <string name="list_search">카페 검색</string>
     <string name="myPage_grade">회원 등급</string>
     <string name="review_comment">리뷰 작성</string>
     <string name="review_tag">리뷰 태그</string>
