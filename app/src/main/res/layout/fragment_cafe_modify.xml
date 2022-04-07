@@ -298,7 +298,7 @@
                 android:layout_width="108dp"
                 android:layout_height="45dp"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/brown_button"
+                android:background="@drawable/edge_square_brown"
                 android:text="수정하기"
                 android:textColor="#FFFFFF"
                 android:textSize="24sp"

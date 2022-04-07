@@ -168,7 +168,7 @@
         android:id="@+id/request_button"
         android:layout_width="108dp"
         android:layout_height="45dp"
-        android:background="@drawable/brown_button"
+        android:background="@drawable/edge_square_brown"
         android:text="요청하기"
         android:textColor="#FFFFFF"
         android:textSize="24sp"

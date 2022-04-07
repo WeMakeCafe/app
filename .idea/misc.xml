@@ -7,25 +7,28 @@
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/drawable-v24/item_color.xml" value="0.367" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/drawable/edge_bottom_back.xml" value="0.367" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/drawable/edge_edittext.xml" value="0.358" />
+        <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/drawable/edge_top_back.xml" value="0.367" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/drawable/location_button.xml" value="0.358" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/drawable/rating_custom.xml" value="0.367" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/drawable/review_spinner.xml" value="0.367" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/drawable/selected_tag_textview.xml" value="0.367" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/drawable/underline.xml" value="0.367" />
-        <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/activity_main.xml" value="0.36614583333333334" />
+        <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/cafe_list_item.xml" value="0.33" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/fragment_add_tag.xml" value="0.36614583333333334" />
+        <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/fragment_app_loading.xml" value="0.36614583333333334" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/fragment_cafe_delete.xml" value="0.36614583333333334" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/fragment_cafe_detail.xml" value="0.36614583333333334" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/fragment_cafe_detail_more.xml" value="0.36614583333333334" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/fragment_cafe_modify.xml" value="0.33" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/fragment_cafe_registration.xml" value="0.33" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/fragment_delete.xml" value="0.33" />
-        <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/fragment_home.xml" value="0.36614583333333334" />
+        <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/fragment_list.xml" value="0.36614583333333334" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/fragment_list_cafelist.xml" value="0.36614583333333334" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/fragment_list_default.xml" value="0.36614583333333334" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/fragment_list_search.xml" value="0.36614583333333334" />
+        <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/fragment_login.xml" value="0.33" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/fragment_mypage.xml" value="0.36614583333333334" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/fragment_mypage_grade.xml" value="0.36614583333333334" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/fragment_review.xml" value="0.33" />
@@ -34,18 +37,18 @@
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/fragment_search.xml" value="0.36614583333333334" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/fragment_search_default.xml" value="0.33" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/fragment_search_list.xml" value="0.33" />
+        <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/fragment_sign_up.xml" value="0.36614583333333334" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/item_cafe_list.xml" value="0.36614583333333334" />
+        <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/item_cafe_recent.xml" value="0.36614583333333334" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/item_home_favoritelist.xml" value="0.36614583333333334" />
+        <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/item_home_taglist.xml" value="0.36614583333333334" />
+        <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/item_more_review.xml" value="0.36614583333333334" />
+        <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/item_recent_searches.xml" value="0.36614583333333334" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/item_review_more.xml" value="0.36614583333333334" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/more_review_item.xml" value="0.25" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/recent_searches_item.xml" value="0.33" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/review.xml" value="0.36614583333333334" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/menu/bottom_nav_menu.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/Hyeonjun/AndroidStudioProjects/app/app/src/main/res/layout/fragment_cafe_detail_more.xml" value="0.24947916666666667" />
-        <entry key="..\:/Users/Hyeonjun/AndroidStudioProjects/app/app/src/main/res/layout/fragment_cafe_registration.xml" value="0.24947916666666667" />
-        <entry key="..\:/Users/Hyeonjun/AndroidStudioProjects/app/app/src/main/res/layout/fragment_list.xml" value="0.24947916666666667" />
-        <entry key="..\:/Users/Hyeonjun/AndroidStudioProjects/app/app/src/main/res/layout/fragment_list_cafelist.xml" value="0.24947916666666667" />
-        <entry key="..\:/Users/Hyeonjun/AndroidStudioProjects/app/app/src/main/res/layout/fragment_list_search.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/drawable-v24/brown_button.xml" value="0.295" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/drawable-v24/edge_button.xml" value="0.293" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.295" />
