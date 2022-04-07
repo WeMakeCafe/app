@@ -34,17 +34,51 @@
         android:id="@+id/navigation_review"
         android:name="com.example.wmc.ui.Fragment.ReviewFragment"
         android:label="@string/title_review"
-        tools:layout="@layout/fragment_review" />
+        tools:layout="@layout/fragment_review" >
+        <action
+            android:id="@+id/review_to_review_tag"
+            app:destination="@id/navigation_review_tag" />
+        <action
+            android:id="@+id/review_to_review_comment"
+            app:destination="@id/navigation_review_comment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_mypage"
         android:name="com.example.wmc.ui.Fragment.MyPageFragment"
         android:label="@string/title_myPage"
-        tools:layout="@layout/fragment_mypage" />
+        tools:layout="@layout/fragment_mypage" >
+        <action
+            android:id="@+id/myPage_to_myPage_grade"
+            app:destination="@id/navigation_myPage_grade" />
+        <action
+            android:id="@+id/myPage_to_cafe_detail"
+            app:destination="@id/navigation_cafe_detail" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_cafe_detail"
         android:name="com.example.wmc.ui.Fragment.CafeDetailFragment"
         android:label="@string/cafe_detail"
         tools:layout="@layout/fragment_cafe_detail" />
+
+    <fragment
+        android:id="@+id/navigation_myPage_grade"
+        android:name="com.example.wmc.ui.Fragment.MypageGradeFragment"
+        android:label="@string/myPage_grade"
+        tools:layout="@layout/fragment_mypage_grade" />
+
+    <fragment
+        android:id="@+id/navigation_review_tag"
+        android:name="com.example.wmc.ui.Fragment.ReviewTagFragment"
+        android:label="@string/review_tag"
+        tools:layout="@layout/fragment_review_tag" />
+
+    <fragment
+        android:id="@+id/navigation_review_comment"
+        android:name="com.example.wmc.ui.Fragment.ReviewCommentFragment"
+        android:label="@string/review_comment"
+        tools:layout="@layout/fragment_review_comment" />
+
+
 </navigation>
