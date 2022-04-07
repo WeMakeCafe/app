@@ -17,6 +17,9 @@
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/cafe_list_item.xml" value="0.33" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/fragment_add_tag.xml" value="0.36614583333333334" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/fragment_app_loading.xml" value="0.36614583333333334" />
+        <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/fragment_app_search_id_pw.xml" value="0.36614583333333334" />
+        <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/fragment_app_signup.xml" value="0.36614583333333334" />
+        <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/fragment_app_singup.xml" value="0.36614583333333334" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/fragment_cafe_delete.xml" value="0.36614583333333334" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/fragment_cafe_detail.xml" value="0.36614583333333334" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/fragment_cafe_detail_more.xml" value="0.36614583333333334" />
@@ -37,7 +40,7 @@
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/fragment_search.xml" value="0.36614583333333334" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/fragment_search_default.xml" value="0.33" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/fragment_search_list.xml" value="0.33" />
-        <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/fragment_sign_up.xml" value="0.5" />
+        <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/fragment_sign_up.xml" value="0.33" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/item_cafe_list.xml" value="0.36614583333333334" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/item_cafe_recent.xml" value="0.36614583333333334" />
         <entry key="..\:/Android_Practice_Projects/app/app/src/main/res/layout/item_home_favoritelist.xml" value="0.36614583333333334" />
