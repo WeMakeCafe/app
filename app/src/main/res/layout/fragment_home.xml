@@ -6,31 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.Fragment.HomeFragment">
 
-    <Button
-        android:id="@+id/logo"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/logo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/cafe_search_input"
-        android:layout_width="310dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/edge_top_back"
-        android:ems="10"
-        android:hint="시, 군, 구를 입력해주세요."
-        android:inputType="textPersonName"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/text_home"
         android:layout_width="match_parent"
@@ -41,6 +16,44 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/text_home"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/logo"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/logo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/cafe_search_input"
+            android:layout_width="310dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/edge_top_back"
+            android:ems="10"
+            android:hint="시, 군, 구를 입력해주세요."
+            android:inputType="textPersonName"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/logo"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -58,207 +71,258 @@
 
 
             <TextView
-                android:id="@+id/favoriteCafeList_textView"
+                android:id="@+id/line4"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10dp"
-                android:text="찜한 카페들이에요!"
-                android:textColor="#000000"
-                android:textSize="15sp"
+                android:layout_height="2dp"
+                android:layout_marginTop="220dp"
+                android:background="#3B2314"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
-            <Button
-                android:id="@+id/favorite_previousButton"
-                android:layout_width="10dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="5dp"
-                android:background="@drawable/previous_page"
-                app:layout_constraintBottom_toBottomOf="@+id/favorite_recyclerView"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/favorite_recyclerView" />
-
-            <Button
-                android:id="@+id/favorite_nextButton"
-                android:layout_width="10dp"
-                android:layout_height="30dp"
-                android:layout_marginEnd="5dp"
-                android:background="@drawable/next_page"
-                app:layout_constraintBottom_toBottomOf="@+id/favorite_recyclerView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/favorite_recyclerView" />
-
-            <TextView
-                android:id="@+id/favoirte_default_textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="즐겨찾기를 추가해 주세요."
-                android:textSize="15sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/favorite_recyclerView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/favoriteCafeList_textView" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/favorite_recyclerView"
-                android:layout_width="360dp"
-                android:layout_height="165dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/favoriteCafeList_textView" />
 
             <TextView
                 android:id="@+id/line"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="220dp"
                 android:background="#3B2314"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/favorite_recyclerView" />
+                app:layout_constraintTop_toBottomOf="@id/line4" />
 
             <TextView
-                android:id="@+id/first_hashtag_textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:text="#해시태그"
-                android:textColor="@color/orange"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/line" />
-
-            <TextView
-                android:id="@+id/first_hashtag_cafeList_textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="10dp"
-                android:layout_weight="1"
-                android:text="가 1순위인 당신을 위한 카페!"
-                android:textColor="#000000"
-                android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/first_hashtag_textView"
-                app:layout_constraintTop_toBottomOf="@+id/line" />
-
-            <Button
-                android:id="@+id/first_previousButton"
-                android:layout_width="10dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="5dp"
-                android:background="@drawable/previous_page"
-                app:layout_constraintBottom_toBottomOf="@+id/first_recyclerView"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/first_recyclerView" />
-
-            <Button
-                android:id="@+id/first_nextButton"
-                android:layout_width="10dp"
-                android:layout_height="30dp"
-                android:layout_marginEnd="5dp"
-                android:background="@drawable/next_page"
-                app:layout_constraintBottom_toBottomOf="@+id/first_recyclerView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/first_recyclerView" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/first_recyclerView"
-                android:layout_width="360dp"
-                android:layout_height="165dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/first_hashtag_textView" />
-
-            <TextView
-                android:id="@+id/line2"
+                android:id="@+id/line13"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="220dp"
                 android:background="#3B2314"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/line" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout12"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@+id/line4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/favoriteCafeList_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="15dp"
+                    android:text="찜한 카페들이에요!"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/favorite_previousButton"
+                    android:layout_width="10dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="5dp"
+                    android:background="@drawable/previous_page"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/favorite_nextButton"
+                    android:layout_width="10dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="5dp"
+                    android:background="@drawable/next_page"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/favoirte_default_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="즐겨찾기를 추가해 주세요."
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/favorite_recyclerView"
+                    app:layout_constraintEnd_toEndOf="@+id/favorite_recyclerView"
+                    app:layout_constraintStart_toStartOf="@+id/favorite_recyclerView"
+                    app:layout_constraintTop_toTopOf="@+id/favorite_recyclerView" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/favorite_recyclerView"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/favorite_nextButton"
+                    app:layout_constraintStart_toEndOf="@+id/favorite_previousButton"
+                    app:layout_constraintTop_toBottomOf="@+id/favoriteCafeList_textView" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout13"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@+id/line"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/first_recyclerView" />
+                app:layout_constraintTop_toBottomOf="@+id/line4"
+                app:layout_constraintVertical_bias="0.0">
 
-            <TextView
-                android:id="@+id/second_hashtag_textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:text="#해시태그"
-                android:textColor="@color/orange"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/line2" />
+                <TextView
+                    android:id="@+id/first_hashtag_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:text="#해시태그"
+                    android:textColor="@color/orange"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/second_hashtag_cafeList_textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="10dp"
-                android:layout_weight="1"
-                android:text="가 2순위인 당신을 위한 카페!"
-                android:textColor="#000000"
-                android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/second_hashtag_textView"
-                app:layout_constraintTop_toBottomOf="@+id/line2" />
+                <TextView
+                    android:id="@+id/first_hashtag_cafeList_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_weight="1"
+                    android:text="가 1순위인 당신을 위한 카페!"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/first_hashtag_textView"
+                    app:layout_constraintStart_toEndOf="@+id/first_hashtag_textView"
+                    app:layout_constraintTop_toTopOf="@+id/first_hashtag_textView" />
 
-            <Button
-                android:id="@+id/second_previousButton"
-                android:layout_width="10dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="5dp"
-                android:background="@drawable/previous_page"
-                app:layout_constraintBottom_toBottomOf="@+id/second_recyclerView"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/second_recyclerView" />
+                <Button
+                    android:id="@+id/first_previousButton"
+                    android:layout_width="10dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="5dp"
+                    android:background="@drawable/previous_page"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <Button
-                android:id="@+id/second_nextButton"
-                android:layout_width="10dp"
-                android:layout_height="30dp"
-                android:layout_marginEnd="5dp"
-                android:background="@drawable/next_page"
-                app:layout_constraintBottom_toBottomOf="@+id/second_recyclerView"
+                <Button
+                    android:id="@+id/first_nextButton"
+                    android:layout_width="10dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="5dp"
+                    android:background="@drawable/next_page"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/first_recyclerView"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/first_nextButton"
+                    app:layout_constraintStart_toEndOf="@+id/first_previousButton"
+                    app:layout_constraintTop_toBottomOf="@+id/first_hashtag_textView" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout14"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@+id/line13"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/second_recyclerView" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/second_recyclerView"
-                android:layout_width="360dp"
-                android:layout_height="165dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="1dp"
-                app:layout_constraintBottom_toTopOf="@+id/footer"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/second_hashtag_textView" />
+                app:layout_constraintTop_toBottomOf="@+id/line">
 
-            <!--Footer-->
+                <TextView
+                    android:id="@+id/second_hashtag_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:text="#해시태그"
+                    android:textColor="@color/orange"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/second_hashtag_cafeList_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_weight="1"
+                    android:text="가 2순위인 당신을 위한 카페!"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/second_hashtag_textView"
+                    app:layout_constraintStart_toEndOf="@+id/second_hashtag_textView"
+                    app:layout_constraintTop_toTopOf="@+id/second_hashtag_textView" />
+
+                <Button
+                    android:id="@+id/second_previousButton"
+                    android:layout_width="10dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="5dp"
+                    android:background="@drawable/previous_page"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/second_nextButton"
+                    android:layout_width="10dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="5dp"
+                    android:background="@drawable/next_page"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/second_recyclerView"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/second_nextButton"
+                    app:layout_constraintStart_toEndOf="@+id/second_previousButton"
+                    app:layout_constraintTop_toBottomOf="@+id/second_hashtag_textView" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
             <LinearLayout
                 android:id="@+id/footer"
                 android:layout_width="match_parent"
                 android:layout_height="230dp"
-                android:background="@color/white"
                 android:orientation="vertical"
                 android:padding="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/second_recyclerView">
+                app:layout_constraintTop_toBottomOf="@+id/line13">
 
                 <ImageView
                     android:layout_width="30dp"
