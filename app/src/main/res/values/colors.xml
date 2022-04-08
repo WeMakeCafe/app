@@ -9,6 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="brown">#FF3B2314</color>
     <color name="orange">#FFF6921E</color>
+    <color name="red">#FFFF0000</color>
     <color name="inputColor">#FFF4E9DD</color>
     <color name="login_background_color">#FFF4E9DD</color>
     <color name="colorAccent">#F6921E</color>
