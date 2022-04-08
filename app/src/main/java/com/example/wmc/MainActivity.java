@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.fragment_cafe_registration);  //페이지 확인하기
+        setContentView(R.layout.fragment_cafe_modify);  //페이지 확인하기
 
 //        binding = ActivityMainBinding.inflate(getLayoutInflater());
 //        setContentView(binding.getRoot());
