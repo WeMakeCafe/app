@@ -109,7 +109,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/line2"
+        android:id="@+id/line4"
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:background="#000000"
