@@ -56,7 +56,7 @@
         app:layout_constraintTop_toBottomOf="@+id/cafe_search_input">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/scrollLayout"
+            android:id="@+id/registrationLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
