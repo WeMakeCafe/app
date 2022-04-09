@@ -611,7 +611,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tagLayout">
 
                 <Button
-                    android:id="@+id/request_button"
+                    android:id="@+id/comment_button"
                     android:layout_width="wrap_content"
                     android:layout_height="45dp"
                     android:layout_marginStart="80dp"
