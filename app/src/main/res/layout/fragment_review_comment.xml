@@ -190,7 +190,7 @@
                 android:id="@+id/constraintLayout10"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layout_constraintBottom_toTopOf="@+id/footer"
+                app:layout_constraintBottom_toTopOf="@+id/comment_footer"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/line12">
@@ -213,12 +213,10 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
-                android:id="@+id/footer"
+                android:id="@+id/comment_footer"
                 android:layout_width="match_parent"
-                android:layout_height="230dp"
-
-
-                android:orientation="vertical"
+                android:layout_height="200dp"
+                android:orientation="horizontal"
                 android:padding="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -226,14 +224,19 @@
                 app:layout_constraintTop_toBottomOf="@id/constraintLayout10">
 
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:id="@+id/comment_footerLogo"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginTop="30dp"
                     android:layout_marginBottom="20dp"
                     android:src="@drawable/logo" />
 
                 <TextView
+                    android:id="@+id/comment_footerTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="42dp"
                     android:layout_marginBottom="20dp"
                     android:letterSpacing="-0.02"
                     android:lineSpacingMultiplier="1.2"

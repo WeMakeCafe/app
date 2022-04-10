@@ -392,7 +392,7 @@
             <LinearLayout
                 android:id="@+id/modifyPage_footer"
                 android:layout_width="match_parent"
-                android:layout_height="230dp"
+                android:layout_height="200dp"
                 android:orientation="horizontal"
                 android:padding="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -401,6 +401,7 @@
                 app:layout_constraintTop_toBottomOf="@id/modify_button_deleteLayout">
 
                 <ImageView
+                    android:id="@+id/modify_footerLogo"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_marginTop="30dp"
@@ -408,6 +409,7 @@
                     android:src="@drawable/logo" />
 
                 <TextView
+                    android:id="@+id/modify_footerTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
