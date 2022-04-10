@@ -77,7 +77,7 @@
             android:id="@+id/cafe_search_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="270dp"
+            android:layout_marginTop="250dp"
             android:text="카페 이름 또는 주소를 입력해주세요."
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
