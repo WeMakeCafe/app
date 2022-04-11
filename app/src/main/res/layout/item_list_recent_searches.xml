@@ -13,7 +13,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:layout_weight="1"
             android:orientation="vertical">
 
@@ -24,7 +27,7 @@
                 android:layout_marginLeft="10dp"
                 android:text="카페이름"
                 android:textColor="#3B2314"
-                android:textSize="30sp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/cafe_address_textView"
@@ -33,15 +36,16 @@
                 android:layout_marginLeft="10dp"
                 android:text="카페주소"
                 android:textColor="@color/orange"
-                android:textSize="15sp" />
+                android:textSize="12sp" />
 
         </LinearLayout>
 
         <Button
-            android:id="@+id/delete_button"
+            android:id="@+id/recentDelete_Button"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_gravity="right|center_vertical"
+            android:layout_marginRight="10dp"
             android:background="@android:drawable/ic_menu_close_clear_cancel" />
     </LinearLayout>
 </LinearLayout>
