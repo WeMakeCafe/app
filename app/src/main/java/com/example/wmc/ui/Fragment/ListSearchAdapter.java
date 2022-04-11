@@ -13,6 +13,12 @@ public class ListSearchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     private ArrayList<ListSearchItem> items;
 
+    public interface OnItemClickEventListener { // 클릭 이벤트를 위한 인터페이스
+        void onItemClick(View a_view, int a_position);
+    }
+    private OnItemClickEventListener mItemClickListener;    // 인터페이스 객체 생성
+
+
     public ListSearchAdapter(ArrayList<ListSearchItem> list){
         items = list;
     }
@@ -28,7 +34,7 @@ public class ListSearchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         if (a_viewType == FooterViewHolder.VIEW_TYPE) {
             viewHolder = new FooterViewHolder(view);
         } else {
-            viewHolder = new ListSearchViewHolder(view);
+            viewHolder = new ListSearchViewHolder(view, mItemClickListener);
         }
         return viewHolder;
     }
@@ -62,5 +68,9 @@ public class ListSearchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         } else {
             return ListSearchViewHolder.VIEW_TYPE;
         }
+    }
+
+    public void setOnItemClickListener(OnItemClickEventListener a_listener) {
+        mItemClickListener = a_listener;
     }
 }
