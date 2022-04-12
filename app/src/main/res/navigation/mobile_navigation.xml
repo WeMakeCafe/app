@@ -21,7 +21,7 @@
             app:destination="@id/navigation_cafe_detail" />
         <action
             android:id="@+id/home_to_mypage"
-            app:destination="@id/navigation_mypage" />
+            app:destination="@id/navigation_myPage" />
     </fragment>
 
     <fragment
@@ -51,7 +51,7 @@
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_mypage"
+        android:id="@+id/navigation_myPage"
         android:name="com.example.wmc.ui.Fragment.MyPageFragment"
         android:label="@string/title_myPage"
         tools:layout="@layout/fragment_mypage" >

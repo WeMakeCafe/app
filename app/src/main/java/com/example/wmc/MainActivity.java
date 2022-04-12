@@ -24,25 +24,25 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-//    private ActivityMainBinding binding;
+    private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.fragment_list_search);  //페이지 확인하기
+//        setContentView(R.layout.fragment_list_search);  //페이지 확인하기
 
 //        bindList(); // fragment_list_search 페이지 리사이클러뷰 푸터 실험용 코드
-//        binding = ActivityMainBinding.inflate(getLayoutInflater());
-//        setContentView(binding.getRoot());
-//
-//        BottomNavigationView navView = findViewById(R.id.nav_view_main);
-//        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-//                R.id.navigation_home, R.id.navigation_list, R.id.navigation_review, R.id.navigation_myPage)
-//                .build();
-//
-//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-//        NavigationUI.setupWithNavController(binding.navViewMain, navController);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        BottomNavigationView navView = findViewById(R.id.nav_view_main);
+        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.navigation_home, R.id.navigation_list, R.id.navigation_review, R.id.navigation_myPage)
+                .build();
+
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        NavigationUI.setupWithNavController(binding.navViewMain, navController);
     }
 
 //    private void bindList() {         // fragment_list_search 페이지 리사이클러뷰 푸터 실험용 코드
