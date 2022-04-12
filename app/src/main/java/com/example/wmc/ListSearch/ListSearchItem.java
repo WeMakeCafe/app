@@ -1,4 +1,4 @@
-package com.example.wmc.ui.Fragment;
+package com.example.wmc.ListSearch;
 
 public class ListSearchItem {
 

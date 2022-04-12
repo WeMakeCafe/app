@@ -1,4 +1,4 @@
-package com.example.wmc.ui.Fragment;
+package com.example.wmc.ListSearch;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -6,6 +6,8 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.wmc.ui.Fragment.FooterViewHolder;
 
 import java.util.ArrayList;
 
