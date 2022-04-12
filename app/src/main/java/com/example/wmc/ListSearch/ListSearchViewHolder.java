@@ -1,4 +1,4 @@
-package com.example.wmc.ui.Fragment;
+package com.example.wmc.ListSearch;
 
 import android.view.View;
 import android.widget.Button;
