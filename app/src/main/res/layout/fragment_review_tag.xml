@@ -61,7 +61,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/constraintLayout25"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout23">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <EditText
                     android:id="@+id/tagSearch_input2"
@@ -126,13 +126,11 @@
                     app:layout_constraintTop_toTopOf="@+id/brownFrame3" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/Constrant_taste"
-                    _toBottomOf="parent"
+                    android:id="@+id/constrant_taste"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:visibility="invisible"
-                    app:layout_constraintBottom_toBottomOf="@+id/beigeFrame2"
-                    app:layout_constraintBottom_toTop="parent"
+                    app:layout_constraintBottom_toBottomOf="@id/beigeFrame2"
                     app:layout_constraintEnd_toEndOf="@+id/beigeFrame2"
                     app:layout_constraintStart_toStartOf="@+id/beigeFrame2"
                     app:layout_constraintTop_toTopOf="@+id/brownFrame3">
@@ -141,9 +139,7 @@
                         android:id="@+id/tasteimage7"
                         android:layout_width="100dp"
                         android:layout_height="26dp"
-                        android:background="@drawable/edge_top_bottom"
-                        android:clickable="true"
-                        android:src="@drawable/edge_top_back"
+                        android:src="@drawable/edge_top_bottom"
                         app:layout_constraintBottom_toBottomOf="@+id/feelingImage7"
                         app:layout_constraintStart_toStartOf="parent" />
 
@@ -154,7 +150,8 @@
                         android:layout_marginBottom="12dp"
                         android:src="@drawable/edge_top_back_brown"
                         app:layout_constraintBottom_toTopOf="@+id/addTagScrollView7"
-                        tools:layout_editor_absoluteX="110dp" />
+                        app:layout_constraintEnd_toStartOf="@+id/serviceimage7"
+                        app:layout_constraintStart_toEndOf="@+id/tasteimage7" />
 
                     <ImageView
                         android:id="@+id/serviceimage7"
@@ -162,7 +159,7 @@
                         android:layout_height="26dp"
                         android:src="@drawable/edge_top_back_brown"
                         app:layout_constraintBottom_toBottomOf="@+id/feelingImage7"
-                        tools:layout_editor_absoluteX="220dp" />
+                        app:layout_constraintEnd_toEndOf="parent" />
 
                     <TextView
                         android:id="@+id/tasteTab7"
@@ -223,7 +220,7 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/tag_acerbity"
+                                    android:id="@+id/tag1"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
@@ -234,7 +231,7 @@
                                     android:textStyle="bold" />
 
                                 <Button
-                                    android:id="@+id/tag_sour"
+                                    android:id="@+id/tag2"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
@@ -245,7 +242,7 @@
                                     android:textStyle="bold" />
 
                                 <Button
-                                    android:id="@+id/tag_salty"
+                                    android:id="@+id/tag3"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
@@ -265,7 +262,7 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/tag_sweet"
+                                    android:id="@+id/tag4"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
@@ -276,7 +273,7 @@
                                     android:textStyle="bold" />
 
                                 <Button
-                                    android:id="@+id/tag_flavor"
+                                    android:id="@+id/tag5"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
@@ -287,7 +284,7 @@
                                     android:textStyle="bold" />
 
                                 <Button
-                                    android:id="@+id/tag_body"
+                                    android:id="@+id/tag6"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
@@ -307,7 +304,7 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/tag_coldBrew"
+                                    android:id="@+id/tag7"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
@@ -318,7 +315,7 @@
                                     android:textStyle="bold" />
 
                                 <Button
-                                    android:id="@+id/tag_manyMenu"
+                                    android:id="@+id/tag8"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
@@ -330,7 +327,7 @@
                                     android:textStyle="bold" />
 
                                 <Button
-                                    android:id="@+id/tag_cheap"
+                                    android:id="@+id/tag9"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
@@ -350,7 +347,7 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/tag_copious"
+                                    android:id="@+id/tag10"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
@@ -361,7 +358,7 @@
                                     android:textStyle="bold" />
 
                                 <Button
-                                    android:id="@+id/tag_dessert"
+                                    android:id="@+id/tag11"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
@@ -372,7 +369,7 @@
                                     android:textStyle="bold" />
 
                                 <Button
-                                    android:id="@+id/tag_nonCoffee"
+                                    android:id="@+id/tag12"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
@@ -393,7 +390,7 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/tag_blank1"
+                                    android:id="@+id/tag13"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
@@ -404,7 +401,7 @@
                                     android:textStyle="bold" />
 
                                 <Button
-                                    android:id="@+id/tag_blank2"
+                                    android:id="@+id/tag14"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
@@ -414,7 +411,7 @@
                                     android:textStyle="bold" />
 
                                 <Button
-                                    android:id="@+id/tag_blank3"
+                                    android:id="@+id/tag15"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
@@ -433,7 +430,7 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/tag_blank4"
+                                    android:id="@+id/tag16"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
@@ -443,7 +440,7 @@
                                     android:textStyle="bold" />
 
                                 <Button
-                                    android:id="@+id/tag_blank5"
+                                    android:id="@+id/tag17"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
@@ -453,7 +450,7 @@
                                     android:textStyle="bold" />
 
                                 <Button
-                                    android:id="@+id/tag_blank6"
+                                    android:id="@+id/tag18"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
@@ -466,16 +463,15 @@
 
                         </LinearLayout>
                     </ScrollView>
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/Constrant_feel"
-                    _toBottomOf="parent"
+                    android:id="@+id/constrant_feel"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="@+id/beigeFrame2"
-                    app:layout_constraintBottom_toTop="parent"
                     app:layout_constraintEnd_toEndOf="@+id/beigeFrame2"
                     app:layout_constraintStart_toStartOf="@+id/beigeFrame2"
                     app:layout_constraintTop_toTopOf="@+id/brownFrame3">
@@ -484,35 +480,35 @@
                         android:id="@+id/tasteimage6"
                         android:layout_width="100dp"
                         android:layout_height="26dp"
-                        android:background="@drawable/edge_top_bottom"
-                        android:clickable="true"
-                        android:src="@drawable/edge_top_back"
-                        app:layout_constraintBottom_toBottomOf="@+id/feelingImage6"
-                        app:layout_constraintStart_toStartOf="parent" />
+                        app:layout_constraintBottom_toBottomOf="@+id/feelingimage6"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:srcCompat="@drawable/edge_top_back_brown" />
 
                     <ImageView
-                        android:id="@+id/feelingImage6"
+                        android:id="@+id/feelingimage6"
                         android:layout_width="100dp"
                         android:layout_height="26dp"
                         android:layout_marginBottom="12dp"
-                        android:src="@drawable/edge_top_back_brown"
+                        android:src="@drawable/edge_top_bottom"
                         app:layout_constraintBottom_toTopOf="@+id/addTagScrollView6"
-                        tools:layout_editor_absoluteX="110dp" />
+                        app:layout_constraintEnd_toStartOf="@+id/serviceImage6"
+                        app:layout_constraintStart_toEndOf="@+id/tasteimage6" />
 
                     <ImageView
                         android:id="@+id/serviceImage6"
                         android:layout_width="100dp"
                         android:layout_height="26dp"
                         android:src="@drawable/edge_top_back_brown"
-                        app:layout_constraintBottom_toBottomOf="@+id/feelingImage6"
-                        tools:layout_editor_absoluteX="220dp" />
+                        app:layout_constraintBottom_toBottomOf="@+id/feelingimage6"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:srcCompat="@drawable/edge_top_back_brown" />
 
                     <TextView
                         android:id="@+id/tasteTab6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="음료, 맛"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="@+id/tasteimage6"
                         app:layout_constraintEnd_toEndOf="@+id/tasteimage6"
@@ -524,12 +520,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="분위기"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="@+id/feelingImage6"
-                        app:layout_constraintEnd_toEndOf="@+id/feelingImage6"
-                        app:layout_constraintStart_toStartOf="@+id/feelingImage6"
-                        app:layout_constraintTop_toTopOf="@+id/feelingImage6" />
+                        app:layout_constraintBottom_toBottomOf="@+id/feelingimage6"
+                        app:layout_constraintEnd_toEndOf="@+id/feelingimage6"
+                        app:layout_constraintStart_toStartOf="@+id/feelingimage6"
+                        app:layout_constraintTop_toTopOf="@+id/feelingimage6" />
 
                     <TextView
                         android:id="@+id/serviceTab6"
@@ -558,7 +554,7 @@
                             android:orientation="vertical">
 
                             <LinearLayout
-                                android:id="@+id/tagRow1"
+                                android:id="@+id/tagRow7"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
@@ -566,41 +562,41 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/tag_acerbity"
+                                    android:id="@+id/tag19"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
                                     android:layout_weight="1"
                                     android:background="@drawable/selected_tag_textview_v2"
-                                    android:text="#쓴맛"
+                                    android:text="#인스타"
                                     android:textColor="@color/black"
                                     android:textStyle="bold" />
 
                                 <Button
-                                    android:id="@+id/tag_sour"
+                                    android:id="@+id/tag20"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
                                     android:layout_weight="1"
                                     android:background="@drawable/selected_tag_textview_v2"
-                                    android:text="#신맛"
+                                    android:text="#앤티크"
                                     android:textColor="@color/black"
                                     android:textStyle="bold" />
 
                                 <Button
-                                    android:id="@+id/tag_salty"
+                                    android:id="@+id/tag21"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
                                     android:layout_weight="1"
                                     android:background="@drawable/selected_tag_textview_v2"
-                                    android:text="#짠맛"
+                                    android:text="#모던"
                                     android:textColor="@color/black"
                                     android:textStyle="bold" />
                             </LinearLayout>
 
                             <LinearLayout
-                                android:id="@+id/tagRow2"
+                                android:id="@+id/tagRow8"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
@@ -608,41 +604,41 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/tag_sweet"
+                                    android:id="@+id/tag22"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
                                     android:layout_weight="1"
                                     android:background="@drawable/selected_tag_textview_v2"
-                                    android:text="#단맛"
+                                    android:text="#캐주얼"
                                     android:textColor="@color/black"
                                     android:textStyle="bold" />
 
                                 <Button
-                                    android:id="@+id/tag_flavor"
+                                    android:id="@+id/tag23"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
                                     android:layout_weight="1"
                                     android:background="@drawable/selected_tag_textview_v2"
-                                    android:text="#향미"
+                                    android:text="#이국적"
                                     android:textColor="@color/black"
                                     android:textStyle="bold" />
 
                                 <Button
-                                    android:id="@+id/tag_body"
+                                    android:id="@+id/tag24"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
                                     android:layout_weight="1"
                                     android:background="@drawable/selected_tag_textview_v2"
-                                    android:text="#바디감"
+                                    android:text="#일상"
                                     android:textColor="@color/black"
                                     android:textStyle="bold" />
                             </LinearLayout>
 
                             <LinearLayout
-                                android:id="@+id/tagRow3"
+                                android:id="@+id/tagRow9"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
@@ -650,42 +646,42 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/tag_coldBrew"
+                                    android:id="@+id/tag25"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
                                     android:layout_weight="1"
                                     android:background="@drawable/selected_tag_textview_v2"
-                                    android:text="#콜드브루"
+                                    android:text="#따뜻한"
                                     android:textColor="@color/black"
                                     android:textStyle="bold" />
 
                                 <Button
-                                    android:id="@+id/tag_manyMenu"
+                                    android:id="@+id/tag26"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
                                     android:layout_marginTop="20dp"
                                     android:layout_weight="1"
                                     android:background="@drawable/selected_tag_textview_v2"
-                                    android:text="#메뉴多"
+                                    android:text="#조용한"
                                     android:textColor="@color/black"
                                     android:textStyle="bold" />
 
                                 <Button
-                                    android:id="@+id/tag_cheap"
+                                    android:id="@+id/tag27"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
                                     android:layout_weight="1"
                                     android:background="@drawable/selected_tag_textview_v2"
-                                    android:text="#가성비"
+                                    android:text="#우드톤"
                                     android:textColor="@color/black"
                                     android:textStyle="bold" />
                             </LinearLayout>
 
                             <LinearLayout
-                                android:id="@+id/tagRow4"
+                                android:id="@+id/tagRow10"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
@@ -693,42 +689,42 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/tag_copious"
+                                    android:id="@+id/tag28"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
                                     android:layout_weight="1"
                                     android:background="@drawable/selected_tag_textview_v2"
-                                    android:text="#양많음"
+                                    android:text="#채광"
                                     android:textColor="@color/black"
                                     android:textStyle="bold" />
 
                                 <Button
-                                    android:id="@+id/tag_dessert"
+                                    android:id="@+id/tag29"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
                                     android:layout_weight="1"
                                     android:background="@drawable/selected_tag_textview_v2"
-                                    android:text="#디저트맛집"
+                                    android:text="#힙한"
                                     android:textColor="@color/black"
                                     android:textStyle="bold" />
 
                                 <Button
-                                    android:id="@+id/tag_nonCoffee"
+                                    android:id="@+id/tag30"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
                                     android:layout_marginTop="20dp"
                                     android:layout_weight="1"
                                     android:background="@drawable/selected_tag_textview_v2"
-                                    android:text="#논커피맛집"
+                                    android:text="#귀여운"
                                     android:textColor="@color/black"
                                     android:textStyle="bold" />
                             </LinearLayout>
 
                             <LinearLayout
-                                android:id="@+id/tagRow5"
+                                android:id="@+id/tagRow11"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
@@ -736,7 +732,7 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/tag_blank1"
+                                    android:id="@+id/tag31"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
@@ -747,7 +743,7 @@
                                     android:textStyle="bold" />
 
                                 <Button
-                                    android:id="@+id/tag_blank2"
+                                    android:id="@+id/tag32"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
@@ -757,7 +753,7 @@
                                     android:textStyle="bold" />
 
                                 <Button
-                                    android:id="@+id/tag_blank3"
+                                    android:id="@+id/tag33"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
@@ -768,7 +764,7 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:id="@+id/tagRow6"
+                                android:id="@+id/tagRow12"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
@@ -776,7 +772,7 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/tag_blank4"
+                                    android:id="@+id/tag34"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
@@ -786,7 +782,7 @@
                                     android:textStyle="bold" />
 
                                 <Button
-                                    android:id="@+id/tag_blank5"
+                                    android:id="@+id/tag35"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
@@ -796,7 +792,7 @@
                                     android:textStyle="bold" />
 
                                 <Button
-                                    android:id="@+id/tag_blank6"
+                                    android:id="@+id/tag36"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
@@ -812,13 +808,11 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/Constrant_service"
-                    _toBottomOf="parent"
+                    android:id="@+id/constrant_service"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:visibility="invisible"
-                    app:layout_constraintBottom_toBottomOf="@+id/beigeFrame2"
-                    app:layout_constraintBottom_toTop="parent"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="@id/beigeFrame2"
                     app:layout_constraintEnd_toEndOf="@+id/beigeFrame2"
                     app:layout_constraintStart_toStartOf="@+id/beigeFrame2"
                     app:layout_constraintTop_toTopOf="@+id/brownFrame3">
@@ -827,35 +821,39 @@
                         android:id="@+id/tasteimage8"
                         android:layout_width="100dp"
                         android:layout_height="26dp"
-                        android:background="@drawable/edge_top_bottom"
                         android:clickable="true"
-                        android:src="@drawable/edge_top_back"
+                        android:src="@drawable/edge_top_back_brown"
                         app:layout_constraintBottom_toBottomOf="@+id/feelingImage8"
-                        app:layout_constraintStart_toStartOf="parent" />
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:srcCompat="@drawable/edge_top_back_brown" />
 
                     <ImageView
                         android:id="@+id/feelingImage8"
                         android:layout_width="100dp"
                         android:layout_height="26dp"
                         android:layout_marginBottom="12dp"
+                        android:clickable="true"
                         android:src="@drawable/edge_top_back_brown"
                         app:layout_constraintBottom_toTopOf="@+id/addTagScrollView8"
-                        tools:layout_editor_absoluteX="110dp" />
+                        app:layout_constraintEnd_toStartOf="@+id/serviceimage8"
+                        app:layout_constraintStart_toEndOf="@+id/tasteimage8"
+                        app:srcCompat="@drawable/edge_top_back_brown" />
 
                     <ImageView
-                        android:id="@+id/serviceImage8"
+                        android:id="@+id/serviceimage8"
                         android:layout_width="100dp"
                         android:layout_height="26dp"
-                        android:src="@drawable/edge_top_back_brown"
+                        android:clickable="true"
+                        android:src="@drawable/edge_top_bottom"
                         app:layout_constraintBottom_toBottomOf="@+id/feelingImage8"
-                        tools:layout_editor_absoluteX="220dp" />
+                        app:layout_constraintEnd_toEndOf="parent" />
 
                     <TextView
                         android:id="@+id/tasteTab8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="음료, 맛"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="@+id/tasteimage8"
                         app:layout_constraintEnd_toEndOf="@+id/tasteimage8"
@@ -879,12 +877,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="서비스"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="@+id/serviceImage8"
-                        app:layout_constraintEnd_toEndOf="@+id/serviceImage8"
-                        app:layout_constraintStart_toStartOf="@+id/serviceImage8"
-                        app:layout_constraintTop_toTopOf="@+id/serviceImage8" />
+                        app:layout_constraintBottom_toBottomOf="@+id/serviceimage8"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/serviceimage8"
+                        app:layout_constraintTop_toTopOf="@+id/serviceimage8" />
 
                     <ScrollView
                         android:id="@+id/addTagScrollView8"
@@ -901,7 +899,7 @@
                             android:orientation="vertical">
 
                             <LinearLayout
-                                android:id="@+id/tagRow1"
+                                android:id="@+id/tagRow13"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
@@ -909,41 +907,41 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/tag_acerbity"
+                                    android:id="@+id/tag37"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
                                     android:layout_weight="1"
                                     android:background="@drawable/selected_tag_textview_v2"
-                                    android:text="#쓴맛"
+                                    android:text="#친절한"
                                     android:textColor="@color/black"
                                     android:textStyle="bold" />
 
                                 <Button
-                                    android:id="@+id/tag_sour"
+                                    android:id="@+id/tag38"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
                                     android:layout_weight="1"
                                     android:background="@drawable/selected_tag_textview_v2"
-                                    android:text="#신맛"
+                                    android:text="#청결한"
                                     android:textColor="@color/black"
                                     android:textStyle="bold" />
 
                                 <Button
-                                    android:id="@+id/tag_salty"
+                                    android:id="@+id/tag39"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
                                     android:layout_weight="1"
                                     android:background="@drawable/selected_tag_textview_v2"
-                                    android:text="#짠맛"
+                                    android:text="#애견"
                                     android:textColor="@color/black"
                                     android:textStyle="bold" />
                             </LinearLayout>
 
                             <LinearLayout
-                                android:id="@+id/tagRow2"
+                                android:id="@+id/tagRow14"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
@@ -951,41 +949,41 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/tag_sweet"
+                                    android:id="@+id/tag40"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
                                     android:layout_weight="1"
                                     android:background="@drawable/selected_tag_textview_v2"
-                                    android:text="#단맛"
+                                    android:text="#주차장"
                                     android:textColor="@color/black"
                                     android:textStyle="bold" />
 
                                 <Button
-                                    android:id="@+id/tag_flavor"
+                                    android:id="@+id/tag41"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
                                     android:layout_weight="1"
                                     android:background="@drawable/selected_tag_textview_v2"
-                                    android:text="#향미"
+                                    android:text="#노키즈존"
                                     android:textColor="@color/black"
                                     android:textStyle="bold" />
 
                                 <Button
-                                    android:id="@+id/tag_body"
+                                    android:id="@+id/tag42"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
                                     android:layout_weight="1"
                                     android:background="@drawable/selected_tag_textview_v2"
-                                    android:text="#바디감"
+                                    android:text="#교통편의"
                                     android:textColor="@color/black"
                                     android:textStyle="bold" />
                             </LinearLayout>
 
                             <LinearLayout
-                                android:id="@+id/tagRow3"
+                                android:id="@+id/tagRow15"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
@@ -993,42 +991,42 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/tag_coldBrew"
+                                    android:id="@+id/tag43"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
                                     android:layout_weight="1"
                                     android:background="@drawable/selected_tag_textview_v2"
-                                    android:text="#콜드브루"
+                                    android:text="#신속한"
                                     android:textColor="@color/black"
                                     android:textStyle="bold" />
 
                                 <Button
-                                    android:id="@+id/tag_manyMenu"
+                                    android:id="@+id/tag44"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
                                     android:layout_marginTop="20dp"
                                     android:layout_weight="1"
                                     android:background="@drawable/selected_tag_textview_v2"
-                                    android:text="#메뉴多"
+                                    android:text="#쾌적한"
                                     android:textColor="@color/black"
                                     android:textStyle="bold" />
 
                                 <Button
-                                    android:id="@+id/tag_cheap"
+                                    android:id="@+id/tag45"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
                                     android:layout_weight="1"
                                     android:background="@drawable/selected_tag_textview_v2"
-                                    android:text="#가성비"
+                                    android:text="#회의실"
                                     android:textColor="@color/black"
                                     android:textStyle="bold" />
                             </LinearLayout>
 
                             <LinearLayout
-                                android:id="@+id/tagRow4"
+                                android:id="@+id/tagRow16"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
@@ -1036,42 +1034,42 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/tag_copious"
+                                    android:id="@+id/tag46"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
                                     android:layout_weight="1"
                                     android:background="@drawable/selected_tag_textview_v2"
-                                    android:text="#양많음"
+                                    android:text="#규모大"
                                     android:textColor="@color/black"
                                     android:textStyle="bold" />
 
                                 <Button
-                                    android:id="@+id/tag_dessert"
+                                    android:id="@+id/tag47"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
                                     android:layout_weight="1"
                                     android:background="@drawable/selected_tag_textview_v2"
-                                    android:text="#디저트맛집"
+                                    android:text="#규모小"
                                     android:textColor="@color/black"
                                     android:textStyle="bold" />
 
                                 <Button
-                                    android:id="@+id/tag_nonCoffee"
+                                    android:id="@+id/tag48"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
                                     android:layout_marginTop="20dp"
                                     android:layout_weight="1"
                                     android:background="@drawable/selected_tag_textview_v2"
-                                    android:text="#논커피맛집"
+                                    android:text="#편한좌석"
                                     android:textColor="@color/black"
                                     android:textStyle="bold" />
                             </LinearLayout>
 
                             <LinearLayout
-                                android:id="@+id/tagRow5"
+                                android:id="@+id/tagRow17"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
@@ -1079,7 +1077,7 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/tag_blank1"
+                                    android:id="@+id/tag49"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
@@ -1090,7 +1088,7 @@
                                     android:textStyle="bold" />
 
                                 <Button
-                                    android:id="@+id/tag_blank2"
+                                    android:id="@+id/tag50"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
@@ -1100,7 +1098,7 @@
                                     android:textStyle="bold" />
 
                                 <Button
-                                    android:id="@+id/tag_blank3"
+                                    android:id="@+id/tag51"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
@@ -1111,7 +1109,7 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:id="@+id/tagRow6"
+                                android:id="@+id/tagRow18"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
@@ -1119,7 +1117,7 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/tag_blank4"
+                                    android:id="@+id/tag52"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
@@ -1129,7 +1127,7 @@
                                     android:textStyle="bold" />
 
                                 <Button
-                                    android:id="@+id/tag_blank5"
+                                    android:id="@+id/tag53"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
@@ -1139,7 +1137,7 @@
                                     android:textStyle="bold" />
 
                                 <Button
-                                    android:id="@+id/tag_blank6"
+                                    android:id="@+id/tag54"
                                     android:layout_width="wrap_content"
                                     android:layout_height="34dp"
                                     android:layout_margin="5dp"
@@ -1155,19 +1153,19 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <Button
-                    android:id="@+id/addTag"
+                    android:id="@+id/addTag1"
                     android:layout_width="wrap_content"
                     android:layout_height="34dp"
                     android:layout_weight="1"
                     android:background="@drawable/selected_tag_textview_v2"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-                    app:layout_constraintEnd_toStartOf="@+id/addTag4"
+                    app:layout_constraintEnd_toStartOf="@+id/addTag2"
                     app:layout_constraintStart_toStartOf="@+id/brownFrame3"
-                    app:layout_constraintTop_toTopOf="@+id/addTag4" />
+                    app:layout_constraintTop_toTopOf="@+id/addTag2" />
 
                 <Button
-                    android:id="@+id/addTag4"
+                    android:id="@+id/addTag2"
                     android:layout_width="wrap_content"
                     android:layout_height="34dp"
                     android:layout_weight="1"
@@ -1180,7 +1178,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/beigeFrame2" />
 
                 <Button
-                    android:id="@+id/addTag5"
+                    android:id="@+id/addTag3"
                     android:layout_width="wrap_content"
                     android:layout_height="34dp"
                     android:layout_weight="1"
@@ -1188,8 +1186,8 @@
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="@+id/brownFrame3"
-                    app:layout_constraintStart_toEndOf="@+id/addTag4"
-                    app:layout_constraintTop_toTopOf="@+id/addTag4" />
+                    app:layout_constraintStart_toEndOf="@+id/addTag2"
+                    app:layout_constraintTop_toTopOf="@+id/addTag2" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
