@@ -19,7 +19,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/cafe_image"
+                android:id="@+id/reviewProfile_image"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_margin="10dp"
@@ -28,7 +28,7 @@
                 app:srcCompat="@mipmap/ic_launcher" />
 
             <TextView
-                android:id="@+id/nickName"
+                android:id="@+id/reviewNickName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -36,7 +36,7 @@
                 android:text="이름"
                 android:textColor="#000000"
                 android:textSize="20sp"
-                app:layout_constraintStart_toEndOf="@+id/cafe_image"
+                app:layout_constraintStart_toEndOf="@+id/reviewProfile_image"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -47,7 +47,7 @@
                 android:layout_marginTop="14dp"
                 android:clickable="true"
                 android:text="수정"
-                app:layout_constraintStart_toEndOf="@+id/nickName"
+                app:layout_constraintStart_toEndOf="@+id/reviewNickName"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -86,13 +86,18 @@
             <TextView
                 android:id="@+id/review_comment"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_margin="10dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
                 android:text="리뷰 내용"
+                android:textColor="@color/black"
+                android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/image1"
+                app:layout_constraintEnd_toStartOf="@+id/reviewImage"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cafe_image" />
+                app:layout_constraintTop_toBottomOf="@+id/reviewProfile_image" />
 
             <TextView
                 android:id="@+id/level_and_location"
@@ -103,11 +108,11 @@
                 android:text="레벨 및 위치인증"
                 android:textColor="#000000"
                 android:textSize="15sp"
-                app:layout_constraintStart_toEndOf="@+id/cafe_image"
-                app:layout_constraintTop_toBottomOf="@+id/nickName" />
+                app:layout_constraintStart_toEndOf="@+id/reviewProfile_image"
+                app:layout_constraintTop_toBottomOf="@+id/reviewNickName" />
 
             <ImageView
-                android:id="@+id/image1"
+                android:id="@+id/reviewImage"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_margin="10dp"
@@ -124,7 +129,7 @@
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/good"
                 app:layout_constraintEnd_toStartOf="@+id/good_count_textView"
-                app:layout_constraintTop_toBottomOf="@+id/image1" />
+                app:layout_constraintTop_toBottomOf="@+id/reviewImage" />
 
             <TextView
                 android:id="@+id/good_count_textView"
@@ -137,7 +142,7 @@
                 android:textColor="#000000"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/image1" />
+                app:layout_constraintTop_toBottomOf="@+id/reviewImage" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
