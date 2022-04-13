@@ -40,6 +40,50 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/reviewModify"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="14dp"
+                android:clickable="true"
+                android:text="수정"
+                app:layout_constraintStart_toEndOf="@+id/nickName"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/reviewModifyLine"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/gray"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="@+id/reviewModify"
+                app:layout_constraintHorizontal_bias="0.406"
+                app:layout_constraintStart_toStartOf="@+id/reviewModify"
+                app:layout_constraintTop_toBottomOf="@+id/reviewModify" />
+
+            <TextView
+                android:id="@+id/reviewDelete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="14dp"
+                android:clickable="true"
+                android:text="삭제"
+                app:layout_constraintStart_toEndOf="@+id/reviewModify"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/reviewDeleteLine"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/gray"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="@+id/reviewDelete"
+                app:layout_constraintHorizontal_bias="0.406"
+                app:layout_constraintStart_toStartOf="@+id/reviewDelete"
+                app:layout_constraintTop_toBottomOf="@+id/reviewDelete" />
+
+            <TextView
                 android:id="@+id/review_comment"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
