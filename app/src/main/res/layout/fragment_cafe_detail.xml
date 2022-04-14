@@ -115,8 +115,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerView"
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/cafeImageViewPager"
                     android:layout_width="369dp"
                     android:layout_height="165dp"
                     android:layout_marginTop="15dp"
@@ -124,9 +124,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                </androidx.recyclerview.widget.RecyclerView>
+                    app:layout_constraintTop_toTopOf="parent"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -241,7 +239,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/line11">
 
                 <Button
-                    android:id="@+id/favorite_previousButton3"
+                    android:id="@+id/cafeDetail_favorite_nextButton"
                     android:layout_width="10dp"
                     android:layout_height="30dp"
                     android:background="@drawable/next_page"
@@ -251,7 +249,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
-                    android:id="@+id/favorite_previousButton2"
+                    android:id="@+id/cafeDetail_favorite_previousButton"
                     android:layout_width="10dp"
                     android:layout_height="30dp"
                     android:background="@drawable/previous_page"
@@ -260,8 +258,8 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerView3"
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/favoriteViewPager"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="20dp"
@@ -270,6 +268,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
