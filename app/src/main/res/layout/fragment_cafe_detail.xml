@@ -245,7 +245,7 @@
                     android:background="@drawable/next_page"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/recyclerView3"
+                    app:layout_constraintStart_toEndOf="@+id/favoriteViewPager"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
@@ -254,7 +254,7 @@
                     android:layout_height="30dp"
                     android:background="@drawable/previous_page"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/recyclerView3"
+                    app:layout_constraintEnd_toStartOf="@+id/favoriteViewPager"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
