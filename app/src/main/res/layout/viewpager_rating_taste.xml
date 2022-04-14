@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/viewPager_ratingTaste_layout"
+    android:layout_width="370dp"
+    android:layout_height="127dp"
+    android:layout_gravity="center_horizontal">
+
+    <TextView
+        android:id="@+id/viewPager_tasteTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        android:text="맛"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/viewPager_taste_image"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/taste_score"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewPager_tasteTextView" />
+
+    <TextView
+        android:id="@+id/viewPager_sour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="15dp"
+        android:text="산미"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/viewPager_taste_image"
+        app:layout_constraintTop_toBottomOf="@+id/viewPager_tasteTextView" />
+
+    <RatingBar
+        android:id="@+id/viewPager_rating_sour"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="17dp"
+        android:isIndicator="false"
+        android:numStars="5"
+        android:progressDrawable="@drawable/rating_custom"
+        android:stepSize="1"
+        app:layout_constraintStart_toEndOf="@+id/viewPager_sour"
+        app:layout_constraintTop_toBottomOf="@+id/viewPager_tasteTextView" />
+
+    <TextView
+        android:id="@+id/viewPager_acerbity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="14dp"
+        android:text="쓴맛"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/viewPager_taste_image"
+        app:layout_constraintTop_toBottomOf="@+id/viewPager_sour" />
+
+    <RatingBar
+        android:id="@+id/viewPager_rating_acerbity"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="18dp"
+        android:isIndicator="false"
+        android:numStars="5"
+        android:progressDrawable="@drawable/rating_custom"
+        android:stepSize="1"
+        app:layout_constraintStart_toEndOf="@+id/viewPager_acerbity"
+        app:layout_constraintTop_toBottomOf="@+id/viewPager_rating_sour" />
+
+    <TextView
+        android:id="@+id/viewPager_dessert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="15dp"
+        android:text="디저트"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/viewPager_rating_sour"
+        app:layout_constraintTop_toBottomOf="@+id/viewPager_tasteTextView" />
+
+    <RatingBar
+        android:id="@+id/viewPager_rating_dessert"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="17dp"
+        android:isIndicator="false"
+        android:numStars="5"
+        android:progressDrawable="@drawable/rating_custom"
+        android:stepSize="1"
+        app:layout_constraintStart_toEndOf="@+id/viewPager_dessert"
+        app:layout_constraintTop_toBottomOf="@+id/viewPager_tasteTextView" />
+
+    <TextView
+        android:id="@+id/viewPager_beverage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="14dp"
+        android:text="기타음료"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/viewPager_rating_acerbity"
+        app:layout_constraintTop_toBottomOf="@+id/viewPager_dessert" />
+
+    <RatingBar
+        android:id="@+id/viewPager_rating_beverage"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="18dp"
+        android:isIndicator="false"
+        android:numStars="5"
+        android:progressDrawable="@drawable/rating_custom"
+        android:stepSize="1"
+        app:layout_constraintStart_toEndOf="@+id/viewPager_beverage"
+        app:layout_constraintTop_toBottomOf="@+id/viewPager_rating_dessert" />
+</androidx.constraintlayout.widget.ConstraintLayout>
