@@ -139,15 +139,16 @@
                         android:id="@+id/tasteimage7"
                         android:layout_width="100dp"
                         android:layout_height="26dp"
+                        android:layout_marginBottom="12dp"
                         android:src="@drawable/edge_top_bottom"
-                        app:layout_constraintBottom_toBottomOf="@+id/feelingImage7"
+                        app:layout_constraintBottom_toTopOf="@+id/addTagScrollView7"
                         app:layout_constraintStart_toStartOf="parent" />
 
                     <ImageView
                         android:id="@+id/feelingImage7"
                         android:layout_width="100dp"
                         android:layout_height="26dp"
-                        android:layout_marginBottom="12dp"
+                        android:layout_marginBottom="13dp"
                         android:src="@drawable/edge_top_back_brown"
                         app:layout_constraintBottom_toTopOf="@+id/addTagScrollView7"
                         app:layout_constraintEnd_toStartOf="@+id/serviceimage7"
@@ -480,7 +481,8 @@
                         android:id="@+id/tasteimage6"
                         android:layout_width="100dp"
                         android:layout_height="26dp"
-                        app:layout_constraintBottom_toBottomOf="@+id/feelingimage6"
+                        android:layout_marginBottom="13dp"
+                        app:layout_constraintBottom_toTopOf="@+id/addTagScrollView6"
                         app:layout_constraintStart_toStartOf="parent"
                         app:srcCompat="@drawable/edge_top_back_brown" />
 
@@ -499,7 +501,7 @@
                         android:layout_width="100dp"
                         android:layout_height="26dp"
                         android:src="@drawable/edge_top_back_brown"
-                        app:layout_constraintBottom_toBottomOf="@+id/feelingimage6"
+                        app:layout_constraintBottom_toBottomOf="@+id/tasteimage6"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:srcCompat="@drawable/edge_top_back_brown" />
 
@@ -831,7 +833,7 @@
                         android:id="@+id/feelingImage8"
                         android:layout_width="100dp"
                         android:layout_height="26dp"
-                        android:layout_marginBottom="12dp"
+                        android:layout_marginBottom="13dp"
                         android:clickable="true"
                         android:src="@drawable/edge_top_back_brown"
                         app:layout_constraintBottom_toTopOf="@+id/addTagScrollView8"
@@ -843,9 +845,10 @@
                         android:id="@+id/serviceimage8"
                         android:layout_width="100dp"
                         android:layout_height="26dp"
+                        android:layout_marginBottom="12dp"
                         android:clickable="true"
                         android:src="@drawable/edge_top_bottom"
-                        app:layout_constraintBottom_toBottomOf="@+id/feelingImage8"
+                        app:layout_constraintBottom_toTopOf="@+id/addTagScrollView8"
                         app:layout_constraintEnd_toEndOf="parent" />
 
                     <TextView
