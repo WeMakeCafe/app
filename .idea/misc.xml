@@ -81,7 +81,7 @@
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_review.xml" value="0.33" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_review_addtag.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_review_comment.xml" value="0.33" />
-        <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_review_tag.xml" value="0.33" />
+        <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_review_tag.xml" value="0.8251173708920188" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_review_tag_example.xml" value="0.33" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_review_tag_grade.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_search.xml" value="0.36614583333333334" />
@@ -105,6 +105,11 @@
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/recent_searches_item.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/recyclerview_cafe_detail_footer.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/recyclerview_footer.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/viewpager_cafe_detail_image1.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/viewpager_cafe_detail_image2.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/viewpager_cafe_detail_image3.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/viewpager_cafe_detail_image4.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/viewpager_cafe_detail_image5.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/viewpager_rating_seat.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/viewpager_rating_study.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/viewpager_rating_taste.xml" value="0.36614583333333334" />
