@@ -29,16 +29,12 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
-    ConstraintLayout cons1;
-    ConstraintLayout cons2;
-    ConstraintLayout cons3;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.fragment_review_tag);  //페이지 확인하기
-
-
+        setContentView(R.layout.fragment_review_tag); //페이지 확인하기
 
 //        binding = ActivityMainBinding.inflate(getLayoutInflater());
 //        setContentView(binding.getRoot());
