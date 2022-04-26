@@ -226,7 +226,7 @@
             <LinearLayout
                 android:id="@+id/deletePage_footer"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="100dp"
                 android:orientation="horizontal"
                 android:padding="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -238,7 +238,6 @@
                     android:id="@+id/deletePage_footerLogo"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:layout_marginTop="20dp"
                     android:src="@drawable/logo" />
 
                 <TextView
@@ -246,7 +245,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
-                    android:layout_marginTop="30dp"
                     android:letterSpacing="-0.02"
                     android:lineSpacingMultiplier="1.2"
                     android:text="상호명: 위메카 We Make Cafe\n개발자: 임현승, 서현준, 송상화, 이재윤, 전현구\n이메일: suwonUni@gmail.com\n카카오톡: @위메카 친구 추가하고 소식을 받아보세요"
