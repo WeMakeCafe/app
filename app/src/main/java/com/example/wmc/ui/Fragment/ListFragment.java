@@ -14,7 +14,7 @@ import com.example.wmc.databinding.FragmentListBinding;
 
 public class ListFragment extends Fragment {
 
-    private FragmentListBinding binding;
+    private FragmentListBinding binding;    // FragmentListBinding 변수이름 Ctrl + 좌클릭하면 연결된 .xml로 이동함
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
