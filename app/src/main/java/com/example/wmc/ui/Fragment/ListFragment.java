@@ -38,7 +38,6 @@ public class ListFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getContext().getApplicationContext(), "추가버튼 클릭", Toast.LENGTH_SHORT).show();
-
                 navController.navigate(R.id.list_to_cafe_registration);
             }
         });
