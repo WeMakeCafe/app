@@ -43,7 +43,7 @@ public class CafeDetailMoreFragment extends Fragment {
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
-        });
+        }); // 스피너 클릭 시, 나올
 
         return root;
     }
