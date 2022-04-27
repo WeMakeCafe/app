@@ -34,7 +34,7 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         final RecyclerView.ViewHolder viewHolder;
 
         if (a_viewType == CafeDetailFooterViewHolder.MORE_VIEW_TYPE) {
-            viewHolder = new CafeDetailFooterViewHolder(view);
+            viewHolder = new CafeDetailFooterViewHolder(view, mItemClickListener_cafeDetail);
         } else {
             viewHolder = new CafeDetailViewHolder(view, mItemClickListener_cafeDetail);
         }

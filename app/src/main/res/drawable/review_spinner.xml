@@ -12,8 +12,8 @@
             <item
                 android:drawable="@drawable/dropdown"
                 android:gravity="center|end"
-                android:width="25dp"
-                android:height="25dp" />
+                android:width="15dp"
+                android:height="15dp" />
         </layer-list>
     </item>
 </selector>
