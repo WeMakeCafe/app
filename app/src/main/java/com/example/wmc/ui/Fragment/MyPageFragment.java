@@ -22,6 +22,8 @@ public class MyPageFragment extends Fragment {
     private FragmentMypageBinding binding;
     private static NavController navController;
     TextView grade;
+    Button modify;
+    Button logout;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -29,11 +31,27 @@ public class MyPageFragment extends Fragment {
         binding = FragmentMypageBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         grade = root.findViewById(R.id.level2);
+        modify = root.findViewById(R.id.change_information_button2);
+        logout = root.findViewById(R.id.logout_button2);
 
         grade.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 navController.navigate(R.id.myPage_to_myPage_grade);
+            }
+        });
+
+        modify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                navController.navigate(R.id.); // 정보수정 Fragment로 이동
+            }
+        });
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                navController.navigate(R.id.); // 로그인Fragment 이동
             }
         });
 
