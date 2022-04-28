@@ -28,7 +28,6 @@ public class MypageFavoriteAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(viewType, viewGroup, false);
         final RecyclerView.ViewHolder viewHolder;
         viewHolder = new MypageFavoriteViewHolder(view, mItemClickListener_MypageFavorite);
-
         return viewHolder;
     }
 
