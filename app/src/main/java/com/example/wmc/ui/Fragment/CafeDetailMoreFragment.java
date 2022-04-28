@@ -11,9 +11,17 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.wmc.CafeDetail.CafeDetailAdapter;
+import com.example.wmc.CafeDetail.CafeDetailItem;
+import com.example.wmc.CafeDetailMore.CafeDetailMoreAdapter;
+import com.example.wmc.CafeDetailMore.CafeDetailMoreItem;
 import com.example.wmc.R;
 import com.example.wmc.databinding.FragmentCafeDetailMoreBinding;
+
+import java.util.ArrayList;
 
 public class CafeDetailMoreFragment extends Fragment {
 
@@ -45,6 +53,22 @@ public class CafeDetailMoreFragment extends Fragment {
             }
         }); // 스피너 클릭 시, 나올
 
+
+        ArrayList<CafeDetailMoreItem> cafeDetailMoreReviewItem = new ArrayList<>();
+
+        cafeDetailMoreReviewItem.add(new CafeDetailMoreItem("지코", "Lv.3", "테이블이 매우 협소합니다.",
+                R.drawable.logo, R.drawable.logo_v2, R.drawable.bean_grade1, R.drawable.bean_grade3, 4));
+
+        // Recycler view
+        RecyclerView cafeDetailMoreRecyclerView = root.findViewById(R.id.cafeDetailMoreRecyclerView);
+
+        // Adapter 추가
+        CafeDetailMoreAdapter cafeDetailMoreAdapter = new CafeDetailMoreAdapter(cafeDetailMoreReviewItem);
+        cafeDetailMoreRecyclerView.setAdapter(cafeDetailMoreAdapter);
+
+        // Layout manager 추가
+        LinearLayoutManager cafeDetailMoreLayoutManager = new LinearLayoutManager(getContext().getApplicationContext(), LinearLayoutManager.VERTICAL, false);
+        cafeDetailMoreRecyclerView.setLayoutManager(cafeDetailMoreLayoutManager);
         return root;
     }
 

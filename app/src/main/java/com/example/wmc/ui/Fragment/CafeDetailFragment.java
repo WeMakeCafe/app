@@ -44,15 +44,15 @@ public class CafeDetailFragment extends Fragment {
             }
         });
 
-        ArrayList<CafeDetailItem> cafeDetailReview = new ArrayList<>();
+        ArrayList<CafeDetailItem> cafeDetailReviewItem = new ArrayList<>();
 
-        cafeDetailReview.add(new CafeDetailItem("아이유", "Lv.3",
+        cafeDetailReviewItem.add(new CafeDetailItem("아이유", "Lv.3",
                 "징짜 맛있음\n징짜 맛있음\n징짜 맛있음", R.drawable.logo, R.drawable.logo_v2, "7"));
-        cafeDetailReview.add(new CafeDetailItem("지코", "Lv.3",
+        cafeDetailReviewItem.add(new CafeDetailItem("지코", "Lv.3",
                 "테이블이 매우 협소합니다. \n" +
                         "하지만, 가격이 매우 저렴하고 맛있습니다!\n" +
                         "마카롱이 진짜 최고에요ㅠ", R.drawable.logo, R.drawable.logo_v2, "5"));
-        cafeDetailReview.add(new CafeDetailItem("애쉬", "Lv.1(위치 인증 완료)",
+        cafeDetailReviewItem.add(new CafeDetailItem("애쉬", "Lv.1(위치 인증 완료)",
                 "테이블이 협소해서 공부하기는 어렵지만\n" +
                         "노래도 나오고 친구들이랑 같이 이야기하기에는\n" +
                         "좋아요.", R.drawable.logo, R.drawable.logo_v2, "1"));
@@ -61,7 +61,7 @@ public class CafeDetailFragment extends Fragment {
         RecyclerView recyclerView = root.findViewById(R.id.cafeDetailReviewRecyclerView);
 
         // Adapter 추가
-        CafeDetailAdapter adapter = new CafeDetailAdapter(cafeDetailReview);
+        CafeDetailAdapter adapter = new CafeDetailAdapter(cafeDetailReviewItem);
         recyclerView.setAdapter(adapter);
 
         // Layout manager 추가
@@ -73,12 +73,12 @@ public class CafeDetailFragment extends Fragment {
             @Override
             public void onItemClick(View a_view, int a_position) {
 
-                if (a_position == cafeDetailReview.size()){
+                if (a_position == cafeDetailReviewItem.size()){
                     Toast.makeText(getContext().getApplicationContext(), "리뷰 더보기 클릭", Toast.LENGTH_SHORT).show();
                     navController.navigate(R.id.cafe_detail_to_cafe_detail_more);
                 }
                 else{
-                    final CafeDetailItem item = cafeDetailReview.get(a_position);
+                    final CafeDetailItem item = cafeDetailReviewItem.get(a_position);
                     Toast.makeText(getContext().getApplicationContext(), item.getReviewNickName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
                 }
             }

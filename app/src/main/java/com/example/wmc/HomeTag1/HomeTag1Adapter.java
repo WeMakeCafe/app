@@ -42,7 +42,7 @@ public class HomeTag1Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
             // 기본적으로 header 를 빼고 item 을 구한다.
             final HomeTag1Item item = tag1_items.get(position);
-        HomeTag1ViewHolder viewHolder = (HomeTag1ViewHolder) holder;
+            HomeTag1ViewHolder viewHolder = (HomeTag1ViewHolder) holder;
 
             viewHolder.cafeName.setText(item.getCafeName());
             viewHolder.cafeAddress.setText(item.getCafeAddress());
