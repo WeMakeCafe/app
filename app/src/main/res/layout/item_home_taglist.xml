@@ -131,6 +131,7 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginStart="10dp"
                         android:text="Best Review"
+                        android:textStyle="bold"
                         android:textColor="@color/black"
                         android:textSize="12sp" />
 
@@ -141,8 +142,7 @@
                         android:layout_marginStart="10dp"
                         android:text="학교 근처라 그런지 공부하는 학생이 많다. 개강 준비하며 커피 한잔하기 좋은 카페! ..."
                         android:textColor="@color/black"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
+                        android:textSize="12sp" />
                 </LinearLayout>
 
 
