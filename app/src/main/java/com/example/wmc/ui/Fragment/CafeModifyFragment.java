@@ -38,6 +38,7 @@ public class CafeModifyFragment extends Fragment {
         modifyImageItems.add(new CafeModifyItem(R.drawable.logo_v2));
         modifyImageItems.add(new CafeModifyItem(R.drawable.bean_grade1));
         modifyImageItems.add(new CafeModifyItem(R.drawable.bean_grade2));
+        modifyImageItems.add(new CafeModifyItem(R.drawable.bean_grade3));
 
         // Adapter 추가
         RecyclerView modifyRecyclerView = root.findViewById(R.id.cafeModifyImageRecyclerView);
@@ -46,7 +47,7 @@ public class CafeModifyFragment extends Fragment {
         modifyRecyclerView.setAdapter(modifyAdapter);
 
         // Layout manager 추가
-        LinearLayoutManager modifyLayoutManager = new LinearLayoutManager(getContext().getApplicationContext(), LinearLayoutManager.VERTICAL, false);
+        LinearLayoutManager modifyLayoutManager = new LinearLayoutManager(getContext().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
         modifyRecyclerView.setLayoutManager(modifyLayoutManager);
 
         modifyAdapter.setOnItemClickListener_CafeModify(new CafeModifyAdapter.OnItemClickEventListener_CafeModify() {
