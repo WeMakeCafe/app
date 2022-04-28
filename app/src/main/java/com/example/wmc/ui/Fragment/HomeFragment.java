@@ -36,6 +36,8 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Home 에서 찜한 카페에 대한 리사이클러뷰 작성
         ArrayList<HomeFavoriteItem> homeFavoriteItems = new ArrayList<>();
 
         homeFavoriteItems.add(new HomeFavoriteItem("이디야커피 수원대점", "#가성비", "#마카롱", R.drawable.logo_v2));

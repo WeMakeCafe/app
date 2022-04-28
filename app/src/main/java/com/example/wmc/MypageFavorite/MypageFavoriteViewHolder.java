@@ -1,7 +1,6 @@
 package com.example.wmc.MypageFavorite;
 
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,20 +10,14 @@ import com.example.wmc.R;
 
 public class MypageFavoriteViewHolder extends RecyclerView.ViewHolder{
 
-    TextView cafeName_textView;
-    TextView cafeTag1_textView;
-    TextView cafeTag2_textView;
-    ImageView cafe_image;
+    TextView favorite_but;
 
-    public static int HOMEFAVORITE_VIEW_TYPE = R.layout.item_home_favoritelist;
+    public static int MYPAGEFAVORITE_VIEW_TYPE = R.layout.item_mypage_bookmark;
 
-    public MypageFavoriteViewHolder(@NonNull View itemView, final MypageFavoriteAdapter.OnItemClickEventListener_HomeFavorite a_itemClickListener) {
+    public MypageFavoriteViewHolder(@NonNull View itemView, final MypageFavoriteAdapter.OnItemClickEventListener_MypageFavorite a_itemClickListener) {
         super(itemView);
 
-        cafeName_textView = itemView.findViewById(R.id.cafeName_textView);
-        cafeTag1_textView = itemView.findViewById(R.id.cafeTag1_textView);
-        cafeTag2_textView = itemView.findViewById(R.id.cafeTag2_textView);
-        cafe_image = itemView.findViewById(R.id.cafe_image);
+        favorite_but = itemView.findViewById(R.id.favorite_cafe);
 
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
