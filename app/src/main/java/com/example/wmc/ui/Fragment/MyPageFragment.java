@@ -7,13 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Cache;
 import com.android.volley.Network;
@@ -25,7 +28,10 @@ import com.android.volley.toolbox.BasicNetwork;
 import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.StringRequest;
+import com.example.wmc.HomeFavorite.HomeFavoriteItem;
 import com.example.wmc.MainActivity;
+import com.example.wmc.MypageFavorite.MypageFavoriteAdapter;
+import com.example.wmc.MypageFavorite.MypageFavoriteItem;
 import com.example.wmc.R;
 import com.example.wmc.database.Personal;
 import com.example.wmc.databinding.FragmentMypageBinding;
@@ -109,6 +115,8 @@ public class MyPageFragment extends Fragment {
         });
         requestQueue.add(stringRequest);
 
+        // 서버팀이 만진거
+
         grade.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -129,6 +137,39 @@ public class MyPageFragment extends Fragment {
 //                navController.navigate(R.id.); // 로그인Fragment 이동
             }
         });
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // 찜한 카페에 대한 리사이클러뷰 작성
+
+        ArrayList<MypageFavoriteItem> mypageFavoriteItems = new ArrayList<>();
+
+        mypageFavoriteItems.add(new MypageFavoriteItem("이디아커피 수원대점입니다아아앙"));
+        mypageFavoriteItems.add(new MypageFavoriteItem("이디아커피 수원대점11"));
+        mypageFavoriteItems.add(new MypageFavoriteItem("이디아커피 수원대점2222"));
+        mypageFavoriteItems.add(new MypageFavoriteItem("이디아커피 수원대점333333"));
+        mypageFavoriteItems.add(new MypageFavoriteItem("이디아커피 수원대점4444444"));
+        mypageFavoriteItems.add(new MypageFavoriteItem("이디아커피 수원대점555555555"));
+        mypageFavoriteItems.add(new MypageFavoriteItem("이디아커피 수원대점66666666666666"));
+
+        // Recycler view
+        RecyclerView mypageFavoriteRecyclerview = root.findViewById(R.id.favorite_mypage);
+
+        // Adapter 추가
+        MypageFavoriteAdapter favoriteAdapter = new MypageFavoriteAdapter(mypageFavoriteItems);
+        mypageFavoriteRecyclerview.setAdapter(favoriteAdapter);
+
+        // Layout manager 추가
+        GridLayoutManager favoriteLayoutManager = new GridLayoutManager(getContext().getApplicationContext(), 2, LinearLayoutManager.HORIZONTAL, false);
+        mypageFavoriteRecyclerview.setLayoutManager(favoriteLayoutManager);
+
+        favoriteAdapter.setOnItemClickListener_MypageFavorite(new MypageFavoriteAdapter.OnItemClickEventListener_MypageFavorite() {
+            @Override
+            public void onItemClick(View a_view, int a_position) {
+                final MypageFavoriteItem item = mypageFavoriteItems.get(a_position);
+                Toast.makeText(getContext().getApplicationContext(), item.getCafeName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
         return root;
     }
