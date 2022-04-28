@@ -28,10 +28,12 @@ import com.android.volley.toolbox.BasicNetwork;
 import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.StringRequest;
-import com.example.wmc.HomeFavorite.HomeFavoriteItem;
+
 import com.example.wmc.MainActivity;
 import com.example.wmc.MypageFavorite.MypageFavoriteAdapter;
 import com.example.wmc.MypageFavorite.MypageFavoriteItem;
+import com.example.wmc.MypageReview.MypageReviewAdapter;
+import com.example.wmc.MypageReview.MypageReviewItem;
 import com.example.wmc.R;
 import com.example.wmc.database.Personal;
 import com.example.wmc.databinding.FragmentMypageBinding;
@@ -115,7 +117,8 @@ public class MyPageFragment extends Fragment {
         });
         requestQueue.add(stringRequest);
 
-        // 서버팀이 만진거
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // 여기까지 서버팀이 만진거
 
         grade.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -169,6 +172,39 @@ public class MyPageFragment extends Fragment {
             }
         });
 
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // 내가 쓴 리뷰 에대한 리사이클러뷰 작성
+
+        ArrayList<MypageReviewItem> mypageReviewItem = new ArrayList<>();
+
+        mypageReviewItem.add(new MypageReviewItem("지코", "Lv.3", "테이블이 매우 협소합니다.",
+                R.drawable.logo, R.drawable.logo_v2, R.drawable.bean_grade1, R.drawable.bean_grade3, "4"));
+        mypageReviewItem.add(new MypageReviewItem("지코", "Lv.3", "테이블이 매우 협소합니다.",
+                R.drawable.logo, R.drawable.logo_v2, R.drawable.bean_grade1, R.drawable.bean_grade3, "4"));
+        mypageReviewItem.add(new MypageReviewItem("지코", "Lv.3", "테이블이 매우 협소합니다.",
+                R.drawable.logo, R.drawable.logo_v2, R.drawable.bean_grade1, R.drawable.bean_grade3, "4"));
+        mypageReviewItem.add(new MypageReviewItem("지코", "Lv.3", "테이블이 매우 협소합니다.",
+                R.drawable.logo, R.drawable.logo_v2, R.drawable.bean_grade1, R.drawable.bean_grade3, "4"));
+
+
+        // Recycler view
+        RecyclerView mypageReviewRecyclerview = root.findViewById(R.id.review_mypage);
+
+        // Adapter 추가
+        MypageReviewAdapter reviewAdapter = new MypageReviewAdapter(mypageReviewItem);
+        mypageReviewRecyclerview.setAdapter(reviewAdapter);
+
+        // Layout manager 추가
+        LinearLayoutManager reviewLayoutManager = new LinearLayoutManager(getContext().getApplicationContext(), LinearLayoutManager.VERTICAL, false);
+        mypageReviewRecyclerview.setLayoutManager(reviewLayoutManager);
+
+        reviewAdapter.setOnItemClickListener_MypageReview(new MypageReviewAdapter.OnItemClickEventListener_MyPageReview() {
+            @Override
+            public void onItemClick(View a_view, int a_position) {
+                final MypageReviewItem item = mypageReviewItem.get(a_position);
+                Toast.makeText(getContext().getApplicationContext(), item.getReviewNickName(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
         return root;
     }
