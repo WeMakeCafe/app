@@ -2,19 +2,22 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.wmc">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.WMC">
+        android:theme="@style/Theme.WMC"
+        android:usesCleartextTraffic="true"> <!--모든 HTTP URL에 대해서 접근 허용-->
+
         <activity
             android:name=".MainActivity"
             android:windowSoftInputMode="adjustPan"
             android:exported="true"
-            android:label="@string/app_name" >
-            //키보드 입력될때 하단바 같이 올라오는것 수정위한 코드 (windowSoft ~)
+            android:label="@string/app_name" > <!--키보드 입력될때 하단바 같이 올라오는것 수정위한 코드(winSoftInputMode) -->
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
