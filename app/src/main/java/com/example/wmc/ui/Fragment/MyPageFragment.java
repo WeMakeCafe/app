@@ -143,13 +143,12 @@ public class MyPageFragment extends Fragment {
 
         ArrayList<MypageFavoriteItem> mypageFavoriteItems = new ArrayList<>();
 
-        mypageFavoriteItems.add(new MypageFavoriteItem("이디아커피 수원대점입니다아아앙"));
-        mypageFavoriteItems.add(new MypageFavoriteItem("이디아커피 수원대점11"));
-        mypageFavoriteItems.add(new MypageFavoriteItem("이디아커피 수원대점2222"));
-        mypageFavoriteItems.add(new MypageFavoriteItem("이디아커피 수원대점333333"));
-        mypageFavoriteItems.add(new MypageFavoriteItem("이디아커피 수원대점4444444"));
-        mypageFavoriteItems.add(new MypageFavoriteItem("이디아커피 수원대점555555555"));
-        mypageFavoriteItems.add(new MypageFavoriteItem("이디아커피 수원대점66666666666666"));
+        mypageFavoriteItems.add(new MypageFavoriteItem("이디아커피 수원대점"));
+        mypageFavoriteItems.add(new MypageFavoriteItem("스타벅스 수원역점"));
+        mypageFavoriteItems.add(new MypageFavoriteItem("Taxi Coffee"));
+        mypageFavoriteItems.add(new MypageFavoriteItem("커피맛을 알면 인생이 보인다 수원대점"));
+        mypageFavoriteItems.add(new MypageFavoriteItem("스타벅스 청담점"));
+        mypageFavoriteItems.add(new MypageFavoriteItem("메가 커피 정자사거리점"));
 
         // Recycler view
         RecyclerView mypageFavoriteRecyclerview = root.findViewById(R.id.favorite_mypage);
