@@ -47,16 +47,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/line14" />
 
-            <TextView
-                android:id="@+id/line17"
-                android:layout_width="0dp"
-                android:layout_height="2dp"
-                android:layout_marginTop="270dp"
-                android:background="#00FFFFFF"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/line16" />
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout15"
                 android:layout_width="match_parent"
@@ -258,8 +248,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout18"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toTopOf="@+id/line17"
+                android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/line16">
@@ -280,45 +269,15 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/review_mypage"
                     android:layout_width="0dp"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:nestedScrollingEnabled="false"
+                    android:overScrollMode="never"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/myReview2" />
+                    app:layout_constraintTop_toBottomOf="@+id/myReview2" /> <!--리사이클러뷰 스크롤막기-->
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <LinearLayout
-                android:id="@+id/myPage_footer"
-                android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:orientation="horizontal"
-                android:padding="20dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/constraintLayout18">
-
-                <ImageView
-                    android:id="@+id/myPage_footerLogo"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:layout_marginTop="20dp"
-                    android:src="@drawable/logo" />
-
-                <TextView
-                    android:id="@+id/myPage_footerTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="30dp"
-                    android:letterSpacing="-0.02"
-                    android:lineSpacingMultiplier="1.2"
-                    android:text="상호명: 위메카 We Make Cafe\n개발자: 임현승, 서현준, 송상화, 이재윤, 전현구\n이메일: suwonUni@gmail.com\n카카오톡: @위메카 친구 추가하고 소식을 받아보세요"
-                    android:textColor="@color/black"
-                    android:textSize="8dp" />
-            </LinearLayout>
             <!--Footer-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
