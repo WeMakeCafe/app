@@ -230,8 +230,8 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/first_recyclerView"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
+                    android:layout_width="364dp"
+                    android:layout_height="176dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="5dp"
@@ -301,8 +301,8 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/second_recyclerView"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
+                    android:layout_width="364dp"
+                    android:layout_height="176dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="5dp"
