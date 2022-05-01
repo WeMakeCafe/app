@@ -57,7 +57,17 @@ public class CafeDetailMoreFragment extends Fragment {
         ArrayList<CafeDetailMoreItem> cafeDetailMoreReviewItem = new ArrayList<>();
 
         cafeDetailMoreReviewItem.add(new CafeDetailMoreItem("지코", "Lv.3", "테이블이 매우 협소합니다.",
-                R.drawable.logo, R.drawable.logo_v2, R.drawable.bean_grade1, R.drawable.bean_grade3, 4));
+                R.drawable.logo, R.drawable.logo_v2, R.drawable.bean_grade1, R.drawable.bean_grade3, "4"));
+        cafeDetailMoreReviewItem.add(new CafeDetailMoreItem("아이유", "Lv.1(위치인증완료)", "징짜 맛있음\n징짜 맛있음\n징짜 맛있음",
+                R.drawable.logo, R.drawable.logo_v2, R.drawable.bean_grade1, R.drawable.bean_grade3, "4"));
+        cafeDetailMoreReviewItem.add(new CafeDetailMoreItem("애쉬", "Lv.3", "테이블이 매우 협소합니다. \n" +
+                "하지만, 가격이 매우 저렴하고 맛있습니다!\n" +
+                "마카롱이 진짜 최고에요ㅠ",
+                R.drawable.logo, R.drawable.logo_v2, R.drawable.bean_grade1, R.drawable.bean_grade3, "4"));
+        cafeDetailMoreReviewItem.add(new CafeDetailMoreItem("스키니", "Lv.3", "테이블이 매우 협소합니다. \n" +
+                "하지만, 가격이 매우 저렴하고 맛있습니다!\n" +
+                "마카롱이 진짜 최고에요ㅠ",
+                R.drawable.logo, R.drawable.logo_v2, R.drawable.bean_grade1, R.drawable.bean_grade3, "4"));
 
         // Recycler view
         RecyclerView cafeDetailMoreRecyclerView = root.findViewById(R.id.cafeDetailMoreRecyclerView);
@@ -69,6 +79,13 @@ public class CafeDetailMoreFragment extends Fragment {
         // Layout manager 추가
         LinearLayoutManager cafeDetailMoreLayoutManager = new LinearLayoutManager(getContext().getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         cafeDetailMoreRecyclerView.setLayoutManager(cafeDetailMoreLayoutManager);
+
+        cafeDetailMoreAdapter.setOnItemClickListener_cafeDetailMore(new CafeDetailMoreAdapter.OnItemClickEventListener_cafeDetailMore() {
+            @Override
+            public void onItemClick(View a_view, int a_position) {
+
+            }
+        });
         return root;
     }
 

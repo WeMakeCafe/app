@@ -74,7 +74,7 @@ public class CafeDetailFragment extends Fragment {
 
                 if(position == cafeDetailReviewItem.size()){
                     Toast.makeText(getContext().getApplicationContext(), "리뷰 더보기 클릭", Toast.LENGTH_SHORT).show();
-//                    navController.navigate(R.id.cafe_detail_to_cafe_detail_more);
+                    navController.navigate(R.id.cafe_detail_to_cafe_detail_more);
                 }
 
                 else {
