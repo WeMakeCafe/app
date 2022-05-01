@@ -37,6 +37,7 @@ public class ListCafelistFragment extends Fragment {
         add_cafe = root.findViewById(R.id.addCafe_floatingButton);
 
 
+        // 검색 창 클릭 시,
         searchText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,6 +46,7 @@ public class ListCafelistFragment extends Fragment {
             }
         });
 
+        // 검색창의 돋보기 버튼 클릭 시,
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,6 +55,8 @@ public class ListCafelistFragment extends Fragment {
             }
         });
 
+
+        // 카페 추가 플로팅 버튼 클릭 시,
         add_cafe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
