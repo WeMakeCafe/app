@@ -68,22 +68,21 @@ public class CafeDetailFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext().getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
 
-
         adapter.setOnItemClickListener_cafeDetail(new CafeDetailAdapter.OnItemClickEventListener_cafeDetail() {
             @Override
-            public void onItemClick(View a_view, int a_position) {
+            public void onItemClick(View view, int position) {
 
-                if (a_position == cafeDetailReviewItem.size()){
+                if(position == cafeDetailReviewItem.size()){
                     Toast.makeText(getContext().getApplicationContext(), "리뷰 더보기 클릭", Toast.LENGTH_SHORT).show();
-                    navController.navigate(R.id.cafe_detail_to_cafe_detail_more);
+//                    navController.navigate(R.id.cafe_detail_to_cafe_detail_more);
                 }
-                else{
-                    final CafeDetailItem item = cafeDetailReviewItem.get(a_position);
+
+                else {
+                    final CafeDetailItem item = cafeDetailReviewItem.get(position);
                     Toast.makeText(getContext().getApplicationContext(), item.getReviewNickName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
 
         return root;
     }
