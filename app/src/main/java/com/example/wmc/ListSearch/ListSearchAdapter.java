@@ -46,7 +46,8 @@ public class ListSearchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         final ListSearchItem item = listSearch_items.get(position);
         ListSearchViewHolder viewHolder = (ListSearchViewHolder) holder;
 
-//        viewHolder.cafeName.setText(item.getCafeName());
+        viewHolder.cafe_name_textView.setText(item.getSearch_cafeName());
+        viewHolder.cafe_address_textView.setText(item.getSearch_cafeAddress());
     }
 
     @Override
