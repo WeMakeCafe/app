@@ -46,7 +46,9 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
         if (a_holder instanceof CafeDetailFooterViewHolder) {
             CafeDetailFooterViewHolder footerViewHolder = (CafeDetailFooterViewHolder) a_holder;
-        } else {
+        }
+
+        else {
             // 기본적으로 header 를 빼고 item 을 구한다.
             final CafeDetailItem item = review_items.get(a_position);
 

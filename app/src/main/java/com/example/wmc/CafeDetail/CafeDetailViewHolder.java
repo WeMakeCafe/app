@@ -31,6 +31,7 @@ public class CafeDetailViewHolder extends RecyclerView.ViewHolder{
         reviewProfile_image = itemView.findViewById(R.id.reviewProfile_image);
         reviewImage = itemView.findViewById(R.id.reviewImage);
 
+
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View a_view) {
