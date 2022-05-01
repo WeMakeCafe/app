@@ -66,4 +66,6 @@ public class Personal {
     public String getFavorite2() {
         return favorite2;
     }
+
+
 }

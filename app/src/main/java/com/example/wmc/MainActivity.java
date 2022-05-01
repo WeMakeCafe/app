@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
 
     public static long mem_num = 1;
+    public static long cafe_num = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

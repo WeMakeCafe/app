@@ -1,10 +1,12 @@
 package com.example.wmc.ui.Fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -14,8 +16,26 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import com.android.volley.Cache;
+import com.android.volley.Network;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.BasicNetwork;
+import com.android.volley.toolbox.DiskBasedCache;
+import com.android.volley.toolbox.HurlStack;
+import com.android.volley.toolbox.StringRequest;
 import com.example.wmc.R;
+import com.example.wmc.database.Personal;
 import com.example.wmc.databinding.FragmentReviewBinding;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 public class ReviewFragment extends Fragment {
 
@@ -26,6 +46,9 @@ public class ReviewFragment extends Fragment {
     Button comment_button;
     Button location_button;
     Button finish_button;
+    TextView tag1;  /// 태그 선언
+    TextView tag2;
+    TextView tag3;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -37,6 +60,21 @@ public class ReviewFragment extends Fragment {
         comment_button = root.findViewById(R.id.comment_button);
         location_button = root.findViewById(R.id.location_button);
         finish_button = root.findViewById(R.id.finish_button);
+        tag1 = root.findViewById(R.id.select_tag1);    // 태그 연결
+        tag2 = root.findViewById(R.id.select_tag2);
+        tag3 = root.findViewById(R.id.select_tag3);
+
+        ///////서버 호출
+
+
+
+
+
+
+
+
+        ////// 서버 엔드
+
 
         searchText.setOnClickListener(new View.OnClickListener() {
             @Override
