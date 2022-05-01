@@ -92,6 +92,9 @@
         <action
             android:id="@+id/list_search_to_cafe_detail"
             app:destination="@id/navigation_cafe_detail" />
+        <action
+            android:id="@+id/list_search_to_list_cafelist"
+            app:destination="@id/navigation_list_cafelist" />
     </fragment>
 
     <fragment
