@@ -125,4 +125,23 @@
         android:label="@string/review_comment"
         tools:layout="@layout/fragment_review_comment" />
 
+    <fragment
+        android:id="@+id/navigation_list_cafelist"
+        android:name="com.example.wmc.ui.Fragment.ListCafelistFragment"
+        android:label="@string/cafe_list"
+        tools:layout="@layout/fragment_list_cafelist">
+
+        <action
+            android:id="@+id/list_cafelist_to_cafe_detail"
+            app:destination="@id/navigation_cafe_detail" />
+
+        <action
+            android:id="@+id/list_cafelist_to_cafe_registration"
+            app:destination="@id/navigation_cafe_registration" />
+
+        <action
+            android:id="@+id/list_cafelist_to_list_search"
+            app:destination="@id/navigation_list_search" />
+    </fragment>
+
 </navigation>
