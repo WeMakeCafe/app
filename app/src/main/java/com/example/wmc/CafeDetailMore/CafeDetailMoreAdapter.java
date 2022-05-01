@@ -50,6 +50,15 @@ public class CafeDetailMoreAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         CafeDetailMoreViewHolder viewHolder = (CafeDetailMoreViewHolder) holder;
 
 //        viewHolder.cafeName.setText(item.getCafeName());
+        viewHolder.nickName.setText(item.getReviewNickName());
+        viewHolder.level_and_location.setText(item.getLevel_and_location());
+        viewHolder.review_comment.setText(item.getReview_comment());
+        viewHolder.good_count_textView.setText(item.getGood_count_textView());
+
+        viewHolder.reviewProfile_image.setImageResource(item.getReviewProfile_image());
+        viewHolder.reviewMore_image1.setImageResource(item.getReviewImage1());
+        viewHolder.reviewMore_image2.setImageResource(item.getReviewImage2());
+        viewHolder.reviewMore_image3.setImageResource(item.getReviewImage3());
     }
 
     @Override

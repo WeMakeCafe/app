@@ -87,7 +87,12 @@
         android:id="@+id/navigation_list_search"
         android:name="com.example.wmc.ui.Fragment.ListSearchFragment"
         android:label="@string/list_search"
-        tools:layout="@layout/fragment_list_search" />
+        tools:layout="@layout/fragment_list_search" >
+
+        <action
+            android:id="@+id/list_search_to_cafe_detail"
+            app:destination="@id/navigation_cafe_detail" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_cafe_registration"
