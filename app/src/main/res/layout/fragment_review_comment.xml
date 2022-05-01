@@ -107,13 +107,14 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
-                    android:id="@+id/delete_cafe_reason_input2"
+                    android:id="@+id/reviewComment_editText"
                     android:layout_width="0dp"
                     android:layout_height="200dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="40dp"
+                    android:maxLength="200"
                     android:background="@drawable/edge_top_back"
                     android:ems="10"
                     android:gravity="top"
@@ -128,15 +129,15 @@
                     app:layout_constraintTop_toBottomOf="@+id/taste_textView2" />
 
                 <TextView
-                    android:id="@+id/caution_textView"
+                    android:id="@+id/commentCount_textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0/200 Bytes"
-                    android:textColor="#000000"
+                    android:textColor="@color/black"
                     android:textSize="15sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/delete_cafe_reason_input2"
-                    app:layout_constraintTop_toBottomOf="@+id/delete_cafe_reason_input2" />
+                    app:layout_constraintEnd_toEndOf="@+id/reviewComment_editText"
+                    app:layout_constraintTop_toBottomOf="@+id/reviewComment_editText" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -175,7 +176,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
-                    android:id="@+id/add_image_button2"
+                    android:id="@+id/reviewComment_add_image_button"
                     android:layout_width="88dp"
                     android:layout_height="88dp"
                     android:layout_marginStart="20dp"
@@ -187,12 +188,12 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/reviewCommentImageRecyclerView"
                     android:layout_width="0dp"
-                    android:layout_height="0dp"
+                    android:layout_height="95dp"
                     android:layout_marginStart="15dp"
-                    android:layout_marginTop="10dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/add_image_button2"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/reviewComment_add_image_button"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/add_image_button2"
+                    app:layout_constraintStart_toEndOf="@+id/reviewComment_add_image_button"
                     app:layout_constraintTop_toBottomOf="@+id/image_registration2" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -207,7 +208,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/line12">
 
                 <Button
-                    android:id="@+id/finish_button2"
+                    android:id="@+id/reviewComment_finish_button"
                     android:layout_width="108dp"
                     android:layout_height="45dp"
                     android:layout_marginTop="30dp"
