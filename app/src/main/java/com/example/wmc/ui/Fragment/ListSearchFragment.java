@@ -58,7 +58,7 @@ public class ListSearchFragment extends Fragment {
                 }
                 else{
                     Toast.makeText(getContext().getApplicationContext(), searchText.getText().toString() + " 검색됨.", Toast.LENGTH_SHORT).show();
-                    navController.navigate(R.id.list_search_to_cafe_detail);
+                    navController.navigate(R.id.list_search_to_list_cafelist);
                 }
             }
         });
