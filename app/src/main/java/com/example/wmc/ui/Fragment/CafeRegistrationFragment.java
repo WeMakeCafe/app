@@ -29,6 +29,7 @@ public class CafeRegistrationFragment extends Fragment {
     private FragmentCafeRegistrationBinding binding;
     private static NavController navController;
     Button tag;
+    Button registration_button;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -36,7 +37,9 @@ public class CafeRegistrationFragment extends Fragment {
         binding = FragmentCafeRegistrationBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         tag = root.findViewById(R.id.add_tag_button);
+        registration_button = root.findViewById(R.id.registration_button);
 
+        // 태그 추가 버튼 클릭 시
         tag.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,6 +47,13 @@ public class CafeRegistrationFragment extends Fragment {
             }
         });
 
+        // 등록하기 버튼 클릭 시
+        registration_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 내가 만든 카페의 카페디테일로 이동
+            }
+        });
 
         ArrayList<CafeRegistrationItem> registrationImageItems = new ArrayList<>();
 
