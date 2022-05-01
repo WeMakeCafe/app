@@ -33,7 +33,7 @@ public class ListSearchFragment extends Fragment {
     private FragmentListSearchBinding binding;
     private static NavController navController;
     EditText searchText;
-    Button search;
+    Button search_button;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -48,12 +48,18 @@ public class ListSearchFragment extends Fragment {
                                                                                                     // ListSearchFragment의 검색창 포커스 및 키보드 올리기
 
 
-        search = root.findViewById(R.id.search_button);
-        search.setOnClickListener(new View.OnClickListener() {
+        search_button = root.findViewById(R.id.search_button);
+        search_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                navController.navigate(R.id.);    // 돋보기 버튼 클릭 시, ListCafelistFragment로 이동
-                                                    // 아직 Navigation이 없음
+                if(searchText.getText().toString().equals("") == true)
+                {
+                    Toast.makeText(getContext().getApplicationContext(), "검색어를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(getContext().getApplicationContext(), searchText.getText().toString() + " 검색됨.", Toast.LENGTH_SHORT).show();
+                    navController.navigate(R.id.list_search_to_cafe_detail);
+                }
             }
         });
 
