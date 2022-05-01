@@ -88,7 +88,7 @@ public class ListSearchFragment extends Fragment {
             public void onItemClick(View a_view, int a_position) {
                 final ListSearchItem item = listSearchItems.get(a_position);
                 Toast.makeText(getContext().getApplicationContext(), item.getSearch_cafeName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
-                navController.navigate(R.id.list_search_to_cafe_detail);
+                navController.navigate(R.id.list_search_to_list_cafelist);
             }
         });
 
