@@ -9,10 +9,11 @@
         android:id="@+id/cafeDetail_image5"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/image_view_round"
         android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo" />
+        app:srcCompat="@drawable/bean_grade3" />
 </androidx.constraintlayout.widget.ConstraintLayout>
