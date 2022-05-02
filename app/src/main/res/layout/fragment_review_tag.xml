@@ -1192,6 +1192,36 @@
                     app:layout_constraintStart_toEndOf="@+id/addTag2"
                     app:layout_constraintTop_toTopOf="@+id/addTag2" />
 
+                <Button
+                    android:id="@+id/tag1_delete_button"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginStart="73dp"
+                    android:background="@drawable/delete_button"
+                    app:layout_constraintStart_toStartOf="@+id/addTag1"
+                    app:layout_constraintTop_toBottomOf="@+id/beigeFrame2" />
+
+                <Button
+                    android:id="@+id/tag2_delete_button"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginStart="73dp"
+                    android:background="@drawable/delete_button"
+                    app:layout_constraintStart_toStartOf="@+id/addTag2"
+                    app:layout_constraintTop_toBottomOf="@+id/beigeFrame2" />
+
+                <Button
+                    android:id="@+id/tag3_delete_button"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginStart="73dp"
+                    android:background="@drawable/delete_button"
+                    app:layout_constraintStart_toStartOf="@+id/addTag3"
+                    app:layout_constraintTop_toBottomOf="@+id/beigeFrame2" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
