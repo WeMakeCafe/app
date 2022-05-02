@@ -55,7 +55,7 @@ public class CafeModifyFragment extends Fragment {
     private FragmentCafeModifyBinding binding;
     private static NavController navController;
 
-    ArrayList<Cafe> cafe_list;              // 서버 작업 이미지는 리싸이클러뷰여서 일단 보류
+    ArrayList<Cafe> cafe_list;              // 서버 작업 (이미지는 리싸이클러뷰여서 일단 보류)
     Long cafe_num = MainActivity.cafe_num;
     TextView cafe_name_input;
     TextView cafe_address_input;
@@ -95,7 +95,7 @@ public class CafeModifyFragment extends Fragment {
                     e.printStackTrace();
                 }
                 Gson gson = new GsonBuilder().setPrettyPrinting().create();
-                Type listType = new TypeToken<ArrayList<Personal>>() {
+                Type listType = new TypeToken<ArrayList<Cafe>>() {
                 }.getType();
 
                 cafe_list = gson.fromJson(changeString, listType);
