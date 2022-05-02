@@ -1155,9 +1155,9 @@
                     </ScrollView>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <Button
+                <TextView
                     android:id="@+id/addTag1"
-                    android:layout_width="wrap_content"
+                    android:layout_width="88dp"
                     android:layout_height="34dp"
                     android:layout_weight="1"
                     android:background="@drawable/selected_tag_textview_v2"
@@ -1167,9 +1167,9 @@
                     app:layout_constraintStart_toStartOf="@+id/brownFrame3"
                     app:layout_constraintTop_toTopOf="@+id/addTag2" />
 
-                <Button
+                <TextView
                     android:id="@+id/addTag2"
-                    android:layout_width="wrap_content"
+                    android:layout_width="88dp"
                     android:layout_height="34dp"
                     android:layout_weight="1"
                     android:background="@drawable/selected_tag_textview_v2"
@@ -1180,9 +1180,9 @@
                     app:layout_constraintStart_toStartOf="@+id/brownFrame3"
                     app:layout_constraintTop_toBottomOf="@+id/beigeFrame2" />
 
-                <Button
+                <TextView
                     android:id="@+id/addTag3"
-                    android:layout_width="wrap_content"
+                    android:layout_width="88dp"
                     android:layout_height="34dp"
                     android:layout_weight="1"
                     android:background="@drawable/selected_tag_textview_v2"
