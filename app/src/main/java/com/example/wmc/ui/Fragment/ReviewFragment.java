@@ -38,6 +38,7 @@ public class ReviewFragment extends Fragment {
         location_button = root.findViewById(R.id.location_button);
         finish_button = root.findViewById(R.id.finish_button);
 
+        // 카페 검색 창 클릭 시,
         searchText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,6 +46,7 @@ public class ReviewFragment extends Fragment {
             }
         });
 
+        // 태그 추가 버튼 클릭 시,
         addTag_cafe_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,6 +54,7 @@ public class ReviewFragment extends Fragment {
             }
         });
 
+        // 코멘터리 버튼 클릭 시,
         comment_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,6 +62,7 @@ public class ReviewFragment extends Fragment {
             }
         });
 
+        // 위치인증 버튼 클릭 시,
         location_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,11 +71,12 @@ public class ReviewFragment extends Fragment {
             }
         });
 
+        // 작성완료 버튼 클릭 시,
         finish_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // 내가 리뷰를 작성한 CafeDetailFragment로 이동
-                //navController.navigate(R.id.);
+                navController.navigate(R.id.review_to_cafe_detail);
             }
         });
         
