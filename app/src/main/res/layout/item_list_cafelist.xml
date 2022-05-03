@@ -85,11 +85,12 @@
 
         </LinearLayout>
 
-        <Button
+        <CheckBox
             android:id="@+id/favorite_button"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:button="@null"
             android:layout_gravity="right|center_vertical"
-            android:background="@drawable/favorite" />
+            android:background="@drawable/favorite_checkbox" />
     </LinearLayout>
 </LinearLayout>
