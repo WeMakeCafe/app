@@ -26,7 +26,7 @@ import com.example.wmc.databinding.FragmentReviewCafelistBinding;
 
 import java.util.ArrayList;
 
-public class ReviewCafeList extends Fragment {
+public class ReviewCafeListFragment extends Fragment {
 
     private FragmentReviewCafelistBinding binding;
     private static NavController navController;
