@@ -41,7 +41,7 @@ public class ReviewFragment extends Fragment {
         searchText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                navController.navigate(R.id.);    // ListSearchFragment로 네비게이션 추가
+                navController.navigate(R.id.review_to_review_search);
             }
         });
 
