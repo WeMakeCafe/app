@@ -172,7 +172,7 @@
 
     <fragment
         android:id="@+id/navigation_review_cafelist"
-        android:name="com.example.wmc.ui.Fragment.ReviewCafeList"
+        android:name="com.example.wmc.ui.Fragment.ReviewCafeListFragment"
         android:label="@string/review_cafe_list"
         tools:layout="@layout/fragment_review_cafelist" >
 
