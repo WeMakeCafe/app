@@ -8,8 +8,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -29,12 +32,15 @@ import java.util.ArrayList;
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
+    private static NavController navController;
+    TextView favoirte_default_textView;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+        favoirte_default_textView = root.findViewById(R.id.favoirte_default_textView);
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Home 에서 찜한 카페에 대한 리사이클러뷰 작성
@@ -58,11 +64,16 @@ public class HomeFragment extends Fragment {
         LinearLayoutManager favoriteLayoutManager = new LinearLayoutManager(getContext().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
         homeFavoriteRecyclerView.setLayoutManager(favoriteLayoutManager);
 
+        if (homeFavoriteItems.size() == 0){
+            favoirte_default_textView.setVisibility(View.VISIBLE);
+        }
+
         favoriteAdapter.setOnItemClickListener_HomeFavorite(new HomeFavoriteAdapter.OnItemClickEventListener_HomeFavorite() {
             @Override
             public void onItemClick(View a_view, int a_position) {
                 final HomeFavoriteItem item = homeFavoriteItems.get(a_position);
                 Toast.makeText(getContext().getApplicationContext(), item.getCafeName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
+                navController.navigate(R.id.home_to_cafe_detail);
             }
         });
 
@@ -95,6 +106,7 @@ public class HomeFragment extends Fragment {
             public void onItemClick(View a_view, int a_position) {
                 final HomeTag1Item item = homeTag1Items.get(a_position);
                 Toast.makeText(getContext().getApplicationContext(), item.getCafeName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
+                navController.navigate(R.id.home_to_cafe_detail);
             }
         });
 
@@ -128,9 +140,17 @@ public class HomeFragment extends Fragment {
             public void onItemClick(View a_view, int a_position) {
                 final HomeTag2Item item = homeTag2Items.get(a_position);
                 Toast.makeText(getContext().getApplicationContext(), item.getCafeName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
+                navController.navigate(R.id.home_to_cafe_detail);
             }
         });
         return root;
+    }
+
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        navController = Navigation.findNavController(view);
     }
 
     @Override
