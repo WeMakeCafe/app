@@ -186,6 +186,7 @@
                     android:paddingTop="5dp"
                     android:paddingRight="10dp"
                     android:text="카페 이름은 수정 불가능합니다."
+                    android:enabled="false"
                     android:textColor="@color/gray"
                     app:layout_constraintStart_toEndOf="@+id/cafe_name"
                     app:layout_constraintTop_toBottomOf="@+id/modify_caution_required_fields_textView" />
@@ -232,6 +233,7 @@
                     android:layout_marginTop="20dp"
                     android:background="@drawable/edge_top_back"
                     android:ems="10"
+                    android:enabled="false"
                     android:paddingLeft="10dp"
                     android:paddingTop="5dp"
                     android:paddingRight="10dp"
