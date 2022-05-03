@@ -48,6 +48,9 @@
         <action
             android:id="@+id/review_to_review_comment"
             app:destination="@id/navigation_review_comment" />
+        <action
+            android:id="@+id/review_to_review_search"
+            app:destination="@id/navigation_review_search" />
     </fragment>
 
     <fragment
@@ -133,6 +136,7 @@
         android:label="@string/review_comment"
         tools:layout="@layout/fragment_review_comment" />
 
+
     <fragment
         android:id="@+id/navigation_list_cafelist"
         android:name="com.example.wmc.ui.Fragment.ListCafelistFragment"
@@ -152,4 +156,31 @@
             app:destination="@id/navigation_list_search" />
     </fragment>
 
+    <fragment
+        android:id="@+id/navigation_review_search"
+        android:name="com.example.wmc.ui.Fragment.ReviewSearchFragment"
+        android:label="@string/review_search"
+        tools:layout="@layout/fragment_list_search" >
+
+        <action
+            android:id="@+id/review_search_to_review"
+            app:destination="@id/navigation_review" />
+        <action
+            android:id="@+id/review_search_to_reivew_cafelist"
+            app:destination="@id/navigation_review_cafelist" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_review_cafelist"
+        android:name="com.example.wmc.ui.Fragment.ReviewCafeList"
+        android:label="@string/review_cafe_list"
+        tools:layout="@layout/fragment_list_cafelist" >
+
+        <action
+            android:id="@+id/review_cafelist_to_review"
+            app:destination="@id/navigation_review" />
+        <action
+            android:id="@+id/review_cafelist_to_review_search"
+            app:destination="@id/navigation_review_search" />
+    </fragment>
 </navigation>

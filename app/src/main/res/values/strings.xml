@@ -14,4 +14,6 @@
     <string name="myPage_grade">회원 등급</string>
     <string name="review_comment">리뷰 작성</string>
     <string name="review_tag">리뷰 태그</string>
+    <string name="review_search">리뷰 검색</string>
+    <string name="review_cafe_list">리뷰 검색 시 카페 목록</string>
 </resources>
