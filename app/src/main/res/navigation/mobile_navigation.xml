@@ -119,7 +119,15 @@
         android:id="@+id/navigation_cafe_modify"
         android:name="com.example.wmc.ui.Fragment.CafeModifyFragment"
         android:label="@string/cafe_modify"
-        tools:layout="@layout/fragment_cafe_modify" />
+        tools:layout="@layout/fragment_cafe_modify" >
+
+        <action
+            android:id="@+id/cafe_modify_to_cafe_detail"
+            app:destination="@id/navigation_cafe_detail" />
+        <action
+            android:id="@+id/cafe_modify_to_cafe_delete"
+            app:destination="@id/navigation_cafe_delete" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_myPage_grade"
