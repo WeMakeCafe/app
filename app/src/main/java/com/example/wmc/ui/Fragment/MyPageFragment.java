@@ -164,11 +164,13 @@ public class MyPageFragment extends Fragment {
         GridLayoutManager favoriteLayoutManager = new GridLayoutManager(getContext().getApplicationContext(), 2, LinearLayoutManager.HORIZONTAL, false);
         mypageFavoriteRecyclerview.setLayoutManager(favoriteLayoutManager);
 
+        // 찜한 카페 아이템 클릭 시,
         favoriteAdapter.setOnItemClickListener_MypageFavorite(new MypageFavoriteAdapter.OnItemClickEventListener_MypageFavorite() {
             @Override
             public void onItemClick(View a_view, int a_position) {
                 final MypageFavoriteItem item = mypageFavoriteItems.get(a_position);
                 Toast.makeText(getContext().getApplicationContext(), item.getCafeName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
+                navController.navigate(R.id.myPage_to_cafe_detail);
             }
         });
 
@@ -193,7 +195,6 @@ public class MyPageFragment extends Fragment {
                 R.drawable.logo, R.drawable.logo_v2, R.drawable.bean_grade1, R.drawable.bean_grade3, "4"));
         mypageReviewItem.add(new MypageReviewItem("지코", "Lv.8", "테이블이 매우 협소합니다.",
                 R.drawable.logo, R.drawable.logo_v2, R.drawable.bean_grade1, R.drawable.bean_grade3, "4"));
-
 
 
         // Recycler view
