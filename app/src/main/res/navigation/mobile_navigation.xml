@@ -174,7 +174,7 @@
         android:id="@+id/navigation_review_cafelist"
         android:name="com.example.wmc.ui.Fragment.ReviewCafeList"
         android:label="@string/review_cafe_list"
-        tools:layout="@layout/fragment_list_cafelist" >
+        tools:layout="@layout/fragment_review_cafelist" >
 
         <action
             android:id="@+id/review_cafelist_to_review"
