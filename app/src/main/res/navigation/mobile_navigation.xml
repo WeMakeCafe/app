@@ -186,4 +186,16 @@
             android:id="@+id/review_cafelist_to_review_search"
             app:destination="@id/navigation_review_search" />
     </fragment>
+
+    <fragment
+        android:id="@+id/navigation_cafe_delete"
+        android:name="com.example.wmc.ui.Fragment.CafeDeleteFragment"
+        android:label="@string/cafe_delete"
+        tools:layout="@layout/fragment_cafe_delete" >
+
+        <action
+            android:id="@+id/cafe_delete_to_cafe_detail"
+            app:destination="@id/navigation_cafe_detail" />
+    </fragment>
+
 </navigation>
