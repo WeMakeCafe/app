@@ -28,8 +28,10 @@ public class CafeRegistrationFragment extends Fragment {
 
     private FragmentCafeRegistrationBinding binding;
     private static NavController navController;
+    Button cafeRegistratin_add_image_button;
     Button tag;
     Button registration_button;
+    Button checked_overlap_button;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -38,6 +40,28 @@ public class CafeRegistrationFragment extends Fragment {
         View root = binding.getRoot();
         tag = root.findViewById(R.id.add_tag_button);
         registration_button = root.findViewById(R.id.registration_button);
+        checked_overlap_button = root.findViewById(R.id.checked_overlap_button);
+        cafeRegistratin_add_image_button = root.findViewById(R.id.cafeRegistratin_add_image_button);
+        
+        
+        // 카페 등록 페이지의 이미지 추가 버튼(+) 클릭 시,
+        cafeRegistratin_add_image_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 갤러리로 이동
+            }
+        });
+        
+        
+        // 중복확인 버튼 클릭 시,
+        checked_overlap_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 데이터베이스에서 카페이름이 있는지 중복검사
+                Toast.makeText(getContext().getApplicationContext(), "중복확인 검사 시작", Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
         // 태그 추가 버튼 클릭 시
         tag.setOnClickListener(new View.OnClickListener() {
@@ -46,6 +70,7 @@ public class CafeRegistrationFragment extends Fragment {
                 navController.navigate(R.id.navigation_review_tag);
             }
         });
+
 
         // 등록하기 버튼 클릭 시
         registration_button.setOnClickListener(new View.OnClickListener() {
