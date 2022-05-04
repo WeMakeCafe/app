@@ -31,6 +31,7 @@ import com.example.wmc.RatingViewPager.RatingViewPagerSeat;
 import com.example.wmc.RatingViewPager.RatingViewPagerStudy;
 import com.example.wmc.RatingViewPager.RatingViewPagerTaste;
 import com.example.wmc.databinding.FragmentCafeDetailBinding;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -39,6 +40,7 @@ public class CafeDetailFragment extends Fragment {
     private FragmentCafeDetailBinding binding;
     private static NavController navController;
     Button cafe_modify_button;
+    FloatingActionButton review_floatingButton;
     ViewPager cafeImageViewPager;
     ViewPager cafeRatingViewPager;
 
@@ -49,6 +51,8 @@ public class CafeDetailFragment extends Fragment {
         binding = FragmentCafeDetailBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         cafe_modify_button = root.findViewById(R.id.cafe_modify_button);
+        review_floatingButton = root.findViewById(R.id.review_floatingButton);
+
 
         // 카페 수정(연필) 버튼 클릭 시,
         cafe_modify_button.setOnClickListener(new View.OnClickListener() {
@@ -57,6 +61,16 @@ public class CafeDetailFragment extends Fragment {
                 navController.navigate(R.id.cafe_detail_to_cafe_modify);
             }
         });
+
+
+        // 리뷰 플로팅 버튼 클릭 시,
+        review_floatingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.cafe_detail_to_review);
+            }
+        });
+
 
 
         // 카페디테일의 리뷰 리싸이클러뷰
