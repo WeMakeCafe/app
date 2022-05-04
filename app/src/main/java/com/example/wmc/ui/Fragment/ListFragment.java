@@ -40,6 +40,7 @@ public class ListFragment extends Fragment {
         searchText = root.findViewById(R.id.cafe_search_input);
         searchButton = root.findViewById(R.id.search_button);
 
+        // 추가 버튼 클릭 시,
         add.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,6 +49,8 @@ public class ListFragment extends Fragment {
             }
         });
 
+
+        // 검색 창 클릭 시,
         searchText.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,6 +58,8 @@ public class ListFragment extends Fragment {
             }
         });
 
+
+        // 돋보기 버튼 클릭 시,
         searchButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {

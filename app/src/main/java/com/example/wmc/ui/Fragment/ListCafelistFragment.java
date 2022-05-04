@@ -54,6 +54,7 @@ public class ListCafelistFragment extends Fragment {
             }
         });
 
+
         // 검색창의 돋보기 버튼 클릭 시,
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,6 +75,7 @@ public class ListCafelistFragment extends Fragment {
         });
 
 
+        // 카페 리스트 리싸이클러뷰
         ArrayList<ListCafeListItem> listCafeListItems = new ArrayList<>();
 
         listCafeListItems.add(new ListCafeListItem("이디야커피 수원대점", "수원대학교 1203~~~ 와우리 42-15",
