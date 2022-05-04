@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -41,6 +42,7 @@ public class CafeDetailFragment extends Fragment {
     private static NavController navController;
     Button cafe_modify_button;
     FloatingActionButton review_floatingButton;
+    CheckBox favorite_checkbox;
     ViewPager cafeImageViewPager;
     ViewPager cafeRatingViewPager;
 
@@ -52,13 +54,31 @@ public class CafeDetailFragment extends Fragment {
         View root = binding.getRoot();
         cafe_modify_button = root.findViewById(R.id.cafe_modify_button);
         review_floatingButton = root.findViewById(R.id.review_floatingButton);
-
+        favorite_checkbox = root.findViewById(R.id.favorite_checkbox);
 
         // 카페 수정(연필) 버튼 클릭 시,
         cafe_modify_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 navController.navigate(R.id.cafe_detail_to_cafe_modify);
+            }
+        });
+
+
+        // 즐겨찾기 버튼(별) 클릭 시,
+        favorite_checkbox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                boolean checked = ((CheckBox) view).isChecked();    // 즐겨찾기가 됐는지 확인
+
+                if(checked) {
+                    // 즐겨찾기 항목에 추가함
+                    Toast.makeText(getContext().getApplicationContext(), "즐겨찾기 추가", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    // 즐겨찾기 항목에서 제거됨
+                    Toast.makeText(getContext().getApplicationContext(), "즐겨찾기 삭제", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -70,7 +90,6 @@ public class CafeDetailFragment extends Fragment {
                 navController.navigate(R.id.cafe_detail_to_review);
             }
         });
-
 
 
         // 카페디테일의 리뷰 리싸이클러뷰
