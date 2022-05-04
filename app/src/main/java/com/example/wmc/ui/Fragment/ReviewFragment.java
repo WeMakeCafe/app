@@ -38,6 +38,7 @@ public class ReviewFragment extends Fragment {
         location_button = root.findViewById(R.id.location_button);
         finish_button = root.findViewById(R.id.finish_button);
 
+
         // 카페 검색 창 클릭 시,
         searchText.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,6 +46,7 @@ public class ReviewFragment extends Fragment {
                 navController.navigate(R.id.review_to_review_search);
             }
         });
+
 
         // 태그 추가 버튼 클릭 시,
         addTag_cafe_button.setOnClickListener(new View.OnClickListener() {
@@ -54,6 +56,7 @@ public class ReviewFragment extends Fragment {
             }
         });
 
+
         // 코멘터리 버튼 클릭 시,
         comment_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,14 +65,16 @@ public class ReviewFragment extends Fragment {
             }
         });
 
+
         // 위치인증 버튼 클릭 시,
         location_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // 위치 인증이 되면 아래 Toast를 띄움
-                //Toast.makeText(getContext().getApplicationContext(), "위치인증이 완료되었습니다.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext().getApplicationContext(), "위치인증이 완료되었습니다.", Toast.LENGTH_SHORT).show();
             }
         });
+
 
         // 작성완료 버튼 클릭 시,
         finish_button.setOnClickListener(new View.OnClickListener() {
