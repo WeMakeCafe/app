@@ -50,12 +50,14 @@ public class CafeDetailFragment extends Fragment {
         View root = binding.getRoot();
         cafe_modify_button = root.findViewById(R.id.cafe_modify_button);
 
+        // 카페 수정(연필) 버튼 클릭 시,
         cafe_modify_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 navController.navigate(R.id.cafe_detail_to_cafe_modify);
             }
         });
+
 
         // 카페디테일의 리뷰 리싸이클러뷰
         ArrayList<CafeDetailItem> cafeDetailReviewItem = new ArrayList<>();
