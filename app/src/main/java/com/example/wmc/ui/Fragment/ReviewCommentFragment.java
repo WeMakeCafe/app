@@ -65,6 +65,7 @@ public class ReviewCommentFragment extends Fragment {
             }
         });
 
+
         // 이미지 추가 버튼 클릭 시
         reviewComment_add_image_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,14 +74,17 @@ public class ReviewCommentFragment extends Fragment {
             }
         });
 
+
         // 작성완료 버튼 클릭 시
         reviewComment_finish_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 작성완료 후, 내가 리뷰를 작성한 카페디테일로 이동
+                // 내가 리뷰를 작성한 카페의 카페디테일로 이동
+                navController.navigate(R.id.review_comment_to_cafe_detail);
             }
         });
 
+        
         // 이미지 추가 리싸이클러뷰
         ArrayList<ReviewCommentItem> reviewCommentImageItems = new ArrayList<>();
 
