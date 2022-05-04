@@ -75,7 +75,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
-                    android:id="@+id/add_image_button"
+                    android:id="@+id/cafeRegistratin_add_image_button"
                     android:layout_width="90dp"
                     android:layout_height="90dp"
                     android:layout_marginStart="30dp"
@@ -90,9 +90,9 @@
                     android:layout_height="95dp"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="8dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/add_image_button"
+                    app:layout_constraintBottom_toBottomOf="@+id/cafeRegistratin_add_image_button"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/add_image_button"
+                    app:layout_constraintStart_toEndOf="@+id/cafeRegistratin_add_image_button"
                     app:layout_constraintTop_toBottomOf="@+id/image_registration" />
 
                 <TextView
@@ -105,7 +105,7 @@
                     android:textColor="@color/black"
                     android:textSize="15sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/add_image_button" />
+                    app:layout_constraintTop_toBottomOf="@+id/cafeRegistratin_add_image_button" />
 
                 <TextView
                     android:id="@+id/addImageLine"
@@ -190,14 +190,14 @@
                     app:layout_constraintTop_toBottomOf="@+id/caution_required_fields_textView" />
 
                 <Button
-                    android:id="@+id/add_cafe_button"
+                    android:id="@+id/checked_overlap_button"
                     android:layout_width="70dp"
                     android:layout_height="27dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/edge_square_brown"
                     android:text="중복확인"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/white"
                     android:textSize="15sp"
                     app:layout_constraintStart_toEndOf="@+id/cafe_name_input"
                     app:layout_constraintTop_toBottomOf="@+id/caution_required_fields_textView" />
