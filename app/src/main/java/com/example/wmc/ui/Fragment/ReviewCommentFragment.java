@@ -104,6 +104,7 @@ public class ReviewCommentFragment extends Fragment {
         LinearLayoutManager reviewCommentLayoutManager = new LinearLayoutManager(getContext().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
         reviewCommentRecyclerView.setLayoutManager(reviewCommentLayoutManager);
 
+        // 이미지 아이템 클릭 시,
         reviewCommentAdapter.setOnItemClickListener_ReviewComment(new ReviewCommentAdapter.OnItemClickEventListener_ReviewComment() {
             @Override
             public void onItemClick(View view, int position) {
