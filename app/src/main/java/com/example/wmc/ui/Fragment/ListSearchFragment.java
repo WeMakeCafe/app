@@ -57,7 +57,8 @@ public class ListSearchFragment extends Fragment {
                     // 아무것도 안적었을 때,
                     Toast.makeText(getContext().getApplicationContext(), "검색어를 입력해주세요.", Toast.LENGTH_SHORT).show();
                 }
-                else{   // 무언가 검색했을 때,
+                else{
+                    // 무언가 검색했을 때,
                     Toast.makeText(getContext().getApplicationContext(), searchText.getText().toString() + " 검색됨.", Toast.LENGTH_SHORT).show();
                     imm.hideSoftInputFromWindow(search_button.getWindowToken(), 0);
                     navController.navigate(R.id.list_search_to_list_cafelist);
