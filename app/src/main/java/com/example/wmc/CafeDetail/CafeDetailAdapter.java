@@ -1,20 +1,28 @@
 package com.example.wmc.CafeDetail;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.wmc.R;
 import com.example.wmc.database.Cafe;
+import com.example.wmc.ui.Fragment.CafeDetailFragment;
 
 import java.util.ArrayList;
 
 public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     private ArrayList<CafeDetailItem> review_items;
+    private static NavController navController;
 
 
     public interface OnItemClickEventListener_cafeDetail { // 클릭 이벤트를 위한 인터페이스
@@ -64,20 +72,40 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             viewHolder.reviewProfile_image.setImageResource(item.getReviewProfile_image());
             viewHolder.reviewImage.setImageResource(item.getReviewImage());
 
-
+            // 리뷰에서 수정 버튼 클릭 시,
             viewHolder.reviewModify.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(v.getContext(), "리뷰 수정 버튼 클릭", Toast.LENGTH_SHORT).show();
+                    navController = Navigation.findNavController(v);
+                    navController.navigate(R.id.cafe_detail_to_review);
                 }
             });
 
+            // 리뷰에서 삭제 버튼 클릭 시,
             viewHolder.reviewDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(v.getContext(), "리뷰 삭제 버튼 클릭", Toast.LENGTH_SHORT).show();
                     review_items.remove(item);
                     notifyDataSetChanged();
+                }
+            });
+
+            // 리뷰에서 좋아요 버튼 클릭 시,
+            viewHolder.good_button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    boolean checked = ((CheckBox) v).isChecked();    // 좋아요가 됐는지 확인
+
+                    if(checked) {
+                        // 즐겨찾기 항목에 추가함
+                        Toast.makeText(v.getContext().getApplicationContext(), "좋아요", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        // 즐겨찾기 항목에서 제거됨
+                        Toast.makeText(v.getContext().getApplicationContext(), "좋아요 취소", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
         }
@@ -101,11 +129,5 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     public void setOnItemClickListener_cafeDetail(CafeDetailAdapter.OnItemClickEventListener_cafeDetail a_listener) {
         mItemClickListener_cafeDetail = a_listener;
     }
-
-
-    public void removeItem(int position){
-        review_items.remove(position);
-        notifyItemRemoved(position);
-        notifyDataSetChanged();
-    }
 }
+
