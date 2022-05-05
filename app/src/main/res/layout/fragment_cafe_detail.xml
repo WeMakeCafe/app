@@ -231,21 +231,21 @@
 
                 <Button
                     android:id="@+id/cafeDetail_favorite_nextButton"
-                    android:layout_width="10dp"
-                    android:layout_height="30dp"
+                    android:layout_width="15dp"
+                    android:layout_height="35dp"
+                    android:layout_marginRight="8dp"
                     android:background="@drawable/next_page"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/ratingViewPager"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
                     android:id="@+id/cafeDetail_favorite_previousButton"
-                    android:layout_width="10dp"
-                    android:layout_height="30dp"
+                    android:layout_width="15dp"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="8dp"
                     android:background="@drawable/previous_page"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/ratingViewPager"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 

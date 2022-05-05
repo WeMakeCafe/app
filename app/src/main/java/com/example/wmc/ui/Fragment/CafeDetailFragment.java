@@ -46,6 +46,8 @@ public class CafeDetailFragment extends Fragment {
     CheckBox favorite_checkbox;
     ViewPager cafeImageViewPager;
     ViewPager cafeRatingViewPager;
+    Button cafeDetail_favorite_previousButton;
+    Button cafeDetail_favorite_nextButton;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -55,6 +57,8 @@ public class CafeDetailFragment extends Fragment {
         cafe_modify_button = root.findViewById(R.id.cafe_modify_button);
         review_floatingButton = root.findViewById(R.id.review_floatingButton);
         favorite_checkbox = root.findViewById(R.id.favorite_checkbox);
+        cafeDetail_favorite_previousButton = root.findViewById(R.id.cafeDetail_favorite_previousButton);
+        cafeDetail_favorite_nextButton = root.findViewById(R.id.cafeDetail_favorite_nextButton);
 
         // 카페 수정(연필) 버튼 클릭 시,
         cafe_modify_button.setOnClickListener(new View.OnClickListener() {
@@ -169,6 +173,26 @@ public class CafeDetailFragment extends Fragment {
         cafeRatingAdapter.cafeRatingAddItem(studyRating);
 
         cafeRatingViewPager.setAdapter(cafeRatingAdapter);
+
+        // 별점에서 좌측 버튼 클릭 시, 별점 페이지 넘어감
+        cafeDetail_favorite_previousButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int pageNum = cafeRatingViewPager.getCurrentItem();
+                cafeRatingViewPager.setCurrentItem(pageNum - 1, true);
+            }
+        });
+
+
+        // 별점에서 우측 버튼 클릭 시, 별점 페이지 넘어감
+        cafeDetail_favorite_nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int pageNum = cafeRatingViewPager.getCurrentItem();
+                cafeRatingViewPager.setCurrentItem(pageNum + 1, true);
+            }
+        });
+
 
         return root;
     }
