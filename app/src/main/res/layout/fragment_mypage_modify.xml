@@ -24,27 +24,17 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/mpModify_backspace_button"
-                    android:layout_width="34dp"
-                    android:layout_height="34dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/back_button"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
                 <TextView
                     android:id="@+id/mpModify_textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="155dp"
                     android:layout_marginTop="25dp"
                     android:layout_marginBottom="5dp"
-                    android:layout_marginStart="105dp"
                     android:text="정보수정"
-                    android:textSize="24sp"
                     android:textColor="@color/black"
-                    android:textStyle="bold"/>
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
