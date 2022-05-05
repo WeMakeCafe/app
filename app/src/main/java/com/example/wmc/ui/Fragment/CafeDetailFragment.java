@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -46,7 +47,6 @@ public class CafeDetailFragment extends Fragment {
     ViewPager cafeImageViewPager;
     ViewPager cafeRatingViewPager;
 
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -81,6 +81,7 @@ public class CafeDetailFragment extends Fragment {
                 }
             }
         });
+
 
 
         // 리뷰 플로팅 버튼 클릭 시,

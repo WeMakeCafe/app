@@ -3,9 +3,12 @@ package com.example.wmc.CafeDetail;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.wmc.database.Cafe;
 
 import java.util.ArrayList;
 
@@ -60,6 +63,23 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             viewHolder.good_count_textView.setText(item.getGood_count_textView());
             viewHolder.reviewProfile_image.setImageResource(item.getReviewProfile_image());
             viewHolder.reviewImage.setImageResource(item.getReviewImage());
+
+
+            viewHolder.reviewModify.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(v.getContext(), "리뷰 수정 버튼 클릭", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            viewHolder.reviewDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(v.getContext(), "리뷰 삭제 버튼 클릭", Toast.LENGTH_SHORT).show();
+                    review_items.remove(item);
+                    notifyDataSetChanged();
+                }
+            });
         }
     }
 
@@ -80,5 +100,12 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     public void setOnItemClickListener_cafeDetail(CafeDetailAdapter.OnItemClickEventListener_cafeDetail a_listener) {
         mItemClickListener_cafeDetail = a_listener;
+    }
+
+
+    public void removeItem(int position){
+        review_items.remove(position);
+        notifyItemRemoved(position);
+        notifyDataSetChanged();
     }
 }
