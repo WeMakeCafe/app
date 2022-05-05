@@ -1,6 +1,7 @@
 package com.example.wmc.ReviewComment;
 
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -12,6 +13,7 @@ import com.example.wmc.R;
 public class ReviewCommentViewHolder extends RecyclerView.ViewHolder{
 
     ImageView reviewComment_imageView;
+    Button imageDeleteButton;
 
     public static int REVIEWCOMMENT_VIEW_TYPE = R.layout.item_add_image;
 
@@ -19,6 +21,7 @@ public class ReviewCommentViewHolder extends RecyclerView.ViewHolder{
         super(itemView);
 
         reviewComment_imageView = itemView.findViewById(R.id.add_modify_imageView);
+        imageDeleteButton = itemView.findViewById(R.id.imageDeleteButton);
 
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override

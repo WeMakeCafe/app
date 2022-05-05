@@ -3,6 +3,7 @@ package com.example.wmc.CafeModify;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -45,6 +46,16 @@ public class CafeModifyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             CafeModifyViewHolder viewHolder = (CafeModifyViewHolder) holder;
 
             viewHolder.add_modify_imageView.setImageResource(item.getModifyImage());
+
+            // 카페 수정에서 이미지 삭제 버튼(X) 클릭 시,
+            viewHolder.imageDeleteButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(v.getContext(), "이미지 삭제 버튼 클릭", Toast.LENGTH_SHORT).show();
+                    modifyImage_items.remove(item);
+                    notifyDataSetChanged();
+                }
+            });
     }
 
     @Override
