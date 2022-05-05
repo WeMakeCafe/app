@@ -113,7 +113,13 @@
         android:id="@+id/navigation_cafe_detail_more"
         android:name="com.example.wmc.ui.Fragment.CafeDetailMoreFragment"
         android:label="@string/cafe_detail_more"
-        tools:layout="@layout/fragment_cafe_detail_more" />
+        tools:layout="@layout/fragment_cafe_detail_more" >
+
+        <action
+            android:id="@+id/cafe_detail_more_to_review"
+            app:destination="@id/navigation_review" />
+    </fragment>
+
 
     <fragment
         android:id="@+id/navigation_cafe_modify"
