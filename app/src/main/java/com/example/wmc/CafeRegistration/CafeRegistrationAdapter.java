@@ -3,6 +3,7 @@ package com.example.wmc.CafeRegistration;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -45,6 +46,17 @@ public class CafeRegistrationAdapter extends RecyclerView.Adapter<RecyclerView.V
         CafeRegistrationViewHolder viewHolder = (CafeRegistrationViewHolder) holder;
 
         viewHolder.add_modify_imageView.setImageResource(item.getRegistrationImage());
+
+
+        // 이미지 삭제 버튼(X) 클릭 시,
+        viewHolder.imageDeleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(v.getContext(), "이미지 삭제 버튼 클릭", Toast.LENGTH_SHORT).show();
+                registrationImage_items.remove(item);
+                notifyDataSetChanged();
+            }
+        });
     }
 
     @Override
