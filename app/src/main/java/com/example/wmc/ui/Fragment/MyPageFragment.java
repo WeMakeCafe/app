@@ -198,7 +198,7 @@ public class MyPageFragment extends Fragment {
                 R.drawable.logo, R.drawable.logo_v2, R.drawable.bean_grade1, R.drawable.bean_grade3, "4"));
         mypageReviewItem.add(new MypageReviewItem("지코", "Lv.6", "테이블이 매우 협소합니다.",
                 R.drawable.logo, R.drawable.logo_v2, R.drawable.bean_grade1, R.drawable.bean_grade3, "4"));
-        mypageReviewItem.add(new MypageReviewItem("지코", "Lv.3", "테이블이 매우 협소합니다.",
+        mypageReviewItem.add(new MypageReviewItem("지코", "Lv.7", "테이블이 매우 협소합니다.",
                 R.drawable.logo, R.drawable.logo_v2, R.drawable.bean_grade1, R.drawable.bean_grade3, "4"));
         mypageReviewItem.add(new MypageReviewItem("지코", "Lv.8", "테이블이 매우 협소합니다.",
                 R.drawable.logo, R.drawable.logo_v2, R.drawable.bean_grade1, R.drawable.bean_grade3, "4"));
