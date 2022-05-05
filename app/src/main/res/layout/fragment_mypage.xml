@@ -270,20 +270,20 @@
                     android:id="@+id/review_mypage"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:nestedScrollingEnabled="false"
-                    android:overScrollMode="never"
                     app:layout_constraintTop_toBottomOf="@+id/myReview2" />
-                <!-- 리사이클러뷰 무한스크롤 위한 코드 276, 277 라인-->
+                <!--                 android:nestedScrollingEnabled="false"-->
+                <!--                 android:overScrollMode="never"-->
+                <!--                 리사이클러뷰 스크롤 죽이기 위한 코드-->
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
                 android:id="@+id/myPage_footer"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="170dp"
                 android:orientation="horizontal"
                 android:padding="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
