@@ -98,12 +98,13 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 public void onClick(View v) {
                     boolean checked = ((CheckBox) v).isChecked();    // 좋아요가 됐는지 확인
 
+                    // 자신이 쓴 글일 경우 좋아요 버튼 클릭 불가로 변경
                     if(checked) {
-                        // 즐겨찾기 항목에 추가함
+                        // 좋아요 추가
                         Toast.makeText(v.getContext().getApplicationContext(), "좋아요", Toast.LENGTH_SHORT).show();
                     }
                     else {
-                        // 즐겨찾기 항목에서 제거됨
+                        // 좋아요 취소
                         Toast.makeText(v.getContext().getApplicationContext(), "좋아요 취소", Toast.LENGTH_SHORT).show();
                     }
                 }
