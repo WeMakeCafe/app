@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -20,6 +21,7 @@ import com.example.wmc.CafeDetail.CafeDetailItem;
 import com.example.wmc.MainActivity;
 import com.example.wmc.R;
 import com.example.wmc.databinding.FragmentCafeDetailBinding;
+import com.example.wmc.databinding.FragmentCafeModifyBinding;
 
 import java.util.ArrayList;
 
@@ -28,7 +30,8 @@ public class CafeDetailFragment extends Fragment {
     private FragmentCafeDetailBinding binding;
     private static NavController navController;
     Button cafe_modify_button;
-
+    TextView moreReview3;
+    TextView moreReview4;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -36,11 +39,16 @@ public class CafeDetailFragment extends Fragment {
         binding = FragmentCafeDetailBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         cafe_modify_button = root.findViewById(R.id.cafe_modify_button);
+        moreReview3 = root.findViewById(R.id.moreReview3);
+        moreReview4 = root.findViewById(R.id.moreReview4);
 
-        cafe_modify_button.setOnClickListener(new View.OnClickListener() {
+        cafe_modify_button.setOnClickListener(new View.OnClickListener() {  //수정 버튼 누를 시 번들 객체 생성되서
             @Override
             public void onClick(View v) {
-                navController.navigate(R.id.cafe_detail_to_cafe_modify);
+                Bundle bundle = new Bundle();
+                bundle.putString("cafeName", moreReview3.getText().toString());
+                bundle.putString("cafeAddress", moreReview4.getText().toString());
+                navController.navigate(R.id.cafe_detail_to_cafe_modify, bundle);  // 카페 이름 넣어서 카페수정화면으로 넣어줌
             }
         });
 

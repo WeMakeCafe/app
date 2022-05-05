@@ -105,7 +105,11 @@
         android:id="@+id/navigation_cafe_modify"
         android:name="com.example.wmc.ui.Fragment.CafeModifyFragment"
         android:label="@string/cafe_modify"
-        tools:layout="@layout/fragment_cafe_modify" />
+        tools:layout="@layout/fragment_cafe_modify" >
+        <action
+            android:id="@+id/cafe_modify_to_cafeDelete"
+            app:destination="@id/cafeDeleteFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_myPage_grade"
@@ -124,5 +128,9 @@
         android:name="com.example.wmc.ui.Fragment.ReviewCommentFragment"
         android:label="@string/review_comment"
         tools:layout="@layout/fragment_review_comment" />
+    <fragment
+        android:id="@+id/cafeDeleteFragment"
+        android:name="com.example.wmc.ui.Fragment.CafeDeleteFragment"
+        android:label="CafeDeleteFragment" />
 
 </navigation>
