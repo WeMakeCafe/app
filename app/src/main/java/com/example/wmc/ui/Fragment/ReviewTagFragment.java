@@ -50,6 +50,9 @@ public class ReviewTagFragment extends Fragment {
         Button tag1_delete_button = root.findViewById(R.id.tag1_delete_button); // 선택한 태그1의 X버튼
         Button tag2_delete_button = root.findViewById(R.id.tag2_delete_button); // 선택한 태그2의 X버튼
         Button tag3_delete_button = root.findViewById(R.id.tag3_delete_button); // 선택한 태그3의 X버튼
+        Button tag1 = root.findViewById(R.id.tag1);
+        Button tag2 = root.findViewById(R.id.tag2);
+        Button tag3 = root.findViewById(R.id.tag3);
 
         view1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,6 +149,93 @@ public class ReviewTagFragment extends Fragment {
             }
         });
 
+        ////////////////////////////////////////////////////////////////////////////////////
+        tag1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String selectedTag = tag1.getText().toString();
+
+                if(addTag1.getText().toString().equals("")){
+                    if(addTag2.getText().toString().equals(selectedTag) || addTag3.getText().toString().equals(selectedTag))
+                        Toast.makeText(getContext().getApplicationContext(), "이미 선택한 태그입니다.", Toast.LENGTH_SHORT).show();
+                    else
+                        addTag1.setText(selectedTag);
+                }
+
+                else if(addTag2.getText().toString().equals("")){
+                    if(addTag1.getText().toString().equals(selectedTag) || addTag3.getText().toString().equals(selectedTag))
+                        Toast.makeText(getContext().getApplicationContext(), "이미 선택한 태그입니다.", Toast.LENGTH_SHORT).show();
+                    else
+                        addTag2.setText(selectedTag);
+                }
+                else if(addTag3.getText().toString().equals("")){
+                    if(addTag1.getText().toString().equals(selectedTag) || addTag2.getText().toString().equals(selectedTag))
+                        Toast.makeText(getContext().getApplicationContext(), "이미 선택한 태그입니다.", Toast.LENGTH_SHORT).show();
+                    else
+                        addTag3.setText(selectedTag);
+                }
+                else
+                    Toast.makeText(getContext().getApplicationContext(), "태그3개를 모두 선택했습니다.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        tag2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String selectedTag = tag2.getText().toString();
+
+                if(addTag1.getText().toString().equals("")){
+                    if(addTag2.getText().toString().equals(selectedTag) || addTag3.getText().toString().equals(selectedTag))
+                        Toast.makeText(getContext().getApplicationContext(), "이미 선택한 태그입니다.", Toast.LENGTH_SHORT).show();
+                    else
+                        addTag1.setText(selectedTag);
+                }
+
+                else if(addTag2.getText().toString().equals("")){
+                    if(addTag1.getText().toString().equals(selectedTag) || addTag3.getText().toString().equals(selectedTag))
+                        Toast.makeText(getContext().getApplicationContext(), "이미 선택한 태그입니다.", Toast.LENGTH_SHORT).show();
+                    else
+                        addTag2.setText(selectedTag);
+                }
+                else if(addTag3.getText().toString().equals("")){
+                    if(addTag1.getText().toString().equals(selectedTag) || addTag2.getText().toString().equals(selectedTag))
+                        Toast.makeText(getContext().getApplicationContext(), "이미 선택한 태그입니다.", Toast.LENGTH_SHORT).show();
+                    else
+                        addTag3.setText(selectedTag);
+                }
+                else
+                    Toast.makeText(getContext().getApplicationContext(), "태그3개를 모두 선택했습니다.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        tag3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String selectedTag = tag3.getText().toString();
+
+                if(addTag1.getText().toString().equals("")){
+                    if(addTag2.getText().toString().equals(selectedTag) || addTag3.getText().toString().equals(selectedTag))
+                        Toast.makeText(getContext().getApplicationContext(), "이미 선택한 태그입니다.", Toast.LENGTH_SHORT).show();
+                    else
+                        addTag1.setText(selectedTag);
+                }
+
+                else if(addTag2.getText().toString().equals("")){
+                    if(addTag1.getText().toString().equals(selectedTag) || addTag3.getText().toString().equals(selectedTag))
+                        Toast.makeText(getContext().getApplicationContext(), "이미 선택한 태그입니다.", Toast.LENGTH_SHORT).show();
+                    else
+                        addTag2.setText(selectedTag);
+                }
+                else if(addTag3.getText().toString().equals("")){
+                    if(addTag1.getText().toString().equals(selectedTag) || addTag2.getText().toString().equals(selectedTag))
+                        Toast.makeText(getContext().getApplicationContext(), "이미 선택한 태그입니다.", Toast.LENGTH_SHORT).show();
+                    else
+                        addTag3.setText(selectedTag);
+                }
+                else
+                    Toast.makeText(getContext().getApplicationContext(), "태그3개를 모두 선택했습니다.", Toast.LENGTH_SHORT).show();
+            }
+        });
         return root;
     }
 
