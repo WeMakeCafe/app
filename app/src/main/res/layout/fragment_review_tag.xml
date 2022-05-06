@@ -46,53 +46,18 @@
             android:layout_height="wrap_content">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout24"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toTopOf="@+id/constraintLayout25"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <EditText
-                    android:id="@+id/tagSearch_input2"
-                    android:layout_width="350dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/edge_top_back"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <Button
-                    android:id="@+id/tagSearch_button2"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginEnd="5dp"
-                    android:background="@drawable/search"
-                    app:layout_constraintBottom_toBottomOf="@+id/tagSearch_input2"
-                    app:layout_constraintEnd_toEndOf="@+id/tagSearch_input2"
-                    app:layout_constraintTop_toTopOf="@+id/tagSearch_input2" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout25"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout24">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
                     android:id="@+id/brownFrame3"
                     android:layout_width="350dp"
                     android:layout_height="450dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="40dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/tag_v2"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -1187,8 +1152,8 @@
                     android:id="@+id/tag1_delete_button"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_marginTop="6dp"
                     android:layout_marginStart="73dp"
+                    android:layout_marginTop="6dp"
                     android:background="@drawable/delete_button"
                     app:layout_constraintStart_toStartOf="@+id/addTag1"
                     app:layout_constraintTop_toBottomOf="@+id/beigeFrame2" />
@@ -1197,8 +1162,8 @@
                     android:id="@+id/tag2_delete_button"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_marginTop="6dp"
                     android:layout_marginStart="73dp"
+                    android:layout_marginTop="6dp"
                     android:background="@drawable/delete_button"
                     app:layout_constraintStart_toStartOf="@+id/addTag2"
                     app:layout_constraintTop_toBottomOf="@+id/beigeFrame2" />
@@ -1207,8 +1172,8 @@
                     android:id="@+id/tag3_delete_button"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_marginTop="6dp"
                     android:layout_marginStart="73dp"
+                    android:layout_marginTop="6dp"
                     android:background="@drawable/delete_button"
                     app:layout_constraintStart_toStartOf="@+id/addTag3"
                     app:layout_constraintTop_toBottomOf="@+id/beigeFrame2" />
@@ -1227,8 +1192,8 @@
                     android:id="@+id/addTag_button3"
                     android:layout_width="108dp"
                     android:layout_height="45dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginBottom="40dp"
                     android:background="@drawable/edge_square_brown"
                     android:text="추가하기"
                     android:textColor="@color/white"
