@@ -1,9 +1,12 @@
 package com.example.wmc;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -11,11 +14,17 @@ import androidx.navigation.ui.NavigationUI;
 
 
 import com.example.wmc.databinding.ActivityMainBinding;
+import com.example.wmc.ui.Fragment.HomeFragment;
+import com.example.wmc.ui.Fragment.ListFragment;
+import com.example.wmc.ui.Fragment.MyPageFragment;
+import com.example.wmc.ui.Fragment.ReviewFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+
+
 
     public static long mem_num = 1;
 
