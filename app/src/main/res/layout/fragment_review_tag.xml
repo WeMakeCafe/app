@@ -1153,6 +1153,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/selected_tag_textview_v2"
                     android:textColor="@color/black"
+                    android:gravity="center"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@+id/addTag2"
                     app:layout_constraintStart_toStartOf="@+id/brownFrame3"
@@ -1166,6 +1167,7 @@
                     android:background="@drawable/selected_tag_textview_v2"
                     android:textColor="@color/black"
                     android:textStyle="bold"
+                    android:gravity="center"
                     app:layout_constraintBottom_toBottomOf="@+id/brownFrame3"
                     app:layout_constraintEnd_toEndOf="@+id/brownFrame3"
                     app:layout_constraintStart_toStartOf="@+id/brownFrame3"
@@ -1179,6 +1181,7 @@
                     android:background="@drawable/selected_tag_textview_v2"
                     android:textColor="@color/black"
                     android:textStyle="bold"
+                    android:gravity="center"
                     app:layout_constraintEnd_toEndOf="@+id/brownFrame3"
                     app:layout_constraintStart_toEndOf="@+id/addTag2"
                     app:layout_constraintTop_toTopOf="@+id/addTag2" />
