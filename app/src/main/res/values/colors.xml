@@ -15,4 +15,5 @@
     <color name="inputColor">#FFF4E9DD</color>
     <color name="login_background_color">#FFF4E9DD</color>
     <color name="colorAccent">#F6921E</color>
+    <color name="transper">#00000000</color>
 </resources>
