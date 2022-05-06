@@ -3,6 +3,7 @@ package com.example.wmc.ListSearch;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -48,6 +49,17 @@ public class ListSearchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
         viewHolder.cafe_name_textView.setText(item.getSearch_cafeName());
         viewHolder.cafe_address_textView.setText(item.getSearch_cafeAddress());
+
+
+        // 최근 검색의 X버튼 클릭 시,
+        viewHolder.recentDelete_Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(v.getContext(), "최근검색 삭제 버튼 클릭", Toast.LENGTH_SHORT).show();
+                listSearch_items.remove(item);
+                notifyDataSetChanged();
+            }
+        });
     }
 
     @Override
