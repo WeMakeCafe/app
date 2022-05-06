@@ -187,17 +187,14 @@ public class ReviewTagFragment extends Fragment {
 //        });
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // 태그 추가 페이지의 태그모음 리사이클러뷰 작성
+        // 태그 추가 페이지의 태그 리사이클러뷰 작성
 
         ArrayList<ReviewTagItem> reviewTagItems = new ArrayList<>();
 
-        reviewTagItems.add(new ReviewTagItem("#배고픔"));
-        reviewTagItems.add(new ReviewTagItem("#배고픔"));
-        reviewTagItems.add(new ReviewTagItem("#배고픔"));
-        reviewTagItems.add(new ReviewTagItem("#배고픔"));
-        reviewTagItems.add(new ReviewTagItem("#배고픔"));
-        reviewTagItems.add(new ReviewTagItem("#배고픔"));
-        reviewTagItems.add(new ReviewTagItem("#배고픔"));
+        reviewTagItems.add(new ReviewTagItem("#배고픔가"));
+        reviewTagItems.add(new ReviewTagItem("#배고픔나"));
+        reviewTagItems.add(new ReviewTagItem("#배고픔다"));
+        reviewTagItems.add(new ReviewTagItem("#배고픔라"));
 
         // Recycler view
         RecyclerView reviewTagRecyclerView = root.findViewById(R.id.tag_recycle);
