@@ -1,5 +1,7 @@
 package com.example.wmc.ui.Fragment;
 
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,91 +38,19 @@ public class ReviewTagFragment extends Fragment {
         binding = FragmentReviewTagBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-//        ConstraintLayout cons1 = root.findViewById(R.id.constrant_taste);
-//        ConstraintLayout cons2 = root.findViewById(R.id.constrant_feel);
-//        ConstraintLayout cons3 = root.findViewById(R.id.constrant_service);
-
+        ImageView view1 = root.findViewById(R.id.tasteimage7); // 음료, 맛 버튼의 뒷 배경
+        ImageView view2 = root.findViewById(R.id.feelingImage7); // 분위기 버튼의 뒷 배경
+        ImageView view3 = root.findViewById(R.id.serviceimage7); // 서비스 버튼의 뒷 배경
+        TextView taste = root.findViewById(R.id.tasteTab7); // 음료, 맛 버튼의 글씨
+        TextView feeling = root.findViewById(R.id.feelingTab7); // 분위기 버튼의 글씨
+        TextView service = root.findViewById(R.id.serviceTab7); // 서비스 버튼의 글씨
         TextView addTag1 = root.findViewById(R.id.addTag1); // 아래 태그 버튼 3개 중 1
         TextView addTag2 = root.findViewById(R.id.addTag2); // 아래 태그 버튼 3개 중 2
         TextView addTag3 = root.findViewById(R.id.addTag3); // 아래 태그 버튼 3개 중 3
         Button tag1_delete_button = root.findViewById(R.id.tag1_delete_button); // 아래 태그 버튼 3개의 X버튼
         Button tag2_delete_button = root.findViewById(R.id.tag2_delete_button); // 아래 태그 버튼 3개의 X버튼
         Button tag3_delete_button = root.findViewById(R.id.tag3_delete_button); // 아래 태그 버튼 3개의 X버튼
-//
-//        view1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                cons1.setVisibility(View.VISIBLE);
-//                cons2.setVisibility(View.INVISIBLE);
-//                cons3.setVisibility(View.INVISIBLE);
-//            }
-//        });
-//        view4.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                cons1.setVisibility(View.VISIBLE);
-//                cons2.setVisibility(View.INVISIBLE);
-//                cons3.setVisibility(View.INVISIBLE);
-//            }
-//        });
-//        view7.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                cons1.setVisibility(View.VISIBLE);
-//                cons2.setVisibility(View.INVISIBLE);
-//                cons3.setVisibility(View.INVISIBLE);
-//            }
-//        });
-//        view2.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                cons1.setVisibility(View.INVISIBLE);
-//                cons2.setVisibility(View.VISIBLE);
-//                cons3.setVisibility(View.INVISIBLE);
-//            }
-//        });
-//        view5.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                cons1.setVisibility(View.INVISIBLE);
-//                cons2.setVisibility(View.VISIBLE);
-//                cons3.setVisibility(View.INVISIBLE);
-//            }
-//        });
-//        view8.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                cons1.setVisibility(View.INVISIBLE);
-//                cons2.setVisibility(View.VISIBLE);
-//                cons3.setVisibility(View.INVISIBLE);
-//            }
-//        });
-//        view3.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                cons1.setVisibility(View.INVISIBLE);
-//                cons2.setVisibility(View.INVISIBLE);
-//                cons3.setVisibility(View.VISIBLE);
-//            }
-//        });
-//        view6.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                cons1.setVisibility(View.INVISIBLE);
-//                cons2.setVisibility(View.INVISIBLE);
-//                cons3.setVisibility(View.VISIBLE);
-//            }
-//        });
-//        view9.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                cons1.setVisibility(View.INVISIBLE);
-//                cons2.setVisibility(View.INVISIBLE);
-//                cons3.setVisibility(View.VISIBLE);
-//            }
-//        });
-//
-//
+
         ////////////////////////////////////////////////////////////////////////////////////
         // 아래 3개 삭제 버튼 클릭 이벤트 작성
 
@@ -226,6 +156,86 @@ public class ReviewTagFragment extends Fragment {
                 }
                 else
                     Toast.makeText(getContext().getApplicationContext(), "태그3개를 모두 선택했습니다.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        view1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                view1.setImageResource(R.drawable.edge_top_bottom);
+                view2.setImageResource(R.drawable.edge_top_back_brown);
+                view3.setImageResource(R.drawable.edge_top_back_brown);
+                taste.setTextColor(Color.BLACK);
+                feeling.setTextColor(Color.WHITE);
+                service.setTextColor(Color.WHITE);
+
+                // 더미 데이터
+                reviewTagItems.add(new ReviewTagItem("#가"));
+                reviewTagItems.add(new ReviewTagItem("#나"));
+                reviewTagItems.add(new ReviewTagItem("#다"));
+                reviewTagItems.add(new ReviewTagItem("#라"));
+                reviewTagItems.add(new ReviewTagItem("#마"));
+                reviewTagItems.add(new ReviewTagItem("#바"));
+                reviewTagItems.add(new ReviewTagItem("#사"));
+                reviewTagItems.add(new ReviewTagItem("#아"));
+                reviewTagItems.add(new ReviewTagItem("#자"));
+                reviewTagItems.add(new ReviewTagItem("#차"));
+                reviewTagItems.add(new ReviewTagItem("#카"));
+                reviewTagItems.add(new ReviewTagItem("#타"));
+                reviewTagItems.add(new ReviewTagItem("#파"));
+                reviewTagItems.add(new ReviewTagItem("#하"));
+                reviewTagItems.add(new ReviewTagItem("#까"));
+                reviewTagItems.add(new ReviewTagItem("#따"));
+            }
+        });
+
+        view2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                view1.setImageResource(R.drawable.edge_top_back_brown);
+                view2.setImageResource(R.drawable.edge_top_bottom);
+                view3.setImageResource(R.drawable.edge_top_back_brown);
+                taste.setTextColor(Color.WHITE);
+                feeling.setTextColor(Color.BLACK);
+                service.setTextColor(Color.WHITE);
+
+                // 더미 데이터
+                reviewTagItems.add(new ReviewTagItem("#분위기"));
+                reviewTagItems.add(new ReviewTagItem("#분위기"));
+                reviewTagItems.add(new ReviewTagItem("#분위기"));
+                reviewTagItems.add(new ReviewTagItem("#분위기"));
+                reviewTagItems.add(new ReviewTagItem("#분위기"));
+                reviewTagItems.add(new ReviewTagItem("#분위기"));
+                reviewTagItems.add(new ReviewTagItem("#분위기"));
+                reviewTagItems.add(new ReviewTagItem("#분위기"));
+                reviewTagItems.add(new ReviewTagItem("#분위기"));
+                reviewTagItems.add(new ReviewTagItem("#분위기"));
+                reviewTagItems.add(new ReviewTagItem("#분위기"));
+                reviewTagItems.add(new ReviewTagItem("#분위기"));
+                reviewTagItems.add(new ReviewTagItem("#분위기"));
+                reviewTagItems.add(new ReviewTagItem("#분위기"));
+            }
+        });
+
+        view3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                view1.setImageResource(R.drawable.edge_top_back_brown);
+                view2.setImageResource(R.drawable.edge_top_back_brown);
+                view3.setImageResource(R.drawable.edge_top_bottom);
+                taste.setTextColor(Color.WHITE);
+                feeling.setTextColor(Color.WHITE);
+                service.setTextColor(Color.BLACK);
+
+                // 더미 데이터
+                reviewTagItems.add(new ReviewTagItem("#서비스"));
+                reviewTagItems.add(new ReviewTagItem("#서비스"));
+                reviewTagItems.add(new ReviewTagItem("#서비스"));
+                reviewTagItems.add(new ReviewTagItem("#서비스"));
+                reviewTagItems.add(new ReviewTagItem("#서비스"));
+                reviewTagItems.add(new ReviewTagItem("#서비스"));
+                reviewTagItems.add(new ReviewTagItem("#서비스"));
+                reviewTagItems.add(new ReviewTagItem("#서비스"));
             }
         });
 
