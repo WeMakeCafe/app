@@ -160,8 +160,8 @@ public class ReviewTagFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 view1.setImageResource(R.drawable.edge_top_bottom);
-                view2.setImageResource(R.drawable.edge_top_back_brown);
-                view3.setImageResource(R.drawable.edge_top_back_brown);
+                view2.setImageResource(R.color.transper);
+                view3.setImageResource(R.color.transper);
                 taste.setTextColor(Color.BLACK);
                 feeling.setTextColor(Color.WHITE);
                 service.setTextColor(Color.WHITE);
@@ -188,9 +188,9 @@ public class ReviewTagFragment extends Fragment {
         view2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                view1.setImageResource(R.drawable.edge_top_back_brown);
+                view1.setImageResource(R.color.transper);
                 view2.setImageResource(R.drawable.edge_top_bottom);
-                view3.setImageResource(R.drawable.edge_top_back_brown);
+                view3.setImageResource(R.color.transper);
                 taste.setTextColor(Color.WHITE);
                 feeling.setTextColor(Color.BLACK);
                 service.setTextColor(Color.WHITE);
@@ -217,8 +217,8 @@ public class ReviewTagFragment extends Fragment {
         view3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                view1.setImageResource(R.drawable.edge_top_back_brown);
-                view2.setImageResource(R.drawable.edge_top_back_brown);
+                view1.setImageResource(R.color.transper);
+                view2.setImageResource(R.color.transper);
                 view3.setImageResource(R.drawable.edge_top_bottom);
                 taste.setTextColor(Color.WHITE);
                 feeling.setTextColor(Color.WHITE);
