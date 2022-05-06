@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -41,6 +43,13 @@ public class ReviewTagFragment extends Fragment {
         ImageView view7 = root.findViewById(R.id.tasteimage6);
         ImageView view8 = root.findViewById(R.id.feelingimage6);
         ImageView view9 = root.findViewById(R.id.serviceImage6);
+
+        TextView addTag1 = root.findViewById(R.id.addTag1); // 선택한 태그1
+        TextView addTag2 = root.findViewById(R.id.addTag2); // 선택한 태그2
+        TextView addTag3 = root.findViewById(R.id.addTag3); // 선택한 태그3
+        Button tag1_delete_button = root.findViewById(R.id.tag1_delete_button); // 선택한 태그1의 X버튼
+        Button tag2_delete_button = root.findViewById(R.id.tag2_delete_button); // 선택한 태그2의 X버튼
+        Button tag3_delete_button = root.findViewById(R.id.tag3_delete_button); // 선택한 태그3의 X버튼
 
         view1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,6 +121,28 @@ public class ReviewTagFragment extends Fragment {
                 cons1.setVisibility(View.INVISIBLE);
                 cons2.setVisibility(View.INVISIBLE);
                 cons3.setVisibility(View.VISIBLE);
+            }
+        });
+
+
+        tag1_delete_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addTag1.setText("");
+            }
+        });
+
+        tag2_delete_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addTag2.setText("");
+            }
+        });
+
+        tag3_delete_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addTag3.setText("");
             }
         });
 
