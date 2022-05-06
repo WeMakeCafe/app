@@ -98,23 +98,19 @@ public class ReviewTagFragment extends Fragment {
 
         ArrayList<ReviewTagItem> reviewTagItems = new ArrayList<>();
 
-        // 더미 데이터
-        reviewTagItems.add(new ReviewTagItem("#가"));
-        reviewTagItems.add(new ReviewTagItem("#나"));
-        reviewTagItems.add(new ReviewTagItem("#다"));
-        reviewTagItems.add(new ReviewTagItem("#라"));
-        reviewTagItems.add(new ReviewTagItem("#마"));
-        reviewTagItems.add(new ReviewTagItem("#바"));
-        reviewTagItems.add(new ReviewTagItem("#사"));
-        reviewTagItems.add(new ReviewTagItem("#아"));
-        reviewTagItems.add(new ReviewTagItem("#자"));
-        reviewTagItems.add(new ReviewTagItem("#차"));
-        reviewTagItems.add(new ReviewTagItem("#카"));
-        reviewTagItems.add(new ReviewTagItem("#타"));
-        reviewTagItems.add(new ReviewTagItem("#파"));
-        reviewTagItems.add(new ReviewTagItem("#하"));
-        reviewTagItems.add(new ReviewTagItem("#까"));
-        reviewTagItems.add(new ReviewTagItem("#따"));
+        // 더미 데이터 *현재 초기값을 어떻게 처리해야하는지 어려움 있음! 고민해봐야 할 문제 -> 이 더미데이터 삭제 시 초기 아이템 값이 아예 등장하지 않음
+        reviewTagItems.add(new ReviewTagItem("#쓴맛"));
+        reviewTagItems.add(new ReviewTagItem("#신맛"));
+        reviewTagItems.add(new ReviewTagItem("#짠맛"));
+        reviewTagItems.add(new ReviewTagItem("#단맛"));
+        reviewTagItems.add(new ReviewTagItem("#향미"));
+        reviewTagItems.add(new ReviewTagItem("#바디감"));
+        reviewTagItems.add(new ReviewTagItem("#콜드브루"));
+        reviewTagItems.add(new ReviewTagItem("#메뉴多"));
+        reviewTagItems.add(new ReviewTagItem("#가성비"));
+        reviewTagItems.add(new ReviewTagItem("#양많음"));
+        reviewTagItems.add(new ReviewTagItem("#디저트맛집"));
+        reviewTagItems.add(new ReviewTagItem("#논커피맛집"));
 
         // Recycler view
         RecyclerView reviewTagRecyclerView = root.findViewById(R.id.tag_recycle);
@@ -159,6 +155,7 @@ public class ReviewTagFragment extends Fragment {
             }
         });
 
+        // 음료, 맛 메뉴 선택했을 때 -> 글씨 색, 배경 색, 리사이클러뷰 내 아이템 초기화 후 갱신
         view1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -170,25 +167,24 @@ public class ReviewTagFragment extends Fragment {
                 service.setTextColor(Color.WHITE);
 
                 // 더미 데이터
-                reviewTagItems.add(new ReviewTagItem("#가"));
-                reviewTagItems.add(new ReviewTagItem("#나"));
-                reviewTagItems.add(new ReviewTagItem("#다"));
-                reviewTagItems.add(new ReviewTagItem("#라"));
-                reviewTagItems.add(new ReviewTagItem("#마"));
-                reviewTagItems.add(new ReviewTagItem("#바"));
-                reviewTagItems.add(new ReviewTagItem("#사"));
-                reviewTagItems.add(new ReviewTagItem("#아"));
-                reviewTagItems.add(new ReviewTagItem("#자"));
-                reviewTagItems.add(new ReviewTagItem("#차"));
-                reviewTagItems.add(new ReviewTagItem("#카"));
-                reviewTagItems.add(new ReviewTagItem("#타"));
-                reviewTagItems.add(new ReviewTagItem("#파"));
-                reviewTagItems.add(new ReviewTagItem("#하"));
-                reviewTagItems.add(new ReviewTagItem("#까"));
-                reviewTagItems.add(new ReviewTagItem("#따"));
+                reviewTagItems.clear();
+                reviewTagItems.add(new ReviewTagItem("#쓴맛"));
+                reviewTagItems.add(new ReviewTagItem("#신맛"));
+                reviewTagItems.add(new ReviewTagItem("#짠맛"));
+                reviewTagItems.add(new ReviewTagItem("#단맛"));
+                reviewTagItems.add(new ReviewTagItem("#향미"));
+                reviewTagItems.add(new ReviewTagItem("#바디감"));
+                reviewTagItems.add(new ReviewTagItem("#콜드브루"));
+                reviewTagItems.add(new ReviewTagItem("#메뉴多"));
+                reviewTagItems.add(new ReviewTagItem("#가성비"));
+                reviewTagItems.add(new ReviewTagItem("#양많음"));
+                reviewTagItems.add(new ReviewTagItem("#디저트맛집"));
+                reviewTagItems.add(new ReviewTagItem("#논커피맛집"));
+                reviewTagAdapter.notifyDataSetChanged();
             }
         });
 
+        // 분위기 선택했을 때 -> 글씨 색, 배경 색, 리사이클러뷰 내 아이템 초기화 후 갱신
         view2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -200,23 +196,24 @@ public class ReviewTagFragment extends Fragment {
                 service.setTextColor(Color.WHITE);
 
                 // 더미 데이터
-                reviewTagItems.add(new ReviewTagItem("#분위기"));
-                reviewTagItems.add(new ReviewTagItem("#분위기"));
-                reviewTagItems.add(new ReviewTagItem("#분위기"));
-                reviewTagItems.add(new ReviewTagItem("#분위기"));
-                reviewTagItems.add(new ReviewTagItem("#분위기"));
-                reviewTagItems.add(new ReviewTagItem("#분위기"));
-                reviewTagItems.add(new ReviewTagItem("#분위기"));
-                reviewTagItems.add(new ReviewTagItem("#분위기"));
-                reviewTagItems.add(new ReviewTagItem("#분위기"));
-                reviewTagItems.add(new ReviewTagItem("#분위기"));
-                reviewTagItems.add(new ReviewTagItem("#분위기"));
-                reviewTagItems.add(new ReviewTagItem("#분위기"));
-                reviewTagItems.add(new ReviewTagItem("#분위기"));
-                reviewTagItems.add(new ReviewTagItem("#분위기"));
+                reviewTagItems.clear();
+                reviewTagItems.add(new ReviewTagItem("#인스타"));
+                reviewTagItems.add(new ReviewTagItem("#앤티크"));
+                reviewTagItems.add(new ReviewTagItem("#모던"));
+                reviewTagItems.add(new ReviewTagItem("#캐주얼"));
+                reviewTagItems.add(new ReviewTagItem("#이국적"));
+                reviewTagItems.add(new ReviewTagItem("#일상"));
+                reviewTagItems.add(new ReviewTagItem("#따뜻한"));
+                reviewTagItems.add(new ReviewTagItem("#조용한"));
+                reviewTagItems.add(new ReviewTagItem("#우드톤"));
+                reviewTagItems.add(new ReviewTagItem("#채광"));
+                reviewTagItems.add(new ReviewTagItem("#힙한"));
+                reviewTagItems.add(new ReviewTagItem("#귀여운"));
+                reviewTagAdapter.notifyDataSetChanged();
             }
         });
 
+        // 서비스 메뉴 선택했을 때 -> 글씨 색, 배경 색, 리사이클러뷰 내 아이템 초기화 후 갱신
         view3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -228,14 +225,20 @@ public class ReviewTagFragment extends Fragment {
                 service.setTextColor(Color.BLACK);
 
                 // 더미 데이터
-                reviewTagItems.add(new ReviewTagItem("#서비스"));
-                reviewTagItems.add(new ReviewTagItem("#서비스"));
-                reviewTagItems.add(new ReviewTagItem("#서비스"));
-                reviewTagItems.add(new ReviewTagItem("#서비스"));
-                reviewTagItems.add(new ReviewTagItem("#서비스"));
-                reviewTagItems.add(new ReviewTagItem("#서비스"));
-                reviewTagItems.add(new ReviewTagItem("#서비스"));
-                reviewTagItems.add(new ReviewTagItem("#서비스"));
+                reviewTagItems.clear();
+                reviewTagItems.add(new ReviewTagItem("#친절한"));
+                reviewTagItems.add(new ReviewTagItem("#청결한"));
+                reviewTagItems.add(new ReviewTagItem("#애견"));
+                reviewTagItems.add(new ReviewTagItem("#주차장"));
+                reviewTagItems.add(new ReviewTagItem("#노키즈존"));
+                reviewTagItems.add(new ReviewTagItem("#교통편의"));
+                reviewTagItems.add(new ReviewTagItem("#신속한"));
+                reviewTagItems.add(new ReviewTagItem("#쾌적한"));
+                reviewTagItems.add(new ReviewTagItem("#회의실"));
+                reviewTagItems.add(new ReviewTagItem("#규모大"));
+                reviewTagItems.add(new ReviewTagItem("#규모小"));
+                reviewTagItems.add(new ReviewTagItem("#편한좌석"));
+                reviewTagAdapter.notifyDataSetChanged();
             }
         });
 
