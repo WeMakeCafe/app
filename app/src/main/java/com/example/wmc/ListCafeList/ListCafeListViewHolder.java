@@ -1,6 +1,7 @@
 package com.example.wmc.ListCafeList;
 
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -19,6 +20,7 @@ public class ListCafeListViewHolder extends RecyclerView.ViewHolder{
     TextView cafeList_hashTag1;
     TextView cafeList_hashTag2;
     ImageView cafeList_cafeImage;
+    CheckBox favorite_button;
 
     public static int LISTCAFELIST_VIEW_TYPE = R.layout.item_list_cafelist;
 
@@ -31,6 +33,7 @@ public class ListCafeListViewHolder extends RecyclerView.ViewHolder{
         cafeList_hashTag1 = itemView.findViewById(R.id.cafeList_hashTag1);
         cafeList_hashTag2 = itemView.findViewById(R.id.cafeList_hashTag2);
         cafeList_cafeImage = itemView.findViewById(R.id.cafeList_cafeImage);
+        favorite_button = itemView.findViewById(R.id.favorite_button);
 
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override

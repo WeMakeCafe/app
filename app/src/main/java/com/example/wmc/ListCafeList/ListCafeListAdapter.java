@@ -3,6 +3,8 @@ package com.example.wmc.ListCafeList;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -43,13 +45,30 @@ public class ListCafeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         final ListCafeListItem item = listCafeList_items.get(position);
         ListCafeListViewHolder viewHolder = (ListCafeListViewHolder) holder;
 
-//        viewHolder.cafeName.setText(item.getCafeName());
         viewHolder.cafeList_cafe_name_textView.setText(item.getCafeList_cafeName());
         viewHolder.cafeList_cafe_address_textView.setText(item.getCafeList_cafeAddress());
         viewHolder.opening_hours.setText(item.getOpenTime());
         viewHolder.cafeList_hashTag1.setText(item.getTag1());
         viewHolder.cafeList_hashTag2.setText(item.getTag2());
         viewHolder.cafeList_cafeImage.setImageResource(item.getCafeList_cafeImage());
+
+
+        // 즐겨찾기 버튼 클릭 시,
+        viewHolder.favorite_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean checked = ((CheckBox) v).isChecked();    // 즐겨찾기가 됐는지 확인
+
+                if(checked) {
+                    // 즐겨찾기 항목에 추가함
+                    Toast.makeText(v.getContext().getApplicationContext(), "즐겨찾기 추가", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    // 즐겨찾기 항목에서 제거됨
+                    Toast.makeText(v.getContext().getApplicationContext(), "즐겨찾기 삭제", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     @Override

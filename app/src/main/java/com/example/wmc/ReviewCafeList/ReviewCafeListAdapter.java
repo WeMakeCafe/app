@@ -3,12 +3,11 @@ package com.example.wmc.ReviewCafeList;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.wmc.ListCafeList.ListCafeListItem;
-import com.example.wmc.ListCafeList.ListCafeListViewHolder;
 
 import java.util.ArrayList;
 
@@ -32,7 +31,7 @@ public class ReviewCafeListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(viewType, viewGroup, false);
         final RecyclerView.ViewHolder viewHolder;
-        viewHolder = new ReivewCafeListViewHolder(view, mItemClickListener_ReviewCafeList);
+        viewHolder = new ReviewCafeListViewHolder(view, mItemClickListener_ReviewCafeList);
 
         return viewHolder;
     }
@@ -41,7 +40,7 @@ public class ReviewCafeListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
         final ReviewCafeListItem item = reviewCafeList_items.get(position);
-        ReivewCafeListViewHolder viewHolder = (ReivewCafeListViewHolder) holder;
+        ReviewCafeListViewHolder viewHolder = (ReviewCafeListViewHolder) holder;
 
         viewHolder.cafeList_cafe_name_textView.setText(item.getCafeList_cafeName());
         viewHolder.cafeList_cafe_address_textView.setText(item.getCafeList_cafeAddress());
@@ -49,6 +48,23 @@ public class ReviewCafeListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         viewHolder.cafeList_hashTag1.setText(item.getTag1());
         viewHolder.cafeList_hashTag2.setText(item.getTag2());
         viewHolder.cafeList_cafeImage.setImageResource(item.getCafeList_cafeImage());
+
+        // 즐겨찾기 버튼 클릭 시,
+        viewHolder.favorite_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                boolean checked = ((CheckBox) view).isChecked();    // 즐겨찾기가 됐는지 확인
+
+                if(checked) {
+                    // 즐겨찾기 항목에 추가함
+                    Toast.makeText(view.getContext().getApplicationContext(), "즐겨찾기 추가", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    // 즐겨찾기 항목에서 제거됨
+                    Toast.makeText(view.getContext().getApplicationContext(), "즐겨찾기 삭제", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     @Override
@@ -58,7 +74,7 @@ public class ReviewCafeListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     @Override
     public int getItemViewType(int a_position) {
-        return ReivewCafeListViewHolder.REVIEWCAFELIST_VIEW_TYPE;
+        return ReviewCafeListViewHolder.REVIEWCAFELIST_VIEW_TYPE;
     }
 
     public void setOnItemClickListener_ReviewCafeList(ReviewCafeListAdapter.OnItemClickEventListener_ReviewCafeList listener) {
