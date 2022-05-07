@@ -107,7 +107,12 @@
         android:id="@+id/navigation_cafe_registration"
         android:name="com.example.wmc.ui.Fragment.CafeRegistrationFragment"
         android:label="@string/cafe_registration"
-        tools:layout="@layout/fragment_cafe_registration" />
+        tools:layout="@layout/fragment_cafe_registration" >
+
+        <action
+            android:id="@+id/cafe_registration_to_cafe_registration_tag"
+            app:destination="@id/navigation_cafe_registration_tag" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_cafe_detail_more"
@@ -221,5 +226,17 @@
             android:id="@+id/cafe_delete_to_cafe_detail"
             app:destination="@id/navigation_cafe_detail" />
     </fragment>
+
+    <fragment
+        android:id="@+id/navigation_cafe_registration_tag"
+        android:name="com.example.wmc.ui.Fragment.CafeRegistrationTagFragment"
+        android:label="@string/cafe_registration_tag"
+        tools:layout="@layout/fragment_review_tag">
+
+        <action
+            android:id="@+id/cafe_registration_tag_to_cafe_registration"
+            app:destination="@id/navigation_cafe_registration" />
+    </fragment>
+
 
 </navigation>
