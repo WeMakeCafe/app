@@ -145,7 +145,12 @@
         android:id="@+id/navigation_review_tag"
         android:name="com.example.wmc.ui.Fragment.ReviewTagFragment"
         android:label="@string/review_tag"
-        tools:layout="@layout/fragment_review_tag" />
+        tools:layout="@layout/fragment_review_tag" >
+
+        <action
+            android:id="@+id/review_tag_to_review"
+            app:destination="@id/navigation_review" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_review_comment"
