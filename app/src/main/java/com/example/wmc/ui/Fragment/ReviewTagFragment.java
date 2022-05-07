@@ -1,5 +1,6 @@
 package com.example.wmc.ui.Fragment;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -54,7 +55,7 @@ public class ReviewTagFragment extends Fragment {
         Button tag1_delete_button = root.findViewById(R.id.tag1_delete_button); // 아래 태그 버튼 3개의 X버튼
         Button tag2_delete_button = root.findViewById(R.id.tag2_delete_button); // 아래 태그 버튼 3개의 X버튼
         Button tag3_delete_button = root.findViewById(R.id.tag3_delete_button); // 아래 태그 버튼 3개의 X버튼
-        Button addTag_button3 = root.findViewById(R.id.addTag_button3);    // 태그 선택 후, 추가하기 버튼
+        Button addTag_button3 = root.findViewById(R.id.addTag_button3); // 태그 선택 후, 추가하기 버튼
 
         ////////////////////////////////////////////////////////////////////////////////////
         // 아래 3개 삭제 버튼 클릭 이벤트 작성
@@ -258,7 +259,12 @@ public class ReviewTagFragment extends Fragment {
 
                 else{
                     Toast.makeText(getContext().getApplicationContext(), "선택한 태그 추가하기.", Toast.LENGTH_SHORT).show();
-                    navController.navigate(R.id.review_tag_to_review);
+                    // 번들을 이용해 프래그먼트간 데이터 전달
+                    Bundle bundle = new Bundle(); // 프래그먼트 간 데이터 전달 위한 번들
+                    bundle.putString("key1",addTag1.getText().toString()); // 번들에 String 데이터를 전달. key1 을 키로 사용
+                    bundle.putString("key2",addTag2.getText().toString());
+                    bundle.putString("key3",addTag3.getText().toString());
+                    navController.navigate(R.id.review_tag_to_review, bundle); // 번들과 함께 전달
                 }
             }
         });
