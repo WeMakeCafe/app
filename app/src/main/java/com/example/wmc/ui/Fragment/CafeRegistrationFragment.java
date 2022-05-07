@@ -67,7 +67,7 @@ public class CafeRegistrationFragment extends Fragment {
         tag.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navController.navigate(R.id.navigation_review_tag);
+                navController.navigate(R.id.cafe_registration_to_cafe_registration_tag);
             }
         });
 
