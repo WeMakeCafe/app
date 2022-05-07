@@ -28,7 +28,6 @@ import com.example.wmc.databinding.FragmentReviewTagBinding;
 
 import java.util.ArrayList;
 
-
 public class CafeRegistrationTagFragment extends Fragment {
 
     private FragmentReviewTagBinding binding;
@@ -207,6 +206,7 @@ public class CafeRegistrationTagFragment extends Fragment {
                 cafeRegistrationTagItems.add(new CafeRegistrationTagItem("#모던"));
                 cafeRegistrationTagItems.add(new CafeRegistrationTagItem("#캐주얼"));
                 cafeRegistrationTagItems.add(new CafeRegistrationTagItem("#이국적"));
+                cafeRegistrationTagItems.add(new CafeRegistrationTagItem("#일상"));
                 cafeRegistrationTagItems.add(new CafeRegistrationTagItem("#따뜻한"));
                 cafeRegistrationTagItems.add(new CafeRegistrationTagItem("#조용한"));
                 cafeRegistrationTagItems.add(new CafeRegistrationTagItem("#우드톤"));
@@ -257,7 +257,11 @@ public class CafeRegistrationTagFragment extends Fragment {
 
                 else{
                     Toast.makeText(getContext().getApplicationContext(), "선택한 태그 추가하기.", Toast.LENGTH_SHORT).show();
-                    navController.navigate(R.id.cafe_registration_tag_to_cafe_registration);
+                    Bundle bundle = new Bundle(); // 프래그먼트 간 데이터 전달 위한 번들
+                    bundle.putString("key1",addTag1.getText().toString()); // 번들에 String 데이터를 전달. key1 을 키로 사용
+                    bundle.putString("key2",addTag2.getText().toString());
+                    bundle.putString("key3",addTag3.getText().toString());
+                    navController.navigate(R.id.cafe_registration_tag_to_cafe_registration, bundle);
                 }
             }
         });
