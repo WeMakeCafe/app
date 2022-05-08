@@ -48,6 +48,8 @@ public class CafeDetailFragment extends Fragment {
     ViewPager cafeRatingViewPager;
     Button cafeDetail_favorite_previousButton;
     Button cafeDetail_favorite_nextButton;
+    TextView moreReview2; // 카페 이름 TextView id명
+    TextView moreReview3; // 카페 이름 TextView id명2
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -59,6 +61,25 @@ public class CafeDetailFragment extends Fragment {
         favorite_checkbox = root.findViewById(R.id.favorite_checkbox);
         cafeDetail_favorite_previousButton = root.findViewById(R.id.cafeDetail_favorite_previousButton);
         cafeDetail_favorite_nextButton = root.findViewById(R.id.cafeDetail_favorite_nextButton);
+        moreReview2 = root.findViewById(R.id.moreReview2);
+        moreReview3 = root.findViewById(R.id.moreReview3);
+
+        // 카페 이름 가져오기(상단)
+        Bundle cafeNameBundle1 = getArguments();
+        if(cafeNameBundle1 != null){
+            if(cafeNameBundle1.getString("cafeName") != null){
+                moreReview2.setText(cafeNameBundle1.getString("cafeName"));
+            }
+        }
+
+        // 카페 이름 가져오기(상세)
+        Bundle cafeNameBundle2 = getArguments();
+        if(cafeNameBundle2 != null){
+            if(cafeNameBundle2.getString("cafeName") != null){
+                moreReview3.setText(cafeNameBundle2.getString("cafeName"));
+            }
+        }
+
 
         // 카페 수정(연필) 버튼 클릭 시,
         cafe_modify_button.setOnClickListener(new View.OnClickListener() {
