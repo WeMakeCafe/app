@@ -106,7 +106,10 @@ public class ListCafelistFragment extends Fragment {
             public void onItemClick(View a_view, int a_position) {
                 final ListCafeListItem item = listCafeListItems.get(a_position);
                 Toast.makeText(getContext().getApplicationContext(), item.getCafeList_cafeName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
-                navController.navigate(R.id.list_cafelist_to_cafe_detail);
+
+                Bundle bundle = new Bundle();
+                bundle.putString("cafeName", item.getCafeList_cafeName());
+                navController.navigate(R.id.list_cafelist_to_cafe_detail, bundle);
             }
         });
 
