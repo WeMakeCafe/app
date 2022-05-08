@@ -39,23 +39,33 @@ public class CafeModifyFragment extends Fragment {
         modify_button = root.findViewById(R.id.modify_button);
         request_deletion_textView = root.findViewById(R.id.request_deletion_textView);
 
-        // 이미지 수정 + 버튼 클릭 시,
-        add_image_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // 갤러리로 이동
-            }
-        });
+        // 태그 추가 페이지 (ReviewTagFragment) 에서 번들로 받아온 정보 반영 위한 코드
+        TextView name = root.findViewById(R.id.cafe_name_input);
+        TextView address = root.findViewById(R.id.cafe_address_input);
+        TextView time_open = root.findViewById(R.id.cafe_openHours_input);
+        TextView time_close = root.findViewById(R.id.cafe_closeHours_input);
 
+        Bundle argBundle = getArguments();
+        if (argBundle != null) {
+            if (argBundle.getString("name") != null){
+                name.setText(argBundle.getString("name"));
+                address.setText(argBundle.getString("address"));
+                time_open.setText(argBundle.getString("time_open"));
+                time_close.setText(argBundle.getString("time_close"));
+            }
+        }
 
         // 수정하기 버튼 클릭 시,
         modify_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navController.navigate(R.id.cafe_modify_to_cafe_detail);    // 내가 수정한 카페디테일로 이동
+                Bundle bundle = new Bundle();
+                bundle.putString("time_open_Modi",time_open.getText().toString());
+                bundle.putString("time_close_Modi",time_close.getText().toString());
+                Toast.makeText(getContext().getApplicationContext(), "영업시간 수정 완료! ", Toast.LENGTH_SHORT).show();
+                navController.navigate(R.id.cafe_modify_to_cafe_detail,bundle);    // 내가 수정한 카페디테일로 이동
             }
         });
-
 
         // 삭제요청 버튼 클릭 시,
         request_deletion_textView.setOnClickListener(new View.OnClickListener() {
@@ -65,6 +75,13 @@ public class CafeModifyFragment extends Fragment {
             }
         });
 
+        // 이미지 수정 + 버튼 클릭 시,
+        add_image_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 갤러리로 이동
+            }
+        });
 
         // 이미지 수정 리싸이클러뷰
         ArrayList<CafeModifyItem> modifyImageItems = new ArrayList<>();
