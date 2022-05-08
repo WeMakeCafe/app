@@ -47,7 +47,7 @@ public class CafeRegistrationFragment extends Fragment {
     RecyclerView cafeRegistrationImageRecyclerView;
     ArrayList<Uri> uriList = new ArrayList<>();     // 이미지의 uri를 담을 ArrayList 객체
     CafeRegistrationAdapter registrationAdapter;
-    private static final int REQUEST_CODE = 2222;
+    private static final int REQUEST_CODE = 1111;
     private static final String TAG = "CafeRegistrationFragment";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
