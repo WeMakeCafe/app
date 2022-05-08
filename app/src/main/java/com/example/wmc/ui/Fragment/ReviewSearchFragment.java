@@ -91,7 +91,10 @@ public class ReviewSearchFragment extends Fragment{
                 final ReviewSearchItem item = reviewSearchItems.get(position);
                 Toast.makeText(getContext().getApplicationContext(), item.getSearch_cafeName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
                 imm.hideSoftInputFromWindow(container.getWindowToken(), 0);
-                navController.navigate(R.id.review_search_to_review);
+
+                Bundle bundle = new Bundle();
+                bundle.putString("cafeName", item.getSearch_cafeName());
+                navController.navigate(R.id.review_search_to_review, bundle);
             }
         });
 

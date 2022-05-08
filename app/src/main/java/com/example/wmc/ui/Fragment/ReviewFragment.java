@@ -73,15 +73,6 @@ public class ReviewFragment extends Fragment {
         });
 
 
-        // 코멘터리 버튼 클릭 시,
-        comment_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navController.navigate(R.id.review_to_review_comment);
-            }
-        });
-
-
         // 위치인증 버튼 클릭 시,
         location_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,6 +120,47 @@ public class ReviewFragment extends Fragment {
         rating_quiet = root.findViewById(R.id.rating_quiet);
         rating_light = root.findViewById(R.id.rating_light);
 
+
+        // 코멘터리 버튼 클릭 시,
+        comment_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(rating_sour.getRating() == 0){
+                    Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
+                } else if(rating_acerbity.getRating() == 0){
+                    Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
+                }else if(rating_dessert.getRating() == 0){
+                    Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
+                }else if(rating_beverage.getRating() == 0){
+                    Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
+                }else if(rating_twoseat.getRating() == 0){
+                    Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
+                }else if(rating_fourseat.getRating() == 0){
+                    Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
+                }else if(rating_manyseat.getRating() == 0){
+                    Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
+                }else if(rating_toilet.getRating() == 0){
+                    Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
+                }else if(rating_wifi.getRating() == 0){
+                    Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
+                }else if(rating_plug.getRating() == 0){
+                    Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
+                }else if(rating_quiet.getRating() == 0){
+                    Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
+                }else if(rating_light.getRating() == 0){
+                    Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
+                }else if(setTag1.getText().toString().equals("")){
+                    Toast.makeText(getContext().getApplicationContext(), "태그를 추가해주세요.", Toast.LENGTH_SHORT).show();
+                }
+
+                else{
+                    navController.navigate(R.id.review_to_review_comment);
+                }
+            }
+        });
+
+
         // 작성완료 버튼 클릭 시,
         finish_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -159,6 +191,8 @@ public class ReviewFragment extends Fragment {
                     Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
                 }else if(rating_light.getRating() == 0){
                     Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
+                }else if(setTag1.getText().toString().equals("")){
+                    Toast.makeText(getContext().getApplicationContext(), "태그를 추가해주세요.", Toast.LENGTH_SHORT).show();
                 }
 
                 else{

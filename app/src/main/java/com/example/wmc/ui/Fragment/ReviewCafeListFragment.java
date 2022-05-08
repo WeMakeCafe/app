@@ -91,7 +91,10 @@ public class ReviewCafeListFragment extends Fragment {
             public void onItemClick(View view, int position) {
                 final ReviewCafeListItem item = reivewCafeListItems.get(position);
                 Toast.makeText(getContext().getApplicationContext(), item.getCafeList_cafeName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
-                navController.navigate(R.id.review_cafelist_to_review);
+
+                Bundle bundle = new Bundle();
+                bundle.putString("cafeName", item.getCafeList_cafeName());
+                navController.navigate(R.id.review_cafelist_to_review, bundle);
             }
         });
 
