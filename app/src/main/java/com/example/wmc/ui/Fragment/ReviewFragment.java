@@ -1,6 +1,8 @@
 package com.example.wmc.ui.Fragment;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -100,6 +102,16 @@ public class ReviewFragment extends Fragment {
                 setTag1.setText(argBundle.getString("key1"));
                 setTag2.setText(argBundle.getString("key2"));
                 setTag3.setText(argBundle.getString("key3"));
+            }
+        }
+
+        // 카페 디테일에서 리뷰 작성 플로팅 버튼 클릭 시, 카페 이름 가져옴
+        Bundle cafeNameBundle = getArguments();
+        if(cafeNameBundle != null) {
+            if(cafeNameBundle.getString("cafeName") != null ){
+                searchText.setText(cafeNameBundle.getString("cafeName"));
+                searchText.setTypeface(Typeface.DEFAULT_BOLD);  // 카페이름 Bold처리
+                searchText.setGravity(Gravity.CENTER);          // 카페 위치 Center로 변경
             }
         }
 
