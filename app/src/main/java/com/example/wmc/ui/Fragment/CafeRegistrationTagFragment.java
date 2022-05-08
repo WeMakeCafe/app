@@ -251,8 +251,8 @@ public class CafeRegistrationTagFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // 태그를 하나도 선택하지 않았을 경우
-                if(addTag1.getText().toString().equals("") && addTag2.getText().toString().equals("") && addTag3.getText().toString().equals("")){
-                    Toast.makeText(getContext().getApplicationContext(), "최소 1개의 태그를 선택해주세요.", Toast.LENGTH_SHORT).show();
+                if(addTag1.getText().toString().equals("") || addTag2.getText().toString().equals("") || addTag3.getText().toString().equals("")){
+                    Toast.makeText(getContext().getApplicationContext(), "3개의 태그를 모두 선택해 주세요!", Toast.LENGTH_SHORT).show();
                 }
 
                 else{
