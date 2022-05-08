@@ -113,7 +113,9 @@ public class CafeDetailFragment extends Fragment {
         review_floatingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navController.navigate(R.id.cafe_detail_to_review);
+                Bundle bundle = new Bundle();
+                bundle.putString("cafeName", moreReview2.getText().toString());
+                navController.navigate(R.id.cafe_detail_to_review, bundle);
             }
         });
 
