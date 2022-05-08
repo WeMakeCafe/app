@@ -109,7 +109,10 @@ public class HomeFragment extends Fragment {
             public void onItemClick(View a_view, int a_position) {
                 final HomeTag1Item item = homeTag1Items.get(a_position);
                 Toast.makeText(getContext().getApplicationContext(), item.getCafeName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
-                navController.navigate(R.id.home_to_cafe_detail);
+
+                Bundle bundle = new Bundle();
+                bundle.putString("cafeName", item.getCafeName());
+                navController.navigate(R.id.home_to_cafe_detail, bundle);
             }
         });
 
@@ -143,7 +146,10 @@ public class HomeFragment extends Fragment {
             public void onItemClick(View a_view, int a_position) {
                 final HomeTag2Item item = homeTag2Items.get(a_position);
                 Toast.makeText(getContext().getApplicationContext(), item.getCafeName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
-                navController.navigate(R.id.home_to_cafe_detail);
+
+                Bundle bundle = new Bundle();
+                bundle.putString("cafeName", item.getCafeName());
+                navController.navigate(R.id.home_to_cafe_detail, bundle);
             }
         });
         return root;
