@@ -64,6 +64,7 @@ public class CafeDetailFragment extends Fragment {
         moreReview2 = root.findViewById(R.id.moreReview2);
         moreReview3 = root.findViewById(R.id.moreReview3);
 
+
         // 카페 이름 가져오기(상단)
         Bundle cafeNameBundle1 = getArguments();
         if(cafeNameBundle1 != null){
