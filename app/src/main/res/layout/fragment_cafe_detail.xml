@@ -213,16 +213,42 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/moreReview8"
-                    android:layout_width="101dp"
-                    android:layout_height="31dp"
-                    android:layout_marginEnd="20dp"
+                    android:id="@+id/moreReview11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
                     android:gravity="right"
-                    android:inputType="textMultiLine"
-                    android:text="연중무휴 AM 00:00 PM 00:00"
+                    android:text="~"
                     android:textColor="#000000"
                     android:textIsSelectable="false"
-                    android:textSize="12sp"
+                    android:textSize="14dp"
+                    app:layout_constraintEnd_toStartOf="@+id/moreReview8"
+                    app:layout_constraintTop_toTopOf="@+id/moreReview8" />
+
+                <TextView
+                    android:id="@+id/moreReview10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:gravity="right"
+                    android:text="00:00"
+                    android:textColor="#000000"
+                    android:textIsSelectable="false"
+                    android:textSize="14dp"
+                    app:layout_constraintEnd_toStartOf="@+id/moreReview11"
+                    app:layout_constraintTop_toTopOf="@+id/moreReview11" />
+
+                <TextView
+                    android:id="@+id/moreReview8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginEnd="20dp"
+                    android:gravity="right"
+                    android:text="00:00"
+                    android:textColor="#000000"
+                    android:textIsSelectable="false"
+                    android:textSize="14dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/favorite_checkbox" />

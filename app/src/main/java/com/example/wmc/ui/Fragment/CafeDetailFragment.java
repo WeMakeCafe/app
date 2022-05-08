@@ -48,8 +48,11 @@ public class CafeDetailFragment extends Fragment {
     ViewPager cafeRatingViewPager;
     Button cafeDetail_favorite_previousButton;
     Button cafeDetail_favorite_nextButton;
-    TextView moreReview2; // 카페 이름 TextView id명
-    TextView moreReview3; // 카페 이름 TextView id명2
+    TextView moreReview2; // 최상단 카페 이름 ID
+    TextView moreReview3; // 사진 아래 카페 이름 ID
+    TextView moreReview4; // 사진 아래 카페 주소 ID
+    TextView moreReview10; // 사진 아래 운영 시간 첫번째
+    TextView moreReview8; // 사진 아래 운영 시간 두번째
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -61,9 +64,8 @@ public class CafeDetailFragment extends Fragment {
         favorite_checkbox = root.findViewById(R.id.favorite_checkbox);
         cafeDetail_favorite_previousButton = root.findViewById(R.id.cafeDetail_favorite_previousButton);
         cafeDetail_favorite_nextButton = root.findViewById(R.id.cafeDetail_favorite_nextButton);
-        moreReview2 = root.findViewById(R.id.moreReview2);
-        moreReview3 = root.findViewById(R.id.moreReview3);
-
+        moreReview2 = root.findViewById(R.id.moreReview2); // 최상단 카페 이름 ID
+        moreReview3 = root.findViewById(R.id.moreReview3); // 사진 아래 카페 이름 ID
 
         // 카페 이름 가져오기(상단)
         Bundle cafeNameBundle1 = getArguments();
@@ -81,12 +83,29 @@ public class CafeDetailFragment extends Fragment {
             }
         }
 
+        moreReview4 = root.findViewById(R.id.moreReview4); // 사진 아래 카페 주소 ID
+        moreReview10 = root.findViewById(R.id.moreReview10); // 사진 아래 운영 시간 첫번째
+        moreReview8 = root.findViewById(R.id.moreReview8); // 사진 아래 운영 시간 두번째
+
+        // 카페 운영 시간 가져오기
+        Bundle cafeModifyBundle = getArguments();
+        if(cafeModifyBundle != null){
+            if(cafeModifyBundle.getString("time_open_Modi") != null ){
+                moreReview10.setText(cafeModifyBundle.getString("time_open_Modi"));
+                moreReview8.setText(cafeModifyBundle.getString("time_close_Modi"));
+            }
+        }
 
         // 카페 수정(연필) 버튼 클릭 시,
         cafe_modify_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navController.navigate(R.id.cafe_detail_to_cafe_modify);
+                Bundle bundle = new Bundle();
+                bundle.putString("name",moreReview3.getText().toString());
+                bundle.putString("address",moreReview4.getText().toString());
+                bundle.putString("time_open",moreReview10.getText().toString());
+                bundle.putString("time_close",moreReview8.getText().toString());
+                navController.navigate(R.id.cafe_detail_to_cafe_modify, bundle);
             }
         });
 

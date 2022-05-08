@@ -122,7 +122,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="15dp"
-                    android:text="표시는 필수 기입란입니다."
+                    android:text="표시는 수정이 불가능합니다."
                     android:textColor="@color/black"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -161,6 +161,7 @@
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/modify_caution_required_fields_textView" />
 
@@ -172,12 +173,12 @@
                     android:layout_marginTop="15dp"
                     android:background="@drawable/edge_top_back"
                     android:ems="10"
+                    android:gravity="center_vertical"
                     android:paddingLeft="10dp"
-                    android:paddingTop="5dp"
                     android:paddingRight="10dp"
-                    android:text="카페 이름은 수정 불가능합니다."
-                    android:enabled="false"
                     android:textColor="@color/gray"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/cafe_name"
                     app:layout_constraintTop_toBottomOf="@+id/modify_caution_required_fields_textView" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -201,6 +202,7 @@
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -223,12 +225,12 @@
                     android:layout_marginTop="20dp"
                     android:background="@drawable/edge_top_back"
                     android:ems="10"
-                    android:enabled="false"
+                    android:gravity="center_vertical"
                     android:paddingLeft="10dp"
-                    android:paddingTop="5dp"
                     android:paddingRight="10dp"
-                    android:text="카페 주소는 수정 불가능합니다."
                     android:textColor="@color/gray"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/cafe_address"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -263,6 +265,7 @@
                     android:layout_marginTop="20dp"
                     android:background="@drawable/edge_top_back"
                     android:ems="10"
+                    android:gravity="center_vertical"
                     android:inputType="textPersonName"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
@@ -291,6 +294,7 @@
                     android:layout_marginTop="20dp"
                     android:background="@drawable/edge_top_back"
                     android:ems="10"
+                    android:gravity="center_vertical"
                     android:inputType="textPersonName"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
