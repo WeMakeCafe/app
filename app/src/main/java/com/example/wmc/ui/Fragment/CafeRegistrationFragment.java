@@ -47,7 +47,7 @@ public class CafeRegistrationFragment extends Fragment {
     RecyclerView cafeRegistrationImageRecyclerView;
     ArrayList<Uri> uriList = new ArrayList<>();     // 이미지의 uri를 담을 ArrayList 객체
     CafeRegistrationAdapter registrationAdapter;
-    private static final int REQUEST_CODE = 222;
+    private static final int REQUEST_CODE = 2222;
     private static final String TAG = "CafeRegistrationFragment";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -71,7 +71,7 @@ public class CafeRegistrationFragment extends Fragment {
                 intent.setType("image/*");
                 intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);  // 다중 이미지를 가져올 수 있도록 세팅
                 intent.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(intent, 2222);
+                startActivityForResult(intent, REQUEST_CODE);
             }
         });
         
