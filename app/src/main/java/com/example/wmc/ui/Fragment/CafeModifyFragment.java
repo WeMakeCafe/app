@@ -60,6 +60,7 @@ public class CafeModifyFragment extends Fragment {
     TextView cafe_address_input;
     TextView cafe_openHours_input;
     TextView cafe_closeHours_input;
+    TextView request_deletion_textView;
     Button modify_button;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -72,14 +73,20 @@ public class CafeModifyFragment extends Fragment {
         cafe_openHours_input = root.findViewById(R.id.cafe_openHours_input);
         cafe_closeHours_input = root.findViewById(R.id.cafe_closeHours_input);
         modify_button = root.findViewById(R.id.modify_button);
+        request_deletion_textView = root.findViewById(R.id.request_deletion_textView);
 
-        // 카페 디테일에서 받아온 번들을 삭제 요청에 넣어줄 번들로 변환 (클릭 리스너안에 넣어야됨)
         String cafe_name = getArguments().getString("cafeName");  //getArguments로 번들 검색해서 받기
         String cafe_address = getArguments().getString("cafeAddress");
-        Bundle bundle = new Bundle();
-        bundle.putString("cafeName", cafe_name);
-        bundle.putString("cafeAddress", cafe_address);
-        navController.navigate(R.id.cafe_modify_to_cafeDelete, bundle);
+
+        request_deletion_textView.setOnClickListener(new View.OnClickListener() { // 삭제요청 버튼
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putString("cafeName", cafe_name);
+                bundle.putString("cafeAddress", cafe_address);
+                navController.navigate(R.id.cafe_modify_to_cafeDelete, bundle);
+            }
+        });
 
 
         String url = "http://54.221.33.199:8080/cafe";
@@ -116,6 +123,7 @@ public class CafeModifyFragment extends Fragment {
                         cafe_address_input.setText(c.getCafeAddress());
                         cafe_openHours_input.setText(c.getOpenTime());
                         cafe_closeHours_input.setText(c.getCloseTime());
+                        //이미지 등록 코드
                     }
                 }
 

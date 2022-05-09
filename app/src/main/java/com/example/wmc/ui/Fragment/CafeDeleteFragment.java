@@ -42,8 +42,7 @@ public class CafeDeleteFragment extends Fragment {
     TextView delete_cafe_name_input;
     TextView delete_cafe_address_input;
 
-    String url = "http://54.221.33.199:8080/personal";
-    String url2 = "http://54.221.33.199:8080/cafe";
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -58,7 +57,9 @@ public class CafeDeleteFragment extends Fragment {
         String cafe_name = getArguments().getString("cafeName");  //getArguments로 번들 검색해서 받기
         String cafe_address = getArguments().getString("cafeAddress");
 
-
+        // 액티비티에서 받아온 mem_num으로 디비 받아온거 연산해서 이름 넣어주는 코드 넣기
+        delete_cafe_name_input.setText(cafe_name);
+        delete_cafe_address_input.setText(cafe_address);
 
         return root;
     }
