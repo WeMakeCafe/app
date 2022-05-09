@@ -25,7 +25,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
+        <EditText
             android:id="@+id/cafe_search_input"
             android:layout_width="310dp"
             android:layout_height="40dp"
@@ -34,8 +34,8 @@
             android:background="@drawable/edge_top_back"
             android:textSize="18sp"
             android:gravity="left|center_vertical"
-            android:text="이름, 주소 검색"
-            android:textColor="@color/gray"
+            android:hint="이름, 주소 검색"
+            android:textColor="@color/black"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -77,13 +77,49 @@
 
             </androidx.recyclerview.widget.RecyclerView>
 
+            <TextView
+                android:id="@+id/cafe_search_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="250dp"
+                android:text="카페 이름 또는 주소를 입력해주세요."
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/cafe_add_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="27dp"
+                android:text="또는 카페를 추가해주세요."
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/cafe_search_textView" />
+
+            <Button
+                android:id="@+id/add_cafe_button"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/yellow_button"
+                android:text="추가"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cafe_add_textView" />
+
+
             <LinearLayout
                 android:id="@+id/cafeList_footer"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:orientation="horizontal"
                 android:padding="20dp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/cafeListRecyclerView">
