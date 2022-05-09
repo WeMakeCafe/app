@@ -81,6 +81,20 @@ public class ReviewFragment extends Fragment {
         tag2 = root.findViewById(R.id.select_tag2);
         tag3 = root.findViewById(R.id.select_tag3);
 
+        // 태그 추가 페이지 (ReviewTagFragment) 에서 번들로 받아온 정보 반영 위한 코드
+        TextView setTag1 = root.findViewById(R.id.select_tag1); // 태그 추가 완료 시 반영할 리뷰 작성 페이지의 태그 박스1
+        TextView setTag2 = root.findViewById(R.id.select_tag2); // 태그 추가 완료 시 반영할 리뷰 작성 페이지의 태그 박스2
+        TextView setTag3 = root.findViewById(R.id.select_tag3); // 태그 추가 완료 시 반영할 리뷰 작성 페이지의 태그 박스3
+
+        Bundle argBundle = getArguments();
+        if( argBundle != null ) {
+            if (argBundle.getString("key1") != null) {
+                setTag1.setText(argBundle.getString("key1"));
+                setTag2.setText(argBundle.getString("key2"));
+                setTag3.setText(argBundle.getString("key3"));
+            }
+        }
+
         ///////서버 호출
 
 
@@ -125,20 +139,6 @@ public class ReviewFragment extends Fragment {
                 Toast.makeText(getContext().getApplicationContext(), "위치인증이 완료되었습니다.", Toast.LENGTH_SHORT).show();
             }
         });
-
-        // 태그 추가 페이지 (ReviewTagFragment) 에서 번들로 받아온 정보 반영 위한 코드
-        TextView setTag1 = root.findViewById(R.id.select_tag1); // 태그 추가 완료 시 반영할 리뷰 작성 페이지의 태그 박스1
-        TextView setTag2 = root.findViewById(R.id.select_tag2); // 태그 추가 완료 시 반영할 리뷰 작성 페이지의 태그 박스2
-        TextView setTag3 = root.findViewById(R.id.select_tag3); // 태그 추가 완료 시 반영할 리뷰 작성 페이지의 태그 박스3
-
-        Bundle argBundle = getArguments();
-        if( argBundle != null ) {
-            if (argBundle.getString("key1") != null) {
-                setTag1.setText(argBundle.getString("key1"));
-                setTag2.setText(argBundle.getString("key2"));
-                setTag3.setText(argBundle.getString("key3"));
-            }
-        }
 
         // 카페 디테일에서 리뷰 작성 플로팅 버튼 클릭 시, 카페 이름 가져옴
         Bundle cafeNameBundle = getArguments();

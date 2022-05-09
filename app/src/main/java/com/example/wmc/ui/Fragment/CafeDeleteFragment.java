@@ -28,9 +28,7 @@ import com.example.wmc.MainActivity;
 import com.example.wmc.R;
 import com.example.wmc.database.Cafe;
 import com.example.wmc.database.Personal;
-import com.example.wmc.R;
 import com.example.wmc.databinding.FragmentCafeDeleteBinding;
-import com.example.wmc.databinding.FragmentCafeModifyBinding;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -48,7 +46,6 @@ public class CafeDeleteFragment extends Fragment {
     Long mem_num = MainActivity.mem_num;
     ArrayList<Cafe> cafe_list;
     ArrayList<Personal> personal_list;
-    TextView requester_input3;
     TextView delete_cafe_name_input;
     TextView delete_cafe_address_input;
 
@@ -62,7 +59,6 @@ public class CafeDeleteFragment extends Fragment {
         View root = binding.getRoot();
         delete_request_button = root.findViewById(R.id.delete_request_button);
 
-        requester_input3 = root.findViewById(R.id.requester_input3);
         delete_cafe_name_input = root.findViewById(R.id.delete_cafe_name_input);
         delete_cafe_address_input = root.findViewById(R.id.delete_cafe_address_input);
 

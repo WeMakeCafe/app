@@ -14,6 +14,9 @@
             android:id="@+id/home_to_list"
             app:destination="@id/navigation_list" />
         <action
+            android:id="@+id/home_to_list_cafelist"
+            app:destination="@id/navigation_list_cafelist" />
+        <action
             android:id="@+id/home_to_review"
             app:destination="@id/navigation_review" />
         <action

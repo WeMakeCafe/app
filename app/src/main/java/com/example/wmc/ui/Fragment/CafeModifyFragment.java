@@ -69,14 +69,12 @@ public class CafeModifyFragment extends Fragment {
     private static final int REQUEST_CODE = 2222;
     private static final String TAG = "CafeModifyFragment";
 
-
     ArrayList<Cafe> cafe_list;              // 서버 작업 (이미지는 리싸이클러뷰여서 일단 보류)
     Long cafe_num = MainActivity.cafe_num;
     TextView cafe_name_input;
     TextView cafe_address_input;
     TextView cafe_openHours_input;
     TextView cafe_closeHours_input;
-    Button modify_button;
     String url = "http://54.221.33.199:8080/cafe";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -126,8 +124,8 @@ public class CafeModifyFragment extends Fragment {
                     if(c.getCafeNum().equals(cafe_num)) {
                         cafe_name_input.setText(c.getCafeName());
                         cafe_address_input.setText(c.getCafeAddress());
-                        cafe_openHours_input.setText(c.getOpenTime());
-                        cafe_closeHours_input.setText(c.getCloseTime());
+                        cafe_openHours_input.setText(c.getOpenTime().toString());
+                        cafe_closeHours_input.setText(c.getCloseTime().toString());
                     }
                 }
 
@@ -167,7 +165,6 @@ public class CafeModifyFragment extends Fragment {
                         new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-
                             }
                         }) {
                 };

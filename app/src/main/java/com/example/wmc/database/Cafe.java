@@ -1,5 +1,7 @@
 package com.example.wmc.database;
 
+import java.util.Date;
+
 public class Cafe {
     private Long cafeNum;
     private String cafeName;
