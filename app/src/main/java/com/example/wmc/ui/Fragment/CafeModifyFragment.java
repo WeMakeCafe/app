@@ -1,7 +1,12 @@
 package com.example.wmc.ui.Fragment;
 
 import android.os.Build;
+import android.content.ClipData;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +38,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.wmc.CafeModify.CafeModifyAdapter;
 import com.example.wmc.CafeModify.CafeModifyItem;
+import com.example.wmc.CafeRegistration.CafeRegistrationAdapter;
 import com.example.wmc.MainActivity;
 import com.example.wmc.R;
 import com.example.wmc.database.Cafe;
@@ -54,6 +60,14 @@ import java.util.Map;
 public class CafeModifyFragment extends Fragment {
     private FragmentCafeModifyBinding binding;
     private static NavController navController;
+    Button add_image_button;
+    Button modify_button;
+    TextView request_deletion_textView;
+    RecyclerView cafeModifyImageRecyclerView;
+    ArrayList<Uri> uriList = new ArrayList<>();     // 이미지의 uri를 담을 ArrayList 객체
+    CafeModifyAdapter cafeModifyAdapter;
+    private static final int REQUEST_CODE = 2222;
+    private static final String TAG = "CafeModifyFragment";
 
     ArrayList<Cafe> cafe_list;              // 서버 작업 (이미지는 리싸이클러뷰여서 일단 보류)
     TextView cafe_name_input;
@@ -62,12 +76,17 @@ public class CafeModifyFragment extends Fragment {
     TextView cafe_closeHours_input;
     TextView request_deletion_textView;
     Button modify_button;
+    String url = "http://54.221.33.199:8080/cafe";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         binding = FragmentCafeModifyBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+        add_image_button = root.findViewById(R.id.add_image_button);
+        modify_button = root.findViewById(R.id.modify_button);
+        request_deletion_textView = root.findViewById(R.id.request_deletion_textView);
+        cafeModifyImageRecyclerView = root.findViewById(R.id.cafeModifyImageRecyclerView);
         cafe_name_input = root.findViewById(R.id.cafe_name_input);
         cafe_address_input = root.findViewById(R.id.cafe_address_input);
         cafe_openHours_input = root.findViewById(R.id.cafe_openHours_input);
@@ -137,6 +156,7 @@ public class CafeModifyFragment extends Fragment {
             }
         });
         requestQueue.add(stringRequest);
+
 
 
         modify_button.setOnClickListener(new View.OnClickListener() { // 카페 수정하기 버튼 누를 시
@@ -229,16 +249,21 @@ public class CafeModifyFragment extends Fragment {
 
         //// 서버 엔드
 
-        ArrayList<CafeModifyItem> modifyImageItems = new ArrayList<>();
+        // 태그 추가 페이지 (ReviewTagFragment) 에서 번들로 받아온 정보 반영 위한 코드
+        TextView name = root.findViewById(R.id.cafe_name_input);
+        TextView address = root.findViewById(R.id.cafe_address_input);
+        TextView time_open = root.findViewById(R.id.cafe_openHours_input);
+        TextView time_close = root.findViewById(R.id.cafe_closeHours_input);
 
-        modifyImageItems.add(new CafeModifyItem(R.drawable.logo));
-        modifyImageItems.add(new CafeModifyItem(R.drawable.logo_v2));
-        modifyImageItems.add(new CafeModifyItem(R.drawable.bean_grade1));
-        modifyImageItems.add(new CafeModifyItem(R.drawable.bean_grade2));
-        modifyImageItems.add(new CafeModifyItem(R.drawable.bean_grade3));
-
-        // Adapter 추가
-        RecyclerView modifyRecyclerView = root.findViewById(R.id.cafeModifyImageRecyclerView);
+        Bundle argBundle = getArguments();
+        if (argBundle != null) {
+            if (argBundle.getString("name") != null){
+                name.setText(argBundle.getString("name"));
+                address.setText(argBundle.getString("address"));
+                time_open.setText(argBundle.getString("time_open"));
+                time_close.setText(argBundle.getString("time_close"));
+            }
+        }
 
         CafeModifyAdapter modifyAdapter = new CafeModifyAdapter(modifyImageItems);
         modifyRecyclerView.setAdapter(modifyAdapter);

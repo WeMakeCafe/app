@@ -1,6 +1,7 @@
 package com.example.wmc.CafeDetailMore;
 
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,6 +22,10 @@ public class CafeDetailMoreViewHolder extends RecyclerView.ViewHolder{
     ImageView reviewMore_image3;
     TextView good_count_textView;
 
+    TextView review_modify;
+    TextView review_delete;
+    CheckBox good_button;
+
     public static int REVIEWMORE_VIEW_TYPE = R.layout.item_more_review;
 
     public CafeDetailMoreViewHolder(@NonNull View itemView, final CafeDetailMoreAdapter.OnItemClickEventListener_cafeDetailMore a_itemClickListener) {
@@ -34,6 +39,9 @@ public class CafeDetailMoreViewHolder extends RecyclerView.ViewHolder{
         reviewMore_image2 = itemView.findViewById(R.id.reviewMore_image2);
         reviewMore_image3 = itemView.findViewById(R.id.reviewMore_image3);
         good_count_textView = itemView.findViewById(R.id.good_count_textView);
+        review_modify = itemView.findViewById(R.id.review_modify);  // 리뷰 더보기의 수정 버튼
+        review_delete = itemView.findViewById(R.id.review_delete);  // 리뷰 더보기의 삭제 버튼
+        good_button = itemView.findViewById(R.id.good_button);      // 리뷰 더보기의 좋아요버튼
 
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override

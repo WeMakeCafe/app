@@ -2,8 +2,10 @@ package com.example.wmc.CafeDetail;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,6 +21,10 @@ public class CafeDetailViewHolder extends RecyclerView.ViewHolder{
     ImageView reviewProfile_image;
     ImageView reviewImage;
 
+    TextView reviewModify;
+    TextView reviewDelete;
+    CheckBox good_button;
+
     public static int REVIEW_VIEW_TYPE = R.layout.item_review;
 
     public CafeDetailViewHolder(@NonNull View itemView, final CafeDetailAdapter.OnItemClickEventListener_cafeDetail a_itemClickListener) {
@@ -30,6 +36,9 @@ public class CafeDetailViewHolder extends RecyclerView.ViewHolder{
         good_count_textView = itemView.findViewById(R.id.good_count_textView);
         reviewProfile_image = itemView.findViewById(R.id.reviewProfile_image);
         reviewImage = itemView.findViewById(R.id.reviewImage);
+        reviewModify = itemView.findViewById(R.id.reviewModify);    // 리뷰에서 수정 버튼
+        reviewDelete = itemView.findViewById(R.id.reviewDelete);    // 리뷰에서 삭제 버튼
+        good_button = itemView.findViewById(R.id.good_button);      // 리뷰에서 좋아요 버튼
 
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override

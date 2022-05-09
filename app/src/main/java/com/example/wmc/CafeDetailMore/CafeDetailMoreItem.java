@@ -9,9 +9,9 @@ public class CafeDetailMoreItem {
     int reviewImage1;
     int reviewImage2;
     int reviewImage3;
-    int good_count_textView;
+    String good_count_textView;
 
-    public CafeDetailMoreItem(String reviewNickName, String level_and_location, String review_comment, int reviewProfile_image, int reviewImage1, int reviewImage2, int reviewImage3, int good_count_textView) {
+    public CafeDetailMoreItem(String reviewNickName, String level_and_location, String review_comment, int reviewProfile_image, int reviewImage1, int reviewImage2, int reviewImage3, String good_count_textView) {
         this.reviewNickName = reviewNickName;
         this.level_and_location = level_and_location;
         this.review_comment = review_comment;
@@ -78,11 +78,11 @@ public class CafeDetailMoreItem {
         this.reviewImage3 = reviewImage3;
     }
 
-    public int getGood_count_textView() {
+    public String getGood_count_textView() {
         return good_count_textView;
     }
 
-    public void setGood_count_textView(int good_count_textView) {
+    public void setGood_count_textView(String good_count_textView) {
         this.good_count_textView = good_count_textView;
     }
 }

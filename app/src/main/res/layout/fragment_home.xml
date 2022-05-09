@@ -146,6 +146,7 @@
                     android:textSize="15sp"
                     android:textStyle="bold"
                     android:visibility="invisible"
+                    android:layout_marginBottom="30dp"
                     app:layout_constraintBottom_toBottomOf="@+id/favorite_recyclerView"
                     app:layout_constraintEnd_toEndOf="@+id/favorite_recyclerView"
                     app:layout_constraintStart_toStartOf="@+id/favorite_recyclerView"

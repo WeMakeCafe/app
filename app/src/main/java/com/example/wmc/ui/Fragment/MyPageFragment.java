@@ -120,6 +120,8 @@ public class MyPageFragment extends Fragment {
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // 여기까지 서버팀이 만진거
 
+
+        // 현재 내 등급 클릭 시,
         grade.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -127,6 +129,8 @@ public class MyPageFragment extends Fragment {
             }
         });
 
+
+        // 정보수정 버튼 클릭 시,
         modify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -134,12 +138,15 @@ public class MyPageFragment extends Fragment {
             }
         });
 
+
+        // 로그아웃 버튼 클릭 시,
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 //                navController.navigate(R.id.); // 로그인Fragment 이동
             }
         });
+
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // 찜한 카페에 대한 리사이클러뷰 작성
@@ -164,16 +171,21 @@ public class MyPageFragment extends Fragment {
         GridLayoutManager favoriteLayoutManager = new GridLayoutManager(getContext().getApplicationContext(), 2, LinearLayoutManager.HORIZONTAL, false);
         mypageFavoriteRecyclerview.setLayoutManager(favoriteLayoutManager);
 
+        // 찜한 카페 아이템 클릭 시,
         favoriteAdapter.setOnItemClickListener_MypageFavorite(new MypageFavoriteAdapter.OnItemClickEventListener_MypageFavorite() {
             @Override
             public void onItemClick(View a_view, int a_position) {
                 final MypageFavoriteItem item = mypageFavoriteItems.get(a_position);
                 Toast.makeText(getContext().getApplicationContext(), item.getCafeName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
+
+                Bundle bundle = new Bundle();
+                bundle.putString("cafeName", item.getCafeName());
+                navController.navigate(R.id.myPage_to_cafe_detail, bundle);
             }
         });
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // 내가 쓴 리뷰 에대한 리사이클러뷰 작성
+        // 내가 쓴 리뷰에대한 리사이클러뷰 작성
 
         ArrayList<MypageReviewItem> mypageReviewItem = new ArrayList<>();
 
@@ -189,11 +201,10 @@ public class MyPageFragment extends Fragment {
                 R.drawable.logo, R.drawable.logo_v2, R.drawable.bean_grade1, R.drawable.bean_grade3, "4"));
         mypageReviewItem.add(new MypageReviewItem("지코", "Lv.6", "테이블이 매우 협소합니다.",
                 R.drawable.logo, R.drawable.logo_v2, R.drawable.bean_grade1, R.drawable.bean_grade3, "4"));
-        mypageReviewItem.add(new MypageReviewItem("지코", "Lv.3", "테이블이 매우 협소합니다.",
+        mypageReviewItem.add(new MypageReviewItem("지코", "Lv.7", "테이블이 매우 협소합니다.",
                 R.drawable.logo, R.drawable.logo_v2, R.drawable.bean_grade1, R.drawable.bean_grade3, "4"));
         mypageReviewItem.add(new MypageReviewItem("지코", "Lv.8", "테이블이 매우 협소합니다.",
                 R.drawable.logo, R.drawable.logo_v2, R.drawable.bean_grade1, R.drawable.bean_grade3, "4"));
-
 
 
         // Recycler view

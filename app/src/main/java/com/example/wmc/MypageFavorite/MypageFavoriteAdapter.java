@@ -20,7 +20,6 @@ public class MypageFavoriteAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     public MypageFavoriteAdapter(ArrayList<MypageFavoriteItem> list){ favorite_items = list; }
 
-
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {

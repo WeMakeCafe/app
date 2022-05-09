@@ -5,10 +5,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import com.android.volley.Cache;
 import com.android.volley.Network;
@@ -25,7 +29,6 @@ import com.example.wmc.R;
 import com.example.wmc.database.Cafe;
 import com.example.wmc.database.Personal;
 import com.example.wmc.databinding.FragmentCafeDeleteBinding;
-import com.example.wmc.databinding.FragmentCafeModifyBinding;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -36,9 +39,14 @@ import java.util.ArrayList;
 
 public class CafeDeleteFragment extends Fragment {
     private FragmentCafeDeleteBinding binding;
+    private static NavController navController;
+    Button delete_request_button;
 
+    Long cafe_num = MainActivity.cafe_num;
     Long mem_num = MainActivity.mem_num;
     TextView requester_input3;
+    ArrayList<Cafe> cafe_list;
+    ArrayList<Personal> personal_list;
     TextView delete_cafe_name_input;
     TextView delete_cafe_address_input;
 
@@ -49,6 +57,7 @@ public class CafeDeleteFragment extends Fragment {
 
         binding = FragmentCafeDeleteBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+        delete_request_button = root.findViewById(R.id.delete_request_button);
 
         requester_input3 = root.findViewById(R.id.requester_input3);
         delete_cafe_name_input = root.findViewById(R.id.delete_cafe_name_input);
