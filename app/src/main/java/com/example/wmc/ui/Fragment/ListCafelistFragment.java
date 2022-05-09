@@ -73,7 +73,7 @@ public class ListCafelistFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getContext().getApplicationContext(), "카페 등록으로 이동", Toast.LENGTH_SHORT).show();
-                navController.navigate(R.id.list_cafelist_to_cafe_registration);
+//                navController.navigate(R.id.list_cafelist_to_cafe_registration); // 다른 곳으로의 네비게이션은 되는데 카페등록페이지로의 네비게이션만 안됨
             }
         });
 
@@ -83,7 +83,7 @@ public class ListCafelistFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getContext().getApplicationContext(), "카페 등록으로 이동", Toast.LENGTH_SHORT).show();
-                navController.navigate(R.id.list_cafelist_to_cafe_registration);
+//                navController.navigate(R.id.list_cafelist_to_cafe_registration);  // 다른 곳으로의 네비게이션은 되는데 카페등록페이지로의 네비게이션만 안됨
             }
         });
 
