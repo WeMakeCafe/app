@@ -121,8 +121,8 @@ public class CafeModifyFragment extends Fragment {
                     if(c.getCafeName()==cafe_name) {
                         cafe_name_input.setText(c.getCafeName());
                         cafe_address_input.setText(c.getCafeAddress());
-                        cafe_openHours_input.setText(c.getOpenTime());
-                        cafe_closeHours_input.setText(c.getCloseTime());
+                        cafe_openHours_input.setText(c.getOpenTime().toString());
+                        cafe_closeHours_input.setText(c.getCloseTime().toString());
                         //이미지 등록 코드
                     }
                 }
@@ -195,6 +195,8 @@ public class CafeModifyFragment extends Fragment {
                         if(!((c.getOpenTime() == Integer.parseInt(cafe_openHours_input.getText().toString())) &&
                                 (c.getCloseTime() == Integer.parseInt(cafe_closeHours_input.getText().toString())))) {
                             JSONObject jsonObject = new JSONObject(map);
+                            String url = "http://54.221.33.199:8080/cafe/" + cafe_name;
+
 
                             JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.PUT, url, jsonObject,
                                     new Response.Listener<JSONObject>() {
