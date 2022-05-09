@@ -1,6 +1,7 @@
 package com.example.wmc.MypageReview;
 
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,6 +21,10 @@ public class MypageReviewViewHolder extends RecyclerView.ViewHolder{
     ImageView reviewImage2;
     ImageView reviewImage3;
 
+    TextView review_modify;
+    TextView review_delete;
+    CheckBox good_button;
+
     public static int REVIEW_VIEW_TYPE = R.layout.item_more_review;
 
     public MypageReviewViewHolder(@NonNull View itemView, final MypageReviewAdapter.OnItemClickEventListener_MyPageReview a_itemClickListener) {
@@ -33,6 +38,10 @@ public class MypageReviewViewHolder extends RecyclerView.ViewHolder{
         reviewImage1 = itemView.findViewById(R.id.reviewMore_image1);
         reviewImage2= itemView.findViewById(R.id.reviewMore_image2);
         reviewImage3 = itemView.findViewById(R.id.reviewMore_image3);
+
+        review_modify = itemView.findViewById(R.id.review_modify);  // 마이페이지 리뷰의 수정 버튼
+        review_delete = itemView.findViewById(R.id.review_delete);  // 마이페이지 리뷰의 삭제 버튼
+        good_button = itemView.findViewById(R.id.good_button);      // 마이페이지 리뷰의 좋아요버튼
 
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override

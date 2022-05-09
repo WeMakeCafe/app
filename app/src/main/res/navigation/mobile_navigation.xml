@@ -48,6 +48,12 @@
         <action
             android:id="@+id/review_to_review_comment"
             app:destination="@id/navigation_review_comment" />
+        <action
+            android:id="@+id/review_to_review_search"
+            app:destination="@id/navigation_review_search" />
+        <action
+            android:id="@+id/review_to_cafe_detail"
+            app:destination="@id/navigation_cafe_detail" />
     </fragment>
 
     <fragment
@@ -101,19 +107,38 @@
         android:id="@+id/navigation_cafe_registration"
         android:name="com.example.wmc.ui.Fragment.CafeRegistrationFragment"
         android:label="@string/cafe_registration"
-        tools:layout="@layout/fragment_cafe_registration" />
+        tools:layout="@layout/fragment_cafe_registration" >
+
+        <action
+            android:id="@+id/cafe_registration_to_cafe_registration_tag"
+            app:destination="@id/navigation_cafe_registration_tag" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_cafe_detail_more"
         android:name="com.example.wmc.ui.Fragment.CafeDetailMoreFragment"
         android:label="@string/cafe_detail_more"
-        tools:layout="@layout/fragment_cafe_detail_more" />
+        tools:layout="@layout/fragment_cafe_detail_more" >
+
+        <action
+            android:id="@+id/cafe_detail_more_to_review"
+            app:destination="@id/navigation_review" />
+    </fragment>
+
 
     <fragment
         android:id="@+id/navigation_cafe_modify"
         android:name="com.example.wmc.ui.Fragment.CafeModifyFragment"
         android:label="@string/cafe_modify"
-        tools:layout="@layout/fragment_cafe_modify" />
+        tools:layout="@layout/fragment_cafe_modify" >
+
+        <action
+            android:id="@+id/cafe_modify_to_cafe_detail"
+            app:destination="@id/navigation_cafe_detail" />
+        <action
+            android:id="@+id/cafe_modify_to_cafe_delete"
+            app:destination="@id/navigation_cafe_delete" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_myPage_grade"
@@ -125,13 +150,24 @@
         android:id="@+id/navigation_review_tag"
         android:name="com.example.wmc.ui.Fragment.ReviewTagFragment"
         android:label="@string/review_tag"
-        tools:layout="@layout/fragment_review_tag" />
+        tools:layout="@layout/fragment_review_tag" >
+
+        <action
+            android:id="@+id/review_tag_to_review"
+            app:destination="@id/navigation_review" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_review_comment"
         android:name="com.example.wmc.ui.Fragment.ReviewCommentFragment"
         android:label="@string/review_comment"
-        tools:layout="@layout/fragment_review_comment" />
+        tools:layout="@layout/fragment_review_comment" >
+
+        <action
+            android:id="@+id/review_comment_to_cafe_detail"
+            app:destination="@id/navigation_cafe_detail" />
+    </fragment>
+
 
     <fragment
         android:id="@+id/navigation_list_cafelist"
@@ -151,5 +187,56 @@
             android:id="@+id/list_cafelist_to_list_search"
             app:destination="@id/navigation_list_search" />
     </fragment>
+
+    <fragment
+        android:id="@+id/navigation_review_search"
+        android:name="com.example.wmc.ui.Fragment.ReviewSearchFragment"
+        android:label="@string/review_search"
+        tools:layout="@layout/fragment_list_search" >
+
+        <action
+            android:id="@+id/review_search_to_review"
+            app:destination="@id/navigation_review" />
+        <action
+            android:id="@+id/review_search_to_reivew_cafelist"
+            app:destination="@id/navigation_review_cafelist" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_review_cafelist"
+        android:name="com.example.wmc.ui.Fragment.ReviewCafeListFragment"
+        android:label="@string/review_cafe_list"
+        tools:layout="@layout/fragment_review_cafelist" >
+
+        <action
+            android:id="@+id/review_cafelist_to_review"
+            app:destination="@id/navigation_review" />
+        <action
+            android:id="@+id/review_cafelist_to_review_search"
+            app:destination="@id/navigation_review_search" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_cafe_delete"
+        android:name="com.example.wmc.ui.Fragment.CafeDeleteFragment"
+        android:label="@string/cafe_delete"
+        tools:layout="@layout/fragment_cafe_delete" >
+
+        <action
+            android:id="@+id/cafe_delete_to_cafe_detail"
+            app:destination="@id/navigation_cafe_detail" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_cafe_registration_tag"
+        android:name="com.example.wmc.ui.Fragment.CafeRegistrationTagFragment"
+        android:label="@string/cafe_registration_tag"
+        tools:layout="@layout/fragment_review_tag">
+
+        <action
+            android:id="@+id/cafe_registration_tag_to_cafe_registration"
+            app:destination="@id/navigation_cafe_registration" />
+    </fragment>
+
 
 </navigation>

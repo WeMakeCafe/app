@@ -12,6 +12,9 @@
     <string name="cafe_list">카페 리스트</string>
     <string name="list_search">카페 검색</string>
     <string name="myPage_grade">회원 등급</string>
-    <string name="review_comment">리뷰 작성</string>
+    <string name="review_comment">리뷰 코멘터리 작성</string>
     <string name="review_tag">리뷰 태그</string>
+    <string name="review_search">리뷰 검색</string>
+    <string name="review_cafe_list">리뷰 검색 시 카페 목록</string>
+    <string name="cafe_registration_tag">카페등록의 태그추가</string>
 </resources>

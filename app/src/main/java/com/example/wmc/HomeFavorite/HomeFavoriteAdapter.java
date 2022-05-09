@@ -1,5 +1,6 @@
 package com.example.wmc.HomeFavorite;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,6 +51,7 @@ public class HomeFavoriteAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             viewHolder.cafeTag1_textView.setText(item.getTag1());
             viewHolder.cafeTag2_textView.setText(item.getTag2());
             viewHolder.cafe_image.setImageResource(item.getCafeImage());
+
     }
 
     @Override

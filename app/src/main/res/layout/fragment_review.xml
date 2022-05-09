@@ -19,16 +19,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/backspace_button"
-        android:layout_width="34dp"
-        android:layout_height="34dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="65dp"
-        android:background="@drawable/back_button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
         android:id="@+id/location_button"
         android:layout_width="80dp"
         android:layout_height="40dp"
@@ -45,18 +35,18 @@
 
     <Button
         android:id="@+id/review_search_input"
-        android:layout_width="250dp"
+        android:layout_width="270dp"
         android:layout_height="40dp"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/edge_top_back"
-        android:textSize="18sp"
         android:gravity="left|center_vertical"
-        android:text="이름, 주소 검색"
-        android:textColor="@color/gray"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        app:layout_constraintStart_toEndOf="@+id/backspace_button"
+        android:hint="이름, 주소 검색"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/write_review" />
 
     <TextView
@@ -546,9 +536,10 @@
                     android:layout_marginStart="12dp"
                     android:layout_marginTop="16dp"
                     android:background="@drawable/selected_tag_textview"
+                    android:gravity="center_horizontal|center_vertical"
                     android:text=""
-                    android:textColor="#000000"
-                    android:textSize="25sp"
+                    android:textColor="@color/brown"
+                    android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tag_textView" />
@@ -559,9 +550,10 @@
                     android:layout_height="35dp"
                     android:layout_marginTop="16dp"
                     android:background="@drawable/selected_tag_textview"
+                    android:gravity="center_horizontal|center_vertical"
                     android:text=""
-                    android:textColor="#000000"
-                    android:textSize="25sp"
+                    android:textColor="@color/brown"
+                    android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@+id/select_tag3"
                     app:layout_constraintStart_toEndOf="@+id/select_tag1"
@@ -574,9 +566,10 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="10dp"
                     android:background="@drawable/selected_tag_textview"
+                    android:gravity="center_horizontal|center_vertical"
                     android:text=""
-                    android:textColor="#000000"
-                    android:textSize="25sp"
+                    android:textColor="@color/brown"
+                    android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@+id/addTag_cafe_button"
                     app:layout_constraintTop_toBottomOf="@+id/tag_textView" />

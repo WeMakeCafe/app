@@ -54,6 +54,7 @@ public class ListCafelistFragment extends Fragment {
             }
         });
 
+
         // 검색창의 돋보기 버튼 클릭 시,
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,6 +75,7 @@ public class ListCafelistFragment extends Fragment {
         });
 
 
+        // 카페 리스트 리싸이클러뷰
         ArrayList<ListCafeListItem> listCafeListItems = new ArrayList<>();
 
         listCafeListItems.add(new ListCafeListItem("이디야커피 수원대점", "수원대학교 1203~~~ 와우리 42-15",
@@ -104,7 +106,10 @@ public class ListCafelistFragment extends Fragment {
             public void onItemClick(View a_view, int a_position) {
                 final ListCafeListItem item = listCafeListItems.get(a_position);
                 Toast.makeText(getContext().getApplicationContext(), item.getCafeList_cafeName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
-                navController.navigate(R.id.list_cafelist_to_cafe_detail);
+
+                Bundle bundle = new Bundle();
+                bundle.putString("cafeName", item.getCafeList_cafeName());
+                navController.navigate(R.id.list_cafelist_to_cafe_detail, bundle);
             }
         });
 

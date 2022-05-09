@@ -42,21 +42,23 @@ public class ListSearchFragment extends Fragment {
         View root = binding.getRoot();
 
         searchText = (EditText) root.findViewById(R.id.search_input);
-        searchText.requestFocus();
+        searchText.requestFocus();  // search페이지로 오면 자동으로 키보드가 올라오게 하기 위함
         InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY); // List에서 검색창을 클릭해서 넘어와서,
                                                                                                     // ListSearchFragment의 검색창 포커스 및 키보드 올리기
 
-
+        // 돋보기 버튼 클릭 시,
         search_button = root.findViewById(R.id.search_button);
         search_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(searchText.getText().toString().equals("") == true)
                 {
+                    // 아무것도 안적었을 때,
                     Toast.makeText(getContext().getApplicationContext(), "검색어를 입력해주세요.", Toast.LENGTH_SHORT).show();
                 }
                 else{
+                    // 무언가 검색했을 때,
                     Toast.makeText(getContext().getApplicationContext(), searchText.getText().toString() + " 검색됨.", Toast.LENGTH_SHORT).show();
                     imm.hideSoftInputFromWindow(search_button.getWindowToken(), 0);
                     navController.navigate(R.id.list_search_to_list_cafelist);
@@ -64,6 +66,7 @@ public class ListSearchFragment extends Fragment {
             }
         });
 
+        
         // 최근 검색 리싸이클러뷰
         ArrayList<ListSearchItem> listSearchItems = new ArrayList<>();
 

@@ -36,8 +36,9 @@ public class CafeDetailMoreFragment extends Fragment {
         binding = FragmentCafeDetailMoreBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         reviewMore_spinner = root.findViewById(R.id.reviewSpinner);
+        reviewMore_spinner.setPrompt("정렬기준");
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext().getApplicationContext(), android.R.layout.simple_spinner_item, spinnerItem);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext().getApplicationContext(), R.layout.spinner_custom, spinnerItem);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         reviewMore_spinner.setAdapter(adapter);
 

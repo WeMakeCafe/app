@@ -6,16 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/backspace_button"
-        android:layout_width="34dp"
-        android:layout_height="34dp"
-        android:layout_marginStart="20dp"
-        android:background="@drawable/back_button"
-        app:layout_constraintBottom_toTopOf="@+id/registrationScrollView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/cafe_registration_textView"
         android:layout_width="wrap_content"
@@ -75,7 +65,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
-                    android:id="@+id/add_image_button"
+                    android:id="@+id/cafeRegistratin_add_image_button"
                     android:layout_width="90dp"
                     android:layout_height="90dp"
                     android:layout_marginStart="30dp"
@@ -90,9 +80,9 @@
                     android:layout_height="95dp"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="8dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/add_image_button"
+                    app:layout_constraintBottom_toBottomOf="@+id/cafeRegistratin_add_image_button"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/add_image_button"
+                    app:layout_constraintStart_toEndOf="@+id/cafeRegistratin_add_image_button"
                     app:layout_constraintTop_toBottomOf="@+id/image_registration" />
 
                 <TextView
@@ -105,7 +95,7 @@
                     android:textColor="@color/black"
                     android:textSize="15sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/add_image_button" />
+                    app:layout_constraintTop_toBottomOf="@+id/cafeRegistratin_add_image_button" />
 
                 <TextView
                     android:id="@+id/addImageLine"
@@ -183,6 +173,8 @@
                     android:layout_marginTop="15dp"
                     android:background="@drawable/edge_top_back"
                     android:ems="10"
+                    android:gravity="center_vertical"
+                    android:hint="위메카커피 메카점"
                     android:inputType="textPersonName"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
@@ -190,14 +182,14 @@
                     app:layout_constraintTop_toBottomOf="@+id/caution_required_fields_textView" />
 
                 <Button
-                    android:id="@+id/add_cafe_button"
+                    android:id="@+id/checked_overlap_button"
                     android:layout_width="70dp"
                     android:layout_height="27dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/edge_square_brown"
                     android:text="중복확인"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/white"
                     android:textSize="15sp"
                     app:layout_constraintStart_toEndOf="@+id/cafe_name_input"
                     app:layout_constraintTop_toBottomOf="@+id/caution_required_fields_textView" />
@@ -268,6 +260,7 @@
                     android:layout_marginTop="15dp"
                     android:background="@drawable/edge_top_back"
                     android:ems="10"
+                    android:gravity="center_vertical"
                     android:inputType="textPersonName"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
@@ -305,6 +298,8 @@
                     android:layout_marginTop="20dp"
                     android:background="@drawable/edge_top_back"
                     android:ems="10"
+                    android:gravity="center_vertical"
+                    android:hint="00:00"
                     android:inputType="textPersonName"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
@@ -333,6 +328,8 @@
                     android:layout_marginTop="20dp"
                     android:background="@drawable/edge_top_back"
                     android:ems="10"
+                    android:gravity="center_vertical"
+                    android:hint="24:00"
                     android:inputType="textPersonName"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
@@ -399,11 +396,11 @@
                     android:id="@+id/caution_textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="52dp"
                     android:layout_marginTop="13dp"
                     android:text="※ 3개의 태그를 선택해 주세요."
                     android:textColor="@color/black"
                     android:textSize="15sp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/basicTag_textView"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -414,8 +411,9 @@
                     android:layout_marginStart="12dp"
                     android:layout_marginTop="16dp"
                     android:background="@drawable/selected_tag_textview"
-                    android:textColor="@color/black"
-                    android:textSize="25sp"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:textColor="@color/brown"
+                    android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/basicTag_textView" />
@@ -426,9 +424,10 @@
                     android:layout_height="35dp"
                     android:layout_marginTop="16dp"
                     android:background="@drawable/selected_tag_textview"
+                    android:gravity="center_horizontal|center_vertical"
                     android:text=""
-                    android:textColor="@color/black"
-                    android:textSize="25sp"
+                    android:textColor="@color/brown"
+                    android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@+id/basic_tag3"
                     app:layout_constraintStart_toEndOf="@+id/basic_tag1"
@@ -441,9 +440,10 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="10dp"
                     android:background="@drawable/selected_tag_textview"
+                    android:gravity="center_horizontal|center_vertical"
                     android:text=""
-                    android:textColor="@color/black"
-                    android:textSize="25sp"
+                    android:textColor="@color/brown"
+                    android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@+id/add_tag_button"
                     app:layout_constraintTop_toBottomOf="@+id/basicTag_textView" />
