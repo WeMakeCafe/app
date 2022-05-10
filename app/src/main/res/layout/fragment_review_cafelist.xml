@@ -25,7 +25,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
+        <EditText
             android:id="@+id/review_cafe_search_input"
             android:layout_width="310dp"
             android:layout_height="40dp"
@@ -34,8 +34,8 @@
             android:background="@drawable/edge_top_back"
             android:textSize="18sp"
             android:gravity="left|center_vertical"
-            android:text="이름, 주소 검색"
-            android:textColor="@color/gray"
+            android:hint="이름, 주소 검색"
+            android:textColor="@color/black"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -76,6 +76,18 @@
                 app:layout_constraintTop_toTopOf="parent">
 
             </androidx.recyclerview.widget.RecyclerView>
+
+            <TextView
+                android:id="@+id/review_cafeSearch_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="250dp"
+                android:gravity="center"
+                android:text="리뷰를 작성할 \n카페 이름 또는 주소를 입력해 주세요."
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
                 android:id="@+id/cafeList_footer"

@@ -52,8 +52,8 @@
             android:id="@+id/review_to_review_comment"
             app:destination="@id/navigation_review_comment" />
         <action
-            android:id="@+id/review_to_review_search"
-            app:destination="@id/navigation_review_search" />
+            android:id="@+id/review_to_review_cafelist"
+            app:destination="@id/navigation_review_cafelist" />
         <action
             android:id="@+id/review_to_cafe_detail"
             app:destination="@id/navigation_cafe_detail" />
