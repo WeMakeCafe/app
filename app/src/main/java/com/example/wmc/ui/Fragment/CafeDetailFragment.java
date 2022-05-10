@@ -32,6 +32,9 @@ import com.example.wmc.R;
 import com.example.wmc.RatingViewPager.RatingViewPagerSeat;
 import com.example.wmc.RatingViewPager.RatingViewPagerStudy;
 import com.example.wmc.RatingViewPager.RatingViewPagerTaste;
+import com.example.wmc.database.Cafe;
+import com.example.wmc.database.Personal;
+import com.example.wmc.database.Review;
 import com.example.wmc.databinding.FragmentCafeDetailBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -53,6 +56,12 @@ public class CafeDetailFragment extends Fragment {
     TextView moreReview4; // 사진 아래 카페 주소 ID
     TextView moreReview10; // 사진 아래 운영 시간 첫번째
     TextView moreReview8; // 사진 아래 운영 시간 두번째
+
+    ArrayList<Cafe> cafe_list;
+    ArrayList<Review> review_list;
+    ArrayList<Personal> personal_list;
+
+    Long cafe_num = MainActivity.cafe_num; // 임시 카페 넘버
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
