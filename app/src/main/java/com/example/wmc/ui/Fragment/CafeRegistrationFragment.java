@@ -58,16 +58,15 @@ public class CafeRegistrationFragment extends Fragment {
 
     private FragmentCafeRegistrationBinding binding;
     private static NavController navController;
-    Button cafeRegistratin_add_image_button;
-    Button tag;
-    Button registration_button;
-    Button checked_overlap_button;
-    RecyclerView cafeRegistrationImageRecyclerView;
+    Button cafeRegistratin_add_image_button;    // 이미지 추가 버튼
+    Button checked_overlap_button;              //  중복확인 버튼
+    Button add_tag_button;                      // 태그의 추가 버튼
+    Button registration_button;                 // 등록하기 버튼
+    RecyclerView cafeRegistrationImageRecyclerView; // 이미지 리싸이클러뷰
     ArrayList<Uri> uriList = new ArrayList<>();     // 이미지의 uri를 담을 ArrayList 객체
     CafeRegistrationAdapter registrationAdapter;
     private static final int REQUEST_CODE = 1111;
     private static final String TAG = "CafeRegistrationFragment";
-    Button add_cafe_button;
     String url = "http://54.221.33.199:8080/cafe";
     ArrayList<Cafe> cafe_list;
     Long cafe_num = MainActivity.cafe_num;
@@ -78,12 +77,12 @@ public class CafeRegistrationFragment extends Fragment {
 
         binding = FragmentCafeRegistrationBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        tag = root.findViewById(R.id.add_tag_button);
-        add_cafe_button = root.findViewById(R.id.add_cafe_button);
-        registration_button = root.findViewById(R.id.registration_button);
-        checked_overlap_button = root.findViewById(R.id.checked_overlap_button);
-        cafeRegistratin_add_image_button = root.findViewById(R.id.cafeRegistratin_add_image_button);
-        cafeRegistrationImageRecyclerView = root.findViewById(R.id.cafeRegistrationImageRecyclerView);
+        cafeRegistratin_add_image_button = root.findViewById(R.id.cafeRegistratin_add_image_button);    // 이미지 추가 버튼
+        checked_overlap_button = root.findViewById(R.id.checked_overlap_button);    // 중복확인 버튼
+        add_tag_button = root.findViewById(R.id.add_tag_button);    // 태그의 추가 버튼
+        registration_button = root.findViewById(R.id.registration_button);  // 등록하기 버튼
+
+        cafeRegistrationImageRecyclerView = root.findViewById(R.id.cafeRegistrationImageRecyclerView);  // 리싸이클러뷰 버튼
 
 
         // 카페 등록 페이지의 이미지 추가 버튼(+) 클릭 시,
@@ -117,7 +116,8 @@ public class CafeRegistrationFragment extends Fragment {
         requestQueue = new RequestQueue(cache, network);
         requestQueue.start();
 
-        add_cafe_button.setOnClickListener(new View.OnClickListener() {
+        // 태그의 추가 버튼 클릭 시,
+        add_tag_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -261,8 +261,10 @@ public class CafeRegistrationFragment extends Fragment {
                                 Log.e(TAG, "File select error", e);
                             }
                         }
-                        else
+                        else {
+                            Toast.makeText(getContext().getApplicationContext(), "사진은 5장까지 선택 가능합니다.", Toast.LENGTH_LONG).show();
                             break;
+                        }
                     }
 
                     registrationAdapter = new CafeRegistrationAdapter(uriList, getContext().getApplicationContext());
