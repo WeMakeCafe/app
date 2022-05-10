@@ -22,30 +22,33 @@
         android:id="@+id/location_button"
         android:layout_width="80dp"
         android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
         android:background="@drawable/yellow_button"
         android:padding="10dp"
-        android:layout_marginTop="10dp"
         android:text="위치인증"
-        android:textStyle="bold"
-        android:textSize="16sp"
         android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/review_search_input"
         app:layout_constraintTop_toBottomOf="@+id/write_review" />
 
     <Button
         android:id="@+id/review_search_input"
-        android:layout_width="270dp"
+        android:layout_width="0dp"
         android:layout_height="40dp"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
         android:background="@drawable/edge_top_back"
         android:gravity="left|center_vertical"
+        android:hint="이름, 주소 검색"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:hint="이름, 주소 검색"
+        android:singleLine="true"
         android:textColor="@color/black"
         android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/location_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/write_review" />
 
@@ -164,6 +167,7 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="15dp"
                     android:background="@drawable/edge_square_brown"
+                    android:gravity="center_horizontal|center_vertical"
                     android:text="추가"
                     android:textColor="@color/white"
                     android:textSize="20sp"
@@ -206,9 +210,9 @@
                 <ImageView
                     android:id="@+id/taste_image"
                     android:layout_width="70dp"
-                    android:layout_height="50dp"
+                    android:layout_height="70dp"
                     android:layout_marginStart="15dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="5dp"
                     android:src="@drawable/taste_score"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/taste_textView" />
@@ -217,11 +221,11 @@
                     android:id="@+id/sour"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="22dp"
                     android:layout_marginTop="15dp"
                     android:text="산미"
                     android:textColor="@color/black"
                     android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/rating_sour"
                     app:layout_constraintStart_toEndOf="@+id/taste_image"
                     app:layout_constraintTop_toBottomOf="@+id/taste_textView" />
 
@@ -230,25 +234,24 @@
                     style="@style/Widget.AppCompat.RatingBar.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="17dp"
+                    android:layout_marginStart="150dp"
                     android:isIndicator="false"
                     android:numStars="5"
                     android:progressDrawable="@drawable/rating_custom"
                     android:stepSize="1"
-                    app:layout_constraintStart_toEndOf="@+id/sour"
-                    app:layout_constraintTop_toBottomOf="@+id/taste_textView" />
+                    app:layout_constraintBottom_toBottomOf="@+id/sour"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/sour" />
 
                 <TextView
                     android:id="@+id/acerbity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="22dp"
-                    android:layout_marginTop="14dp"
+                    android:layout_marginTop="12dp"
                     android:text="쓴맛"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/taste_image"
+                    app:layout_constraintStart_toStartOf="@+id/sour"
                     app:layout_constraintTop_toBottomOf="@+id/sour" />
 
                 <RatingBar
@@ -256,51 +259,51 @@
                     style="@style/Widget.AppCompat.RatingBar.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="18dp"
                     android:isIndicator="false"
                     android:numStars="5"
                     android:progressDrawable="@drawable/rating_custom"
                     android:stepSize="1"
-                    app:layout_constraintStart_toEndOf="@+id/acerbity"
-                    app:layout_constraintTop_toBottomOf="@+id/rating_sour" />
+                    app:layout_constraintBottom_toBottomOf="@+id/acerbity"
+                    app:layout_constraintEnd_toEndOf="@+id/rating_sour"
+                    app:layout_constraintStart_toStartOf="@+id/rating_sour"
+                    app:layout_constraintTop_toTopOf="@+id/acerbity" />
 
                 <TextView
                     android:id="@+id/dessert"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="23dp"
-                    android:layout_marginTop="15dp"
                     android:text="디저트"
                     android:textColor="@color/black"
                     android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/rating_dessert"
+                    app:layout_constraintHorizontal_bias="0.6"
                     app:layout_constraintStart_toEndOf="@+id/rating_sour"
-                    app:layout_constraintTop_toBottomOf="@+id/taste_textView" />
+                    app:layout_constraintTop_toTopOf="@+id/sour" />
 
                 <RatingBar
                     android:id="@+id/rating_dessert"
                     style="@style/Widget.AppCompat.RatingBar.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="19dp"
-                    android:layout_marginTop="17dp"
+                    android:layout_marginEnd="20dp"
                     android:isIndicator="false"
                     android:numStars="5"
                     android:progressDrawable="@drawable/rating_custom"
                     android:stepSize="1"
-                    app:layout_constraintStart_toEndOf="@+id/dessert"
-                    app:layout_constraintTop_toBottomOf="@+id/taste_textView" />
+                    app:layout_constraintBottom_toBottomOf="@+id/rating_sour"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/rating_sour" />
 
                 <TextView
                     android:id="@+id/beverage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="17dp"
-                    android:layout_marginTop="14dp"
+                    android:layout_marginTop="12dp"
                     android:text="기타음료"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/rating_acerbity"
+                    app:layout_constraintEnd_toEndOf="@+id/dessert"
+                    app:layout_constraintStart_toStartOf="@+id/dessert"
                     app:layout_constraintTop_toBottomOf="@+id/dessert" />
 
                 <RatingBar
@@ -308,14 +311,14 @@
                     style="@style/Widget.AppCompat.RatingBar.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginTop="18dp"
                     android:isIndicator="false"
                     android:numStars="5"
                     android:progressDrawable="@drawable/rating_custom"
                     android:stepSize="1"
-                    app:layout_constraintStart_toEndOf="@+id/beverage"
-                    app:layout_constraintTop_toBottomOf="@+id/rating_dessert" />
+                    app:layout_constraintBottom_toBottomOf="@+id/rating_acerbity"
+                    app:layout_constraintEnd_toEndOf="@+id/rating_dessert"
+                    app:layout_constraintStart_toStartOf="@+id/rating_dessert"
+                    app:layout_constraintTop_toTopOf="@+id/rating_acerbity" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -323,6 +326,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tasteLayout">
 
@@ -353,11 +357,11 @@
                     android:id="@+id/twoseat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
                     android:layout_marginTop="15dp"
                     android:text="2인좌석"
                     android:textColor="@color/black"
                     android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/rating_twoseat"
                     app:layout_constraintStart_toEndOf="@+id/seat_image"
                     app:layout_constraintTop_toBottomOf="@+id/seat_textView" />
 
@@ -366,25 +370,24 @@
                     style="@style/Widget.AppCompat.RatingBar.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginTop="17dp"
+                    android:layout_marginStart="150dp"
                     android:isIndicator="false"
                     android:numStars="5"
                     android:progressDrawable="@drawable/rating_custom"
                     android:stepSize="1"
-                    app:layout_constraintStart_toEndOf="@+id/twoseat"
-                    app:layout_constraintTop_toBottomOf="@+id/seat_textView" />
+                    app:layout_constraintBottom_toBottomOf="@+id/twoseat"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/twoseat" />
 
                 <TextView
                     android:id="@+id/fourseat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="12dp"
                     android:text="4인좌석"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/seat_image"
+                    app:layout_constraintStart_toStartOf="@+id/twoseat"
                     app:layout_constraintTop_toBottomOf="@+id/twoseat" />
 
                 <RatingBar
@@ -392,51 +395,51 @@
                     style="@style/Widget.AppCompat.RatingBar.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginTop="19dp"
+                    android:layout_marginStart="150dp"
                     android:isIndicator="false"
                     android:numStars="5"
                     android:progressDrawable="@drawable/rating_custom"
                     android:stepSize="1"
-                    app:layout_constraintStart_toEndOf="@+id/fourseat"
-                    app:layout_constraintTop_toBottomOf="@+id/rating_twoseat" />
+                    app:layout_constraintBottom_toBottomOf="@+id/fourseat"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/fourseat" />
 
                 <TextView
                     android:id="@+id/manyseat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="17dp"
-                    android:layout_marginTop="15dp"
                     android:text="다인좌석"
                     android:textColor="@color/black"
                     android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/rating_manyseat"
+                    app:layout_constraintHorizontal_bias="0.6"
                     app:layout_constraintStart_toEndOf="@+id/rating_twoseat"
-                    app:layout_constraintTop_toBottomOf="@+id/seat_textView" />
+                    app:layout_constraintTop_toTopOf="@+id/twoseat" />
 
                 <RatingBar
                     android:id="@+id/rating_manyseat"
                     style="@style/Widget.AppCompat.RatingBar.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginTop="17dp"
+                    android:layout_marginEnd="20dp"
                     android:isIndicator="false"
                     android:numStars="5"
                     android:progressDrawable="@drawable/rating_custom"
                     android:stepSize="1"
-                    app:layout_constraintStart_toEndOf="@+id/manyseat"
-                    app:layout_constraintTop_toBottomOf="@+id/seat_textView" />
+                    app:layout_constraintBottom_toBottomOf="@+id/rating_twoseat"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/rating_twoseat" />
 
                 <TextView
                     android:id="@+id/toilet"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="12dp"
                     android:text="화장실"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/rating_fourseat"
+                    app:layout_constraintEnd_toEndOf="@+id/manyseat"
+                    app:layout_constraintStart_toStartOf="@+id/manyseat"
                     app:layout_constraintTop_toBottomOf="@+id/manyseat" />
 
                 <RatingBar
@@ -444,14 +447,14 @@
                     style="@style/Widget.AppCompat.RatingBar.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="18dp"
-                    android:layout_marginTop="19dp"
                     android:isIndicator="false"
                     android:numStars="5"
                     android:progressDrawable="@drawable/rating_custom"
                     android:stepSize="1"
-                    app:layout_constraintStart_toEndOf="@+id/toilet"
-                    app:layout_constraintTop_toBottomOf="@+id/rating_manyseat" />
+                    app:layout_constraintBottom_toBottomOf="@+id/rating_fourseat"
+                    app:layout_constraintEnd_toEndOf="@+id/rating_manyseat"
+                    app:layout_constraintStart_toStartOf="@+id/rating_manyseat"
+                    app:layout_constraintTop_toTopOf="@+id/rating_fourseat" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -489,11 +492,11 @@
                     android:id="@+id/wifi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
                     android:layout_marginTop="15dp"
                     android:text="와이파이"
                     android:textColor="@color/black"
                     android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/rating_wifi"
                     app:layout_constraintStart_toEndOf="@+id/study_image"
                     app:layout_constraintTop_toBottomOf="@+id/study_textView" />
 
@@ -503,25 +506,25 @@
                     style="@style/Widget.AppCompat.RatingBar.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginTop="17dp"
+                    android:layout_marginStart="150dp"
                     android:isIndicator="false"
                     android:numStars="5"
                     android:progressDrawable="@drawable/rating_custom"
                     android:stepSize="1"
-                    app:layout_constraintStart_toEndOf="@+id/wifi"
-                    app:layout_constraintTop_toBottomOf="@+id/study_textView" />
+                    app:layout_constraintBottom_toBottomOf="@+id/wifi"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/wifi" />
 
                 <TextView
                     android:id="@+id/plug"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="19dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="12dp"
                     android:text="콘센트"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/study_image"
+                    app:layout_constraintEnd_toEndOf="@+id/wifi"
+                    app:layout_constraintStart_toStartOf="@+id/wifi"
                     app:layout_constraintTop_toBottomOf="@+id/wifi" />
 
                 <RatingBar
@@ -529,51 +532,50 @@
                     style="@style/Widget.AppCompat.RatingBar.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="18dp"
-                    android:layout_marginTop="19dp"
                     android:isIndicator="false"
                     android:numStars="5"
                     android:progressDrawable="@drawable/rating_custom"
                     android:stepSize="1"
-                    app:layout_constraintStart_toEndOf="@+id/plug"
-                    app:layout_constraintTop_toBottomOf="@+id/rating_wifi" />
+                    app:layout_constraintBottom_toBottomOf="@+id/plug"
+                    app:layout_constraintStart_toStartOf="@+id/rating_wifi"
+                    app:layout_constraintTop_toTopOf="@+id/plug" />
 
                 <TextView
                     android:id="@+id/quiet"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="15dp"
                     android:text="조용함"
                     android:textColor="@color/black"
                     android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/rating_quiet"
+                    app:layout_constraintHorizontal_bias="0.6"
                     app:layout_constraintStart_toEndOf="@+id/rating_wifi"
-                    app:layout_constraintTop_toBottomOf="@+id/study_textView" />
+                    app:layout_constraintTop_toTopOf="@+id/wifi" />
 
                 <RatingBar
                     android:id="@+id/rating_quiet"
                     style="@style/Widget.AppCompat.RatingBar.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="18dp"
-                    android:layout_marginTop="17dp"
+                    android:layout_marginEnd="20dp"
                     android:isIndicator="false"
                     android:numStars="5"
                     android:progressDrawable="@drawable/rating_custom"
                     android:stepSize="1"
-                    app:layout_constraintStart_toEndOf="@+id/quiet"
-                    app:layout_constraintTop_toBottomOf="@+id/study_textView" />
+                    app:layout_constraintBottom_toBottomOf="@+id/rating_wifi"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/rating_wifi" />
 
                 <TextView
                     android:id="@+id/light"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="33dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="12dp"
                     android:text="조명"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/rating_plug"
+                    app:layout_constraintEnd_toEndOf="@+id/quiet"
+                    app:layout_constraintStart_toStartOf="@+id/quiet"
                     app:layout_constraintTop_toBottomOf="@+id/quiet" />
 
                 <RatingBar
@@ -581,14 +583,14 @@
                     style="@style/Widget.AppCompat.RatingBar.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="23dp"
-                    android:layout_marginTop="19dp"
                     android:isIndicator="false"
                     android:numStars="5"
                     android:progressDrawable="@drawable/rating_custom"
                     android:stepSize="1"
-                    app:layout_constraintStart_toEndOf="@+id/light"
-                    app:layout_constraintTop_toBottomOf="@+id/rating_quiet" />
+                    app:layout_constraintBottom_toBottomOf="@+id/rating_plug"
+                    app:layout_constraintEnd_toEndOf="@+id/rating_quiet"
+                    app:layout_constraintStart_toStartOf="@+id/rating_quiet"
+                    app:layout_constraintTop_toTopOf="@+id/rating_plug" />
 
                 <TextView
                     android:id="@+id/rating_line"
