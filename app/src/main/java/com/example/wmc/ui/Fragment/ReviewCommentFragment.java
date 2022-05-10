@@ -178,8 +178,10 @@ public class ReviewCommentFragment extends Fragment {
                                 Log.e(TAG, "File select error", e);
                             }
                         }
-                        else
+                        else {
+                            Toast.makeText(getContext().getApplicationContext(), "사진은 3장까지 선택 가능합니다.", Toast.LENGTH_LONG).show();
                             break;
+                        }
                     }
 
                     reviewCommentAdapter = new ReviewCommentAdapter(uriList, getContext().getApplicationContext());
