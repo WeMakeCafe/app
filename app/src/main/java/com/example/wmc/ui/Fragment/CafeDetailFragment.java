@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +37,7 @@ import com.example.wmc.database.Cafe;
 import com.example.wmc.database.Personal;
 import com.example.wmc.database.Review;
 import com.example.wmc.databinding.FragmentCafeDetailBinding;
+import com.example.wmc.databinding.FragmentCafeModifyBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -69,6 +71,8 @@ public class CafeDetailFragment extends Fragment {
         binding = FragmentCafeDetailBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         cafe_modify_button = root.findViewById(R.id.cafe_modify_button);
+        moreReview3 = root.findViewById(R.id.moreReview3);
+        moreReview4 = root.findViewById(R.id.moreReview4);
         review_floatingButton = root.findViewById(R.id.review_floatingButton);
         favorite_checkbox = root.findViewById(R.id.favorite_checkbox);
         cafeDetail_favorite_previousButton = root.findViewById(R.id.cafeDetail_favorite_previousButton);

@@ -41,16 +41,10 @@ public class CafeDeleteFragment extends Fragment {
     private FragmentCafeDeleteBinding binding;
     private static NavController navController;
     Button delete_request_button;
-
-    Long cafe_num = MainActivity.cafe_num;
-    Long mem_num = MainActivity.mem_num;
-    ArrayList<Cafe> cafe_list;
-    ArrayList<Personal> personal_list;
     TextView delete_cafe_name_input;
     TextView delete_cafe_address_input;
-
-    String url = "http://54.221.33.199:8080/personal";
-    String url2 = "http://54.221.33.199:8080/cafe";
+    TextView requester_input;
+    ArrayList<Personal> personal_list;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -58,17 +52,26 @@ public class CafeDeleteFragment extends Fragment {
         binding = FragmentCafeDeleteBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         delete_request_button = root.findViewById(R.id.delete_request_button);
-
         delete_cafe_name_input = root.findViewById(R.id.delete_cafe_name_input);
         delete_cafe_address_input = root.findViewById(R.id.delete_cafe_address_input);
+        requester_input = root.findViewById(R.id.requester_input);
+
+        String cafe_name = getArguments().getString("name");  //getArguments로 번들 검색해서 받기
+        String cafe_address = getArguments().getString("address");
+
+
+        delete_cafe_name_input.setText(cafe_name);
+        delete_cafe_address_input.setText(cafe_address);
 
         RequestQueue requestQueue;
         Cache cache = new DiskBasedCache(getActivity().getCacheDir(), 1024 * 1024); // 1MB cap
         Network network = new BasicNetwork(new HurlStack());
         requestQueue = new RequestQueue(cache, network);
         requestQueue.start();
+        String url = "http://54.221.33.199:8080/personal";
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url2, new Response.Listener<String>() {
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 // 한글깨짐 해결 코드
@@ -79,18 +82,17 @@ public class CafeDeleteFragment extends Fragment {
                     e.printStackTrace();
                 }
                 Gson gson = new GsonBuilder().setPrettyPrinting().create();
-                Type listType = new TypeToken<ArrayList<Cafe>>() {
+                Type listType = new TypeToken<ArrayList<Personal>>() {
                 }.getType();
 
-                cafe_list = gson.fromJson(changeString, listType);
+                personal_list = gson.fromJson(changeString, listType);
 
                 // cafe 테이블의 튜플이 제대로 오는지 확인 (테스트 할 때만 만들어두고 해당 기능 다 개발 시 제거하는게 좋음)
-                Log.d("test", String.valueOf(cafe_list.size()));
+                Log.d("test", String.valueOf(personal_list.size()));
 
-                for(Cafe c : cafe_list) {
-                    if(c.getCafeNum().equals(cafe_num)) {
-                        delete_cafe_name_input.setText(c.getCafeName());
-                        delete_cafe_address_input.setText(c.getCafeAddress());
+                for(Personal p : personal_list){
+                    if(p.getMemNum()==MainActivity.mem_num) {
+                      requester_input.setText(p.getNickName());
                     }
                 }
 
@@ -105,22 +107,14 @@ public class CafeDeleteFragment extends Fragment {
         });
         requestQueue.add(stringRequest);
 
-        // 요청하기 버튼 클릭
+
         delete_request_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 관리자에게 삭제 요청 메시지 전달
-                navController.navigate(R.id.cafe_delete_to_cafe_detail);    // 삭제 요청 후, 카페 디테일로 복귀
+                navController.navigate(R.id.cafe_delete_to_cafe_detail);
             }
         });
         return root;
-    }
-
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        navController = Navigation.findNavController(view);
     }
 
     @Override

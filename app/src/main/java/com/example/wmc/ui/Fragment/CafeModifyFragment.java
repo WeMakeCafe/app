@@ -24,6 +24,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Cache;
 import com.android.volley.Network;
 import com.android.volley.Request;
@@ -69,13 +70,12 @@ public class CafeModifyFragment extends Fragment {
     private static final int REQUEST_CODE = 2222;
     private static final String TAG = "CafeModifyFragment";
 
-    ArrayList<Cafe> cafe_list;              // 서버 작업 (이미지는 리싸이클러뷰여서 일단 보류)
-    Long cafe_num = MainActivity.cafe_num;
+    ArrayList<Cafe> cafe_list;
     TextView cafe_name_input;
     TextView cafe_address_input;
     TextView cafe_openHours_input;
     TextView cafe_closeHours_input;
-    String url = "http://54.221.33.199:8080/cafe";
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -91,6 +91,11 @@ public class CafeModifyFragment extends Fragment {
         cafe_openHours_input = root.findViewById(R.id.cafe_openHours_input);
         cafe_closeHours_input = root.findViewById(R.id.cafe_closeHours_input);
         modify_button = root.findViewById(R.id.modify_button);
+        request_deletion_textView = root.findViewById(R.id.request_deletion_textView);
+
+        String cafe_name = getArguments().getString("name");  //getArguments로 번들 검색해서 받기
+        String cafe_address = getArguments().getString("address");
+
 
         //// 서버 호출
         RequestQueue requestQueue;
@@ -98,8 +103,7 @@ public class CafeModifyFragment extends Fragment {
         Network network = new BasicNetwork(new HurlStack());
         requestQueue = new RequestQueue(cache, network);
         requestQueue.start();
-
-
+        String url = "http://54.221.33.199:8080/cafe";
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -120,123 +124,149 @@ public class CafeModifyFragment extends Fragment {
                 // cafe 테이블의 튜플이 제대로 오는지 확인 (테스트 할 때만 만들어두고 해당 기능 다 개발 시 제거하는게 좋음)
                 Log.d("test", String.valueOf(cafe_list.size()));
 
-                for(Cafe c : cafe_list) {
-                    if(c.getCafeNum().equals(cafe_num)) {
+                for(Cafe c : cafe_list){
+                    if(c.getCafeName().equals(cafe_name)) {
                         cafe_name_input.setText(c.getCafeName());
                         cafe_address_input.setText(c.getCafeAddress());
                         cafe_openHours_input.setText(c.getOpenTime().toString());
                         cafe_closeHours_input.setText(c.getCloseTime().toString());
+
+                        //이미지 등록 코드
                     }
                 }
 
+                modify_button.setOnClickListener(new View.OnClickListener() { // 카페 수정하기 버튼 누를 시
+
+                    @Override
+                    public void onClick(View v) {
+
+                        for(Cafe c : cafe_list) {
+                            if(c.getCafeName().equals(cafe_name)) {  //bundle에서 가져온 카페아이디값 cafe_name에 넣어서 비교 연산
+
+                                Map map = new HashMap();
+                                map.put("cafeName", cafe_name_input.getText().toString());
+                                map.put("cafeAddress", cafe_address_input.getText().toString());
+                                map.put("openTime", cafe_openHours_input.getText().toString());
+                                map.put("closeTime", cafe_closeHours_input.getText().toString());
+//                                map.put("cafeImage", c.getCafeImage());
+//                                map.put("reviewNum", c.getReviewNum());
+//                                map.put("keyword1", c.getKeyword1());
+//                                map.put("keyword2", c.getKeyword2());
+//                                map.put("keyword3", c.getKeyword3());
+//                                map.put("keyword4", c.getKeyword4());
+//                                map.put("keyword5", c.getKeyword5());
+//                                map.put("keyword6", c.getKeyword6());
+//                                map.put("keyword7", c.getKeyword7());
+//                                map.put("keyword8", c.getKeyword8());
+//                                map.put("keyword9", c.getKeyword9());
+//                                map.put("keyword10", c.getKeyword10());
+//                                map.put("keyword11", c.getKeyword11());
+//                                map.put("keyword12", c.getKeyword12());
+//                                map.put("keyword13", c.getKeyword13());
+//                                map.put("keyword14", c.getKeyword14());
+//                                map.put("keyword15", c.getKeyword15());
+//                                map.put("keyword16", c.getKeyword16());
+//                                map.put("keyword17", c.getKeyword17());
+//                                map.put("keyword18", c.getKeyword18());
+//                                map.put("keyword19", c.getKeyword19());
+//                                map.put("keyword20", c.getKeyword20());
+//                                map.put("keyword21", c.getKeyword21());
+//                                map.put("keyword22", c.getKeyword22());
+//                                map.put("keyword23", c.getKeyword23());
+//                                map.put("keyword24", c.getKeyword24());
+//                                map.put("keyword25", c.getKeyword25());
+//                                map.put("keyword26", c.getKeyword26());
+//                                map.put("keyword27", c.getKeyword27());
+//                                map.put("keyword28", c.getKeyword28());
+//                                map.put("keyword29", c.getKeyword29());
+//                                map.put("keyword30", c.getKeyword30());
+//                                map.put("keyword31", c.getKeyword31());
+//                                map.put("keyword32", c.getKeyword32());
+//                                map.put("keyword33", c.getKeyword33());
+//                                map.put("keyword34", c.getKeyword34());
+//                                map.put("keyword35", c.getKeyword35());
+//                                map.put("keyword36", c.getKeyword36());
+//                                map.put("bookmarkNum", c.getBookmarkNum());
+//                                map.put("scoreNum", c.getScoreNum());
+
+                                if(!((c.getOpenTime() == Integer.parseInt(cafe_openHours_input.getText().toString())) &&
+                                        (c.getCloseTime() == Integer.parseInt(cafe_closeHours_input.getText().toString())))) {
+                                    JSONObject jsonObject = new JSONObject(map);
+
+                                    String url2 = "http://54.221.33.199:8080/cafe/" + c.getCafeNum().toString(); // 해당 카페에만 데이터 삽입하기 위함
+
+                                    JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.PUT, url2, jsonObject,
+                                            new Response.Listener<JSONObject>() {
+                                                @Override
+                                                public void onResponse(JSONObject response) {
+
+                                                }
+                                            },
+                                            new Response.ErrorListener() {
+                                                @Override
+                                                public void onErrorResponse(VolleyError error) {
+                                                 Log.d("test", error.toString());
+                                                }
+                                            }) {
+                                        @Override
+                                        public String getBodyContentType() {
+                                            return "application/json; charset=UTF-8";
+                                        }
+                                    };
+                                    RequestQueue queue = Volley.newRequestQueue(requireContext());
+                                    queue.add(objectRequest);
+                                    navController.navigate(R.id.cafe_modify_to_cafe_detail);
+                                }
+
+                                // -> 시간 변경이 없을 때 실행되는 문장
+                                else {
+                                    Toast.makeText(getActivity(), "시간이 변경되지 않았습니다.", Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        }
+                    }
+
+                });
 
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 // 에러가 뜬다면 왜 에러가 떴는지 확인하는 코드
-                Log.e("test_error", error.toString());
+                Log.e("test_error2", error.toString());
             }
         });
         requestQueue.add(stringRequest);
 
 
-
-        modify_button.setOnClickListener(new View.OnClickListener() { // 카페 수정하기 버튼 누를 시
-
+        request_deletion_textView.setOnClickListener(new View.OnClickListener() { // 삭제요청 버튼
             @Override
             public void onClick(View v) {
-                Map map = new HashMap();
-                map.put("cafeName", cafe_name_input.getText().toString());
-                map.put("cafeAddress", cafe_address_input.getText().toString());
-                map.put("openTime", Integer.parseInt(cafe_openHours_input.getText().toString()));
-                map.put("closeTime", Integer.parseInt(cafe_closeHours_input.getText().toString()));
-
-                JSONObject jsonObject = new JSONObject(map);
-
-                JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.PUT, url, jsonObject,
-                        new Response.Listener<JSONObject>() {
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                // 한글깨짐 해결 코드
-
-                            }
-                        },
-                        new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                            }
-                        }) {
-                };
-                RequestQueue queue = Volley.newRequestQueue(requireContext());
-                queue.add(objectRequest);
+                Bundle bundle = new Bundle();
+                bundle.putString("name", cafe_name);
+                bundle.putString("address", cafe_address);
+                navController.navigate(R.id.cafe_modify_to_cafe_delete, bundle);
             }
-
         });
 
         //// 서버 엔드
 
         // 태그 추가 페이지 (ReviewTagFragment) 에서 번들로 받아온 정보 반영 위한 코드
-        TextView name = root.findViewById(R.id.cafe_name_input);
-        TextView address = root.findViewById(R.id.cafe_address_input);
-        TextView time_open = root.findViewById(R.id.cafe_openHours_input);
-        TextView time_close = root.findViewById(R.id.cafe_closeHours_input);
-
-        Bundle argBundle = getArguments();
-        if (argBundle != null) {
-            if (argBundle.getString("name") != null){
-                name.setText(argBundle.getString("name"));
-                address.setText(argBundle.getString("address"));
-                time_open.setText(argBundle.getString("time_open"));
-                time_close.setText(argBundle.getString("time_close"));
-            }
-        }
-
-        // 수정하기 버튼 클릭 시,
-        modify_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                bundle.putString("time_open_Modi",time_open.getText().toString());
-                bundle.putString("time_close_Modi",time_close.getText().toString());
-                Toast.makeText(getContext().getApplicationContext(), "영업시간 수정 완료! ", Toast.LENGTH_SHORT).show();
-                navController.navigate(R.id.cafe_modify_to_cafe_detail,bundle);    // 내가 수정한 카페디테일로 이동
-            }
-        });
-
-        // 삭제요청 버튼 클릭 시,
-        request_deletion_textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navController.navigate(R.id.cafe_modify_to_cafe_delete);    // 삭제 요청 페이지로 이동
-            }
-        });
-
-        // 이미지 수정 + 버튼 클릭 시,
-        add_image_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // 갤러리로 이동
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setType("image/*");
-                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);  // 다중 이미지를 가져올 수 있도록 세팅
-                intent.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(intent, REQUEST_CODE);
-            }
-        });
-
-//        // 이미지 수정 리싸이클러뷰
-//        ArrayList<CafeModifyItem> modifyImageItems = new ArrayList<>();
+//        TextView name = root.findViewById(R.id.cafe_name_input);
+//        TextView address = root.findViewById(R.id.cafe_address_input);
+//        TextView time_open = root.findViewById(R.id.cafe_openHours_input);
+//        TextView time_close = root.findViewById(R.id.cafe_closeHours_input);
 //
-//        modifyImageItems.add(new CafeModifyItem(R.drawable.logo));
-//        modifyImageItems.add(new CafeModifyItem(R.drawable.logo_v2));
-//        modifyImageItems.add(new CafeModifyItem(R.drawable.bean_grade1));
-//        modifyImageItems.add(new CafeModifyItem(R.drawable.bean_grade2));
-//        modifyImageItems.add(new CafeModifyItem(R.drawable.bean_grade3));
-//
-//        // Adapter 추가
-//        RecyclerView modifyRecyclerView = root.findViewById(R.id.cafeModifyImageRecyclerView);
-//
+//        Bundle argBundle = getArguments();
+//        if (argBundle != null) {
+//            if (argBundle.getString("name") != null){
+//                name.setText(argBundle.getString("name"));
+//                address.setText(argBundle.getString("address"));
+//                time_open.setText(argBundle.getString("time_open"));
+//                time_close.setText(argBundle.getString("time_close"));
+//            }
+//        }
+
 //        CafeModifyAdapter modifyAdapter = new CafeModifyAdapter(modifyImageItems);
 //        modifyRecyclerView.setAdapter(modifyAdapter);
 //
@@ -252,69 +282,11 @@ public class CafeModifyFragment extends Fragment {
 //            }
 //        });
 
+
+
+
         return root;
     }
-
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(data == null){   // 어떤 이미지도 선택하지 않은 경우
-            Toast.makeText(getContext().getApplicationContext(), "이미지를 선택하지 않았습니다.", Toast.LENGTH_LONG).show();
-        }
-
-        else{   // 이미지를 하나라도 선택한 경우
-            if(data.getClipData() == null){     // 이미지를 하나만 선택한 경우
-                if(uriList.size() >= 5) {
-                    Toast.makeText(getContext().getApplicationContext(), "이미지 5개를 모두 선택하셨습니다.", Toast.LENGTH_LONG).show();
-                }
-
-                else{
-                    Log.e("single choice: ", String.valueOf(data.getData()));
-                    Uri imageUri = data.getData();
-                    uriList.add(imageUri);
-                }
-
-                cafeModifyAdapter = new CafeModifyAdapter(uriList, getContext().getApplicationContext());
-                cafeModifyImageRecyclerView.setAdapter(cafeModifyAdapter);
-                cafeModifyImageRecyclerView.setLayoutManager(new LinearLayoutManager(getContext().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
-            }
-            else{      // 이미지를 여러장 선택한 경우
-                ClipData clipData = data.getClipData();
-                Log.e("clipData", String.valueOf(clipData.getItemCount()));
-
-                if(clipData.getItemCount() > 5){   // 선택한 이미지가 6장 이상인 경우
-                    Toast.makeText(getContext().getApplicationContext(), "사진은 5장까지 선택 가능합니다.", Toast.LENGTH_LONG).show();
-                }
-                else{   // 선택한 이미지가 1장 이상 5장 이하인 경우
-                    Log.e(TAG, "multiple choice");
-
-                    for (int i = 0; i < clipData.getItemCount(); i++){
-
-                        if(uriList.size() <= 4){
-                            Uri imageUri = clipData.getItemAt(i).getUri();  // 선택한 이미지들의 uri를 가져온다.
-                            try {
-                                uriList.add(imageUri);  //uri를 list에 담는다.
-
-                            } catch (Exception e) {
-                                Log.e(TAG, "File select error", e);
-                            }
-                        }
-                        else {
-                            Toast.makeText(getContext().getApplicationContext(), "사진은 5장까지 선택 가능합니다.", Toast.LENGTH_LONG).show();
-                            break;
-                        }
-                    }
-
-                    cafeModifyAdapter = new CafeModifyAdapter(uriList, getContext().getApplicationContext());
-                    cafeModifyImageRecyclerView.setAdapter(cafeModifyAdapter);   // 리사이클러뷰에 어댑터 세팅
-                    cafeModifyImageRecyclerView.setLayoutManager(new LinearLayoutManager(getContext().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));     // 리사이클러뷰 수평 스크롤 적용
-                }
-            }
-        }
-    }
-
 
 
     @Override
