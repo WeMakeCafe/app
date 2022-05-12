@@ -196,15 +196,13 @@ public class CafeModifyFragment extends Fragment {
                                             new Response.Listener<JSONObject>() {
                                                 @Override
                                                 public void onResponse(JSONObject response) {
-                                                    navController.navigate(R.id.cafe_modify_to_cafe_detail);
+
                                                 }
                                             },
                                             new Response.ErrorListener() {
                                                 @Override
                                                 public void onErrorResponse(VolleyError error) {
-                                                 error.printStackTrace();
-
-
+                                                 Log.d("test", error.toString());
                                                 }
                                             }) {
                                         @Override
@@ -213,8 +211,8 @@ public class CafeModifyFragment extends Fragment {
                                         }
                                     };
                                     RequestQueue queue = Volley.newRequestQueue(requireContext());
-
                                     queue.add(objectRequest);
+                                    navController.navigate(R.id.cafe_modify_to_cafe_detail);
                                 }
 
                                 // -> 시간 변경이 없을 때 실행되는 문장
