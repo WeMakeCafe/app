@@ -115,6 +115,9 @@
         <action
             android:id="@+id/cafe_registration_to_cafe_registration_tag"
             app:destination="@id/navigation_cafe_registration_tag" />
+        <action
+            android:id="@+id/cafe_registration_to_cafe_detail"
+            app:destination="@id/navigation_cafe_detail" />
     </fragment>
 
     <fragment

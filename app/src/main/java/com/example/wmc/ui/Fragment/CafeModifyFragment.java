@@ -147,7 +147,8 @@ public class CafeModifyFragment extends Fragment {
                                 map.put("cafeName", cafe_name_input.getText().toString());
                                 map.put("cafeAddress", cafe_address_input.getText().toString());
                                 map.put("openTime", cafe_openHours_input.getText().toString());
-                                map.put("closeTime", cafe_closeHours_input.getText().toString());// map.put("cafeImage", c.getCafeImage());
+                                map.put("closeTime", cafe_closeHours_input.getText().toString());
+//                                map.put("cafeImage", c.getCafeImage());
 //                                map.put("reviewNum", c.getReviewNum());
 //                                map.put("keyword1", c.getKeyword1());
 //                                map.put("keyword2", c.getKeyword2());
@@ -213,7 +214,6 @@ public class CafeModifyFragment extends Fragment {
                                         }
                                     };
                                     RequestQueue queue = Volley.newRequestQueue(requireContext());
-
                                     queue.add(objectRequest);
                                     navController.navigate(R.id.cafe_modify_to_cafe_detail);
                                 }

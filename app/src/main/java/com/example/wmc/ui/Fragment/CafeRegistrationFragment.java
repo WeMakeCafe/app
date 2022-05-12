@@ -36,7 +36,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.BasicNetwork;
 import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HurlStack;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.wmc.CafeModify.CafeModifyAdapter;
 import com.example.wmc.CafeModify.CafeModifyItem;
 import com.example.wmc.CafeRegistration.CafeRegistrationAdapter;
@@ -49,17 +51,21 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONObject;
+
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CafeRegistrationFragment extends Fragment {
 
     private FragmentCafeRegistrationBinding binding;
     private static NavController navController;
     Button cafeRegistratin_add_image_button;
-    Button tag;
+    Button add_tag_button;
     Button registration_button;
     Button checked_overlap_button;
     RecyclerView cafeRegistrationImageRecyclerView;
@@ -68,22 +74,139 @@ public class CafeRegistrationFragment extends Fragment {
     private static final int REQUEST_CODE = 1111;
     private static final String TAG = "CafeRegistrationFragment";
     Button add_cafe_button;
-    String url = "http://54.221.33.199:8080/cafe";
     ArrayList<Cafe> cafe_list;
-    Long cafe_num = MainActivity.cafe_num;
-
+    TextView cafe_name_input;
+    TextView cafe_address_input;
+    TextView cafe_openHours_input;
+    TextView cafe_closeHours_input;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         binding = FragmentCafeRegistrationBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        tag = root.findViewById(R.id.add_tag_button);
+        add_tag_button = root.findViewById(R.id.add_tag_button);
         add_cafe_button = root.findViewById(R.id.add_cafe_button);
         registration_button = root.findViewById(R.id.registration_button);
         checked_overlap_button = root.findViewById(R.id.checked_overlap_button);
         cafeRegistratin_add_image_button = root.findViewById(R.id.cafeRegistratin_add_image_button);
         cafeRegistrationImageRecyclerView = root.findViewById(R.id.cafeRegistrationImageRecyclerView);
+        cafe_name_input = root.findViewById(R.id.cafe_name_input);
+        cafe_address_input = root.findViewById(R.id.cafe_address_input);
+        cafe_openHours_input = root.findViewById(R.id.cafe_openHours_input);
+        cafe_closeHours_input = root.findViewById(R.id.cafe_closeHours);
+
+
+        RequestQueue requestQueue;
+        Cache cache = new DiskBasedCache(getActivity().getCacheDir(), 1024 * 1024); // 1MB cap
+        Network network = new BasicNetwork(new HurlStack());
+        requestQueue = new RequestQueue(cache, network);
+        requestQueue.start();
+        String url = "http://54.221.33.199:8080/cafe";
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                // 한글깨짐 해결 코드
+                String changeString = new String();
+                try {
+                    changeString = new String(response.getBytes("8859_1"), "utf-8");
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                Type listType = new TypeToken<ArrayList<Cafe>>() {
+                }.getType();
+
+                cafe_list = gson.fromJson(changeString, listType);
+
+                // cafe 테이블의 튜플이 제대로 오는지 확인 (테스트 할 때만 만들어두고 해당 기능 다 개발 시 제거하는게 좋음)
+                Log.d("test", String.valueOf(cafe_list.size()));
+
+                // 중복확인 버튼 클릭 시,
+                checked_overlap_button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // 데이터베이스에서 카페이름이 있는지 중복검사
+                        for(Cafe c : cafe_list) {
+                            if(c.getCafeName().equals(cafe_name_input)) {
+                                Toast.makeText(getContext(), "이미 있는 카페입니다!", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    }
+                });
+
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // 에러가 뜬다면 왜 에러가 떴는지 확인하는 코드
+                Log.e("test_error", error.toString());
+            }
+        });
+        requestQueue.add(stringRequest);
+
+        // 기본 태그 추가 버튼 클릭 시
+        add_tag_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.cafe_registration_to_cafe_registration_tag);
+            }
+        });
+
+        // 카페 등록의 태그 추가 페이지 (CafeRegistrationTagFragment) 에서 번들로 받아온 정보 반영 위한 코드
+        TextView basic_tag1 = root.findViewById(R.id.basic_tag1); // 태그 추가 완료 시 반영할 카페 등록 페이지의 태그 박스1
+        TextView basic_tag2 = root.findViewById(R.id.basic_tag2); // 태그 추가 완료 시 반영할 카페 등록 페이지의 태그 박스2
+        TextView basic_tag3 = root.findViewById(R.id.basic_tag3); // 태그 추가 완료 시 반영할 카페 등록 페이지의 태그 박스3
+
+        Bundle argBundle = getArguments();
+        if( argBundle != null ) {
+            if (argBundle.getString("key1") != null) {
+                basic_tag1.setText(argBundle.getString("key1"));
+                basic_tag2.setText(argBundle.getString("key2"));
+                basic_tag3.setText(argBundle.getString("key3"));
+            }
+        }
+
+        // 등록하기 버튼 클릭 시
+        registration_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Map map = new HashMap();
+                map.put("cafeName", cafe_name_input.getText().toString());
+                map.put("cafeAddress", cafe_address_input.getText().toString());
+                map.put("openTime", cafe_openHours_input.getText().toString());
+                map.put("closeTime", cafe_closeHours_input.getText().toString());
+                // 이미지, 키워드 추가 코드 작성 할 곳
+
+                JSONObject jsonObject = new JSONObject(map);
+                JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject,
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Log.d("test", error.toString());
+                            }
+                        }) {
+                    @Override
+                    public String getBodyContentType() {
+                        return "application/json; charset=UTF-8";
+                    }
+                };
+                RequestQueue queue = Volley.newRequestQueue(requireContext());
+                queue.add(objectRequest);
+                // 내가 만든 카페의 카페디테일로 이동(정보이동은 어캐될까 고민)
+                navController.navigate(R.id.cafe_registration_to_cafe_detail);
+            }
+        });
+
 
 
         // 카페 등록 페이지의 이미지 추가 버튼(+) 클릭 시,
@@ -99,89 +222,6 @@ public class CafeRegistrationFragment extends Fragment {
             }
         });
 
-
-        // 중복확인 버튼 클릭 시,
-        checked_overlap_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // 데이터베이스에서 카페이름이 있는지 중복검사
-                Toast.makeText(getContext().getApplicationContext(), "중복확인 검사 시작", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
-        //// 서버 호출
-        RequestQueue requestQueue;
-        Cache cache = new DiskBasedCache(getActivity().getCacheDir(), 1024 * 1024); // 1MB cap
-        Network network = new BasicNetwork(new HurlStack());
-        requestQueue = new RequestQueue(cache, network);
-        requestQueue.start();
-
-        add_cafe_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        // 한글깨짐 해결 코드
-                        String changeString = new String();
-                        try {
-                            changeString = new String(response.getBytes("8859_1"), "utf-8");
-                        } catch (UnsupportedEncodingException e) {
-                            e.printStackTrace();
-                        }
-                        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-                        Type listType = new TypeToken<ArrayList<Cafe>>() {
-                        }.getType();
-
-                        cafe_list = gson.fromJson(changeString, listType);
-
-                        // cafe 테이블의 튜플이 제대로 오는지 확인 (테스트 할 때만 만들어두고 해당 기능 다 개발 시 제거하는게 좋음)
-                        Log.d("test", String.valueOf(cafe_list.size()));
-
-                        for(Cafe c : cafe_list) {
-                            if(c.getCafeNum().equals(cafe_num)) {
-                                Toast.makeText(getContext(), "이미 있는 카페입니다!", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-
-
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // 에러가 뜬다면 왜 에러가 떴는지 확인하는 코드
-                        Log.e("test_error", error.toString());
-                    }
-                });
-                requestQueue.add(stringRequest);
-                navController.navigate(R.id.cafe_registration_to_cafe_registration_tag);
-            }
-        });
-
-
-        // 등록하기 버튼 클릭 시
-        registration_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // 내가 만든 카페의 카페디테일로 이동
-            }
-        });
-
-        // 카페 등록의 태그 추가 페이지 (CafeRegistrationTagFragment) 에서 번들로 받아온 정보 반영 위한 코드
-        TextView setTag1 = root.findViewById(R.id.basic_tag1); // 태그 추가 완료 시 반영할 카페 등록 페이지의 태그 박스1
-        TextView setTag2 = root.findViewById(R.id.basic_tag2); // 태그 추가 완료 시 반영할 카페 등록 페이지의 태그 박스2
-        TextView setTag3 = root.findViewById(R.id.basic_tag3); // 태그 추가 완료 시 반영할 카페 등록 페이지의 태그 박스3
-
-        Bundle argBundle = getArguments();
-        if( argBundle != null ) {
-            if (argBundle.getString("key1") != null) {
-                setTag1.setText(argBundle.getString("key1"));
-                setTag2.setText(argBundle.getString("key2"));
-                setTag3.setText(argBundle.getString("key3"));
-            }
-        }
 
         // Adapter 추가
         RecyclerView registrationRecyclerView = root.findViewById(R.id.cafeRegistrationImageRecyclerView);
