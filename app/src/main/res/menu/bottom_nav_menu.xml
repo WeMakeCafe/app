@@ -9,7 +9,7 @@
     <item
         android:id="@+id/navigation_list_cafelist"
         android:icon="@drawable/list"
-        android:title="@string/title_list" />
+        android:title="@string/cafe_list" />
     <item
         android:id="@+id/navigation_review"
         android:icon="@drawable/review"

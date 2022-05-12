@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/viewPager_ratingSeat_layout"
     android:layout_width="370dp"
-    android:layout_height="127dp"
+    android:layout_height="130dp"
     android:layout_gravity="center_horizontal">
 
     <TextView
@@ -23,113 +23,114 @@
         android:id="@+id/viewPager_seat_image"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginStart="-5dp"
         android:src="@drawable/sit_score"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/viewPager_seat_textView"
         app:layout_constraintTop_toBottomOf="@+id/viewPager_seat_textView" />
 
     <TextView
         android:id="@+id/viewPager_twoseat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="15dp"
         android:text="2인좌석"
         android:textColor="@color/black"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/viewPager_rating_twoseat"
+        app:layout_constraintEnd_toStartOf="@+id/viewPager_rating_twoseat"
         app:layout_constraintStart_toEndOf="@+id/viewPager_seat_image"
-        app:layout_constraintTop_toBottomOf="@+id/viewPager_seat_textView" />
+        app:layout_constraintTop_toTopOf="@+id/viewPager_rating_twoseat" />
 
     <RatingBar
         android:id="@+id/viewPager_rating_twoseat"
         style="@style/Widget.AppCompat.RatingBar.Small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="17dp"
+        android:layout_marginStart="140dp"
         android:isIndicator="true"
         android:numStars="5"
         android:progressDrawable="@drawable/rating_custom"
         android:stepSize="1"
-        app:layout_constraintStart_toEndOf="@+id/viewPager_twoseat"
-        app:layout_constraintTop_toBottomOf="@+id/viewPager_seat_textView" />
+        app:layout_constraintBottom_toBottomOf="@+id/viewPager_seat_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/viewPager_seat_image"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/viewPager_fourseat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="16dp"
         android:text="4인좌석"
         android:textColor="@color/black"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/viewPager_rating_fourseat"
+        app:layout_constraintEnd_toStartOf="@+id/viewPager_rating_fourseat"
         app:layout_constraintStart_toEndOf="@+id/viewPager_seat_image"
-        app:layout_constraintTop_toBottomOf="@+id/viewPager_twoseat" />
+        app:layout_constraintTop_toTopOf="@+id/viewPager_rating_fourseat" />
 
     <RatingBar
         android:id="@+id/viewPager_rating_fourseat"
         style="@style/Widget.AppCompat.RatingBar.Small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="19dp"
         android:isIndicator="true"
         android:numStars="5"
         android:progressDrawable="@drawable/rating_custom"
         android:stepSize="1"
-        app:layout_constraintStart_toEndOf="@+id/viewPager_fourseat"
-        app:layout_constraintTop_toBottomOf="@+id/viewPager_rating_twoseat" />
+        app:layout_constraintBottom_toBottomOf="@+id/viewPager_seat_image"
+        app:layout_constraintStart_toStartOf="@+id/viewPager_rating_twoseat"
+        app:layout_constraintTop_toTopOf="@+id/viewPager_seat_image"
+        app:layout_constraintVertical_bias="0.7" />
 
     <TextView
         android:id="@+id/viewPager_manyseat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="15dp"
         android:text="다인좌석"
         android:textColor="@color/black"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/viewPager_rating_manyseat"
+        app:layout_constraintEnd_toStartOf="@+id/viewPager_rating_manyseat"
         app:layout_constraintStart_toEndOf="@+id/viewPager_rating_twoseat"
-        app:layout_constraintTop_toBottomOf="@+id/viewPager_seat_textView" />
+        app:layout_constraintTop_toTopOf="@+id/viewPager_rating_manyseat" />
 
     <RatingBar
         android:id="@+id/viewPager_rating_manyseat"
         style="@style/Widget.AppCompat.RatingBar.Small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="17dp"
+        android:layout_marginEnd="10dp"
         android:isIndicator="true"
         android:numStars="5"
         android:progressDrawable="@drawable/rating_custom"
         android:stepSize="1"
-        app:layout_constraintStart_toEndOf="@+id/viewPager_manyseat"
-        app:layout_constraintTop_toBottomOf="@+id/viewPager_seat_textView" />
+        app:layout_constraintBottom_toBottomOf="@+id/viewPager_rating_twoseat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/viewPager_rating_twoseat" />
 
     <TextView
         android:id="@+id/viewPager_toilet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:text="화장실"
         android:textColor="@color/black"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/viewPager_rating_toilet"
+        app:layout_constraintEnd_toStartOf="@+id/viewPager_rating_toilet"
         app:layout_constraintStart_toEndOf="@+id/viewPager_rating_fourseat"
-        app:layout_constraintTop_toBottomOf="@+id/viewPager_manyseat" />
+        app:layout_constraintTop_toTopOf="@+id/viewPager_rating_toilet" />
 
     <RatingBar
         android:id="@+id/viewPager_rating_toilet"
         style="@style/Widget.AppCompat.RatingBar.Small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="13dp"
-        android:layout_marginTop="19dp"
         android:isIndicator="true"
         android:numStars="5"
         android:progressDrawable="@drawable/rating_custom"
         android:stepSize="1"
-        app:layout_constraintStart_toEndOf="@+id/viewPager_toilet"
-        app:layout_constraintTop_toBottomOf="@+id/viewPager_rating_manyseat" />
+        app:layout_constraintBottom_toBottomOf="@+id/viewPager_rating_fourseat"
+        app:layout_constraintEnd_toEndOf="@+id/viewPager_rating_manyseat"
+        app:layout_constraintStart_toStartOf="@+id/viewPager_rating_manyseat"
+        app:layout_constraintTop_toTopOf="@+id/viewPager_rating_fourseat" />
 </androidx.constraintlayout.widget.ConstraintLayout>

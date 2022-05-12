@@ -301,8 +301,10 @@ public class CafeRegistrationFragment extends Fragment {
                                 Log.e(TAG, "File select error", e);
                             }
                         }
-                        else
+                        else {
+                            Toast.makeText(getContext().getApplicationContext(), "사진은 5장까지 선택 가능합니다.", Toast.LENGTH_LONG).show();
                             break;
+                        }
                     }
 
                     registrationAdapter = new CafeRegistrationAdapter(uriList, getContext().getApplicationContext());

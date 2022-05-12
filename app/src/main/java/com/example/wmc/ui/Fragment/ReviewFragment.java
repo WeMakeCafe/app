@@ -45,7 +45,7 @@ public class ReviewFragment extends Fragment {
 
     private FragmentReviewBinding binding;
     private static NavController navController;
-    Button searchText;
+    Button review_search_input;
     Button addTag_cafe_button;
     Button comment_button;
     Button location_button;
@@ -72,11 +72,11 @@ public class ReviewFragment extends Fragment {
 
         binding = FragmentReviewBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        searchText = root.findViewById(R.id.review_search_input);
-        addTag_cafe_button = root.findViewById(R.id.addTag_cafe_button);
-        comment_button = root.findViewById(R.id.comment_button);
-        location_button = root.findViewById(R.id.location_button);
-        finish_button = root.findViewById(R.id.finish_button);
+        review_search_input = root.findViewById(R.id.review_search_input);           // 검색창 클릭 시
+        addTag_cafe_button = root.findViewById(R.id.addTag_cafe_button);    // 태그의 추가 버튼
+        comment_button = root.findViewById(R.id.comment_button);    // 코멘터리 버튼
+        location_button = root.findViewById(R.id.location_button);  // 위치인증 버튼
+        finish_button = root.findViewById(R.id.finish_button);  // 작성완료 버튼
         tag1 = root.findViewById(R.id.select_tag1);    // 태그 연결
         tag2 = root.findViewById(R.id.select_tag2);
         tag3 = root.findViewById(R.id.select_tag3);
@@ -108,10 +108,10 @@ public class ReviewFragment extends Fragment {
 
 
         // 카페 검색 창 클릭 시,
-        searchText.setOnClickListener(new View.OnClickListener() {
+        review_search_input.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navController.navigate(R.id.review_to_review_search);
+                navController.navigate(R.id.review_to_review_cafelist);
             }
         });
 
@@ -140,13 +140,14 @@ public class ReviewFragment extends Fragment {
             }
         });
 
+
         // 카페 디테일에서 리뷰 작성 플로팅 버튼 클릭 시, 카페 이름 가져옴
         Bundle cafeNameBundle = getArguments();
         if(cafeNameBundle != null) {
             if(cafeNameBundle.getString("cafeName") != null ){
-                searchText.setText(cafeNameBundle.getString("cafeName"));
-                searchText.setTypeface(Typeface.DEFAULT_BOLD);  // 카페이름 Bold처리
-                searchText.setGravity(Gravity.CENTER);          // 카페 위치 Center로 변경
+                review_search_input.setText(cafeNameBundle.getString("cafeName"));
+                review_search_input.setTypeface(Typeface.DEFAULT_BOLD);  // 카페이름 Bold처리
+                review_search_input.setGravity(Gravity.CENTER);          // 카페 위치 Center로 변경
             }
         }
 
