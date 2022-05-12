@@ -1,11 +1,15 @@
 package com.example.wmc.database;
 
+import java.time.LocalDateTime;
+
 public class Review {
     private Long reviewNum;
-    private byte[] reviewImage;
+    private Long cafeNum;
     private Long categoryNum;
+    private byte[] reviewImage;
     private Integer likeCount;
     private String reviewText;
+    private LocalDateTime createTime;
     private Long keyword1;
     private Long keyword2;
     private Long keyword3;
@@ -44,18 +48,20 @@ public class Review {
     private Long keyword36;
     private Long memNum;
 
-    public Review (Long reviewNum, byte[] reviewImage, Long categoryNum, Integer likeCount, String reviewText, Long keyword1,
-                   Long keyword2,Long keyword3,Long keyword4,Long keyword5,Long keyword6,Long keyword7,Long keyword8, Long keyword9,
+    public Review (Long reviewNum, Long cafeNum, byte[] reviewImage, Long categoryNum, Integer likeCount, String reviewText, LocalDateTime createTime,
+                   Long keyword1, Long keyword2,Long keyword3,Long keyword4,Long keyword5,Long keyword6,Long keyword7,Long keyword8, Long keyword9,
                    Long keyword10,Long keyword11, Long keyword12,Long keyword13,Long keyword14,Long keyword15,Long keyword16, Long keyword17,
                    Long keyword18, Long keyword19,Long keyword20,Long keyword21, Long keyword22,Long keyword23,Long keyword24, Long keyword25,
                    Long keyword26,Long keyword27,Long keyword28, Long keyword29,Long keyword30,Long keyword31, Long keyword32, Long keyword33,
                    Long keyword34,Long keyword35,Long keyword36, Long memNum) {
 
         this.reviewNum = reviewNum;
+        this.cafeNum = cafeNum;
         this.reviewImage = reviewImage;
         this.categoryNum = categoryNum;
         this.likeCount = likeCount;
         this.reviewText = reviewText;
+        this.createTime = createTime;
         this.keyword1 = keyword1;
         this.keyword2 = keyword2;
         this.keyword3 = keyword3;
@@ -96,10 +102,12 @@ public class Review {
     }
 
     public Long getReviewNum() {return reviewNum;}
+    public Long getCafeNum() {return cafeNum;}
     public byte[] getReviewImage() {return reviewImage;}
     public Long getCategoryNum() {return categoryNum;}
     public Integer getLikeCount() {return likeCount;}
     public String getReviewText() {return reviewText;}
+    public LocalDateTime getCreateTime() { return createTime; }
     public Long getKeyword1() {return keyword1;}
     public Long getKeyword2() {return keyword2;}
     public Long getKeyword3() {return keyword3;}

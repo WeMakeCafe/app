@@ -9,7 +9,7 @@ public class Cafe {
     private Integer openTime;
     private Integer closeTime;
     private byte[] cafeImage;
-    private Long reviewNum;
+    //private Long reviewNum;
     private Long keyword1;
     private Long keyword2;
     private Long keyword3;
@@ -49,7 +49,7 @@ public class Cafe {
     private Long bookmarkNum;
     private Long scoreNum;
 
-    public Cafe(Long cafeNum, String cafeName, String cafeAddress, Integer openTime, Integer closeTime, byte[] cafeImage, Long reviewNum,
+    public Cafe(Long cafeNum, String cafeName, String cafeAddress, Integer openTime, Integer closeTime, byte[] cafeImage,
                 Long keyword1, Long keyword2,Long keyword3,Long keyword4,Long keyword5,Long keyword6,Long keyword7,Long keyword8,
                 Long keyword9,Long keyword10,Long keyword11, Long keyword12,Long keyword13,Long keyword14,Long keyword15,Long keyword16,
                 Long keyword17,Long keyword18, Long keyword19,Long keyword20,Long keyword21, Long keyword22,Long keyword23,Long keyword24,
@@ -62,7 +62,7 @@ public class Cafe {
         this.openTime = openTime;
         this.closeTime = closeTime;
         this.cafeImage = cafeImage;
-        this.reviewNum = reviewNum;
+        //this.reviewNum = reviewNum;
         this.keyword1 = keyword1;
         this.keyword2 = keyword2;
         this.keyword3 = keyword3;
@@ -111,7 +111,7 @@ public class Cafe {
     public Integer getOpenTime() {return openTime;}
     public Integer getCloseTime() {return closeTime;}
     public byte[] getCafeImage() {return cafeImage;}
-    public Long getReviewNum() {return reviewNum;}
+    //public Long getReviewNum() {return reviewNum;}
     public Long getKeyword1() {return keyword1;}
     public Long getKeyword2() {return keyword2;}
     public Long getKeyword3() {return keyword3;}

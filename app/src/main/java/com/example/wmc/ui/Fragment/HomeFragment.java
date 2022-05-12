@@ -145,9 +145,7 @@ public class HomeFragment extends Fragment {
                                     if (b.getMemNum().equals(mem_num)) { // bookmark_list에서 사용자의 mem_num과 일치하는 튜플 찾기
                                         for(Cafe c : cafe_list){
                                             if(c.getCafeNum().equals(b.getCafeNum())){ // cafe_list에서 사용자가 bookmark한 카페 찾기
-                                                // 찜한 카페 recycler view에 추가하기기
-                                                Log.e("cafe_connection", c.getCafeName()); // cafe_list를 성공적으로 받는지 확인용
-
+                                                // 찜한 카페 recycler view에 추가하기
                                                 homeFavoriteItems.add(new HomeFavoriteItem(c.getCafeName(), "#가성비", "#마카롱" ,R.drawable.logo_v2));
                                             }
                                         }
