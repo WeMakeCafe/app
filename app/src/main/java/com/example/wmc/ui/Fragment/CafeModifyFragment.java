@@ -24,6 +24,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Cache;
 import com.android.volley.Network;
 import com.android.volley.Request;
@@ -141,6 +142,7 @@ public class CafeModifyFragment extends Fragment {
 
                         for(Cafe c : cafe_list) {
                             if(c.getCafeName().equals(cafe_name)) {  //bundle에서 가져온 카페아이디값 cafe_name에 넣어서 비교 연산
+
                                 Map map = new HashMap();
                                 map.put("cafeName", cafe_name_input.getText().toString());
                                 map.put("cafeAddress", cafe_address_input.getText().toString());
@@ -189,8 +191,8 @@ public class CafeModifyFragment extends Fragment {
                                 if(!((c.getOpenTime() == Integer.parseInt(cafe_openHours_input.getText().toString())) &&
                                         (c.getCloseTime() == Integer.parseInt(cafe_closeHours_input.getText().toString())))) {
                                     JSONObject jsonObject = new JSONObject(map);
+
                                     String url2 = "http://54.221.33.199:8080/cafe/" + c.getCafeNum().toString(); // 해당 카페에만 데이터 삽입하기 위함
-                                    Log.d("jsontest", jsonObject.toString());
 
                                     JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.PUT, url2, jsonObject,
                                             new Response.Listener<JSONObject>() {
@@ -211,6 +213,7 @@ public class CafeModifyFragment extends Fragment {
                                         }
                                     };
                                     RequestQueue queue = Volley.newRequestQueue(requireContext());
+
                                     queue.add(objectRequest);
                                     navController.navigate(R.id.cafe_modify_to_cafe_detail);
                                 }
