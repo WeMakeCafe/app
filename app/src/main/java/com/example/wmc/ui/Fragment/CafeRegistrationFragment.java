@@ -137,7 +137,6 @@ public class CafeRegistrationFragment extends Fragment {
                 });
 
 
-
             }
         }, new Response.ErrorListener() {
             @Override
