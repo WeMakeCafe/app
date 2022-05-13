@@ -225,8 +225,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/first_recyclerView"
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/first_viewPager"
                     android:layout_width="364dp"
                     android:layout_height="176dp"
                     android:layout_gravity="center_horizontal"
@@ -237,7 +237,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/first_nextButton"
                     app:layout_constraintStart_toEndOf="@+id/first_previousButton"
-                    app:layout_constraintTop_toBottomOf="@+id/first_hashtag_textView" />
+                    app:layout_constraintTop_toBottomOf="@+id/first_hashtag_textView"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -296,8 +296,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/second_recyclerView"
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/second_viewPager"
                     android:layout_width="364dp"
                     android:layout_height="176dp"
                     android:layout_gravity="center_horizontal"
@@ -308,7 +308,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/second_nextButton"
                     app:layout_constraintStart_toEndOf="@+id/second_previousButton"
-                    app:layout_constraintTop_toBottomOf="@+id/second_hashtag_textView" />
+                    app:layout_constraintTop_toBottomOf="@+id/second_hashtag_textView"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
