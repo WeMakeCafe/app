@@ -37,6 +37,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:gravity="center"
+                android:singleLine="true"
                 android:text="카페 이름"
                 android:textColor="@color/black"
                 android:textSize="12sp"
@@ -52,9 +53,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:singleLine="true"
                     android:text="#태그1"
-                    android:textColor="@color/black"
+                    android:textColor="@color/brown"
                     android:textSize="11sp"
                     android:textStyle="bold" />
 
@@ -63,9 +65,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:singleLine="true"
                     android:text="#태그2"
-                    android:textColor="@color/black"
+                    android:textColor="@color/brown"
                     android:textSize="11sp"
                     android:textStyle="bold" />
             </LinearLayout>
