@@ -42,17 +42,24 @@ public class CafeDetailMoreFragment extends Fragment {
         ArrayList<CafeDetailMoreItem> cafeDetailMoreReviewItem = new ArrayList<>();
 
         // 아이템 추가 시, 앞에 index 0을 붙이면 최근에 쓴 아이템 부터 보이기 시작함.
-        cafeDetailMoreReviewItem.add(0, new CafeDetailMoreItem("지코", "Lv.3", "테이블이 매우 협소합니다.",
+        cafeDetailMoreReviewItem.add(0, new CafeDetailMoreItem("지코", "Lv.3",
+                "테이블이 매우 협소합니다.",
                 R.drawable.logo, R.drawable.logo, R.drawable.logo_v2, R.drawable.review_click, "4"));
-        cafeDetailMoreReviewItem.add(0, new CafeDetailMoreItem("아이유", "Lv.1(위치인증완료)", "징짜 맛있음\n징짜 맛있음\n징짜 맛있음",
+        cafeDetailMoreReviewItem.add(0, new CafeDetailMoreItem("아이유", "Lv.1(위치인증완료)",
+                "징짜 맛있음\n징짜 맛있음\n징짜 맛있음",
                 R.drawable.logo, R.drawable.logo, R.drawable.logo_v2, R.drawable.review_click, "1"));
-        cafeDetailMoreReviewItem.add(0, new CafeDetailMoreItem("애쉬", "Lv.3", "테이블이 매우 협소합니다. \n" +
+        cafeDetailMoreReviewItem.add(0, new CafeDetailMoreItem("애쉬", "Lv.3",
+                "테이블이 매우 협소합니다. \n" +
                 "하지만, 가격이 매우 저렴하고 맛있습니다!\n" +
                 "마카롱이 진짜 최고에요ㅠ",
                 R.drawable.logo, R.drawable.logo, R.drawable.logo_v2, R.drawable.review_click, "7"));
-        cafeDetailMoreReviewItem.add(0, new CafeDetailMoreItem("스키니", "Lv.3", "테이블이 매우 협소합니다. \n" +
+        cafeDetailMoreReviewItem.add(0, new CafeDetailMoreItem("스키니", "Lv.3",
+                "테이블이 매우 협소합니다. \n" +
                 "하지만, 가격이 매우 저렴하고 맛있습니다!\n" +
-                "마카롱이 진짜 최고에요ㅠ",
+                "마카롱이 진짜 최고에요ㅠ \n" +
+                "마카롱이 진짜 최고에요ㅠ \n" +
+                "마카롱이 진짜 최고에요ㅠ \n" +
+                "여러줄이 되면 어떻게 되나",
                 R.drawable.logo, R.drawable.logo, R.drawable.logo_v2, R.drawable.review_click, "3"));
 
         // Recycler view
