@@ -296,7 +296,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <androidx.viewpager.widget.ViewPager
+                <com.example.wmc.HomeTag2ViewPager.HomeTag2ViewPager
                     android:id="@+id/second_viewPager"
                     android:layout_width="364dp"
                     android:layout_height="176dp"
