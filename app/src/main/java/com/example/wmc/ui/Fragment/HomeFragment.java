@@ -77,12 +77,12 @@ public class HomeFragment extends Fragment {
         // Home 에서 찜한 카페에 대한 리사이클러뷰 작성
         ArrayList<HomeFavoriteItem> homeFavoriteItems = new ArrayList<>();
 
+        homeFavoriteItems.add(new HomeFavoriteItem("커피맛을 알면 커피맛이 보인다 그것이 문제로다 수원대점", "#다채로운", "#감성", R.drawable.review));
         homeFavoriteItems.add(new HomeFavoriteItem("이디야커피 수원대점", "#가성비", "#마카롱", R.drawable.logo_v2));
         homeFavoriteItems.add(new HomeFavoriteItem("할리스커피 수원대점", "#버블티", "#스터디", R.drawable.logo));
         homeFavoriteItems.add(new HomeFavoriteItem("메가커피 탑동점", "#맛집", "#분위기", R.drawable.home));
         homeFavoriteItems.add(new HomeFavoriteItem("스타벅스 홍대점", "#스터디", "#조용함", R.drawable.logo_v2));
         homeFavoriteItems.add(new HomeFavoriteItem("백다방 성균관대점", "#회의실", "#다인석", R.drawable.logo));
-        homeFavoriteItems.add(new HomeFavoriteItem("잇츠커피 수원대점", "#다채로운", "#감성", R.drawable.review));
 
         // Recycler view
         RecyclerView homeFavoriteRecyclerView = root.findViewById(R.id.favorite_recyclerView);
@@ -211,9 +211,9 @@ public class HomeFragment extends Fragment {
         tag2_List = new ArrayList<>();
 
 
-        HomeTag2ViewPagerItem secondTag_item1 = new HomeTag2ViewPagerItem("할리스커피 수원대점", "경기도 화성시 와우리 41-17", "#다인석", "#회의실", "#힙한",
+        HomeTag2ViewPagerItem secondTag_item1 = new HomeTag2ViewPagerItem("커피맛을 알면 커피맛이 보인다 그것이 문제로다 수원대점", "경기도 화성시 와우리 41-17", "#다인석", "#회의실", "#힙한",
                 "테이블이 협소해서 공부하기는 어렵지만\n" + "노래도 나오고 친구들이랑 같이 이야기하기에는좋아요.", R.drawable.logo, 2);
-        HomeTag2ViewPagerItem secondTag_item2 = new HomeTag2ViewPagerItem("메가커피 성균관대점", "경기도 수원시 탑동 801-4", "#맛집", "#스터디", "#조용한",
+        HomeTag2ViewPagerItem secondTag_item2 = new HomeTag2ViewPagerItem("할리스커피 수원대점", "경기도 수원시 탑동 801-4", "#맛집", "#스터디", "#조용한",
                 "징짜 맛있음\n징짜 맛있음\n징짜 맛있음", R.drawable.logo_v2, 5);
         HomeTag2ViewPagerItem secondTag_item3 = new HomeTag2ViewPagerItem("이디야커피 수원대점", "경기도 화성시 와우리 46", "#가성비", "#마카롱", "#디저트",
                 "테이블이 매우 협소합니다. \n" + "하지만, 가격이 매우 저렴하고 맛있습니다!\n" + "마카롱이 진짜 최고에요ㅠ", R.drawable.logo, 3);
