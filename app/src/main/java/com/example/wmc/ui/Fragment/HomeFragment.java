@@ -1,6 +1,7 @@
 package com.example.wmc.ui.Fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,7 @@ import com.example.wmc.HomeFavorite.HomeFavoriteAdapter;
 import com.example.wmc.HomeFavorite.HomeFavoriteItem;
 import com.example.wmc.HomeTag1.HomeTag1Adapter;
 import com.example.wmc.HomeTag1.HomeTag1Item;
+import com.example.wmc.HomeTag1ViewPager.HomeTag1ViewPager;
 import com.example.wmc.HomeTag1ViewPager.HomeTag1ViewPagerAdapter;
 import com.example.wmc.HomeTag1ViewPager.HomeTag1ViewPagerItem;
 import com.example.wmc.HomeTag2.HomeTag2Adapter;
@@ -41,7 +43,7 @@ public class HomeFragment extends Fragment {
     private static NavController navController;
 
     TextView favoirte_default_textView;
-    ViewPager first_viewPager;
+    HomeTag1ViewPager first_viewPager;
     ViewPager second_viewPager;
     Button first_previousButton;
     Button first_nextButton;
@@ -126,6 +128,19 @@ public class HomeFragment extends Fragment {
 
         first_viewPager.setAdapter(new HomeTag1ViewPagerAdapter(getContext().getApplicationContext(), tag1_List));
         tag1Adapter = new HomeTag1ViewPagerAdapter(getContext().getApplicationContext(), tag1_List);
+
+
+        first_viewPager.setOnItemClickListener(new HomeTag1ViewPager.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                final HomeTag1ViewPagerItem item = tag1_List.get(position);
+                Toast.makeText(getContext().getApplicationContext(), item.getCafeName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
+
+                Bundle bundle = new Bundle();
+                bundle.putString("cafeName", item.getCafeName());
+                navController.navigate(R.id.home_to_cafe_detail, bundle);
+            }
+        });
 
         // 첫번째 태그 카페목록의 좌측 버튼 클릭 시, 카페 목록 넘어감
         first_previousButton.setOnClickListener(new View.OnClickListener() {

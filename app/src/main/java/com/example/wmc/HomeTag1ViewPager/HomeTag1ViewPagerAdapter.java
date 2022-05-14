@@ -68,13 +68,6 @@ public class HomeTag1ViewPagerAdapter extends PagerAdapter {
 
         container.addView(view);
 
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                Toast.makeText(view.getContext().getApplicationContext(), tag1_List.get(position).getCafeName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
-            }
-        });
-
         return view;
     }
 
