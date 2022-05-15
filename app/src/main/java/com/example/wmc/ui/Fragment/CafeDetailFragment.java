@@ -205,10 +205,12 @@ public class CafeDetailFragment extends Fragment {
                                 for(Review r : review_list){
                                     if(r.getCafeNum().equals(get_cafe_num)) {
                                         for (Personal p : personal_list) {
-                                            if (r.getMemNum().equals(mem_num) && p.getMemNum().equals(mem_num)) { // 1. 어플 사용자가 해당 카페에 대한 리뷰를 작성한 경우, 리사이클러뷰 가장 처음에 나오도록 설정
+                                            // 1. 어플 사용자가 해당 카페에 대한 리뷰를 작성한 경우, 리사이클러뷰 가장 처음에 나오도록 설정
+                                            if (r.getMemNum().equals(mem_num) && p.getMemNum().equals(mem_num)) {
                                                 cafeDetailReviewItem.add(0, new CafeDetailItem(p.getNickName(), p.getGrade().toString(),
                                                         r.getReviewText(), R.drawable.logo, R.drawable.logo_v2, r.getLikeCount().toString()));
-                                            } else if (r.getMemNum().equals(p.getMemNum())) { // 2. 리뷰 작성자들의 닉네임, 회원 등급을 포함한 리뷰 Item 작성
+                                            } // 2. 리뷰 작성자들의 닉네임, 회원 등급을 포함한 리뷰 Item 작성
+                                            else if (r.getMemNum().equals(p.getMemNum())) {
                                                 cafeDetailReviewItem.add(new CafeDetailItem(p.getNickName(), p.getGrade().toString(),
                                                         r.getReviewText(), R.drawable.logo, R.drawable.logo_v2, r.getLikeCount().toString()));
                                             }
@@ -225,6 +227,15 @@ public class CafeDetailFragment extends Fragment {
                                 // Layout manager 추가
                                 LinearLayoutManager layoutManager = new LinearLayoutManager(getContext().getApplicationContext(), LinearLayoutManager.VERTICAL, false);
                                 recyclerView.setLayoutManager(layoutManager);
+
+//                                cafeDetailReviewItem.add(new CafeDetailItem("지코", "Lv.3",
+//                                        "테이블이 매우 협소합니다. \n" +
+//                                                "하지만, 가격이 매우 저렴하고 맛있습니다!\n" +
+//                                                "마카롱이 진짜 최고에요ㅠ", R.drawable.logo, R.drawable.logo_v2, "5"));
+//                                cafeDetailReviewItem.add(new CafeDetailItem("애쉬", "Lv.1(위치 인증 완료)",
+//                                        "테이블이 협소해서 공부하기는 어렵지만\n" +
+//                                                "노래도 나오고 친구들이랑 같이 이야기하기에는\n" +
+//                                                "좋아요.", R.drawable.logo, R.drawable.logo_v2, "1"));
 
                                 adapter.setOnItemClickListener_cafeDetail(new CafeDetailAdapter.OnItemClickEventListener_cafeDetail() {
                                     @Override
@@ -361,22 +372,6 @@ public class CafeDetailFragment extends Fragment {
                 navController.navigate(R.id.cafe_detail_to_review, bundle);
             }
         });
-
-
-        // 카페디테일의 리뷰 리싸이클러뷰
-
-
-//        cafeDetailReviewItem.add(new CafeDetailItem("지코", "Lv.3",
-//                "테이블이 매우 협소합니다. \n" +
-//                        "하지만, 가격이 매우 저렴하고 맛있습니다!\n" +
-//                        "마카롱이 진짜 최고에요ㅠ", R.drawable.logo, R.drawable.logo_v2, "5"));
-//        cafeDetailReviewItem.add(new CafeDetailItem("애쉬", "Lv.1(위치 인증 완료)",
-//                "테이블이 협소해서 공부하기는 어렵지만\n" +
-//                        "노래도 나오고 친구들이랑 같이 이야기하기에는\n" +
-//                        "좋아요.", R.drawable.logo, R.drawable.logo_v2, "1"));
-
-
-
 
         // 카페디테일에 해당하는 카페이미지 보여주기
         cafeImageViewPager = root.findViewById(R.id.cafeImageViewPager);
