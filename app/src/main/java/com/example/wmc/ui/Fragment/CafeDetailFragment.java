@@ -32,7 +32,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.BasicNetwork;
 import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HurlStack;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.wmc.CafeDetail.CafeDetailAdapter;
 import com.example.wmc.CafeDetail.CafeDetailItem;
 import com.example.wmc.CafeDetailImageViewPager.CafeDetailImageViewPagerAdapter;
@@ -43,7 +45,9 @@ import com.example.wmc.R;
 import com.example.wmc.RatingViewPager.RatingViewPagerSeat;
 import com.example.wmc.RatingViewPager.RatingViewPagerStudy;
 import com.example.wmc.RatingViewPager.RatingViewPagerTaste;
+import com.example.wmc.database.Bookmark;
 import com.example.wmc.database.Cafe;
+import com.example.wmc.database.Category;
 import com.example.wmc.database.Personal;
 import com.example.wmc.database.Review;
 import com.example.wmc.databinding.FragmentCafeDetailBinding;
@@ -52,9 +56,13 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONObject;
+
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CafeDetailFragment extends Fragment {
 
@@ -79,11 +87,47 @@ public class CafeDetailFragment extends Fragment {
     ArrayList<Cafe> cafe_list;
     ArrayList<Review> review_list;
     ArrayList<Personal> personal_list;
+    ArrayList<Category> category_list;
+    ArrayList<Bookmark> bookmark_list;
 
     Long mem_num = MainActivity.mem_num;
 
     String cafe_name; // Bundle을 통해 받아온 cafe_name을 임시로 저장함
     Long get_cafe_num; // cafe_num을 임시로 저장함.
+    Long get_bookmark_num;
+
+    int get_seat_point1_total = 0;
+    int get_seat_point2_total = 0;
+    int get_seat_point3_total = 0;
+    int get_seat_point4_total = 0;
+
+    int get_study_point1_total = 0;
+    int get_study_point2_total = 0;
+    int get_study_point3_total = 0;
+    int get_study_point4_total = 0;
+
+    int get_taste_point1_total = 0;
+    int get_taste_point2_total = 0;
+    int get_taste_point3_total = 0;
+    int get_taste_point4_total = 0;
+
+    int get_seat_point1_avg = 0;
+    int get_seat_point2_avg = 0;
+    int get_seat_point3_avg = 0;
+    int get_seat_point4_avg = 0;
+
+    int get_study_point1_avg = 0;
+    int get_study_point2_avg = 0;
+    int get_study_point3_avg = 0;
+    int get_study_point4_avg = 0;
+
+    int get_taste_point1_avg = 0;
+    int get_taste_point2_avg = 0;
+    int get_taste_point3_avg = 0;
+    int get_taste_point4_avg = 0;
+
+    int category_counter = 0;
+
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -138,6 +182,7 @@ public class CafeDetailFragment extends Fragment {
 
                 cafe_list = gson.fromJson(changeString, listType);
 
+
                 ///////////////////////////////////////////////////////////////////////////////////////////
                 // cafeDetail 정보 세팅
                 for(Cafe c : cafe_list){
@@ -151,6 +196,107 @@ public class CafeDetailFragment extends Fragment {
                         moreReview8.setText(c.getCloseTime().toString());
                     }
                 }
+
+
+                ///////////////////////////////////////////////////////////////////////////////////////////////////
+                // 카페 북마크 여부 확인 및 등록, 삭제
+                String get_bookmark_url = "http://54.221.33.199:8080/bookmark";
+
+                // 카페 북마크 여부 확인
+                StringRequest bookmark_stringRequest = new StringRequest(Request.Method.GET, get_bookmark_url, new Response.Listener<String>() {
+                    @RequiresApi(api = Build.VERSION_CODES.O)
+                    @Override
+                    public void onResponse(String response) {
+                        // 한글깨짐 해결 코드
+                        String changeString = new String();
+                        try {
+                            changeString = new String(response.getBytes("8859_1"),"utf-8");
+                        } catch (UnsupportedEncodingException e) {
+                            e.printStackTrace();
+                        }
+                        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                        Type listType = new TypeToken<ArrayList<Bookmark>>(){}.getType();
+
+                        bookmark_list = gson.fromJson(changeString, listType);
+
+                        for(Bookmark b : bookmark_list){
+                            // "북마크의 mem_num과 사용자의 mem_num이 일치 && 북마크의 cafe_num과 cafeDetail의 cafe_num이 일치"할 경우
+                            if(b.getMemNum().equals(mem_num) && b.getCafeNum().equals(get_cafe_num)){
+                                get_bookmark_num = b.getBookmarkNum(); // bookmark_num 일시 저장
+                                favorite_checkbox.setChecked(true); // 즐겨찾기 버튼 true 세팅
+                            }
+                        }
+
+                        // 즐겨찾기 버튼(별) 클릭 시,
+                        favorite_checkbox.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                boolean checked = ((CheckBox) view).isChecked();    // 즐겨찾기가 됐는지 확인
+
+                                if(checked) {
+                                    // 즐겨찾기 항목에 추가함
+
+                                    Map map = new HashMap();
+                                    map.put("cafeNum", get_cafe_num);
+                                    map.put("memNum", mem_num);
+
+                                    JSONObject bookmark_jsonObject = new JSONObject(map);
+                                    JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, get_bookmark_url, bookmark_jsonObject,
+                                            new Response.Listener<JSONObject>() {
+                                                @Override
+                                                public void onResponse(JSONObject response) {
+                                                    // 북마크 추가 성공, 토스트 띄우기.
+                                                    Toast.makeText(getContext().getApplicationContext(), "즐겨찾기 추가", Toast.LENGTH_SHORT).show();
+                                                }
+                                            },
+                                            new Response.ErrorListener() {
+                                                @Override
+                                                public void onErrorResponse(VolleyError error) {
+                                                    Log.d("bookmark_jsonObject_error", error.toString());
+                                                }
+                                            }) {
+                                        @Override
+                                        public String getBodyContentType() {
+                                            return "application/json; charset=UTF-8";
+                                        }
+                                    };
+                                    Log.d("json", bookmark_jsonObject.toString());
+                                    RequestQueue queue = Volley.newRequestQueue(requireContext());
+                                    queue.add(objectRequest);
+                                }
+                                else {
+                                    // 즐겨찾기 항목에서 제거됨
+                                    String bookmark_delete_url = "http://54.221.33.199:8080/bookmark/" + get_bookmark_num.toString();
+                                    StringRequest bookmark_delete_stringRequest = new StringRequest(Request.Method.DELETE, bookmark_delete_url, new Response.Listener<String>() {
+                                        @RequiresApi(api = Build.VERSION_CODES.O)
+                                        @Override
+                                        public void onResponse(String response) {
+                                            // 북마크 제거 성공, 토스트 띄우기.
+                                            Toast.makeText(getContext().getApplicationContext(), "즐겨찾기 삭제", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }, new Response.ErrorListener() {
+                                        @Override
+                                        public void onErrorResponse(VolleyError error) {
+                                            Log.e("bookmark_delete_stringRequest_error",error.toString());
+                                        }
+                                    });
+
+
+                                    requestQueue.add(bookmark_delete_stringRequest);
+                                }
+                            }
+                        });
+
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("bookmark_stringRequest_error",error.toString());
+                    }
+                });
+
+
+                requestQueue.add(bookmark_stringRequest);
 
 
                 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -194,56 +340,152 @@ public class CafeDetailFragment extends Fragment {
 
                                 personal_list = gson.fromJson(changeString, listType);
 
-                                //review 리사이클러뷰
-                                ArrayList<CafeDetailItem> cafeDetailReviewItem = new ArrayList<>();
+
+                                String category_url = "http://54.221.33.199:8080/category";
+
+                                StringRequest category_stringRequest = new StringRequest(Request.Method.GET, category_url, new Response.Listener<String>() {
+                                    @RequiresApi(api = Build.VERSION_CODES.O)
+                                    @Override
+                                    public void onResponse(String response) {
+                                        // 한글깨짐 해결 코드
+                                        String changeString = new String();
+                                        try {
+                                            changeString = new String(response.getBytes("8859_1"),"utf-8");
+                                        } catch (UnsupportedEncodingException e) {
+                                            e.printStackTrace();
+                                        }
+                                        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                                        Type listType = new TypeToken<ArrayList<Category>>(){}.getType();
+
+                                        category_list = gson.fromJson(changeString, listType);
 
 
-                                ///////////////////////////////////////////////////////////////////////////////////////////
-                                // 리뷰 작성자를 비교해서
-                                // 1. 어플 사용자가 해당 카페에 대한 리뷰를 작성한 경우, 리사이클러뷰 가장 처음에 나오도록 설정
-                                // 2. 리뷰 작성자들의 닉네임, 회원 등급을 포함한 리뷰 Item 작성
-                                for(Review r : review_list){
-                                    if(r.getCafeNum().equals(get_cafe_num)) {
-                                        for (Personal p : personal_list) {
-                                            if (r.getMemNum().equals(mem_num) && p.getMemNum().equals(mem_num)) { // 1. 어플 사용자가 해당 카페에 대한 리뷰를 작성한 경우, 리사이클러뷰 가장 처음에 나오도록 설정
-                                                cafeDetailReviewItem.add(0, new CafeDetailItem(p.getNickName(), p.getGrade().toString(),
-                                                        r.getReviewText(), R.drawable.logo, R.drawable.logo_v2, r.getLikeCount().toString()));
-                                            } else if (r.getMemNum().equals(p.getMemNum())) { // 2. 리뷰 작성자들의 닉네임, 회원 등급을 포함한 리뷰 Item 작성
-                                                cafeDetailReviewItem.add(new CafeDetailItem(p.getNickName(), p.getGrade().toString(),
-                                                        r.getReviewText(), R.drawable.logo, R.drawable.logo_v2, r.getLikeCount().toString()));
+                                        //review 리사이클러뷰
+                                        ArrayList<CafeDetailItem> cafeDetailReviewItem = new ArrayList<>();
+
+
+
+                                        for(Review r : review_list){
+                                            if(r.getCafeNum().equals(get_cafe_num)) {
+                                                ///////////////////////////////////////////////////////////////////////////////////
+                                                // category 삭제되면 수정되어야 함.
+                                                // 1. 현재 카페에 대한 리뷰의 review_num과 category의 review_num을 비교한다.
+                                                // 2. 같은 경우 각 point별로 total을 구한다.
+                                                // 3. counter를 설정하여 total / counter를 통해 avg를 구한다.
+                                                /*for(Category c : category_list) {
+                                                    if(r.getReviewNum().equals(c.getReviewNum())){ // category 삭제 되면 수정되어야 함.
+                                                        get_seat_point1_total += c.getSeatPoint1();
+                                                        get_seat_point2_total += c.getSeatPoint2();
+                                                        get_seat_point3_total += c.getSeatPoint3();
+                                                        get_seat_point4_total += c.getSeatPoint4();
+
+                                                        get_study_point1_total += c.getStudyPoint1();
+                                                        get_study_point2_total += c.getStudyPoint2();
+                                                        get_study_point3_total += c.getStudyPoint3();
+                                                        get_study_point4_total += c.getStudyPoint4();
+
+                                                        get_taste_point1_total += c.getTastePoint1();
+                                                        get_taste_point2_total += c.getTastePoint2();
+                                                        get_taste_point3_total += c.getTastePoint3();
+                                                        get_taste_point4_total += c.getTastePoint4();
+
+
+                                                        category_counter++;
+                                                    }
+                                                }
+*/
+                                                ///////////////////////////////////////////////////////////////////////////////////////////
+                                                // 리뷰 작성자를 비교해서
+                                                // 1. 어플 사용자가 해당 카페에 대한 리뷰를 작성한 경우, 리사이클러뷰 가장 처음에 나오도록 설정
+                                                // 2. 리뷰 작성자들의 닉네임, 회원 등급을 포함한 리뷰 Item 작성
+                                                for (Personal p : personal_list) {
+                                                    if (r.getMemNum().equals(mem_num) && p.getMemNum().equals(mem_num)) { // 1. 어플 사용자가 해당 카페에 대한 리뷰를 작성한 경우, 리사이클러뷰 가장 처음에 나오도록 설정
+                                                        cafeDetailReviewItem.add(0, new CafeDetailItem(p.getNickName(), p.getGrade().toString(),
+                                                                r.getReviewText(), R.drawable.logo, R.drawable.logo_v2, r.getLikeCount().toString()));
+                                                    } else if (r.getMemNum().equals(p.getMemNum())) { // 2. 리뷰 작성자들의 닉네임, 회원 등급을 포함한 리뷰 Item 작성
+                                                        cafeDetailReviewItem.add(new CafeDetailItem(p.getNickName(), p.getGrade().toString(),
+                                                                r.getReviewText(), R.drawable.logo, R.drawable.logo_v2, r.getLikeCount().toString()));
+                                                    }
+                                                }
                                             }
                                         }
+                                        // Recycler view
+                                        RecyclerView recyclerView = root.findViewById(R.id.cafeDetailReviewRecyclerView);
+
+                                        // Adapter 추가
+                                        CafeDetailAdapter adapter = new CafeDetailAdapter(cafeDetailReviewItem);
+                                        recyclerView.setAdapter(adapter);
+
+                                        // Layout manager 추가
+                                        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext().getApplicationContext(), LinearLayoutManager.VERTICAL, false);
+                                        recyclerView.setLayoutManager(layoutManager);
+
+                                        adapter.setOnItemClickListener_cafeDetail(new CafeDetailAdapter.OnItemClickEventListener_cafeDetail() {
+                                            @Override
+                                            public void onItemClick(View view, int position) {
+
+                                                if(position == cafeDetailReviewItem.size()){
+                                                    Toast.makeText(getContext().getApplicationContext(), "리뷰 더보기 클릭", Toast.LENGTH_SHORT).show();
+                                                    Bundle bundle = new Bundle();
+                                                    bundle.putString("cafeNum", get_cafe_num.toString());
+                                                    //bundle.putString("name",moreReview3.getText().toString());
+                                                    navController.navigate(R.id.cafe_detail_to_cafe_detail_more, bundle);
+                                                }
+
+                                                else {
+                                                    final CafeDetailItem item = cafeDetailReviewItem.get(position);
+                                                    Toast.makeText(getContext().getApplicationContext(), item.getReviewNickName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                        });
+
+                                        /*
+                                        // 카테고리 별 평균 점수 구하기
+                                        get_seat_point1_avg = get_seat_point1_total / category_counter;
+                                        get_seat_point2_avg = get_seat_point2_total / category_counter;
+                                        get_seat_point3_avg = get_seat_point3_total / category_counter;
+                                        get_seat_point4_avg = get_seat_point4_total / category_counter;
+
+                                        get_study_point1_avg = get_study_point1_total / category_counter;
+                                        get_study_point2_avg = get_study_point2_total / category_counter;
+                                        get_study_point3_avg = get_study_point3_total / category_counter;
+                                        get_study_point4_avg = get_study_point4_total / category_counter;
+
+                                        get_taste_point1_avg = get_taste_point1_total / category_counter;
+                                        get_taste_point2_avg = get_taste_point2_total / category_counter;
+                                        get_taste_point3_avg = get_taste_point3_total / category_counter;
+                                        get_taste_point4_avg = get_taste_point4_total / category_counter;
+                                        */
+
+
+                                        // 카페 별 점수 viewpager
+                                        cafeRatingViewPager = root.findViewById(R.id.ratingViewPager);
+                                        cafeRatingViewPager.setOffscreenPageLimit(3);
+                                        ratingList = new ArrayList<>();
+
+                                        CafeDetailRatingItem taste = new CafeDetailRatingItem("맛", "산미", "쓴맛", "디저트", "기타음료", R.drawable.taste_score, "3", "1", "2", "5");
+                                        CafeDetailRatingItem seat = new CafeDetailRatingItem("좌석", "2인좌석", "4인좌석", "화장실", "다인좌석", R.drawable.sit_score, "1", "5", "1", "3");
+                                        CafeDetailRatingItem study = new CafeDetailRatingItem("스터디", "와이파이", "콘센트", "조명", "조용함", R.drawable.study_score, "3", "5", "5", "5");
+
+                                        ratingList.add(taste);
+                                        ratingList.add(seat);
+                                        ratingList.add(study);
+
+                                        cafeRatingViewPager.setAdapter(new CafeDetailRatingViewPagerAdapter(getContext().getApplicationContext(), ratingList));
+
+
                                     }
-                                }
-                                // Recycler view
-                                RecyclerView recyclerView = root.findViewById(R.id.cafeDetailReviewRecyclerView);
-
-                                // Adapter 추가
-                                CafeDetailAdapter adapter = new CafeDetailAdapter(cafeDetailReviewItem);
-                                recyclerView.setAdapter(adapter);
-
-                                // Layout manager 추가
-                                LinearLayoutManager layoutManager = new LinearLayoutManager(getContext().getApplicationContext(), LinearLayoutManager.VERTICAL, false);
-                                recyclerView.setLayoutManager(layoutManager);
-
-                                adapter.setOnItemClickListener_cafeDetail(new CafeDetailAdapter.OnItemClickEventListener_cafeDetail() {
+                                }, new Response.ErrorListener() {
                                     @Override
-                                    public void onItemClick(View view, int position) {
-
-                                        if(position == cafeDetailReviewItem.size()){
-                                            Toast.makeText(getContext().getApplicationContext(), "리뷰 더보기 클릭", Toast.LENGTH_SHORT).show();
-                                            Bundle bundle = new Bundle();
-                                            bundle.putString("cafeNum", get_cafe_num.toString());
-                                            //bundle.putString("name",moreReview3.getText().toString());
-                                            navController.navigate(R.id.cafe_detail_to_cafe_detail_more, bundle);
-                                        }
-
-                                        else {
-                                            final CafeDetailItem item = cafeDetailReviewItem.get(position);
-                                            Toast.makeText(getContext().getApplicationContext(), item.getReviewNickName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
-                                        }
+                                    public void onErrorResponse(VolleyError error) {
+                                        Log.e("category_stringRequest_error",error.toString());
                                     }
                                 });
+
+
+                                requestQueue.add(category_stringRequest);
+
+
 
                             }
                         }, new Response.ErrorListener() {
@@ -326,25 +568,6 @@ public class CafeDetailFragment extends Fragment {
         });
 
 
-        // 즐겨찾기 버튼(별) 클릭 시,
-        favorite_checkbox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                boolean checked = ((CheckBox) view).isChecked();    // 즐겨찾기가 됐는지 확인
-
-                if(checked) {
-                    // 즐겨찾기 항목에 추가함
-                    Toast.makeText(getContext().getApplicationContext(), "즐겨찾기 추가", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    // 즐겨찾기 항목에서 제거됨
-                    Toast.makeText(getContext().getApplicationContext(), "즐겨찾기 삭제", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-
-
         // 리뷰 플로팅 버튼 클릭 시,
         review_floatingButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -399,19 +622,7 @@ public class CafeDetailFragment extends Fragment {
 
 
         // 카페디테일에 해당하는 카페별점 보여주기
-        cafeRatingViewPager = root.findViewById(R.id.ratingViewPager);
-        cafeRatingViewPager.setOffscreenPageLimit(3);
-        ratingList = new ArrayList<>();
 
-        CafeDetailRatingItem taste = new CafeDetailRatingItem("맛", "산미", "쓴맛", "디저트", "기타음료", R.drawable.taste_score, "3", "1", "2", "5");
-        CafeDetailRatingItem seat = new CafeDetailRatingItem("좌석", "2인좌석", "4인좌석", "화장실", "다인좌석", R.drawable.sit_score, "1", "5", "1", "3");
-        CafeDetailRatingItem study = new CafeDetailRatingItem("스터디", "와이파이", "콘센트", "조명", "조용함", R.drawable.study_score, "3", "5", "5", "5");
-
-        ratingList.add(taste);
-        ratingList.add(seat);
-        ratingList.add(study);
-
-        cafeRatingViewPager.setAdapter(new CafeDetailRatingViewPagerAdapter(getContext().getApplicationContext(), ratingList));
 //        CafeDetailRatingPagerAdapter cafeRatingAdapter = new CafeDetailRatingPagerAdapter(getActivity().getSupportFragmentManager());
 //
 //        RatingViewPagerTaste tasteRating = new RatingViewPagerTaste();
