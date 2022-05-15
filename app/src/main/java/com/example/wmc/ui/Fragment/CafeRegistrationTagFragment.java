@@ -2,6 +2,7 @@ package com.example.wmc.ui.Fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,6 +54,11 @@ public class CafeRegistrationTagFragment extends Fragment {
         Button tag2_delete_button = root.findViewById(R.id.tag2_delete_button); // 아래 태그 버튼 3개의 X버튼
         Button tag3_delete_button = root.findViewById(R.id.tag3_delete_button); // 아래 태그 버튼 3개의 X버튼
         Button addTag_button3 = root.findViewById(R.id.addTag_button3);    // 태그 선택 후, 추가하기 버튼
+
+        String cafe_name = getArguments().getString("name");  //getArguments로 번들 검색해서 받기
+        String cafe_address = getArguments().getString("address");
+        String cafe_opentime = getArguments().getString("opentime");
+        String cafe_closetime = getArguments().getString("closetime");
 
         ////////////////////////////////////////////////////////////////////////////////////
         // 아래 3개 삭제 버튼 클릭 이벤트 작성
@@ -261,6 +267,11 @@ public class CafeRegistrationTagFragment extends Fragment {
                     bundle.putString("key1",addTag1.getText().toString()); // 번들에 String 데이터를 전달. key1 을 키로 사용
                     bundle.putString("key2",addTag2.getText().toString());
                     bundle.putString("key3",addTag3.getText().toString());
+                    bundle.putString("name", cafe_name);
+                    bundle.putString("address", cafe_address);
+                    bundle.putString("opentime", cafe_opentime);
+                    bundle.putString("closetime", cafe_closetime);
+                    Log.d("test2",cafe_closetime);
                     navController.navigate(R.id.cafe_registration_tag_to_cafe_registration, bundle);
                 }
             }

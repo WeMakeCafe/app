@@ -75,7 +75,7 @@ public class CafeModifyFragment extends Fragment {
     TextView cafe_address_input;
     TextView cafe_openHours_input;
     TextView cafe_closeHours_input;
-
+    Long cafe_num;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -130,7 +130,7 @@ public class CafeModifyFragment extends Fragment {
                         cafe_address_input.setText(c.getCafeAddress());
                         cafe_openHours_input.setText(c.getOpenTime().toString());
                         cafe_closeHours_input.setText(c.getCloseTime().toString());
-
+                        cafe_num = c.getCafeNum();
                         //이미지 등록 코드
                     }
                 }
@@ -141,7 +141,7 @@ public class CafeModifyFragment extends Fragment {
                     public void onClick(View v) {
 
                         for(Cafe c : cafe_list) {
-                            if(c.getCafeName().equals(cafe_name)) {  //bundle에서 가져온 카페아이디값 cafe_name에 넣어서 비교 연산
+                            if(c.getCafeNum().equals(cafe_num)) {  //bundle에서 가져온 카페아이디값 cafe_name에 넣어서 비교 연산
 
                                 Map map = new HashMap();
                                 map.put("cafeName", cafe_name_input.getText().toString());
