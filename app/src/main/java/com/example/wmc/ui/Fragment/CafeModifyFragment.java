@@ -65,6 +65,7 @@ public class CafeModifyFragment extends Fragment {
     Button modify_button;
     TextView request_deletion_textView;
     RecyclerView cafeModifyImageRecyclerView;
+
     ArrayList<Uri> uriList = new ArrayList<>();     // 이미지의 uri를 담을 ArrayList 객체
     CafeModifyAdapter cafeModifyAdapter;
     private static final int REQUEST_CODE = 2222;
@@ -283,11 +284,80 @@ public class CafeModifyFragment extends Fragment {
 //        });
 
 
+        add_image_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 갤러리로 이동
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType("image/*");
+                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);  // 다중 이미지를 가져올 수 있도록 세팅
+                intent.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(intent, REQUEST_CODE);
+            }
+        });
 
 
         return root;
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(data == null){   // 어떤 이미지도 선택하지 않은 경우
+            Toast.makeText(getContext().getApplicationContext(), "이미지를 선택하지 않았습니다.", Toast.LENGTH_LONG).show();
+        }
+
+        else{   // 이미지를 하나라도 선택한 경우
+            if(data.getClipData() == null){     // 이미지를 하나만 선택한 경우
+                if(uriList.size() >= 5) {
+                    Toast.makeText(getContext().getApplicationContext(), "이미지 5개를 모두 선택하셨습니다.", Toast.LENGTH_LONG).show();
+                }
+
+                else{
+                    Log.e("single choice: ", String.valueOf(data.getData()));
+                    Uri imageUri = data.getData();
+                    uriList.add(imageUri);
+                }
+
+                cafeModifyAdapter = new CafeModifyAdapter(uriList, getContext().getApplicationContext());
+                cafeModifyImageRecyclerView.setAdapter(cafeModifyAdapter);
+                cafeModifyImageRecyclerView.setLayoutManager(new LinearLayoutManager(getContext().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
+            }
+            else{      // 이미지를 여러장 선택한 경우
+                ClipData clipData = data.getClipData();
+                Log.e("clipData", String.valueOf(clipData.getItemCount()));
+
+                if(clipData.getItemCount() > 5){   // 선택한 이미지가 6장 이상인 경우
+                    Toast.makeText(getContext().getApplicationContext(), "사진은 5장까지 선택 가능합니다.", Toast.LENGTH_LONG).show();
+                }
+                else{   // 선택한 이미지가 1장 이상 5장 이하인 경우
+                    Log.e(TAG, "multiple choice");
+
+                    for (int i = 0; i < clipData.getItemCount(); i++){
+
+                        if(uriList.size() <= 4){
+                            Uri imageUri = clipData.getItemAt(i).getUri();  // 선택한 이미지들의 uri를 가져온다.
+                            try {
+                                uriList.add(imageUri);  //uri를 list에 담는다.
+
+                            } catch (Exception e) {
+                                Log.e(TAG, "File select error", e);
+                            }
+                        }
+                        else {
+                            Toast.makeText(getContext().getApplicationContext(), "사진은 5장까지 선택 가능합니다.", Toast.LENGTH_LONG).show();
+                            break;
+                        }
+                    }
+
+                    cafeModifyAdapter = new CafeModifyAdapter(uriList, getContext().getApplicationContext());
+                    cafeModifyImageRecyclerView.setAdapter(cafeModifyAdapter);   // 리사이클러뷰에 어댑터 세팅
+                    cafeModifyImageRecyclerView.setLayoutManager(new LinearLayoutManager(getContext().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));     // 리사이클러뷰 수평 스크롤 적용
+                }
+            }
+        }
+    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
