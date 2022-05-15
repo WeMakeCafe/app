@@ -48,6 +48,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="32dp"
                             android:layout_marginTop="10dp"
+                            android:singleLine="true"
                             android:text="이름"
                             android:textColor="@color/black"
                             android:textSize="20sp" />
@@ -76,6 +77,7 @@
                         android:id="@+id/level_and_location"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="레벨 및 위치인증"
                         android:textColor="@color/black"
                         android:textSize="15sp" />

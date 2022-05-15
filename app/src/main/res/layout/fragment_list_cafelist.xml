@@ -32,12 +32,13 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/edge_top_back"
-            android:textSize="18sp"
             android:gravity="left|center_vertical"
             android:hint="이름, 주소 검색"
-            android:textColor="@color/black"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
