@@ -90,19 +90,6 @@ public class ListCafelistFragment extends Fragment {
         // 카페 리스트 리싸이클러뷰
         ArrayList<ListCafeListItem> listCafeListItems = new ArrayList<>();
 
-//        listCafeListItems.add(new ListCafeListItem("이디야커피 수원대점", "수원대학교 1203~~~ 와우리 42-15",
-//                "08:00 ~ 21:30", "#가성비", "#맛", R.drawable.logo));
-//        listCafeListItems.add(new ListCafeListItem("할리스커피 수원대점", "경기도 화성시 와우리 41-17",
-//                "09:00 ~ 22:30", "#마카롱", "#회의실", R.drawable.logo));
-//        listCafeListItems.add(new ListCafeListItem("이디야커피 수원대점", "경기도 수원시 탑동 801-4",
-//                "10:30 ~ 21:30", "#화장실", "#애견", R.drawable.logo));
-//        listCafeListItems.add(new ListCafeListItem("이디야커피 수원대점", "경기도 수원시 영통구 판타지움 47-1",
-//                "08:00 ~ 21:00", "#분위기", "#감성", R.drawable.logo));
-//        listCafeListItems.add(new ListCafeListItem("이디야커피 수원대점", "수원대학교 1203~~~ 와우리 42-15",
-//                "09:00 ~ 21:00", "#힙한", "#화려한", R.drawable.logo));
-//        listCafeListItems.add(new ListCafeListItem("이디야커피 수원대점", "수원대학교 1203~~~ 와우리 42-15",
-//                "12:00 ~ 00:30", "#레트로", "#인스타", R.drawable.logo));
-
         // Adapter 추가
         RecyclerView listCafeListRecyclerView = root.findViewById(R.id.cafeListRecyclerView);
 
@@ -139,12 +126,29 @@ public class ListCafelistFragment extends Fragment {
                     Toast.makeText(getContext().getApplicationContext(), searchText.getText().toString() + " 검색됨.", Toast.LENGTH_SHORT).show();
                     imm.hideSoftInputFromWindow(searchButton.getWindowToken(), 0);
 
-                    listCafeListItems.clear();  // 이전에 보였던 리싸이클러뷰 아이템 모두 제거 후, 검색관련 아이템을 띄움
+                    listCafeListItems.clear();
+                    // 이전에 보였던 리싸이클러뷰 아이템 모두 제거 후, 검색관련 아이템을 띄움
+
+                    // 예시 데이터, 여기에 검색 결과에 맞는 아이템을 출력해 주어야 함
+                    listCafeListItems.add(new ListCafeListItem("이디야커피 수원대점", "수원대학교 1203~~~ 와우리 42-15",
+                            "08:00 ~ 21:30", "#가성비", "#맛", R.drawable.logo));
+                    listCafeListItems.add(new ListCafeListItem("할리스커피 수원대점", "경기도 화성시 와우리 41-17",
+                            "09:00 ~ 22:30", "#마카롱", "#회의실", R.drawable.logo));
+                    listCafeListItems.add(new ListCafeListItem("이디야커피 수원대점", "경기도 수원시 탑동 801-4",
+                            "10:30 ~ 21:30", "#화장실", "#애견", R.drawable.logo));
+                    listCafeListItems.add(new ListCafeListItem("이디야커피 수원대점", "경기도 수원시 영통구 판타지움 47-1",
+                            "08:00 ~ 21:00", "#분위기", "#감성", R.drawable.logo));
+                    listCafeListItems.add(new ListCafeListItem("이디야커피 수원대점", "수원대학교 1203~~~ 와우리 42-15",
+                            "09:00 ~ 21:00", "#힙한", "#화려한", R.drawable.logo));
                     listCafeListItems.add(new ListCafeListItem("이디야커피 수원대점", "수원대학교 1203~~~ 와우리 42-15",
                             "12:00 ~ 00:30", "#레트로", "#인스타", R.drawable.logo));
 
+                    // 리사이클러뷰의 아이템을 갱신해주는 코드
+                    listCafeListAdapter.notifyItemInserted(listCafeListItems.size());
+
                     // 리싸이클러뷰 아이템이 없을 경우, 카페 추가 버튼과 설명 글 생성
                     if(listCafeListItems.size() == 0) {
+                        Toast.makeText(getContext().getApplicationContext(), "검색어에 맞는 카페가\n존재하지 않습니다", Toast.LENGTH_SHORT).show();
                         cafeList_footer.setVisibility(View.INVISIBLE);
                         add_cafe.setVisibility(View.INVISIBLE);
                         cafe_search_textView.setVisibility(View.VISIBLE);

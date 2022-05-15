@@ -366,14 +366,14 @@ public class CafeDetailFragment extends Fragment {
         // 카페디테일의 리뷰 리싸이클러뷰
 
 
-        /*cafeDetailReviewItem.add(new CafeDetailItem("지코", "Lv.3",
-                "테이블이 매우 협소합니다. \n" +
-                        "하지만, 가격이 매우 저렴하고 맛있습니다!\n" +
-                        "마카롱이 진짜 최고에요ㅠ", R.drawable.logo, R.drawable.logo_v2, "5"));
-        cafeDetailReviewItem.add(new CafeDetailItem("애쉬", "Lv.1(위치 인증 완료)",
-                "테이블이 협소해서 공부하기는 어렵지만\n" +
-                        "노래도 나오고 친구들이랑 같이 이야기하기에는\n" +
-                        "좋아요.", R.drawable.logo, R.drawable.logo_v2, "1"));*/
+//        cafeDetailReviewItem.add(new CafeDetailItem("지코", "Lv.3",
+//                "테이블이 매우 협소합니다. \n" +
+//                        "하지만, 가격이 매우 저렴하고 맛있습니다!\n" +
+//                        "마카롱이 진짜 최고에요ㅠ", R.drawable.logo, R.drawable.logo_v2, "5"));
+//        cafeDetailReviewItem.add(new CafeDetailItem("애쉬", "Lv.1(위치 인증 완료)",
+//                "테이블이 협소해서 공부하기는 어렵지만\n" +
+//                        "노래도 나오고 친구들이랑 같이 이야기하기에는\n" +
+//                        "좋아요.", R.drawable.logo, R.drawable.logo_v2, "1"));
 
 
 
