@@ -487,7 +487,10 @@ public class CafeRegistrationFragment extends Fragment {
                                 new Response.Listener<JSONObject>() {
                                     @Override
                                     public void onResponse(JSONObject response) {
-
+                                        // 카페 수정 완료 시 해당 카페 디테일로 넘어가기
+                                        Bundle bundle = new Bundle();
+                                        bundle.putString("cafeName", cafe_name_input.getText().toString());
+                                        navController.navigate(R.id.cafe_registration_to_cafe_detail, bundle);
                                     }
                                 },
                                 new Response.ErrorListener() {
