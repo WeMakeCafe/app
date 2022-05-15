@@ -230,17 +230,24 @@ public class CafeDetailFragment extends Fragment {
                                     @Override
                                     public void onItemClick(View view, int position) {
 
-                                        if(position == cafeDetailReviewItem.size()){
-                                            Toast.makeText(getContext().getApplicationContext(), "리뷰 더보기 클릭", Toast.LENGTH_SHORT).show();
-                                            Bundle bundle = new Bundle();
-                                            bundle.putString("cafeNum", get_cafe_num.toString());
-                                            //bundle.putString("name",moreReview3.getText().toString());
-                                            navController.navigate(R.id.cafe_detail_to_cafe_detail_more, bundle);
+                                        if(cafeDetailReviewItem.size() == 0){
+                                            Toast.makeText(getContext().getApplicationContext(), "작성된 리뷰가 없습니다.", Toast.LENGTH_SHORT).show();
                                         }
+                                        else{
+                                            // 리뷰 더보기 클릭 시,
+                                            if(position == cafeDetailReviewItem.size()){
+                                                Toast.makeText(getContext().getApplicationContext(), "리뷰 더보기 클릭", Toast.LENGTH_SHORT).show();
+                                                Bundle bundle = new Bundle();
+                                                bundle.putString("cafeNum", get_cafe_num.toString());
+                                                //bundle.putString("name",moreReview3.getText().toString());
+                                                navController.navigate(R.id.cafe_detail_to_cafe_detail_more, bundle);
+                                            }
 
-                                        else {
-                                            final CafeDetailItem item = cafeDetailReviewItem.get(position);
-                                            Toast.makeText(getContext().getApplicationContext(), item.getReviewNickName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
+                                            // 리뷰 클릭 시,
+                                            else {
+                                                final CafeDetailItem item = cafeDetailReviewItem.get(position);
+                                                Toast.makeText(getContext().getApplicationContext(), item.getReviewNickName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
+                                            }
                                         }
                                     }
                                 });
