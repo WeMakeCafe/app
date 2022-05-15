@@ -260,6 +260,7 @@ public class ReviewTagFragment extends Fragment {
                 else{
                     Toast.makeText(getContext().getApplicationContext(), "선택한 태그 추가하기.", Toast.LENGTH_SHORT).show();
                     // 번들을 이용해 프래그먼트간 데이터 전달
+
                     Bundle bundle = new Bundle(); // 프래그먼트 간 데이터 전달 위한 번들
                     bundle.putString("key1",addTag1.getText().toString()); // 번들에 String 데이터를 전달. key1 을 키로 사용
                     bundle.putString("key2",addTag2.getText().toString());

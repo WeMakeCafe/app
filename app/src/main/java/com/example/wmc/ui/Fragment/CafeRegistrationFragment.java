@@ -79,6 +79,9 @@ public class CafeRegistrationFragment extends Fragment {
     TextView cafe_address_input;
     TextView cafe_openHours_input;
     TextView cafe_closeHours_input;
+    String tag1;
+    String tag2;
+    String tag3;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -94,8 +97,7 @@ public class CafeRegistrationFragment extends Fragment {
         cafe_name_input = root.findViewById(R.id.cafe_name_input);
         cafe_address_input = root.findViewById(R.id.cafe_address_input);
         cafe_openHours_input = root.findViewById(R.id.cafe_openHours_input);
-        cafe_closeHours_input = root.findViewById(R.id.cafe_closeHours);
-
+        cafe_closeHours_input = root.findViewById(R.id.cafe_closeHours_input);
 
         RequestQueue requestQueue;
         Cache cache = new DiskBasedCache(getActivity().getCacheDir(), 1024 * 1024); // 1MB cap
@@ -129,10 +131,381 @@ public class CafeRegistrationFragment extends Fragment {
                     public void onClick(View v) {
                         // 데이터베이스에서 카페이름이 있는지 중복검사
                         for(Cafe c : cafe_list) {
-                            if(c.getCafeName().equals(cafe_name_input)) {
-                                Toast.makeText(getContext(), "이미 있는 카페입니다!", Toast.LENGTH_LONG).show();
+                            if(c.getCafeName().equals(cafe_name_input.getText().toString())) {
+                                Toast.makeText(getContext().getApplicationContext(), "이미 있는 카페입니다!", Toast.LENGTH_LONG).show();
+                            }
+                            else {
+                                Toast.makeText(getContext().getApplicationContext(), "가능한 카페입니다!", Toast.LENGTH_LONG).show();
                             }
                         }
+                    }
+                });
+
+                // 등록하기 버튼 클릭 시
+                registration_button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Map map = new HashMap();
+                        map.put("cafeName", cafe_name_input.getText().toString());
+                        map.put("cafeAddress", cafe_address_input.getText().toString());
+                        map.put("openTime", cafe_openHours_input.getText().toString());
+                        map.put("closeTime", cafe_closeHours_input.getText().toString());
+                        // 이미지, 키워드 추가 코드 작성 할 곳
+                        // 태그 문자열형식을 숫자로 변환
+                        switch(tag1) {
+                            case ("#쓴맛"):
+                                map.put("keyword1", 1);
+                                break;
+                            case ("#신맛"):
+                                map.put("keyword2", 1);
+                                break;
+                            case ("#짠맛"):
+                                map.put("keyword3", 1);
+                                break;
+                            case ("#단맛"):
+                                map.put("keyword4", 1);
+                                break;
+                            case ("#향미"):
+                                map.put("keyword5", 1);
+                                break;
+                            case ("#바디감"):
+                                map.put("keyword6", 1);
+                                break;
+                            case ("#콜드브루"):
+                                map.put("keyword7", 1);
+                                break;
+                            case ("#메뉴多"):
+                                map.put("keyword8", 1);
+                                break;
+                            case ("#가성비"):
+                                map.put("keyword9", 1);
+                                break;
+                            case ("#양많음"):
+                                map.put("keyword10", 1);
+                                break;
+                            case ("#디저트맛집"):
+                                map.put("keyword11", 1);
+                                break;
+                            case ("#논커피맛집"):
+                                map.put("keyword12", 1);
+                                break;
+                            case ("#인스타"):
+                                map.put("keyword13", 1);
+                                break;
+                            case ("#앤티크"):
+                                map.put("keyword14", 1);
+                                break;
+                            case ("#모던"):
+                                map.put("keyword15", 1);
+                                break;
+                            case ("#캐주얼"):
+                                map.put("keyword16", 1);
+                                break;
+                            case ("#이국적"):
+                                map.put("keyword17", 1);
+                                break;
+                            case ("#일상"):
+                                map.put("keyword18", 1);
+                                break;
+                            case ("#따뜻한"):
+                                map.put("keyword19", 1);
+                                break;
+                            case ("#조용한"):
+                                map.put("keyword20", 1);
+                                break;
+                            case ("#우드톤"):
+                                map.put("keyword21", 1);
+                                break;
+                            case ("#채광"):
+                                map.put("keyword22", 1);
+                                break;
+                            case ("#힙한"):
+                                map.put("keyword23", 1);
+                                break;
+                            case ("#귀여운"):
+                                map.put("keyword24", 1);
+                                break;
+                            case ("#친절한"):
+                                map.put("keyword25", 1);
+                                break;
+                            case ("#청결한"):
+                                map.put("keyword26", 1);
+                                break;
+                            case ("#애견"):
+                                map.put("keyword27", 1);
+                                break;
+                            case ("#주차장"):
+                                map.put("keyword28", 1);
+                                break;
+                            case ("#노키즈존"):
+                                map.put("keyword29", 1);
+                                break;
+                            case ("#교통편의"):
+                                map.put("keyword30", 1);
+                                break;
+                            case ("#신속한"):
+                                map.put("keyword31", 1);
+                                break;
+                            case ("#쾌적한"):
+                                map.put("keyword32", 1);
+                                break;
+                            case ("#회의실"):
+                                map.put("keyword33", 1);
+                                break;
+                            case ("#규모大"):
+                                map.put("keyword34", 1);
+                                break;
+                            case ("#규모小"):
+                                map.put("keyword35", 1);
+                                break;
+                            case ("#편한좌석"):
+                                map.put("keyword36", 1);
+                        }
+
+                        switch(tag2) {
+                            case ("#쓴맛"):
+                                map.put("keyword1", 1);
+                                break;
+                            case ("#신맛"):
+                                map.put("keyword2", 1);
+                                break;
+                            case ("#짠맛"):
+                                map.put("keyword3", 1);
+                                break;
+                            case ("#단맛"):
+                                map.put("keyword4", 1);
+                                break;
+                            case ("#향미"):
+                                map.put("keyword5", 1);
+                                break;
+                            case ("#바디감"):
+                                map.put("keyword6", 1);
+                                break;
+                            case ("#콜드브루"):
+                                map.put("keyword7", 1);
+                                break;
+                            case ("#메뉴多"):
+                                map.put("keyword8", 1);
+                                break;
+                            case ("#가성비"):
+                                map.put("keyword9", 1);
+                                break;
+                            case ("#양많음"):
+                                map.put("keyword10", 1);
+                                break;
+                            case ("#디저트맛집"):
+                                map.put("keyword11", 1);
+                                break;
+                            case ("#논커피맛집"):
+                                map.put("keyword12", 1);
+                            case ("#인스타"):
+                                map.put("keyword13", 1);
+                                break;
+                            case ("#앤티크"):
+                                map.put("keyword14", 1);
+                                break;
+                            case ("#모던"):
+                                map.put("keyword15", 1);
+                                break;
+                            case ("#캐주얼"):
+                                map.put("keyword16", 1);
+                                break;
+                            case ("#이국적"):
+                                map.put("keyword17", 1);
+                                break;
+                            case ("#일상"):
+                                map.put("keyword18", 1);
+                                break;
+                            case ("#따뜻한"):
+                                map.put("keyword19", 1);
+                                break;
+                            case ("#조용한"):
+                                map.put("keyword20", 1);
+                                break;
+                            case ("#우드톤"):
+                                map.put("keyword21", 1);
+                                break;
+                            case ("#채광"):
+                                map.put("keyword22", 1);
+                                break;
+                            case ("#힙한"):
+                                map.put("keyword23", 1);
+                                break;
+                            case ("#귀여운"):
+                                map.put("keyword24", 1);
+                                break;
+                            case ("#친절한"):
+                                map.put("keyword25", 1);
+                                break;
+                            case ("#청결한"):
+                                map.put("keyword26", 1);
+                                break;
+                            case ("#애견"):
+                                map.put("keyword27", 1);
+                                break;
+                            case ("#주차장"):
+                                map.put("keyword28", 1);
+                                break;
+                            case ("#노키즈존"):
+                                map.put("keyword29", 1);
+                                break;
+                            case ("#교통편의"):
+                                map.put("keyword30", 1);
+                                break;
+                            case ("#신속한"):
+                                map.put("keyword31", 1);
+                                break;
+                            case ("#쾌적한"):
+                                map.put("keyword32", 1);
+                                break;
+                            case ("#회의실"):
+                                map.put("keyword33", 1);
+                                break;
+                            case ("#규모大"):
+                                map.put("keyword34", 1);
+                                break;
+                            case ("#규모小"):
+                                map.put("keyword35", 1);
+                                break;
+                            case ("#편한좌석"):
+                                map.put("keyword36", 1);
+                        }
+
+                        switch(tag3) {
+                            case ("#쓴맛"):
+                                map.put("keyword1", 1);
+                                break;
+                            case ("#신맛"):
+                                map.put("keyword2", 1);
+                                break;
+                            case ("#짠맛"):
+                                map.put("keyword3", 1);
+                                break;
+                            case ("#단맛"):
+                                map.put("keyword4", 1);
+                                break;
+                            case ("#향미"):
+                                map.put("keyword5", 1);
+                                break;
+                            case ("#바디감"):
+                                map.put("keyword6", 1);
+                                break;
+                            case ("#콜드브루"):
+                                map.put("keyword7", 1);
+                                break;
+                            case ("#메뉴多"):
+                                map.put("keyword8", 1);
+                                break;
+                            case ("#가성비"):
+                                map.put("keyword9", 1);
+                                break;
+                            case ("#양많음"):
+                                map.put("keyword10", 1);
+                                break;
+                            case ("#디저트맛집"):
+                                map.put("keyword11", 1);
+                                break;
+                            case ("#논커피맛집"):
+                                map.put("keyword12", 1);
+                            case ("#인스타"):
+                                map.put("keyword13", 1);
+                                break;
+                            case ("#앤티크"):
+                                map.put("keyword14", 1);
+                                break;
+                            case ("#모던"):
+                                map.put("keyword15", 1);
+                                break;
+                            case ("#캐주얼"):
+                                map.put("keyword16", 1);
+                                break;
+                            case ("#이국적"):
+                                map.put("keyword17", 1);
+                                break;
+                            case ("#일상"):
+                                map.put("keyword18", 1);
+                                break;
+                            case ("#따뜻한"):
+                                map.put("keyword19", 1);
+                                break;
+                            case ("#조용한"):
+                                map.put("keyword20", 1);
+                                break;
+                            case ("#우드톤"):
+                                map.put("keyword21", 1);
+                                break;
+                            case ("#채광"):
+                                map.put("keyword22", 1);
+                                break;
+                            case ("#힙한"):
+                                map.put("keyword23", 1);
+                                break;
+                            case ("#귀여운"):
+                                map.put("keyword24", 1);
+                                break;
+                            case ("#친절한"):
+                                map.put("keyword25", 1);
+                                break;
+                            case ("#청결한"):
+                                map.put("keyword26", 1);
+                                break;
+                            case ("#애견"):
+                                map.put("keyword27", 1);
+                                break;
+                            case ("#주차장"):
+                                map.put("keyword28", 1);
+                                break;
+                            case ("#노키즈존"):
+                                map.put("keyword29", 1);
+                                break;
+                            case ("#교통편의"):
+                                map.put("keyword30", 1);
+                                break;
+                            case ("#신속한"):
+                                map.put("keyword31", 1);
+                                break;
+                            case ("#쾌적한"):
+                                map.put("keyword32", 1);
+                                break;
+                            case ("#회의실"):
+                                map.put("keyword33", 1);
+                                break;
+                            case ("#규모大"):
+                                map.put("keyword34", 1);
+                                break;
+                            case ("#규모小"):
+                                map.put("keyword35", 1);
+                                break;
+                            case ("#편한좌석"):
+                                map.put("keyword36", 1);
+                        }
+
+
+                        String url2 = "http://54.221.33.199:8080/cafe";
+                        JSONObject jsonObject = new JSONObject(map);
+                        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, url2, jsonObject,
+                                new Response.Listener<JSONObject>() {
+                                    @Override
+                                    public void onResponse(JSONObject response) {
+
+                                    }
+                                },
+                                new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        Log.d("test", error.toString());
+                                    }
+                                }) {
+                            @Override
+                            public String getBodyContentType() {
+                                return "application/json; charset=UTF-8";
+                            }
+                        };
+                        Log.d("json", jsonObject.toString());
+                        RequestQueue queue = Volley.newRequestQueue(requireContext());
+                        queue.add(objectRequest);
+                        // 내가 만든 카페의 카페디테일로 이동(정보이동은 어캐될까 고민)
+                        navController.navigate(R.id.cafe_registration_to_cafe_detail);
                     }
                 });
 
@@ -151,7 +524,12 @@ public class CafeRegistrationFragment extends Fragment {
         add_tag_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navController.navigate(R.id.cafe_registration_to_cafe_registration_tag);
+                Bundle bundle = new Bundle(); // 프래그먼트 간 데이터 전달 위한 번들
+                bundle.putString("name",cafe_name_input.getText().toString());
+                bundle.putString("address", cafe_address_input.getText().toString());
+                bundle.putString("opentime", cafe_openHours_input.getText().toString());
+                bundle.putString("closetime", cafe_closeHours_input.getText().toString());
+                navController.navigate(R.id.cafe_registration_to_cafe_registration_tag, bundle);
             }
         });
 
@@ -160,51 +538,25 @@ public class CafeRegistrationFragment extends Fragment {
         TextView basic_tag2 = root.findViewById(R.id.basic_tag2); // 태그 추가 완료 시 반영할 카페 등록 페이지의 태그 박스2
         TextView basic_tag3 = root.findViewById(R.id.basic_tag3); // 태그 추가 완료 시 반영할 카페 등록 페이지의 태그 박스3
 
+
+
         Bundle argBundle = getArguments();
         if( argBundle != null ) {
             if (argBundle.getString("key1") != null) {
                 basic_tag1.setText(argBundle.getString("key1"));
                 basic_tag2.setText(argBundle.getString("key2"));
                 basic_tag3.setText(argBundle.getString("key3"));
+                cafe_name_input.setText(argBundle.getString("name"));
+                cafe_address_input.setText(argBundle.getString("address"));
+                cafe_openHours_input.setText(argBundle.getString("opentime"));
+                cafe_closeHours_input.setText(argBundle.getString("closetime"));
+
+                //카페이미지 문장
+                tag1 = argBundle.getString("key1");
+                tag2 = argBundle.getString("key2");
+                tag3 = argBundle.getString("key3");
             }
         }
-
-        // 등록하기 버튼 클릭 시
-        registration_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Map map = new HashMap();
-                map.put("cafeName", cafe_name_input.getText().toString());
-                map.put("cafeAddress", cafe_address_input.getText().toString());
-                map.put("openTime", cafe_openHours_input.getText().toString());
-                map.put("closeTime", cafe_closeHours_input.getText().toString());
-                // 이미지, 키워드 추가 코드 작성 할 곳
-
-                JSONObject jsonObject = new JSONObject(map);
-                JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject,
-                        new Response.Listener<JSONObject>() {
-                            @Override
-                            public void onResponse(JSONObject response) {
-
-                            }
-                        },
-                        new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Log.d("test", error.toString());
-                            }
-                        }) {
-                    @Override
-                    public String getBodyContentType() {
-                        return "application/json; charset=UTF-8";
-                    }
-                };
-                RequestQueue queue = Volley.newRequestQueue(requireContext());
-                queue.add(objectRequest);
-                // 내가 만든 카페의 카페디테일로 이동(정보이동은 어캐될까 고민)
-                navController.navigate(R.id.cafe_registration_to_cafe_detail);
-            }
-        });
 
 
 
@@ -254,6 +606,7 @@ public class CafeRegistrationFragment extends Fragment {
 
         return root;
     }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

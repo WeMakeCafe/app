@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.CheckBox;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -36,12 +35,9 @@ import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.StringRequest;
 import com.example.wmc.CafeDetail.CafeDetailAdapter;
 import com.example.wmc.CafeDetail.CafeDetailItem;
-import com.example.wmc.CafeDetailImageViewPager.CafeDetailImageViewPager1;
-import com.example.wmc.CafeDetailImageViewPager.CafeDetailImageViewPager2;
-import com.example.wmc.CafeDetailImageViewPager.CafeDetailImageViewPager3;
-import com.example.wmc.CafeDetailImageViewPager.CafeDetailImageViewPager4;
-import com.example.wmc.CafeDetailImageViewPager.CafeDetailImageViewPager5;
-import com.example.wmc.MainActivity;
+import com.example.wmc.CafeDetailImageViewPager.CafeDetailImageViewPagerAdapter;
+import com.example.wmc.CafeDetailImageViewPager.CafeDetailRatingItem;
+import com.example.wmc.CafeDetailImageViewPager.CafeDetailRatingViewPagerAdapter;
 import com.example.wmc.R;
 import com.example.wmc.RatingViewPager.RatingViewPagerSeat;
 import com.example.wmc.RatingViewPager.RatingViewPagerStudy;
@@ -50,7 +46,6 @@ import com.example.wmc.database.Cafe;
 import com.example.wmc.database.Personal;
 import com.example.wmc.database.Review;
 import com.example.wmc.databinding.FragmentCafeDetailBinding;
-import com.example.wmc.databinding.FragmentCafeModifyBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -76,6 +71,9 @@ public class CafeDetailFragment extends Fragment {
     TextView moreReview4; // 사진 아래 카페 주소 ID
     TextView moreReview10; // 사진 아래 운영 시간 첫번째
     TextView moreReview8; // 사진 아래 운영 시간 두번째
+
+    ArrayList<Integer> imageList;   // 카페 이미지 5장을 저장하는 ArrayList
+    ArrayList<CafeDetailRatingItem> ratingList; // 카페 평점을 저장하는 ArrayList
 
     ArrayList<Cafe> cafe_list;
     ArrayList<Review> review_list;
@@ -375,37 +373,53 @@ public class CafeDetailFragment extends Fragment {
         // 카페디테일에 해당하는 카페이미지 보여주기
         cafeImageViewPager = root.findViewById(R.id.cafeImageViewPager);
         cafeImageViewPager.setOffscreenPageLimit(5);
+        imageList = new ArrayList<>();
 
-        CafeDetailImagePagerAdapter cafeImageAdapter = new CafeDetailImagePagerAdapter(getActivity().getSupportFragmentManager());
+        imageList.add(R.drawable.logo);
+        imageList.add(R.drawable.logo_v2);
+        imageList.add(R.drawable.bean_grade1);
+        imageList.add(R.drawable.bean_grade2);
+        imageList.add(R.drawable.bean_grade3);
 
-        CafeDetailImageViewPager1 page1 = new CafeDetailImageViewPager1();
-        cafeImageAdapter.cafeImageAddItem(page1);
-        CafeDetailImageViewPager2 page2 = new CafeDetailImageViewPager2();
-        cafeImageAdapter.cafeImageAddItem(page2);
-        CafeDetailImageViewPager3 page3 = new CafeDetailImageViewPager3();
-        cafeImageAdapter.cafeImageAddItem(page3);
-        CafeDetailImageViewPager4 page4 = new CafeDetailImageViewPager4();
-        cafeImageAdapter.cafeImageAddItem(page4);
-        CafeDetailImageViewPager5 page5 = new CafeDetailImageViewPager5();
-        cafeImageAdapter.cafeImageAddItem(page5);
+        cafeImageViewPager.setAdapter(new CafeDetailImageViewPagerAdapter(getContext().getApplicationContext(), imageList));
+//        CafeDetailImagePagerAdapter cafeImageAdapter = new CafeDetailImagePagerAdapter(getActivity().getSupportFragmentManager());
+//
+//        CafeDetailImageViewPager1 page1 = new CafeDetailImageViewPager1();
+//        cafeImageAdapter.cafeImageAddItem(page1);
+//        CafeDetailImageViewPager2 page2 = new CafeDetailImageViewPager2();
+//        cafeImageAdapter.cafeImageAddItem(page2);
+//        CafeDetailImageViewPager3 page3 = new CafeDetailImageViewPager3();
+//        cafeImageAdapter.cafeImageAddItem(page3);
+//        CafeDetailImageViewPager4 page4 = new CafeDetailImageViewPager4();
+//        cafeImageAdapter.cafeImageAddItem(page4);
+//        CafeDetailImageViewPager5 page5 = new CafeDetailImageViewPager5();
+//        cafeImageAdapter.cafeImageAddItem(page5);
 
-        cafeImageViewPager.setAdapter(cafeImageAdapter);
 
 
         // 카페디테일에 해당하는 카페별점 보여주기
         cafeRatingViewPager = root.findViewById(R.id.ratingViewPager);
         cafeRatingViewPager.setOffscreenPageLimit(3);
+        ratingList = new ArrayList<>();
 
-        CafeDetailRatingPagerAdapter cafeRatingAdapter = new CafeDetailRatingPagerAdapter(getActivity().getSupportFragmentManager());
+        CafeDetailRatingItem taste = new CafeDetailRatingItem("맛", "산미", "쓴맛", "디저트", "기타음료", R.drawable.taste_score, "3", "1", "2", "5");
+        CafeDetailRatingItem seat = new CafeDetailRatingItem("좌석", "2인좌석", "4인좌석", "화장실", "다인좌석", R.drawable.sit_score, "1", "5", "1", "3");
+        CafeDetailRatingItem study = new CafeDetailRatingItem("스터디", "와이파이", "콘센트", "조명", "조용함", R.drawable.study_score, "3", "5", "5", "5");
 
-        RatingViewPagerTaste tasteRating = new RatingViewPagerTaste();
-        cafeRatingAdapter.cafeRatingAddItem(tasteRating);
-        RatingViewPagerSeat seatRating = new RatingViewPagerSeat();
-        cafeRatingAdapter.cafeRatingAddItem(seatRating);
-        RatingViewPagerStudy studyRating = new RatingViewPagerStudy();
-        cafeRatingAdapter.cafeRatingAddItem(studyRating);
+        ratingList.add(taste);
+        ratingList.add(seat);
+        ratingList.add(study);
 
-        cafeRatingViewPager.setAdapter(cafeRatingAdapter);
+        cafeRatingViewPager.setAdapter(new CafeDetailRatingViewPagerAdapter(getContext().getApplicationContext(), ratingList));
+//        CafeDetailRatingPagerAdapter cafeRatingAdapter = new CafeDetailRatingPagerAdapter(getActivity().getSupportFragmentManager());
+//
+//        RatingViewPagerTaste tasteRating = new RatingViewPagerTaste();
+//        cafeRatingAdapter.cafeRatingAddItem(tasteRating);
+//        RatingViewPagerSeat seatRating = new RatingViewPagerSeat();
+//        cafeRatingAdapter.cafeRatingAddItem(seatRating);
+//        RatingViewPagerStudy studyRating = new RatingViewPagerStudy();
+//        cafeRatingAdapter.cafeRatingAddItem(studyRating);
+
 
         // 별점에서 좌측 버튼 클릭 시, 별점 페이지 넘어감
         cafeDetail_favorite_previousButton.setOnClickListener(new View.OnClickListener() {
@@ -431,51 +445,52 @@ public class CafeDetailFragment extends Fragment {
     }
 
     // 카페디테일 카페이미지 뷰페이저
-    class CafeDetailImagePagerAdapter extends FragmentStatePagerAdapter {
-        ArrayList<Fragment> imageItems = new ArrayList<>();
-        public CafeDetailImagePagerAdapter(FragmentManager fm){
-            super(fm);
-        }
-
-        public void cafeImageAddItem(Fragment item){
-            imageItems.add(item);   // 이미지 추가
-        }
-
-        @NonNull
-        @Override
-        public Fragment getItem(int position) {
-            return imageItems.get(position);    // 프래그먼트 가져오기
-        }
-
-        @Override
-        public int getCount() {
-            return imageItems.size();   // 프래그먼트 개수반환
-        }
-    }
+//    class CafeDetailImagePagerAdapter extends FragmentStatePagerAdapter {
+//
+//        ArrayList<Fragment> imageItems = new ArrayList<>();
+//        public CafeDetailImagePagerAdapter(FragmentManager fm){
+//            super(fm);
+//        }
+//
+//        public void cafeImageAddItem(Fragment item){
+//            imageItems.add(item);   // Fragment 추가
+//        }
+//
+//        @NonNull
+//        @Override
+//        public Fragment getItem(int position) {
+//            return imageItems.get(position);    // 프래그먼트 가져오기
+//        }
+//
+//        @Override
+//        public int getCount() {
+//            return imageItems.size();   // 프래그먼트 개수반환
+//        }
+//    }
 
 
     // 카페디테일 별점 뷰페이저
-    class CafeDetailRatingPagerAdapter extends FragmentStatePagerAdapter {
-        ArrayList<Fragment> ratingItems = new ArrayList<>();
-        public CafeDetailRatingPagerAdapter(FragmentManager ratingFm) {
-            super(ratingFm);
-        }
-
-        public void cafeRatingAddItem(Fragment item){
-            ratingItems.add(item);
-        }
-
-        @NonNull
-        @Override
-        public Fragment getItem(int position) {
-            return ratingItems.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return ratingItems.size();
-        }
-    }
+//    class CafeDetailRatingPagerAdapter extends FragmentStatePagerAdapter {
+//        ArrayList<Fragment> ratingItems = new ArrayList<>();
+//        public CafeDetailRatingPagerAdapter(FragmentManager ratingFm) {
+//            super(ratingFm);
+//        }
+//
+//        public void cafeRatingAddItem(Fragment item){
+//            ratingItems.add(item);
+//        }
+//
+//        @NonNull
+//        @Override
+//        public Fragment getItem(int position) {
+//            return ratingItems.get(position);
+//        }
+//
+//        @Override
+//        public int getCount() {
+//            return ratingItems.size();
+//        }
+//    }
 
 
     @Override
