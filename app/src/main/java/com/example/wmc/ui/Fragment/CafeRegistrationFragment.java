@@ -99,7 +99,6 @@ public class CafeRegistrationFragment extends Fragment {
         cafe_openHours_input = root.findViewById(R.id.cafe_openHours_input);
         cafe_closeHours_input = root.findViewById(R.id.cafe_closeHours_input);
 
-
         RequestQueue requestQueue;
         Cache cache = new DiskBasedCache(getActivity().getCacheDir(), 1024 * 1024); // 1MB cap
         Network network = new BasicNetwork(new HurlStack());
