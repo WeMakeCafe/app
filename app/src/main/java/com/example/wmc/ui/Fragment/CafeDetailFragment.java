@@ -38,6 +38,7 @@ import com.example.wmc.CafeDetail.CafeDetailItem;
 import com.example.wmc.CafeDetailImageViewPager.CafeDetailImageViewPagerAdapter;
 import com.example.wmc.CafeDetailImageViewPager.CafeDetailRatingItem;
 import com.example.wmc.CafeDetailImageViewPager.CafeDetailRatingViewPagerAdapter;
+import com.example.wmc.MainActivity;
 import com.example.wmc.R;
 import com.example.wmc.RatingViewPager.RatingViewPagerSeat;
 import com.example.wmc.RatingViewPager.RatingViewPagerStudy;
