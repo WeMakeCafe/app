@@ -139,7 +139,7 @@ public class ListCafelistFragment extends Fragment {
                     requestQueue.start();
 
 
-                    String get_cafe_url = "http://54.221.33.199:8080/cafe";
+                    String get_cafe_url = "http://54.196.209.1:8080/cafe";
 
 
                     StringRequest cafe_stringRequest = new StringRequest(Request.Method.GET, get_cafe_url, new Response.Listener<String>() {

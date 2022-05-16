@@ -106,9 +106,9 @@ public class HomeFragment extends Fragment {
         requestQueue.start();
 
 
-        String get_personal_url = "http://54.221.33.199:8080/personal";
-        String get_cafe_url = "http://54.221.33.199:8080/cafe";
-        String get_bookmark_url = "http://54.221.33.199:8080/bookmark";
+        String get_personal_url = "http://54.196.209.1:8080/personal";
+        String get_cafe_url = "http://54.196.209.1:8080/cafe";
+        String get_bookmark_url = "http://54.196.209.1:8080/bookmark";
 
         // Personal 접근
         StringRequest personal_stringRequest = new StringRequest(Request.Method.GET, get_personal_url, new Response.Listener<String>() {

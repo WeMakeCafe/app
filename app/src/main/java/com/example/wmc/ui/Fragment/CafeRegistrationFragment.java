@@ -104,7 +104,7 @@ public class CafeRegistrationFragment extends Fragment {
         Network network = new BasicNetwork(new HurlStack());
         requestQueue = new RequestQueue(cache, network);
         requestQueue.start();
-        String url = "http://54.221.33.199:8080/cafe";
+        String url = "http://54.196.209.1:8080/cafe";
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -481,7 +481,7 @@ public class CafeRegistrationFragment extends Fragment {
                         }
 
 
-                        String url2 = "http://54.221.33.199:8080/cafe";
+                        String url2 = "http://54.196.209.1:8080/cafe";
                         JSONObject jsonObject = new JSONObject(map);
                         JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, url2, jsonObject,
                                 new Response.Listener<JSONObject>() {
