@@ -1,4 +1,4 @@
-package com.example.wmc.HomeTag1;
+package com.example.wmc.a_No_USE_Files;
 
 import android.view.View;
 import android.widget.ImageView;
@@ -8,7 +8,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.wmc.HomeFavorite.HomeFavoriteAdapter;
 import com.example.wmc.R;
 
 public class HomeTag1ViewHolder extends RecyclerView.ViewHolder{

@@ -1,4 +1,4 @@
-package com.example.wmc.ReviewSearch;
+package com.example.wmc.a_No_USE_Files;
 
 public class ReviewSearchItem {
 

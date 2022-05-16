@@ -228,6 +228,7 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
+                    android:singleLine="true"
                     android:textColor="@color/gray"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -258,8 +259,8 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
-                    android:id="@+id/cafe_openHours_input"
-                    android:layout_width="238dp"
+                    android:id="@+id/cafe_openHours_hour_input"
+                    android:layout_width="80dp"
                     android:layout_height="27dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="20dp"
@@ -269,7 +270,36 @@
                     android:inputType="textPersonName"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
+                    android:singleLine="true"
                     app:layout_constraintStart_toEndOf="@+id/cafe_openHours"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/cafe_openHours_colon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:gravity="top"
+                    android:text=" : "
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/cafe_openHours_hour_input"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/cafe_openHours_minute_input"
+                    android:layout_width="80dp"
+                    android:layout_height="27dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/edge_top_back"
+                    android:ems="10"
+                    android:gravity="center_vertical"
+                    android:inputType="textPersonName"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:singleLine="true"
+                    app:layout_constraintStart_toEndOf="@+id/cafe_openHours_colon"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -287,8 +317,8 @@
                     app:layout_constraintTop_toBottomOf="@+id/cafe_openHours" />
 
                 <EditText
-                    android:id="@+id/cafe_closeHours_input"
-                    android:layout_width="238dp"
+                    android:id="@+id/cafe_closeHours_hour_input"
+                    android:layout_width="80dp"
                     android:layout_height="27dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="20dp"
@@ -298,8 +328,38 @@
                     android:inputType="textPersonName"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
+                    android:singleLine="true"
                     app:layout_constraintStart_toEndOf="@+id/cafe_closeHours"
-                    app:layout_constraintTop_toBottomOf="@+id/cafe_openHours_input" />
+                    app:layout_constraintTop_toBottomOf="@+id/cafe_openHours_hour_input" />
+
+                <TextView
+                    android:id="@+id/cafe_closeHours_colon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:gravity="top"
+                    android:text=" : "
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/cafe_closeHours_hour_input"
+                    app:layout_constraintTop_toBottomOf="@+id/cafe_openHours_hour_input" />
+
+
+                <EditText
+                    android:id="@+id/cafe_closeHours_minute_input"
+                    android:layout_width="80dp"
+                    android:layout_height="27dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/edge_top_back"
+                    android:ems="10"
+                    android:gravity="center_vertical"
+                    android:inputType="textPersonName"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:singleLine="true"
+                    app:layout_constraintStart_toEndOf="@+id/cafe_closeHours_colon"
+                    app:layout_constraintTop_toBottomOf="@+id/cafe_openHours_minute_input" />
 
                 <TextView
                     android:id="@+id/plain_textView2"
@@ -311,7 +371,7 @@
                     android:textColor="@color/black"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toStartOf="@+id/example_textView2"
-                    app:layout_constraintTop_toBottomOf="@+id/cafe_closeHours_input" />
+                    app:layout_constraintTop_toBottomOf="@+id/cafe_closeHours_hour_input" />
 
                 <TextView
                     android:id="@+id/example_textView2"
@@ -323,7 +383,7 @@
                     android:textColor="@color/black"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cafe_closeHours_input" />
+                    app:layout_constraintTop_toBottomOf="@+id/cafe_closeHours_hour_input" />
 
                 <TextView
                     android:id="@+id/modify_detailLine"

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".ui.Fragment.ReviewFragment">
 
 
@@ -169,6 +170,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/selected_tag_textview_v2"
                     android:gravity="center"
+                    android:singleLine="true"
                     android:textColor="@color/brown"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@+id/addTag2"
@@ -182,6 +184,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/selected_tag_textview_v2"
                     android:gravity="center"
+                    android:singleLine="true"
                     android:textColor="@color/brown"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/brownFrame3"
@@ -196,6 +199,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/selected_tag_textview_v2"
                     android:gravity="center"
+                    android:singleLine="true"
                     android:textColor="@color/brown"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="@+id/brownFrame3"

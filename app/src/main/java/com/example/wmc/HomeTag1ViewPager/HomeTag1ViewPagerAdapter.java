@@ -7,14 +7,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
 
-import com.example.wmc.CafeDetailImageViewPager.CafeDetailRatingItem;
-import com.example.wmc.HomeTag1.HomeTag1Adapter;
 import com.example.wmc.R;
 
 import java.util.ArrayList;

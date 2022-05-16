@@ -17,7 +17,7 @@
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:background="@drawable/image_view_round"
-            android:padding="2dp"
+            android:padding="3dp"
             app:srcCompat="@mipmap/ic_launcher" />
 
         <LinearLayout
@@ -32,6 +32,7 @@
                 android:id="@+id/cafeList_cafe_name_textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:singleLine="true"
                 android:text="카페이름"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -42,6 +43,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
+                android:singleLine="true"
                 android:text="카페주소"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
@@ -69,6 +71,7 @@
                     android:layout_marginBottom="10dp"
                     android:layout_weight="1"
                     android:gravity="center"
+                    android:singleLine="true"
                     android:text="#해시태그1"
                     android:textColor="@color/brown"
                     android:textSize="18sp"
@@ -80,6 +83,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
+                    android:singleLine="true"
                     android:text="#해시태그2"
                     android:textColor="@color/brown"
                     android:textSize="18sp"

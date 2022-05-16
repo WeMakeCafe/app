@@ -11,11 +11,6 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.wmc.CafeDetail.CafeDetailFooterViewHolder;
-import com.example.wmc.CafeDetail.CafeDetailItem;
-import com.example.wmc.CafeDetail.CafeDetailViewHolder;
-import com.example.wmc.HomeTag1.HomeTag1Item;
-import com.example.wmc.HomeTag1.HomeTag1ViewHolder;
 import com.example.wmc.R;
 
 import java.util.ArrayList;

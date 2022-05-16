@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -74,8 +75,10 @@ public class CafeModifyFragment extends Fragment {
     ArrayList<Cafe> cafe_list;
     TextView cafe_name_input;
     TextView cafe_address_input;
-    TextView cafe_openHours_input;
-    TextView cafe_closeHours_input;
+    EditText cafe_openHours_hour_input;
+    EditText cafe_openHours_minute_input;
+    EditText cafe_closeHours_hour_input;
+    EditText cafe_closeHours_minute_input;
     Long cafe_num;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -89,8 +92,10 @@ public class CafeModifyFragment extends Fragment {
         cafeModifyImageRecyclerView = root.findViewById(R.id.cafeModifyImageRecyclerView);
         cafe_name_input = root.findViewById(R.id.cafe_name_input);
         cafe_address_input = root.findViewById(R.id.cafe_address_input);
-        cafe_openHours_input = root.findViewById(R.id.cafe_openHours_input);
-        cafe_closeHours_input = root.findViewById(R.id.cafe_closeHours_input);
+        cafe_openHours_hour_input = root.findViewById(R.id.cafe_openHours_hour_input);
+        cafe_openHours_minute_input = root.findViewById(R.id.cafe_openHours_minute_input);
+        cafe_closeHours_hour_input= root.findViewById(R.id.cafe_closeHours_hour_input);
+        cafe_closeHours_minute_input= root.findViewById(R.id.cafe_closeHours_minute_input);
         modify_button = root.findViewById(R.id.modify_button);
         request_deletion_textView = root.findViewById(R.id.request_deletion_textView);
 
@@ -105,6 +110,7 @@ public class CafeModifyFragment extends Fragment {
         requestQueue = new RequestQueue(cache, network);
         requestQueue.start();
         String url = "http://54.221.33.199:8080/cafe";
+
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -129,8 +135,10 @@ public class CafeModifyFragment extends Fragment {
                     if(c.getCafeName().equals(cafe_name)) {
                         cafe_name_input.setText(c.getCafeName());
                         cafe_address_input.setText(c.getCafeAddress());
-                        cafe_openHours_input.setText(c.getOpenTime().toString());
-                        cafe_closeHours_input.setText(c.getCloseTime().toString());
+                        cafe_openHours_hour_input.setText(String.valueOf(c.getOpenTime()/100));
+                        cafe_openHours_minute_input.setText(String.valueOf(c.getOpenTime()%100));
+                        cafe_closeHours_hour_input.setText(String.valueOf(c.getCloseTime()/100));
+                        cafe_closeHours_minute_input.setText(String.valueOf(c.getCloseTime()%100));
                         cafe_num = c.getCafeNum();
                         //이미지 등록 코드
                     }
@@ -147,8 +155,8 @@ public class CafeModifyFragment extends Fragment {
                                 Map map = new HashMap();
                                 map.put("cafeName", cafe_name_input.getText().toString());
                                 map.put("cafeAddress", cafe_address_input.getText().toString());
-                                map.put("openTime", cafe_openHours_input.getText().toString());
-                                map.put("closeTime", cafe_closeHours_input.getText().toString());
+                                map.put("openTime", cafe_openHours_hour_input.getText().toString() + cafe_openHours_minute_input.getText().toString());
+                                map.put("closeTime", cafe_closeHours_hour_input.getText().toString() + cafe_closeHours_minute_input.getText().toString());
 //                                map.put("cafeImage", c.getCafeImage());
 //                                map.put("reviewNum", c.getReviewNum());
 //                                map.put("keyword1", c.getKeyword1());
@@ -190,8 +198,8 @@ public class CafeModifyFragment extends Fragment {
 //                                map.put("bookmarkNum", c.getBookmarkNum());
 //                                map.put("scoreNum", c.getScoreNum());
 
-                                if(!((c.getOpenTime() == Integer.parseInt(cafe_openHours_input.getText().toString())) &&
-                                        (c.getCloseTime() == Integer.parseInt(cafe_closeHours_input.getText().toString())))) {
+                                if(!((c.getOpenTime() == Integer.parseInt(cafe_openHours_hour_input.getText().toString() + cafe_openHours_minute_input.getText().toString())) &&
+                                        (c.getCloseTime() == Integer.parseInt(cafe_closeHours_hour_input.getText().toString() + cafe_closeHours_minute_input.getText().toString())))) {
                                     JSONObject jsonObject = new JSONObject(map);
 
                                     String url2 = "http://54.221.33.199:8080/cafe/" + c.getCafeNum().toString(); // 해당 카페에만 데이터 삽입하기 위함
@@ -216,7 +224,14 @@ public class CafeModifyFragment extends Fragment {
                                     };
                                     RequestQueue queue = Volley.newRequestQueue(requireContext());
                                     queue.add(objectRequest);
-                                    navController.navigate(R.id.cafe_modify_to_cafe_detail);
+                                    //navController.navigate(R.id.cafe_modify_to_cafe_detail);
+
+
+                                    // 카페 수정 완료 시 해당 카페 디테일로 넘어가기 - 송상화
+                                    Bundle cafebundle = new Bundle();
+                                    cafebundle.putString("cafeName", cafe_name_input.getText().toString());
+
+                                    navController.navigate(R.id.cafe_modify_to_cafe_detail, cafebundle);
                                 }
 
                                 // -> 시간 변경이 없을 때 실행되는 문장
