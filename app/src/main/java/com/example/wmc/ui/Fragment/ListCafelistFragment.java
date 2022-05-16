@@ -22,8 +22,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wmc.ListCafeList.ListCafeListAdapter;
 import com.example.wmc.ListCafeList.ListCafeListItem;
-import com.example.wmc.ListSearch.ListSearchAdapter;
-import com.example.wmc.ListSearch.ListSearchItem;
 import com.example.wmc.R;
 import com.example.wmc.databinding.FragmentListCafelistBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;

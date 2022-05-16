@@ -1,4 +1,4 @@
-package com.example.wmc.HomeTag2;
+package com.example.wmc.a_No_USE_Files;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -6,9 +6,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.wmc.HomeTag1.HomeTag1Item;
-import com.example.wmc.HomeTag1.HomeTag1ViewHolder;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.example.wmc.ReviewSearch;
+package com.example.wmc.a_No_USE_Files;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,9 +7,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.wmc.ListSearch.ListSearchItem;
-import com.example.wmc.ListSearch.ListSearchViewHolder;
 
 import java.util.ArrayList;
 

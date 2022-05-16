@@ -1,6 +1,6 @@
-package com.example.wmc.HomeTag1;
+package com.example.wmc.a_No_USE_Files;
 
-public class HomeTag1Item {
+public class HomeTag2Item {
 
     String cafeName;
     String cafeAddress;
@@ -11,7 +11,7 @@ public class HomeTag1Item {
     int cafeImage;
     int rating;
 
-    public HomeTag1Item(String cafeName, String cafeAddress, String tag1, String tag2, String tag3, String review, int cafeImage, int rating) {
+    public HomeTag2Item(String cafeName, String cafeAddress, String tag1, String tag2, String tag3, String review, int cafeImage, int rating) {
         this.cafeName = cafeName;
         this.cafeAddress = cafeAddress;
         this.tag1 = tag1;
