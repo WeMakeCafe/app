@@ -487,10 +487,7 @@ public class CafeRegistrationFragment extends Fragment {
                                 new Response.Listener<JSONObject>() {
                                     @Override
                                     public void onResponse(JSONObject response) {
-                                        // 카페 수정 완료 시 해당 카페 디테일로 넘어가기
-                                        Bundle bundle = new Bundle();
-                                        bundle.putString("cafeName", cafe_name_input.getText().toString());
-                                        navController.navigate(R.id.cafe_registration_to_cafe_detail, bundle);
+
                                     }
                                 },
                                 new Response.ErrorListener() {
@@ -508,7 +505,12 @@ public class CafeRegistrationFragment extends Fragment {
                         RequestQueue queue = Volley.newRequestQueue(requireContext());
                         queue.add(objectRequest);
                         // 내가 만든 카페의 카페디테일로 이동(정보이동은 어캐될까 고민)
-                        navController.navigate(R.id.cafe_registration_to_cafe_detail);
+                        //navController.navigate(R.id.cafe_registration_to_cafe_detail);
+
+                        // 카페 등록 완료 시 해당 카페 디테일로 넘어가기 - 송상화
+                        Bundle bundle = new Bundle();
+                        bundle.putString("cafeName", cafe_name_input.getText().toString());
+                        navController.navigate(R.id.cafe_registration_to_cafe_detail, bundle);
                     }
                 });
 
