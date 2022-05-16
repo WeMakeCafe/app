@@ -38,44 +38,75 @@
                     android:layout_weight="1"
                     android:orientation="vertical">
 
-                    <LinearLayout
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
+                        android:layout_height="match_parent">
 
                         <TextView
                             android:id="@+id/nickName"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="32dp"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="7dp"
+                            android:layout_marginEnd="10dp"
+                            android:singleLine="true"
                             android:text="이름"
                             android:textColor="@color/black"
-                            android:textSize="20sp" />
+                            android:textSize="20sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/review_modify"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
                             android:id="@+id/review_modify"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="190dp"
-                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="10dp"
                             android:clickable="true"
-                            android:text="수정" />
+                            android:text="수정"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/review_delete"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/review_modifyLine"
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:background="@color/gray"
+                            android:text="TextView"
+                            app:layout_constraintEnd_toEndOf="@+id/review_modify"
+                            app:layout_constraintStart_toStartOf="@+id/review_modify"
+                            app:layout_constraintTop_toBottomOf="@+id/review_modify" />
 
                         <TextView
                             android:id="@+id/review_delete"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="20dp"
                             android:clickable="true"
-                            android:text="삭제" />
+                            android:text="삭제"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                    </LinearLayout>
+                        <TextView
+                            android:id="@+id/review_deleteLine"
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:background="@color/gray"
+                            android:text="TextView"
+                            app:layout_constraintEnd_toEndOf="@+id/review_delete"
+                            app:layout_constraintStart_toStartOf="@+id/review_delete"
+                            app:layout_constraintTop_toBottomOf="@+id/review_delete" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <TextView
                         android:id="@+id/level_and_location"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="레벨 및 위치인증"
                         android:textColor="@color/black"
                         android:textSize="15sp" />

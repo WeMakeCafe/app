@@ -42,33 +42,34 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <Spinner
+        android:id="@+id/reviewSpinner"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/review_spinner"
+        android:paddingTop="5dp"
+        android:paddingRight="8dp"
+        android:paddingBottom="5dp"
+        android:spinnerMode="dialog"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/line1" />
+
     <ScrollView
         android:id="@+id/cafeDetailMoreScrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/line1">
+        app:layout_constraintTop_toBottomOf="@+id/reviewSpinner">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/reviewList_Layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
-            <Spinner
-                android:id="@+id/reviewSpinner"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="15dp"
-                android:spinnerMode="dialog"
-                android:background="@drawable/review_spinner"
-                android:textAlignment="center"
-                android:paddingRight="8dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/cafeDetailMoreRecyclerView"
@@ -77,7 +78,7 @@
                 android:layout_marginTop="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/reviewSpinner" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
                 android:id="@+id/cafeDetailMore_footer"
@@ -88,7 +89,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cafeDetailMoreRecyclerView"/>
+                app:layout_constraintTop_toBottomOf="@id/cafeDetailMoreRecyclerView" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

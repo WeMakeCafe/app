@@ -303,6 +303,7 @@
                     android:inputType="textPersonName"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
+                    android:singleLine="true"
                     app:layout_constraintStart_toEndOf="@+id/cafe_openHours"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -333,6 +334,7 @@
                     android:inputType="textPersonName"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
+                    android:singleLine="true"
                     app:layout_constraintStart_toEndOf="@+id/cafe_closeHours"
                     app:layout_constraintTop_toBottomOf="@+id/cafe_openHours_input" />
 
@@ -412,6 +414,7 @@
                     android:layout_marginTop="16dp"
                     android:background="@drawable/selected_tag_textview"
                     android:gravity="center_horizontal|center_vertical"
+                    android:singleLine="true"
                     android:textColor="@color/brown"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -425,6 +428,7 @@
                     android:layout_marginTop="16dp"
                     android:background="@drawable/selected_tag_textview"
                     android:gravity="center_horizontal|center_vertical"
+                    android:singleLine="true"
                     android:text=""
                     android:textColor="@color/brown"
                     android:textSize="16sp"
@@ -441,6 +445,7 @@
                     android:layout_marginEnd="10dp"
                     android:background="@drawable/selected_tag_textview"
                     android:gravity="center_horizontal|center_vertical"
+                    android:singleLine="true"
                     android:text=""
                     android:textColor="@color/brown"
                     android:textSize="16sp"
