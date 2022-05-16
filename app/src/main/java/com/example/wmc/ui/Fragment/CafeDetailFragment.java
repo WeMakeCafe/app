@@ -162,7 +162,7 @@ public class CafeDetailFragment extends Fragment {
         requestQueue.start();
 
 
-        String get_cafe_url = "http://54.221.33.199:8080/cafe";
+        String get_cafe_url = "http://54.196.209.1:8080/cafe";
 
         StringRequest cafe_stringRequest = new StringRequest(Request.Method.GET, get_cafe_url, new Response.Listener<String>() {
             @RequiresApi(api = Build.VERSION_CODES.O)
@@ -198,7 +198,7 @@ public class CafeDetailFragment extends Fragment {
 
                 ///////////////////////////////////////////////////////////////////////////////////////////////////
                 // 카페 북마크 여부 확인 및 등록, 삭제
-                String get_bookmark_url = "http://54.221.33.199:8080/bookmark";
+                String get_bookmark_url = "http://54.196.209.1:8080/bookmark";
 
                 // 카페 북마크 여부 확인
                 StringRequest bookmark_stringRequest = new StringRequest(Request.Method.GET, get_bookmark_url, new Response.Listener<String>() {
@@ -264,7 +264,7 @@ public class CafeDetailFragment extends Fragment {
                                 }
                                 else {
                                     // 즐겨찾기 항목에서 제거됨
-                                    String bookmark_delete_url = "http://54.221.33.199:8080/bookmark/" + get_bookmark_num.toString();
+                                    String bookmark_delete_url = "http://54.196.209.1:8080/bookmark/" + get_bookmark_num.toString();
                                     StringRequest bookmark_delete_stringRequest = new StringRequest(Request.Method.DELETE, bookmark_delete_url, new Response.Listener<String>() {
                                         @RequiresApi(api = Build.VERSION_CODES.O)
                                         @Override
@@ -299,7 +299,7 @@ public class CafeDetailFragment extends Fragment {
 
                 ///////////////////////////////////////////////////////////////////////////////////////////
                 // review 채우기
-                String get_review_url = "http://54.221.33.199:8080/review";
+                String get_review_url = "http://54.196.209.1:8080/review";
 
                 StringRequest review_stringRequest = new StringRequest(Request.Method.GET, get_review_url, new Response.Listener<String>() {
                     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -320,7 +320,7 @@ public class CafeDetailFragment extends Fragment {
 
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         //리뷰 작성자의 정보 가져오기
-                        String get_personal_url = "http://54.221.33.199:8080/personal";
+                        String get_personal_url = "http://54.196.209.1:8080/personal";
 
                         StringRequest personal_stringRequest = new StringRequest(Request.Method.GET, get_personal_url, new Response.Listener<String>() {
                             @RequiresApi(api = Build.VERSION_CODES.O)
@@ -430,32 +430,9 @@ public class CafeDetailFragment extends Fragment {
             }
         });
 
-
         requestQueue.add(cafe_stringRequest);
 
 
-
-/*
-        // 카페 이름 가져오기(상단)
-        Bundle cafeNameBundle1 = getArguments();
-        if(cafeNameBundle1 != null){
-            if(cafeNameBundle1.getString("cafeName") != null){
-                moreReview2.setText(cafeNameBundle1.getString("cafeName"));
-            }
-        }
-
-        // 카페 이름 가져오기(상세)
-        Bundle cafeNameBundle2 = getArguments();
-        if(cafeNameBundle2 != null){
-            if(cafeNameBundle2.getString("cafeName") != null){
-                moreReview3.setText(cafeNameBundle2.getString("cafeName"));
-            }
-        }
-
-        moreReview4 = root.findViewById(R.id.moreReview4); // 사진 아래 카페 주소 ID
-        moreReview10 = root.findViewById(R.id.moreReview10); // 사진 아래 운영 시간 첫번째
-        moreReview8 = root.findViewById(R.id.moreReview8); // 사진 아래 운영 시간 두번째
-        */
 
         // 카페 운영 시간 가져오기
         Bundle cafeModifyBundle = getArguments();
@@ -489,21 +466,6 @@ public class CafeDetailFragment extends Fragment {
                 navController.navigate(R.id.cafe_detail_to_review, bundle);
             }
         });
-
-
-        // 카페디테일의 리뷰 리싸이클러뷰
-
-
-        /*cafeDetailReviewItem.add(new CafeDetailItem("지코", "Lv.3",
-                "테이블이 매우 협소합니다. \n" +
-                        "하지만, 가격이 매우 저렴하고 맛있습니다!\n" +
-                        "마카롱이 진짜 최고에요ㅠ", R.drawable.logo, R.drawable.logo_v2, "5"));
-        cafeDetailReviewItem.add(new CafeDetailItem("애쉬", "Lv.1(위치 인증 완료)",
-                "테이블이 협소해서 공부하기는 어렵지만\n" +
-                        "노래도 나오고 친구들이랑 같이 이야기하기에는\n" +
-                        "좋아요.", R.drawable.logo, R.drawable.logo_v2, "1"));*/
-
-
 
 
         // 카페디테일에 해당하는 카페이미지 보여주기
