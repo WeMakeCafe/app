@@ -189,6 +189,9 @@ public class ListCafelistFragment extends Fragment {
                                 }
                             });
 
+                            // 리사이클러뷰의 아이템을 갱신해주는 코드
+                            listCafeListAdapter.notifyItemInserted(listCafeListItems.size());
+
                             // 리싸이클러뷰 아이템이 없을 경우, 카페 추가 버튼과 설명 글 생성
                             if(listCafeListItems.size() == 0) {
                                 cafeList_footer.setVisibility(View.INVISIBLE);
