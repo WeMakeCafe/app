@@ -131,6 +131,7 @@ public class ListCafelistFragment extends Fragment {
                     listCafeListItems.clear();  // 이전에 보였던 리싸이클러뷰 아이템 모두 제거 후, 검색관련 아이템을 띄움
 
 
+                    // 서버 연결하여 cafe_list 검색
                     RequestQueue requestQueue;
                     Cache cache = new DiskBasedCache(getActivity().getCacheDir(), 1024 * 1024); // 1MB cap
                     Network network = new BasicNetwork(new HurlStack());
@@ -157,8 +158,10 @@ public class ListCafelistFragment extends Fragment {
 
                             cafe_list = gson.fromJson(changeString, listType);
 
+                            ///////////////////////////////////////////////////////////////////////////////////
+                            // 카페 이름으로 찾기
                             for(Cafe c : cafe_list){
-                                if(c.getCafeName().contains(search)){
+                                if(c.getCafeName().contains(search)){ // 카페 이름에 검색어가 포함되는지 확인
                                     listCafeListItems.add(new ListCafeListItem(c.getCafeName(), c.getCafeAddress(),
                                             c.getOpenTime() + " ~ " + c.getCloseTime(), "#레트로", "#인스타", R.drawable.logo));
                                 }
