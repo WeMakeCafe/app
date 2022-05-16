@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -77,11 +78,14 @@ public class CafeRegistrationFragment extends Fragment {
     ArrayList<Cafe> cafe_list;
     TextView cafe_name_input;
     TextView cafe_address_input;
-    TextView cafe_openHours_input;
-    TextView cafe_closeHours_input;
     String tag1;
     String tag2;
     String tag3;
+
+    EditText cafe_openHours_hour_input;
+    EditText cafe_openHours_minute_input;
+    EditText cafe_closeHours_hour_input;
+    EditText cafe_closeHours_minute_input;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -96,8 +100,10 @@ public class CafeRegistrationFragment extends Fragment {
         cafeRegistrationImageRecyclerView = root.findViewById(R.id.cafeRegistrationImageRecyclerView);
         cafe_name_input = root.findViewById(R.id.cafe_name_input);
         cafe_address_input = root.findViewById(R.id.cafe_address_input);
-        cafe_openHours_input = root.findViewById(R.id.cafe_openHours_input);
-        cafe_closeHours_input = root.findViewById(R.id.cafe_closeHours_input);
+        cafe_openHours_hour_input = root.findViewById(R.id.cafe_openHours_hour_input);
+        cafe_openHours_minute_input = root.findViewById(R.id.cafe_openHours_minute_input);
+        cafe_closeHours_hour_input= root.findViewById(R.id.cafe_closeHours_hour_input);
+        cafe_closeHours_minute_input= root.findViewById(R.id.cafe_closeHours_minute_input);
 
         RequestQueue requestQueue;
         Cache cache = new DiskBasedCache(getActivity().getCacheDir(), 1024 * 1024); // 1MB cap
@@ -148,8 +154,8 @@ public class CafeRegistrationFragment extends Fragment {
                         Map map = new HashMap();
                         map.put("cafeName", cafe_name_input.getText().toString());
                         map.put("cafeAddress", cafe_address_input.getText().toString());
-                        map.put("openTime", cafe_openHours_input.getText().toString());
-                        map.put("closeTime", cafe_closeHours_input.getText().toString());
+                        map.put("openTime", cafe_openHours_hour_input.getText().toString() + cafe_openHours_minute_input.getText().toString());
+                        map.put("closeTime", cafe_closeHours_hour_input.getText().toString() + cafe_closeHours_minute_input.getText().toString());
                         // 이미지, 키워드 추가 코드 작성 할 곳
                         // 태그 문자열형식을 숫자로 변환
                         switch(tag1) {
@@ -532,8 +538,8 @@ public class CafeRegistrationFragment extends Fragment {
                 Bundle bundle = new Bundle(); // 프래그먼트 간 데이터 전달 위한 번들
                 bundle.putString("name",cafe_name_input.getText().toString());
                 bundle.putString("address", cafe_address_input.getText().toString());
-                bundle.putString("opentime", cafe_openHours_input.getText().toString());
-                bundle.putString("closetime", cafe_closeHours_input.getText().toString());
+                bundle.putString("opentime", cafe_openHours_hour_input.getText().toString() + cafe_openHours_minute_input.getText().toString());
+                bundle.putString("closetime", cafe_closeHours_hour_input.getText().toString() + cafe_closeHours_minute_input.getText().toString());
                 navController.navigate(R.id.cafe_registration_to_cafe_registration_tag, bundle);
             }
         });
@@ -553,8 +559,10 @@ public class CafeRegistrationFragment extends Fragment {
                 basic_tag3.setText(argBundle.getString("key3"));
                 cafe_name_input.setText(argBundle.getString("name"));
                 cafe_address_input.setText(argBundle.getString("address"));
-                cafe_openHours_input.setText(argBundle.getString("opentime"));
-                cafe_closeHours_input.setText(argBundle.getString("closetime"));
+                cafe_openHours_hour_input.setText(String.valueOf(Integer.parseInt(argBundle.getString("opentime"))/100));
+                cafe_openHours_minute_input.setText(String.valueOf(Integer.parseInt(argBundle.getString("opentime"))%100));
+                cafe_closeHours_hour_input.setText(String.valueOf(Integer.parseInt(argBundle.getString("closetime"))/100));
+                cafe_closeHours_minute_input.setText(String.valueOf(Integer.parseInt(argBundle.getString("closetime"))%100));
 
                 //카페이미지 문장
                 tag1 = argBundle.getString("key1");

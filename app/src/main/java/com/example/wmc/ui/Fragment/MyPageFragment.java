@@ -189,21 +189,21 @@ public class MyPageFragment extends Fragment {
 
         ArrayList<MypageReviewItem> mypageReviewItem = new ArrayList<>();
 
-        mypageReviewItem.add(new MypageReviewItem("지코", "Lv.1", "테이블이 매우 협소합니다.",
+        mypageReviewItem.add(new MypageReviewItem("지코", "1", "테이블이 매우 협소합니다.",
                 R.drawable.logo, R.drawable.logo, R.drawable.logo_v2, R.drawable.review_click, "4"));
-        mypageReviewItem.add(new MypageReviewItem("지코", "Lv.2", "테이블이 매우 협소합니다.",
+        mypageReviewItem.add(new MypageReviewItem("지코", "2", "테이블이 매우 협소합니다.",
                 R.drawable.logo, R.drawable.logo, R.drawable.logo_v2, R.drawable.review_click, "4"));
-        mypageReviewItem.add(new MypageReviewItem("지코", "Lv.3", "테이블이 매우 협소합니다.",
+        mypageReviewItem.add(new MypageReviewItem("지코", "3", "테이블이 매우 협소합니다.",
                 R.drawable.logo, R.drawable.logo, R.drawable.logo_v2, R.drawable.review_click, "4"));
-        mypageReviewItem.add(new MypageReviewItem("지코", "Lv.4", "테이블이 매우 협소합니다.",
+        mypageReviewItem.add(new MypageReviewItem("지코", "4", "테이블이 매우 협소합니다.",
                 R.drawable.logo, R.drawable.logo, R.drawable.logo_v2, R.drawable.review_click, "4"));
-        mypageReviewItem.add(new MypageReviewItem("지코", "Lv.5", "테이블이 매우 협소합니다.",
+        mypageReviewItem.add(new MypageReviewItem("지코", "5", "테이블이 매우 협소합니다.",
                 R.drawable.logo, R.drawable.logo, R.drawable.logo_v2, R.drawable.review_click, "4"));
-        mypageReviewItem.add(new MypageReviewItem("지코", "Lv.6", "테이블이 매우 협소합니다.",
+        mypageReviewItem.add(new MypageReviewItem("지코", "6", "테이블이 매우 협소합니다.",
                 R.drawable.logo, R.drawable.logo, R.drawable.logo_v2, R.drawable.review_click, "4"));
-        mypageReviewItem.add(new MypageReviewItem("지코", "Lv.7", "테이블이 매우 협소합니다.",
+        mypageReviewItem.add(new MypageReviewItem("지코", "7", "테이블이 매우 협소합니다.",
                 R.drawable.logo, R.drawable.logo, R.drawable.logo_v2, R.drawable.review_click, "4"));
-        mypageReviewItem.add(new MypageReviewItem("지코", "Lv.8", "테이블이 매우 협소합니다.",
+        mypageReviewItem.add(new MypageReviewItem("지코", "8", "테이블이 매우 협소합니다.",
                 R.drawable.logo, R.drawable.logo, R.drawable.logo_v2, R.drawable.review_click, "4"));
 
 

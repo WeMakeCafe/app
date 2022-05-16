@@ -16,6 +16,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -32,6 +34,7 @@ import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.StringRequest;
 import com.example.wmc.R;
 import com.example.wmc.database.Personal;
+import com.example.wmc.database.Review;
 import com.example.wmc.databinding.FragmentReviewBinding;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -45,6 +48,7 @@ public class ReviewFragment extends Fragment {
 
     private FragmentReviewBinding binding;
     private static NavController navController;
+
     Button review_search_input;
     Button addTag_cafe_button;
     Button comment_button;
@@ -81,17 +85,23 @@ public class ReviewFragment extends Fragment {
         tag2 = root.findViewById(R.id.select_tag2);
         tag3 = root.findViewById(R.id.select_tag3);
 
+
         // 태그 추가 페이지 (ReviewTagFragment) 에서 번들로 받아온 정보 반영 위한 코드
         TextView setTag1 = root.findViewById(R.id.select_tag1); // 태그 추가 완료 시 반영할 리뷰 작성 페이지의 태그 박스1
         TextView setTag2 = root.findViewById(R.id.select_tag2); // 태그 추가 완료 시 반영할 리뷰 작성 페이지의 태그 박스2
         TextView setTag3 = root.findViewById(R.id.select_tag3); // 태그 추가 완료 시 반영할 리뷰 작성 페이지의 태그 박스3
 
+
+        // ReviewTag에서 가져온 태그들 설정 및 카페이름을 기억해두기
         Bundle argBundle = getArguments();
         if( argBundle != null ) {
             if (argBundle.getString("key1") != null) {
                 setTag1.setText(argBundle.getString("key1"));
                 setTag2.setText(argBundle.getString("key2"));
                 setTag3.setText(argBundle.getString("key3"));
+                review_search_input.setText(argBundle.getString("review_cafeName"));
+                review_search_input.setTypeface(Typeface.DEFAULT_BOLD);  // 카페이름 Bold처리
+                review_search_input.setGravity(Gravity.CENTER);          // 카페 위치 Center로 변경
             }
         }
 
@@ -120,7 +130,19 @@ public class ReviewFragment extends Fragment {
         addTag_cafe_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navController.navigate(R.id.review_to_review_tag);
+
+                // 리뷰 검색에서 리뷰를 작성할 카페를 선택하지 않았을 경우.
+                if(review_search_input.getText().toString().equals("")){
+                    Toast.makeText(getContext().getApplicationContext(), "리뷰를 작성할 카페를 검색해주세요.", Toast.LENGTH_SHORT).show();
+                }
+
+                // 리뷰를 작성할 카페를 선택한 경우
+                else{
+                    Bundle bundle = new Bundle();
+                    bundle.putString("cafeName", review_search_input.getText().toString());
+
+                    navController.navigate(R.id.review_to_review_tag, bundle);
+                }
             }
         });
 
@@ -141,7 +163,7 @@ public class ReviewFragment extends Fragment {
         });
 
 
-        // 카페 디테일에서 리뷰 작성 플로팅 버튼 클릭 시, 카페 이름 가져옴
+        // 카페 디테일에서 리뷰 작성 플로팅 버튼 클릭 시, 또는 ReviewCafeList에서 선택한 카페 이름 가져옴
         Bundle cafeNameBundle = getArguments();
         if(cafeNameBundle != null) {
             if(cafeNameBundle.getString("cafeName") != null ){
