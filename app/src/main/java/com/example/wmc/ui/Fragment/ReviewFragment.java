@@ -1,6 +1,7 @@
 package com.example.wmc.ui.Fragment;
 
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -29,17 +31,25 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.BasicNetwork;
 import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HurlStack;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.wmc.R;
+import com.example.wmc.database.Cafe;
 import com.example.wmc.database.Personal;
+import com.example.wmc.database.Review;
 import com.example.wmc.databinding.FragmentReviewBinding;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONObject;
+
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ReviewFragment extends Fragment {
 
@@ -54,6 +64,10 @@ public class ReviewFragment extends Fragment {
     TextView tag2;
     TextView tag3;
 
+    String stag1;
+    String stag2;
+    String stag3;
+
     RatingBar rating_sour;
     RatingBar rating_acerbity;
     RatingBar rating_dessert;
@@ -66,6 +80,8 @@ public class ReviewFragment extends Fragment {
     RatingBar rating_plug;
     RatingBar rating_quiet;
     RatingBar rating_light;
+
+    ArrayList<Review> review_list;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -92,6 +108,9 @@ public class ReviewFragment extends Fragment {
                 setTag1.setText(argBundle.getString("key1"));
                 setTag2.setText(argBundle.getString("key2"));
                 setTag3.setText(argBundle.getString("key3"));
+                stag1 = argBundle.getString("key1");
+                stag2 = argBundle.getString("key2");
+                stag3 = argBundle.getString("key3");
             }
         }
 
@@ -124,12 +143,6 @@ public class ReviewFragment extends Fragment {
             }
         });
 
-        comment_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navController.navigate(R.id.review_to_review_comment);
-            }
-        });
 
         // 위치인증 버튼 클릭 시,
         location_button.setOnClickListener(new View.OnClickListener() {
@@ -200,7 +213,24 @@ public class ReviewFragment extends Fragment {
                 }
 
                 else{
-                    navController.navigate(R.id.review_to_review_comment);
+                    Bundle bundle = new Bundle(); // 프래그먼트 간 데이터 전달 위한 번들
+                    bundle.putString("tag1", tag1.getText().toString());
+                    bundle.putString("tag2", tag2.getText().toString());
+                    bundle.putString("tag3", tag3.getText().toString());
+                    bundle.putInt("sour", rating_sour.getNumStars());
+                    bundle.putInt("acerbity", rating_acerbity.getNumStars());
+                    bundle.putInt("dessert", rating_dessert.getNumStars());
+                    bundle.putInt("beverage", rating_beverage.getNumStars());
+                    bundle.putInt("twoseat", rating_twoseat.getNumStars());
+                    bundle.putInt("fourseat", rating_fourseat.getNumStars());
+                    bundle.putInt("manyseat", rating_manyseat.getNumStars());
+                    bundle.putInt("toilet", rating_toilet.getNumStars());
+                    bundle.putInt("wifi", rating_wifi.getNumStars());
+                    bundle.putInt("plug", rating_plug.getNumStars());
+                    bundle.putInt("quiet", rating_quiet.getNumStars());
+                    bundle.putInt("light", rating_light.getNumStars());
+
+                    navController.navigate(R.id.review_to_review_comment, bundle);
                 }
             }
         });
@@ -241,6 +271,365 @@ public class ReviewFragment extends Fragment {
                 }
 
                 else{
+                    RequestQueue requestQueue;
+                    Cache cache = new DiskBasedCache(getActivity().getCacheDir(), 1024 * 1024); // 1MB cap
+                    Network network = new BasicNetwork(new HurlStack());
+                    requestQueue = new RequestQueue(cache, network);
+                    requestQueue.start();
+                    String url = "http://54.221.33.199:8080/review";
+
+                    Map map = new HashMap();
+
+                    switch (stag1) {
+                        case ("#쓴맛"):
+                            map.put("keyword1", 1);
+                            break;
+                        case ("#신맛"):
+                            map.put("keyword2", 1);
+                            break;
+                        case ("#짠맛"):
+                            map.put("keyword3", 1);
+                            break;
+                        case ("#단맛"):
+                            map.put("keyword4", 1);
+                            break;
+                        case ("#향미"):
+                            map.put("keyword5", 1);
+                            break;
+                        case ("#바디감"):
+                            map.put("keyword6", 1);
+                            break;
+                        case ("#콜드브루"):
+                            map.put("keyword7", 1);
+                            break;
+                        case ("#메뉴多"):
+                            map.put("keyword8", 1);
+                            break;
+                        case ("#가성비"):
+                            map.put("keyword9", 1);
+                            break;
+                        case ("#양많음"):
+                            map.put("keyword10", 1);
+                            break;
+                        case ("#디저트맛집"):
+                            map.put("keyword11", 1);
+                            break;
+                        case ("#논커피맛집"):
+                            map.put("keyword12", 1);
+                            break;
+                        case ("#인스타"):
+                            map.put("keyword13", 1);
+                            break;
+                        case ("#앤티크"):
+                            map.put("keyword14", 1);
+                            break;
+                        case ("#모던"):
+                            map.put("keyword15", 1);
+                            break;
+                        case ("#캐주얼"):
+                            map.put("keyword16", 1);
+                            break;
+                        case ("#이국적"):
+                            map.put("keyword17", 1);
+                            break;
+                        case ("#일상"):
+                            map.put("keyword18", 1);
+                            break;
+                        case ("#따뜻한"):
+                            map.put("keyword19", 1);
+                            break;
+                        case ("#조용한"):
+                            map.put("keyword20", 1);
+                            break;
+                        case ("#우드톤"):
+                            map.put("keyword21", 1);
+                            break;
+                        case ("#채광"):
+                            map.put("keyword22", 1);
+                            break;
+                        case ("#힙한"):
+                            map.put("keyword23", 1);
+                            break;
+                        case ("#귀여운"):
+                            map.put("keyword24", 1);
+                            break;
+                        case ("#친절한"):
+                            map.put("keyword25", 1);
+                            break;
+                        case ("#청결한"):
+                            map.put("keyword26", 1);
+                            break;
+                        case ("#애견"):
+                            map.put("keyword27", 1);
+                            break;
+                        case ("#주차장"):
+                            map.put("keyword28", 1);
+                            break;
+                        case ("#노키즈존"):
+                            map.put("keyword29", 1);
+                            break;
+                        case ("#교통편의"):
+                            map.put("keyword30", 1);
+                            break;
+                        case ("#신속한"):
+                            map.put("keyword31", 1);
+                            break;
+                        case ("#쾌적한"):
+                            map.put("keyword32", 1);
+                            break;
+                        case ("#회의실"):
+                            map.put("keyword33", 1);
+                            break;
+                        case ("#규모大"):
+                            map.put("keyword34", 1);
+                            break;
+                        case ("#규모小"):
+                            map.put("keyword35", 1);
+                            break;
+                        case ("#편한좌석"):
+                            map.put("keyword36", 1);
+                    }
+
+                    switch (stag2) {
+                        case ("#쓴맛"):
+                            map.put("keyword1", 1);
+                            break;
+                        case ("#신맛"):
+                            map.put("keyword2", 1);
+                            break;
+                        case ("#짠맛"):
+                            map.put("keyword3", 1);
+                            break;
+                        case ("#단맛"):
+                            map.put("keyword4", 1);
+                            break;
+                        case ("#향미"):
+                            map.put("keyword5", 1);
+                            break;
+                        case ("#바디감"):
+                            map.put("keyword6", 1);
+                            break;
+                        case ("#콜드브루"):
+                            map.put("keyword7", 1);
+                            break;
+                        case ("#메뉴多"):
+                            map.put("keyword8", 1);
+                            break;
+                        case ("#가성비"):
+                            map.put("keyword9", 1);
+                            break;
+                        case ("#양많음"):
+                            map.put("keyword10", 1);
+                            break;
+                        case ("#디저트맛집"):
+                            map.put("keyword11", 1);
+                            break;
+                        case ("#논커피맛집"):
+                            map.put("keyword12", 1);
+                        case ("#인스타"):
+                            map.put("keyword13", 1);
+                            break;
+                        case ("#앤티크"):
+                            map.put("keyword14", 1);
+                            break;
+                        case ("#모던"):
+                            map.put("keyword15", 1);
+                            break;
+                        case ("#캐주얼"):
+                            map.put("keyword16", 1);
+                            break;
+                        case ("#이국적"):
+                            map.put("keyword17", 1);
+                            break;
+                        case ("#일상"):
+                            map.put("keyword18", 1);
+                            break;
+                        case ("#따뜻한"):
+                            map.put("keyword19", 1);
+                            break;
+                        case ("#조용한"):
+                            map.put("keyword20", 1);
+                            break;
+                        case ("#우드톤"):
+                            map.put("keyword21", 1);
+                            break;
+                        case ("#채광"):
+                            map.put("keyword22", 1);
+                            break;
+                        case ("#힙한"):
+                            map.put("keyword23", 1);
+                            break;
+                        case ("#귀여운"):
+                            map.put("keyword24", 1);
+                            break;
+                        case ("#친절한"):
+                            map.put("keyword25", 1);
+                            break;
+                        case ("#청결한"):
+                            map.put("keyword26", 1);
+                            break;
+                        case ("#애견"):
+                            map.put("keyword27", 1);
+                            break;
+                        case ("#주차장"):
+                            map.put("keyword28", 1);
+                            break;
+                        case ("#노키즈존"):
+                            map.put("keyword29", 1);
+                            break;
+                        case ("#교통편의"):
+                            map.put("keyword30", 1);
+                            break;
+                        case ("#신속한"):
+                            map.put("keyword31", 1);
+                            break;
+                        case ("#쾌적한"):
+                            map.put("keyword32", 1);
+                            break;
+                        case ("#회의실"):
+                            map.put("keyword33", 1);
+                            break;
+                        case ("#규모大"):
+                            map.put("keyword34", 1);
+                            break;
+                        case ("#규모小"):
+                            map.put("keyword35", 1);
+                            break;
+                        case ("#편한좌석"):
+                            map.put("keyword36", 1);
+                    }
+
+                    switch (stag3) {
+                        case ("#쓴맛"):
+                            map.put("keyword1", 1);
+                            break;
+                        case ("#신맛"):
+                            map.put("keyword2", 1);
+                            break;
+                        case ("#짠맛"):
+                            map.put("keyword3", 1);
+                            break;
+                        case ("#단맛"):
+                            map.put("keyword4", 1);
+                            break;
+                        case ("#향미"):
+                            map.put("keyword5", 1);
+                            break;
+                        case ("#바디감"):
+                            map.put("keyword6", 1);
+                            break;
+                        case ("#콜드브루"):
+                            map.put("keyword7", 1);
+                            break;
+                        case ("#메뉴多"):
+                            map.put("keyword8", 1);
+                            break;
+                        case ("#가성비"):
+                            map.put("keyword9", 1);
+                            break;
+                        case ("#양많음"):
+                            map.put("keyword10", 1);
+                            break;
+                        case ("#디저트맛집"):
+                            map.put("keyword11", 1);
+                            break;
+                        case ("#논커피맛집"):
+                            map.put("keyword12", 1);
+                        case ("#인스타"):
+                            map.put("keyword13", 1);
+                            break;
+                        case ("#앤티크"):
+                            map.put("keyword14", 1);
+                            break;
+                        case ("#모던"):
+                            map.put("keyword15", 1);
+                            break;
+                        case ("#캐주얼"):
+                            map.put("keyword16", 1);
+                            break;
+                        case ("#이국적"):
+                            map.put("keyword17", 1);
+                            break;
+                        case ("#일상"):
+                            map.put("keyword18", 1);
+                            break;
+                        case ("#따뜻한"):
+                            map.put("keyword19", 1);
+                            break;
+                        case ("#조용한"):
+                            map.put("keyword20", 1);
+                            break;
+                        case ("#우드톤"):
+                            map.put("keyword21", 1);
+                            break;
+                        case ("#채광"):
+                            map.put("keyword22", 1);
+                            break;
+                        case ("#힙한"):
+                            map.put("keyword23", 1);
+                            break;
+                        case ("#귀여운"):
+                            map.put("keyword24", 1);
+                            break;
+                        case ("#친절한"):
+                            map.put("keyword25", 1);
+                            break;
+                        case ("#청결한"):
+                            map.put("keyword26", 1);
+                            break;
+                        case ("#애견"):
+                            map.put("keyword27", 1);
+                            break;
+                        case ("#주차장"):
+                            map.put("keyword28", 1);
+                            break;
+                        case ("#노키즈존"):
+                            map.put("keyword29", 1);
+                            break;
+                        case ("#교통편의"):
+                            map.put("keyword30", 1);
+                            break;
+                        case ("#신속한"):
+                            map.put("keyword31", 1);
+                            break;
+                        case ("#쾌적한"):
+                            map.put("keyword32", 1);
+                            break;
+                        case ("#회의실"):
+                            map.put("keyword33", 1);
+                            break;
+                        case ("#규모大"):
+                            map.put("keyword34", 1);
+                            break;
+                        case ("#규모小"):
+                            map.put("keyword35", 1);
+                            break;
+                        case ("#편한좌석"):
+                            map.put("keyword36", 1);
+                    }
+
+                    JSONObject jsonObject = new JSONObject(map);
+                    JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject,
+                            new Response.Listener<JSONObject>() {
+                                @Override
+                                public void onResponse(JSONObject response) {
+
+                                }
+                            },
+                            new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    Log.d("test", error.toString());
+                                }
+                            }) {
+                        @Override
+                        public String getBodyContentType() {
+                            return "application/json; charset=UTF-8";
+                        }
+                    };
+
+                    RequestQueue queue = Volley.newRequestQueue(requireContext());
+                    queue.add(objectRequest);
                     navController.navigate(R.id.review_to_cafe_detail);
                 }
             }

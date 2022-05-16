@@ -504,7 +504,7 @@ public class CafeRegistrationFragment extends Fragment {
                                     return "application/json; charset=UTF-8";
                                 }
                             };
-                            Log.d("json", jsonObject.toString());
+
                             RequestQueue queue = Volley.newRequestQueue(requireContext());
                             queue.add(objectRequest);
                             // 내가 만든 카페의 카페디테일로 이동(정보이동은 어캐될까 고민)
