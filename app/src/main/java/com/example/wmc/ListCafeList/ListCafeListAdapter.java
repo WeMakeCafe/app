@@ -9,9 +9,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.wmc.HomeTag1.HomeTag1Item;
-import com.example.wmc.HomeTag1.HomeTag1ViewHolder;
-
 import java.util.ArrayList;
 
 public class ListCafeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
