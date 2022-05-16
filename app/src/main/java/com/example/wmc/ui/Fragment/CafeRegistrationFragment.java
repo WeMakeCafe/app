@@ -101,8 +101,6 @@ public class CafeRegistrationFragment extends Fragment {
         cafe_name_input = root.findViewById(R.id.cafe_name_input);
         cafe_address_input = root.findViewById(R.id.cafe_address_input);
         cafe_openHours_hour_input = root.findViewById(R.id.cafe_openHours_hour_input);
-        cafe_openHours_minute_input = root.findViewById(R.id.cafe_openHours_minute_input);
-        cafe_closeHours_hour_input= root.findViewById(R.id.cafe_closeHours_hour_input);
         cafe_closeHours_minute_input= root.findViewById(R.id.cafe_closeHours_minute_input);
 
         RequestQueue requestQueue;
@@ -152,20 +150,21 @@ public class CafeRegistrationFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
 
-                        if ((cafe_name_input != null) && (cafe_address_input != null) && (cafe_openHours_input != null)
-                                && (cafe_closeHours_input != null) && (tag1 !=null) && (tag2 != null) && (tag3 != null)) {
-                            Map map = new HashMap();
-                            map.put("cafeName", cafe_name_input.getText().toString());
-                            map.put("cafeAddress", cafe_address_input.getText().toString());
-                            map.put("openTime", cafe_openHours_input.getText().toString());
-                            map.put("closeTime", cafe_closeHours_input.getText().toString());
+                        if ((cafe_name_input != null) && (cafe_address_input != null) && (cafe_openHours_hour_input != null)
+                                && (cafe_closeHours_hour_input != null) && (tag1 !=null) && (tag2 != null) && (tag3 != null)) {
+                             Map map = new HashMap();
+                                // 이미지, 키워드 추가 코드 작성 할 곳
+                             map.put("cafeName", cafe_name_input.getText().toString());
+                             map.put("cafeAddress", cafe_address_input.getText().toString());
+                             map.put("openTime", cafe_openHours_hour_input.getText().toString() + cafe_openHours_minute_input.getText().toString());
+                             map.put("closeTime", cafe_closeHours_hour_input.getText().toString() + cafe_closeHours_minute_input.getText().toString());
                             // 이미지, 키워드 추가 코드 작성 할 곳
                             // 태그 문자열형식을 숫자로 변환
-                            switch (tag1) {
+                            switch(tag1) {
                                 case ("#쓴맛"):
                                     map.put("keyword1", 1);
                                     break;
-                                case ("#신맛"):
+                                    case ("#신맛"):
                                     map.put("keyword2", 1);
                                     break;
                                 case ("#짠맛"):
@@ -270,122 +269,6 @@ public class CafeRegistrationFragment extends Fragment {
                                 case ("#편한좌석"):
                                     map.put("keyword36", 1);
                             }
-                        Map map = new HashMap();
-                        map.put("cafeName", cafe_name_input.getText().toString());
-                        map.put("cafeAddress", cafe_address_input.getText().toString());
-                        map.put("openTime", cafe_openHours_hour_input.getText().toString() + cafe_openHours_minute_input.getText().toString());
-                        map.put("closeTime", cafe_closeHours_hour_input.getText().toString() + cafe_closeHours_minute_input.getText().toString());
-                        // 이미지, 키워드 추가 코드 작성 할 곳
-                        // 태그 문자열형식을 숫자로 변환
-                        switch(tag1) {
-                            case ("#쓴맛"):
-                                map.put("keyword1", 1);
-                                break;
-                            case ("#신맛"):
-                                map.put("keyword2", 1);
-                                break;
-                            case ("#짠맛"):
-                                map.put("keyword3", 1);
-                                break;
-                            case ("#단맛"):
-                                map.put("keyword4", 1);
-                                break;
-                            case ("#향미"):
-                                map.put("keyword5", 1);
-                                break;
-                            case ("#바디감"):
-                                map.put("keyword6", 1);
-                                break;
-                            case ("#콜드브루"):
-                                map.put("keyword7", 1);
-                                break;
-                            case ("#메뉴多"):
-                                map.put("keyword8", 1);
-                                break;
-                            case ("#가성비"):
-                                map.put("keyword9", 1);
-                                break;
-                            case ("#양많음"):
-                                map.put("keyword10", 1);
-                                break;
-                            case ("#디저트맛집"):
-                                map.put("keyword11", 1);
-                                break;
-                            case ("#논커피맛집"):
-                                map.put("keyword12", 1);
-                                break;
-                            case ("#인스타"):
-                                map.put("keyword13", 1);
-                                break;
-                            case ("#앤티크"):
-                                map.put("keyword14", 1);
-                                break;
-                            case ("#모던"):
-                                map.put("keyword15", 1);
-                                break;
-                            case ("#캐주얼"):
-                                map.put("keyword16", 1);
-                                break;
-                            case ("#이국적"):
-                                map.put("keyword17", 1);
-                                break;
-                            case ("#일상"):
-                                map.put("keyword18", 1);
-                                break;
-                            case ("#따뜻한"):
-                                map.put("keyword19", 1);
-                                break;
-                            case ("#조용한"):
-                                map.put("keyword20", 1);
-                                break;
-                            case ("#우드톤"):
-                                map.put("keyword21", 1);
-                                break;
-                            case ("#채광"):
-                                map.put("keyword22", 1);
-                                break;
-                            case ("#힙한"):
-                                map.put("keyword23", 1);
-                                break;
-                            case ("#귀여운"):
-                                map.put("keyword24", 1);
-                                break;
-                            case ("#친절한"):
-                                map.put("keyword25", 1);
-                                break;
-                            case ("#청결한"):
-                                map.put("keyword26", 1);
-                                break;
-                            case ("#애견"):
-                                map.put("keyword27", 1);
-                                break;
-                            case ("#주차장"):
-                                map.put("keyword28", 1);
-                                break;
-                            case ("#노키즈존"):
-                                map.put("keyword29", 1);
-                                break;
-                            case ("#교통편의"):
-                                map.put("keyword30", 1);
-                                break;
-                            case ("#신속한"):
-                                map.put("keyword31", 1);
-                                break;
-                            case ("#쾌적한"):
-                                map.put("keyword32", 1);
-                                break;
-                            case ("#회의실"):
-                                map.put("keyword33", 1);
-                                break;
-                            case ("#규모大"):
-                                map.put("keyword34", 1);
-                                break;
-                            case ("#규모小"):
-                                map.put("keyword35", 1);
-                                break;
-                            case ("#편한좌석"):
-                                map.put("keyword36", 1);
-                        }
 
                             switch (tag2) {
                                 case ("#쓴맛"):
@@ -626,17 +509,13 @@ public class CafeRegistrationFragment extends Fragment {
                                 return "application/json; charset=UTF-8";
                             }
                         };
+                            RequestQueue queue = Volley.newRequestQueue(requireContext());
+                            queue.add(objectRequest);
 
-                        RequestQueue queue = Volley.newRequestQueue(requireContext());
-                        queue.add(objectRequest);
-                        // 내가 만든 카페의 카페디테일로 이동(정보이동은 어캐될까 고민)
-                        //navController.navigate(R.id.cafe_registration_to_cafe_detail);
-
-                        // 카페 등록 완료 시 해당 카페 디테일로 넘어가기 - 송상화
-                        Bundle bundle = new Bundle();
-                        bundle.putString("cafeName", cafe_name_input.getText().toString());
-                        navController.navigate(R.id.cafe_registration_to_cafe_detail, bundle); }
-
+                            // 카페 등록 완료 시 해당 카페 디테일로 넘어가기 - 송상화
+                            Bundle bundle = new Bundle();
+                            bundle.putString("cafeName", cafe_name_input.getText().toString());
+                            navController.navigate(R.id.cafe_registration_to_cafe_detail, bundle);
                         }
                         else {
                             Toast.makeText(getContext().getApplicationContext(), "비어 있는 항목이 있습니다!", Toast.LENGTH_LONG).show();
