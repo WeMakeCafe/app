@@ -101,6 +101,8 @@ public class CafeRegistrationFragment extends Fragment {
         cafe_name_input = root.findViewById(R.id.cafe_name_input);
         cafe_address_input = root.findViewById(R.id.cafe_address_input);
         cafe_openHours_hour_input = root.findViewById(R.id.cafe_openHours_hour_input);
+        cafe_openHours_minute_input = root.findViewById(R.id.cafe_openHours_minute_input);
+        cafe_closeHours_hour_input = root.findViewById(R.id.cafe_closeHours_hour_input);
         cafe_closeHours_minute_input= root.findViewById(R.id.cafe_closeHours_minute_input);
 
         RequestQueue requestQueue;
