@@ -144,6 +144,9 @@ public class CafeDetailFragment extends Fragment {
         cafeDetail_favorite_nextButton = root.findViewById(R.id.cafeDetail_favorite_nextButton);
         moreReview2 = root.findViewById(R.id.moreReview2); // 최상단 카페 이름 ID
         moreReview3 = root.findViewById(R.id.moreReview3); // 사진 아래 카페 이름 ID
+        moreReview4 = root.findViewById(R.id.moreReview4); // 사진 아래 카페 주소 ID
+        moreReview10 = root.findViewById(R.id.moreReview10); // 사진 아래 운영 시간 첫번째
+        moreReview8 = root.findViewById(R.id.moreReview8); // 사진 아래 운영 시간 두번째
 
 
         // cafeDetail 외부에서 Bundle로 이름 받아오기
@@ -524,7 +527,7 @@ public class CafeDetailFragment extends Fragment {
 
 
 
-
+/*
         // 카페 이름 가져오기(상단)
         Bundle cafeNameBundle1 = getArguments();
         if(cafeNameBundle1 != null){
@@ -544,6 +547,7 @@ public class CafeDetailFragment extends Fragment {
         moreReview4 = root.findViewById(R.id.moreReview4); // 사진 아래 카페 주소 ID
         moreReview10 = root.findViewById(R.id.moreReview10); // 사진 아래 운영 시간 첫번째
         moreReview8 = root.findViewById(R.id.moreReview8); // 사진 아래 운영 시간 두번째
+        */
 
         // 카페 운영 시간 가져오기
         Bundle cafeModifyBundle = getArguments();
