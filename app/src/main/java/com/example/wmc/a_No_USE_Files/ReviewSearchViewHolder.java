@@ -1,4 +1,4 @@
-package com.example.wmc.ReviewSearch;
+package com.example.wmc.a_No_USE_Files;
 
 import android.view.View;
 import android.widget.Button;
@@ -7,7 +7,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.wmc.ListSearch.ListSearchAdapter;
 import com.example.wmc.R;
 
 public class ReviewSearchViewHolder extends RecyclerView.ViewHolder{

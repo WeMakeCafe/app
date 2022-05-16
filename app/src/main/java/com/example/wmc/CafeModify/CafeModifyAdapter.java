@@ -11,9 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.wmc.CafeRegistration.CafeRegistrationViewHolder;
-import com.example.wmc.HomeTag1.HomeTag1Item;
-import com.example.wmc.HomeTag1.HomeTag1ViewHolder;
 import com.example.wmc.R;
 
 import java.util.ArrayList;

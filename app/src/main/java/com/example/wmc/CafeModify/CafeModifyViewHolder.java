@@ -3,13 +3,9 @@ package com.example.wmc.CafeModify;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RatingBar;
-import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.wmc.HomeTag1.HomeTag1Adapter;
 import com.example.wmc.R;
 
 public class CafeModifyViewHolder extends RecyclerView.ViewHolder{
