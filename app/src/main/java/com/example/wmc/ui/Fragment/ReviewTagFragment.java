@@ -16,6 +16,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -36,6 +38,7 @@ public class ReviewTagFragment extends Fragment {
 
     private FragmentReviewTagBinding binding;
     private static NavController navController;
+    String review_cafe_name = null;   // ReviewFragment에서 가져온 카페이름을 저장할 변수
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -56,6 +59,17 @@ public class ReviewTagFragment extends Fragment {
         Button tag2_delete_button = root.findViewById(R.id.tag2_delete_button); // 아래 태그 버튼 3개의 X버튼
         Button tag3_delete_button = root.findViewById(R.id.tag3_delete_button); // 아래 태그 버튼 3개의 X버튼
         Button addTag_button3 = root.findViewById(R.id.addTag_button3); // 태그 선택 후, 추가하기 버튼
+
+
+
+        // ReviewFragment에서 Bundle로 태그를 추가할 카페이름 받아오기
+        Bundle review_cafeNameBundle = getArguments();
+        if(review_cafeNameBundle != null){
+            if(review_cafeNameBundle.getString("cafeName") != null){
+                review_cafe_name = review_cafeNameBundle.getString("cafeName");
+            }
+        }
+
 
         ////////////////////////////////////////////////////////////////////////////////////
         // 아래 3개 삭제 버튼 클릭 이벤트 작성
@@ -248,6 +262,7 @@ public class ReviewTagFragment extends Fragment {
             }
         });
 
+
         // 태그 모두 선택 후, 추가하기 버튼 클릭 시,
         addTag_button3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -265,6 +280,8 @@ public class ReviewTagFragment extends Fragment {
                     bundle.putString("key1",addTag1.getText().toString()); // 번들에 String 데이터를 전달. key1 을 키로 사용
                     bundle.putString("key2",addTag2.getText().toString());
                     bundle.putString("key3",addTag3.getText().toString());
+                    bundle.putString("review_cafeName", review_cafe_name);
+
                     navController.navigate(R.id.review_tag_to_review, bundle); // 번들과 함께 전달
                 }
             }
