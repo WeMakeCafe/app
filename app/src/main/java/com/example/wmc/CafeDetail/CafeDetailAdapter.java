@@ -108,6 +108,8 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 viewHolder.reviewModifyLine.setVisibility(View.VISIBLE);
                 viewHolder.reviewDelete.setVisibility(View.VISIBLE);
                 viewHolder.reviewDeleteLine.setVisibility(View.VISIBLE);
+                viewHolder.good_button_image.setVisibility(View.VISIBLE);
+                viewHolder.good_button.setVisibility(View.INVISIBLE);
 
                 // 리뷰에서 수정 버튼 클릭 시,
                 viewHolder.reviewModify.setOnClickListener(new View.OnClickListener() {
@@ -136,26 +138,29 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 viewHolder.reviewModifyLine.setVisibility(View.INVISIBLE);
                 viewHolder.reviewDelete.setVisibility(View.INVISIBLE);
                 viewHolder.reviewDeleteLine.setVisibility(View.INVISIBLE);
+                viewHolder.good_button_image.setVisibility(View.INVISIBLE);
+                viewHolder.good_button.setVisibility(View.VISIBLE);
+
+                // 리뷰에서 좋아요 버튼 클릭 시,
+                viewHolder.good_button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        boolean checked = ((CheckBox) v).isChecked();    // 좋아요가 됐는지 확인
+
+                        // 자신이 쓴 글일 경우 좋아요 버튼 클릭 불가로 변경
+                        if(checked) {
+                            // 좋아요 추가
+                            Toast.makeText(v.getContext().getApplicationContext(), "좋아요", Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            // 좋아요 취소
+                            Toast.makeText(v.getContext().getApplicationContext(), "좋아요 취소", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
             }
 
 
-            // 리뷰에서 좋아요 버튼 클릭 시,
-            viewHolder.good_button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    boolean checked = ((CheckBox) v).isChecked();    // 좋아요가 됐는지 확인
-
-                    // 자신이 쓴 글일 경우 좋아요 버튼 클릭 불가로 변경
-                    if(checked) {
-                        // 좋아요 추가
-                        Toast.makeText(v.getContext().getApplicationContext(), "좋아요", Toast.LENGTH_SHORT).show();
-                    }
-                    else {
-                        // 좋아요 취소
-                        Toast.makeText(v.getContext().getApplicationContext(), "좋아요 취소", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
         }
     }
 

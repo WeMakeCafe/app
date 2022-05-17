@@ -74,6 +74,8 @@ public class CafeDetailMoreAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             viewHolder.review_modifyLine.setVisibility(View.VISIBLE);
             viewHolder.review_modify.setVisibility(View.VISIBLE);
             viewHolder.review_modify.setVisibility(View.VISIBLE);
+            viewHolder.good_button_imageView.setVisibility(View.VISIBLE);
+            viewHolder.good_button.setVisibility(View.INVISIBLE);
 
 
             // 리뷰 더보기의 수정 버튼 클릭 시,
@@ -105,26 +107,29 @@ public class CafeDetailMoreAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             viewHolder.review_modifyLine.setVisibility(View.INVISIBLE);
             viewHolder.review_delete.setVisibility(View.INVISIBLE);
             viewHolder.review_deleteLine.setVisibility(View.INVISIBLE);
+            viewHolder.good_button_imageView.setVisibility(View.INVISIBLE);
+            viewHolder.good_button.setVisibility(View.VISIBLE);
+
+            // 리뷰 더보기의 좋아요 버튼 클릭 시,
+            viewHolder.good_button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    boolean checked = ((CheckBox) v).isChecked();    // 좋아요가 됐는지 확인
+
+                    // 자신이 쓴 글일 경우 좋아요 버튼 클릭 불가로 변경
+                    if(checked) {
+                        // 좋아요 추가
+                        Toast.makeText(v.getContext().getApplicationContext(), "좋아요", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        // 좋아요 취소
+                        Toast.makeText(v.getContext().getApplicationContext(), "좋아요 취소", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
         }
 
 
-        // 리뷰 더보기의 좋아요 버튼 클릭 시,
-        viewHolder.good_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                boolean checked = ((CheckBox) v).isChecked();    // 좋아요가 됐는지 확인
-
-                // 자신이 쓴 글일 경우 좋아요 버튼 클릭 불가로 변경
-                if(checked) {
-                    // 좋아요 추가
-                    Toast.makeText(v.getContext().getApplicationContext(), "좋아요", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    // 좋아요 취소
-                    Toast.makeText(v.getContext().getApplicationContext(), "좋아요 취소", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
     }
 
     @Override
