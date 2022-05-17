@@ -105,7 +105,9 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
             if(viewHolder.check_user_flag){
                 viewHolder.reviewModify.setVisibility(View.VISIBLE);
+                viewHolder.reviewModifyLine.setVisibility(View.VISIBLE);
                 viewHolder.reviewDelete.setVisibility(View.VISIBLE);
+                viewHolder.reviewDeleteLine.setVisibility(View.VISIBLE);
 
                 // 리뷰에서 수정 버튼 클릭 시,
                 viewHolder.reviewModify.setOnClickListener(new View.OnClickListener() {
@@ -128,7 +130,9 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 });
             }else{
                 viewHolder.reviewModify.setVisibility(View.INVISIBLE);
+                viewHolder.reviewModifyLine.setVisibility(View.INVISIBLE);
                 viewHolder.reviewDelete.setVisibility(View.INVISIBLE);
+                viewHolder.reviewDeleteLine.setVisibility(View.INVISIBLE);
             }
 
 
