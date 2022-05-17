@@ -48,12 +48,27 @@ public class Review {
     private Long keyword36;
     private Long memNum;
 
+    private Integer tastePoint1;
+    private Integer tastePoint2;
+    private Integer tastePoint3;
+    private Integer tastePoint4;
+    private Integer seatPoint1;
+    private Integer seatPoint2;
+    private Integer seatPoint3;
+    private Integer seatPoint4;
+    private Integer studyPoint1;
+    private Integer studyPoint2;
+    private Integer studyPoint3;
+    private Integer studyPoint4;
+
     public Review (Long reviewNum, Long cafeNum, byte[] reviewImage, Long categoryNum, Integer likeCount, String reviewText, String createTime,
                    Long keyword1, Long keyword2,Long keyword3,Long keyword4,Long keyword5,Long keyword6,Long keyword7,Long keyword8, Long keyword9,
                    Long keyword10,Long keyword11, Long keyword12,Long keyword13,Long keyword14,Long keyword15,Long keyword16, Long keyword17,
                    Long keyword18, Long keyword19,Long keyword20,Long keyword21, Long keyword22,Long keyword23,Long keyword24, Long keyword25,
                    Long keyword26,Long keyword27,Long keyword28, Long keyword29,Long keyword30,Long keyword31, Long keyword32, Long keyword33,
-                   Long keyword34,Long keyword35,Long keyword36, Long memNum) {
+                   Long keyword34,Long keyword35,Long keyword36, Long memNum, Integer tastePoint1, Integer tastePoint2, Integer tastePoint3,
+                   Integer tastePoint4, Integer seatPoint1, Integer seatPoint2, Integer seatPoint3, Integer seatPoint4, Integer studyPoint1,
+                   Integer studyPoint2, Integer studyPoint3, Integer studyPoint4) {
 
         this.reviewNum = reviewNum;
         this.cafeNum = cafeNum;
@@ -99,6 +114,21 @@ public class Review {
         this.keyword35 = keyword35;
         this.keyword36 = keyword36;
         this.memNum = memNum;
+
+        this.tastePoint1 = tastePoint1;
+        this.tastePoint1 = tastePoint2;
+        this.tastePoint1 = tastePoint3;
+        this.tastePoint1 = tastePoint4;
+
+        this.seatPoint1 = seatPoint1;
+        this.seatPoint1 = seatPoint2;
+        this.seatPoint1 = seatPoint3;
+        this.seatPoint1 = seatPoint4;
+
+        this.studyPoint1 = studyPoint1;
+        this.studyPoint1 = studyPoint2;
+        this.studyPoint1 = studyPoint3;
+        this.studyPoint1 = studyPoint4;
     }
 
     public Long getReviewNum() {return reviewNum;}
@@ -146,4 +176,34 @@ public class Review {
     public Long getKeyword36() {return keyword36;}
     public Long getMemNum() {return memNum;}
 
+    public Integer getTastePoint1() {return tastePoint1;}
+    public Integer getTastePoint2() {return tastePoint2;}
+    public Integer getTastePoint3() {return tastePoint3;}
+    public Integer getTastePoint4() {return tastePoint4;}
+
+    public Integer getSeatPoint1() {
+        return seatPoint1;
+    }
+    public Integer getSeatPoint2() {
+        return seatPoint2;
+    }
+    public Integer getSeatPoint3() {
+        return seatPoint3;
+    }
+    public Integer getSeatPoint4() {
+        return seatPoint4;
+    }
+
+    public Integer getStudyPoint1() {
+        return studyPoint1;
+    }
+    public Integer getStudyPoint2() {
+        return studyPoint2;
+    }
+    public Integer getStudyPoint3() {
+        return studyPoint3;
+    }
+    public Integer getStudyPoint4() {
+        return studyPoint4;
+    }
 }

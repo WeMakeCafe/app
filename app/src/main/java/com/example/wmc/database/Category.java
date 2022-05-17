@@ -16,6 +16,9 @@ public class Category {
     private Integer studyPoint3;
     private Integer studyPoint4;
 
+
+
+
     public Category(Long categoryNum, Long reviewNum, Integer tastePoint1, Integer tastePoint2, Integer tastePoint3, Integer tastePoint4,
                     Integer seatPoint1, Integer seatPoint2, Integer seatPoint3, Integer seatPoint4, Integer studyPoint1, Integer studyPoint2,
                     Integer studyPoint3, Integer studyPoint4) {
