@@ -489,6 +489,18 @@ public class CafeRegistrationFragment extends Fragment {
                                 case ("#편한좌석"):
                                     map.put("keyword36", 1);
                             }
+                            map.put("tastePoint1", 0);
+                            map.put("tastePoint2", 0);
+                            map.put("tastePoint3", 0);
+                            map.put("tastePoint4", 0);
+                            map.put("seatPoint1", 0);
+                            map.put("seatPoint2", 0);
+                            map.put("seatPoint3", 0);
+                            map.put("seatPoint4", 0);
+                            map.put("studyPoint1", 0);
+                            map.put("studyPoint2", 0);
+                            map.put("studyPoint3", 0);
+                            map.put("studyPoint4", 0);
 
 
                         String url2 = "http://54.196.209.1:8080/cafe";
