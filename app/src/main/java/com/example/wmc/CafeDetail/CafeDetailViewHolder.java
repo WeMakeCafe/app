@@ -24,6 +24,7 @@ public class CafeDetailViewHolder extends RecyclerView.ViewHolder{
     TextView reviewModify;
     TextView reviewDelete;
     CheckBox good_button;
+    boolean check_user_flag;
 
     public static int REVIEW_VIEW_TYPE = R.layout.item_review;
 

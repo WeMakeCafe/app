@@ -99,27 +99,38 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             viewHolder.good_count_textView.setText(item.getGood_count_textView());
             viewHolder.reviewProfile_image.setImageResource(item.getReviewProfile_image());
             viewHolder.reviewImage.setImageResource(item.getReviewImage());
+            viewHolder.check_user_flag = (item.getCheck_user_flag());
 
 
-            // 리뷰에서 수정 버튼 클릭 시,
-            viewHolder.reviewModify.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(v.getContext(), "리뷰 수정 버튼 클릭", Toast.LENGTH_SHORT).show();
-                    navController = Navigation.findNavController(v);
-                    navController.navigate(R.id.cafe_detail_to_review);
-                }
-            });
 
-            // 리뷰에서 삭제 버튼 클릭 시,
-            viewHolder.reviewDelete.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(v.getContext(), "리뷰 삭제 버튼 클릭", Toast.LENGTH_SHORT).show();
-                    review_items.remove(item);
-                    notifyDataSetChanged();
-                }
-            });
+            if(viewHolder.check_user_flag){
+                viewHolder.reviewModify.setVisibility(View.VISIBLE);
+                viewHolder.reviewDelete.setVisibility(View.VISIBLE);
+
+                // 리뷰에서 수정 버튼 클릭 시,
+                viewHolder.reviewModify.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(v.getContext(), "리뷰 수정 버튼 클릭", Toast.LENGTH_SHORT).show();
+                        navController = Navigation.findNavController(v);
+                        navController.navigate(R.id.cafe_detail_to_review);
+                    }
+                });
+
+                // 리뷰에서 삭제 버튼 클릭 시,
+                viewHolder.reviewDelete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(v.getContext(), "리뷰 삭제 버튼 클릭", Toast.LENGTH_SHORT).show();
+                        review_items.remove(item);
+                        notifyDataSetChanged();
+                    }
+                });
+            }else{
+                viewHolder.reviewModify.setVisibility(View.INVISIBLE);
+                viewHolder.reviewDelete.setVisibility(View.INVISIBLE);
+            }
+
 
             // 리뷰에서 좋아요 버튼 클릭 시,
             viewHolder.good_button.setOnClickListener(new View.OnClickListener() {
