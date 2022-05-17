@@ -9,7 +9,7 @@ public class Review {
     private byte[] reviewImage;
     private Integer likeCount;
     private String reviewText;
-    private LocalDateTime createTime;
+    private String createTime;
     private Long keyword1;
     private Long keyword2;
     private Long keyword3;
@@ -48,7 +48,7 @@ public class Review {
     private Long keyword36;
     private Long memNum;
 
-    public Review (Long reviewNum, Long cafeNum, byte[] reviewImage, Long categoryNum, Integer likeCount, String reviewText, LocalDateTime createTime,
+    public Review (Long reviewNum, Long cafeNum, byte[] reviewImage, Long categoryNum, Integer likeCount, String reviewText, String createTime,
                    Long keyword1, Long keyword2,Long keyword3,Long keyword4,Long keyword5,Long keyword6,Long keyword7,Long keyword8, Long keyword9,
                    Long keyword10,Long keyword11, Long keyword12,Long keyword13,Long keyword14,Long keyword15,Long keyword16, Long keyword17,
                    Long keyword18, Long keyword19,Long keyword20,Long keyword21, Long keyword22,Long keyword23,Long keyword24, Long keyword25,
@@ -107,7 +107,7 @@ public class Review {
     public Long getCategoryNum() {return categoryNum;}
     public Integer getLikeCount() {return likeCount;}
     public String getReviewText() {return reviewText;}
-    public LocalDateTime getCreateTime() { return createTime; }
+    public String getCreateTime() { return createTime; }
     public Long getKeyword1() {return keyword1;}
     public Long getKeyword2() {return keyword2;}
     public Long getKeyword3() {return keyword3;}
