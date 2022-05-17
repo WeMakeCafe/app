@@ -59,6 +59,8 @@ public class CafeRegistrationTagFragment extends Fragment {
         String cafe_address = getArguments().getString("address");
         String cafe_opentime = getArguments().getString("opentime");
         String cafe_closetime = getArguments().getString("closetime");
+        Boolean cafe_nametest = getArguments().getBoolean("name_test");
+
 
         ////////////////////////////////////////////////////////////////////////////////////
         // 아래 3개 삭제 버튼 클릭 이벤트 작성
@@ -271,6 +273,7 @@ public class CafeRegistrationTagFragment extends Fragment {
                     bundle.putString("address", cafe_address);
                     bundle.putString("opentime", cafe_opentime);
                     bundle.putString("closetime", cafe_closetime);
+                    bundle.putBoolean("name_test", cafe_nametest);
                     Log.d("test2",cafe_closetime);
                     navController.navigate(R.id.cafe_registration_tag_to_cafe_registration, bundle);
                 }

@@ -1,5 +1,6 @@
 package com.example.wmc.ui.Fragment;
 
+import android.annotation.SuppressLint;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -165,6 +166,7 @@ public class CafeDetailFragment extends Fragment {
         String get_cafe_url = "http://54.196.209.1:8080/cafe";
 
         StringRequest cafe_stringRequest = new StringRequest(Request.Method.GET, get_cafe_url, new Response.Listener<String>() {
+            @SuppressLint("SetTextI18n")
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onResponse(String response) {
@@ -191,8 +193,8 @@ public class CafeDetailFragment extends Fragment {
                         moreReview2.setText(c.getCafeName());
                         moreReview3.setText(c.getCafeName());
                         moreReview4.setText(c.getCafeAddress());
-                        moreReview10.setText(c.getOpenTime().toString());
-                        moreReview8.setText(c.getCloseTime().toString());
+                        moreReview10.setText(c.getOpenTime().substring(0,2)+":"+c.getOpenTime().substring(2,4));
+                        moreReview8.setText(c.getCloseTime().substring(0,2)+":"+c.getCloseTime().substring(2,4));
                     }
                 }
 
@@ -436,13 +438,13 @@ public class CafeDetailFragment extends Fragment {
 
 
         // 카페 운영 시간 가져오기
-        Bundle cafeModifyBundle = getArguments();
-        if(cafeModifyBundle != null){
-            if(cafeModifyBundle.getString("time_open_Modi") != null ){
-                moreReview10.setText(cafeModifyBundle.getString("time_open_Modi"));
-                moreReview8.setText(cafeModifyBundle.getString("time_close_Modi"));
-            }
-        }
+//        Bundle cafeModifyBundle = getArguments();
+//        if(cafeModifyBundle != null){
+//            if(cafeModifyBundle.getString("time_open_Modi") != null ){
+//                moreReview10.setText(cafeModifyBundle.getString("time_open_Modi"));
+//                moreReview8.setText(cafeModifyBundle.getString("time_close_Modi"));
+//            }
+//        }
 
         // 카페 수정(연필) 버튼 클릭 시,
         cafe_modify_button.setOnClickListener(new View.OnClickListener() {
