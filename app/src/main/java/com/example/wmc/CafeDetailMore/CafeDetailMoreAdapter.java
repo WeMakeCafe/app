@@ -11,7 +11,9 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.wmc.MainActivity;
 import com.example.wmc.R;
+import com.example.wmc.database.Review;
 
 import java.util.ArrayList;
 
@@ -19,6 +21,10 @@ public class CafeDetailMoreAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     private ArrayList<CafeDetailMoreItem> reviewMore_items;
     private static NavController navController;
+
+    ArrayList<Review> review_list;
+
+    Long mem_num = MainActivity.mem_num; // 임시 유저 넘버
 
 
     public interface OnItemClickEventListener_cafeDetailMore { // 클릭 이벤트를 위한 인터페이스
@@ -46,7 +52,6 @@ public class CafeDetailMoreAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
-        // 기본적으로 header 를 빼고 item 을 구한다.
         final CafeDetailMoreItem item = reviewMore_items.get(position);
         CafeDetailMoreViewHolder viewHolder = (CafeDetailMoreViewHolder) holder;
 
@@ -60,28 +65,47 @@ public class CafeDetailMoreAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         viewHolder.reviewMore_image1.setImageResource(item.getReviewImage1());
         viewHolder.reviewMore_image2.setImageResource(item.getReviewImage2());
         viewHolder.reviewMore_image3.setImageResource(item.getReviewImage3());
+        viewHolder.check_user_flag = (item.getCheck_user_flag());   // 작성자와 로그인한 유저가 같은지 확인
 
 
-        // 리뷰 더보기의 수정 버튼 클릭 시,
-        viewHolder.review_modify.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(v.getContext(), "리뷰 수정 버튼 클릭", Toast.LENGTH_SHORT).show();
-                navController = Navigation.findNavController(v);
-                navController.navigate(R.id.cafe_detail_more_to_review);
-            }
-        });
+        // 리뷰 작성자와 로그인한 사람이 같을 때,
+        if(viewHolder.check_user_flag){
+            viewHolder.review_modify.setVisibility(View.VISIBLE);
+            viewHolder.review_modifyLine.setVisibility(View.VISIBLE);
+            viewHolder.review_modify.setVisibility(View.VISIBLE);
+            viewHolder.review_modify.setVisibility(View.VISIBLE);
 
 
-        // 리뷰 더보기의 삭제 버튼 클릭 시,
-        viewHolder.review_delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(v.getContext(), "리뷰 삭제 버튼 클릭", Toast.LENGTH_SHORT).show();
-                reviewMore_items.remove(item);
-                notifyDataSetChanged();
-            }
-        });
+            // 리뷰 더보기의 수정 버튼 클릭 시,
+            viewHolder.review_modify.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(v.getContext(), "리뷰 수정 버튼 클릭", Toast.LENGTH_SHORT).show();
+                    navController = Navigation.findNavController(v);
+                    navController.navigate(R.id.cafe_detail_more_to_review);
+                }
+            });
+
+
+            // 리뷰 더보기의 삭제 버튼 클릭 시,
+            viewHolder.review_delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(v.getContext(), "리뷰 삭제 버튼 클릭", Toast.LENGTH_SHORT).show();
+                    reviewMore_items.remove(item);
+                    notifyDataSetChanged();
+                }
+            });
+        }
+
+
+        // 리뷰 작성자와 로그인한 사람이 다를를 때,
+       else{
+            viewHolder.review_modify.setVisibility(View.INVISIBLE);
+            viewHolder.review_modifyLine.setVisibility(View.INVISIBLE);
+            viewHolder.review_delete.setVisibility(View.INVISIBLE);
+            viewHolder.review_deleteLine.setVisibility(View.INVISIBLE);
+        }
 
 
         // 리뷰 더보기의 좋아요 버튼 클릭 시,

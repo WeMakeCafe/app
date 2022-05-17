@@ -102,7 +102,7 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             viewHolder.check_user_flag = (item.getCheck_user_flag());
 
 
-
+            // 리뷰 작성자와 로그인한 사람이 같을 때,
             if(viewHolder.check_user_flag){
                 viewHolder.reviewModify.setVisibility(View.VISIBLE);
                 viewHolder.reviewModifyLine.setVisibility(View.VISIBLE);
@@ -128,7 +128,10 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                         notifyDataSetChanged();
                     }
                 });
-            }else{
+            }
+
+            // 리뷰 작성자와 로그인한 사람이 다를 때,
+            else{
                 viewHolder.reviewModify.setVisibility(View.INVISIBLE);
                 viewHolder.reviewModifyLine.setVisibility(View.INVISIBLE);
                 viewHolder.reviewDelete.setVisibility(View.INVISIBLE);
