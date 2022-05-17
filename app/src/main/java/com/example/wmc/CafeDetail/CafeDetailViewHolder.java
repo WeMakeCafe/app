@@ -22,7 +22,9 @@ public class CafeDetailViewHolder extends RecyclerView.ViewHolder{
     ImageView reviewImage;
 
     TextView reviewModify;
+    TextView reviewModifyLine;
     TextView reviewDelete;
+    TextView reviewDeleteLine;
     CheckBox good_button;
     boolean check_user_flag;
 
@@ -38,7 +40,9 @@ public class CafeDetailViewHolder extends RecyclerView.ViewHolder{
         reviewProfile_image = itemView.findViewById(R.id.reviewProfile_image);
         reviewImage = itemView.findViewById(R.id.reviewImage);
         reviewModify = itemView.findViewById(R.id.reviewModify);    // 리뷰에서 수정 버튼
+        reviewModifyLine = itemView.findViewById(R.id.reviewModifyLine); // 리뷰에서 수정 버튼의 밑줄
         reviewDelete = itemView.findViewById(R.id.reviewDelete);    // 리뷰에서 삭제 버튼
+        reviewDeleteLine = itemView.findViewById(R.id.reviewDeleteLine);    // 리뷰에서 삭제 버튼의 밑줄
         good_button = itemView.findViewById(R.id.good_button);      // 리뷰에서 좋아요 버튼
 
         itemView.setOnClickListener(new View.OnClickListener() {
