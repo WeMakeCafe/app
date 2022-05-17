@@ -81,6 +81,7 @@ public class CafeRegistrationFragment extends Fragment {
     String tag1;
     String tag2;
     String tag3;
+    boolean name_test = false;
 
     EditText cafe_openHours_hour_input;
     EditText cafe_openHours_minute_input;
@@ -136,13 +137,18 @@ public class CafeRegistrationFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         // 데이터베이스에서 카페이름이 있는지 중복검사
-                        for(Cafe c : cafe_list) {
-                            if(c.getCafeName().equals(cafe_name_input.getText().toString())) {
-                                Toast.makeText(getContext().getApplicationContext(), "이미 있는 카페입니다!", Toast.LENGTH_LONG).show();
+                        if(cafe_name_input.getText().toString().equals("")) {
+                            Toast.makeText(getContext().getApplicationContext(), "카페 이름을 입력해주세요!", Toast.LENGTH_LONG).show();
+                        }
+                        else{
+                            for(Cafe c : cafe_list) {
+                                if (c.getCafeName().equals(cafe_name_input.getText().toString())) {
+                                    Toast.makeText(getContext().getApplicationContext(), "이미 있는 카페입니다!", Toast.LENGTH_LONG).show();
+                                    name_test = false;
+                                    break;
+                                } else { name_test = true; }
                             }
-                            else {
-                                Toast.makeText(getContext().getApplicationContext(), "가능한 카페입니다!", Toast.LENGTH_LONG).show();
-                            }
+                            if( name_test ) Toast.makeText(getContext().getApplicationContext(), "가능한 카페입니다!", Toast.LENGTH_LONG).show();
                         }
                     }
                 });
@@ -152,8 +158,9 @@ public class CafeRegistrationFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
 
-                        if ((cafe_name_input != null) && (cafe_address_input != null) && (cafe_openHours_hour_input != null)
-                                && (cafe_closeHours_hour_input != null) && (tag1 !=null) && (tag2 != null) && (tag3 != null)) {
+                        if (name_test && !cafe_name_input.getText().toString().equals("") && !cafe_address_input.getText().toString().equals("")
+                                && !cafe_openHours_hour_input.getText().toString().equals("") && !cafe_closeHours_hour_input.getText().toString().equals("")
+                                && !tag1.equals("") && !tag2.equals("") && !tag3.equals("")) {
                              Map map = new HashMap();
                                 // 이미지, 키워드 추가 코드 작성 할 곳
                              map.put("cafeName", cafe_name_input.getText().toString());
@@ -535,10 +542,7 @@ public class CafeRegistrationFragment extends Fragment {
                             Toast.makeText(getContext().getApplicationContext(), "비어 있는 항목이 있습니다!", Toast.LENGTH_LONG).show();
                         }
                     }
-
                 });
-
-
             }
         }, new Response.ErrorListener() {
             @Override
@@ -554,10 +558,16 @@ public class CafeRegistrationFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle(); // 프래그먼트 간 데이터 전달 위한 번들
-                bundle.putString("name",cafe_name_input.getText().toString());
+                bundle.putString("name", cafe_name_input.getText().toString());
                 bundle.putString("address", cafe_address_input.getText().toString());
-                bundle.putString("opentime", cafe_openHours_hour_input.getText().toString() + cafe_openHours_minute_input.getText().toString());
-                bundle.putString("closetime", cafe_closeHours_hour_input.getText().toString() + cafe_closeHours_minute_input.getText().toString());
+                bundle.putBoolean("name_test", name_test); // 중복확인 여부 전달
+
+                if(!cafe_openHours_hour_input.getText().toString().equals("") || !cafe_openHours_minute_input.getText().toString().equals("") ||
+                        !cafe_closeHours_hour_input.getText().toString().equals("") || !cafe_closeHours_minute_input.getText().toString().equals("")){
+                    bundle.putString("opentime", cafe_openHours_hour_input.getText().toString() + cafe_openHours_minute_input.getText().toString());
+                    bundle.putString("closetime", cafe_closeHours_hour_input.getText().toString() + cafe_closeHours_minute_input.getText().toString());
+                }
+
                 navController.navigate(R.id.cafe_registration_to_cafe_registration_tag, bundle);
             }
         });
@@ -577,10 +587,16 @@ public class CafeRegistrationFragment extends Fragment {
                 basic_tag3.setText(argBundle.getString("key3"));
                 cafe_name_input.setText(argBundle.getString("name"));
                 cafe_address_input.setText(argBundle.getString("address"));
-                cafe_openHours_hour_input.setText(String.valueOf(Integer.parseInt(argBundle.getString("opentime"))/100));
-                cafe_openHours_minute_input.setText(String.valueOf(Integer.parseInt(argBundle.getString("opentime"))%100));
-                cafe_closeHours_hour_input.setText(String.valueOf(Integer.parseInt(argBundle.getString("closetime"))/100));
-                cafe_closeHours_minute_input.setText(String.valueOf(Integer.parseInt(argBundle.getString("closetime"))%100));
+                name_test = argBundle.getBoolean("name_test"); // 중복확인 여부
+
+                if(!argBundle.getString("opentime").equals("")) {
+                    cafe_openHours_hour_input.setText(argBundle.getString("opentime").substring(0, 2));
+                    cafe_openHours_minute_input.setText(argBundle.getString("opentime").substring(2, 4));
+                }
+                if(!argBundle.getString("closetime").equals("")) { //여기까진 막아도 CafeRegistrationTagFragment.java 에서 막을 방법이 없음. 연구
+                    cafe_closeHours_hour_input.setText(argBundle.getString("closetime").substring(0, 2));
+                    cafe_closeHours_minute_input.setText(argBundle.getString("closetime").substring(2, 4));
+                }
 
                 //카페이미지 문장
                 tag1 = argBundle.getString("key1");
