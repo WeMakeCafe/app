@@ -62,7 +62,8 @@
                     android:layout_marginTop="10dp"
                     android:hint="전화번호를 입력하세요."
                     android:inputType="number"
-                    android:maxLength="11"/>
+                    android:maxLength="11"
+                    android:singleLine="true" />
 
                 <Button
                     android:id="@+id/search_id_button"
@@ -107,7 +108,8 @@
                 android:layout_marginTop="10dp"
                 android:hint="아이디를 입력하세요."
                 android:inputType="number"
-                android:maxLength="11"/>
+                android:maxLength="11"
+                android:singleLine="true" />
 
             <LinearLayout
                 android:id="@+id/searchPWLayout"
@@ -124,7 +126,8 @@
                     android:layout_marginTop="5dp"
                     android:hint="전화번호를 입력하세요."
                     android:inputType="number"
-                    android:maxLength="11"/>
+                    android:maxLength="11"
+                    android:singleLine="true" />
 
                 <Button
                     android:id="@+id/search_pw_button"

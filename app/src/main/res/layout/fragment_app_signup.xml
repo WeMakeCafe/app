@@ -86,7 +86,8 @@
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:hint="ID"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:singleLine="true" />
             </LinearLayout>
 
             <LinearLayout
@@ -112,7 +113,8 @@
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:hint="Password"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:singleLine="true" />
             </LinearLayout>
 
             <LinearLayout
@@ -138,7 +140,8 @@
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:hint="Verify Password"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:singleLine="true" />
             </LinearLayout>
 
             <LinearLayout
@@ -164,7 +167,8 @@
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:hint="닉네임"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:singleLine="true" />
             </LinearLayout>
 
             <LinearLayout
@@ -191,7 +195,8 @@
                     android:layout_height="wrap_content"
                     android:hint="전화번호"
                     android:inputType="number"
-                    android:maxLength="11" />
+                    android:maxLength="11"
+                    android:singleLine="true" />
             </LinearLayout>
 
             <LinearLayout
@@ -217,7 +222,8 @@
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:hint="주소"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:singleLine="true" />
             </LinearLayout>
 
             <LinearLayout
