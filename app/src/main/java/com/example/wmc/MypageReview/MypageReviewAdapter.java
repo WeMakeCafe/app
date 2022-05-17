@@ -56,27 +56,69 @@ public class MypageReviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         viewHolder.reviewImage2.setImageResource(item.getReviewImage2());
         viewHolder.reviewImage3.setImageResource(item.getReviewImage3());
 
-
-        // 마이페이지 리뷰의 수정 버튼 클릭 시,
-        viewHolder.review_modify.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(v.getContext(), "리뷰 수정 버튼 클릭", Toast.LENGTH_SHORT).show();
-                navController = Navigation.findNavController(v);
-                navController.navigate(R.id.myPage_to_review);
-            }
-        });
+        viewHolder.check_user_flag = (item.getCheck_user_flag());   // 작성자와 로그인한 유저가 같은지 확인
 
 
-        // 마이페이지 리뷰의 삭제 버튼 클릭 시,
-        viewHolder.review_delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(v.getContext(), "리뷰 삭제 버튼 클릭", Toast.LENGTH_SHORT).show();
-                myPageReview_items.remove(item);
-                notifyDataSetChanged();
-            }
-        });
+        // 리뷰 작성자와 로그인한 유저가 같을 경우,
+        if(viewHolder.check_user_flag){
+
+            viewHolder.review_modify.setVisibility(View.VISIBLE);
+            viewHolder.review_modifyLine.setVisibility(View.VISIBLE);
+            viewHolder.review_modify.setVisibility(View.VISIBLE);
+            viewHolder.review_modify.setVisibility(View.VISIBLE);
+            viewHolder.good_button_imageView.setVisibility(View.VISIBLE);
+            viewHolder.good_button.setVisibility(View.INVISIBLE);
+
+            // 마이페이지 리뷰의 수정 버튼 클릭 시,
+            viewHolder.review_modify.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(v.getContext(), "리뷰 수정 버튼 클릭", Toast.LENGTH_SHORT).show();
+                    navController = Navigation.findNavController(v);
+                    navController.navigate(R.id.myPage_to_review);
+                }
+            });
+
+
+            // 마이페이지 리뷰의 삭제 버튼 클릭 시,
+            viewHolder.review_delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(v.getContext(), "리뷰 삭제 버튼 클릭", Toast.LENGTH_SHORT).show();
+                    myPageReview_items.remove(item);
+                    notifyDataSetChanged();
+                }
+            });
+        }
+
+        // 리뷰 작성자와 로그인한 유저가 다를 경우,
+        else {
+            viewHolder.review_modify.setVisibility(View.INVISIBLE);
+            viewHolder.review_modifyLine.setVisibility(View.INVISIBLE);
+            viewHolder.review_delete.setVisibility(View.INVISIBLE);
+            viewHolder.review_deleteLine.setVisibility(View.INVISIBLE);
+            viewHolder.good_button_imageView.setVisibility(View.INVISIBLE);
+            viewHolder.good_button.setVisibility(View.VISIBLE);
+
+            // 리뷰 더보기의 좋아요 버튼 클릭 시,
+            viewHolder.good_button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    boolean checked = ((CheckBox) v).isChecked();    // 좋아요가 됐는지 확인
+
+                    // 자신이 쓴 글일 경우 좋아요 버튼 클릭 불가로 변경
+                    if(checked) {
+                        // 좋아요 추가
+                        Toast.makeText(v.getContext().getApplicationContext(), "좋아요", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        // 좋아요 취소
+                        Toast.makeText(v.getContext().getApplicationContext(), "좋아요 취소", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+
 
 
         // 마이페이지 리뷰의 좋아요 버튼 클릭 시,
