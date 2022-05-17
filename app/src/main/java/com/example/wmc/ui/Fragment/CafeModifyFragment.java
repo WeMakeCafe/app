@@ -135,12 +135,14 @@ public class CafeModifyFragment extends Fragment {
                     if(c.getCafeName().equals(cafe_name)) {
                         cafe_name_input.setText(c.getCafeName());
                         cafe_address_input.setText(c.getCafeAddress());
-                        cafe_openHours_hour_input.setText(String.valueOf(c.getOpenTime()/100));
-                        cafe_openHours_minute_input.setText(String.valueOf(c.getOpenTime()%100));
-                        cafe_closeHours_hour_input.setText(String.valueOf(c.getCloseTime()/100));
-                        cafe_closeHours_minute_input.setText(String.valueOf(c.getCloseTime()%100));
+                        cafe_openHours_hour_input.setText(c.getOpenTime().substring(0, 2));
+                        cafe_openHours_minute_input.setText(c.getOpenTime().substring(2, 4));
+                        cafe_closeHours_hour_input.setText(c.getCloseTime().substring(0, 2));
+                        cafe_closeHours_minute_input.setText(c.getCloseTime().substring(2,4));
                         cafe_num = c.getCafeNum();
                         //이미지 등록 코드
+
+                        Log.d("cafe_closetime", cafe_closeHours_hour_input.getText().toString() + cafe_closeHours_minute_input.getText().toString());
                     }
                 }
 
@@ -159,47 +161,59 @@ public class CafeModifyFragment extends Fragment {
                                 map.put("closeTime", cafe_closeHours_hour_input.getText().toString() + cafe_closeHours_minute_input.getText().toString());
 //                                map.put("cafeImage", c.getCafeImage());
 //                                map.put("reviewNum", c.getReviewNum());
-//                                map.put("keyword1", c.getKeyword1());
-//                                map.put("keyword2", c.getKeyword2());
-//                                map.put("keyword3", c.getKeyword3());
-//                                map.put("keyword4", c.getKeyword4());
-//                                map.put("keyword5", c.getKeyword5());
-//                                map.put("keyword6", c.getKeyword6());
-//                                map.put("keyword7", c.getKeyword7());
-//                                map.put("keyword8", c.getKeyword8());
-//                                map.put("keyword9", c.getKeyword9());
-//                                map.put("keyword10", c.getKeyword10());
-//                                map.put("keyword11", c.getKeyword11());
-//                                map.put("keyword12", c.getKeyword12());
-//                                map.put("keyword13", c.getKeyword13());
-//                                map.put("keyword14", c.getKeyword14());
-//                                map.put("keyword15", c.getKeyword15());
-//                                map.put("keyword16", c.getKeyword16());
-//                                map.put("keyword17", c.getKeyword17());
-//                                map.put("keyword18", c.getKeyword18());
-//                                map.put("keyword19", c.getKeyword19());
-//                                map.put("keyword20", c.getKeyword20());
-//                                map.put("keyword21", c.getKeyword21());
-//                                map.put("keyword22", c.getKeyword22());
-//                                map.put("keyword23", c.getKeyword23());
-//                                map.put("keyword24", c.getKeyword24());
-//                                map.put("keyword25", c.getKeyword25());
-//                                map.put("keyword26", c.getKeyword26());
-//                                map.put("keyword27", c.getKeyword27());
-//                                map.put("keyword28", c.getKeyword28());
-//                                map.put("keyword29", c.getKeyword29());
-//                                map.put("keyword30", c.getKeyword30());
-//                                map.put("keyword31", c.getKeyword31());
-//                                map.put("keyword32", c.getKeyword32());
-//                                map.put("keyword33", c.getKeyword33());
-//                                map.put("keyword34", c.getKeyword34());
-//                                map.put("keyword35", c.getKeyword35());
-//                                map.put("keyword36", c.getKeyword36());
-//                                map.put("bookmarkNum", c.getBookmarkNum());
-//                                map.put("scoreNum", c.getScoreNum());
+                                map.put("keyword1", c.getKeyword1());
+                                map.put("keyword2", c.getKeyword2());
+                                map.put("keyword3", c.getKeyword3());
+                                map.put("keyword4", c.getKeyword4());
+                                map.put("keyword5", c.getKeyword5());
+                                map.put("keyword6", c.getKeyword6());
+                                map.put("keyword7", c.getKeyword7());
+                                map.put("keyword8", c.getKeyword8());
+                                map.put("keyword9", c.getKeyword9());
+                                map.put("keyword10", c.getKeyword10());
+                                map.put("keyword11", c.getKeyword11());
+                                map.put("keyword12", c.getKeyword12());
+                                map.put("keyword13", c.getKeyword13());
+                                map.put("keyword14", c.getKeyword14());
+                                map.put("keyword15", c.getKeyword15());
+                                map.put("keyword16", c.getKeyword16());
+                                map.put("keyword17", c.getKeyword17());
+                                map.put("keyword18", c.getKeyword18());
+                                map.put("keyword19", c.getKeyword19());
+                                map.put("keyword20", c.getKeyword20());
+                                map.put("keyword21", c.getKeyword21());
+                                map.put("keyword22", c.getKeyword22());
+                                map.put("keyword23", c.getKeyword23());
+                                map.put("keyword24", c.getKeyword24());
+                                map.put("keyword25", c.getKeyword25());
+                                map.put("keyword26", c.getKeyword26());
+                                map.put("keyword27", c.getKeyword27());
+                                map.put("keyword28", c.getKeyword28());
+                                map.put("keyword29", c.getKeyword29());
+                                map.put("keyword30", c.getKeyword30());
+                                map.put("keyword31", c.getKeyword31());
+                                map.put("keyword32", c.getKeyword32());
+                                map.put("keyword33", c.getKeyword33());
+                                map.put("keyword34", c.getKeyword34());
+                                map.put("keyword35", c.getKeyword35());
+                                map.put("keyword36", c.getKeyword36());
+                                map.put("bookmarkNum", c.getBookmarkNum());
+                                map.put("scoreNum", c.getScoreNum());
+                                map.put("tastePoint1", c.getTastePoint1());
+                                map.put("tastePoint2", c.getTastePoint2());
+                                map.put("tastePoint3", c.getTastePoint3());
+                                map.put("tastePoint4", c.getTastePoint4());
+                                map.put("seatPoint1", c.getSeatPoint1());
+                                map.put("seatPoint2", c.getSeatPoint2());
+                                map.put("seatPoint3", c.getSeatPoint3());
+                                map.put("seatPoint4", c.getSeatPoint4());
+                                map.put("studyPoint1", c.getStudyPoint1());
+                                map.put("studyPoint2", c.getStudyPoint2());
+                                map.put("studyPoint3", c.getStudyPoint3());
+                                map.put("studyPoint4", c.getStudyPoint4());
 
-                                if(!((c.getOpenTime() == Integer.parseInt(cafe_openHours_hour_input.getText().toString() + cafe_openHours_minute_input.getText().toString())) &&
-                                        (c.getCloseTime() == Integer.parseInt(cafe_closeHours_hour_input.getText().toString() + cafe_closeHours_minute_input.getText().toString())))) {
+                                if(!((c.getOpenTime().equals(cafe_openHours_hour_input.getText().toString() + cafe_openHours_minute_input.getText().toString())) &&
+                                        (c.getCloseTime().equals(cafe_closeHours_hour_input.getText().toString() + cafe_closeHours_minute_input.getText().toString())))) {
                                     JSONObject jsonObject = new JSONObject(map);
 
                                     String url2 = "http://54.196.209.1:8080/cafe/" + c.getCafeNum().toString(); // 해당 카페에만 데이터 삽입하기 위함
