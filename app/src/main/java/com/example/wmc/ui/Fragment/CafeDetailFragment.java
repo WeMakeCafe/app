@@ -186,6 +186,7 @@ public class CafeDetailFragment extends Fragment {
                 for(Cafe c : cafe_list){
                     if(c.getCafeName().equals(cafe_name)){
                         get_cafe_num = c.getCafeNum();
+                        Log.d("check_cafe_num", get_cafe_num.toString());
 
                         moreReview2.setText(c.getCafeName());
                         moreReview3.setText(c.getCafeName());

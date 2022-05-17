@@ -1,6 +1,8 @@
 package com.example.wmc.CafeDetail;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,20 +11,46 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentHostCallback;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.fragment.app.Fragment;
 
+import com.android.volley.Cache;
+import com.android.volley.Network;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.BasicNetwork;
+import com.android.volley.toolbox.DiskBasedCache;
+import com.android.volley.toolbox.HurlStack;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.wmc.MainActivity;
 import com.example.wmc.R;
 import com.example.wmc.database.Cafe;
+import com.example.wmc.database.Review;
 import com.example.wmc.ui.Fragment.CafeDetailFragment;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
+import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     private ArrayList<CafeDetailItem> review_items;
     private static NavController navController;
+
+    ArrayList<Review> review_list;
+
+    Long mem_num = MainActivity.mem_num; // 임시 유저 넘버
 
 
     public interface OnItemClickEventListener_cafeDetail { // 클릭 이벤트를 위한 인터페이스
@@ -71,6 +99,7 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             viewHolder.good_count_textView.setText(item.getGood_count_textView());
             viewHolder.reviewProfile_image.setImageResource(item.getReviewProfile_image());
             viewHolder.reviewImage.setImageResource(item.getReviewImage());
+
 
             // 리뷰에서 수정 버튼 클릭 시,
             viewHolder.reviewModify.setOnClickListener(new View.OnClickListener() {
