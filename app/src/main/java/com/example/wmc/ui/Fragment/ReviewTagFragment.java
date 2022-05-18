@@ -39,19 +39,22 @@ public class ReviewTagFragment extends Fragment {
 
     private FragmentReviewTagBinding binding;
     private static NavController navController;
+
     String review_cafe_name = null;   // ReviewFragment에서 가져온 카페이름을 저장할 변수 (밑에도 동일)
-    Float review_tastePoint1;
-    Float review_tastePoint2;
-    Float review_tastePoint3;
-    Float review_tastePoint4;
-    Float review_seatPoint1;
-    Float review_seatPoint2;
-    Float review_seatPoint3;
-    Float review_seatPoint4;
-    Float review_studyPoint1;
-    Float review_studyPoint2;
-    Float review_studyPoint3;
-    Float review_studyPoint4;
+
+    Float s1 = null;
+    Float s2 = null;
+    Float s3 = null;
+    Float s4 = null;
+    Float s5 = null;
+    Float s6 = null;
+    Float s7 = null;
+    Float s8 = null;
+    Float s9 = null;
+    Float s10 = null;
+    Float s11 = null;
+    Float s12 = null;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -75,26 +78,24 @@ public class ReviewTagFragment extends Fragment {
 
 
         // ReviewFragment에서 Bundle로 태그를 추가할 카페이름 및 점수 받아오기
-        Bundle review_cafeNameBundle = getArguments();
-        if(review_cafeNameBundle != null){
-            if(review_cafeNameBundle.getString("cafeName") != null){
-                review_cafe_name = review_cafeNameBundle.getString("cafeName");
-                review_tastePoint1 = review_cafeNameBundle.getFloat("tastePoint1");
-                review_tastePoint2 = review_cafeNameBundle.getFloat("tastePoint2");
-                review_tastePoint3 = review_cafeNameBundle.getFloat("tastePoint3");
-                review_tastePoint4 = review_cafeNameBundle.getFloat("tastePoint4");
-                review_seatPoint1 = review_cafeNameBundle.getFloat("seatPoint1");
-                review_seatPoint2 = review_cafeNameBundle.getFloat("seatPoint2");
-                review_seatPoint3 = review_cafeNameBundle.getFloat("seatPoint3");
-                review_seatPoint4 = review_cafeNameBundle.getFloat("seatPoint4");
-                review_studyPoint1 = review_cafeNameBundle.getFloat("studyPoint1");
-                review_studyPoint2 = review_cafeNameBundle.getFloat("studyPoint2");
-                review_studyPoint3 = review_cafeNameBundle.getFloat("studyPoint3");
-                review_studyPoint4 = review_cafeNameBundle.getFloat("studyPoint4");
-                Log.d("wow2", String.valueOf(review_tastePoint1));
-            }
-        }
+        review_cafe_name = getArguments().getString("cafeName");
 
+        s1 = getArguments().getFloat("tastePoint1");
+        s2 = getArguments().getFloat("tastePoint2");
+        s3 = getArguments().getFloat("tastePoint3");
+        s4 = getArguments().getFloat("tastePoint4");
+
+        s5 = getArguments().getFloat("seatPoint1");
+        s6 = getArguments().getFloat("seatPoint2");
+        s7 = getArguments().getFloat("seatPoint3");
+        s8 = getArguments().getFloat("seatPoint4");
+
+        s9 = getArguments().getFloat("studyPoint1");
+        s10 = getArguments().getFloat("studyPoint2");
+        s11 = getArguments().getFloat("studyPoint3");
+        s12 = getArguments().getFloat("studyPoint4");
+
+        Log.d("wow2", String.valueOf("tastePoint1"));
 
         ////////////////////////////////////////////////////////////////////////////////////
         // 아래 3개 삭제 버튼 클릭 이벤트 작성
@@ -302,23 +303,25 @@ public class ReviewTagFragment extends Fragment {
                     // 번들을 이용해 프래그먼트간 데이터 전달
 
                     Bundle bundle = new Bundle(); // 프래그먼트 간 데이터 전달 위한 번들
+
+                    bundle.putString("review_cafeName", review_cafe_name);
+
                     bundle.putString("key1",addTag1.getText().toString()); // 번들에 String 데이터를 전달. key1 을 키로 사용
                     bundle.putString("key2",addTag2.getText().toString());
                     bundle.putString("key3",addTag3.getText().toString());
-                    bundle.putString("review_cafeName", review_cafe_name);
-                    bundle.putFloat("review_tastePoint1", review_tastePoint1);
-                    bundle.putFloat("review_tastePoint2", review_tastePoint2);
-                    bundle.putFloat("review_tastePoint3", review_tastePoint3);
-                    bundle.putFloat("review_tastePoint4", review_tastePoint4);
-                    bundle.putFloat("review_seatPoint1", review_seatPoint1);
-                    bundle.putFloat("review_seatPoint2", review_seatPoint2);
-                    bundle.putFloat("review_seatPoint3", review_seatPoint3);
-                    bundle.putFloat("review_seatPoint4", review_seatPoint4);
-                    bundle.putFloat("review_studyPoint1", review_studyPoint1);
-                    bundle.putFloat("review_studyPoint2", review_studyPoint2);
-                    bundle.putFloat("review_studyPoint3", review_studyPoint3);
-                    bundle.putFloat("review_studyPoint4", review_studyPoint4);
-                    Log.d("wow3", String.valueOf(review_tastePoint1));
+
+                    bundle.putFloat("tag_review_tastePoint1", s1);
+                    bundle.putFloat("tag_review_tastePoint2", s2);
+                    bundle.putFloat("tag_review_tastePoint3", s3);
+                    bundle.putFloat("tag_review_tastePoint4", s4);
+                    bundle.putFloat("tag_review_seatPoint1", s5);
+                    bundle.putFloat("tag_review_seatPoint2", s6);
+                    bundle.putFloat("tag_review_seatPoint3", s7);
+                    bundle.putFloat("tag_review_seatPoint4", s8);
+                    bundle.putFloat("tag_review_studyPoint1", s9);
+                    bundle.putFloat("tag_review_studyPoint2", s10);
+                    bundle.putFloat("tag_review_studyPoint3", s11);
+                    bundle.putFloat("tag_review_studyPoint4", s12);
 
                     navController.navigate(R.id.review_tag_to_review, bundle); // 번들과 함께 전달
                 }

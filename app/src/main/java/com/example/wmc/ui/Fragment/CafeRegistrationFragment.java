@@ -562,11 +562,11 @@ public class CafeRegistrationFragment extends Fragment {
                 bundle.putString("address", cafe_address_input.getText().toString());
                 bundle.putBoolean("name_test", name_test); // 중복확인 여부 전달
 
-                if(!cafe_openHours_hour_input.getText().toString().equals("") || !cafe_openHours_minute_input.getText().toString().equals("") ||
-                        !cafe_closeHours_hour_input.getText().toString().equals("") || !cafe_closeHours_minute_input.getText().toString().equals("")){
+//                if(!cafe_openHours_hour_input.getText().toString().equals("") && !cafe_openHours_minute_input.getText().toString().equals("") &&
+//                        !cafe_closeHours_hour_input.getText().toString().equals("") && !cafe_closeHours_minute_input.getText().toString().equals("")){
                     bundle.putString("opentime", cafe_openHours_hour_input.getText().toString() + cafe_openHours_minute_input.getText().toString());
                     bundle.putString("closetime", cafe_closeHours_hour_input.getText().toString() + cafe_closeHours_minute_input.getText().toString());
-                }
+//                }
 
                 navController.navigate(R.id.cafe_registration_to_cafe_registration_tag, bundle);
             }
@@ -589,20 +589,34 @@ public class CafeRegistrationFragment extends Fragment {
                 cafe_address_input.setText(argBundle.getString("address"));
                 name_test = argBundle.getBoolean("name_test"); // 중복확인 여부
 
-                if(!argBundle.getString("opentime").equals("")) {
-                    cafe_openHours_hour_input.setText(argBundle.getString("opentime").substring(0, 2));
-                    cafe_openHours_minute_input.setText(argBundle.getString("opentime").substring(2, 4));
-                }
-                if(!argBundle.getString("closetime").equals("")) { //여기까진 막아도 CafeRegistrationTagFragment.java 에서 막을 방법이 없음. 연구
-                    cafe_closeHours_hour_input.setText(argBundle.getString("closetime").substring(0, 2));
-                    cafe_closeHours_minute_input.setText(argBundle.getString("closetime").substring(2, 4));
-                }
+                cafe_openHours_hour_input.setText(argBundle.getString("opentime"));
+                cafe_openHours_minute_input.setText(argBundle.getString("opentime"));
+                cafe_closeHours_hour_input.setText(argBundle.getString("closetime"));
+                cafe_closeHours_minute_input.setText(argBundle.getString("closetime"));
 
                 //카페이미지 문장
                 tag1 = argBundle.getString("key1");
                 tag2 = argBundle.getString("key2");
                 tag3 = argBundle.getString("key3");
             }
+        }
+
+        String openhour_substring = cafe_openHours_hour_input.getText().toString();
+        String closehour_substring = cafe_closeHours_hour_input.getText().toString();
+
+        if(openhour_substring.length() >= 4 ){
+            cafe_openHours_hour_input.setText(openhour_substring.substring(0,2));
+            cafe_openHours_minute_input.setText(openhour_substring.substring(2,4));
+        }
+        if(closehour_substring.length() >= 4 ){
+            cafe_closeHours_hour_input.setText(closehour_substring.substring(0,2));
+            cafe_closeHours_minute_input.setText(closehour_substring.substring(2,4));
+        }
+        if(openhour_substring.length() < 4 || closehour_substring.length() < 4 ){
+            cafe_openHours_hour_input.setText("");
+            cafe_openHours_minute_input.setText("");
+            cafe_closeHours_hour_input.setText("");
+            cafe_closeHours_minute_input.setText("");
         }
 
 
