@@ -126,6 +126,10 @@ public class ReviewFragment extends Fragment {
         TextView setTag3 = root.findViewById(R.id.select_tag3); // 태그 추가 완료 시 반영할 리뷰 작성 페이지의 태그 박스3
 
 
+        for(int i = 0 ; i<=35; i++){
+            k[i] = (long)0;
+        }
+
         // ReviewTag에서 가져온 태그들 설정 및 카페이름을 기억해두기
         Bundle argBundle = getArguments();
         if( argBundle != null ) {
@@ -368,20 +372,22 @@ public class ReviewFragment extends Fragment {
 
                         else{
                             Map map = new HashMap();
-                            map.put("tastePoint1", rating_sour.getRating());
-                            map.put("tastePoint2", rating_acerbity.getRating());
-                            map.put("tastePoint3", rating_dessert.getRating());
-                            map.put("tastePoint4", rating_beverage.getRating());
-                            map.put("seatPoint1", rating_twoseat.getRating());
-                            map.put("seatPoint2", rating_fourseat.getRating());
-                            map.put("seatPoint3", rating_manyseat.getRating());
-                            map.put("seatPoint4", rating_toilet.getRating());
-                            map.put("studyPoint1", rating_wifi.getRating());
-                            map.put("studyPoint2", rating_plug.getRating());
-                            map.put("studyPoint3", rating_quiet.getRating());
-                            map.put("studyPoint4", rating_light.getRating());
+                            map.put("tastePoint1", Integer.valueOf((int)rating_sour.getRating()));
+                            map.put("tastePoint2", Integer.valueOf((int)rating_acerbity.getRating()));
+                            map.put("tastePoint3", Integer.valueOf((int)rating_dessert.getRating()));
+                            map.put("tastePoint4", Integer.valueOf((int)rating_beverage.getRating()));
+                            map.put("seatPoint1", Integer.valueOf((int)rating_twoseat.getRating()));
+                            map.put("seatPoint2", Integer.valueOf((int)rating_fourseat.getRating()));
+                            map.put("seatPoint3", Integer.valueOf((int)rating_manyseat.getRating()));
+                            map.put("seatPoint4", Integer.valueOf((int)rating_toilet.getRating()));
+                            map.put("studyPoint1", Integer.valueOf((int)rating_wifi.getRating()));
+                            map.put("studyPoint2", Integer.valueOf((int)rating_plug.getRating()));
+                            map.put("studyPoint3", Integer.valueOf((int)rating_quiet.getRating()));
+                            map.put("studyPoint4", Integer.valueOf((int)rating_light.getRating()));
                             map.put("cafeNum", cafeNum);
                             map.put("likeCount", 0);
+                            map.put("reviewText", null);
+                            map.put("memNum", mem_num);
                             switch (stag1) {
                                 case ("#쓴맛"):
                                     k[0] = Long.valueOf(1);
@@ -750,7 +756,7 @@ public class ReviewFragment extends Fragment {
                             map.put("keyword34", k[33]);
                             map.put("keyword35", k[34]);
                             map.put("keyword36", k[35]);
-                            map.put("memNum", mem_num);
+
 
                             String url2 = "http://54.196.209.1:8080/review";
                             JSONObject jsonObject = new JSONObject(map);
