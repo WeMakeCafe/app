@@ -36,6 +36,7 @@ import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.wmc.MainActivity;
 import com.example.wmc.R;
 import com.example.wmc.database.Cafe;
 import com.example.wmc.database.Personal;
@@ -70,6 +71,7 @@ public class ReviewFragment extends Fragment {
     String stag1;
     String stag2;
     String stag3;
+    Long cafeNum;
 
     RatingBar rating_sour;
     RatingBar rating_acerbity;
@@ -84,6 +86,23 @@ public class ReviewFragment extends Fragment {
     RatingBar rating_quiet;
     RatingBar rating_light;
 
+    Float s1;
+    Float s2;
+    Float s3;
+    Float s4;
+    Float s5;
+    Float s6;
+    Float s7;
+    Float s8;
+    Float s9;
+    Float s10;
+    Float s11;
+    Float s12;
+
+    Long[] k = new Long[36];
+    Long mem_num = MainActivity.mem_num;
+
+    ArrayList<Cafe> cafe_list;
     ArrayList<Review> review_list;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -114,25 +133,37 @@ public class ReviewFragment extends Fragment {
                 setTag1.setText(argBundle.getString("key1"));
                 setTag2.setText(argBundle.getString("key2"));
                 setTag3.setText(argBundle.getString("key3"));
+//                s1 = argBundle.getFloat("review_tastePoint1");
+//                s2 = argBundle.getFloat("review_tastePoint2");
+//                s3 = argBundle.getFloat("review_tastePoint3");
+//                s4 = argBundle.getFloat("review_tastePoint4");
+//                s5 = argBundle.getFloat("review_seatPoint1");
+//                s6 = argBundle.getFloat("review_seatPoint2");
+//                s7 = argBundle.getFloat("review_seatPoint3");
+//                s8 = argBundle.getFloat("review_seatPoint4");
+//                s9 = argBundle.getFloat("review_studyPoint1");
+//                s10 = argBundle.getFloat("review_studyPoint2");
+//                s11 = argBundle.getFloat("review_studyPoint3");
+//                s12 = argBundle.getFloat("review_studyPoint4");
+                review_search_input.setText(argBundle.getString("review_cafeName"));
+//                Log.d("wow4", String.valueOf(s1));
+//                rating_sour.setRating(1);
+//                rating_acerbity.setRating(s2);
+//                rating_dessert.setRating(s3);
+//                rating_beverage.setRating(s4);
+//                rating_twoseat.setRating(s5);
+//                rating_fourseat.setRating(s6);
+//                rating_manyseat.setRating(s7);
+//                rating_toilet.setRating(s8);
+//                rating_wifi.setRating(s9);
+//                rating_plug.setRating(s10);
+//                rating_quiet.setRating(s11);
+//                rating_light.setRating(s12);
                 stag1 = argBundle.getString("key1");
                 stag2 = argBundle.getString("key2");
                 stag3 = argBundle.getString("key3");
-                review_search_input.setText(argBundle.getString("review_cafeName"));
-                review_search_input.setTypeface(Typeface.DEFAULT_BOLD);  // 카페이름 Bold처리
-                review_search_input.setGravity(Gravity.CENTER);          // 카페 위치 Center로 변경
             }
         }
-
-        ///////서버 호출
-
-
-
-
-
-
-
-
-        ////// 서버 엔드
 
 
         // 카페 검색 창 클릭 시,
@@ -158,18 +189,25 @@ public class ReviewFragment extends Fragment {
                 else{
                     Bundle bundle = new Bundle();
                     bundle.putString("cafeName", review_search_input.getText().toString());
+                    bundle.putFloat("tastePoint1", rating_sour.getRating());
+                    bundle.putFloat("tastePoint2", rating_acerbity.getRating());
+                    bundle.putFloat("tastePoint3", rating_dessert.getRating());
+                    bundle.putFloat("tastePoint4", rating_beverage.getRating());
+                    bundle.putFloat("seatPoint1", rating_twoseat.getRating());
+                    bundle.putFloat("seatPoint2", rating_fourseat.getRating());
+                    bundle.putFloat("seatPoint3", rating_manyseat.getRating());
+                    bundle.putFloat("seatPoint4", rating_toilet.getRating());
+                    bundle.putFloat("studyPoint1", rating_wifi.getRating());
+                    bundle.putFloat("studyPoint2", rating_plug.getRating());
+                    bundle.putFloat("studyPoint3", rating_quiet.getRating());
+                    bundle.putFloat("studyPoint4", rating_light.getRating());
 
+                    Log.d("wow", String.valueOf(rating_sour.getRating()));
                     navController.navigate(R.id.review_to_review_tag, bundle);
                 }
             }
         });
 
-        comment_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navController.navigate(R.id.review_to_review_comment);
-            }
-        });
 
         // 위치인증 버튼 클릭 시,
         location_button.setOnClickListener(new View.OnClickListener() {
@@ -206,467 +244,558 @@ public class ReviewFragment extends Fragment {
         rating_light = root.findViewById(R.id.rating_light);
 
 
-        // 코멘터리 버튼 클릭 시,
-        comment_button.setOnClickListener(new View.OnClickListener() {
+        RequestQueue requestQueue;
+        Cache cache = new DiskBasedCache(getActivity().getCacheDir(), 1024 * 1024); // 1MB cap
+        Network network = new BasicNetwork(new HurlStack());
+        requestQueue = new RequestQueue(cache, network);
+        requestQueue.start();
+        String url = "http://54.196.209.1:8080/cafe";
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
-            public void onClick(View v) {
+            public void onResponse(String response) {
+                // 한글깨짐 해결 코드
+                String changeString = new String();
+                try {
+                    changeString = new String(response.getBytes("8859_1"), "utf-8");
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                Type listType = new TypeToken<ArrayList<Cafe>>() {
+                }.getType();
 
-                if(rating_sour.getRating() == 0){
-                    Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
-                } else if(rating_acerbity.getRating() == 0){
-                    Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
-                }else if(rating_dessert.getRating() == 0){
-                    Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
-                }else if(rating_beverage.getRating() == 0){
-                    Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
-                }else if(rating_twoseat.getRating() == 0){
-                    Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
-                }else if(rating_fourseat.getRating() == 0){
-                    Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
-                }else if(rating_manyseat.getRating() == 0){
-                    Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
-                }else if(rating_toilet.getRating() == 0){
-                    Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
-                }else if(rating_wifi.getRating() == 0){
-                    Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
-                }else if(rating_plug.getRating() == 0){
-                    Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
-                }else if(rating_quiet.getRating() == 0){
-                    Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
-                }else if(rating_light.getRating() == 0){
-                    Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
-                }else if(setTag1.getText().toString().equals("")){
-                    Toast.makeText(getContext().getApplicationContext(), "태그를 추가해주세요.", Toast.LENGTH_SHORT).show();
+                cafe_list = gson.fromJson(changeString, listType);
+
+
+                for(Cafe c : cafe_list) {
+                    if(c.getCafeName().equals(review_search_input.getText().toString())) {
+                        cafeNum = c.getCafeNum();
+                    }
                 }
 
-                else{
-                    Bundle bundle = new Bundle(); // 프래그먼트 간 데이터 전달 위한 번들
-                    bundle.putString("tag1", tag1.getText().toString());
-                    bundle.putString("tag2", tag2.getText().toString());
-                    bundle.putString("tag3", tag3.getText().toString());
-                    bundle.putInt("sour", rating_sour.getNumStars());
-                    bundle.putInt("acerbity", rating_acerbity.getNumStars());
-                    bundle.putInt("dessert", rating_dessert.getNumStars());
-                    bundle.putInt("beverage", rating_beverage.getNumStars());
-                    bundle.putInt("twoseat", rating_twoseat.getNumStars());
-                    bundle.putInt("fourseat", rating_fourseat.getNumStars());
-                    bundle.putInt("manyseat", rating_manyseat.getNumStars());
-                    bundle.putInt("toilet", rating_toilet.getNumStars());
-                    bundle.putInt("wifi", rating_wifi.getNumStars());
-                    bundle.putInt("plug", rating_plug.getNumStars());
-                    bundle.putInt("quiet", rating_quiet.getNumStars());
-                    bundle.putInt("light", rating_light.getNumStars());
+                // 코멘터리 버튼 클릭 시,
+                comment_button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
-                    navController.navigate(R.id.review_to_review_comment, bundle);
-                }
-            }
-        });
-
-
-        // 작성완료 버튼 클릭 시,
-        finish_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // 내가 리뷰를 작성한 CafeDetailFragment로 이동
-                // 만약 별점을 비워둘경우, 별점을 체크하게 Toast메시지를 띄움
-                if(rating_sour.getRating() == 0){
-                    Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
-                } else if(rating_acerbity.getRating() == 0){
-                    Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
-                }else if(rating_dessert.getRating() == 0){
-                    Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
-                }else if(rating_beverage.getRating() == 0){
-                    Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
-                }else if(rating_twoseat.getRating() == 0){
-                    Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
-                }else if(rating_fourseat.getRating() == 0){
-                    Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
-                }else if(rating_manyseat.getRating() == 0){
-                    Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
-                }else if(rating_toilet.getRating() == 0){
-                    Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
-                }else if(rating_wifi.getRating() == 0){
-                    Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
-                }else if(rating_plug.getRating() == 0){
-                    Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
-                }else if(rating_quiet.getRating() == 0){
-                    Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
-                }else if(rating_light.getRating() == 0){
-                    Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
-                }else if(setTag1.getText().toString().equals("")){
-                    Toast.makeText(getContext().getApplicationContext(), "태그를 추가해주세요.", Toast.LENGTH_SHORT).show();
-                }
-
-                else{
-                    RequestQueue requestQueue;
-                    Cache cache = new DiskBasedCache(getActivity().getCacheDir(), 1024 * 1024); // 1MB cap
-                    Network network = new BasicNetwork(new HurlStack());
-                    requestQueue = new RequestQueue(cache, network);
-                    requestQueue.start();
-                    String url = "http://54.221.33.199:8080/review";
-
-                    Map map = new HashMap();
-
-                    switch (stag1) {
-                        case ("#쓴맛"):
-                            map.put("keyword1", 1);
-                            break;
-                        case ("#신맛"):
-                            map.put("keyword2", 1);
-                            break;
-                        case ("#짠맛"):
-                            map.put("keyword3", 1);
-                            break;
-                        case ("#단맛"):
-                            map.put("keyword4", 1);
-                            break;
-                        case ("#향미"):
-                            map.put("keyword5", 1);
-                            break;
-                        case ("#바디감"):
-                            map.put("keyword6", 1);
-                            break;
-                        case ("#콜드브루"):
-                            map.put("keyword7", 1);
-                            break;
-                        case ("#메뉴多"):
-                            map.put("keyword8", 1);
-                            break;
-                        case ("#가성비"):
-                            map.put("keyword9", 1);
-                            break;
-                        case ("#양많음"):
-                            map.put("keyword10", 1);
-                            break;
-                        case ("#디저트맛집"):
-                            map.put("keyword11", 1);
-                            break;
-                        case ("#논커피맛집"):
-                            map.put("keyword12", 1);
-                            break;
-                        case ("#인스타"):
-                            map.put("keyword13", 1);
-                            break;
-                        case ("#앤티크"):
-                            map.put("keyword14", 1);
-                            break;
-                        case ("#모던"):
-                            map.put("keyword15", 1);
-                            break;
-                        case ("#캐주얼"):
-                            map.put("keyword16", 1);
-                            break;
-                        case ("#이국적"):
-                            map.put("keyword17", 1);
-                            break;
-                        case ("#일상"):
-                            map.put("keyword18", 1);
-                            break;
-                        case ("#따뜻한"):
-                            map.put("keyword19", 1);
-                            break;
-                        case ("#조용한"):
-                            map.put("keyword20", 1);
-                            break;
-                        case ("#우드톤"):
-                            map.put("keyword21", 1);
-                            break;
-                        case ("#채광"):
-                            map.put("keyword22", 1);
-                            break;
-                        case ("#힙한"):
-                            map.put("keyword23", 1);
-                            break;
-                        case ("#귀여운"):
-                            map.put("keyword24", 1);
-                            break;
-                        case ("#친절한"):
-                            map.put("keyword25", 1);
-                            break;
-                        case ("#청결한"):
-                            map.put("keyword26", 1);
-                            break;
-                        case ("#애견"):
-                            map.put("keyword27", 1);
-                            break;
-                        case ("#주차장"):
-                            map.put("keyword28", 1);
-                            break;
-                        case ("#노키즈존"):
-                            map.put("keyword29", 1);
-                            break;
-                        case ("#교통편의"):
-                            map.put("keyword30", 1);
-                            break;
-                        case ("#신속한"):
-                            map.put("keyword31", 1);
-                            break;
-                        case ("#쾌적한"):
-                            map.put("keyword32", 1);
-                            break;
-                        case ("#회의실"):
-                            map.put("keyword33", 1);
-                            break;
-                        case ("#규모大"):
-                            map.put("keyword34", 1);
-                            break;
-                        case ("#규모小"):
-                            map.put("keyword35", 1);
-                            break;
-                        case ("#편한좌석"):
-                            map.put("keyword36", 1);
-                    }
-
-                    switch (stag2) {
-                        case ("#쓴맛"):
-                            map.put("keyword1", 1);
-                            break;
-                        case ("#신맛"):
-                            map.put("keyword2", 1);
-                            break;
-                        case ("#짠맛"):
-                            map.put("keyword3", 1);
-                            break;
-                        case ("#단맛"):
-                            map.put("keyword4", 1);
-                            break;
-                        case ("#향미"):
-                            map.put("keyword5", 1);
-                            break;
-                        case ("#바디감"):
-                            map.put("keyword6", 1);
-                            break;
-                        case ("#콜드브루"):
-                            map.put("keyword7", 1);
-                            break;
-                        case ("#메뉴多"):
-                            map.put("keyword8", 1);
-                            break;
-                        case ("#가성비"):
-                            map.put("keyword9", 1);
-                            break;
-                        case ("#양많음"):
-                            map.put("keyword10", 1);
-                            break;
-                        case ("#디저트맛집"):
-                            map.put("keyword11", 1);
-                            break;
-                        case ("#논커피맛집"):
-                            map.put("keyword12", 1);
-                        case ("#인스타"):
-                            map.put("keyword13", 1);
-                            break;
-                        case ("#앤티크"):
-                            map.put("keyword14", 1);
-                            break;
-                        case ("#모던"):
-                            map.put("keyword15", 1);
-                            break;
-                        case ("#캐주얼"):
-                            map.put("keyword16", 1);
-                            break;
-                        case ("#이국적"):
-                            map.put("keyword17", 1);
-                            break;
-                        case ("#일상"):
-                            map.put("keyword18", 1);
-                            break;
-                        case ("#따뜻한"):
-                            map.put("keyword19", 1);
-                            break;
-                        case ("#조용한"):
-                            map.put("keyword20", 1);
-                            break;
-                        case ("#우드톤"):
-                            map.put("keyword21", 1);
-                            break;
-                        case ("#채광"):
-                            map.put("keyword22", 1);
-                            break;
-                        case ("#힙한"):
-                            map.put("keyword23", 1);
-                            break;
-                        case ("#귀여운"):
-                            map.put("keyword24", 1);
-                            break;
-                        case ("#친절한"):
-                            map.put("keyword25", 1);
-                            break;
-                        case ("#청결한"):
-                            map.put("keyword26", 1);
-                            break;
-                        case ("#애견"):
-                            map.put("keyword27", 1);
-                            break;
-                        case ("#주차장"):
-                            map.put("keyword28", 1);
-                            break;
-                        case ("#노키즈존"):
-                            map.put("keyword29", 1);
-                            break;
-                        case ("#교통편의"):
-                            map.put("keyword30", 1);
-                            break;
-                        case ("#신속한"):
-                            map.put("keyword31", 1);
-                            break;
-                        case ("#쾌적한"):
-                            map.put("keyword32", 1);
-                            break;
-                        case ("#회의실"):
-                            map.put("keyword33", 1);
-                            break;
-                        case ("#규모大"):
-                            map.put("keyword34", 1);
-                            break;
-                        case ("#규모小"):
-                            map.put("keyword35", 1);
-                            break;
-                        case ("#편한좌석"):
-                            map.put("keyword36", 1);
-                    }
-
-                    switch (stag3) {
-                        case ("#쓴맛"):
-                            map.put("keyword1", 1);
-                            break;
-                        case ("#신맛"):
-                            map.put("keyword2", 1);
-                            break;
-                        case ("#짠맛"):
-                            map.put("keyword3", 1);
-                            break;
-                        case ("#단맛"):
-                            map.put("keyword4", 1);
-                            break;
-                        case ("#향미"):
-                            map.put("keyword5", 1);
-                            break;
-                        case ("#바디감"):
-                            map.put("keyword6", 1);
-                            break;
-                        case ("#콜드브루"):
-                            map.put("keyword7", 1);
-                            break;
-                        case ("#메뉴多"):
-                            map.put("keyword8", 1);
-                            break;
-                        case ("#가성비"):
-                            map.put("keyword9", 1);
-                            break;
-                        case ("#양많음"):
-                            map.put("keyword10", 1);
-                            break;
-                        case ("#디저트맛집"):
-                            map.put("keyword11", 1);
-                            break;
-                        case ("#논커피맛집"):
-                            map.put("keyword12", 1);
-                        case ("#인스타"):
-                            map.put("keyword13", 1);
-                            break;
-                        case ("#앤티크"):
-                            map.put("keyword14", 1);
-                            break;
-                        case ("#모던"):
-                            map.put("keyword15", 1);
-                            break;
-                        case ("#캐주얼"):
-                            map.put("keyword16", 1);
-                            break;
-                        case ("#이국적"):
-                            map.put("keyword17", 1);
-                            break;
-                        case ("#일상"):
-                            map.put("keyword18", 1);
-                            break;
-                        case ("#따뜻한"):
-                            map.put("keyword19", 1);
-                            break;
-                        case ("#조용한"):
-                            map.put("keyword20", 1);
-                            break;
-                        case ("#우드톤"):
-                            map.put("keyword21", 1);
-                            break;
-                        case ("#채광"):
-                            map.put("keyword22", 1);
-                            break;
-                        case ("#힙한"):
-                            map.put("keyword23", 1);
-                            break;
-                        case ("#귀여운"):
-                            map.put("keyword24", 1);
-                            break;
-                        case ("#친절한"):
-                            map.put("keyword25", 1);
-                            break;
-                        case ("#청결한"):
-                            map.put("keyword26", 1);
-                            break;
-                        case ("#애견"):
-                            map.put("keyword27", 1);
-                            break;
-                        case ("#주차장"):
-                            map.put("keyword28", 1);
-                            break;
-                        case ("#노키즈존"):
-                            map.put("keyword29", 1);
-                            break;
-                        case ("#교통편의"):
-                            map.put("keyword30", 1);
-                            break;
-                        case ("#신속한"):
-                            map.put("keyword31", 1);
-                            break;
-                        case ("#쾌적한"):
-                            map.put("keyword32", 1);
-                            break;
-                        case ("#회의실"):
-                            map.put("keyword33", 1);
-                            break;
-                        case ("#규모大"):
-                            map.put("keyword34", 1);
-                            break;
-                        case ("#규모小"):
-                            map.put("keyword35", 1);
-                            break;
-                        case ("#편한좌석"):
-                            map.put("keyword36", 1);
-                    }
-
-                    JSONObject jsonObject = new JSONObject(map);
-                    JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject,
-                            new Response.Listener<JSONObject>() {
-                                @Override
-                                public void onResponse(JSONObject response) {
-
-                                }
-                            },
-                            new Response.ErrorListener() {
-                                @Override
-                                public void onErrorResponse(VolleyError error) {
-                                    Log.d("test", error.toString());
-                                }
-                            }) {
-                        @Override
-                        public String getBodyContentType() {
-                            return "application/json; charset=UTF-8";
+                        if(rating_sour.getRating() == 0){
+                            Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
+                        } else if(rating_acerbity.getRating() == 0){
+                            Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
+                        }else if(rating_dessert.getRating() == 0){
+                            Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
+                        }else if(rating_beverage.getRating() == 0){
+                            Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
+                        }else if(rating_twoseat.getRating() == 0){
+                            Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
+                        }else if(rating_fourseat.getRating() == 0){
+                            Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
+                        }else if(rating_manyseat.getRating() == 0){
+                            Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
+                        }else if(rating_toilet.getRating() == 0){
+                            Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
+                        }else if(rating_wifi.getRating() == 0){
+                            Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
+                        }else if(rating_plug.getRating() == 0){
+                            Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
+                        }else if(rating_quiet.getRating() == 0){
+                            Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
+                        }else if(rating_light.getRating() == 0){
+                            Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
+                        }else if(setTag1.getText().toString().equals("")){
+                            Toast.makeText(getContext().getApplicationContext(), "태그를 추가해주세요.", Toast.LENGTH_SHORT).show();
                         }
-                    };
 
-                    RequestQueue queue = Volley.newRequestQueue(requireContext());
-                    queue.add(objectRequest);
-                    navController.navigate(R.id.review_to_cafe_detail);
-                }
+                        else{
+                            Bundle bundle = new Bundle(); // 프래그먼트 간 데이터 전달 위한 번들
+                            bundle.putString("tag1", tag1.getText().toString());
+                            bundle.putString("tag2", tag2.getText().toString());
+                            bundle.putString("tag3", tag3.getText().toString());
+                            bundle.putFloat("tastePoint1", rating_sour.getRating());
+                            bundle.putFloat("tastePoint2", rating_acerbity.getRating());
+                            bundle.putFloat("tastePoint3", rating_dessert.getRating());
+                            bundle.putFloat("tastePoint4", rating_beverage.getRating());
+                            bundle.putFloat("seatPoint1", rating_twoseat.getRating());
+                            bundle.putFloat("seatPoint2", rating_fourseat.getRating());
+                            bundle.putFloat("seatPoint3", rating_manyseat.getRating());
+                            bundle.putFloat("seatPoint4", rating_toilet.getRating());
+                            bundle.putFloat("studyPoint1", rating_wifi.getRating());
+                            bundle.putFloat("studyPoint2", rating_plug.getRating());
+                            bundle.putFloat("studyPoint3", rating_quiet.getRating());
+                            bundle.putFloat("studyPoint4", rating_light.getRating());
+                            bundle.putLong("cafeNum", cafeNum);
+
+                            navController.navigate(R.id.review_to_review_comment, bundle);
+                        }
+                    }
+                });
+
+
+                // 작성완료 버튼 클릭 시,
+                finish_button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // 내가 리뷰를 작성한 CafeDetailFragment로 이동
+                        // 만약 별점을 비워둘경우, 별점을 체크하게 Toast메시지를 띄움
+                        if(rating_sour.getRating() == 0){
+                            Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
+                        } else if(rating_acerbity.getRating() == 0){
+                            Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
+                        }else if(rating_dessert.getRating() == 0){
+                            Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
+                        }else if(rating_beverage.getRating() == 0){
+                            Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
+                        }else if(rating_twoseat.getRating() == 0){
+                            Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
+                        }else if(rating_fourseat.getRating() == 0){
+                            Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
+                        }else if(rating_manyseat.getRating() == 0){
+                            Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
+                        }else if(rating_toilet.getRating() == 0){
+                            Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
+                        }else if(rating_wifi.getRating() == 0){
+                            Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
+                        }else if(rating_plug.getRating() == 0){
+                            Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
+                        }else if(rating_quiet.getRating() == 0){
+                            Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
+                        }else if(rating_light.getRating() == 0){
+                            Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
+                        }else if(setTag1.getText().toString().equals("")){
+                            Toast.makeText(getContext().getApplicationContext(), "태그를 추가해주세요.", Toast.LENGTH_SHORT).show();
+                        }
+
+                        else{
+                            Map map = new HashMap();
+                            map.put("tastePoint1", rating_sour.getRating());
+                            map.put("tastePoint2", rating_acerbity.getRating());
+                            map.put("tastePoint3", rating_dessert.getRating());
+                            map.put("tastePoint4", rating_beverage.getRating());
+                            map.put("seatPoint1", rating_twoseat.getRating());
+                            map.put("seatPoint2", rating_fourseat.getRating());
+                            map.put("seatPoint3", rating_manyseat.getRating());
+                            map.put("seatPoint4", rating_toilet.getRating());
+                            map.put("studyPoint1", rating_wifi.getRating());
+                            map.put("studyPoint2", rating_plug.getRating());
+                            map.put("studyPoint3", rating_quiet.getRating());
+                            map.put("studyPoint4", rating_light.getRating());
+                            map.put("cafeNum", cafeNum);
+                            map.put("likeCount", 0);
+                            switch (stag1) {
+                                case ("#쓴맛"):
+                                    k[0] = Long.valueOf(1);
+                                    break;
+                                case ("#신맛"):
+                                    k[1] = Long.valueOf(1);
+                                    break;
+                                case ("#짠맛"):
+                                    k[2] = Long.valueOf(1);
+                                    break;
+                                case ("#단맛"):
+                                    k[3] = Long.valueOf(1);
+                                    break;
+                                case ("#향미"):
+                                    k[4] = Long.valueOf(1);
+                                    break;
+                                case ("#바디감"):
+                                    k[5] = Long.valueOf(1);
+                                    break;
+                                case ("#콜드브루"):
+                                    k[6] = Long.valueOf(1);
+                                    break;
+                                case ("#메뉴多"):
+                                    k[7] = Long.valueOf(1);
+                                    break;
+                                case ("#가성비"):
+                                    k[8] = Long.valueOf(1);
+                                    break;
+                                case ("#양많음"):
+                                    k[9] = Long.valueOf(1);
+                                    break;
+                                case ("#디저트맛집"):
+                                    k[10] = Long.valueOf(1);
+                                    break;
+                                case ("#논커피맛집"):
+                                    k[11] = Long.valueOf(1);
+                                    break;
+                                case ("#인스타"):
+                                    k[12] = Long.valueOf(1);
+                                    break;
+                                case ("#앤티크"):
+                                    k[13] = Long.valueOf(1);
+                                    break;
+                                case ("#모던"):
+                                    k[14] = Long.valueOf(1);
+                                    break;
+                                case ("#캐주얼"):
+                                    k[15] = Long.valueOf(1);
+                                    break;
+                                case ("#이국적"):
+                                    k[16] = Long.valueOf(1);
+                                    break;
+                                case ("#일상"):
+                                    k[17] = Long.valueOf(1);
+                                    break;
+                                case ("#따뜻한"):
+                                    k[18] = Long.valueOf(1);
+                                    break;
+                                case ("#조용한"):
+                                    k[19] = Long.valueOf(1);
+                                    break;
+                                case ("#우드톤"):
+                                    k[20] = Long.valueOf(1);
+                                    break;
+                                case ("#채광"):
+                                    k[21] = Long.valueOf(1);
+                                    break;
+                                case ("#힙한"):
+                                    k[22] = Long.valueOf(1);
+                                    break;
+                                case ("#귀여운"):
+                                    k[23] = Long.valueOf(1);
+                                    break;
+                                case ("#친절한"):
+                                    k[24] = Long.valueOf(1);
+                                    break;
+                                case ("#청결한"):
+                                    k[25] = Long.valueOf(1);
+                                    break;
+                                case ("#애견"):
+                                    k[26] = Long.valueOf(1);
+                                    break;
+                                case ("#주차장"):
+                                    k[27] = Long.valueOf(1);
+                                    break;
+                                case ("#노키즈존"):
+                                    k[28] = Long.valueOf(1);
+                                    break;
+                                case ("#교통편의"):
+                                    k[29] = Long.valueOf(1);
+                                    break;
+                                case ("#신속한"):
+                                    k[30] = Long.valueOf(1);
+                                    break;
+                                case ("#쾌적한"):
+                                    k[31] = Long.valueOf(1);
+                                    break;
+                                case ("#회의실"):
+                                    k[32] = Long.valueOf(1);
+                                    break;
+                                case ("#규모大"):
+                                    k[33] = Long.valueOf(1);
+                                    break;
+                                case ("#규모小"):
+                                    k[34] = Long.valueOf(1);
+                                    break;
+                                case ("#편한좌석"):
+                                    k[35] = Long.valueOf(1);
+                                    break;
+                            }
+
+                            switch (stag2) {
+                                case ("#쓴맛"):
+                                    k[0] = Long.valueOf(1);
+                                    break;
+                                case ("#신맛"):
+                                    k[1] = Long.valueOf(1);
+                                    break;
+                                case ("#짠맛"):
+                                    k[2] = Long.valueOf(1);
+                                    break;
+                                case ("#단맛"):
+                                    k[3] = Long.valueOf(1);
+                                    break;
+                                case ("#향미"):
+                                    k[4] = Long.valueOf(1);
+                                    break;
+                                case ("#바디감"):
+                                    k[5] = Long.valueOf(1);
+                                    break;
+                                case ("#콜드브루"):
+                                    k[6] = Long.valueOf(1);
+                                    break;
+                                case ("#메뉴多"):
+                                    k[7] = Long.valueOf(1);
+                                    break;
+                                case ("#가성비"):
+                                    k[8] = Long.valueOf(1);
+                                    break;
+                                case ("#양많음"):
+                                    k[9] = Long.valueOf(1);
+                                    break;
+                                case ("#디저트맛집"):
+                                    k[10] = Long.valueOf(1);
+                                    break;
+                                case ("#논커피맛집"):
+                                    k[11] = Long.valueOf(1);
+                                    break;
+                                case ("#인스타"):
+                                    k[12] = Long.valueOf(1);
+                                    break;
+                                case ("#앤티크"):
+                                    k[13] = Long.valueOf(1);
+                                    break;
+                                case ("#모던"):
+                                    k[14] = Long.valueOf(1);
+                                    break;
+                                case ("#캐주얼"):
+                                    k[15] = Long.valueOf(1);
+                                    break;
+                                case ("#이국적"):
+                                    k[16] = Long.valueOf(1);
+                                    break;
+                                case ("#일상"):
+                                    k[17] = Long.valueOf(1);
+                                    break;
+                                case ("#따뜻한"):
+                                    k[18] = Long.valueOf(1);
+                                    break;
+                                case ("#조용한"):
+                                    k[19] = Long.valueOf(1);
+                                    break;
+                                case ("#우드톤"):
+                                    k[20] = Long.valueOf(1);
+                                    break;
+                                case ("#채광"):
+                                    k[21] = Long.valueOf(1);
+                                    break;
+                                case ("#힙한"):
+                                    k[22] = Long.valueOf(1);
+                                    break;
+                                case ("#귀여운"):
+                                    k[23] = Long.valueOf(1);
+                                    break;
+                                case ("#친절한"):
+                                    k[24] = Long.valueOf(1);
+                                    break;
+                                case ("#청결한"):
+                                    k[25] = Long.valueOf(1);
+                                    break;
+                                case ("#애견"):
+                                    k[26] = Long.valueOf(1);
+                                    break;
+                                case ("#주차장"):
+                                    k[27] = Long.valueOf(1);
+                                    break;
+                                case ("#노키즈존"):
+                                    k[28] = Long.valueOf(1);
+                                    break;
+                                case ("#교통편의"):
+                                    k[29] = Long.valueOf(1);
+                                    break;
+                                case ("#신속한"):
+                                    k[30] = Long.valueOf(1);
+                                    break;
+                                case ("#쾌적한"):
+                                    k[31] = Long.valueOf(1);
+                                    break;
+                                case ("#회의실"):
+                                    k[32] = Long.valueOf(1);
+                                    break;
+                                case ("#규모大"):
+                                    k[33] = Long.valueOf(1);
+                                    break;
+                                case ("#규모小"):
+                                    k[34] = Long.valueOf(1);
+                                    break;
+                                case ("#편한좌석"):
+                                    k[35] = Long.valueOf(1);
+                                    break;
+                            }
+
+                            switch (stag3) {
+                                case ("#쓴맛"):
+                                    k[0] = Long.valueOf(1);
+                                    break;
+                                case ("#신맛"):
+                                    k[1] = Long.valueOf(1);
+                                    break;
+                                case ("#짠맛"):
+                                    k[2] = Long.valueOf(1);
+                                    break;
+                                case ("#단맛"):
+                                    k[3] = Long.valueOf(1);
+                                    break;
+                                case ("#향미"):
+                                    k[4] = Long.valueOf(1);
+                                    break;
+                                case ("#바디감"):
+                                    k[5] = Long.valueOf(1);
+                                    break;
+                                case ("#콜드브루"):
+                                    k[6] = Long.valueOf(1);
+                                    break;
+                                case ("#메뉴多"):
+                                    k[7] = Long.valueOf(1);
+                                    break;
+                                case ("#가성비"):
+                                    k[8] = Long.valueOf(1);
+                                    break;
+                                case ("#양많음"):
+                                    k[9] = Long.valueOf(1);
+                                    break;
+                                case ("#디저트맛집"):
+                                    k[10] = Long.valueOf(1);
+                                    break;
+                                case ("#논커피맛집"):
+                                    k[11] = Long.valueOf(1);
+                                    break;
+                                case ("#인스타"):
+                                    k[12] = Long.valueOf(1);
+                                    break;
+                                case ("#앤티크"):
+                                    k[13] = Long.valueOf(1);
+                                    break;
+                                case ("#모던"):
+                                    k[14] = Long.valueOf(1);
+                                    break;
+                                case ("#캐주얼"):
+                                    k[15] = Long.valueOf(1);
+                                    break;
+                                case ("#이국적"):
+                                    k[16] = Long.valueOf(1);
+                                    break;
+                                case ("#일상"):
+                                    k[17] = Long.valueOf(1);
+                                    break;
+                                case ("#따뜻한"):
+                                    k[18] = Long.valueOf(1);
+                                    break;
+                                case ("#조용한"):
+                                    k[19] = Long.valueOf(1);
+                                    break;
+                                case ("#우드톤"):
+                                    k[20] = Long.valueOf(1);
+                                    break;
+                                case ("#채광"):
+                                    k[21] = Long.valueOf(1);
+                                    break;
+                                case ("#힙한"):
+                                    k[22] = Long.valueOf(1);
+                                    break;
+                                case ("#귀여운"):
+                                    k[23] = Long.valueOf(1);
+                                    break;
+                                case ("#친절한"):
+                                    k[24] = Long.valueOf(1);
+                                    break;
+                                case ("#청결한"):
+                                    k[25] = Long.valueOf(1);
+                                    break;
+                                case ("#애견"):
+                                    k[26] = Long.valueOf(1);
+                                    break;
+                                case ("#주차장"):
+                                    k[27] = Long.valueOf(1);
+                                    break;
+                                case ("#노키즈존"):
+                                    k[28] = Long.valueOf(1);
+                                    break;
+                                case ("#교통편의"):
+                                    k[29] = Long.valueOf(1);
+                                    break;
+                                case ("#신속한"):
+                                    k[30] = Long.valueOf(1);
+                                    break;
+                                case ("#쾌적한"):
+                                    k[31] = Long.valueOf(1);
+                                    break;
+                                case ("#회의실"):
+                                    k[32] = Long.valueOf(1);
+                                    break;
+                                case ("#규모大"):
+                                    k[33] = Long.valueOf(1);
+                                    break;
+                                case ("#규모小"):
+                                    k[34] = Long.valueOf(1);
+                                    break;
+                                case ("#편한좌석"):
+                                    k[35] = Long.valueOf(1);
+                                    break;
+                            }
+                            map.put("keyword1", k[0]);
+                            map.put("keyword2", k[1]);
+                            map.put("keyword3", k[2]);
+                            map.put("keyword4", k[3]);
+                            map.put("keyword5", k[4]);
+                            map.put("keyword6", k[5]);
+                            map.put("keyword7", k[6]);
+                            map.put("keyword8", k[7]);
+                            map.put("keyword9", k[8]);
+                            map.put("keyword10", k[9]);
+                            map.put("keyword11", k[10]);
+                            map.put("keyword12", k[11]);
+                            map.put("keyword13", k[12]);
+                            map.put("keyword14", k[13]);
+                            map.put("keyword15", k[14]);
+                            map.put("keyword16", k[15]);
+                            map.put("keyword17", k[16]);
+                            map.put("keyword18", k[17]);
+                            map.put("keyword19", k[18]);
+                            map.put("keyword20", k[19]);
+                            map.put("keyword21", k[20]);
+                            map.put("keyword22", k[21]);
+                            map.put("keyword23", k[22]);
+                            map.put("keyword24", k[23]);
+                            map.put("keyword25", k[24]);
+                            map.put("keyword26", k[25]);
+                            map.put("keyword27", k[26]);
+                            map.put("keyword28", k[27]);
+                            map.put("keyword29", k[28]);
+                            map.put("keyword30", k[29]);
+                            map.put("keyword31", k[30]);
+                            map.put("keyword32", k[31]);
+                            map.put("keyword33", k[32]);
+                            map.put("keyword34", k[33]);
+                            map.put("keyword35", k[34]);
+                            map.put("keyword36", k[35]);
+                            map.put("memNum", mem_num);
+
+                            String url2 = "http://54.196.209.1:8080/review";
+                            JSONObject jsonObject = new JSONObject(map);
+                            JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, url2, jsonObject,
+                                    new Response.Listener<JSONObject>() {
+                                        @Override
+                                        public void onResponse(JSONObject response) {
+
+                                        }
+                                    },
+                                    new Response.ErrorListener() {
+                                        @Override
+                                        public void onErrorResponse(VolleyError error) {
+                                            Log.d("test1", error.toString());
+                                        }
+                                    }) {
+                                @Override
+                                public String getBodyContentType() {
+                                    return "application/json; charset=UTF-8";
+                                }
+                            };
+
+                            RequestQueue queue = Volley.newRequestQueue(requireContext());
+                            queue.add(objectRequest);
+                            Bundle bundle = new Bundle();
+                            bundle.putString("cafeName",review_search_input.getText().toString());
+                            navController.navigate(R.id.review_to_cafe_detail, bundle);
+                        }
+                    }
+                });
+
+                // 여기는 cafePut작업해야할 곳
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // 에러가 뜬다면 왜 에러가 떴는지 확인하는 코드
+                Log.e("test_error", error.toString());
             }
         });
+        requestQueue.add(stringRequest);
+
         return root;
     }
-
-
-
-
 
 
 

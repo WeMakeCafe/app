@@ -116,19 +116,19 @@ public class Review {
         this.memNum = memNum;
 
         this.tastePoint1 = tastePoint1;
-        this.tastePoint1 = tastePoint2;
-        this.tastePoint1 = tastePoint3;
-        this.tastePoint1 = tastePoint4;
+        this.tastePoint2 = tastePoint2;
+        this.tastePoint3 = tastePoint3;
+        this.tastePoint4 = tastePoint4;
 
         this.seatPoint1 = seatPoint1;
-        this.seatPoint1 = seatPoint2;
-        this.seatPoint1 = seatPoint3;
-        this.seatPoint1 = seatPoint4;
+        this.seatPoint2 = seatPoint2;
+        this.seatPoint3 = seatPoint3;
+        this.seatPoint4 = seatPoint4;
 
         this.studyPoint1 = studyPoint1;
-        this.studyPoint1 = studyPoint2;
-        this.studyPoint1 = studyPoint3;
-        this.studyPoint1 = studyPoint4;
+        this.studyPoint2 = studyPoint2;
+        this.studyPoint3 = studyPoint3;
+        this.studyPoint4 = studyPoint4;
     }
 
     public Long getReviewNum() {return reviewNum;}

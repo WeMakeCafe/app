@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +39,19 @@ public class ReviewTagFragment extends Fragment {
 
     private FragmentReviewTagBinding binding;
     private static NavController navController;
-    String review_cafe_name = null;   // ReviewFragment에서 가져온 카페이름을 저장할 변수
+    String review_cafe_name = null;   // ReviewFragment에서 가져온 카페이름을 저장할 변수 (밑에도 동일)
+    Float review_tastePoint1;
+    Float review_tastePoint2;
+    Float review_tastePoint3;
+    Float review_tastePoint4;
+    Float review_seatPoint1;
+    Float review_seatPoint2;
+    Float review_seatPoint3;
+    Float review_seatPoint4;
+    Float review_studyPoint1;
+    Float review_studyPoint2;
+    Float review_studyPoint3;
+    Float review_studyPoint4;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -61,12 +74,24 @@ public class ReviewTagFragment extends Fragment {
         Button addTag_button3 = root.findViewById(R.id.addTag_button3); // 태그 선택 후, 추가하기 버튼
 
 
-
-        // ReviewFragment에서 Bundle로 태그를 추가할 카페이름 받아오기
+        // ReviewFragment에서 Bundle로 태그를 추가할 카페이름 및 점수 받아오기
         Bundle review_cafeNameBundle = getArguments();
         if(review_cafeNameBundle != null){
             if(review_cafeNameBundle.getString("cafeName") != null){
                 review_cafe_name = review_cafeNameBundle.getString("cafeName");
+                review_tastePoint1 = review_cafeNameBundle.getFloat("tastePoint1");
+                review_tastePoint2 = review_cafeNameBundle.getFloat("tastePoint2");
+                review_tastePoint3 = review_cafeNameBundle.getFloat("tastePoint3");
+                review_tastePoint4 = review_cafeNameBundle.getFloat("tastePoint4");
+                review_seatPoint1 = review_cafeNameBundle.getFloat("seatPoint1");
+                review_seatPoint2 = review_cafeNameBundle.getFloat("seatPoint2");
+                review_seatPoint3 = review_cafeNameBundle.getFloat("seatPoint3");
+                review_seatPoint4 = review_cafeNameBundle.getFloat("seatPoint4");
+                review_studyPoint1 = review_cafeNameBundle.getFloat("studyPoint1");
+                review_studyPoint2 = review_cafeNameBundle.getFloat("studyPoint2");
+                review_studyPoint3 = review_cafeNameBundle.getFloat("studyPoint3");
+                review_studyPoint4 = review_cafeNameBundle.getFloat("studyPoint4");
+                Log.d("wow2", String.valueOf(review_tastePoint1));
             }
         }
 
@@ -281,6 +306,19 @@ public class ReviewTagFragment extends Fragment {
                     bundle.putString("key2",addTag2.getText().toString());
                     bundle.putString("key3",addTag3.getText().toString());
                     bundle.putString("review_cafeName", review_cafe_name);
+                    bundle.putFloat("review_tastePoint1", review_tastePoint1);
+                    bundle.putFloat("review_tastePoint2", review_tastePoint2);
+                    bundle.putFloat("review_tastePoint3", review_tastePoint3);
+                    bundle.putFloat("review_tastePoint4", review_tastePoint4);
+                    bundle.putFloat("review_seatPoint1", review_seatPoint1);
+                    bundle.putFloat("review_seatPoint2", review_seatPoint2);
+                    bundle.putFloat("review_seatPoint3", review_seatPoint3);
+                    bundle.putFloat("review_seatPoint4", review_seatPoint4);
+                    bundle.putFloat("review_studyPoint1", review_studyPoint1);
+                    bundle.putFloat("review_studyPoint2", review_studyPoint2);
+                    bundle.putFloat("review_studyPoint3", review_studyPoint3);
+                    bundle.putFloat("review_studyPoint4", review_studyPoint4);
+                    Log.d("wow3", String.valueOf(review_tastePoint1));
 
                     navController.navigate(R.id.review_tag_to_review, bundle); // 번들과 함께 전달
                 }
