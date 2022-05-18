@@ -19,6 +19,7 @@ public class ListCafeListViewHolder extends RecyclerView.ViewHolder{
     TextView cafeList_hashTag2;
     ImageView cafeList_cafeImage;
     CheckBox favorite_button;
+    boolean check_user_flag;
 
     public static int LISTCAFELIST_VIEW_TYPE = R.layout.item_list_cafelist;
 
@@ -32,6 +33,7 @@ public class ListCafeListViewHolder extends RecyclerView.ViewHolder{
         cafeList_hashTag2 = itemView.findViewById(R.id.cafeList_hashTag2);
         cafeList_cafeImage = itemView.findViewById(R.id.cafeList_cafeImage);
         favorite_button = itemView.findViewById(R.id.favorite_button);
+        boolean check_user_flag;
 
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
