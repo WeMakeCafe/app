@@ -87,7 +87,6 @@ public class CafeDetailFragment extends Fragment {
     ArrayList<Cafe> cafe_list;
     ArrayList<Review> review_list;
     ArrayList<Personal> personal_list;
-    ArrayList<Category> category_list;
     ArrayList<Bookmark> bookmark_list;
 
     Long mem_num = MainActivity.mem_num;
@@ -97,6 +96,15 @@ public class CafeDetailFragment extends Fragment {
     Long get_bookmark_num;
 
     Long[] get_keyword = new Long[36];
+    int[] get_seat_point = new int[4];
+    int[] get_study_point = new int[4];
+    int[] get_taste_point = new int[4];
+
+    int get_seat_point_total = 0;
+    int get_study_point_total = 0;
+    int get_taste_point_total = 0;
+
+    int point_counter = 0;
 
     int get_seat_point1_total = 0;
     int get_seat_point2_total = 0;
@@ -127,8 +135,6 @@ public class CafeDetailFragment extends Fragment {
     int get_taste_point2_avg = 0;
     int get_taste_point3_avg = 0;
     int get_taste_point4_avg = 0;
-
-    int category_counter = 0;
 
 
 
@@ -206,6 +212,8 @@ public class CafeDetailFragment extends Fragment {
                         moreReview10.setText(c.getOpenTime().substring(0,2)+":"+c.getOpenTime().substring(2,4));
                         moreReview8.setText(c.getCloseTime().substring(0,2)+":"+c.getCloseTime().substring(2,4));
 
+                        /////////////////////////////////////////////////////////////////////////////////////////
+                        // 카페 태그 1, 2 키워드 받기
                         get_keyword[0] = c.getKeyword1();
                         get_keyword[1] = c.getKeyword2();
                         get_keyword[2] = c.getKeyword3();
@@ -244,6 +252,7 @@ public class CafeDetailFragment extends Fragment {
                         get_keyword[35] = c.getKeyword36();
 
 
+                        // keyword 중에서 가장 많이 count된 태그 1, 2 구하기.
                         Long Max = get_keyword[0];
                         Long secondMax = 0L;
                         int counter_max = 0;
@@ -259,8 +268,10 @@ public class CafeDetailFragment extends Fragment {
                             }
                         }
 
+                        // 태그 검색이 되는지 확인용
                         Log.d("show_Max_and_secondMax", Max.toString() + ", " + secondMax.toString());
 
+                        // 태그 1 세팅
                         switch (counter_max){
                             case 0:
                                 moreReview6.setText("#쓴맛");
@@ -373,6 +384,7 @@ public class CafeDetailFragment extends Fragment {
 
                         }
 
+                        //태그 2 세팅
                         switch (counter_second){
                             case 0:
                                 moreReview7.setText("#쓴맛");
@@ -484,6 +496,21 @@ public class CafeDetailFragment extends Fragment {
                                 break;
 
                         }
+
+                        get_seat_point[0] = c.getSeatPoint1();
+                        get_seat_point[1] = c.getSeatPoint2();
+                        get_seat_point[2] = c.getSeatPoint3();
+                        get_seat_point[3] = c.getSeatPoint4();
+
+                        get_study_point[0] = c.getStudyPoint1();
+                        get_study_point[1] = c.getStudyPoint2();
+                        get_study_point[2] = c.getStudyPoint3();
+                        get_study_point[3] = c.getStudyPoint4();
+
+                        get_taste_point[0] = c.getTastePoint1();
+                        get_taste_point[1] = c.getTastePoint2();
+                        get_taste_point[2] = c.getTastePoint3();
+                        get_taste_point[3] = c.getTastePoint4();
                     }
                 }
 
@@ -641,6 +668,7 @@ public class CafeDetailFragment extends Fragment {
                                 // 3. 카페 디테일에서는 가장 최근 리뷰 3개만 나오도록 설정
                                 for(Review r : review_list){
                                     if(r.getCafeNum().equals(get_cafe_num)) {
+                                        point_counter++;
                                         for (Personal p : personal_list) {
 
                                                 // 1. 어플 사용자가 해당 카페에 대한 리뷰를 작성한 경우, 리사이클러뷰 가장 처음에 나오도록 설정
@@ -696,6 +724,76 @@ public class CafeDetailFragment extends Fragment {
                                     }
                                 });
 
+                                ////////////////////////////////////////////////////////////////////////////////////////
+                                // 카페 리뷰 점수 구하기.
+
+                                for(int i = 0; i < 4; i++){
+                                    get_taste_point_total += get_taste_point[i]; // 맛 점수 총점 구하기
+                                    get_taste_point[i] = get_taste_point[i] / point_counter; // 맛 점수 별 평균 구하기
+
+                                    get_seat_point_total += get_seat_point[i]; // 좌석 점수 총점 구하기
+                                    get_seat_point[i] = get_seat_point[i] / point_counter; // 좌석 점수 별 평균 구하기
+
+                                    get_study_point_total += get_study_point[i]; // 스터디 점수 총점 구하기
+                                    get_study_point[i] = get_study_point[i] / point_counter; // 스터디 점수 별 평균 구하기
+                                }
+
+                                // 점수 viewPager에 점수 넣어주기
+                                cafeRatingViewPager = root.findViewById(R.id.ratingViewPager);
+                                cafeRatingViewPager.setOffscreenPageLimit(3);
+                                ratingList = new ArrayList<>();
+
+                                CafeDetailRatingItem taste = new CafeDetailRatingItem("맛", "산미", "쓴맛", "디저트", "기타음료", R.drawable.taste_score, String.valueOf(get_taste_point[0]), String.valueOf(get_taste_point[1]), String.valueOf(get_taste_point[2]), String.valueOf(get_taste_point[3]));
+                                CafeDetailRatingItem seat = new CafeDetailRatingItem("좌석", "2인좌석", "4인좌석", "화장실", "다인좌석", R.drawable.sit_score, String.valueOf(get_seat_point[0]), String.valueOf(get_seat_point[1]), String.valueOf(get_seat_point[2]), String.valueOf(get_seat_point[3]));
+                                CafeDetailRatingItem study = new CafeDetailRatingItem("스터디", "와이파이", "콘센트", "조명", "조용함", R.drawable.study_score, String.valueOf(get_study_point[0]), String.valueOf(get_study_point[1]), String.valueOf(get_study_point[2]), String.valueOf(get_study_point[3]));
+
+                                ratingList.add(taste);
+                                ratingList.add(seat);
+                                ratingList.add(study);
+
+                                cafeRatingViewPager.setAdapter(new CafeDetailRatingViewPagerAdapter(getContext().getApplicationContext(), ratingList));
+
+
+                                // 별점에서 좌측 버튼 클릭 시, 별점 페이지 넘어감
+                                cafeDetail_favorite_previousButton.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        int pageNum = cafeRatingViewPager.getCurrentItem();
+                                        cafeRatingViewPager.setCurrentItem(pageNum - 1, true);
+                                    }
+                                });
+
+
+                                // 별점에서 우측 버튼 클릭 시, 별점 페이지 넘어감
+                                cafeDetail_favorite_nextButton.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        int pageNum = cafeRatingViewPager.getCurrentItem();
+                                        cafeRatingViewPager.setCurrentItem(pageNum + 1, true);
+                                    }
+                                });
+
+
+                                ////////////////////////////////////////////////////////////////////////////////////////////
+                                // 카페 키워드 설정
+                                if(get_taste_point_total > get_study_point_total) { // 맛 점수가 더 높은 경우
+                                    moreReview5.setText("#맛");
+                                }else if(get_taste_point_total < get_study_point_total){ // 스터디 점수가 더 높은 경우
+                                    moreReview5.setText("#스터디");
+                                }else{
+                                    // 맛 점수와 스터디 점수가 같은 경우, 사용자의 1순위에 따라 작성.
+                                    for(Personal p : personal_list){
+                                        if(p.getMemNum().equals(mem_num)){
+                                            if(p.getFavorite1().equals("맛")){
+                                                moreReview5.setText("#맛");
+                                            }else{
+                                                moreReview5.setText("#스터디");
+                                            }
+                                        }
+                                    }
+                                }
+
+
                             }
                         }, new Response.ErrorListener() {
                             @Override
@@ -718,7 +816,6 @@ public class CafeDetailFragment extends Fragment {
 
 
                 requestQueue.add(review_stringRequest);
-
 
             }
         }, new Response.ErrorListener() {
@@ -794,47 +891,6 @@ public class CafeDetailFragment extends Fragment {
 
 
         // 카페디테일에 해당하는 카페별점 보여주기
-        cafeRatingViewPager = root.findViewById(R.id.ratingViewPager);
-        cafeRatingViewPager.setOffscreenPageLimit(3);
-        ratingList = new ArrayList<>();
-
-        CafeDetailRatingItem taste = new CafeDetailRatingItem("맛", "산미", "쓴맛", "디저트", "기타음료", R.drawable.taste_score, "3", "1", "2", "5");
-        CafeDetailRatingItem seat = new CafeDetailRatingItem("좌석", "2인좌석", "4인좌석", "화장실", "다인좌석", R.drawable.sit_score, "1", "5", "1", "3");
-        CafeDetailRatingItem study = new CafeDetailRatingItem("스터디", "와이파이", "콘센트", "조명", "조용함", R.drawable.study_score, "3", "5", "5", "5");
-
-        ratingList.add(taste);
-        ratingList.add(seat);
-        ratingList.add(study);
-
-        cafeRatingViewPager.setAdapter(new CafeDetailRatingViewPagerAdapter(getContext().getApplicationContext(), ratingList));
-//        CafeDetailRatingPagerAdapter cafeRatingAdapter = new CafeDetailRatingPagerAdapter(getActivity().getSupportFragmentManager());
-//
-//        RatingViewPagerTaste tasteRating = new RatingViewPagerTaste();
-//        cafeRatingAdapter.cafeRatingAddItem(tasteRating);
-//        RatingViewPagerSeat seatRating = new RatingViewPagerSeat();
-//        cafeRatingAdapter.cafeRatingAddItem(seatRating);
-//        RatingViewPagerStudy studyRating = new RatingViewPagerStudy();
-//        cafeRatingAdapter.cafeRatingAddItem(studyRating);
-
-
-        // 별점에서 좌측 버튼 클릭 시, 별점 페이지 넘어감
-        cafeDetail_favorite_previousButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int pageNum = cafeRatingViewPager.getCurrentItem();
-                cafeRatingViewPager.setCurrentItem(pageNum - 1, true);
-            }
-        });
-
-
-        // 별점에서 우측 버튼 클릭 시, 별점 페이지 넘어감
-        cafeDetail_favorite_nextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int pageNum = cafeRatingViewPager.getCurrentItem();
-                cafeRatingViewPager.setCurrentItem(pageNum + 1, true);
-            }
-        });
 
 
         return root;
