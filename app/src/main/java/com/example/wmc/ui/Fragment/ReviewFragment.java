@@ -64,9 +64,6 @@ public class ReviewFragment extends Fragment {
     Button comment_button;
     Button location_button;
     Button finish_button;
-    TextView tag1;  /// 태그 선언
-    TextView tag2;
-    TextView tag3;
 
     String stag1;
     String stag2;
@@ -103,7 +100,6 @@ public class ReviewFragment extends Fragment {
     Long mem_num = MainActivity.mem_num;
 
     ArrayList<Cafe> cafe_list;
-    ArrayList<Review> review_list;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -129,17 +125,13 @@ public class ReviewFragment extends Fragment {
         rating_quiet = root.findViewById(R.id.rating_quiet);
         rating_light = root.findViewById(R.id.rating_light);
 
-        tag1 = root.findViewById(R.id.select_tag1);    // 태그 연결
-        tag2 = root.findViewById(R.id.select_tag2);
-        tag3 = root.findViewById(R.id.select_tag3);
-
 
         // 태그 추가 페이지 (ReviewTagFragment) 에서 번들로 받아온 정보 반영 위한 코드
         TextView setTag1 = root.findViewById(R.id.select_tag1); // 태그 추가 완료 시 반영할 리뷰 작성 페이지의 태그 박스1
         TextView setTag2 = root.findViewById(R.id.select_tag2); // 태그 추가 완료 시 반영할 리뷰 작성 페이지의 태그 박스2
         TextView setTag3 = root.findViewById(R.id.select_tag3); // 태그 추가 완료 시 반영할 리뷰 작성 페이지의 태그 박스3
 
-
+        // 서버연산을 위한 long형 배열 초기화 코드
         for(int i = 0 ; i<=35; i++){
             k[i] = (long) 0;
         }
@@ -182,7 +174,6 @@ public class ReviewFragment extends Fragment {
                     bundle.putFloat("studyPoint3", rating_quiet.getRating());
                     bundle.putFloat("studyPoint4", rating_light.getRating());
 
-                    Log.d("wow", String.valueOf(rating_sour.getRating()));
                     navController.navigate(R.id.review_to_review_tag, bundle);
                 }
             }
@@ -319,9 +310,9 @@ public class ReviewFragment extends Fragment {
 
                         else{
                             Bundle bundle = new Bundle(); // 프래그먼트 간 데이터 전달 위한 번들
-                            bundle.putString("tag1", tag1.getText().toString());
-                            bundle.putString("tag2", tag2.getText().toString());
-                            bundle.putString("tag3", tag3.getText().toString());
+                            bundle.putString("tag1", setTag1.getText().toString());
+                            bundle.putString("tag2", setTag2.getText().toString());
+                            bundle.putString("tag3", setTag3.getText().toString());
                             bundle.putFloat("tastePoint1", rating_sour.getRating());
                             bundle.putFloat("tastePoint2", rating_acerbity.getRating());
                             bundle.putFloat("tastePoint3", rating_dessert.getRating());
@@ -335,8 +326,10 @@ public class ReviewFragment extends Fragment {
                             bundle.putFloat("studyPoint3", rating_quiet.getRating());
                             bundle.putFloat("studyPoint4", rating_light.getRating());
                             bundle.putLong("cafeNum", cafeNum);
-
+                            bundle.putLong("memNum", mem_num);
                             navController.navigate(R.id.review_to_review_comment, bundle);
+
+
                         }
                     }
                 });

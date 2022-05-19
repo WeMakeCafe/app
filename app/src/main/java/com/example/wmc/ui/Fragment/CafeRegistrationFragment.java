@@ -167,7 +167,7 @@ public class CafeRegistrationFragment extends Fragment {
                              map.put("cafeAddress", cafe_address_input.getText().toString());
                              map.put("openTime", cafe_openHours_hour_input.getText().toString() + cafe_openHours_minute_input.getText().toString());
                              map.put("closeTime", cafe_closeHours_hour_input.getText().toString() + cafe_closeHours_minute_input.getText().toString());
-                            // 이미지, 키워드 추가 코드 작성 할 곳
+                            // 이미지 추가 코드 작성 할 곳
                             // 태그 문자열형식을 숫자로 변환
                             switch(tag1) {
                                 case ("#쓴맛"):
