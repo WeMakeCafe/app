@@ -76,6 +76,9 @@ public class CafeDetailFragment extends Fragment {
     TextView moreReview4; // 사진 아래 카페 주소 ID
     TextView moreReview10; // 사진 아래 운영 시간 첫번째
     TextView moreReview8; // 사진 아래 운영 시간 두번째
+    TextView moreReview5; // 카페 키워드
+    TextView moreReview6; // 카페 태그 1
+    TextView moreReview7; // 카페 태그 2
     RecyclerView recyclerView;
 
     ArrayList<Integer> imageList;   // 카페 이미지 5장을 저장하는 ArrayList
@@ -92,6 +95,8 @@ public class CafeDetailFragment extends Fragment {
     String cafe_name; // Bundle을 통해 받아온 cafe_name을 임시로 저장함
     Long get_cafe_num; // cafe_num을 임시로 저장함.
     Long get_bookmark_num;
+
+    Long[] get_keyword = new Long[36];
 
     int get_seat_point1_total = 0;
     int get_seat_point2_total = 0;
@@ -144,6 +149,9 @@ public class CafeDetailFragment extends Fragment {
         moreReview4 = root.findViewById(R.id.moreReview4); // 사진 아래 카페 주소 ID
         moreReview10 = root.findViewById(R.id.moreReview10); // 사진 아래 운영 시간 첫번째
         moreReview8 = root.findViewById(R.id.moreReview8); // 사진 아래 운영 시간 두번째
+        moreReview5 = root.findViewById(R.id.moreReview5); // 카페 키워드
+        moreReview6 = root.findViewById(R.id.moreReview6); // 카페 태그 1
+        moreReview7 = root.findViewById(R.id.moreReview7); // 카페 태그 2
         recyclerView = root.findViewById(R.id.cafeDetailReviewRecyclerView);
 
 
@@ -197,6 +205,285 @@ public class CafeDetailFragment extends Fragment {
                         moreReview4.setText(c.getCafeAddress());
                         moreReview10.setText(c.getOpenTime().substring(0,2)+":"+c.getOpenTime().substring(2,4));
                         moreReview8.setText(c.getCloseTime().substring(0,2)+":"+c.getCloseTime().substring(2,4));
+
+                        get_keyword[0] = c.getKeyword1();
+                        get_keyword[1] = c.getKeyword2();
+                        get_keyword[2] = c.getKeyword3();
+                        get_keyword[3] = c.getKeyword4();
+                        get_keyword[4] = c.getKeyword5();
+                        get_keyword[5] = c.getKeyword6();
+                        get_keyword[6] = c.getKeyword7();
+                        get_keyword[7] = c.getKeyword8();
+                        get_keyword[8] = c.getKeyword9();
+                        get_keyword[9] = c.getKeyword10();
+                        get_keyword[10] = c.getKeyword11();
+                        get_keyword[11] = c.getKeyword12();
+                        get_keyword[12] = c.getKeyword13();
+                        get_keyword[13] = c.getKeyword14();
+                        get_keyword[14] = c.getKeyword15();
+                        get_keyword[15] = c.getKeyword16();
+                        get_keyword[16] = c.getKeyword17();
+                        get_keyword[17] = c.getKeyword18();
+                        get_keyword[18] = c.getKeyword19();
+                        get_keyword[19] = c.getKeyword20();
+                        get_keyword[20] = c.getKeyword21();
+                        get_keyword[21] = c.getKeyword22();
+                        get_keyword[22] = c.getKeyword23();
+                        get_keyword[23] = c.getKeyword24();
+                        get_keyword[24] = c.getKeyword25();
+                        get_keyword[25] = c.getKeyword26();
+                        get_keyword[26] = c.getKeyword27();
+                        get_keyword[27] = c.getKeyword28();
+                        get_keyword[28] = c.getKeyword29();
+                        get_keyword[29] = c.getKeyword30();
+                        get_keyword[30] = c.getKeyword31();
+                        get_keyword[31] = c.getKeyword32();
+                        get_keyword[32] = c.getKeyword33();
+                        get_keyword[33] = c.getKeyword34();
+                        get_keyword[34] = c.getKeyword35();
+                        get_keyword[35] = c.getKeyword36();
+
+
+                        Long Max = get_keyword[0];
+                        Long secondMax = 0L;
+                        int counter_max = 0;
+                        int counter_second = 1;
+                        for(int i = 1; i < 36; i++){
+                            secondMax = get_keyword[i];
+                            if(Max <= secondMax){
+                                secondMax = Max;
+                                counter_second = counter_max;
+
+                                Max = get_keyword[i];
+                                counter_max = i;
+                            }
+                        }
+
+                        Log.d("show_Max_and_secondMax", Max.toString() + ", " + secondMax.toString());
+
+                        switch (counter_max){
+                            case 0:
+                                moreReview6.setText("#쓴맛");
+                                break;
+                            case 1:
+                                moreReview6.setText("#신맛");
+                                break;
+                            case 2:
+                                moreReview6.setText("#짠맛");
+                                break;
+                            case 3:
+                                moreReview6.setText("#단맛");
+                                break;
+                            case 4:
+                                moreReview6.setText("#향미");
+                                break;
+                            case 5:
+                                moreReview6.setText("#바디감");
+                                break;
+                            case 6:
+                                moreReview6.setText("#콜드브루");
+                                break;
+                            case 7:
+                                moreReview6.setText("#메뉴多");
+                                break;
+                            case 8:
+                                moreReview6.setText("#가성비");
+                                break;
+                            case 9:
+                                moreReview6.setText("#양많음");
+                                break;
+                            case 10:
+                                moreReview6.setText("#디저트맛집");
+                                break;
+                            case 11:
+                                moreReview6.setText("#논커피맛집");
+                                break;
+                            case 12:
+                                moreReview6.setText("#인스타");
+                                break;
+                            case 13:
+                                moreReview6.setText("#앤티크");
+                                break;
+                            case 14:
+                                moreReview6.setText("#모던");
+                                break;
+                            case 15:
+                                moreReview6.setText("#캐주얼");
+                                break;
+                            case 16:
+                                moreReview6.setText("#이국적");
+                                break;
+                            case 17:
+                                moreReview6.setText("#일상");
+                                break;
+                            case 18:
+                                moreReview6.setText("#따뜻한");
+                                break;
+                            case 19:
+                                moreReview6.setText("#조용한");
+                                break;
+                            case 20:
+                                moreReview6.setText("#우드톤");
+                                break;
+                            case 21:
+                                moreReview6.setText("#채광");
+                                break;
+                            case 22:
+                                moreReview6.setText("#힙한");
+                                break;
+                            case 23:
+                                moreReview6.setText("#귀여운");
+                                break;
+                            case 24:
+                                moreReview6.setText("#친절한");
+                                break;
+                            case 25:
+                                moreReview6.setText("#청결한");
+                                break;
+                            case 26:
+                                moreReview6.setText("#애견");
+                                break;
+                            case 27:
+                                moreReview6.setText("#주차장");
+                                break;
+                            case 28:
+                                moreReview6.setText("#노키즈존");
+                                break;
+                            case 29:
+                                moreReview6.setText("#교통편의");
+                                break;
+                            case 30:
+                                moreReview6.setText("#신속한");
+                                break;
+                            case 31:
+                                moreReview6.setText("#쾌적한");
+                                break;
+                            case 32:
+                                moreReview6.setText("#회의실");
+                                break;
+                            case 33:
+                                moreReview6.setText("#규모大");
+                                break;
+                            case 34:
+                                moreReview6.setText("#규모小");
+                                break;
+                            case 35:
+                                moreReview6.setText("#편한좌석");
+                                break;
+
+                        }
+
+                        switch (counter_second){
+                            case 0:
+                                moreReview7.setText("#쓴맛");
+                                break;
+                            case 1:
+                                moreReview7.setText("#신맛");
+                                break;
+                            case 2:
+                                moreReview7.setText("#짠맛");
+                                break;
+                            case 3:
+                                moreReview7.setText("#단맛");
+                                break;
+                            case 4:
+                                moreReview7.setText("#향미");
+                                break;
+                            case 5:
+                                moreReview7.setText("#바디감");
+                                break;
+                            case 6:
+                                moreReview7.setText("#콜드브루");
+                                break;
+                            case 7:
+                                moreReview7.setText("#메뉴多");
+                                break;
+                            case 8:
+                                moreReview7.setText("#가성비");
+                                break;
+                            case 9:
+                                moreReview7.setText("#양많음");
+                                break;
+                            case 10:
+                                moreReview7.setText("#디저트맛집");
+                                break;
+                            case 11:
+                                moreReview7.setText("#논커피맛집");
+                                break;
+                            case 12:
+                                moreReview7.setText("#인스타");
+                                break;
+                            case 13:
+                                moreReview7.setText("#앤티크");
+                                break;
+                            case 14:
+                                moreReview7.setText("#모던");
+                                break;
+                            case 15:
+                                moreReview7.setText("#캐주얼");
+                                break;
+                            case 16:
+                                moreReview7.setText("#이국적");
+                                break;
+                            case 17:
+                                moreReview7.setText("#일상");
+                                break;
+                            case 18:
+                                moreReview7.setText("#따뜻한");
+                                break;
+                            case 19:
+                                moreReview7.setText("#조용한");
+                                break;
+                            case 20:
+                                moreReview7.setText("#우드톤");
+                                break;
+                            case 21:
+                                moreReview7.setText("#채광");
+                                break;
+                            case 22:
+                                moreReview7.setText("#힙한");
+                                break;
+                            case 23:
+                                moreReview7.setText("#귀여운");
+                                break;
+                            case 24:
+                                moreReview7.setText("#친절한");
+                                break;
+                            case 25:
+                                moreReview7.setText("#청결한");
+                                break;
+                            case 26:
+                                moreReview7.setText("#애견");
+                                break;
+                            case 27:
+                                moreReview7.setText("#주차장");
+                                break;
+                            case 28:
+                                moreReview7.setText("#노키즈존");
+                                break;
+                            case 29:
+                                moreReview7.setText("#교통편의");
+                                break;
+                            case 30:
+                                moreReview7.setText("#신속한");
+                                break;
+                            case 31:
+                                moreReview7.setText("#쾌적한");
+                                break;
+                            case 32:
+                                moreReview7.setText("#회의실");
+                                break;
+                            case 33:
+                                moreReview7.setText("#규모大");
+                                break;
+                            case 34:
+                                moreReview7.setText("#규모小");
+                                break;
+                            case 35:
+                                moreReview7.setText("#편한좌석");
+                                break;
+
+                        }
                     }
                 }
 
