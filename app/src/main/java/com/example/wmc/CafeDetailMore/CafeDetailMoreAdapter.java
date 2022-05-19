@@ -65,7 +65,10 @@ public class CafeDetailMoreAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         viewHolder.reviewMore_image1.setImageResource(item.getReviewImage1());
         viewHolder.reviewMore_image2.setImageResource(item.getReviewImage2());
         viewHolder.reviewMore_image3.setImageResource(item.getReviewImage3());
+
+        viewHolder.creatTime = (item.getCreateTime()); // 작성자가 리뷰를 작성한 시간
         viewHolder.check_user_flag = (item.getCheck_user_flag());   // 작성자와 로그인한 유저가 같은지 확인
+
 
 
         // 리뷰 작성자와 로그인한 사람이 같을 때,
