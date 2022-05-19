@@ -115,6 +115,20 @@ public class ReviewFragment extends Fragment {
         comment_button = root.findViewById(R.id.comment_button);    // 코멘터리 버튼
         location_button = root.findViewById(R.id.location_button);  // 위치인증 버튼
         finish_button = root.findViewById(R.id.finish_button);  // 작성완료 버튼
+
+        rating_sour = root.findViewById(R.id.rating_sour);
+        rating_acerbity = root.findViewById(R.id.rating_acerbity);
+        rating_dessert = root.findViewById(R.id.rating_dessert);
+        rating_beverage = root.findViewById(R.id.rating_beverage);
+        rating_twoseat = root.findViewById(R.id.rating_twoseat);
+        rating_fourseat = root.findViewById(R.id.rating_fourseat);
+        rating_manyseat = root.findViewById(R.id.rating_manyseat);
+        rating_toilet = root.findViewById(R.id.rating_toilet);
+        rating_wifi = root.findViewById(R.id.rating_wifi);
+        rating_plug = root.findViewById(R.id.rating_plug);
+        rating_quiet = root.findViewById(R.id.rating_quiet);
+        rating_light = root.findViewById(R.id.rating_light);
+
         tag1 = root.findViewById(R.id.select_tag1);    // 태그 연결
         tag2 = root.findViewById(R.id.select_tag2);
         tag3 = root.findViewById(R.id.select_tag3);
@@ -127,46 +141,7 @@ public class ReviewFragment extends Fragment {
 
 
         for(int i = 0 ; i<=35; i++){
-            k[i] = (long)0;
-        }
-
-        // ReviewTag에서 가져온 태그들 설정 및 카페이름을 기억해두기
-        Bundle argBundle = getArguments();
-        if( argBundle != null ) {
-            if (argBundle.getString("key1") != null) {
-                setTag1.setText(argBundle.getString("key1"));
-                setTag2.setText(argBundle.getString("key2"));
-                setTag3.setText(argBundle.getString("key3"));
-//                s1 = argBundle.getFloat("review_tastePoint1");
-//                s2 = argBundle.getFloat("review_tastePoint2");
-//                s3 = argBundle.getFloat("review_tastePoint3");
-//                s4 = argBundle.getFloat("review_tastePoint4");
-//                s5 = argBundle.getFloat("review_seatPoint1");
-//                s6 = argBundle.getFloat("review_seatPoint2");
-//                s7 = argBundle.getFloat("review_seatPoint3");
-//                s8 = argBundle.getFloat("review_seatPoint4");
-//                s9 = argBundle.getFloat("review_studyPoint1");
-//                s10 = argBundle.getFloat("review_studyPoint2");
-//                s11 = argBundle.getFloat("review_studyPoint3");
-//                s12 = argBundle.getFloat("review_studyPoint4");
-                review_search_input.setText(argBundle.getString("review_cafeName"));
-//                Log.d("wow4", String.valueOf(s1));
-//                rating_sour.setRating(1);
-//                rating_acerbity.setRating(s2);
-//                rating_dessert.setRating(s3);
-//                rating_beverage.setRating(s4);
-//                rating_twoseat.setRating(s5);
-//                rating_fourseat.setRating(s6);
-//                rating_manyseat.setRating(s7);
-//                rating_toilet.setRating(s8);
-//                rating_wifi.setRating(s9);
-//                rating_plug.setRating(s10);
-//                rating_quiet.setRating(s11);
-//                rating_light.setRating(s12);
-                stag1 = argBundle.getString("key1");
-                stag2 = argBundle.getString("key2");
-                stag3 = argBundle.getString("key3");
-            }
+            k[i] = (long) 0;
         }
 
 
@@ -193,6 +168,7 @@ public class ReviewFragment extends Fragment {
                 else{
                     Bundle bundle = new Bundle();
                     bundle.putString("cafeName", review_search_input.getText().toString());
+
                     bundle.putFloat("tastePoint1", rating_sour.getRating());
                     bundle.putFloat("tastePoint2", rating_acerbity.getRating());
                     bundle.putFloat("tastePoint3", rating_dessert.getRating());
@@ -212,6 +188,48 @@ public class ReviewFragment extends Fragment {
             }
         });
 
+        // ReviewTag에서 가져온 태그들 설정 및 카페이름을 기억해두기
+        Bundle argBundle = getArguments();
+        if( argBundle != null ) {
+            if (argBundle.getString("key1") != null) {
+
+                setTag1.setText(argBundle.getString("key1"));
+                setTag2.setText(argBundle.getString("key2"));
+                setTag3.setText(argBundle.getString("key3"));
+                stag1 = argBundle.getString("key1");
+                stag2 = argBundle.getString("key2");
+                stag3 = argBundle.getString("key3");
+
+                rating_sour.setRating(argBundle.getFloat("tag_review_tastePoint1"));
+                rating_acerbity.setRating(argBundle.getFloat("tag_review_tastePoint2"));
+                rating_dessert.setRating(argBundle.getFloat("tag_review_tastePoint3"));
+                rating_beverage.setRating(argBundle.getFloat("tag_review_tastePoint4"));
+                rating_twoseat.setRating(argBundle.getFloat("tag_review_seatPoint1"));
+                rating_fourseat.setRating(argBundle.getFloat("tag_review_seatPoint2"));
+                rating_manyseat.setRating(argBundle.getFloat("tag_review_seatPoint3"));
+                rating_toilet.setRating(argBundle.getFloat("tag_review_seatPoint4"));
+                rating_wifi.setRating(argBundle.getFloat("tag_review_studyPoint1"));
+                rating_plug.setRating(argBundle.getFloat("tag_review_studyPoint2"));
+                rating_quiet.setRating(argBundle.getFloat("tag_review_studyPoint3"));
+                rating_light.setRating(argBundle.getFloat("tag_review_studyPoint4"));
+                s1 = argBundle.getFloat("tag_review_tastePoint1");
+                s2 = argBundle.getFloat("tag_review_tastePoint2");
+                s3 = argBundle.getFloat("tag_review_tastePoint3");
+                s4 = argBundle.getFloat("tag_review_tastePoint4");
+                s5 = argBundle.getFloat("tag_review_seatPoint1");
+                s6 = argBundle.getFloat("tag_review_seatPoint2");
+                s7 = argBundle.getFloat("tag_review_seatPoint3");
+                s8 = argBundle.getFloat("tag_review_seatPoint4");
+                s9 = argBundle.getFloat("tag_review_studyPoint1");
+                s10 = argBundle.getFloat("tag_review_studyPoint2");
+                s11 = argBundle.getFloat("tag_review_studyPoint3");
+                s12 = argBundle.getFloat("tag_review_studyPoint4");
+
+                review_search_input.setTypeface(Typeface.DEFAULT_BOLD);  // 카페이름 Bold처리
+                review_search_input.setGravity(Gravity.CENTER);          // 카페 위치 Center로 변경
+                review_search_input.setText(argBundle.getString("review_cafeName"));
+            }
+        }
 
         // 위치인증 버튼 클릭 시,
         location_button.setOnClickListener(new View.OnClickListener() {
@@ -234,18 +252,6 @@ public class ReviewFragment extends Fragment {
         }
 
 
-        rating_sour = root.findViewById(R.id.rating_sour);
-        rating_acerbity = root.findViewById(R.id.rating_acerbity);
-        rating_dessert = root.findViewById(R.id.rating_dessert);
-        rating_beverage = root.findViewById(R.id.rating_beverage);
-        rating_twoseat = root.findViewById(R.id.rating_twoseat);
-        rating_fourseat = root.findViewById(R.id.rating_fourseat);
-        rating_manyseat = root.findViewById(R.id.rating_manyseat);
-        rating_toilet = root.findViewById(R.id.rating_toilet);
-        rating_wifi = root.findViewById(R.id.rating_wifi);
-        rating_plug = root.findViewById(R.id.rating_plug);
-        rating_quiet = root.findViewById(R.id.rating_quiet);
-        rating_light = root.findViewById(R.id.rating_light);
 
 
         RequestQueue requestQueue;

@@ -1,5 +1,6 @@
 package com.example.wmc.ListCafeList;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,6 +49,15 @@ public class ListCafeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         viewHolder.cafeList_hashTag1.setText(item.getTag1());
         viewHolder.cafeList_hashTag2.setText(item.getTag2());
         viewHolder.cafeList_cafeImage.setImageResource(item.getCafeList_cafeImage());
+        viewHolder.check_user_flag = item.getCheck_user_flag();
+
+
+        if(viewHolder.check_user_flag){
+            viewHolder.favorite_button.setChecked(true);
+        }
+        else{
+            viewHolder.favorite_button.setChecked(false);
+        }
 
 
         // 즐겨찾기 버튼 클릭 시,
@@ -58,6 +68,7 @@ public class ListCafeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
                 if(checked) {
                     // 즐겨찾기 항목에 추가함
+                    //Bundle bundle = new Bundle();
                     Toast.makeText(v.getContext().getApplicationContext(), "즐겨찾기 추가", Toast.LENGTH_SHORT).show();
                 }
                 else {
