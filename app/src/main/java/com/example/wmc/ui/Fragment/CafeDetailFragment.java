@@ -352,13 +352,10 @@ public class CafeDetailFragment extends Fragment {
                                 // 1. 어플 사용자가 해당 카페에 대한 리뷰를 작성한 경우, 리사이클러뷰 가장 처음에 나오도록 설정
                                 // 2. 리뷰 작성자들의 닉네임, 회원 등급을 포함한 리뷰 Item 작성
                                 // 3. 카페 디테일에서는 가장 최근 리뷰 3개만 나오도록 설정
-                                for(int i = review_list.size(); i > 0; i--){
-                                    Review r = review_list.get(i - 1);
-
+                                for(Review r : review_list){
                                     if(r.getCafeNum().equals(get_cafe_num)) {
                                         for (Personal p : personal_list) {
 
-                                            if(cafeDetailReviewItem.size() < 3){
                                                 // 1. 어플 사용자가 해당 카페에 대한 리뷰를 작성한 경우, 리사이클러뷰 가장 처음에 나오도록 설정
                                                 if (r.getMemNum().equals(mem_num) && p.getMemNum().equals(mem_num)) {
                                                     cafeDetailReviewItem.add(0, new CafeDetailItem(p.getNickName(), p.getGrade().toString(),
@@ -368,36 +365,14 @@ public class CafeDetailFragment extends Fragment {
                                                     cafeDetailReviewItem.add(new CafeDetailItem(p.getNickName(), p.getGrade().toString(),
                                                             r.getReviewText(), R.drawable.logo, R.drawable.logo_v2, r.getLikeCount().toString(), false));
                                                 }
-
-                                                else
-                                                    break;
-                                            }
                                         }
                                     }
                                 }
-                                
-                                // 가장 최근 리뷰 3개만 나오도록 설정하기위해서 for문 변경
-//                                for(Review r : review_list){
-//                                    if(r.getCafeNum().equals(get_cafe_num)) {
-//                                        for (Personal p : personal_list) {
-//
-//                                            if(cafeDetailReviewItem.size() < 3){
-//                                                // 1. 어플 사용자가 해당 카페에 대한 리뷰를 작성한 경우, 리사이클러뷰 가장 처음에 나오도록 설정
-//                                                if (r.getMemNum().equals(mem_num) && p.getMemNum().equals(mem_num)) {
-//                                                    cafeDetailReviewItem.add(0, new CafeDetailItem(p.getNickName(), p.getGrade().toString(),
-//                                                            r.getReviewText(), R.drawable.logo, R.drawable.logo_v2, r.getLikeCount().toString(), true));
-//                                                } // 2. 리뷰 작성자들의 닉네임, 회원 등급을 포함한 리뷰 Item 작성
-//                                                else if (r.getMemNum().equals(p.getMemNum())) {
-//                                                    cafeDetailReviewItem.add(new CafeDetailItem(p.getNickName(), p.getGrade().toString(),
-//                                                            r.getReviewText(), R.drawable.logo, R.drawable.logo_v2, r.getLikeCount().toString(), false));
-//                                                }
-//
-//                                                else
-//                                                    break;
-//                                            }
-//                                        }
-//                                    }
-//                                }
+
+                                while(cafeDetailReviewItem.size() > 3) {
+                                    cafeDetailReviewItem.remove(cafeDetailReviewItem.size() - 1);   // 리뷰가 3개가 될 때까지 마지막 리뷰 지우기
+                                }
+
 
                                 // Recycler view
                                         // Adapter 추가
