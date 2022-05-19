@@ -238,7 +238,7 @@ public class CafeModifyFragment extends Fragment {
                                     };
                                     RequestQueue queue = Volley.newRequestQueue(requireContext());
                                     queue.add(objectRequest);
-                                    //navController.navigate(R.id.cafe_modify_to_cafe_detail);
+
 
 
                                     // 카페 수정 완료 시 해당 카페 디테일로 넘어가기 - 송상화
