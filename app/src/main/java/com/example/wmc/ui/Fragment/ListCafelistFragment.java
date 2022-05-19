@@ -141,7 +141,7 @@ public class ListCafelistFragment extends Fragment {
                     requestQueue.start();
 
 
-                    String get_cafe_url = "http://54.196.209.1:8080/cafe";
+                    String get_cafe_url = getResources().getString(R.string.url) + "cafe";
 
 
                     StringRequest cafe_stringRequest = new StringRequest(Request.Method.GET, get_cafe_url, new Response.Listener<String>() {
@@ -160,7 +160,7 @@ public class ListCafelistFragment extends Fragment {
 
                             cafe_list = gson.fromJson(changeString, listType);
 
-                            String get_bookmark_url = "http://54.196.209.1:8080/bookmark";
+                            String get_bookmark_url = getResources().getString(R.string.url) + "bookmark";
 
                             StringRequest stringRequest = new StringRequest(Request.Method.GET, get_bookmark_url, new Response.Listener<String>() {
                                 @RequiresApi(api = Build.VERSION_CODES.O)

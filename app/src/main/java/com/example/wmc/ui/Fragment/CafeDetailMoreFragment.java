@@ -79,7 +79,7 @@ public class CafeDetailMoreFragment extends Fragment {
         requestQueue = new RequestQueue(cache, network);
         requestQueue.start();
 
-        String get_review_url = "http://54.196.209.1:8080/review";
+        String get_review_url = getResources().getString(R.string.url) + "review";
 
         StringRequest review_stringRequest = new StringRequest(Request.Method.GET, get_review_url, new Response.Listener<String>() {
             @RequiresApi(api = Build.VERSION_CODES.O)
@@ -98,7 +98,7 @@ public class CafeDetailMoreFragment extends Fragment {
                 review_list = gson.fromJson(changeString, listType);
 
 
-                String get_personal_url = "http://54.196.209.1:8080/personal";
+                String get_personal_url = getResources().getString(R.string.url) + "personal";
 
                 StringRequest personal_stringRequest = new StringRequest(Request.Method.GET, get_personal_url, new Response.Listener<String>() {
                     @RequiresApi(api = Build.VERSION_CODES.O)

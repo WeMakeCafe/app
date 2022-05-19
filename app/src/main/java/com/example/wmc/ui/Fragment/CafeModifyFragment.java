@@ -109,7 +109,7 @@ public class CafeModifyFragment extends Fragment {
         Network network = new BasicNetwork(new HurlStack());
         requestQueue = new RequestQueue(cache, network);
         requestQueue.start();
-        String url = "http://54.196.209.1:8080/cafe";
+        String url = getResources().getString(R.string.url) + "cafe";
 
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
@@ -216,7 +216,7 @@ public class CafeModifyFragment extends Fragment {
                                         (c.getCloseTime().equals(cafe_closeHours_hour_input.getText().toString() + cafe_closeHours_minute_input.getText().toString())))) {
                                     JSONObject jsonObject = new JSONObject(map);
 
-                                    String url2 = "http://54.196.209.1:8080/cafe/" + c.getCafeNum().toString(); // 해당 카페에만 데이터 삽입하기 위함
+                                    String url2 = getResources().getString(R.string.url) + "cafe/" + c.getCafeNum().toString(); // 해당 카페에만 데이터 삽입하기 위함
 
                                     JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.PUT, url2, jsonObject,
                                             new Response.Listener<JSONObject>() {

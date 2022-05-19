@@ -77,7 +77,7 @@ public class MyPageFragment extends Fragment {
         requestQueue = new RequestQueue(cache, network);
         requestQueue.start();
 
-        String url = "http://54.196.209.1:8080/personal";
+        String url = getResources().getString(R.string.url) + "personal";
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
