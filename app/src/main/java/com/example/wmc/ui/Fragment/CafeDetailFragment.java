@@ -179,7 +179,7 @@ public class CafeDetailFragment extends Fragment {
         requestQueue.start();
 
 
-        String get_cafe_url = "http://54.196.209.1:8080/cafe";
+        String get_cafe_url = getResources().getString(R.string.url) + "cafe";
 
         StringRequest cafe_stringRequest = new StringRequest(Request.Method.GET, get_cafe_url, new Response.Listener<String>() {
             @SuppressLint("SetTextI18n")
@@ -517,7 +517,7 @@ public class CafeDetailFragment extends Fragment {
 
                 ///////////////////////////////////////////////////////////////////////////////////////////////////
                 // 카페 북마크 여부 확인 및 등록, 삭제
-                String get_bookmark_url = "http://54.196.209.1:8080/bookmark";
+                String get_bookmark_url = getResources().getString(R.string.url) + "bookmark";
 
                 // 카페 북마크 여부 확인
                 StringRequest bookmark_stringRequest = new StringRequest(Request.Method.GET, get_bookmark_url, new Response.Listener<String>() {
@@ -583,7 +583,7 @@ public class CafeDetailFragment extends Fragment {
                                 }
                                 else {
                                     // 즐겨찾기 항목에서 제거됨
-                                    String bookmark_delete_url = "http://54.196.209.1:8080/bookmark/" + get_bookmark_num.toString();
+                                    String bookmark_delete_url = getResources().getString(R.string.url) + "bookmark/" + get_bookmark_num.toString();
                                     StringRequest bookmark_delete_stringRequest = new StringRequest(Request.Method.DELETE, bookmark_delete_url, new Response.Listener<String>() {
                                         @RequiresApi(api = Build.VERSION_CODES.O)
                                         @Override
@@ -618,7 +618,7 @@ public class CafeDetailFragment extends Fragment {
 
                 ///////////////////////////////////////////////////////////////////////////////////////////
                 // review 채우기
-                String get_review_url = "http://54.196.209.1:8080/review";
+                String get_review_url = getResources().getString(R.string.url) + "review";
 
                 StringRequest review_stringRequest = new StringRequest(Request.Method.GET, get_review_url, new Response.Listener<String>() {
                     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -639,7 +639,7 @@ public class CafeDetailFragment extends Fragment {
 
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         //리뷰 작성자의 정보 가져오기
-                        String get_personal_url = "http://54.196.209.1:8080/personal";
+                        String get_personal_url = getResources().getString(R.string.url) + "personal";
 
                         StringRequest personal_stringRequest = new StringRequest(Request.Method.GET, get_personal_url, new Response.Listener<String>() {
                             @RequiresApi(api = Build.VERSION_CODES.O)
@@ -729,13 +729,25 @@ public class CafeDetailFragment extends Fragment {
 
                                 for(int i = 0; i < 4; i++){
                                     get_taste_point_total += get_taste_point[i]; // 맛 점수 총점 구하기
-                                    get_taste_point[i] = get_taste_point[i] / point_counter; // 맛 점수 별 평균 구하기
+                                    if(get_taste_point[i] == 0){
+                                        get_taste_point[i] = 0;
+                                    }else {
+                                        get_taste_point[i] = get_taste_point[i] / point_counter; // 맛 점수 별 평균 구하기
+                                    }
 
                                     get_seat_point_total += get_seat_point[i]; // 좌석 점수 총점 구하기
-                                    get_seat_point[i] = get_seat_point[i] / point_counter; // 좌석 점수 별 평균 구하기
+                                    if(get_seat_point[i] == 0){
+                                        get_seat_point[i] = 0;
+                                    }else {
+                                        get_seat_point[i] = get_seat_point[i] / point_counter; // 좌석 점수 별 평균 구하기
+                                    }
 
                                     get_study_point_total += get_study_point[i]; // 스터디 점수 총점 구하기
-                                    get_study_point[i] = get_study_point[i] / point_counter; // 스터디 점수 별 평균 구하기
+                                    if(get_study_point[i] == 0){
+                                        get_study_point[i] = 0;
+                                    }else {
+                                        get_study_point[i] = get_study_point[i] / point_counter; // 스터디 점수 별 평균 구하기
+                                    }
                                 }
 
                                 // 점수 viewPager에 점수 넣어주기
