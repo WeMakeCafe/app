@@ -28,6 +28,8 @@ public class CafeDetailMoreViewHolder extends RecyclerView.ViewHolder{
     TextView review_deleteLine;
     CheckBox good_button;
     ImageView good_button_imageView;
+
+    String creatTime;
     boolean check_user_flag;
 
     public static int REVIEWMORE_VIEW_TYPE = R.layout.item_more_review;

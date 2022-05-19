@@ -124,13 +124,13 @@ public class CafeDetailMoreFragment extends Fragment {
                                     // 1. 어플 사용자가 해당 카페에 대한 리뷰를 작성한 경우, 리사이클러뷰 가장 처음에 나오도록 설정
                                     if (r.getMemNum().equals(mem_num) && p.getMemNum().equals(mem_num)) {
                                         cafeDetailMoreReviewItem.add(0, new CafeDetailMoreItem(p.getNickName(), p.getGrade().toString(),
-                                                r.getReviewText(), R.drawable.logo, R.drawable.logo_v2, R.drawable.bean_grade1, R.drawable.bean_grade3, r.getLikeCount().toString(), true));
+                                                r.getReviewText(), R.drawable.logo, R.drawable.logo_v2, R.drawable.bean_grade1, R.drawable.bean_grade3, r.getLikeCount().toString(), r.getCreateTime(), true));
                                     }
 
                                     // 2. 리뷰 작성자들의 닉네임, 회원 등급을 포함한 리뷰 Item 작성
                                     else if (r.getMemNum().equals(p.getMemNum())) {
                                         cafeDetailMoreReviewItem.add(new CafeDetailMoreItem(p.getNickName(), p.getGrade().toString(),
-                                                r.getReviewText(), R.drawable.logo, R.drawable.logo_v2, R.drawable.bean_grade1, R.drawable.bean_grade3, r.getLikeCount().toString(), false));
+                                                r.getReviewText(), R.drawable.logo, R.drawable.logo_v2, R.drawable.bean_grade1, R.drawable.bean_grade3, r.getLikeCount().toString(), r.getCreateTime(), false));
                                     }
                                 }
                             }
@@ -170,15 +170,37 @@ public class CafeDetailMoreFragment extends Fragment {
                                 Toast.makeText(getContext().getApplicationContext(), spinnerItem[position], Toast.LENGTH_SHORT).show();
 
                                 if(spinnerItem[position].equals("최신순")) {   // 최신순으로 정렬
+                                    Comparator<CafeDetailMoreItem> recently = new Comparator<CafeDetailMoreItem>() {
 
+                                        @Override
+                                        public int compare(CafeDetailMoreItem item1, CafeDetailMoreItem item2) {
+                                            return item2.getCreateTime().compareTo(item1.getCreateTime());
+                                        }
+                                    };
+
+                                    Collections.sort(cafeDetailMoreReviewItem, recently) ;
+                                    adapter.notifyDataSetChanged() ;
+                                    cafeDetailMoreRecyclerView.setAdapter(cafeDetailMoreAdapter);
+                                    cafeDetailMoreRecyclerView.setLayoutManager(cafeDetailMoreLayoutManager);
                                 }
 
                                 else if(spinnerItem[position].equals("오래된 순")) {   // 오래된 순으로 정렬
+                                    Comparator<CafeDetailMoreItem> old = new Comparator<CafeDetailMoreItem>() {
 
+                                        @Override
+                                        public int compare(CafeDetailMoreItem item1, CafeDetailMoreItem item2) {
+                                            return item1.getCreateTime().compareTo(item2.getCreateTime());
+                                        }
+                                    };
+
+                                    Collections.sort(cafeDetailMoreReviewItem, old) ;
+                                    adapter.notifyDataSetChanged() ;
+                                    cafeDetailMoreRecyclerView.setAdapter(cafeDetailMoreAdapter);
+                                    cafeDetailMoreRecyclerView.setLayoutManager(cafeDetailMoreLayoutManager);
                                 }
 
                                 else if(spinnerItem[position].equals("좋아요 많은 순")){   // 좋아요 많은 순으로 정렬
-                                    Comparator<CafeDetailMoreItem> noAsc = new Comparator<CafeDetailMoreItem>() {
+                                    Comparator<CafeDetailMoreItem> many = new Comparator<CafeDetailMoreItem>() {
 
                                         @Override
                                         public int compare(CafeDetailMoreItem item1, CafeDetailMoreItem item2) {
@@ -195,14 +217,14 @@ public class CafeDetailMoreFragment extends Fragment {
                                         }
                                     };
 
-                                    Collections.sort(cafeDetailMoreReviewItem, noAsc) ;
+                                    Collections.sort(cafeDetailMoreReviewItem, many) ;
                                     adapter.notifyDataSetChanged() ;
                                     cafeDetailMoreRecyclerView.setAdapter(cafeDetailMoreAdapter);
                                     cafeDetailMoreRecyclerView.setLayoutManager(cafeDetailMoreLayoutManager);
                                 }
 
                                 else if(spinnerItem[position].equals("좋아요 적은 순")){  // 좋아요 적은 순으로 정렬
-                                    Comparator<CafeDetailMoreItem> noAsc = new Comparator<CafeDetailMoreItem>() {
+                                    Comparator<CafeDetailMoreItem> little = new Comparator<CafeDetailMoreItem>() {
 
                                         @Override
                                         public int compare(CafeDetailMoreItem item1, CafeDetailMoreItem item2) {
@@ -219,7 +241,7 @@ public class CafeDetailMoreFragment extends Fragment {
                                         }
                                     };
 
-                                    Collections.sort(cafeDetailMoreReviewItem, noAsc) ;
+                                    Collections.sort(cafeDetailMoreReviewItem, little) ;
                                     adapter.notifyDataSetChanged() ;
                                     cafeDetailMoreRecyclerView.setAdapter(cafeDetailMoreAdapter);
                                     cafeDetailMoreRecyclerView.setLayoutManager(cafeDetailMoreLayoutManager);

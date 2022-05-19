@@ -10,9 +10,11 @@ public class CafeDetailMoreItem {
     int reviewImage2;
     int reviewImage3;
     String good_count_textView;
+
+    String createTime;
     boolean check_user_flag;
 
-    public CafeDetailMoreItem(String reviewNickName, String level_and_location, String review_comment, int reviewProfile_image, int reviewImage1, int reviewImage2, int reviewImage3, String good_count_textView, boolean check_user_flag) {
+    public CafeDetailMoreItem(String reviewNickName, String level_and_location, String review_comment, int reviewProfile_image, int reviewImage1, int reviewImage2, int reviewImage3, String good_count_textView, String createTime, boolean check_user_flag) {
         this.reviewNickName = reviewNickName;
         this.level_and_location = level_and_location;
         this.review_comment = review_comment;
@@ -21,6 +23,8 @@ public class CafeDetailMoreItem {
         this.reviewImage2 = reviewImage2;
         this.reviewImage3 = reviewImage3;
         this.good_count_textView = good_count_textView;
+
+        this.createTime = createTime;
         this.check_user_flag = check_user_flag;
     }
 
@@ -94,5 +98,13 @@ public class CafeDetailMoreItem {
 
     public void setCheck_user_flag(boolean check_user_flag) {
         this.check_user_flag = check_user_flag;
+    }
+
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
     }
 }
