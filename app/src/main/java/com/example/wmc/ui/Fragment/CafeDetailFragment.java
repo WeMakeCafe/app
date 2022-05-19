@@ -76,6 +76,7 @@ public class CafeDetailFragment extends Fragment {
     TextView moreReview4; // 사진 아래 카페 주소 ID
     TextView moreReview10; // 사진 아래 운영 시간 첫번째
     TextView moreReview8; // 사진 아래 운영 시간 두번째
+    RecyclerView recyclerView;
 
     ArrayList<Integer> imageList;   // 카페 이미지 5장을 저장하는 ArrayList
     ArrayList<CafeDetailRatingItem> ratingList; // 카페 평점을 저장하는 ArrayList
@@ -143,6 +144,7 @@ public class CafeDetailFragment extends Fragment {
         moreReview4 = root.findViewById(R.id.moreReview4); // 사진 아래 카페 주소 ID
         moreReview10 = root.findViewById(R.id.moreReview10); // 사진 아래 운영 시간 첫번째
         moreReview8 = root.findViewById(R.id.moreReview8); // 사진 아래 운영 시간 두번째
+        recyclerView = root.findViewById(R.id.cafeDetailReviewRecyclerView);
 
 
         // cafeDetail 외부에서 Bundle로 이름 받아오기
@@ -349,24 +351,55 @@ public class CafeDetailFragment extends Fragment {
                                 // 리뷰 작성자를 비교해서
                                 // 1. 어플 사용자가 해당 카페에 대한 리뷰를 작성한 경우, 리사이클러뷰 가장 처음에 나오도록 설정
                                 // 2. 리뷰 작성자들의 닉네임, 회원 등급을 포함한 리뷰 Item 작성
-                                for(Review r : review_list){
+                                // 3. 카페 디테일에서는 가장 최근 리뷰 3개만 나오도록 설정
+                                for(int i = review_list.size(); i > 0; i--){
+                                    Review r = review_list.get(i - 1);
+
                                     if(r.getCafeNum().equals(get_cafe_num)) {
                                         for (Personal p : personal_list) {
-                                            // 1. 어플 사용자가 해당 카페에 대한 리뷰를 작성한 경우, 리사이클러뷰 가장 처음에 나오도록 설정
-                                            if (r.getMemNum().equals(mem_num) && p.getMemNum().equals(mem_num)) {
-                                                cafeDetailReviewItem.add(0, new CafeDetailItem(p.getNickName(), p.getGrade().toString(),
-                                                        r.getReviewText(), R.drawable.logo, R.drawable.logo_v2, r.getLikeCount().toString(), true));
-                                            } // 2. 리뷰 작성자들의 닉네임, 회원 등급을 포함한 리뷰 Item 작성
-                                            else if (r.getMemNum().equals(p.getMemNum())) {
-                                                cafeDetailReviewItem.add(new CafeDetailItem(p.getNickName(), p.getGrade().toString(),
-                                                        r.getReviewText(), R.drawable.logo, R.drawable.logo_v2, r.getLikeCount().toString(), false));
+
+                                            if(cafeDetailReviewItem.size() < 3){
+                                                // 1. 어플 사용자가 해당 카페에 대한 리뷰를 작성한 경우, 리사이클러뷰 가장 처음에 나오도록 설정
+                                                if (r.getMemNum().equals(mem_num) && p.getMemNum().equals(mem_num)) {
+                                                    cafeDetailReviewItem.add(0, new CafeDetailItem(p.getNickName(), p.getGrade().toString(),
+                                                            r.getReviewText(), R.drawable.logo, R.drawable.logo_v2, r.getLikeCount().toString(), true));
+                                                } // 2. 리뷰 작성자들의 닉네임, 회원 등급을 포함한 리뷰 Item 작성
+                                                else if (r.getMemNum().equals(p.getMemNum())) {
+                                                    cafeDetailReviewItem.add(new CafeDetailItem(p.getNickName(), p.getGrade().toString(),
+                                                            r.getReviewText(), R.drawable.logo, R.drawable.logo_v2, r.getLikeCount().toString(), false));
+                                                }
+
+                                                else
+                                                    break;
                                             }
                                         }
                                     }
                                 }
-                                // Recycler view
-                                RecyclerView recyclerView = root.findViewById(R.id.cafeDetailReviewRecyclerView);
+                                
+                                // 가장 최근 리뷰 3개만 나오도록 설정하기위해서 for문 변경
+//                                for(Review r : review_list){
+//                                    if(r.getCafeNum().equals(get_cafe_num)) {
+//                                        for (Personal p : personal_list) {
+//
+//                                            if(cafeDetailReviewItem.size() < 3){
+//                                                // 1. 어플 사용자가 해당 카페에 대한 리뷰를 작성한 경우, 리사이클러뷰 가장 처음에 나오도록 설정
+//                                                if (r.getMemNum().equals(mem_num) && p.getMemNum().equals(mem_num)) {
+//                                                    cafeDetailReviewItem.add(0, new CafeDetailItem(p.getNickName(), p.getGrade().toString(),
+//                                                            r.getReviewText(), R.drawable.logo, R.drawable.logo_v2, r.getLikeCount().toString(), true));
+//                                                } // 2. 리뷰 작성자들의 닉네임, 회원 등급을 포함한 리뷰 Item 작성
+//                                                else if (r.getMemNum().equals(p.getMemNum())) {
+//                                                    cafeDetailReviewItem.add(new CafeDetailItem(p.getNickName(), p.getGrade().toString(),
+//                                                            r.getReviewText(), R.drawable.logo, R.drawable.logo_v2, r.getLikeCount().toString(), false));
+//                                                }
+//
+//                                                else
+//                                                    break;
+//                                            }
+//                                        }
+//                                    }
+//                                }
 
+                                // Recycler view
                                         // Adapter 추가
                                         CafeDetailAdapter adapter = new CafeDetailAdapter(cafeDetailReviewItem);
                                         recyclerView.setAdapter(adapter);
