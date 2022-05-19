@@ -82,7 +82,7 @@ public class CafeRegistrationFragment extends Fragment {
     String tag2;
     String tag3;
     boolean name_test = false;
-
+    Long[] k = new Long[36];
     EditText cafe_openHours_hour_input;
     EditText cafe_openHours_minute_input;
     EditText cafe_closeHours_hour_input;
@@ -105,6 +105,11 @@ public class CafeRegistrationFragment extends Fragment {
         cafe_openHours_minute_input = root.findViewById(R.id.cafe_openHours_minute_input);
         cafe_closeHours_hour_input = root.findViewById(R.id.cafe_closeHours_hour_input);
         cafe_closeHours_minute_input= root.findViewById(R.id.cafe_closeHours_minute_input);
+
+        // 서버연산을 위한 long형 배열 초기화 코드
+        for(int i = 0 ; i<=35; i++){
+            k[i] = (long) 0;
+        }
 
         RequestQueue requestQueue;
         Cache cache = new DiskBasedCache(getActivity().getCacheDir(), 1024 * 1024); // 1MB cap
@@ -169,333 +174,374 @@ public class CafeRegistrationFragment extends Fragment {
                              map.put("closeTime", cafe_closeHours_hour_input.getText().toString() + cafe_closeHours_minute_input.getText().toString());
                             // 이미지 추가 코드 작성 할 곳
                             // 태그 문자열형식을 숫자로 변환
-                            switch(tag1) {
+                            switch (tag1) {
                                 case ("#쓴맛"):
-                                    map.put("keyword1", 1);
+                                    k[0] = Long.valueOf(1);
                                     break;
-                                    case ("#신맛"):
-                                    map.put("keyword2", 1);
+                                case ("#신맛"):
+                                    k[1] = Long.valueOf(1);
                                     break;
                                 case ("#짠맛"):
-                                    map.put("keyword3", 1);
+                                    k[2] = Long.valueOf(1);
                                     break;
                                 case ("#단맛"):
-                                    map.put("keyword4", 1);
+                                    k[3] = Long.valueOf(1);
                                     break;
                                 case ("#향미"):
-                                    map.put("keyword5", 1);
+                                    k[4] = Long.valueOf(1);
                                     break;
                                 case ("#바디감"):
-                                    map.put("keyword6", 1);
+                                    k[5] = Long.valueOf(1);
                                     break;
                                 case ("#콜드브루"):
-                                    map.put("keyword7", 1);
+                                    k[6] = Long.valueOf(1);
                                     break;
                                 case ("#메뉴多"):
-                                    map.put("keyword8", 1);
+                                    k[7] = Long.valueOf(1);
                                     break;
                                 case ("#가성비"):
-                                    map.put("keyword9", 1);
+                                    k[8] = Long.valueOf(1);
                                     break;
                                 case ("#양많음"):
-                                    map.put("keyword10", 1);
+                                    k[9] = Long.valueOf(1);
                                     break;
                                 case ("#디저트맛집"):
-                                    map.put("keyword11", 1);
+                                    k[10] = Long.valueOf(1);
                                     break;
                                 case ("#논커피맛집"):
-                                    map.put("keyword12", 1);
+                                    k[11] = Long.valueOf(1);
                                     break;
                                 case ("#인스타"):
-                                    map.put("keyword13", 1);
+                                    k[12] = Long.valueOf(1);
                                     break;
                                 case ("#앤티크"):
-                                    map.put("keyword14", 1);
+                                    k[13] = Long.valueOf(1);
                                     break;
                                 case ("#모던"):
-                                    map.put("keyword15", 1);
+                                    k[14] = Long.valueOf(1);
                                     break;
                                 case ("#캐주얼"):
-                                    map.put("keyword16", 1);
+                                    k[15] = Long.valueOf(1);
                                     break;
                                 case ("#이국적"):
-                                    map.put("keyword17", 1);
+                                    k[16] = Long.valueOf(1);
                                     break;
                                 case ("#일상"):
-                                    map.put("keyword18", 1);
+                                    k[17] = Long.valueOf(1);
                                     break;
                                 case ("#따뜻한"):
-                                    map.put("keyword19", 1);
+                                    k[18] = Long.valueOf(1);
                                     break;
                                 case ("#조용한"):
-                                    map.put("keyword20", 1);
+                                    k[19] = Long.valueOf(1);
                                     break;
                                 case ("#우드톤"):
-                                    map.put("keyword21", 1);
+                                    k[20] = Long.valueOf(1);
                                     break;
                                 case ("#채광"):
-                                    map.put("keyword22", 1);
+                                    k[21] = Long.valueOf(1);
                                     break;
                                 case ("#힙한"):
-                                    map.put("keyword23", 1);
+                                    k[22] = Long.valueOf(1);
                                     break;
                                 case ("#귀여운"):
-                                    map.put("keyword24", 1);
+                                    k[23] = Long.valueOf(1);
                                     break;
                                 case ("#친절한"):
-                                    map.put("keyword25", 1);
+                                    k[24] = Long.valueOf(1);
                                     break;
                                 case ("#청결한"):
-                                    map.put("keyword26", 1);
+                                    k[25] = Long.valueOf(1);
                                     break;
                                 case ("#애견"):
-                                    map.put("keyword27", 1);
+                                    k[26] = Long.valueOf(1);
                                     break;
                                 case ("#주차장"):
-                                    map.put("keyword28", 1);
+                                    k[27] = Long.valueOf(1);
                                     break;
                                 case ("#노키즈존"):
-                                    map.put("keyword29", 1);
+                                    k[28] = Long.valueOf(1);
                                     break;
                                 case ("#교통편의"):
-                                    map.put("keyword30", 1);
+                                    k[29] = Long.valueOf(1);
                                     break;
                                 case ("#신속한"):
-                                    map.put("keyword31", 1);
+                                    k[30] = Long.valueOf(1);
                                     break;
                                 case ("#쾌적한"):
-                                    map.put("keyword32", 1);
+                                    k[31] = Long.valueOf(1);
                                     break;
                                 case ("#회의실"):
-                                    map.put("keyword33", 1);
+                                    k[32] = Long.valueOf(1);
                                     break;
                                 case ("#규모大"):
-                                    map.put("keyword34", 1);
+                                    k[33] = Long.valueOf(1);
                                     break;
                                 case ("#규모小"):
-                                    map.put("keyword35", 1);
+                                    k[34] = Long.valueOf(1);
                                     break;
                                 case ("#편한좌석"):
-                                    map.put("keyword36", 1);
+                                    k[35] = Long.valueOf(1);
+                                    break;
                             }
 
                             switch (tag2) {
                                 case ("#쓴맛"):
-                                    map.put("keyword1", 1);
+                                    k[0] = Long.valueOf(1);
                                     break;
                                 case ("#신맛"):
-                                    map.put("keyword2", 1);
+                                    k[1] = Long.valueOf(1);
                                     break;
                                 case ("#짠맛"):
-                                    map.put("keyword3", 1);
+                                    k[2] = Long.valueOf(1);
                                     break;
                                 case ("#단맛"):
-                                    map.put("keyword4", 1);
+                                    k[3] = Long.valueOf(1);
                                     break;
                                 case ("#향미"):
-                                    map.put("keyword5", 1);
+                                    k[4] = Long.valueOf(1);
                                     break;
                                 case ("#바디감"):
-                                    map.put("keyword6", 1);
+                                    k[5] = Long.valueOf(1);
                                     break;
                                 case ("#콜드브루"):
-                                    map.put("keyword7", 1);
+                                    k[6] = Long.valueOf(1);
                                     break;
                                 case ("#메뉴多"):
-                                    map.put("keyword8", 1);
+                                    k[7] = Long.valueOf(1);
                                     break;
                                 case ("#가성비"):
-                                    map.put("keyword9", 1);
+                                    k[8] = Long.valueOf(1);
                                     break;
                                 case ("#양많음"):
-                                    map.put("keyword10", 1);
+                                    k[9] = Long.valueOf(1);
                                     break;
                                 case ("#디저트맛집"):
-                                    map.put("keyword11", 1);
+                                    k[10] = Long.valueOf(1);
                                     break;
                                 case ("#논커피맛집"):
-                                    map.put("keyword12", 1);
+                                    k[11] = Long.valueOf(1);
+                                    break;
                                 case ("#인스타"):
-                                    map.put("keyword13", 1);
+                                    k[12] = Long.valueOf(1);
                                     break;
                                 case ("#앤티크"):
-                                    map.put("keyword14", 1);
+                                    k[13] = Long.valueOf(1);
                                     break;
                                 case ("#모던"):
-                                    map.put("keyword15", 1);
+                                    k[14] = Long.valueOf(1);
                                     break;
                                 case ("#캐주얼"):
-                                    map.put("keyword16", 1);
+                                    k[15] = Long.valueOf(1);
                                     break;
                                 case ("#이국적"):
-                                    map.put("keyword17", 1);
+                                    k[16] = Long.valueOf(1);
                                     break;
                                 case ("#일상"):
-                                    map.put("keyword18", 1);
+                                    k[17] = Long.valueOf(1);
                                     break;
                                 case ("#따뜻한"):
-                                    map.put("keyword19", 1);
+                                    k[18] = Long.valueOf(1);
                                     break;
                                 case ("#조용한"):
-                                    map.put("keyword20", 1);
+                                    k[19] = Long.valueOf(1);
                                     break;
                                 case ("#우드톤"):
-                                    map.put("keyword21", 1);
+                                    k[20] = Long.valueOf(1);
                                     break;
                                 case ("#채광"):
-                                    map.put("keyword22", 1);
+                                    k[21] = Long.valueOf(1);
                                     break;
                                 case ("#힙한"):
-                                    map.put("keyword23", 1);
+                                    k[22] = Long.valueOf(1);
                                     break;
                                 case ("#귀여운"):
-                                    map.put("keyword24", 1);
+                                    k[23] = Long.valueOf(1);
                                     break;
                                 case ("#친절한"):
-                                    map.put("keyword25", 1);
+                                    k[24] = Long.valueOf(1);
                                     break;
                                 case ("#청결한"):
-                                    map.put("keyword26", 1);
+                                    k[25] = Long.valueOf(1);
                                     break;
                                 case ("#애견"):
-                                    map.put("keyword27", 1);
+                                    k[26] = Long.valueOf(1);
                                     break;
                                 case ("#주차장"):
-                                    map.put("keyword28", 1);
+                                    k[27] = Long.valueOf(1);
                                     break;
                                 case ("#노키즈존"):
-                                    map.put("keyword29", 1);
+                                    k[28] = Long.valueOf(1);
                                     break;
                                 case ("#교통편의"):
-                                    map.put("keyword30", 1);
+                                    k[29] = Long.valueOf(1);
                                     break;
                                 case ("#신속한"):
-                                    map.put("keyword31", 1);
+                                    k[30] = Long.valueOf(1);
                                     break;
                                 case ("#쾌적한"):
-                                    map.put("keyword32", 1);
+                                    k[31] = Long.valueOf(1);
                                     break;
                                 case ("#회의실"):
-                                    map.put("keyword33", 1);
+                                    k[32] = Long.valueOf(1);
                                     break;
                                 case ("#규모大"):
-                                    map.put("keyword34", 1);
+                                    k[33] = Long.valueOf(1);
                                     break;
                                 case ("#규모小"):
-                                    map.put("keyword35", 1);
+                                    k[34] = Long.valueOf(1);
                                     break;
                                 case ("#편한좌석"):
-                                    map.put("keyword36", 1);
+                                    k[35] = Long.valueOf(1);
+                                    break;
                             }
 
                             switch (tag3) {
                                 case ("#쓴맛"):
-                                    map.put("keyword1", 1);
+                                    k[0] = Long.valueOf(1);
                                     break;
                                 case ("#신맛"):
-                                    map.put("keyword2", 1);
+                                    k[1] = Long.valueOf(1);
                                     break;
                                 case ("#짠맛"):
-                                    map.put("keyword3", 1);
+                                    k[2] = Long.valueOf(1);
                                     break;
                                 case ("#단맛"):
-                                    map.put("keyword4", 1);
+                                    k[3] = Long.valueOf(1);
                                     break;
                                 case ("#향미"):
-                                    map.put("keyword5", 1);
+                                    k[4] = Long.valueOf(1);
                                     break;
                                 case ("#바디감"):
-                                    map.put("keyword6", 1);
+                                    k[5] = Long.valueOf(1);
                                     break;
                                 case ("#콜드브루"):
-                                    map.put("keyword7", 1);
+                                    k[6] = Long.valueOf(1);
                                     break;
                                 case ("#메뉴多"):
-                                    map.put("keyword8", 1);
+                                    k[7] = Long.valueOf(1);
                                     break;
                                 case ("#가성비"):
-                                    map.put("keyword9", 1);
+                                    k[8] = Long.valueOf(1);
                                     break;
                                 case ("#양많음"):
-                                    map.put("keyword10", 1);
+                                    k[9] = Long.valueOf(1);
                                     break;
                                 case ("#디저트맛집"):
-                                    map.put("keyword11", 1);
+                                    k[10] = Long.valueOf(1);
                                     break;
                                 case ("#논커피맛집"):
-                                    map.put("keyword12", 1);
+                                    k[11] = Long.valueOf(1);
+                                    break;
                                 case ("#인스타"):
-                                    map.put("keyword13", 1);
+                                    k[12] = Long.valueOf(1);
                                     break;
                                 case ("#앤티크"):
-                                    map.put("keyword14", 1);
+                                    k[13] = Long.valueOf(1);
                                     break;
                                 case ("#모던"):
-                                    map.put("keyword15", 1);
+                                    k[14] = Long.valueOf(1);
                                     break;
                                 case ("#캐주얼"):
-                                    map.put("keyword16", 1);
+                                    k[15] = Long.valueOf(1);
                                     break;
                                 case ("#이국적"):
-                                    map.put("keyword17", 1);
+                                    k[16] = Long.valueOf(1);
                                     break;
                                 case ("#일상"):
-                                    map.put("keyword18", 1);
+                                    k[17] = Long.valueOf(1);
                                     break;
                                 case ("#따뜻한"):
-                                    map.put("keyword19", 1);
+                                    k[18] = Long.valueOf(1);
                                     break;
                                 case ("#조용한"):
-                                    map.put("keyword20", 1);
+                                    k[19] = Long.valueOf(1);
                                     break;
                                 case ("#우드톤"):
-                                    map.put("keyword21", 1);
+                                    k[20] = Long.valueOf(1);
                                     break;
                                 case ("#채광"):
-                                    map.put("keyword22", 1);
+                                    k[21] = Long.valueOf(1);
                                     break;
                                 case ("#힙한"):
-                                    map.put("keyword23", 1);
+                                    k[22] = Long.valueOf(1);
                                     break;
                                 case ("#귀여운"):
-                                    map.put("keyword24", 1);
+                                    k[23] = Long.valueOf(1);
                                     break;
                                 case ("#친절한"):
-                                    map.put("keyword25", 1);
+                                    k[24] = Long.valueOf(1);
                                     break;
                                 case ("#청결한"):
-                                    map.put("keyword26", 1);
+                                    k[25] = Long.valueOf(1);
                                     break;
                                 case ("#애견"):
-                                    map.put("keyword27", 1);
+                                    k[26] = Long.valueOf(1);
                                     break;
                                 case ("#주차장"):
-                                    map.put("keyword28", 1);
+                                    k[27] = Long.valueOf(1);
                                     break;
                                 case ("#노키즈존"):
-                                    map.put("keyword29", 1);
+                                    k[28] = Long.valueOf(1);
                                     break;
                                 case ("#교통편의"):
-                                    map.put("keyword30", 1);
+                                    k[29] = Long.valueOf(1);
                                     break;
                                 case ("#신속한"):
-                                    map.put("keyword31", 1);
+                                    k[30] = Long.valueOf(1);
                                     break;
                                 case ("#쾌적한"):
-                                    map.put("keyword32", 1);
+                                    k[31] = Long.valueOf(1);
                                     break;
                                 case ("#회의실"):
-                                    map.put("keyword33", 1);
+                                    k[32] = Long.valueOf(1);
                                     break;
                                 case ("#규모大"):
-                                    map.put("keyword34", 1);
+                                    k[33] = Long.valueOf(1);
                                     break;
                                 case ("#규모小"):
-                                    map.put("keyword35", 1);
+                                    k[34] = Long.valueOf(1);
                                     break;
                                 case ("#편한좌석"):
-                                    map.put("keyword36", 1);
+                                    k[35] = Long.valueOf(1);
+                                    break;
                             }
+                            map.put("keyword1", k[0]);
+                            map.put("keyword2", k[1]);
+                            map.put("keyword3", k[2]);
+                            map.put("keyword4", k[3]);
+                            map.put("keyword5", k[4]);
+                            map.put("keyword6", k[5]);
+                            map.put("keyword7", k[6]);
+                            map.put("keyword8", k[7]);
+                            map.put("keyword9", k[8]);
+                            map.put("keyword10", k[9]);
+                            map.put("keyword11", k[10]);
+                            map.put("keyword12", k[11]);
+                            map.put("keyword13", k[12]);
+                            map.put("keyword14", k[13]);
+                            map.put("keyword15", k[14]);
+                            map.put("keyword16", k[15]);
+                            map.put("keyword17", k[16]);
+                            map.put("keyword18", k[17]);
+                            map.put("keyword19", k[18]);
+                            map.put("keyword20", k[19]);
+                            map.put("keyword21", k[20]);
+                            map.put("keyword22", k[21]);
+                            map.put("keyword23", k[22]);
+                            map.put("keyword24", k[23]);
+                            map.put("keyword25", k[24]);
+                            map.put("keyword26", k[25]);
+                            map.put("keyword27", k[26]);
+                            map.put("keyword28", k[27]);
+                            map.put("keyword29", k[28]);
+                            map.put("keyword30", k[29]);
+                            map.put("keyword31", k[30]);
+                            map.put("keyword32", k[31]);
+                            map.put("keyword33", k[32]);
+                            map.put("keyword34", k[33]);
+                            map.put("keyword35", k[34]);
+                            map.put("keyword36", k[35]);
                             map.put("tastePoint1", 0);
                             map.put("tastePoint2", 0);
                             map.put("tastePoint3", 0);
