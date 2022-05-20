@@ -188,23 +188,23 @@
 
                 <Button
                     android:id="@+id/first_previousButton"
-                    android:layout_width="10dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="5dp"
+                    android:layout_width="15dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="8dp"
                     android:background="@drawable/previous_page"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@+id/first_viewPager"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="@+id/first_viewPager" />
 
                 <Button
                     android:id="@+id/first_nextButton"
-                    android:layout_width="10dp"
-                    android:layout_height="30dp"
-                    android:layout_marginEnd="5dp"
+                    android:layout_width="15dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="8dp"
                     android:background="@drawable/next_page"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@+id/first_viewPager"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="@+id/first_viewPager" />
 
                 <com.example.wmc.HomeTag1ViewPager.HomeTag1ViewPager
                     android:id="@+id/first_viewPager"
@@ -251,7 +251,7 @@
                     android:layout_marginStart="5dp"
                     android:layout_weight="1"
                     android:text="가 2순위인 당신을 위한 카페!"
-                    android:textColor="#000000"
+                    android:textColor="@color/black"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/second_hashtag_textView"
                     app:layout_constraintStart_toEndOf="@+id/second_hashtag_textView"
@@ -259,23 +259,23 @@
 
                 <Button
                     android:id="@+id/second_previousButton"
-                    android:layout_width="10dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="5dp"
+                    android:layout_width="15dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="8dp"
                     android:background="@drawable/previous_page"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@+id/second_viewPager"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="@+id/second_viewPager" />
 
                 <Button
                     android:id="@+id/second_nextButton"
-                    android:layout_width="10dp"
-                    android:layout_height="30dp"
-                    android:layout_marginEnd="5dp"
+                    android:layout_width="15dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="8dp"
                     android:background="@drawable/next_page"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@+id/second_viewPager"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="@+id/second_viewPager" />
 
                 <com.example.wmc.HomeTag2ViewPager.HomeTag2ViewPager
                     android:id="@+id/second_viewPager"
