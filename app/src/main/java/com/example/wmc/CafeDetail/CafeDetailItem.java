@@ -5,15 +5,17 @@ public class CafeDetailItem {
     String reviewNickName;
     String level_and_location;
     String review_comment;
+    String review_writeTime;
     int reviewProfile_image;
     int reviewImage;
     String good_count_textView;
     boolean check_user_flag;
 
-    public CafeDetailItem(String reviewNickName, String level_and_location, String review_comment, int reviewProfile_image, int reviewImage, String good_count_textView, boolean check_user_flag) {
+    public CafeDetailItem(String reviewNickName, String level_and_location, String review_comment, String review_writeTime, int reviewProfile_image, int reviewImage, String good_count_textView, boolean check_user_flag) {
         this.reviewNickName = reviewNickName;
         this.level_and_location = level_and_location;
         this.review_comment = review_comment;
+        this.review_writeTime = review_writeTime;
         this.reviewProfile_image = reviewProfile_image;
         this.reviewImage = reviewImage;
         this.good_count_textView = good_count_textView;
@@ -42,6 +44,14 @@ public class CafeDetailItem {
 
     public void setReview_comment(String review_comment) {
         this.review_comment = review_comment;
+    }
+
+    public String getReview_writeTime() {
+        return review_writeTime;
+    }
+
+    public void setReview_writeTime(String review_writeTime) {
+        this.review_writeTime = review_writeTime;
     }
 
     public int getReviewProfile_image() {

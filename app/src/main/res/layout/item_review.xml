@@ -41,6 +41,32 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/level"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="4dp"
+                android:singleLine="true"
+                android:text="Lv."
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/reviewNickName"
+                app:layout_constraintStart_toEndOf="@+id/reviewNickName" />
+
+            <TextView
+                android:id="@+id/level_and_location"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:layout_marginBottom="4dp"
+                android:singleLine="true"
+                android:text="레벨"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/reviewNickName"
+                app:layout_constraintStart_toEndOf="@+id/level" />
+
+            <TextView
                 android:id="@+id/reviewModify"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -102,28 +128,17 @@
                 app:layout_constraintTop_toBottomOf="@+id/reviewProfile_image" />
 
             <TextView
-                android:id="@+id/level"
+                android:id="@+id/review_writeTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
                 android:layout_marginStart="10dp"
-                android:text="Lv."
+                android:text="작성시간"
                 android:textColor="@color/black"
-                android:textSize="15sp"
+                android:textSize="12sp"
                 app:layout_constraintStart_toEndOf="@+id/reviewProfile_image"
                 app:layout_constraintTop_toBottomOf="@+id/reviewNickName" />
 
-            <TextView
-                android:id="@+id/level_and_location"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="3dp"
-                android:singleLine="true"
-                android:text="레벨 및 위치인증"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                app:layout_constraintStart_toEndOf="@+id/level"
-                app:layout_constraintTop_toBottomOf="@+id/reviewNickName" />
 
             <ImageView
                 android:id="@+id/reviewImage"
