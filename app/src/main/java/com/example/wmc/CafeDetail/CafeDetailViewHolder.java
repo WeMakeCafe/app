@@ -17,6 +17,7 @@ public class CafeDetailViewHolder extends RecyclerView.ViewHolder{
     TextView reviewNickName;
     TextView level_and_location;
     TextView review_comment;
+    TextView review_writeTime;
     TextView good_count_textView;
     ImageView reviewProfile_image;
     ImageView reviewImage;
@@ -37,6 +38,7 @@ public class CafeDetailViewHolder extends RecyclerView.ViewHolder{
         reviewNickName = itemView.findViewById(R.id.reviewNickName);
         level_and_location = itemView.findViewById(R.id.level_and_location);
         review_comment = itemView.findViewById(R.id.review_comment);
+        review_writeTime = itemView.findViewById(R.id.review_writeTime);
         good_count_textView = itemView.findViewById(R.id.good_count_textView);
         reviewProfile_image = itemView.findViewById(R.id.reviewProfile_image);
         reviewImage = itemView.findViewById(R.id.reviewImage);

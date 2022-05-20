@@ -96,6 +96,7 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             viewHolder.reviewNickName.setText(item.getReviewNickName());
             viewHolder.level_and_location.setText(item.getLevel_and_location());
             viewHolder.review_comment.setText(item.getReview_comment());
+            viewHolder.review_writeTime.setText(item.getReview_writeTime());
             viewHolder.good_count_textView.setText(item.getGood_count_textView());
             viewHolder.reviewProfile_image.setImageResource(item.getReviewProfile_image());
             viewHolder.reviewImage.setImageResource(item.getReviewImage());
