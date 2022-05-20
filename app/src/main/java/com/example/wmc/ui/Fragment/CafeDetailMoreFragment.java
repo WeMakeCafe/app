@@ -42,9 +42,13 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
+import java.util.TimeZone;
 
 public class CafeDetailMoreFragment extends Fragment {
 
@@ -56,6 +60,7 @@ public class CafeDetailMoreFragment extends Fragment {
 
     Long mem_num = MainActivity.mem_num;
     Long get_cafe_num;
+    String create_date;
 
     String[] spinnerItem = {"최신순", "오래된 순", "좋아요 많은 순", "좋아요 적은 순"};
 
@@ -120,17 +125,33 @@ public class CafeDetailMoreFragment extends Fragment {
 
                         for(Review r : review_list) {
                             if (r.getCafeNum().equals(get_cafe_num)) {
+
+
+                                // DB에서 받아온 리뷰 생성 시간을 변경하기 위한 코드
+                                String creatTime = r.getCreateTime();
+                                SimpleDateFormat old_format =  new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
+                                old_format.setTimeZone(TimeZone.getTimeZone("KST"));
+                                SimpleDateFormat new_format = new SimpleDateFormat("yyyy/MM/dd   HH:mm");
+
+                                try {
+                                    Date old_date =  old_format.parse(creatTime);
+                                    create_date = new_format.format(old_date);
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+
+
                                 for (Personal p : personal_list) {
                                     // 1. 어플 사용자가 해당 카페에 대한 리뷰를 작성한 경우, 리사이클러뷰 가장 처음에 나오도록 설정
                                     if (r.getMemNum().equals(mem_num) && p.getMemNum().equals(mem_num)) {
                                         cafeDetailMoreReviewItem.add(0, new CafeDetailMoreItem(p.getNickName(), p.getGrade().toString(),
-                                                r.getReviewText(), R.drawable.logo, R.drawable.logo_v2, R.drawable.bean_grade1, R.drawable.bean_grade3, r.getLikeCount().toString(), r.getCreateTime(), true));
+                                                r.getReviewText(), create_date, R.drawable.logo, R.drawable.logo_v2, R.drawable.bean_grade1, R.drawable.bean_grade3, r.getLikeCount().toString(), true));
                                     }
 
                                     // 2. 리뷰 작성자들의 닉네임, 회원 등급을 포함한 리뷰 Item 작성
                                     else if (r.getMemNum().equals(p.getMemNum())) {
                                         cafeDetailMoreReviewItem.add(new CafeDetailMoreItem(p.getNickName(), p.getGrade().toString(),
-                                                r.getReviewText(), R.drawable.logo, R.drawable.logo_v2, R.drawable.bean_grade1, R.drawable.bean_grade3, r.getLikeCount().toString(), r.getCreateTime(), false));
+                                                r.getReviewText(), create_date, R.drawable.logo, R.drawable.logo_v2, R.drawable.bean_grade1, R.drawable.bean_grade3, r.getLikeCount().toString(), false));
                                     }
                                 }
                             }
@@ -174,7 +195,7 @@ public class CafeDetailMoreFragment extends Fragment {
 
                                         @Override
                                         public int compare(CafeDetailMoreItem item1, CafeDetailMoreItem item2) {
-                                            return item2.getCreateTime().compareTo(item1.getCreateTime());
+                                            return item2.getReviewMore_writeTime().compareTo(item1.getReviewMore_writeTime());
                                         }
                                     };
 
@@ -189,7 +210,7 @@ public class CafeDetailMoreFragment extends Fragment {
 
                                         @Override
                                         public int compare(CafeDetailMoreItem item1, CafeDetailMoreItem item2) {
-                                            return item1.getCreateTime().compareTo(item2.getCreateTime());
+                                            return item1.getReviewMore_writeTime().compareTo(item2.getReviewMore_writeTime());
                                         }
                                     };
 

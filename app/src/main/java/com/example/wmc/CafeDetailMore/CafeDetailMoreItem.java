@@ -5,26 +5,26 @@ public class CafeDetailMoreItem {
     String reviewNickName;
     String level_and_location;
     String review_comment;
+    String reviewMore_writeTime;
     int reviewProfile_image;
     int reviewImage1;
     int reviewImage2;
     int reviewImage3;
     String good_count_textView;
 
-    String createTime;
     boolean check_user_flag;
 
-    public CafeDetailMoreItem(String reviewNickName, String level_and_location, String review_comment, int reviewProfile_image, int reviewImage1, int reviewImage2, int reviewImage3, String good_count_textView, String createTime, boolean check_user_flag) {
+    public CafeDetailMoreItem(String reviewNickName, String level_and_location, String review_comment, String reviewMore_writeTime, int reviewProfile_image, int reviewImage1, int reviewImage2, int reviewImage3, String good_count_textView, boolean check_user_flag) {
         this.reviewNickName = reviewNickName;
         this.level_and_location = level_and_location;
         this.review_comment = review_comment;
+        this.reviewMore_writeTime = reviewMore_writeTime;
         this.reviewProfile_image = reviewProfile_image;
         this.reviewImage1 = reviewImage1;
         this.reviewImage2 = reviewImage2;
         this.reviewImage3 = reviewImage3;
         this.good_count_textView = good_count_textView;
 
-        this.createTime = createTime;
         this.check_user_flag = check_user_flag;
     }
 
@@ -50,6 +50,14 @@ public class CafeDetailMoreItem {
 
     public void setReview_comment(String review_comment) {
         this.review_comment = review_comment;
+    }
+
+    public String getReviewMore_writeTime() {
+        return reviewMore_writeTime;
+    }
+
+    public void setReviewMore_writeTime(String reviewMore_writeTime) {
+        this.reviewMore_writeTime = reviewMore_writeTime;
     }
 
     public int getReviewProfile_image() {
@@ -100,11 +108,4 @@ public class CafeDetailMoreItem {
         this.check_user_flag = check_user_flag;
     }
 
-    public String getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(String createTime) {
-        this.createTime = createTime;
-    }
 }
