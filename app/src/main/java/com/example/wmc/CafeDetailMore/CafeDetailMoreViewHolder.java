@@ -16,6 +16,7 @@ public class CafeDetailMoreViewHolder extends RecyclerView.ViewHolder{
     TextView nickName;
     TextView level_and_location;
     TextView review_comment;
+    TextView reviewMore_writeTime;
     ImageView reviewProfile_image;
     ImageView reviewMore_image1;
     ImageView reviewMore_image2;
@@ -29,7 +30,6 @@ public class CafeDetailMoreViewHolder extends RecyclerView.ViewHolder{
     CheckBox good_button;
     ImageView good_button_imageView;
 
-    String creatTime;
     boolean check_user_flag;
 
     public static int REVIEWMORE_VIEW_TYPE = R.layout.item_more_review;
@@ -40,6 +40,7 @@ public class CafeDetailMoreViewHolder extends RecyclerView.ViewHolder{
         nickName = itemView.findViewById(R.id.nickName);
         level_and_location = itemView.findViewById(R.id.level_and_location);
         review_comment = itemView.findViewById(R.id.review_comment);
+        reviewMore_writeTime = itemView.findViewById(R.id.reviewMore_writeTime);
         reviewProfile_image = itemView.findViewById(R.id.reviewProfile_image);
         reviewMore_image1 = itemView.findViewById(R.id.reviewMore_image1);
         reviewMore_image2 = itemView.findViewById(R.id.reviewMore_image2);

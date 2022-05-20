@@ -56,9 +56,13 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TimeZone;
 
 public class CafeDetailFragment extends Fragment {
 
@@ -92,6 +96,7 @@ public class CafeDetailFragment extends Fragment {
     Long mem_num = MainActivity.mem_num;
 
     String cafe_name; // Bundle을 통해 받아온 cafe_name을 임시로 저장함
+    String create_date;    // 리뷰 등록 시간
     Long get_cafe_num; // cafe_num을 임시로 저장함.
     Long get_bookmark_num;
 
@@ -669,16 +674,30 @@ public class CafeDetailFragment extends Fragment {
                                 for(Review r : review_list){
                                     if(r.getCafeNum().equals(get_cafe_num)) {
                                         point_counter++;
+
+                                        // DB에서 받아온 리뷰 생성 시간을 변경하기 위한 코드
+                                        String creatTime = r.getCreateTime();
+                                        SimpleDateFormat old_format =  new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
+                                        old_format.setTimeZone(TimeZone.getTimeZone("KST"));
+                                        SimpleDateFormat new_format = new SimpleDateFormat("yyyy/MM/dd   HH:mm");
+
+                                        try {
+                                            Date old_date =  old_format.parse(creatTime);
+                                            create_date = new_format.format(old_date);
+                                        } catch (ParseException e) {
+                                            e.printStackTrace();
+                                        }
+
                                         for (Personal p : personal_list) {
 
                                                 // 1. 어플 사용자가 해당 카페에 대한 리뷰를 작성한 경우, 리사이클러뷰 가장 처음에 나오도록 설정
                                                 if (r.getMemNum().equals(mem_num) && p.getMemNum().equals(mem_num)) {
                                                     cafeDetailReviewItem.add(0, new CafeDetailItem(p.getNickName(), p.getGrade().toString(),
-                                                            r.getReviewText(), r.getCreateTime().substring(0, 10),R.drawable.logo, R.drawable.logo_v2, r.getLikeCount().toString(), true));
+                                                            r.getReviewText(), create_date,R.drawable.logo, R.drawable.logo_v2, r.getLikeCount().toString(), true));
                                                 } // 2. 리뷰 작성자들의 닉네임, 회원 등급을 포함한 리뷰 Item 작성
                                                 else if (r.getMemNum().equals(p.getMemNum())) {
                                                     cafeDetailReviewItem.add(new CafeDetailItem(p.getNickName(), p.getGrade().toString(),
-                                                            r.getReviewText(), r.getCreateTime().substring(0, 10), R.drawable.logo, R.drawable.logo_v2, r.getLikeCount().toString(), false));
+                                                            r.getReviewText(), create_date, R.drawable.logo, R.drawable.logo_v2, r.getLikeCount().toString(), false));
                                                 }
                                         }
                                     }
