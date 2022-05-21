@@ -28,6 +28,8 @@ public class CafeDetailViewHolder extends RecyclerView.ViewHolder{
     TextView reviewDeleteLine;
     CheckBox good_button;
     ImageView good_button_image;
+
+    int clicked_good = 0;
     boolean check_user_flag;
 
     public static int REVIEW_VIEW_TYPE = R.layout.item_review;
@@ -55,6 +57,29 @@ public class CafeDetailViewHolder extends RecyclerView.ViewHolder{
                 final int position = getAdapterPosition();
                 if (position != RecyclerView.NO_POSITION) {
                     a_itemClickListener.onItemClick(a_view, position);
+                }
+            }
+        });
+
+        good_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean checked = ((CheckBox) v).isChecked();    // 좋아요가 됐는지 확인
+
+                // 자신이 쓴 글일 경우 좋아요 버튼 클릭 불가로 변경
+                if(checked) {
+                    // 좋아요 추가
+                    Toast.makeText(v.getContext().getApplicationContext(), "좋아요", Toast.LENGTH_SHORT).show();
+                    clicked_good = 1;
+                    int basic_good_count = Integer.parseInt(good_count_textView.getText().toString());
+                    good_count_textView.setText(String.valueOf(basic_good_count + clicked_good));
+                }
+                else {
+                    // 좋아요 취소
+                    Toast.makeText(v.getContext().getApplicationContext(), "좋아요 취소", Toast.LENGTH_SHORT).show();
+                    clicked_good = -1;
+                    int basic_good_count = Integer.parseInt(good_count_textView.getText().toString());
+                    good_count_textView.setText(String.valueOf(basic_good_count + clicked_good));
                 }
             }
         });
