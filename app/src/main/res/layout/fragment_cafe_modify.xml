@@ -423,10 +423,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
                     android:clickable="true"
                     android:text="삭제요청"
                     android:textColor="@color/black"
                     android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/modify_button" />
@@ -440,32 +442,18 @@
                     app:layout_constraintStart_toStartOf="@+id/request_deletion_textView"
                     app:layout_constraintTop_toBottomOf="@+id/request_deletion_textView" />
 
-                <TextView
-                    android:id="@+id/email_textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="20dp"
-                    android:text="※ 폐점시 개발자에게 메일을 주세요!\n
-       suwon_univ@gmail.com"
-                    android:textColor="#000000"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/request_deletion_textView" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
                 android:id="@+id/modifyPage_footer"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="80dp"
                 android:orientation="horizontal"
                 android:padding="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/modify_button_deleteLayout"/>
+                app:layout_constraintTop_toBottomOf="@id/modify_button_deleteLayout" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

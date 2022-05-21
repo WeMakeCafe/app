@@ -10,7 +10,7 @@
         android:id="@+id/line1"
         android:layout_width="0dp"
         android:layout_height="2dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="90dp"
         android:background="#3B2314"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,32 +39,31 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <Spinner
+            android:id="@+id/reviewSpinner"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/review_spinner"
+            android:paddingTop="5dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="5dp"
+            android:spinnerMode="dialog"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    <Spinner
-        android:id="@+id/reviewSpinner"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="15dp"
-        android:background="@drawable/review_spinner"
-        android:paddingTop="5dp"
-        android:paddingRight="8dp"
-        android:paddingBottom="5dp"
-        android:spinnerMode="dialog"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/line1" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
         android:id="@+id/cafeDetailMoreScrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reviewSpinner">
+        app:layout_constraintTop_toBottomOf="@+id/line1">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/reviewList_Layout"
@@ -82,7 +81,7 @@
             <LinearLayout
                 android:id="@+id/cafeDetailMore_footer"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="80dp"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
