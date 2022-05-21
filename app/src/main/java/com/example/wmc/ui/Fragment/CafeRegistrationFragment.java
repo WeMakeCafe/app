@@ -3,6 +3,7 @@ package com.example.wmc.ui.Fragment;
 import android.app.Activity;
 import android.content.ClipData;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.Image;
@@ -54,6 +55,7 @@ import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
@@ -88,6 +90,8 @@ public class CafeRegistrationFragment extends Fragment {
     EditText cafe_closeHours_hour_input;
     EditText cafe_closeHours_minute_input;
 
+    File file;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -105,6 +109,15 @@ public class CafeRegistrationFragment extends Fragment {
         cafe_openHours_minute_input = root.findViewById(R.id.cafe_openHours_minute_input);
         cafe_closeHours_hour_input = root.findViewById(R.id.cafe_closeHours_hour_input);
         cafe_closeHours_minute_input= root.findViewById(R.id.cafe_closeHours_minute_input);
+
+        Button test_Button = root.findViewById(R.id.test_Button);
+
+        test_Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FileUploadUtils.goSend(file);
+            }
+        });
 
         // 서버연산을 위한 long형 배열 초기화 코드
         for(int i = 0 ; i<=35; i++){
@@ -732,6 +745,7 @@ public class CafeRegistrationFragment extends Fragment {
                 else{
                     Log.e("single choice: ", String.valueOf(data.getData()));
                     Uri imageUri = data.getData();
+
                     uriList.add(imageUri);
                 }
 
@@ -746,6 +760,7 @@ public class CafeRegistrationFragment extends Fragment {
                 if(clipData.getItemCount() > 5){   // 선택한 이미지가 6장 이상인 경우
                     Toast.makeText(getContext().getApplicationContext(), "사진은 5장까지 선택 가능합니다.", Toast.LENGTH_LONG).show();
                 }
+
                 else{   // 선택한 이미지가 1장 이상 5장 이하인 경우
                     Log.e(TAG, "multiple choice");
 
@@ -753,6 +768,13 @@ public class CafeRegistrationFragment extends Fragment {
 
                         if(uriList.size() <= 4){
                             Uri imageUri = clipData.getItemAt(i).getUri();  // 선택한 이미지들의 uri를 가져온다.
+
+                            Cursor c = getContext().getContentResolver().query(Uri.parse(imageUri.toString()), null,null,null,null);
+                            c.moveToNext();
+                            String absolutePath = c.getString(c.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA));
+                            Log.d("test_check" , absolutePath);
+                            file = new File(absolutePath);
+
                             try {
                                 uriList.add(imageUri);  //uri를 list에 담는다.
 
