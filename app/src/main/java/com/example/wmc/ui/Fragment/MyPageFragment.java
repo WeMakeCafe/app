@@ -195,17 +195,6 @@ public class MyPageFragment extends Fragment {
                 R.drawable.logo, R.drawable.logo, R.drawable.logo_v2, R.drawable.review_click, "4", true));
         mypageReviewItem.add(new MypageReviewItem("지코", "3", "테이블이 매우 협소합니다.",
                 R.drawable.logo, R.drawable.logo, R.drawable.logo_v2, R.drawable.review_click, "4", true));
-        mypageReviewItem.add(new MypageReviewItem("지코", "4", "테이블이 매우 협소합니다.",
-                R.drawable.logo, R.drawable.logo, R.drawable.logo_v2, R.drawable.review_click, "4", true));
-        mypageReviewItem.add(new MypageReviewItem("지코", "5", "테이블이 매우 협소합니다.",
-                R.drawable.logo, R.drawable.logo, R.drawable.logo_v2, R.drawable.review_click, "4", true));
-        mypageReviewItem.add(new MypageReviewItem("지코", "6", "테이블이 매우 협소합니다.",
-                R.drawable.logo, R.drawable.logo, R.drawable.logo_v2, R.drawable.review_click, "4", true));
-        mypageReviewItem.add(new MypageReviewItem("지코", "7", "테이블이 매우 협소합니다.",
-                R.drawable.logo, R.drawable.logo, R.drawable.logo_v2, R.drawable.review_click, "4", true));
-        mypageReviewItem.add(new MypageReviewItem("지코", "8", "테이블이 매우 협소합니다.",
-                R.drawable.logo, R.drawable.logo, R.drawable.logo_v2, R.drawable.review_click, "4", true));
-
 
         // Recycler view
         RecyclerView mypageReviewRecyclerview = root.findViewById(R.id.review_mypage);

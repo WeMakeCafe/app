@@ -27,10 +27,11 @@
 
         <EditText
             android:id="@+id/cafe_search_input"
-            android:layout_width="310dp"
+            android:layout_width="0dp"
             android:layout_height="40dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="10dp"
             android:background="@drawable/edge_top_back"
             android:gravity="left|center_vertical"
             android:hint="이름, 주소 검색"
@@ -39,17 +40,18 @@
             android:singleLine="true"
             android:textColor="@color/black"
             android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/search_button"
+            app:layout_constraintStart_toEndOf="@+id/logo"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/search_button"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginEnd="5dp"
+            android:layout_marginEnd="10dp"
             android:background="@drawable/search"
             app:layout_constraintBottom_toBottomOf="@+id/cafe_search_input"
-            app:layout_constraintEnd_toEndOf="@+id/cafe_search_input"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/cafe_search_input" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
