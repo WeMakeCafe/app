@@ -27,10 +27,11 @@
 
         <EditText
             android:id="@+id/review_cafe_search_input"
-            android:layout_width="310dp"
+            android:layout_width="0dp"
             android:layout_height="40dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="10dp"
             android:background="@drawable/edge_top_back"
             android:gravity="left|center_vertical"
             android:hint="이름, 주소 검색"
@@ -39,17 +40,18 @@
             android:singleLine="true"
             android:textColor="@color/black"
             android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/review_search_button"
+            app:layout_constraintStart_toEndOf="@+id/logo"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/review_search_button"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginEnd="5dp"
+            android:layout_marginEnd="10dp"
             android:background="@drawable/search"
             app:layout_constraintBottom_toBottomOf="@+id/review_cafe_search_input"
-            app:layout_constraintEnd_toEndOf="@+id/review_cafe_search_input"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/review_cafe_search_input" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -71,7 +73,6 @@
                 android:id="@+id/review_cafeListRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginTop="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -93,13 +94,12 @@
             <LinearLayout
                 android:id="@+id/cafeList_footer"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="80dp"
                 android:orientation="horizontal"
                 android:padding="20dp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/review_cafeListRecyclerView"/>
+                app:layout_constraintTop_toBottomOf="@id/review_cafeListRecyclerView" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
