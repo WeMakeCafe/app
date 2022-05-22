@@ -1,5 +1,6 @@
 package com.example.wmc.CafeDetailMore;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +15,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.wmc.MainActivity;
 import com.example.wmc.R;
 import com.example.wmc.database.Review;
+import com.example.wmc.ui.Fragment.CafeDetailMoreFragment;
 
 import java.util.ArrayList;
 
 public class CafeDetailMoreAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
+    private Context context;
     private ArrayList<CafeDetailMoreItem> reviewMore_items;
+    CafeDetailMoreFragment cafeDetailMoreFragment;
     private static NavController navController;
 
     ArrayList<Review> review_list;
@@ -32,8 +36,10 @@ public class CafeDetailMoreAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     }
     private CafeDetailMoreAdapter.OnItemClickEventListener_cafeDetailMore mItemClickListener_cafeDetailMore;    // 인터페이스 객체 생성
 
-    public CafeDetailMoreAdapter(ArrayList<CafeDetailMoreItem> list){
+    public CafeDetailMoreAdapter(Context context, ArrayList<CafeDetailMoreItem> list, CafeDetailMoreFragment cafeDetailMoreFragment){
+        this.context = context;
         reviewMore_items = list;
+        this.cafeDetailMoreFragment = cafeDetailMoreFragment;
     }
 
 
@@ -113,23 +119,23 @@ public class CafeDetailMoreAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             viewHolder.good_button_imageView.setVisibility(View.INVISIBLE);
             viewHolder.good_button.setVisibility(View.VISIBLE);
 
-            // 리뷰 더보기의 좋아요 버튼 클릭 시,
-            viewHolder.good_button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    boolean checked = ((CheckBox) v).isChecked();    // 좋아요가 됐는지 확인
-
-                    // 자신이 쓴 글일 경우 좋아요 버튼 클릭 불가로 변경
-                    if(checked) {
-                        // 좋아요 추가
-                        Toast.makeText(v.getContext().getApplicationContext(), "좋아요", Toast.LENGTH_SHORT).show();
-                    }
-                    else {
-                        // 좋아요 취소
-                        Toast.makeText(v.getContext().getApplicationContext(), "좋아요 취소", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
+//            // 리뷰 더보기의 좋아요 버튼 클릭 시,
+//            viewHolder.good_button.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    boolean checked = ((CheckBox) v).isChecked();    // 좋아요가 됐는지 확인
+//
+//                    // 자신이 쓴 글일 경우 좋아요 버튼 클릭 불가로 변경
+//                    if(checked) {
+//                        // 좋아요 추가
+//                        Toast.makeText(v.getContext().getApplicationContext(), "좋아요", Toast.LENGTH_SHORT).show();
+//                    }
+//                    else {
+//                        // 좋아요 취소
+//                        Toast.makeText(v.getContext().getApplicationContext(), "좋아요 취소", Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//            });
         }
 
 

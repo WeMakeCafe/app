@@ -161,7 +161,7 @@ public class CafeDetailMoreFragment extends Fragment {
                         RecyclerView cafeDetailMoreRecyclerView = root.findViewById(R.id.cafeDetailMoreRecyclerView);
 
                         // Adapter 추가
-                        CafeDetailMoreAdapter cafeDetailMoreAdapter = new CafeDetailMoreAdapter(cafeDetailMoreReviewItem);
+                        CafeDetailMoreAdapter cafeDetailMoreAdapter = new CafeDetailMoreAdapter(getContext(), cafeDetailMoreReviewItem, CafeDetailMoreFragment.this);
                         cafeDetailMoreRecyclerView.setAdapter(cafeDetailMoreAdapter);
 
                         // Layout manager 추가
