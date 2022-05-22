@@ -64,6 +64,10 @@ public class HomeFragment extends Fragment {
     Button first_nextButton;
     Button second_previousButton;
     Button second_nextButton;
+    TextView first_hashtag_textview;
+    TextView second_hashtag_textview;
+    TextView first_hastage_cafelist_textview;
+    TextView second_hastage_cafelist_textview;
 
     HomeTag1ViewPagerAdapter tag1Adapter;
     HomeTag2ViewPagerAdapter tag2Adapter;
@@ -97,7 +101,10 @@ public class HomeFragment extends Fragment {
         first_nextButton = root.findViewById(R.id.first_nextButton);
         second_previousButton = root.findViewById(R.id.second_previousButton);
         second_nextButton = root.findViewById(R.id.second_nextButton);
-
+        first_hashtag_textview = root.findViewById(R.id.first_hashtag_textView);
+        second_hashtag_textview = root.findViewById(R.id.second_hashtag_textView);
+        first_hastage_cafelist_textview = root.findViewById(R.id.first_hashtag_cafeList_textView);
+        second_hastage_cafelist_textview = root.findViewById(R.id.second_hashtag_cafeList_textView);
 
 
 
@@ -134,6 +141,23 @@ public class HomeFragment extends Fragment {
                 Type listType = new TypeToken<ArrayList<Personal>>(){}.getType();
 
                 personal_list = gson.fromJson(changeString, listType);
+
+                /////////////////////////////////////////////////////////////////////////////////////////////////
+                // 사용자의 선호 해시태그에 맞춰 Home화면 설정.
+                for(Personal p : personal_list){
+                    if(p.getMemNum().equals(mem_num)){
+                        first_hashtag_textview.setText("#" + p.getFavorite1()); // 사용자의 선호 1순위
+                        second_hashtag_textview.setText("#" + p.getFavorite2()); // 사용자의 선호 2순위
+
+                        // #맛에 따라 텍스트 변경
+                        if(p.getFavorite1().equals("맛")) {
+                            first_hastage_cafelist_textview.setText("이 1순위인 당신을 위한 카페!");
+                        }
+                        else{
+                            second_hastage_cafelist_textview.setText("이 2순위인 당신을 위한 카페!");
+                        }
+                    }
+                }
 
                 // Bookmark 접근 -> 찜한 카페 찾기
                 StringRequest bookmark_stringRequest = new StringRequest(Request.Method.GET, get_bookmark_url, new Response.Listener<String>() {
@@ -173,8 +197,299 @@ public class HomeFragment extends Fragment {
                                     if (b.getMemNum().equals(mem_num)) { // bookmark_list에서 사용자의 mem_num과 일치하는 튜플 찾기
                                         for(Cafe c : cafe_list){
                                             if(c.getCafeNum().equals(b.getCafeNum())){ // cafe_list에서 사용자가 bookmark한 카페 찾기
+                                                /////////////////////////////////////////////////////////////////////////////////////////
+                                                // 카페 태그 1, 2 키워드 받기
+                                                get_keyword[0] = c.getKeyword1();
+                                                get_keyword[1] = c.getKeyword2();
+                                                get_keyword[2] = c.getKeyword3();
+                                                get_keyword[3] = c.getKeyword4();
+                                                get_keyword[4] = c.getKeyword5();
+                                                get_keyword[5] = c.getKeyword6();
+                                                get_keyword[6] = c.getKeyword7();
+                                                get_keyword[7] = c.getKeyword8();
+                                                get_keyword[8] = c.getKeyword9();
+                                                get_keyword[9] = c.getKeyword10();
+                                                get_keyword[10] = c.getKeyword11();
+                                                get_keyword[11] = c.getKeyword12();
+                                                get_keyword[12] = c.getKeyword13();
+                                                get_keyword[13] = c.getKeyword14();
+                                                get_keyword[14] = c.getKeyword15();
+                                                get_keyword[15] = c.getKeyword16();
+                                                get_keyword[16] = c.getKeyword17();
+                                                get_keyword[17] = c.getKeyword18();
+                                                get_keyword[18] = c.getKeyword19();
+                                                get_keyword[19] = c.getKeyword20();
+                                                get_keyword[20] = c.getKeyword21();
+                                                get_keyword[21] = c.getKeyword22();
+                                                get_keyword[22] = c.getKeyword23();
+                                                get_keyword[23] = c.getKeyword24();
+                                                get_keyword[24] = c.getKeyword25();
+                                                get_keyword[25] = c.getKeyword26();
+                                                get_keyword[26] = c.getKeyword27();
+                                                get_keyword[27] = c.getKeyword28();
+                                                get_keyword[28] = c.getKeyword29();
+                                                get_keyword[29] = c.getKeyword30();
+                                                get_keyword[30] = c.getKeyword31();
+                                                get_keyword[31] = c.getKeyword32();
+                                                get_keyword[32] = c.getKeyword33();
+                                                get_keyword[33] = c.getKeyword34();
+                                                get_keyword[34] = c.getKeyword35();
+                                                get_keyword[35] = c.getKeyword36();
+
+
+                                                // keyword 중에서 가장 많이 count된 태그 1, 2 구하기.
+                                                Long Max = get_keyword[0];
+                                                Long secondMax = 0L;
+                                                int counter_max = 0;
+                                                int counter_second = 1;
+                                                for (int i = 1; i < 36; i++) {
+                                                    secondMax = get_keyword[i];
+                                                    if (Max <= secondMax) {
+                                                        secondMax = Max;
+                                                        counter_second = counter_max;
+
+                                                        Max = get_keyword[i];
+                                                        counter_max = i;
+                                                    }
+                                                }
+
+
+                                                // 태그 검색이 되는지 확인용
+                                                Log.d("show_Max_and_secondMax", Max.toString() + ", " + secondMax.toString());
+
+                                                String tag1 = "쓴맛";
+                                                String tag2 = "신맛";
+
+                                                // 태그 1 세팅
+                                                switch (counter_max) {
+                                                    case 0:
+                                                        tag1 = "#쓴맛";
+                                                        break;
+                                                    case 1:
+                                                        tag1 = "#신맛";
+                                                        break;
+                                                    case 2:
+                                                        tag1 = "#짠맛";
+                                                        break;
+                                                    case 3:
+                                                        tag1 = "#단맛";
+                                                        break;
+                                                    case 4:
+                                                        tag1 = "#향미";
+                                                        break;
+                                                    case 5:
+                                                        tag1 = "#바디감";
+                                                        break;
+                                                    case 6:
+                                                        tag1 = "#콜드브루";
+                                                        break;
+                                                    case 7:
+                                                        tag1 = "#메뉴多";
+                                                        break;
+                                                    case 8:
+                                                        tag1 = "#가성비";
+                                                        break;
+                                                    case 9:
+                                                        tag1 = "#양많음";
+                                                        break;
+                                                    case 10:
+                                                        tag1 = "#디저트맛집";
+                                                        break;
+                                                    case 11:
+                                                        tag1 = "#논커피맛집";
+                                                        break;
+                                                    case 12:
+                                                        tag1 = "#인스타";
+                                                        break;
+                                                    case 13:
+                                                        tag1 = "#앤티크";
+                                                        break;
+                                                    case 14:
+                                                        tag1 = "#모던";
+                                                        break;
+                                                    case 15:
+                                                        tag1 = "#캐주얼";
+                                                        break;
+                                                    case 16:
+                                                        tag1 = "#이국적";
+                                                        break;
+                                                    case 17:
+                                                        tag1 = "#일상";
+                                                        break;
+                                                    case 18:
+                                                        tag1 = "#따뜻한";
+                                                        break;
+                                                    case 19:
+                                                        tag1 = "#조용한";
+                                                        break;
+                                                    case 20:
+                                                        tag1 = "#우드론";
+                                                        break;
+                                                    case 21:
+                                                        tag1 = "#채광";
+                                                        break;
+                                                    case 22:
+                                                        tag1 = "#힙한";
+                                                        break;
+                                                    case 23:
+                                                        tag1 = "#귀여운";
+                                                        break;
+                                                    case 24:
+                                                        tag1 = "#친절한";
+                                                        break;
+                                                    case 25:
+                                                        tag1 = "#청결한";
+                                                        break;
+                                                    case 26:
+                                                        tag1 = "#애견";
+                                                        break;
+                                                    case 27:
+                                                        tag1 = "#주차장";
+                                                        break;
+                                                    case 28:
+                                                        tag1 = "#노키즈존";
+                                                        break;
+                                                    case 29:
+                                                        tag1 = "#교통편의";
+                                                        break;
+                                                    case 30:
+                                                        tag1 = "#신속한";
+                                                        break;
+                                                    case 31:
+                                                        tag1 = "#쾌적한";
+                                                        break;
+                                                    case 32:
+                                                        tag1 = "#회의실";
+                                                        break;
+                                                    case 33:
+                                                        tag1 = "#규모大";
+                                                        break;
+                                                    case 34:
+                                                        tag1 = "#규모小";
+                                                        break;
+                                                    case 35:
+                                                        tag1 = "#편한좌석";
+                                                        break;
+
+                                                }
+
+                                                //태그 2 세팅
+                                                switch (counter_second) {
+                                                    case 0:
+                                                        tag2 = "#쓴맛";
+                                                        break;
+                                                    case 1:
+                                                        tag2 = "#신맛";
+                                                        break;
+                                                    case 2:
+                                                        tag2 = "#짠맛";
+                                                        break;
+                                                    case 3:
+                                                        tag2 = "#단맛";
+                                                        break;
+                                                    case 4:
+                                                        tag2 = "#향미";
+                                                        break;
+                                                    case 5:
+                                                        tag2 = "#바디감";
+                                                        break;
+                                                    case 6:
+                                                        tag2 = "#콜드브루";
+                                                        break;
+                                                    case 7:
+                                                        tag2 = "#메뉴多";
+                                                        break;
+                                                    case 8:
+                                                        tag2 = "#가성비";
+                                                        break;
+                                                    case 9:
+                                                        tag2 = "#양많음";
+                                                        break;
+                                                    case 10:
+                                                        tag2 = "#디저트맛집";
+                                                        break;
+                                                    case 11:
+                                                        tag2 = "#논커피맛집";
+                                                        break;
+                                                    case 12:
+                                                        tag2 = "#인스타";
+                                                        break;
+                                                    case 13:
+                                                        tag2 = "#앤티크";
+                                                        break;
+                                                    case 14:
+                                                        tag2 = "#모던";
+                                                        break;
+                                                    case 15:
+                                                        tag2 = "#캐주얼";
+                                                        break;
+                                                    case 16:
+                                                        tag2 = "#이국적";
+                                                        break;
+                                                    case 17:
+                                                        tag2 = "#일상";
+                                                        break;
+                                                    case 18:
+                                                        tag2 = "#따뜻한";
+                                                        break;
+                                                    case 19:
+                                                        tag2 = "#조용한";
+                                                        break;
+                                                    case 20:
+                                                        tag2 = "#우드론";
+                                                        break;
+                                                    case 21:
+                                                        tag2 = "#채광";
+                                                        break;
+                                                    case 22:
+                                                        tag2 = "#힙한";
+                                                        break;
+                                                    case 23:
+                                                        tag2 = "#귀여운";
+                                                        break;
+                                                    case 24:
+                                                        tag2 = "#친절한";
+                                                        break;
+                                                    case 25:
+                                                        tag2 = "#청결한";
+                                                        break;
+                                                    case 26:
+                                                        tag2 = "#애견";
+                                                        break;
+                                                    case 27:
+                                                        tag2 = "#주차장";
+                                                        break;
+                                                    case 28:
+                                                        tag2 = "#노키즈존";
+                                                        break;
+                                                    case 29:
+                                                        tag2 = "#교통편의";
+                                                        break;
+                                                    case 30:
+                                                        tag2 = "#신속한";
+                                                        break;
+                                                    case 31:
+                                                        tag2 = "#쾌적한";
+                                                        break;
+                                                    case 32:
+                                                        tag2 = "#회의실";
+                                                        break;
+                                                    case 33:
+                                                        tag2 = "#규모大";
+                                                        break;
+                                                    case 34:
+                                                        tag2 = "#규모小";
+                                                        break;
+                                                    case 35:
+                                                        tag2 = "#편한좌석";
+                                                        break;
+
+                                                }
+
+
+
                                                 // 찜한 카페 recycler view에 추가하기
-                                                homeFavoriteItems.add(new HomeFavoriteItem(c.getCafeName(), "#가성비", "#마카롱" ,R.drawable.logo_v2));
+                                                homeFavoriteItems.add(new HomeFavoriteItem(c.getCafeName(), tag1, tag2 ,R.drawable.logo_v2));
                                             }
                                         }
                                     }
