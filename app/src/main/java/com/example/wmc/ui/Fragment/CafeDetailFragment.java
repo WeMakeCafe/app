@@ -98,49 +98,21 @@ public class CafeDetailFragment extends Fragment {
     String cafe_name; // Bundle을 통해 받아온 cafe_name을 임시로 저장함
     String create_date;    // 리뷰 등록 시간
     Long get_cafe_num; // cafe_num을 임시로 저장함.
-    Long get_bookmark_num;
+    Long get_bookmark_num; // bookmark_num을 임시로 저장함.
 
-    Long[] get_keyword = new Long[36];
+    Long[] get_keyword = new Long[36]; // 카페 태그 임시 저장
+
+    // 카페에 저장된 리뷰 점수 평균 저장
     int[] get_seat_point = new int[4];
     int[] get_study_point = new int[4];
     int[] get_taste_point = new int[4];
 
+    // 카페 리뷰 점수 총점을 구해 카페 분류(스터디, 맛)
     int get_seat_point_total = 0;
     int get_study_point_total = 0;
     int get_taste_point_total = 0;
 
-    int point_counter = 0;
-
-    int get_seat_point1_total = 0;
-    int get_seat_point2_total = 0;
-    int get_seat_point3_total = 0;
-    int get_seat_point4_total = 0;
-
-    int get_study_point1_total = 0;
-    int get_study_point2_total = 0;
-    int get_study_point3_total = 0;
-    int get_study_point4_total = 0;
-
-    int get_taste_point1_total = 0;
-    int get_taste_point2_total = 0;
-    int get_taste_point3_total = 0;
-    int get_taste_point4_total = 0;
-
-    int get_seat_point1_avg = 0;
-    int get_seat_point2_avg = 0;
-    int get_seat_point3_avg = 0;
-    int get_seat_point4_avg = 0;
-
-    int get_study_point1_avg = 0;
-    int get_study_point2_avg = 0;
-    int get_study_point3_avg = 0;
-    int get_study_point4_avg = 0;
-
-    int get_taste_point1_avg = 0;
-    int get_taste_point2_avg = 0;
-    int get_taste_point3_avg = 0;
-    int get_taste_point4_avg = 0;
-
+    int point_counter = 0; // 리뷰가 몇 번 작성되었는지 count하여 카페 리뷰 점수 평균 구하기
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -209,7 +181,7 @@ public class CafeDetailFragment extends Fragment {
                 for(Cafe c : cafe_list){
                     if(c.getCafeName().equals(cafe_name)){
                         get_cafe_num = c.getCafeNum();
-                        Log.d("check_cafe_num", get_cafe_num.toString());
+                        Log.d("check_cafe_num", get_cafe_num.toString()); // 카페 넘버가 제대로 들어오는지 확인
 
                         moreReview2.setText(c.getCafeName());
                         moreReview3.setText(c.getCafeName());
@@ -502,6 +474,7 @@ public class CafeDetailFragment extends Fragment {
 
                         }
 
+                        // 카페 리뷰 점수
                         get_seat_point[0] = c.getSeatPoint1();
                         get_seat_point[1] = c.getSeatPoint2();
                         get_seat_point[2] = c.getSeatPoint3();
