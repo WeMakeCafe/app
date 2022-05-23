@@ -117,13 +117,13 @@ public class ReviewCafeListFragment extends Fragment {
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String search = searchText.getText().toString();
+                String search = searchText.getText().toString().replaceAll(" ", "");
                 if(search.equals("")){
                     Toast.makeText(getContext().getApplicationContext(), "검색어를 입력해주세요.", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     // 검색어와 관련된 아이템들 출력
-                    Toast.makeText(getContext().getApplicationContext(), searchText.getText().toString() + " 검색됨.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext().getApplicationContext(), search + " 검색됨.", Toast.LENGTH_SHORT).show();
                     imm.hideSoftInputFromWindow(searchButton.getWindowToken(), 0);
 
                     reivewCafeListItems.clear();

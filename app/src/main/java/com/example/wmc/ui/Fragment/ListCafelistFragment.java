@@ -100,7 +100,7 @@ public class ListCafelistFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getContext().getApplicationContext(), "카페 등록으로 이동", Toast.LENGTH_SHORT).show();
-                navController.navigate(R.id.list_cafelist_to_cafe_registration); // 다른 곳으로의 네비게이션은 되는데 카페등록페이지로의 네비게이션만 안됨
+                navController.navigate(R.id.list_cafelist_to_cafe_registration);
             }
         });
 
@@ -110,7 +110,7 @@ public class ListCafelistFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getContext().getApplicationContext(), "카페 등록으로 이동", Toast.LENGTH_SHORT).show();
-                navController.navigate(R.id.list_cafelist_to_cafe_registration);  // 다른 곳으로의 네비게이션은 되는데 카페등록페이지로의 네비게이션만 안됨
+                navController.navigate(R.id.list_cafelist_to_cafe_registration);
             }
         });
 
@@ -121,13 +121,14 @@ public class ListCafelistFragment extends Fragment {
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String search = searchText.getText().toString();
+                String search = searchText.getText().toString().replaceAll(" ", "");
+
                 if(search.equals("")){
                     Toast.makeText(getContext().getApplicationContext(), "검색어를 입력해주세요.", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     // 검색어와 관련된 아이템들 출력
-                    Toast.makeText(getContext().getApplicationContext(), searchText.getText().toString() + " 검색됨.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext().getApplicationContext(), search + " 검색됨.", Toast.LENGTH_SHORT).show();
                     imm.hideSoftInputFromWindow(searchButton.getWindowToken(), 0);
 
                     listCafeListItems.clear();  // 이전에 보였던 리싸이클러뷰 아이템 모두 제거 후, 검색관련 아이템을 띄움

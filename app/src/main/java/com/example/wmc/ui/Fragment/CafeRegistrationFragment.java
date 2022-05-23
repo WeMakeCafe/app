@@ -154,13 +154,16 @@ public class CafeRegistrationFragment extends Fragment {
                 checked_overlap_button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
+                        String overlap_cafeName = cafe_name_input.getText().toString().replaceAll(" ", "");; // 카페 이름 중복확인할 String
+
                         // 데이터베이스에서 카페이름이 있는지 중복검사
-                        if(cafe_name_input.getText().toString().equals("")) {
+                        if(overlap_cafeName.equals("")) {
                             Toast.makeText(getContext().getApplicationContext(), "카페 이름을 입력해주세요!", Toast.LENGTH_LONG).show();
                         }
                         else{
                             for(Cafe c : cafe_list) {
-                                if (c.getCafeName().equals(cafe_name_input.getText().toString())) {
+                                if (c.getCafeName().replaceAll(" ", "").equals(overlap_cafeName)) {
                                     Toast.makeText(getContext().getApplicationContext(), "이미 있는 카페입니다!", Toast.LENGTH_LONG).show();
                                     name_test = false;
                                     break;
