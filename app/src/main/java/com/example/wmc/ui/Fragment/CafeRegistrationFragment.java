@@ -178,7 +178,12 @@ public class CafeRegistrationFragment extends Fragment {
 
                         if (name_test && !cafe_name_input.getText().toString().equals("") && !cafe_address_input.getText().toString().equals("")
                                 && !cafe_openHours_hour_input.getText().toString().equals("") && !cafe_closeHours_hour_input.getText().toString().equals("")
-                                && !tag1.equals("") && !tag2.equals("") && !tag3.equals("")) {
+                                && !tag1.equals("") && !tag2.equals("") && !tag3.equals("")
+                                && (Integer.parseInt(cafe_openHours_hour_input.getText().toString()) >=0) && (Integer.parseInt(cafe_openHours_hour_input.getText().toString()) <= 24)
+                                && (Integer.parseInt(cafe_openHours_minute_input.getText().toString()) >=0) && (Integer.parseInt(cafe_openHours_minute_input.getText().toString()) < 60)
+                                && (Integer.parseInt(cafe_closeHours_hour_input.getText().toString()) >=0) && (Integer.parseInt(cafe_closeHours_hour_input.getText().toString()) <= 24)
+                                && (Integer.parseInt(cafe_closeHours_minute_input.getText().toString()) >=0) && (Integer.parseInt(cafe_closeHours_minute_input.getText().toString()) < 60))
+                        {
                              Map map = new HashMap();
                                 // 이미지, 키워드 추가 코드 작성 할 곳
                              map.put("cafeName", cafe_name_input.getText().toString());
@@ -598,7 +603,7 @@ public class CafeRegistrationFragment extends Fragment {
                             navController.navigate(R.id.cafe_registration_to_cafe_detail, bundle);
                         }
                         else {
-                            Toast.makeText(getContext().getApplicationContext(), "비어 있는 항목이 있습니다!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext().getApplicationContext(), "비어 있는 항목이 있거나 시간입력이 부적절합니다!", Toast.LENGTH_LONG).show();
                         }
                     }
                 });
