@@ -8,14 +8,16 @@ public class ReviewCafeListItem {
     String tag1;
     String tag2;
     int cafeList_cafeImage;
+    boolean check_user_flag = false;
 
-    public ReviewCafeListItem(String cafeList_cafeName, String cafeList_cafeAddress, String openTime, String tag1, String tag2, int cafeList_cafeImage) {
+    public ReviewCafeListItem(String cafeList_cafeName, String cafeList_cafeAddress, String openTime, String tag1, String tag2, int cafeList_cafeImage, boolean check_user_flag) {
         this.cafeList_cafeName = cafeList_cafeName;
         this.cafeList_cafeAddress = cafeList_cafeAddress;
         this.openTime = openTime;
         this.tag1 = tag1;
         this.tag2 = tag2;
         this.cafeList_cafeImage = cafeList_cafeImage;
+        this.check_user_flag = check_user_flag;
     }
 
     public String getCafeList_cafeName() {
@@ -65,4 +67,6 @@ public class ReviewCafeListItem {
     public void setCafeList_cafeImage(int cafeList_cafeImage) {
         this.cafeList_cafeImage = cafeList_cafeImage;
     }
+
+    public boolean getCheck_user_flag(){return check_user_flag;}
 }
