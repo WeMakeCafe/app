@@ -55,6 +55,7 @@ public class ReviewTagFragment extends Fragment {
     Float s11 = null;
     Float s12 = null;
 
+    Boolean review_modify_flag = null;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -95,6 +96,7 @@ public class ReviewTagFragment extends Fragment {
         s11 = getArguments().getFloat("studyPoint3");
         s12 = getArguments().getFloat("studyPoint4");
 
+        review_modify_flag = getArguments().getBoolean("review_flag");
         Log.d("wow2", String.valueOf("tastePoint1"));
 
         ////////////////////////////////////////////////////////////////////////////////////
@@ -322,7 +324,7 @@ public class ReviewTagFragment extends Fragment {
                     bundle.putFloat("tag_review_studyPoint2", s10);
                     bundle.putFloat("tag_review_studyPoint3", s11);
                     bundle.putFloat("tag_review_studyPoint4", s12);
-
+                    bundle.putBoolean("review_modify_flag", review_modify_flag);
                     bundle.putBoolean("reviewTag_check", true);
 
                     navController.navigate(R.id.review_tag_to_review, bundle); // 번들과 함께 전달
