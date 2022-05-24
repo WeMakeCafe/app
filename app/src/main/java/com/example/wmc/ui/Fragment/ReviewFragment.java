@@ -155,6 +155,9 @@ public class ReviewFragment extends Fragment {
             k[i] = (long) 0;
         }
 
+        for(int i = 0 ; i<=35; i++){
+            k2[i] = (long) 0;
+        }
 
         // 카페 검색 창 클릭 시,
         review_search_input.setOnClickListener(new View.OnClickListener() {
@@ -202,42 +205,42 @@ public class ReviewFragment extends Fragment {
                     bundle.putFloat("studyPoint4", rating_light.getRating());
                     bundle.putBoolean("flag", flag);
                     bundle.putLong("reviewNum", reviewNum);
-                    bundle.putLong("k2-1", k[0]);
-                    bundle.putLong("k2-2", k[1]);
-                    bundle.putLong("k2-3", k[2]);
-                    bundle.putLong("k2-4", k[3]);
-                    bundle.putLong("k2-5", k[4]);
-                    bundle.putLong("k2-6", k[5]);
-                    bundle.putLong("k2-7", k[6]);
-                    bundle.putLong("k2-8", k[7]);
-                    bundle.putLong("k2-9", k[8]);
-                    bundle.putLong("k2-10", k[9]);
-                    bundle.putLong("k2-11", k[10]);
-                    bundle.putLong("k2-12", k[11]);
-                    bundle.putLong("k2-13", k[12]);
-                    bundle.putLong("k2-14", k[13]);
-                    bundle.putLong("k2-15", k[14]);
-                    bundle.putLong("k2-16", k[15]);
-                    bundle.putLong("k2-17", k[16]);
-                    bundle.putLong("k2-18", k[17]);
-                    bundle.putLong("k2-19", k[18]);
-                    bundle.putLong("k2-20", k[19]);
-                    bundle.putLong("k2-21", k[20]);
-                    bundle.putLong("k2-22", k[21]);
-                    bundle.putLong("k2-23", k[22]);
-                    bundle.putLong("k2-24", k[23]);
-                    bundle.putLong("k2-25", k[24]);
-                    bundle.putLong("k2-26", k[25]);
-                    bundle.putLong("k2-27", k[26]);
-                    bundle.putLong("k2-28", k[27]);
-                    bundle.putLong("k2-29", k[28]);
-                    bundle.putLong("k2-30", k[29]);
-                    bundle.putLong("k2-31", k[30]);
-                    bundle.putLong("k2-32", k[31]);
-                    bundle.putLong("k2-33", k[32]);
-                    bundle.putLong("k2-34", k[33]);
-                    bundle.putLong("k2-35", k[34]);
-                    bundle.putLong("k2-36", k[35]);
+                    bundle.putLong("k2-1", (long) k2[0]);
+                    bundle.putLong("k2-2", (long) k2[1]);
+                    bundle.putLong("k2-3", (long) k2[2]);
+                    bundle.putLong("k2-4", (long) k2[3]);
+                    bundle.putLong("k2-5", (long) k2[4]);
+                    bundle.putLong("k2-6", (long) k2[5]);
+                    bundle.putLong("k2-7", (long) k[6]);
+                    bundle.putLong("k2-8", (long) k[7]);
+                    bundle.putLong("k2-9", (long) k[8]);
+                    bundle.putLong("k2-10",(long)  k[9]);
+                    bundle.putLong("k2-11",(long)  k[10]);
+                    bundle.putLong("k2-12",(long)  k[11]);
+                    bundle.putLong("k2-13", (long) k[12]);
+                    bundle.putLong("k2-14", (long) k[13]);
+                    bundle.putLong("k2-15", (long) k[14]);
+                    bundle.putLong("k2-16", (long) k[15]);
+                    bundle.putLong("k2-17", (long) k[16]);
+                    bundle.putLong("k2-18", (long) k[17]);
+                    bundle.putLong("k2-19", (long) k[18]);
+                    bundle.putLong("k2-20", (long) k[19]);
+                    bundle.putLong("k2-21", (long) k[20]);
+                    bundle.putLong("k2-22", (long) k[21]);
+                    bundle.putLong("k2-23", (long) k[22]);
+                    bundle.putLong("k2-24", (long) k[23]);
+                    bundle.putLong("k2-25", (long) k[24]);
+                    bundle.putLong("k2-26", (long) k[25]);
+                    bundle.putLong("k2-27", (long) k[26]);
+                    bundle.putLong("k2-28", (long) k[27]);
+                    bundle.putLong("k2-29", (long) k[28]);
+                    bundle.putLong("k2-30", (long) k[29]);
+                    bundle.putLong("k2-31", (long) k[30]);
+                    bundle.putLong("k2-32", (long) k[31]);
+                    bundle.putLong("k2-33", (long) k[32]);
+                    bundle.putLong("k2-34", (long) k[33]);
+                    bundle.putLong("k2-35", (long) k[34]);
+                    bundle.putLong("k2-36", (long) k[35]);
                     bundle.putInt("score1", score1.intValue());
                     bundle.putInt("score2", score2.intValue());
                     bundle.putInt("score3", score3.intValue());
@@ -251,10 +254,19 @@ public class ReviewFragment extends Fragment {
                     bundle.putInt("score11", score11.intValue());
                     bundle.putInt("score12", score12.intValue());
 
+
+                    Log.d("asdf-K2[0]-tag로전달", String.valueOf(k2[0]));
+                    Log.d("asdf-K2[1]-tag로전달", String.valueOf(k2[1]));
+                    Log.d("asdf-K2[2]-tag로전달", String.valueOf(k2[2]));
+                    Log.d("asdf-K2[3]-tag로전달", String.valueOf(k2[3]));
+                    Log.d("asdf-K2[4]-tag로전달", String.valueOf(k2[4]));
+                    Log.d("asdf-K2[5]-tag로전달", String.valueOf(k2[5]));
+
                     navController.navigate(R.id.review_to_review_tag, bundle);
                 }
             }
         });
+
 
         // ReviewTag에서 가져온 태그들 설정 및 카페이름을 기억해두기
         Bundle argBundle = getArguments();
@@ -342,6 +354,13 @@ public class ReviewFragment extends Fragment {
                 k2[35] = argBundle.getLong("k2-36");
 
 
+                Log.d("asdf-K2[0]-tag에서 받음", String.valueOf(k2[0]));
+                Log.d("asdf-K2[1]-tag에서 받음", String.valueOf(k2[1]));
+                Log.d("asdf-K2[2]-tag에서 받음", String.valueOf(k2[2]));
+                Log.d("asdf-K2[3]-tag에서 받음", String.valueOf(k2[3]));
+                Log.d("asdf-K2[4]-tag에서 받음", String.valueOf(k2[4]));
+                Log.d("asdf-K2[5]-tag에서 받음", String.valueOf(k2[5]));
+
                 review_search_input.setTypeface(Typeface.DEFAULT_BOLD);  // 카페이름 Bold처리
                 review_search_input.setGravity(Gravity.CENTER);          // 카페 위치 Center로 변경
                 review_search_input.setText(argBundle.getString("review_cafeName"));
@@ -357,10 +376,6 @@ public class ReviewFragment extends Fragment {
                 mem_num = argBundle2.getLong("memNum");
                 Log.d("qwer1", cafeNum.toString());
                 Log.d("qwer2", mem_num.toString());
-
-                for(int i = 0 ; i<=35; i++){
-                    k2[i] = (long) 0;
-                }
 
                 RequestQueue requestQueue;
                 Cache cache = new DiskBasedCache(getActivity().getCacheDir(), 1024 * 1024); // 1MB cap
@@ -458,6 +473,14 @@ public class ReviewFragment extends Fragment {
                                 k2[33] = r.getKeyword34();
                                 k2[34] = r.getKeyword35();
                                 k2[35] = r.getKeyword36();
+
+                                Log.d("asdf-K2[0]", String.valueOf(k2[0]));
+                                Log.d("asdf-K2[1]", String.valueOf(k2[1]));
+                                Log.d("asdf-K2[2]", String.valueOf(k2[2]));
+                                Log.d("asdf-K2[3]", String.valueOf(k2[3]));
+                                Log.d("asdf-K2[4]", String.valueOf(k2[4]));
+                                Log.d("asdf-K2[5]", String.valueOf(k2[5]));
+
                                 for(int i=0;i<35;i++) {
                                     if(k2[i]==(long)1) {
                                         t1 = i;
@@ -1957,7 +1980,8 @@ public class ReviewFragment extends Fragment {
                                         map2.put("openTime", c.getOpenTime());
                                         map2.put("closeTime", c.getCloseTime());
                                         map2.put("scoreNum", c.getScoreNum());
-                                        Log.d("asdf", String.valueOf(k[0]-k2[0]));
+                                        Log.d("asdf1", String.valueOf(k[0]));
+                                        Log.d("asdf2", String.valueOf(k2[0]));
                                         map2.put("keyword1", c.getKeyword1() + k[0]-k2[0]);
                                         map2.put("keyword2", c.getKeyword2() + k[1]-k2[1]);
                                         map2.put("keyword3", c.getKeyword3() + k[2]-k2[2]);
