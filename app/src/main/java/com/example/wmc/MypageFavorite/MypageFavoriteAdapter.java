@@ -33,11 +33,11 @@ public class MypageFavoriteAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
-            // 기본적으로 header 를 빼고 item 을 구한다.
-            final MypageFavoriteItem item = favorite_items.get(position);
-            MypageFavoriteViewHolder viewHolder = (MypageFavoriteViewHolder) holder;
+        // 기본적으로 header 를 빼고 item 을 구한다.
+        final MypageFavoriteItem item = favorite_items.get(position);
+        MypageFavoriteViewHolder viewHolder = (MypageFavoriteViewHolder) holder;
 
-            viewHolder.favorite_but.setText(item.getCafeName());
+        viewHolder.favorite_but.setText(item.getCafeName());
     }
 
     @Override
