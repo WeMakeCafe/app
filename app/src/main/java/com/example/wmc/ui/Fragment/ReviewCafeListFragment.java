@@ -180,7 +180,8 @@ public class ReviewCafeListFragment extends Fragment {
                                     Toast.makeText(getContext().getApplicationContext(), item.getCafeList_cafeName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
 
                                     Bundle bundle = new Bundle();
-                                    bundle.putString("cafeName", item.getCafeList_cafeName());
+                                    bundle.putBoolean("reviewCafeList_flag", true);
+                                    bundle.putString("reviewCafeList_flag_cafeName", item.getCafeList_cafeName());
                                     navController.navigate(R.id.review_cafelist_to_review, bundle);
                                 }
                             });

@@ -168,6 +168,15 @@ public class ReviewFragment extends Fragment {
             }
         });
 
+        // ReviewCafeList에서 선택한 카페 이름 가져오기
+        Bundle reviewCafeList_Bundle = getArguments();
+        if(reviewCafeList_Bundle != null) {
+            if (reviewCafeList_Bundle.getBoolean("reviewCafeList_flag")) {
+                review_search_input.setText(reviewCafeList_Bundle.getString("reviewCafeList_flag_cafeName"));
+                review_search_input.setTypeface(Typeface.DEFAULT_BOLD);  // 카페이름 Bold처리
+                review_search_input.setGravity(Gravity.CENTER);          // 카페 위치 Center로 변경
+            }
+        }
 
         // 태그 추가 버튼 클릭 시,
         addTag_cafe_button.setOnClickListener(new View.OnClickListener() {
