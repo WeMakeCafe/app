@@ -120,6 +120,10 @@ public class ReviewFragment extends Fragment {
 
     Boolean flag = false;
 
+    Boolean floating_flag = false;
+    Boolean reviewModify_flag = false;
+    Boolean reviewCafeList_flag = false;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -159,6 +163,7 @@ public class ReviewFragment extends Fragment {
             k2[i] = (long) 0;
         }
 
+
         // 카페 검색 창 클릭 시,
         review_search_input.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -174,8 +179,11 @@ public class ReviewFragment extends Fragment {
                 review_search_input.setText(reviewCafeList_Bundle.getString("reviewCafeList_flag_cafeName"));
                 review_search_input.setTypeface(Typeface.DEFAULT_BOLD);  // 카페이름 Bold처리
                 review_search_input.setGravity(Gravity.CENTER);          // 카페 위치 Center로 변경
+
+                reviewCafeList_flag = reviewCafeList_Bundle.getBoolean("reviewCafeList_flag");
             }
         }
+
 
         // 태그 추가 버튼 클릭 시,
         addTag_cafe_button.setOnClickListener(new View.OnClickListener() {
@@ -189,80 +197,120 @@ public class ReviewFragment extends Fragment {
 
                 // 리뷰를 작성할 카페를 선택한 경우
                 else{
-                    Bundle bundle = new Bundle();
-                    bundle.putString("cafeName", review_search_input.getText().toString());
-                    bundle.putFloat("tastePoint1", rating_sour.getRating());
-                    bundle.putFloat("tastePoint2", rating_acerbity.getRating());
-                    bundle.putFloat("tastePoint3", rating_dessert.getRating());
-                    bundle.putFloat("tastePoint4", rating_beverage.getRating());
-                    bundle.putFloat("seatPoint1", rating_twoseat.getRating());
-                    bundle.putFloat("seatPoint2", rating_fourseat.getRating());
-                    bundle.putFloat("seatPoint3", rating_manyseat.getRating());
-                    bundle.putFloat("seatPoint4", rating_toilet.getRating());
-                    bundle.putFloat("studyPoint1", rating_wifi.getRating());
-                    bundle.putFloat("studyPoint2", rating_plug.getRating());
-                    bundle.putFloat("studyPoint3", rating_quiet.getRating());
-                    bundle.putFloat("studyPoint4", rating_light.getRating());
-                    bundle.putBoolean("flag", flag);
-                    bundle.putLong("reviewNum", reviewNum);
-                    bundle.putLong("k2-1", (long) k2[0]);
-                    bundle.putLong("k2-2", (long) k2[1]);
-                    bundle.putLong("k2-3", (long) k2[2]);
-                    bundle.putLong("k2-4", (long) k2[3]);
-                    bundle.putLong("k2-5", (long) k2[4]);
-                    bundle.putLong("k2-6", (long) k2[5]);
-                    bundle.putLong("k2-7", (long) k[6]);
-                    bundle.putLong("k2-8", (long) k[7]);
-                    bundle.putLong("k2-9", (long) k[8]);
-                    bundle.putLong("k2-10",(long)  k[9]);
-                    bundle.putLong("k2-11",(long)  k[10]);
-                    bundle.putLong("k2-12",(long)  k[11]);
-                    bundle.putLong("k2-13", (long) k[12]);
-                    bundle.putLong("k2-14", (long) k[13]);
-                    bundle.putLong("k2-15", (long) k[14]);
-                    bundle.putLong("k2-16", (long) k[15]);
-                    bundle.putLong("k2-17", (long) k[16]);
-                    bundle.putLong("k2-18", (long) k[17]);
-                    bundle.putLong("k2-19", (long) k[18]);
-                    bundle.putLong("k2-20", (long) k[19]);
-                    bundle.putLong("k2-21", (long) k[20]);
-                    bundle.putLong("k2-22", (long) k[21]);
-                    bundle.putLong("k2-23", (long) k[22]);
-                    bundle.putLong("k2-24", (long) k[23]);
-                    bundle.putLong("k2-25", (long) k[24]);
-                    bundle.putLong("k2-26", (long) k[25]);
-                    bundle.putLong("k2-27", (long) k[26]);
-                    bundle.putLong("k2-28", (long) k[27]);
-                    bundle.putLong("k2-29", (long) k[28]);
-                    bundle.putLong("k2-30", (long) k[29]);
-                    bundle.putLong("k2-31", (long) k[30]);
-                    bundle.putLong("k2-32", (long) k[31]);
-                    bundle.putLong("k2-33", (long) k[32]);
-                    bundle.putLong("k2-34", (long) k[33]);
-                    bundle.putLong("k2-35", (long) k[34]);
-                    bundle.putLong("k2-36", (long) k[35]);
-                    bundle.putInt("score1", score1.intValue());
-                    bundle.putInt("score2", score2.intValue());
-                    bundle.putInt("score3", score3.intValue());
-                    bundle.putInt("score4", score4.intValue());
-                    bundle.putInt("score5", score5.intValue());
-                    bundle.putInt("score6", score6.intValue());
-                    bundle.putInt("score7", score7.intValue());
-                    bundle.putInt("score8", score8.intValue());
-                    bundle.putInt("score9", score9.intValue());
-                    bundle.putInt("score10", score10.intValue());
-                    bundle.putInt("score11", score11.intValue());
-                    bundle.putInt("score12", score12.intValue());
 
+                    if(floating_flag){
+                        Bundle bundle = new Bundle();
+                        bundle.putString("floating_cafeName", review_search_input.getText().toString());
+                        bundle.putBoolean("floating_flag", floating_flag);
 
-                    Log.d("asdf-K2[0]-tag로전달", String.valueOf(k2[0]));
-                    Log.d("asdf-K2[1]-tag로전달", String.valueOf(k2[1]));
-                    Log.d("asdf-K2[2]-tag로전달", String.valueOf(k2[2]));
-                    Log.d("asdf-K2[3]-tag로전달", String.valueOf(k2[3]));
-                    Log.d("asdf-K2[4]-tag로전달", String.valueOf(k2[4]));
-                    Log.d("asdf-K2[5]-tag로전달", String.valueOf(k2[5]));
+                        bundle.putFloat("tastePoint1", rating_sour.getRating());
+                        bundle.putFloat("tastePoint2", rating_acerbity.getRating());
+                        bundle.putFloat("tastePoint3", rating_dessert.getRating());
+                        bundle.putFloat("tastePoint4", rating_beverage.getRating());
+                        bundle.putFloat("seatPoint1", rating_twoseat.getRating());
+                        bundle.putFloat("seatPoint2", rating_fourseat.getRating());
+                        bundle.putFloat("seatPoint3", rating_manyseat.getRating());
+                        bundle.putFloat("seatPoint4", rating_toilet.getRating());
+                        bundle.putFloat("studyPoint1", rating_wifi.getRating());
+                        bundle.putFloat("studyPoint2", rating_plug.getRating());
+                        bundle.putFloat("studyPoint3", rating_quiet.getRating());
+                        bundle.putFloat("studyPoint4", rating_light.getRating());
 
-                    navController.navigate(R.id.review_to_review_tag, bundle);
+                        navController.navigate(R.id.review_to_review_tag, bundle);
+                    }
+
+                    else if(reviewCafeList_flag){
+                        Bundle bundle = new Bundle();
+                        bundle.putString("reviewCafeList_cafeName", review_search_input.getText().toString());
+                        bundle.putBoolean("reviewCafeList_flag", reviewCafeList_flag);
+
+                        bundle.putFloat("tastePoint1", rating_sour.getRating());
+                        bundle.putFloat("tastePoint2", rating_acerbity.getRating());
+                        bundle.putFloat("tastePoint3", rating_dessert.getRating());
+                        bundle.putFloat("tastePoint4", rating_beverage.getRating());
+                        bundle.putFloat("seatPoint1", rating_twoseat.getRating());
+                        bundle.putFloat("seatPoint2", rating_fourseat.getRating());
+                        bundle.putFloat("seatPoint3", rating_manyseat.getRating());
+                        bundle.putFloat("seatPoint4", rating_toilet.getRating());
+                        bundle.putFloat("studyPoint1", rating_wifi.getRating());
+                        bundle.putFloat("studyPoint2", rating_plug.getRating());
+                        bundle.putFloat("studyPoint3", rating_quiet.getRating());
+                        bundle.putFloat("studyPoint4", rating_light.getRating());
+
+                        navController.navigate(R.id.review_to_review_tag, bundle);
+                    }
+
+                    else if(reviewModify_flag){
+                        Bundle bundle = new Bundle();
+
+                        bundle.putBoolean("reviewModify_flag", reviewModify_flag);
+
+                        bundle.putString("cafeName", review_search_input.getText().toString());
+                        bundle.putFloat("tastePoint1", rating_sour.getRating());
+                        bundle.putFloat("tastePoint2", rating_acerbity.getRating());
+                        bundle.putFloat("tastePoint3", rating_dessert.getRating());
+                        bundle.putFloat("tastePoint4", rating_beverage.getRating());
+                        bundle.putFloat("seatPoint1", rating_twoseat.getRating());
+                        bundle.putFloat("seatPoint2", rating_fourseat.getRating());
+                        bundle.putFloat("seatPoint3", rating_manyseat.getRating());
+                        bundle.putFloat("seatPoint4", rating_toilet.getRating());
+                        bundle.putFloat("studyPoint1", rating_wifi.getRating());
+                        bundle.putFloat("studyPoint2", rating_plug.getRating());
+                        bundle.putFloat("studyPoint3", rating_quiet.getRating());
+                        bundle.putFloat("studyPoint4", rating_light.getRating());
+                        bundle.putBoolean("flag", flag);
+                        bundle.putLong("reviewNum", reviewNum);
+                        bundle.putLong("k2-1", (long) k2[0]);
+                        bundle.putLong("k2-2", (long) k2[1]);
+                        bundle.putLong("k2-3", (long) k2[2]);
+                        bundle.putLong("k2-4", (long) k2[3]);
+                        bundle.putLong("k2-5", (long) k2[4]);
+                        bundle.putLong("k2-6", (long) k2[5]);
+                        bundle.putLong("k2-7", (long) k[6]);
+                        bundle.putLong("k2-8", (long) k[7]);
+                        bundle.putLong("k2-9", (long) k[8]);
+                        bundle.putLong("k2-10",(long)  k[9]);
+                        bundle.putLong("k2-11",(long)  k[10]);
+                        bundle.putLong("k2-12",(long)  k[11]);
+                        bundle.putLong("k2-13", (long) k[12]);
+                        bundle.putLong("k2-14", (long) k[13]);
+                        bundle.putLong("k2-15", (long) k[14]);
+                        bundle.putLong("k2-16", (long) k[15]);
+                        bundle.putLong("k2-17", (long) k[16]);
+                        bundle.putLong("k2-18", (long) k[17]);
+                        bundle.putLong("k2-19", (long) k[18]);
+                        bundle.putLong("k2-20", (long) k[19]);
+                        bundle.putLong("k2-21", (long) k[20]);
+                        bundle.putLong("k2-22", (long) k[21]);
+                        bundle.putLong("k2-23", (long) k[22]);
+                        bundle.putLong("k2-24", (long) k[23]);
+                        bundle.putLong("k2-25", (long) k[24]);
+                        bundle.putLong("k2-26", (long) k[25]);
+                        bundle.putLong("k2-27", (long) k[26]);
+                        bundle.putLong("k2-28", (long) k[27]);
+                        bundle.putLong("k2-29", (long) k[28]);
+                        bundle.putLong("k2-30", (long) k[29]);
+                        bundle.putLong("k2-31", (long) k[30]);
+                        bundle.putLong("k2-32", (long) k[31]);
+                        bundle.putLong("k2-33", (long) k[32]);
+                        bundle.putLong("k2-34", (long) k[33]);
+                        bundle.putLong("k2-35", (long) k[34]);
+                        bundle.putLong("k2-36", (long) k[35]);
+                        bundle.putInt("score1", score1.intValue());
+                        bundle.putInt("score2", score2.intValue());
+                        bundle.putInt("score3", score3.intValue());
+                        bundle.putInt("score4", score4.intValue());
+                        bundle.putInt("score5", score5.intValue());
+                        bundle.putInt("score6", score6.intValue());
+                        bundle.putInt("score7", score7.intValue());
+                        bundle.putInt("score8", score8.intValue());
+                        bundle.putInt("score9", score9.intValue());
+                        bundle.putInt("score10", score10.intValue());
+                        bundle.putInt("score11", score11.intValue());
+                        bundle.putInt("score12", score12.intValue());
+
+                        navController.navigate(R.id.review_to_review_tag, bundle);
+                    }
                 }
             }
         });
@@ -372,6 +420,8 @@ public class ReviewFragment extends Fragment {
         if( argBundle2 != null ) {
             if (argBundle2.getBoolean("reviewModify_flag")) {
                 flag = true;
+                reviewModify_flag = argBundle2.getBoolean("reviewModify_flag");
+
                 cafeNum = argBundle2.getLong("cafeNum");
                 mem_num = argBundle2.getLong("memNum");
                 Log.d("qwer1", cafeNum.toString());
@@ -898,8 +948,10 @@ public class ReviewFragment extends Fragment {
         // 카페 디테일에서 리뷰 작성  플로팅버튼 클릭 시, 또는 ReviewCafeList에서 선택한 카페 이름 가져옴
         Bundle cafeNameBundle = getArguments();
         if(cafeNameBundle != null) {
-            if(cafeNameBundle.getBoolean("floating_button")){
-                review_search_input.setText(cafeNameBundle.getString("cafeName"));
+            if(cafeNameBundle.getBoolean("floating_flag")){
+                floating_flag = cafeNameBundle.getBoolean("floating_flag");
+
+                review_search_input.setText(cafeNameBundle.getString("floating_cafeName"));
                 review_search_input.setTypeface(Typeface.DEFAULT_BOLD);  // 카페이름 Bold처리
                 review_search_input.setGravity(Gravity.CENTER);          // 카페 위치 Center로 변경
 
