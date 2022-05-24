@@ -446,9 +446,10 @@ public class ReviewCafeListFragment extends Fragment {
                                         }
                                     }
 
-                                    // Adapter 추가
+                                    // Recycler view
                                     RecyclerView reviewCafeListRecyclerView = root.findViewById(R.id.review_cafeListRecyclerView);
 
+                                    // Adapter 추가
                                     ReviewCafeListAdapter reviewCafeListAdapter = new ReviewCafeListAdapter(reivewCafeListItems);
                                     reviewCafeListRecyclerView.setAdapter(reviewCafeListAdapter);
 
