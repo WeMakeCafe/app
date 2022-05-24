@@ -123,6 +123,7 @@ public class ReviewFragment extends Fragment {
     ArrayList<Review> review_list;
 
     Boolean flag = false;
+    Boolean tag_flag = false;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -219,9 +220,6 @@ public class ReviewFragment extends Fragment {
                 setTag1.setText(argBundle.getString("key1"));
                 setTag2.setText(argBundle.getString("key2"));
                 setTag3.setText(argBundle.getString("key3"));
-                stag1 = argBundle.getString("key1");
-                stag2 = argBundle.getString("key2");
-                stag3 = argBundle.getString("key3");
 
                 rating_sour.setRating(argBundle.getFloat("tag_review_tastePoint1"));
                 rating_acerbity.setRating(argBundle.getFloat("tag_review_tastePoint2"));
@@ -248,6 +246,8 @@ public class ReviewFragment extends Fragment {
                 s11 = argBundle.getFloat("tag_review_studyPoint3");
                 s12 = argBundle.getFloat("tag_review_studyPoint4");
 
+                flag = argBundle.getBoolean("review_modify_flag");
+
                 review_search_input.setTypeface(Typeface.DEFAULT_BOLD);  // 카페이름 Bold처리
                 review_search_input.setGravity(Gravity.CENTER);          // 카페 위치 Center로 변경
                 review_search_input.setText(argBundle.getString("review_cafeName"));
@@ -258,6 +258,7 @@ public class ReviewFragment extends Fragment {
         Bundle argBundle2 = getArguments();
         if( argBundle2 != null ) {
             if (argBundle2.getBoolean("reviewModify_flag")) {
+                flag = true;
                 cafeNum = argBundle2.getLong("cafeNum");
                 mem_num = argBundle2.getLong("memNum");
                 Log.d("qwer1", cafeNum.toString());
@@ -295,7 +296,7 @@ public class ReviewFragment extends Fragment {
 
                         for(Review r : review_list){
                             if((r.getCafeNum()==cafeNum) && (r.getMemNum() == mem_num)) {
-                                flag = true;
+
                                 reviewNum = r.getReviewNum();
                                 comment = r.getReviewText();
                                 likeCount = r.getLikeCount();
@@ -1829,7 +1830,7 @@ public class ReviewFragment extends Fragment {
                                 map.put("keyword36", k[35]);
 
 
-                                String url2 = getResources().getString(R.string.url) + "review/"+ reviewNum.toString();;
+                                String url2 = getResources().getString(R.string.url) + "review/"+ reviewNum.toString();
                                 JSONObject jsonObject = new JSONObject(map);
                                 JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.PUT, url2, jsonObject,
                                         new Response.Listener<JSONObject>() {
