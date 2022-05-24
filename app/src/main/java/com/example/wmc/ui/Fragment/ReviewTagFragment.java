@@ -54,7 +54,21 @@ public class ReviewTagFragment extends Fragment {
     Float s10 = null;
     Float s11 = null;
     Float s12 = null;
-
+    Boolean flag;
+    Long reviewNum;
+    Integer score1; // 본래의 리뷰에 있던 점수 보관용
+    Integer score2;
+    Integer score3;
+    Integer score4;
+    Integer score5;
+    Integer score6;
+    Integer score7;
+    Integer score8;
+    Integer score9;
+    Integer score10;
+    Integer score11;
+    Integer score12;
+    Long[] k2 = new Long[36];
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -76,6 +90,8 @@ public class ReviewTagFragment extends Fragment {
         Button tag3_delete_button = root.findViewById(R.id.tag3_delete_button); // 아래 태그 버튼 3개의 X버튼
         Button addTag_button3 = root.findViewById(R.id.addTag_button3); // 태그 선택 후, 추가하기 버튼
 
+        for(int i = 0; i < k2.length; i++)
+            k2[i] = (long) 0;
 
         // ReviewFragment에서 Bundle로 태그를 추가할 카페이름 및 점수 받아오기
         review_cafe_name = getArguments().getString("cafeName");
@@ -94,8 +110,65 @@ public class ReviewTagFragment extends Fragment {
         s10 = getArguments().getFloat("studyPoint2");
         s11 = getArguments().getFloat("studyPoint3");
         s12 = getArguments().getFloat("studyPoint4");
+        flag = getArguments().getBoolean("flag");
+        reviewNum = getArguments().getLong("reviewNum");
 
-        Log.d("wow2", String.valueOf("tastePoint1"));
+        score1 = getArguments().getInt("score1");
+        score2 = getArguments().getInt("score2");
+        score3 = getArguments().getInt("score3");
+        score4 = getArguments().getInt("score4");
+        score5 = getArguments().getInt("score5");
+        score6 = getArguments().getInt("score6");
+        score7 = getArguments().getInt("score7");
+        score8 = getArguments().getInt("score8");
+        score9 = getArguments().getInt("score9");
+        score10 = getArguments().getInt("score10");
+        score11 = getArguments().getInt("score11");
+        score12 = getArguments().getInt("score12");
+
+        k2[0] = getArguments().getLong("k2-1");
+        k2[1] = getArguments().getLong("k2-2");
+        k2[2] = getArguments().getLong("k2-3");
+        k2[3] = getArguments().getLong("k2-4");
+        k2[4] = getArguments().getLong("k2-5");
+        k2[5] = getArguments().getLong("k2-6");
+        k2[6] = getArguments().getLong("k2-7");
+        k2[7] = getArguments().getLong("k2-8");
+        k2[8] = getArguments().getLong("k2-9");
+        k2[9] = getArguments().getLong("k2-10");
+        k2[10] = getArguments().getLong("k2-11");
+        k2[11] = getArguments().getLong("k2-12");
+        k2[12] = getArguments().getLong("k2-13");
+        k2[13] = getArguments().getLong("k2-14");
+        k2[14] = getArguments().getLong("k2-15");
+        k2[15] = getArguments().getLong("k2-16");
+        k2[16] = getArguments().getLong("k2-17");
+        k2[17] = getArguments().getLong("k2-18");
+        k2[18] = getArguments().getLong("k2-19");
+        k2[19] = getArguments().getLong("k2-20");
+        k2[20] = getArguments().getLong("k2-21");
+        k2[21] = getArguments().getLong("k2-22");
+        k2[22] = getArguments().getLong("k2-23");
+        k2[23] = getArguments().getLong("k2-24");
+        k2[24] = getArguments().getLong("k2-25");
+        k2[25] = getArguments().getLong("k2-26");
+        k2[26] = getArguments().getLong("k2-27");
+        k2[27] = getArguments().getLong("k2-28");
+        k2[28] = getArguments().getLong("k2-29");
+        k2[29] = getArguments().getLong("k2-30");
+        k2[30] = getArguments().getLong("k2-31");
+        k2[31] = getArguments().getLong("k2-32");
+        k2[32] = getArguments().getLong("k2-33");
+        k2[33] = getArguments().getLong("k2-34");
+        k2[34] = getArguments().getLong("k2-35");
+        k2[35] = getArguments().getLong("k2-36");
+
+        Log.d("asdf-K2[0]-review에서 받음", String.valueOf(k2[0]));
+        Log.d("asdf-K2[1]-review에서 받음", String.valueOf(k2[1]));
+        Log.d("asdf-K2[2]-review에서 받음", String.valueOf(k2[2]));
+        Log.d("asdf-K2[3]-review에서 받음", String.valueOf(k2[3]));
+        Log.d("asdf-K2[4]-review에서 받음", String.valueOf(k2[4]));
+        Log.d("asdf-K2[5]-review에서 받음", String.valueOf(k2[5]));
 
         ////////////////////////////////////////////////////////////////////////////////////
         // 아래 3개 삭제 버튼 클릭 이벤트 작성
@@ -322,9 +395,57 @@ public class ReviewTagFragment extends Fragment {
                     bundle.putFloat("tag_review_studyPoint2", s10);
                     bundle.putFloat("tag_review_studyPoint3", s11);
                     bundle.putFloat("tag_review_studyPoint4", s12);
+                    bundle.putBoolean("flag", flag);
+                    bundle.putLong("reviewNum", reviewNum);
+                    bundle.putInt("score1", score1);
+                    bundle.putInt("score2", score2);
+                    bundle.putInt("score3", score3);
+                    bundle.putInt("score4", score4);
+                    bundle.putInt("score5", score5);
+                    bundle.putInt("score6", score6);
+                    bundle.putInt("score7", score7);
+                    bundle.putInt("score8", score8);
+                    bundle.putInt("score9", score9);
+                    bundle.putInt("score10", score10);
+                    bundle.putInt("score11", score11);
+                    bundle.putInt("score12", score12);
 
-                    bundle.putBoolean("reviewTag_check", true);
-
+                    bundle.putLong("k2-1", (long) k2[0]);
+                    bundle.putLong("k2-2", (long) k2[1]);
+                    bundle.putLong("k2-3", (long) k2[2]);
+                    bundle.putLong("k2-4", (long) k2[3]);
+                    bundle.putLong("k2-5", (long) k2[4]);
+                    bundle.putLong("k2-6", (long) k2[5]);
+                    bundle.putLong("k2-7", (long) k2[6]);
+                    bundle.putLong("k2-8", (long) k2[7]);
+                    bundle.putLong("k2-9", (long) k2[8]);
+                    bundle.putLong("k2-10", (long) k2[9]);
+                    bundle.putLong("k2-11", (long) k2[10]);
+                    bundle.putLong("k2-12", (long) k2[11]);
+                    bundle.putLong("k2-13", (long) k2[12]);
+                    bundle.putLong("k2-14", (long) k2[13]);
+                    bundle.putLong("k2-15", (long) k2[14]);
+                    bundle.putLong("k2-16", (long) k2[15]);
+                    bundle.putLong("k2-17", (long) k2[16]);
+                    bundle.putLong("k2-18", (long) k2[17]);
+                    bundle.putLong("k2-19", (long) k2[18]);
+                    bundle.putLong("k2-20", (long) k2[19]);
+                    bundle.putLong("k2-21", (long) k2[20]);
+                    bundle.putLong("k2-22", (long) k2[21]);
+                    bundle.putLong("k2-23", (long) k2[22]);
+                    bundle.putLong("k2-24", (long) k2[23]);
+                    bundle.putLong("k2-25", (long) k2[24]);
+                    bundle.putLong("k2-26", (long) k2[25]);
+                    bundle.putLong("k2-27", (long) k2[26]);
+                    bundle.putLong("k2-28", (long) k2[27]);
+                    bundle.putLong("k2-29", (long) k2[28]);
+                    bundle.putLong("k2-30", (long) k2[29]);
+                    bundle.putLong("k2-31", (long) k2[30]);
+                    bundle.putLong("k2-32", (long) k2[31]);
+                    bundle.putLong("k2-33", (long) k2[32]);
+                    bundle.putLong("k2-34", (long) k2[33]);
+                    bundle.putLong("k2-35", (long) k2[34]);
+                    bundle.putLong("k2-36", (long) k2[35]);
                     navController.navigate(R.id.review_tag_to_review, bundle); // 번들과 함께 전달
                 }
             }

@@ -19,8 +19,8 @@ public class ReviewCafeListViewHolder extends RecyclerView.ViewHolder{
     TextView cafeList_hashTag1;
     TextView cafeList_hashTag2;
     ImageView cafeList_cafeImage;
-
     CheckBox favorite_button;
+    boolean check_user_flag;
 
     public static int REVIEWCAFELIST_VIEW_TYPE = R.layout.item_list_cafelist;
 

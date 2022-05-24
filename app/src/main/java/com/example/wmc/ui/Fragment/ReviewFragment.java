@@ -65,9 +65,6 @@ public class ReviewFragment extends Fragment {
     Button location_button;
     Button finish_button;
 
-    String stag1;
-    String stag2;
-    String stag3;
     String comment ="";
     Long cafeNum;
     Long reviewNum;
@@ -115,7 +112,6 @@ public class ReviewFragment extends Fragment {
 
     Long[] k = new Long[36];
     Long[] k2 = new Long[36];
-    Long[] k3 = new Long[36];
     int t1, t2, t3;
     Long mem_num = MainActivity.mem_num;
 
@@ -159,6 +155,9 @@ public class ReviewFragment extends Fragment {
             k[i] = (long) 0;
         }
 
+        for(int i = 0 ; i<=35; i++){
+            k2[i] = (long) 0;
+        }
 
         // 카페 검색 창 클릭 시,
         review_search_input.setOnClickListener(new View.OnClickListener() {
@@ -192,7 +191,6 @@ public class ReviewFragment extends Fragment {
                 else{
                     Bundle bundle = new Bundle();
                     bundle.putString("cafeName", review_search_input.getText().toString());
-
                     bundle.putFloat("tastePoint1", rating_sour.getRating());
                     bundle.putFloat("tastePoint2", rating_acerbity.getRating());
                     bundle.putFloat("tastePoint3", rating_dessert.getRating());
@@ -205,23 +203,78 @@ public class ReviewFragment extends Fragment {
                     bundle.putFloat("studyPoint2", rating_plug.getRating());
                     bundle.putFloat("studyPoint3", rating_quiet.getRating());
                     bundle.putFloat("studyPoint4", rating_light.getRating());
+                    bundle.putBoolean("flag", flag);
+                    bundle.putLong("reviewNum", reviewNum);
+                    bundle.putLong("k2-1", (long) k2[0]);
+                    bundle.putLong("k2-2", (long) k2[1]);
+                    bundle.putLong("k2-3", (long) k2[2]);
+                    bundle.putLong("k2-4", (long) k2[3]);
+                    bundle.putLong("k2-5", (long) k2[4]);
+                    bundle.putLong("k2-6", (long) k2[5]);
+                    bundle.putLong("k2-7", (long) k[6]);
+                    bundle.putLong("k2-8", (long) k[7]);
+                    bundle.putLong("k2-9", (long) k[8]);
+                    bundle.putLong("k2-10",(long)  k[9]);
+                    bundle.putLong("k2-11",(long)  k[10]);
+                    bundle.putLong("k2-12",(long)  k[11]);
+                    bundle.putLong("k2-13", (long) k[12]);
+                    bundle.putLong("k2-14", (long) k[13]);
+                    bundle.putLong("k2-15", (long) k[14]);
+                    bundle.putLong("k2-16", (long) k[15]);
+                    bundle.putLong("k2-17", (long) k[16]);
+                    bundle.putLong("k2-18", (long) k[17]);
+                    bundle.putLong("k2-19", (long) k[18]);
+                    bundle.putLong("k2-20", (long) k[19]);
+                    bundle.putLong("k2-21", (long) k[20]);
+                    bundle.putLong("k2-22", (long) k[21]);
+                    bundle.putLong("k2-23", (long) k[22]);
+                    bundle.putLong("k2-24", (long) k[23]);
+                    bundle.putLong("k2-25", (long) k[24]);
+                    bundle.putLong("k2-26", (long) k[25]);
+                    bundle.putLong("k2-27", (long) k[26]);
+                    bundle.putLong("k2-28", (long) k[27]);
+                    bundle.putLong("k2-29", (long) k[28]);
+                    bundle.putLong("k2-30", (long) k[29]);
+                    bundle.putLong("k2-31", (long) k[30]);
+                    bundle.putLong("k2-32", (long) k[31]);
+                    bundle.putLong("k2-33", (long) k[32]);
+                    bundle.putLong("k2-34", (long) k[33]);
+                    bundle.putLong("k2-35", (long) k[34]);
+                    bundle.putLong("k2-36", (long) k[35]);
+                    bundle.putInt("score1", score1.intValue());
+                    bundle.putInt("score2", score2.intValue());
+                    bundle.putInt("score3", score3.intValue());
+                    bundle.putInt("score4", score4.intValue());
+                    bundle.putInt("score5", score5.intValue());
+                    bundle.putInt("score6", score6.intValue());
+                    bundle.putInt("score7", score7.intValue());
+                    bundle.putInt("score8", score8.intValue());
+                    bundle.putInt("score9", score9.intValue());
+                    bundle.putInt("score10", score10.intValue());
+                    bundle.putInt("score11", score11.intValue());
+                    bundle.putInt("score12", score12.intValue());
+
+
+                    Log.d("asdf-K2[0]-tag로전달", String.valueOf(k2[0]));
+                    Log.d("asdf-K2[1]-tag로전달", String.valueOf(k2[1]));
+                    Log.d("asdf-K2[2]-tag로전달", String.valueOf(k2[2]));
+                    Log.d("asdf-K2[3]-tag로전달", String.valueOf(k2[3]));
+                    Log.d("asdf-K2[4]-tag로전달", String.valueOf(k2[4]));
+                    Log.d("asdf-K2[5]-tag로전달", String.valueOf(k2[5]));
 
                     navController.navigate(R.id.review_to_review_tag, bundle);
                 }
             }
         });
 
+
         // ReviewTag에서 가져온 태그들 설정 및 카페이름을 기억해두기
         Bundle argBundle = getArguments();
         if( argBundle != null ) {
-            if (argBundle.getBoolean("reviewTag_check")) {
-
+            if (argBundle.getBoolean("flag")) {
                 setTag1.setText(argBundle.getString("key1"));
                 setTag2.setText(argBundle.getString("key2"));
                 setTag3.setText(argBundle.getString("key3"));
-                stag1 = argBundle.getString("key1");
-                stag2 = argBundle.getString("key2");
-                stag3 = argBundle.getString("key3");
 
                 rating_sour.setRating(argBundle.getFloat("tag_review_tastePoint1"));
                 rating_acerbity.setRating(argBundle.getFloat("tag_review_tastePoint2"));
@@ -247,6 +300,66 @@ public class ReviewFragment extends Fragment {
                 s10 = argBundle.getFloat("tag_review_studyPoint2");
                 s11 = argBundle.getFloat("tag_review_studyPoint3");
                 s12 = argBundle.getFloat("tag_review_studyPoint4");
+                flag = argBundle.getBoolean("flag");
+                reviewNum = argBundle.getLong("reviewNum");
+
+                score1 = Integer.valueOf(argBundle.getInt("score1"));
+                score2 = Integer.valueOf(argBundle.getInt("score2"));
+                score3 = Integer.valueOf(argBundle.getInt("score3"));
+                score4 = Integer.valueOf(argBundle.getInt("score4"));
+                score5 = Integer.valueOf(argBundle.getInt("score5"));
+                score6 = Integer.valueOf(argBundle.getInt("score6"));
+                score7 = Integer.valueOf(argBundle.getInt("score7"));
+                score8 = Integer.valueOf(argBundle.getInt("score8"));
+                score9 = Integer.valueOf(argBundle.getInt("score9"));
+                score10 = Integer.valueOf(argBundle.getInt("score10"));
+                score11 = Integer.valueOf(argBundle.getInt("score11"));
+                score12 = Integer.valueOf(argBundle.getInt("score12"));
+
+                k2[0] = argBundle.getLong("k2-1");
+                k2[1] = argBundle.getLong("k2-2");
+                k2[2] = argBundle.getLong("k2-3");
+                k2[3] = argBundle.getLong("k2-4");
+                k2[4] = argBundle.getLong("k2-5");
+                k2[5] = argBundle.getLong("k2-6");
+                k2[6] = argBundle.getLong("k2-7");
+                k2[7] = argBundle.getLong("k2-8");
+                k2[8] = argBundle.getLong("k2-9");
+                k2[9] = argBundle.getLong("k2-10");
+                k2[10] = argBundle.getLong("k2-11");
+                k2[11] = argBundle.getLong("k2-12");
+                k2[12] = argBundle.getLong("k2-13");
+                k2[13] = argBundle.getLong("k2-14");
+                k2[14] = argBundle.getLong("k2-15");
+                k2[15] = argBundle.getLong("k2-16");
+                k2[16] = argBundle.getLong("k2-17");
+                k2[17] = argBundle.getLong("k2-18");
+                k2[18] = argBundle.getLong("k2-19");
+                k2[19] = argBundle.getLong("k2-20");
+                k2[20] = argBundle.getLong("k2-21");
+                k2[21] = argBundle.getLong("k2-22");
+                k2[22] = argBundle.getLong("k2-23");
+                k2[23] = argBundle.getLong("k2-24");
+                k2[24] = argBundle.getLong("k2-25");
+                k2[25] = argBundle.getLong("k2-26");
+                k2[26] = argBundle.getLong("k2-27");
+                k2[27] = argBundle.getLong("k2-28");
+                k2[28] = argBundle.getLong("k2-29");
+                k2[29] = argBundle.getLong("k2-30");
+                k2[30] = argBundle.getLong("k2-31");
+                k2[31] = argBundle.getLong("k2-32");
+                k2[32] = argBundle.getLong("k2-33");
+                k2[33] = argBundle.getLong("k2-34");
+                k2[34] = argBundle.getLong("k2-35");
+                k2[35] = argBundle.getLong("k2-36");
+
+
+                Log.d("asdf-K2[0]-tag에서 받음", String.valueOf(k2[0]));
+                Log.d("asdf-K2[1]-tag에서 받음", String.valueOf(k2[1]));
+                Log.d("asdf-K2[2]-tag에서 받음", String.valueOf(k2[2]));
+                Log.d("asdf-K2[3]-tag에서 받음", String.valueOf(k2[3]));
+                Log.d("asdf-K2[4]-tag에서 받음", String.valueOf(k2[4]));
+                Log.d("asdf-K2[5]-tag에서 받음", String.valueOf(k2[5]));
 
                 review_search_input.setTypeface(Typeface.DEFAULT_BOLD);  // 카페이름 Bold처리
                 review_search_input.setGravity(Gravity.CENTER);          // 카페 위치 Center로 변경
@@ -258,14 +371,11 @@ public class ReviewFragment extends Fragment {
         Bundle argBundle2 = getArguments();
         if( argBundle2 != null ) {
             if (argBundle2.getBoolean("reviewModify_flag")) {
+                flag = true;
                 cafeNum = argBundle2.getLong("cafeNum");
                 mem_num = argBundle2.getLong("memNum");
                 Log.d("qwer1", cafeNum.toString());
                 Log.d("qwer2", mem_num.toString());
-
-                for(int i = 0 ; i<=35; i++){
-                    k2[i] = (long) 0;
-                }
 
                 RequestQueue requestQueue;
                 Cache cache = new DiskBasedCache(getActivity().getCacheDir(), 1024 * 1024); // 1MB cap
@@ -295,8 +405,9 @@ public class ReviewFragment extends Fragment {
 
                         for(Review r : review_list){
                             if((r.getCafeNum()==cafeNum) && (r.getMemNum() == mem_num)) {
-                                flag = true;
+
                                 reviewNum = r.getReviewNum();
+                                Log.d("reviewNum", reviewNum.toString());
                                 comment = r.getReviewText();
                                 likeCount = r.getLikeCount();
                                 //이미지 코드
@@ -362,6 +473,14 @@ public class ReviewFragment extends Fragment {
                                 k2[33] = r.getKeyword34();
                                 k2[34] = r.getKeyword35();
                                 k2[35] = r.getKeyword36();
+
+                                Log.d("asdf-K2[0]", String.valueOf(k2[0]));
+                                Log.d("asdf-K2[1]", String.valueOf(k2[1]));
+                                Log.d("asdf-K2[2]", String.valueOf(k2[2]));
+                                Log.d("asdf-K2[3]", String.valueOf(k2[3]));
+                                Log.d("asdf-K2[4]", String.valueOf(k2[4]));
+                                Log.d("asdf-K2[5]", String.valueOf(k2[5]));
+
                                 for(int i=0;i<35;i++) {
                                     if(k2[i]==(long)1) {
                                         t1 = i;
@@ -1828,8 +1947,7 @@ public class ReviewFragment extends Fragment {
                                 map.put("keyword35", k[34]);
                                 map.put("keyword36", k[35]);
 
-
-                                String url2 = getResources().getString(R.string.url) + "review"+ reviewNum.toString();;
+                                String url2 = getResources().getString(R.string.url) + "review/"+ reviewNum.toString();
                                 JSONObject jsonObject = new JSONObject(map);
                                 JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.PUT, url2, jsonObject,
                                         new Response.Listener<JSONObject>() {
@@ -1862,6 +1980,8 @@ public class ReviewFragment extends Fragment {
                                         map2.put("openTime", c.getOpenTime());
                                         map2.put("closeTime", c.getCloseTime());
                                         map2.put("scoreNum", c.getScoreNum());
+                                        Log.d("asdf1", String.valueOf(k[0]));
+                                        Log.d("asdf2", String.valueOf(k2[0]));
                                         map2.put("keyword1", c.getKeyword1() + k[0]-k2[0]);
                                         map2.put("keyword2", c.getKeyword2() + k[1]-k2[1]);
                                         map2.put("keyword3", c.getKeyword3() + k[2]-k2[2]);

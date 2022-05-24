@@ -20,9 +20,7 @@ public class ReviewCafeListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     }
     private ReviewCafeListAdapter.OnItemClickEventListener_ReviewCafeList mItemClickListener_ReviewCafeList;    // 인터페이스 객체 생성
 
-    public ReviewCafeListAdapter(ArrayList<ReviewCafeListItem> list){
-        reviewCafeList_items = list;
-    }
+    public ReviewCafeListAdapter(ArrayList<ReviewCafeListItem> list){ reviewCafeList_items = list; }
 
 
     @NonNull
@@ -48,6 +46,14 @@ public class ReviewCafeListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         viewHolder.cafeList_hashTag1.setText(item.getTag1());
         viewHolder.cafeList_hashTag2.setText(item.getTag2());
         viewHolder.cafeList_cafeImage.setImageResource(item.getCafeList_cafeImage());
+        viewHolder.check_user_flag = item.getCheck_user_flag();
+
+        if(viewHolder.check_user_flag){
+            viewHolder.favorite_button.setChecked(true);
+        }
+        else{
+            viewHolder.favorite_button.setChecked(false);
+        }
 
         // 즐겨찾기 버튼 클릭 시,
         viewHolder.favorite_button.setOnClickListener(new View.OnClickListener() {
