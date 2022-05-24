@@ -188,7 +188,7 @@ public class ReviewFragment extends Fragment {
         // ReviewTag에서 가져온 태그들 설정 및 카페이름을 기억해두기
         Bundle argBundle = getArguments();
         if( argBundle != null ) {
-            if (argBundle.getString("key1") != null) {
+            if (argBundle.getBoolean("reviewTag_check")) {
 
                 setTag1.setText(argBundle.getString("key1"));
                 setTag2.setText(argBundle.getString("key2"));
@@ -231,7 +231,7 @@ public class ReviewFragment extends Fragment {
         // 리뷰 리싸이클러뷰 수정버튼에서 정보 복원
         Bundle argBundle2 = getArguments();
         if( argBundle2 != null ) {
-            if (String.valueOf(argBundle2.getLong("cafeNum")) != null) {
+            if (argBundle2.getBoolean("reviewModify_flag")) {
                 cafeNum = argBundle2.getLong("cafeNum");
                 mem_num = argBundle2.getLong("memNum");
                 Log.d("qwer1", cafeNum.toString());
@@ -733,13 +733,32 @@ public class ReviewFragment extends Fragment {
         });
 
 
-        // 카페 디테일에서 리뷰 작성 플로팅 버튼 클릭 시, 또는 ReviewCafeList에서 선택한 카페 이름 가져옴
+        // 카페 디테일에서 리뷰 작성  플로팅버튼 클릭 시, 또는 ReviewCafeList에서 선택한 카페 이름 가져옴
         Bundle cafeNameBundle = getArguments();
         if(cafeNameBundle != null) {
-            if(cafeNameBundle.getString("cafeName") != null ){
+            if(cafeNameBundle.getBoolean("floating_button")){
                 review_search_input.setText(cafeNameBundle.getString("cafeName"));
                 review_search_input.setTypeface(Typeface.DEFAULT_BOLD);  // 카페이름 Bold처리
                 review_search_input.setGravity(Gravity.CENTER);          // 카페 위치 Center로 변경
+
+                setTag1.setText("");
+                setTag2.setText("");
+                setTag3.setText("");
+
+                rating_sour.setRating(0);
+                rating_acerbity.setRating(0);
+                rating_dessert.setRating(0);
+                rating_beverage.setRating(0);
+
+                rating_twoseat.setRating(0);
+                rating_fourseat.setRating(0);
+                rating_manyseat.setRating(0);
+                rating_toilet.setRating(0);
+
+                rating_wifi.setRating(0);
+                rating_plug.setRating(0);
+                rating_quiet.setRating(0);
+                rating_light.setRating(0);
             }
         }
 
