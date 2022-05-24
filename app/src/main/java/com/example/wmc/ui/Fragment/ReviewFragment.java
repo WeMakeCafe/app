@@ -68,6 +68,7 @@ public class ReviewFragment extends Fragment {
     String stag1;
     String stag2;
     String stag3;
+    String comment;
     Long cafeNum;
 
     RatingBar rating_sour;
@@ -97,9 +98,14 @@ public class ReviewFragment extends Fragment {
     Float s12;
 
     Long[] k = new Long[36];
+    Long[] k2 = new Long[36];
+    int t1, t2, t3;
     Long mem_num = MainActivity.mem_num;
 
     ArrayList<Cafe> cafe_list;
+    ArrayList<Review> review_list;
+
+    Boolean flag = false;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -221,6 +227,501 @@ public class ReviewFragment extends Fragment {
                 review_search_input.setText(argBundle.getString("review_cafeName"));
             }
         }
+
+        // 리뷰 리싸이클러뷰 수정버튼에서 정보 복원
+        Bundle argBundle2 = getArguments();
+        if( argBundle2 != null ) {
+            if (String.valueOf(argBundle2.getLong("cafeNum")) != null) {
+                cafeNum = argBundle2.getLong("cafeNum");
+                mem_num = argBundle2.getLong("memNum");
+                Log.d("qwer", cafeNum.toString());
+                Log.d("qwer", mem_num.toString());
+                for(int i = 0 ; i<=35; i++){
+                    k2[i] = (long) 0;
+                }
+
+                RequestQueue requestQueue;
+                Cache cache = new DiskBasedCache(getActivity().getCacheDir(), 1024 * 1024); // 1MB cap
+                Network network = new BasicNetwork(new HurlStack());
+                requestQueue = new RequestQueue(cache, network);
+                requestQueue.start();
+                String url = getResources().getString(R.string.url) + "review";
+
+                StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // 한글깨짐 해결 코드
+                        String changeString = new String();
+                        try {
+                            changeString = new String(response.getBytes("8859_1"), "utf-8");
+                        } catch (UnsupportedEncodingException e) {
+                            e.printStackTrace();
+                        }
+                        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                        Type listType = new TypeToken<ArrayList<Review>>() {
+                        }.getType();
+
+                        review_list = gson.fromJson(changeString, listType);
+
+                        // cafe 테이블의 튜플이 제대로 오는지 확인 (테스트 할 때만 만들어두고 해당 기능 다 개발 시 제거하는게 좋음)
+                        Log.d("test", String.valueOf(review_list.size()));
+
+                        for(Review r : review_list){
+                            if((r.getCafeNum()==cafeNum) && (r.getMemNum() == mem_num)) {
+                                flag = true;
+                                comment = r.getReviewText();
+                                //이미지 코드
+                                rating_sour.setRating(r.getTastePoint1());
+                                rating_acerbity.setRating(r.getTastePoint2());
+                                rating_dessert.setRating(r.getTastePoint3());
+                                rating_beverage.setRating(r.getTastePoint4());
+                                rating_twoseat.setRating(r.getSeatPoint1());
+                                rating_fourseat.setRating(r.getSeatPoint2());
+                                rating_manyseat.setRating(r.getSeatPoint3());
+                                rating_toilet.setRating(r.getSeatPoint4());
+                                rating_wifi.setRating(r.getStudyPoint1());
+                                rating_plug.setRating(r.getStudyPoint2());
+                                rating_quiet.setRating(r.getStudyPoint3());
+                                rating_light.setRating(r.getStudyPoint4());
+                                k2[0] = r.getKeyword1();
+                                k2[1] = r.getKeyword2();
+                                k2[2] = r.getKeyword3();
+                                k2[3] = r.getKeyword4();
+                                k2[4] = r.getKeyword5();
+                                k2[5] = r.getKeyword6();
+                                k2[6] = r.getKeyword7();
+                                k2[7] = r.getKeyword8();
+                                k2[8] = r.getKeyword9();
+                                k2[9] = r.getKeyword10();
+                                k2[10] = r.getKeyword11();
+                                k2[11] = r.getKeyword12();
+                                k2[12] = r.getKeyword13();
+                                k2[13] = r.getKeyword14();
+                                k2[14] = r.getKeyword15();
+                                k2[15] = r.getKeyword16();
+                                k2[16] = r.getKeyword17();
+                                k2[17] = r.getKeyword18();
+                                k2[18] = r.getKeyword19();
+                                k2[19] = r.getKeyword20();
+                                k2[20] = r.getKeyword21();
+                                k2[21] = r.getKeyword22();
+                                k2[22] = r.getKeyword23();
+                                k2[23] = r.getKeyword24();
+                                k2[24] = r.getKeyword25();
+                                k2[25] = r.getKeyword26();
+                                k2[26] = r.getKeyword27();
+                                k2[27] = r.getKeyword28();
+                                k2[28] = r.getKeyword29();
+                                k2[29] = r.getKeyword30();
+                                k2[30] = r.getKeyword31();
+                                k2[31] = r.getKeyword32();
+                                k2[32] = r.getKeyword33();
+                                k2[33] = r.getKeyword34();
+                                k2[34] = r.getKeyword35();
+                                k2[35] = r.getKeyword36();
+                                for(int i=0;i<35;i++) {
+                                    if(k2[i]==(long)1) {
+                                        t1 = i;
+                                        break;
+                                    }
+                                }
+                                for(int i=t1+1;i<35;i++) {
+                                    if(k2[i]==(long)1) {
+                                        t2 = i;
+                                        break;
+                                    }
+                                }
+                                for(int i=t2+1;i<35;i++) {
+                                    if(k2[i]==(long)1) {
+                                        t3 = i;
+                                        break;
+                                    }
+                                }
+                                switch (t1) {
+                                    case (0):
+                                        setTag1.setText("#쓴맛");
+                                        break;
+                                    case (1):
+                                        setTag1.setText("#신맛");
+                                        break;
+                                    case (2):
+                                        setTag1.setText("#짠맛");
+                                        break;
+                                    case (3):
+                                        setTag1.setText("#단맛");
+                                        break;
+                                    case (4):
+                                        setTag1.setText("#향미");
+                                        break;
+                                    case (5):
+                                        setTag1.setText("#바디감");
+                                        break;
+                                    case (6):
+                                        setTag1.setText("#콜드브루");
+                                        break;
+                                    case (7):
+                                        setTag1.setText("#메뉴多");
+                                        break;
+                                    case (8):
+                                        setTag1.setText("#가성비");
+                                        break;
+                                    case (9):
+                                        setTag1.setText("#양많음");
+                                        break;
+                                    case (10):
+                                        setTag1.setText("#디저트맛집");
+                                        break;
+                                    case (11):
+                                        setTag1.setText("#논커피맛집");
+                                        break;
+                                    case (12):
+                                        setTag1.setText("#인스타");
+                                        break;
+                                    case (13):
+                                        setTag1.setText("#앤티크");
+                                        break;
+                                    case (14):
+                                        setTag1.setText("#모던");
+                                        break;
+                                    case (15):
+                                        setTag1.setText("#캐주얼");
+                                        break;
+                                    case (16):
+                                        setTag1.setText("#이국적");
+                                        break;
+                                    case (17):
+                                        setTag1.setText("#일상");
+                                        break;
+                                    case (18):
+                                        setTag1.setText("#따뜻한");
+                                        break;
+                                    case (19):
+                                        setTag1.setText("#조용한");
+                                        break;
+                                    case (20):
+                                        setTag1.setText("#우드톤");
+                                        break;
+                                    case (21):
+                                        setTag1.setText("#채광");
+                                        break;
+                                    case (22):
+                                        setTag1.setText("#힙한");
+                                        break;
+                                    case (23):
+                                        setTag1.setText("#귀여운");
+                                        break;
+                                    case (24):
+                                        setTag1.setText("#친절한");
+                                        break;
+                                    case (25):
+                                        setTag1.setText("#청결한");
+                                        break;
+                                    case (26):
+                                        setTag1.setText("#애견");
+                                        break;
+                                    case (27):
+                                        setTag1.setText("#주차장");
+                                        break;
+                                    case (28):
+                                        setTag1.setText("#노키즈존");
+                                        break;
+                                    case (29):
+                                        setTag1.setText("#교통편의");
+                                        break;
+                                    case (30):
+                                        setTag1.setText("#신속한");
+                                        break;
+                                    case (31):
+                                        setTag1.setText("#쾌적한");
+                                        break;
+                                    case (32):
+                                        setTag1.setText("#회의실");
+                                        break;
+                                    case (33):
+                                        setTag1.setText("#규모大");
+                                        break;
+                                    case (34):
+                                        setTag1.setText("#규모小");
+                                        break;
+                                    case (35):
+                                        setTag1.setText("#편한좌석");
+                                        break;
+                                }
+                                switch (t2) {
+                                    case (0):
+                                        setTag2.setText("#쓴맛");
+                                        break;
+                                    case (1):
+                                        setTag2.setText("#신맛");
+                                        break;
+                                    case (2):
+                                        setTag2.setText("#짠맛");
+                                        break;
+                                    case (3):
+                                        setTag2.setText("#단맛");
+                                        break;
+                                    case (4):
+                                        setTag2.setText("#향미");
+                                        break;
+                                    case (5):
+                                        setTag2.setText("#바디감");
+                                        break;
+                                    case (6):
+                                        setTag2.setText("#콜드브루");
+                                        break;
+                                    case (7):
+                                        setTag2.setText("#메뉴多");
+                                        break;
+                                    case (8):
+                                        setTag2.setText("#가성비");
+                                        break;
+                                    case (9):
+                                        setTag2.setText("#양많음");
+                                        break;
+                                    case (10):
+                                        setTag2.setText("#디저트맛집");
+                                        break;
+                                    case (11):
+                                        setTag2.setText("#논커피맛집");
+                                        break;
+                                    case (12):
+                                        setTag2.setText("#인스타");
+                                        break;
+                                    case (13):
+                                        setTag2.setText("#앤티크");
+                                        break;
+                                    case (14):
+                                        setTag2.setText("#모던");
+                                        break;
+                                    case (15):
+                                        setTag2.setText("#캐주얼");
+                                        break;
+                                    case (16):
+                                        setTag2.setText("#이국적");
+                                        break;
+                                    case (17):
+                                        setTag2.setText("#일상");
+                                        break;
+                                    case (18):
+                                        setTag2.setText("#따뜻한");
+                                        break;
+                                    case (19):
+                                        setTag2.setText("#조용한");
+                                        break;
+                                    case (20):
+                                        setTag2.setText("#우드톤");
+                                        break;
+                                    case (21):
+                                        setTag2.setText("#채광");
+                                        break;
+                                    case (22):
+                                        setTag2.setText("#힙한");
+                                        break;
+                                    case (23):
+                                        setTag2.setText("#귀여운");
+                                        break;
+                                    case (24):
+                                        setTag2.setText("#친절한");
+                                        break;
+                                    case (25):
+                                        setTag2.setText("#청결한");
+                                        break;
+                                    case (26):
+                                        setTag2.setText("#애견");
+                                        break;
+                                    case (27):
+                                        setTag2.setText("#주차장");
+                                        break;
+                                    case (28):
+                                        setTag2.setText("#노키즈존");
+                                        break;
+                                    case (29):
+                                        setTag2.setText("#교통편의");
+                                        break;
+                                    case (30):
+                                        setTag2.setText("#신속한");
+                                        break;
+                                    case (31):
+                                        setTag2.setText("#쾌적한");
+                                        break;
+                                    case (32):
+                                        setTag2.setText("#회의실");
+                                        break;
+                                    case (33):
+                                        setTag2.setText("#규모大");
+                                        break;
+                                    case (34):
+                                        setTag2.setText("#규모小");
+                                        break;
+                                    case (35):
+                                        setTag2.setText("#편한좌석");
+                                        break;
+                                }
+                                switch (t3) {
+                                    case (0):
+                                        setTag3.setText("#쓴맛");
+                                        break;
+                                    case (1):
+                                        setTag3.setText("#신맛");
+                                        break;
+                                    case (2):
+                                        setTag3.setText("#짠맛");
+                                        break;
+                                    case (3):
+                                        setTag3.setText("#단맛");
+                                        break;
+                                    case (4):
+                                        setTag3.setText("#향미");
+                                        break;
+                                    case (5):
+                                        setTag3.setText("#바디감");
+                                        break;
+                                    case (6):
+                                        setTag3.setText("#콜드브루");
+                                        break;
+                                    case (7):
+                                        setTag3.setText("#메뉴多");
+                                        break;
+                                    case (8):
+                                        setTag3.setText("#가성비");
+                                        break;
+                                    case (9):
+                                        setTag3.setText("#양많음");
+                                        break;
+                                    case (10):
+                                        setTag3.setText("#디저트맛집");
+                                        break;
+                                    case (11):
+                                        setTag3.setText("#논커피맛집");
+                                        break;
+                                    case (12):
+                                        setTag3.setText("#인스타");
+                                        break;
+                                    case (13):
+                                        setTag3.setText("#앤티크");
+                                        break;
+                                    case (14):
+                                        setTag3.setText("#모던");
+                                        break;
+                                    case (15):
+                                        setTag3.setText("#캐주얼");
+                                        break;
+                                    case (16):
+                                        setTag3.setText("#이국적");
+                                        break;
+                                    case (17):
+                                        setTag3.setText("#일상");
+                                        break;
+                                    case (18):
+                                        setTag3.setText("#따뜻한");
+                                        break;
+                                    case (19):
+                                        setTag3.setText("#조용한");
+                                        break;
+                                    case (20):
+                                        setTag3.setText("#우드톤");
+                                        break;
+                                    case (21):
+                                        setTag3.setText("#채광");
+                                        break;
+                                    case (22):
+                                        setTag3.setText("#힙한");
+                                        break;
+                                    case (23):
+                                        setTag3.setText("#귀여운");
+                                        break;
+                                    case (24):
+                                        setTag3.setText("#친절한");
+                                        break;
+                                    case (25):
+                                        setTag3.setText("#청결한");
+                                        break;
+                                    case (26):
+                                        setTag3.setText("#애견");
+                                        break;
+                                    case (27):
+                                        setTag3.setText("#주차장");
+                                        break;
+                                    case (28):
+                                        setTag3.setText("#노키즈존");
+                                        break;
+                                    case (29):
+                                        setTag3.setText("#교통편의");
+                                        break;
+                                    case (30):
+                                        setTag3.setText("#신속한");
+                                        break;
+                                    case (31):
+                                        setTag3.setText("#쾌적한");
+                                        break;
+                                    case (32):
+                                        setTag3.setText("#회의실");
+                                        break;
+                                    case (33):
+                                        setTag3.setText("#규모大");
+                                        break;
+                                    case (34):
+                                        setTag3.setText("#규모小");
+                                        break;
+                                    case (35):
+                                        setTag3.setText("#편한좌석");
+                                        break;
+                                }
+
+                                String url = getResources().getString(R.string.url) + "cafe";
+
+                                StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+                                    @Override
+                                    public void onResponse(String response) {
+                                        // 한글깨짐 해결 코드
+                                        String changeString = new String();
+                                        try {
+                                            changeString = new String(response.getBytes("8859_1"), "utf-8");
+                                        } catch (UnsupportedEncodingException e) {
+                                            e.printStackTrace();
+                                        }
+                                        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                                        Type listType = new TypeToken<ArrayList<Cafe>>() {
+                                        }.getType();
+
+                                        cafe_list = gson.fromJson(changeString, listType);
+
+
+                                        for(Cafe c : cafe_list){
+                                            if(c.getCafeNum()==cafeNum) {
+                                                review_search_input.setTypeface(Typeface.DEFAULT_BOLD);  // 카페이름 Bold처리
+                                                review_search_input.setGravity(Gravity.CENTER);          // 카페 위치 Center로 변경
+                                                review_search_input.setText(c.getCafeName());
+                                            }
+                                        }
+
+
+                                    }
+                                }, new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        // 에러가 뜬다면 왜 에러가 떴는지 확인하는 코드
+                                        Log.e("test_error", error.toString());
+                                    }
+                                });
+                                requestQueue.add(stringRequest);
+
+                            }
+                        }
+
+
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // 에러가 뜬다면 왜 에러가 떴는지 확인하는 코드
+                        Log.e("test_error", error.toString());
+                    }
+                });
+                requestQueue.add(stringRequest);
+            }
+        }
+
 
         // 위치인증 버튼 클릭 시,
         location_button.setOnClickListener(new View.OnClickListener() {

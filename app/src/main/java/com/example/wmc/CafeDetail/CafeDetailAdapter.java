@@ -124,7 +124,10 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                     public void onClick(View v) {
                         Toast.makeText(v.getContext(), "리뷰 수정 버튼 클릭", Toast.LENGTH_SHORT).show();
                         navController = Navigation.findNavController(v);
-                        navController.navigate(R.id.cafe_detail_to_review);
+                        Bundle bundle = new Bundle();
+                        bundle.putLong("cafeNum", item.getGet_cafe_num());
+                        bundle.putLong("memNum", item.getMem_num());
+                        navController.navigate(R.id.cafe_detail_to_review, bundle);
                     }
                 });
 

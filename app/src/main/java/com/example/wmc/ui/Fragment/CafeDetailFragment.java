@@ -666,11 +666,11 @@ public class CafeDetailFragment extends Fragment {
                                                 // 1. 어플 사용자가 해당 카페에 대한 리뷰를 작성한 경우, 리사이클러뷰 가장 처음에 나오도록 설정
                                                 if (r.getMemNum().equals(mem_num) && p.getMemNum().equals(mem_num)) {
                                                     cafeDetailReviewItem.add( 0, new CafeDetailItem(p.getNickName(), p.getGrade().toString(),
-                                                            r.getReviewText(), create_date,R.drawable.logo, R.drawable.logo_v2, r.getLikeCount().toString(), true));
+                                                            r.getReviewText(), create_date,R.drawable.logo, R.drawable.logo_v2, r.getLikeCount().toString(), true, mem_num, get_cafe_num));
                                                 } // 2. 리뷰 작성자들의 닉네임, 회원 등급을 포함한 리뷰 Item 작성
                                                 else if (r.getMemNum().equals(p.getMemNum())) {
                                                     cafeDetailReviewItem.add(new CafeDetailItem(p.getNickName(), p.getGrade().toString(),
-                                                            r.getReviewText(), create_date, R.drawable.logo, R.drawable.logo_v2, r.getLikeCount().toString(), false));
+                                                            r.getReviewText(), create_date, R.drawable.logo, R.drawable.logo_v2, r.getLikeCount().toString(), false, mem_num, get_cafe_num));
                                                 }
                                         }
                                     }

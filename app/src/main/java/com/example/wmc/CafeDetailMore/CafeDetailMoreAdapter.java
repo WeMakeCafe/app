@@ -92,6 +92,7 @@ public class CafeDetailMoreAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(v.getContext(), "리뷰 수정 버튼 클릭", Toast.LENGTH_SHORT).show();
+
                     navController = Navigation.findNavController(v);
                     navController.navigate(R.id.cafe_detail_more_to_review);
                 }
