@@ -68,10 +68,10 @@ public class ReviewFragment extends Fragment {
     String stag1;
     String stag2;
     String stag3;
-    String comment;
+    String comment ="";
     Long cafeNum;
     Long reviewNum;
-    Integer likeCount;
+    Integer likeCount = 0;
 
     Integer score1; // 본래의 리뷰에 있던 점수 보관용
     Integer score2;
@@ -863,7 +863,7 @@ public class ReviewFragment extends Fragment {
                             bundle.putLong("cafeNum", cafeNum);
                             bundle.putLong("memNum", mem_num);
                             bundle.putString("comment", comment);
-                            bundle.putInt("likeCount", likeCount); // likecount는 integer형임
+                            bundle.putInt("likeCount", likeCount.intValue()); // likecount는 integer형임
                             bundle.putBoolean("flag", flag);
                             //이미지
                             navController.navigate(R.id.review_to_review_comment, bundle);
