@@ -50,6 +50,8 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     private ArrayList<CafeDetailItem> review_items;
     CafeDetailFragment cafeDetailFragment;
 
+    int clicked_good = 0;
+
     private static NavController navController;
 
     ArrayList<Review> review_list;
@@ -151,23 +153,28 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 viewHolder.good_button_image.setVisibility(View.INVISIBLE);
                 viewHolder.good_button.setVisibility(View.VISIBLE);
 
-//                // 리뷰에서 좋아요 버튼 클릭 시,
-//                viewHolder.good_button.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        boolean checked = ((CheckBox) v).isChecked();    // 좋아요가 됐는지 확인
-//
-//                        // 자신이 쓴 글일 경우 좋아요 버튼 클릭 불가로 변경
-//                        if(checked) {
-//                            // 좋아요 추가
-//                            Toast.makeText(v.getContext().getApplicationContext(), "좋아요", Toast.LENGTH_SHORT).show();
-//                        }
-//                        else {
-//                            // 좋아요 취소
-//                            Toast.makeText(v.getContext().getApplicationContext(), "좋아요 취소", Toast.LENGTH_SHORT).show();
-//                        }
-//                    }
-//                });
+                viewHolder.good_button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        boolean checked = ((CheckBox) v).isChecked();    // 좋아요가 됐는지 확인
+
+                        // 자신이 쓴 글일 경우 좋아요 버튼 클릭 불가로 변경
+                        if(checked) {
+                            // 좋아요 추가
+                            Toast.makeText(v.getContext().getApplicationContext(), "좋아요", Toast.LENGTH_SHORT).show();
+                            clicked_good = 1;
+                            int basic_good_count = Integer.parseInt(viewHolder.good_count_textView.getText().toString());
+                            viewHolder.good_count_textView.setText(String.valueOf(basic_good_count + clicked_good));
+                        }
+                        else {
+                            // 좋아요 취소
+                            Toast.makeText(v.getContext().getApplicationContext(), "좋아요 취소", Toast.LENGTH_SHORT).show();
+                            clicked_good = -1;
+                            int basic_good_count = Integer.parseInt(viewHolder.good_count_textView.getText().toString());
+                            viewHolder.good_count_textView.setText(String.valueOf(basic_good_count + clicked_good));
+                        }
+                    }
+                });
             }
         }
     }
