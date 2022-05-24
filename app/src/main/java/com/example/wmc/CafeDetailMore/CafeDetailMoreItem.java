@@ -11,10 +11,11 @@ public class CafeDetailMoreItem {
     int reviewImage2;
     int reviewImage3;
     String good_count_textView;
-
+    Long mem_num;
+    Long get_cafe_num;
     boolean check_user_flag;
 
-    public CafeDetailMoreItem(String reviewNickName, String level_and_location, String review_comment, String reviewMore_writeTime, int reviewProfile_image, int reviewImage1, int reviewImage2, int reviewImage3, String good_count_textView, boolean check_user_flag) {
+    public CafeDetailMoreItem(String reviewNickName, String level_and_location, String review_comment, String reviewMore_writeTime, int reviewProfile_image, int reviewImage1, int reviewImage2, int reviewImage3, String good_count_textView, boolean check_user_flag, Long get_cafe_num, Long mem_num) {
         this.reviewNickName = reviewNickName;
         this.level_and_location = level_and_location;
         this.review_comment = review_comment;
@@ -24,8 +25,9 @@ public class CafeDetailMoreItem {
         this.reviewImage2 = reviewImage2;
         this.reviewImage3 = reviewImage3;
         this.good_count_textView = good_count_textView;
-
         this.check_user_flag = check_user_flag;
+        this.get_cafe_num = get_cafe_num;
+        this.mem_num = mem_num;
     }
 
     public String getReviewNickName() {
@@ -107,5 +109,8 @@ public class CafeDetailMoreItem {
     public void setCheck_user_flag(boolean check_user_flag) {
         this.check_user_flag = check_user_flag;
     }
+    public Long getGet_cafe_num() {return get_cafe_num;}
+
+    public Long getMem_num() {return mem_num;}
 
 }

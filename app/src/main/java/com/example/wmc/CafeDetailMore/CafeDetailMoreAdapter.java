@@ -1,6 +1,7 @@
 package com.example.wmc.CafeDetailMore;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -94,7 +95,10 @@ public class CafeDetailMoreAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                     Toast.makeText(v.getContext(), "리뷰 수정 버튼 클릭", Toast.LENGTH_SHORT).show();
 
                     navController = Navigation.findNavController(v);
-                    navController.navigate(R.id.cafe_detail_more_to_review);
+                    Bundle bundle = new Bundle();
+                    bundle.putLong("cafeNum", item.getGet_cafe_num());
+                    bundle.putLong("memNum", item.getMem_num());
+                    navController.navigate(R.id.cafe_detail_more_to_review, bundle);
                 }
             });
 

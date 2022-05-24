@@ -234,8 +234,8 @@ public class ReviewFragment extends Fragment {
             if (String.valueOf(argBundle2.getLong("cafeNum")) != null) {
                 cafeNum = argBundle2.getLong("cafeNum");
                 mem_num = argBundle2.getLong("memNum");
-                Log.d("qwer", cafeNum.toString());
-                Log.d("qwer", mem_num.toString());
+                Log.d("qwer1", cafeNum.toString());
+                Log.d("qwer2", mem_num.toString());
                 for(int i = 0 ; i<=35; i++){
                     k2[i] = (long) 0;
                 }
@@ -1356,7 +1356,7 @@ public class ReviewFragment extends Fragment {
                                             new Response.ErrorListener() {
                                                 @Override
                                                 public void onErrorResponse(VolleyError error) {
-                                                    Log.d("qwer", error.toString());
+                                                    Log.d("error", error.toString());
                                                 }
                                             }) {
                                         @Override
