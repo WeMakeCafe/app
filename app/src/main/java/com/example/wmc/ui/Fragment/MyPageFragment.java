@@ -189,12 +189,14 @@ public class MyPageFragment extends Fragment {
 
         ArrayList<MypageReviewItem> mypageReviewItem = new ArrayList<>();
 
-        mypageReviewItem.add(new MypageReviewItem("지코", "1", "테이블이 매우 협소합니다.",
-                R.drawable.logo, R.drawable.logo, R.drawable.logo_v2, R.drawable.review_click, "4", true));
-        mypageReviewItem.add(new MypageReviewItem("지코", "2", "테이블이 매우 협소합니다.",
-                R.drawable.logo, R.drawable.logo, R.drawable.logo_v2, R.drawable.review_click, "4", true));
-        mypageReviewItem.add(new MypageReviewItem("지코", "3", "테이블이 매우 협소합니다.",
-                R.drawable.logo, R.drawable.logo, R.drawable.logo_v2, R.drawable.review_click, "4", true));
+//        mypageReviewItem.add(new MypageReviewItem("카페이름", "작성시간", "맛있습니다.",
+//                R.drawable.logo, R.drawable.logo, R.drawable.logo, "3", true, mem_num, get_cafe_num));
+//        mypageReviewItem.add(new MypageReviewItem("카페이름", "작성시간", "테이블이 매우 협소합니다.",
+//                R.drawable.logo, R.drawable.logo, R.drawable.logo_v2,  "4", true, mem_num, get_cafe_num));
+//        mypageReviewItem.add(new MypageReviewItem("카페이름", "작성시간", "테이블이 매우 협소합니다.",
+//                R.drawable.logo, R.drawable.logo, R.drawable.logo_v2, "4", true, mem_num, get_cafe_num));
+//        mypageReviewItem.add(new MypageReviewItem("카페이름", "작성시간", "테이블이 매우 협소합니다.",
+//                R.drawable.logo, R.drawable.logo, R.drawable.logo_v2, "4", true, mem_num, get_cafe_num));
 
         // Recycler view
         RecyclerView mypageReviewRecyclerview = root.findViewById(R.id.review_mypage);
@@ -211,7 +213,7 @@ public class MyPageFragment extends Fragment {
             @Override
             public void onItemClick(View a_view, int a_position) {
                 final MypageReviewItem item = mypageReviewItem.get(a_position);
-                Toast.makeText(getContext().getApplicationContext(), item.getReviewNickName(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext().getApplicationContext(), item.getMypageReview_CafeName(), Toast.LENGTH_SHORT).show();
             }
         });
 
