@@ -123,7 +123,6 @@ public class ReviewFragment extends Fragment {
     ArrayList<Review> review_list;
 
     Boolean flag = false;
-    Boolean tag_flag = false;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -207,7 +206,6 @@ public class ReviewFragment extends Fragment {
                     bundle.putFloat("studyPoint3", rating_quiet.getRating());
                     bundle.putFloat("studyPoint4", rating_light.getRating());
 
-                    bundle.putBoolean("review_flag", flag);
                     navController.navigate(R.id.review_to_review_tag, bundle);
                 }
             }
@@ -246,8 +244,6 @@ public class ReviewFragment extends Fragment {
                 s10 = argBundle.getFloat("tag_review_studyPoint2");
                 s11 = argBundle.getFloat("tag_review_studyPoint3");
                 s12 = argBundle.getFloat("tag_review_studyPoint4");
-
-                flag = argBundle.getBoolean("review_modify_flag");
 
                 review_search_input.setTypeface(Typeface.DEFAULT_BOLD);  // 카페이름 Bold처리
                 review_search_input.setGravity(Gravity.CENTER);          // 카페 위치 Center로 변경
