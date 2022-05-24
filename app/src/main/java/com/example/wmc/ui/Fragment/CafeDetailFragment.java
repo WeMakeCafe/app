@@ -911,8 +911,8 @@ public class CafeDetailFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
-                bundle.putBoolean("floating_button", true);
-                bundle.putString("cafeName", moreReview2.getText().toString());
+                bundle.putBoolean("floating_flag", true);
+                bundle.putString("floating_cafeName", moreReview2.getText().toString());
                 navController.navigate(R.id.cafe_detail_to_review, bundle);
             }
         });
