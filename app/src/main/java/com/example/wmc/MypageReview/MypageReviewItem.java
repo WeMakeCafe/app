@@ -2,42 +2,44 @@ package com.example.wmc.MypageReview;
 
 public class MypageReviewItem {
 
-    String reviewNickName;
-    String level_and_location;
+    String mypageReview_CafeName;
+    String mypageReview_writeTime;
     String review_comment;
-    int reviewProfile_image;
     int reviewImage1;
     int reviewImage2;
     int reviewImage3;
     String good_count_textView;
     boolean check_user_flag;
+    Long mem_num;
+    Long get_cafe_num;
 
-    public MypageReviewItem(String reviewNickName, String level_and_location, String review_comment, int reviewProfile_image, int reviewImage1, int reviewImage2, int reviewImage3, String good_count_textView, boolean check_user_flag) {
-        this.reviewNickName = reviewNickName;
-        this.level_and_location = level_and_location;
+    public MypageReviewItem(String mypageReview_CafeName, String mypageReview_writeTime, String review_comment, int reviewImage1, int reviewImage2, int reviewImage3, String good_count_textView, boolean check_user_flag, Long mem_num, Long get_cafe_num) {
+        this.mypageReview_CafeName = mypageReview_CafeName;
+        this.mypageReview_writeTime = mypageReview_writeTime;
         this.review_comment = review_comment;
-        this.reviewProfile_image = reviewProfile_image;
         this.reviewImage1 = reviewImage1;
         this.reviewImage2 = reviewImage2;
         this.reviewImage3 = reviewImage3;
         this.good_count_textView = good_count_textView;
         this.check_user_flag = check_user_flag;
+        this.mem_num = mem_num;
+        this.get_cafe_num = get_cafe_num;
     }
 
-    public String getReviewNickName() {
-        return reviewNickName;
+    public String getMypageReview_CafeName() {
+        return mypageReview_CafeName;
     }
 
-    public void setReviewNickName(String reviewNickName) {
-        this.reviewNickName = reviewNickName;
+    public void setMypageReview_CafeName(String mypageReview_CafeName) {
+        this.mypageReview_CafeName = mypageReview_CafeName;
     }
 
-    public String getLevel_and_location() {
-        return level_and_location;
+    public String getMypageReview_writeTime() {
+        return mypageReview_writeTime;
     }
 
-    public void setLevel_and_location(String level_and_location) {
-        this.level_and_location = level_and_location;
+    public void setMypageReview_writeTime(String mypageReview_writeTime) {
+        this.mypageReview_writeTime = mypageReview_writeTime;
     }
 
     public String getReview_comment() {
@@ -46,14 +48,6 @@ public class MypageReviewItem {
 
     public void setReview_comment(String review_comment) {
         this.review_comment = review_comment;
-    }
-
-    public int getReviewProfile_image() {
-        return reviewProfile_image;
-    }
-
-    public void setReviewProfile_image(int reviewProfile_image) {
-        this.reviewProfile_image = reviewProfile_image;
     }
 
     public int getReviewImage1() {
@@ -94,5 +88,21 @@ public class MypageReviewItem {
 
     public void setCheck_user_flag(boolean check_user_flag) {
         this.check_user_flag = check_user_flag;
+    }
+
+    public Long getMem_num() {
+        return mem_num;
+    }
+
+    public void setMem_num(Long mem_num) {
+        this.mem_num = mem_num;
+    }
+
+    public Long getGet_cafe_num() {
+        return get_cafe_num;
+    }
+
+    public void setGet_cafe_num(Long get_cafe_num) {
+        this.get_cafe_num = get_cafe_num;
     }
 }

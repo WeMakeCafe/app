@@ -43,18 +43,16 @@ public class MypageReviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder a_holder, int a_position) {
 
-        // 기본적으로 header 를 빼고 item 을 구한다.
         final MypageReviewItem item = myPageReview_items.get(a_position);
         MypageReviewViewHolder viewHolder = (MypageReviewViewHolder) a_holder;
 
-        viewHolder.reviewNickName.setText(item.getReviewNickName());
-        viewHolder.level_and_location.setText(item.getLevel_and_location());
-        viewHolder.review_comment.setText(item.getReview_comment());
+        viewHolder.mypageReview_CafeName.setText(item.getMypageReview_CafeName());
+        viewHolder.mypageReview_writeTime.setText(item.getMypageReview_writeTime());
+        viewHolder.myPageReview_comment.setText(item.getReview_comment());
         viewHolder.good_count_textView.setText(item.getGood_count_textView());
-        viewHolder.reviewProfile_image.setImageResource(item.getReviewProfile_image());
-        viewHolder.reviewImage1.setImageResource(item.getReviewImage1());
-        viewHolder.reviewImage2.setImageResource(item.getReviewImage2());
-        viewHolder.reviewImage3.setImageResource(item.getReviewImage3());
+        viewHolder.myPageReview_image1.setImageResource(item.getReviewImage1());
+        viewHolder.myPageReview_image2.setImageResource(item.getReviewImage2());
+        viewHolder.myPageReview_image3.setImageResource(item.getReviewImage3());
 
         viewHolder.check_user_flag = (item.getCheck_user_flag());   // 작성자와 로그인한 유저가 같은지 확인
 
@@ -62,15 +60,15 @@ public class MypageReviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         // 리뷰 작성자와 로그인한 유저가 같을 경우,
         if(viewHolder.check_user_flag){
 
-            viewHolder.review_modify.setVisibility(View.VISIBLE);
-            viewHolder.review_modifyLine.setVisibility(View.VISIBLE);
-            viewHolder.review_modify.setVisibility(View.VISIBLE);
-            viewHolder.review_modify.setVisibility(View.VISIBLE);
+            viewHolder.myPageReview_modify.setVisibility(View.VISIBLE);
+            viewHolder.myPageReview_modifyLine.setVisibility(View.VISIBLE);
+            viewHolder.myPageReview_delete.setVisibility(View.VISIBLE);
+            viewHolder.myPageReview_deleteLine.setVisibility(View.VISIBLE);
             viewHolder.good_button_imageView.setVisibility(View.VISIBLE);
             viewHolder.good_button.setVisibility(View.INVISIBLE);
 
             // 마이페이지 리뷰의 수정 버튼 클릭 시,
-            viewHolder.review_modify.setOnClickListener(new View.OnClickListener() {
+            viewHolder.myPageReview_modify.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(v.getContext(), "리뷰 수정 버튼 클릭", Toast.LENGTH_SHORT).show();
@@ -81,7 +79,7 @@ public class MypageReviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
 
             // 마이페이지 리뷰의 삭제 버튼 클릭 시,
-            viewHolder.review_delete.setOnClickListener(new View.OnClickListener() {
+            viewHolder.myPageReview_delete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(v.getContext(), "리뷰 삭제 버튼 클릭", Toast.LENGTH_SHORT).show();
@@ -93,10 +91,10 @@ public class MypageReviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
         // 리뷰 작성자와 로그인한 유저가 다를 경우,
         else {
-            viewHolder.review_modify.setVisibility(View.INVISIBLE);
-            viewHolder.review_modifyLine.setVisibility(View.INVISIBLE);
-            viewHolder.review_delete.setVisibility(View.INVISIBLE);
-            viewHolder.review_deleteLine.setVisibility(View.INVISIBLE);
+            viewHolder.myPageReview_modify.setVisibility(View.INVISIBLE);
+            viewHolder.myPageReview_modifyLine.setVisibility(View.INVISIBLE);
+            viewHolder.myPageReview_delete.setVisibility(View.INVISIBLE);
+            viewHolder.myPageReview_deleteLine.setVisibility(View.INVISIBLE);
             viewHolder.good_button_imageView.setVisibility(View.INVISIBLE);
             viewHolder.good_button.setVisibility(View.VISIBLE);
 
@@ -145,7 +143,7 @@ public class MypageReviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     @Override
     public int getItemViewType(int a_position) {
-        return MypageReviewViewHolder.REVIEW_VIEW_TYPE;
+        return MypageReviewViewHolder.MYPAGE_REVIEW_VIEW_TYPE;
     }
 
     public void setOnItemClickListener_MypageReview(MypageReviewAdapter.OnItemClickEventListener_MyPageReview a_listener) {
