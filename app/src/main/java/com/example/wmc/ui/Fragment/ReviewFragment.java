@@ -1829,7 +1829,7 @@ public class ReviewFragment extends Fragment {
                                 map.put("keyword36", k[35]);
 
 
-                                String url2 = getResources().getString(R.string.url) + "review"+ reviewNum.toString();;
+                                String url2 = getResources().getString(R.string.url) + "review/"+ reviewNum.toString();;
                                 JSONObject jsonObject = new JSONObject(map);
                                 JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.PUT, url2, jsonObject,
                                         new Response.Listener<JSONObject>() {
