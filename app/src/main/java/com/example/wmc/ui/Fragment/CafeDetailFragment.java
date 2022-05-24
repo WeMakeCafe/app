@@ -721,21 +721,21 @@ public class CafeDetailFragment extends Fragment {
 
                                 for(int i = 0; i < 4; i++){
                                     get_taste_point_total += get_taste_point[i]; // 맛 점수 총점 구하기
-                                    if(get_taste_point[i] == 0){
+                                    if(get_taste_point[i] == 0 || point_counter == 0){
                                         get_taste_point[i] = 0;
                                     }else {
                                         get_taste_point[i] = get_taste_point[i] / point_counter; // 맛 점수 별 평균 구하기
                                     }
 
                                     get_seat_point_total += get_seat_point[i]; // 좌석 점수 총점 구하기
-                                    if(get_seat_point[i] == 0){
+                                    if(get_seat_point[i] == 0 || point_counter == 0){
                                         get_seat_point[i] = 0;
                                     }else {
                                         get_seat_point[i] = get_seat_point[i] / point_counter; // 좌석 점수 별 평균 구하기
                                     }
 
                                     get_study_point_total += get_study_point[i]; // 스터디 점수 총점 구하기
-                                    if(get_study_point[i] == 0){
+                                    if(get_study_point[i] == 0 || point_counter == 0){
                                         get_study_point[i] = 0;
                                     }else {
                                         get_study_point[i] = get_study_point[i] / point_counter; // 스터디 점수 별 평균 구하기
@@ -958,6 +958,7 @@ public class CafeDetailFragment extends Fragment {
 
     @Override
     public void onDestroyView() {
+        this.getArguments().clear();
         super.onDestroyView();
         binding = null;
     }
