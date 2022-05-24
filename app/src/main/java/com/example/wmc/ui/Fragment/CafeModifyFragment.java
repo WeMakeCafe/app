@@ -197,7 +197,6 @@ public class CafeModifyFragment extends Fragment {
                                 map.put("keyword34", c.getKeyword34());
                                 map.put("keyword35", c.getKeyword35());
                                 map.put("keyword36", c.getKeyword36());
-                                map.put("bookmarkNum", c.getBookmarkNum());
                                 map.put("scoreNum", c.getScoreNum());
                                 map.put("tastePoint1", c.getTastePoint1());
                                 map.put("tastePoint2", c.getTastePoint2());
