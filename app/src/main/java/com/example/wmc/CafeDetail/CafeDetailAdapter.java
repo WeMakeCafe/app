@@ -129,6 +129,7 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                         Bundle bundle = new Bundle();
                         bundle.putLong("cafeNum", item.getGet_cafe_num());
                         bundle.putLong("memNum", item.getMem_num());
+                        bundle.putBoolean("reviewModify_flag", true);
                         navController.navigate(R.id.cafe_detail_to_review, bundle);
                     }
                 });

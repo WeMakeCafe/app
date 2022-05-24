@@ -323,6 +323,8 @@ public class ReviewTagFragment extends Fragment {
                     bundle.putFloat("tag_review_studyPoint3", s11);
                     bundle.putFloat("tag_review_studyPoint4", s12);
 
+                    bundle.putBoolean("reviewTag_check", true);
+
                     navController.navigate(R.id.review_tag_to_review, bundle); // 번들과 함께 전달
                 }
             }
