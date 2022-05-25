@@ -223,7 +223,7 @@ public class MyPageFragment extends Fragment {
                                         RecyclerView mypageReviewRecyclerview = root.findViewById(R.id.review_mypage);
 
                                         // Adapter 추가
-                                        MypageReviewAdapter reviewAdapter = new MypageReviewAdapter(mypageReviewItems);
+                                        MypageReviewAdapter reviewAdapter = new MypageReviewAdapter(getContext(), mypageReviewItems, MyPageFragment.this);
                                         mypageReviewRecyclerview.setAdapter(reviewAdapter);
 
                                         // Layout manager 추가
