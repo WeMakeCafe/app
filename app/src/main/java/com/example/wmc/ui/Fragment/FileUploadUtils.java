@@ -13,14 +13,16 @@ import okhttp3.Response;
 
 public class FileUploadUtils {
 
-    public static void goSend(File file) {
+    public static void goSend(File file, Long mem_num, Long review_num) {
         RequestBody requestBody = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
-                .addFormDataPart("file", file.getName(), RequestBody.create(MultipartBody.FORM, file))
+                .addFormDataPart("image", file.getName(), RequestBody.create(MultipartBody.FORM, file))
+                .addFormDataPart("memNum", mem_num.toString())
+                .addFormDataPart("reviewNum", review_num.toString())
                 .build();
 
         Request request = new Request.Builder()
-                .url("http://203.234.98.10:8080/api/v1/upload")
+                .url("http://14.47.42.79:8080/reviewImage/upload")
                         .post(requestBody)
                         .build();
 
