@@ -1,5 +1,6 @@
 package com.example.wmc.MypageReview;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,7 +74,14 @@ public class MypageReviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 public void onClick(View v) {
                     Toast.makeText(v.getContext(), "리뷰 수정 버튼 클릭", Toast.LENGTH_SHORT).show();
                     navController = Navigation.findNavController(v);
-                    navController.navigate(R.id.myPage_to_review);
+
+                    Bundle bundle = new Bundle();
+                    bundle.putLong("cafeNum", item.getGet_cafe_num());
+                    bundle.putLong("memNum", item.getMem_num());
+                    bundle.putBoolean("mypage_reviewModify_flag", true);
+
+                    navController.navigate(R.id.myPage_to_review, bundle);
+
                 }
             });
 

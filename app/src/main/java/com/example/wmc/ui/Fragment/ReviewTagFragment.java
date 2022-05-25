@@ -71,8 +71,10 @@ public class ReviewTagFragment extends Fragment {
     Long[] k2 = new Long[36];
 
     Boolean floating_flag = false;
-    Boolean reviewModify_flag = false;
     Boolean reviewCafeList_flag = false;
+    Boolean cafeDetail_reviewModify_flag = false;
+    Boolean moreReview_reviewModify_flag = false;
+    Boolean mypage_reviewModify_flag = false;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -119,6 +121,7 @@ public class ReviewTagFragment extends Fragment {
             s10 = getArguments().getFloat("studyPoint2");
             s11 = getArguments().getFloat("studyPoint3");
             s12 = getArguments().getFloat("studyPoint4");
+
         }
 
         else if(getArguments().getBoolean("reviewCafeList_flag")){  // 하단바 리뷰 작성을 통해서 온 경우,
@@ -142,8 +145,9 @@ public class ReviewTagFragment extends Fragment {
             s12 = getArguments().getFloat("studyPoint4");
         }
 
-        else if(getArguments().getBoolean("reviewModify_flag")) {   // 리뷰 수정을 통해서 온 경우,
-            // ReviewFragment에서 Bundle로 태그를 추가할 카페이름 및 점수 받아오기
+        else if(getArguments().getBoolean("cafeDetail_reviewModify_flag")) {   // 리뷰 수정을 통해서 온 경우,
+            cafeDetail_reviewModify_flag = getArguments().getBoolean("cafeDetail_reviewModify_flag");
+
             review_cafe_name = getArguments().getString("cafeName");
 
             s1 = getArguments().getFloat("tastePoint1");
@@ -213,12 +217,153 @@ public class ReviewTagFragment extends Fragment {
             k2[34] = getArguments().getLong("k2-35");
             k2[35] = getArguments().getLong("k2-36");
 
-            Log.d("asdf-K2[0]-review에서 받음", String.valueOf(k2[0]));
-            Log.d("asdf-K2[1]-review에서 받음", String.valueOf(k2[1]));
-            Log.d("asdf-K2[2]-review에서 받음", String.valueOf(k2[2]));
-            Log.d("asdf-K2[3]-review에서 받음", String.valueOf(k2[3]));
-            Log.d("asdf-K2[4]-review에서 받음", String.valueOf(k2[4]));
-            Log.d("asdf-K2[5]-review에서 받음", String.valueOf(k2[5]));
+        }
+
+        else if(getArguments().getBoolean("moreReview_reviewModify_flag")) {   // 리뷰 수정을 통해서 온 경우,
+            moreReview_reviewModify_flag = getArguments().getBoolean("moreReview_reviewModify_flag");
+
+            review_cafe_name = getArguments().getString("cafeName");
+
+            s1 = getArguments().getFloat("tastePoint1");
+            s2 = getArguments().getFloat("tastePoint2");
+            s3 = getArguments().getFloat("tastePoint3");
+            s4 = getArguments().getFloat("tastePoint4");
+
+            s5 = getArguments().getFloat("seatPoint1");
+            s6 = getArguments().getFloat("seatPoint2");
+            s7 = getArguments().getFloat("seatPoint3");
+            s8 = getArguments().getFloat("seatPoint4");
+
+            s9 = getArguments().getFloat("studyPoint1");
+            s10 = getArguments().getFloat("studyPoint2");
+            s11 = getArguments().getFloat("studyPoint3");
+            s12 = getArguments().getFloat("studyPoint4");
+            flag = getArguments().getBoolean("flag");
+            reviewNum = getArguments().getLong("reviewNum");
+
+            score1 = getArguments().getInt("score1");
+            score2 = getArguments().getInt("score2");
+            score3 = getArguments().getInt("score3");
+            score4 = getArguments().getInt("score4");
+            score5 = getArguments().getInt("score5");
+            score6 = getArguments().getInt("score6");
+            score7 = getArguments().getInt("score7");
+            score8 = getArguments().getInt("score8");
+            score9 = getArguments().getInt("score9");
+            score10 = getArguments().getInt("score10");
+            score11 = getArguments().getInt("score11");
+            score12 = getArguments().getInt("score12");
+
+            k2[0] = getArguments().getLong("k2-1");
+            k2[1] = getArguments().getLong("k2-2");
+            k2[2] = getArguments().getLong("k2-3");
+            k2[3] = getArguments().getLong("k2-4");
+            k2[4] = getArguments().getLong("k2-5");
+            k2[5] = getArguments().getLong("k2-6");
+            k2[6] = getArguments().getLong("k2-7");
+            k2[7] = getArguments().getLong("k2-8");
+            k2[8] = getArguments().getLong("k2-9");
+            k2[9] = getArguments().getLong("k2-10");
+            k2[10] = getArguments().getLong("k2-11");
+            k2[11] = getArguments().getLong("k2-12");
+            k2[12] = getArguments().getLong("k2-13");
+            k2[13] = getArguments().getLong("k2-14");
+            k2[14] = getArguments().getLong("k2-15");
+            k2[15] = getArguments().getLong("k2-16");
+            k2[16] = getArguments().getLong("k2-17");
+            k2[17] = getArguments().getLong("k2-18");
+            k2[18] = getArguments().getLong("k2-19");
+            k2[19] = getArguments().getLong("k2-20");
+            k2[20] = getArguments().getLong("k2-21");
+            k2[21] = getArguments().getLong("k2-22");
+            k2[22] = getArguments().getLong("k2-23");
+            k2[23] = getArguments().getLong("k2-24");
+            k2[24] = getArguments().getLong("k2-25");
+            k2[25] = getArguments().getLong("k2-26");
+            k2[26] = getArguments().getLong("k2-27");
+            k2[27] = getArguments().getLong("k2-28");
+            k2[28] = getArguments().getLong("k2-29");
+            k2[29] = getArguments().getLong("k2-30");
+            k2[30] = getArguments().getLong("k2-31");
+            k2[31] = getArguments().getLong("k2-32");
+            k2[32] = getArguments().getLong("k2-33");
+            k2[33] = getArguments().getLong("k2-34");
+            k2[34] = getArguments().getLong("k2-35");
+            k2[35] = getArguments().getLong("k2-36");
+        }
+
+        else if(getArguments().getBoolean("mypage_reviewModify_flag")) {   // 리뷰 수정을 통해서 온 경우,
+            mypage_reviewModify_flag = getArguments().getBoolean("mypage_reviewModify_flag");
+
+            review_cafe_name = getArguments().getString("cafeName");
+
+            s1 = getArguments().getFloat("tastePoint1");
+            s2 = getArguments().getFloat("tastePoint2");
+            s3 = getArguments().getFloat("tastePoint3");
+            s4 = getArguments().getFloat("tastePoint4");
+
+            s5 = getArguments().getFloat("seatPoint1");
+            s6 = getArguments().getFloat("seatPoint2");
+            s7 = getArguments().getFloat("seatPoint3");
+            s8 = getArguments().getFloat("seatPoint4");
+
+            s9 = getArguments().getFloat("studyPoint1");
+            s10 = getArguments().getFloat("studyPoint2");
+            s11 = getArguments().getFloat("studyPoint3");
+            s12 = getArguments().getFloat("studyPoint4");
+            flag = getArguments().getBoolean("flag");
+            reviewNum = getArguments().getLong("reviewNum");
+
+            score1 = getArguments().getInt("score1");
+            score2 = getArguments().getInt("score2");
+            score3 = getArguments().getInt("score3");
+            score4 = getArguments().getInt("score4");
+            score5 = getArguments().getInt("score5");
+            score6 = getArguments().getInt("score6");
+            score7 = getArguments().getInt("score7");
+            score8 = getArguments().getInt("score8");
+            score9 = getArguments().getInt("score9");
+            score10 = getArguments().getInt("score10");
+            score11 = getArguments().getInt("score11");
+            score12 = getArguments().getInt("score12");
+
+            k2[0] = getArguments().getLong("k2-1");
+            k2[1] = getArguments().getLong("k2-2");
+            k2[2] = getArguments().getLong("k2-3");
+            k2[3] = getArguments().getLong("k2-4");
+            k2[4] = getArguments().getLong("k2-5");
+            k2[5] = getArguments().getLong("k2-6");
+            k2[6] = getArguments().getLong("k2-7");
+            k2[7] = getArguments().getLong("k2-8");
+            k2[8] = getArguments().getLong("k2-9");
+            k2[9] = getArguments().getLong("k2-10");
+            k2[10] = getArguments().getLong("k2-11");
+            k2[11] = getArguments().getLong("k2-12");
+            k2[12] = getArguments().getLong("k2-13");
+            k2[13] = getArguments().getLong("k2-14");
+            k2[14] = getArguments().getLong("k2-15");
+            k2[15] = getArguments().getLong("k2-16");
+            k2[16] = getArguments().getLong("k2-17");
+            k2[17] = getArguments().getLong("k2-18");
+            k2[18] = getArguments().getLong("k2-19");
+            k2[19] = getArguments().getLong("k2-20");
+            k2[20] = getArguments().getLong("k2-21");
+            k2[21] = getArguments().getLong("k2-22");
+            k2[22] = getArguments().getLong("k2-23");
+            k2[23] = getArguments().getLong("k2-24");
+            k2[24] = getArguments().getLong("k2-25");
+            k2[25] = getArguments().getLong("k2-26");
+            k2[26] = getArguments().getLong("k2-27");
+            k2[27] = getArguments().getLong("k2-28");
+            k2[28] = getArguments().getLong("k2-29");
+            k2[29] = getArguments().getLong("k2-30");
+            k2[30] = getArguments().getLong("k2-31");
+            k2[31] = getArguments().getLong("k2-32");
+            k2[32] = getArguments().getLong("k2-33");
+            k2[33] = getArguments().getLong("k2-34");
+            k2[34] = getArguments().getLong("k2-35");
+            k2[35] = getArguments().getLong("k2-36");
+
         }
 
         ////////////////////////////////////////////////////////////////////////////////////
