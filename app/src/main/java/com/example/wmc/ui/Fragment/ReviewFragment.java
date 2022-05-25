@@ -391,7 +391,7 @@ public class ReviewFragment extends Fragment {
                     else if (mypage_reviewModify_flag){
                         Bundle bundle = new Bundle();
 
-                        bundle.putBoolean("moreReview_reviewModify_flag", moreReview_reviewModify_flag);
+                        bundle.putBoolean("mypage_reviewModify_flag", mypage_reviewModify_flag);
 
                         bundle.putString("cafeName", review_search_input.getText().toString());
                         bundle.putFloat("tastePoint1", rating_sour.getRating());
@@ -467,7 +467,49 @@ public class ReviewFragment extends Fragment {
         // ReviewTag에서 가져온 태그들 설정 및 카페이름을 기억해두기
         Bundle argBundle = getArguments();
         if( argBundle != null ) {
-            if (argBundle.getBoolean("flag")) {
+            if (argBundle.getBoolean("return_reviewCafeList_flag") || argBundle.getBoolean("return_floating_flag")) {
+
+                review_search_input.setText(argBundle.getString("review_cafeName"));
+
+                setTag1.setText(argBundle.getString("key1"));
+                setTag2.setText(argBundle.getString("key2"));
+                setTag3.setText(argBundle.getString("key3"));
+
+                rating_sour.setRating(argBundle.getFloat("tag_review_tastePoint1"));
+                rating_acerbity.setRating(argBundle.getFloat("tag_review_tastePoint2"));
+                rating_dessert.setRating(argBundle.getFloat("tag_review_tastePoint3"));
+                rating_beverage.setRating(argBundle.getFloat("tag_review_tastePoint4"));
+                rating_twoseat.setRating(argBundle.getFloat("tag_review_seatPoint1"));
+                rating_fourseat.setRating(argBundle.getFloat("tag_review_seatPoint2"));
+                rating_manyseat.setRating(argBundle.getFloat("tag_review_seatPoint3"));
+                rating_toilet.setRating(argBundle.getFloat("tag_review_seatPoint4"));
+                rating_wifi.setRating(argBundle.getFloat("tag_review_studyPoint1"));
+                rating_plug.setRating(argBundle.getFloat("tag_review_studyPoint2"));
+                rating_quiet.setRating(argBundle.getFloat("tag_review_studyPoint3"));
+                rating_light.setRating(argBundle.getFloat("tag_review_studyPoint4"));
+                s1 = argBundle.getFloat("tag_review_tastePoint1");
+                s2 = argBundle.getFloat("tag_review_tastePoint2");
+                s3 = argBundle.getFloat("tag_review_tastePoint3");
+                s4 = argBundle.getFloat("tag_review_tastePoint4");
+                s5 = argBundle.getFloat("tag_review_seatPoint1");
+                s6 = argBundle.getFloat("tag_review_seatPoint2");
+                s7 = argBundle.getFloat("tag_review_seatPoint3");
+                s8 = argBundle.getFloat("tag_review_seatPoint4");
+                s9 = argBundle.getFloat("tag_review_studyPoint1");
+                s10 = argBundle.getFloat("tag_review_studyPoint2");
+                s11 = argBundle.getFloat("tag_review_studyPoint3");
+                s12 = argBundle.getFloat("tag_review_studyPoint4");
+
+                review_search_input.setTypeface(Typeface.DEFAULT_BOLD);  // 카페이름 Bold처리
+                review_search_input.setGravity(Gravity.CENTER);          // 카페 위치 Center로 변경
+            }
+
+            else if(argBundle.getBoolean("return_cafeDetail_reviewModify_flag")
+                    || argBundle.getBoolean("return_moreReview_reviewModify_flag")
+                    || argBundle.getBoolean("return_mypage_reviewModify_flag")) {
+
+                review_search_input.setText(argBundle.getString("review_cafeName"));
+
                 setTag1.setText(argBundle.getString("key1"));
                 setTag2.setText(argBundle.getString("key2"));
                 setTag3.setText(argBundle.getString("key3"));
@@ -551,7 +593,6 @@ public class ReviewFragment extends Fragment {
 
                 review_search_input.setTypeface(Typeface.DEFAULT_BOLD);  // 카페이름 Bold처리
                 review_search_input.setGravity(Gravity.CENTER);          // 카페 위치 Center로 변경
-                review_search_input.setText(argBundle.getString("review_cafeName"));
             }
         }
 
