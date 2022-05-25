@@ -1,6 +1,8 @@
 package com.example.wmc.CafeDetail;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentHostCallback;
 import androidx.navigation.NavController;
@@ -149,8 +152,31 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                     @Override
                     public void onClick(View v) {
                         Toast.makeText(v.getContext(), "리뷰 삭제 버튼 클릭", Toast.LENGTH_SHORT).show();
-                        review_items.remove(item);
-                        notifyDataSetChanged();
+
+                        AlertDialog.Builder builder = new AlertDialog.Builder(cafeDetailFragment.getActivity());
+                        builder.setTitle("리뷰 삭제").setMessage("리뷰를 삭제하시겠습니까?").setIcon(R.drawable.logo);
+
+                        builder.setPositiveButton("예", new DialogInterface.OnClickListener(){
+                            @Override
+                            public void onClick(DialogInterface dialog, int id)
+                            {
+                                Toast.makeText(v.getContext().getApplicationContext(), "리뷰가 삭제되었습니다.", Toast.LENGTH_SHORT).show();
+                                // DB에서 테이블 삭제 하는 코드 추가하기
+//                                review_items.remove(item);    // 리사이클러뷰에서도 아이템 삭제
+//                                notifyDataSetChanged();
+                            }
+                        });
+
+                        builder.setNegativeButton("아니오", new DialogInterface.OnClickListener(){
+                            @Override
+                            public void onClick(DialogInterface dialog, int id)
+                            {
+
+                            }
+                        });
+
+                        AlertDialog alertDialog = builder.create();
+                        alertDialog.show();
                     }
                 });
             }
