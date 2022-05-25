@@ -1818,7 +1818,6 @@ public class ReviewFragment extends Fragment {
                                 map.put("likeCount", likeCount);
                                 map.put("reviewText", comment);
                                 map.put("memNum", mem_num);
-                                map.put("reviewText", comment);
                                 switch (setTag1.getText().toString()) {
                                     case ("#쓴맛"):
                                         k[0] = Long.valueOf(1);
