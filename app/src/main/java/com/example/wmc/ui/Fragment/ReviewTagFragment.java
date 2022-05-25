@@ -364,6 +364,13 @@ public class ReviewTagFragment extends Fragment {
             k2[34] = getArguments().getLong("k2-35");
             k2[35] = getArguments().getLong("k2-36");
 
+            Log.d("myReview에서 받은_review4", String.valueOf(k2[3]));
+            Log.d("myReview에서 받은_review5", String.valueOf(k2[4]));
+            Log.d("myReview에서 받은_review6", String.valueOf(k2[5]));
+            Log.d("myReview에서 받은_review7", String.valueOf(k2[6]));
+            Log.d("myReview에서 받은_review8", String.valueOf(k2[7]));
+            Log.d("myReview에서 받은_review9", String.valueOf(k2[8]));
+
         }
 
         ////////////////////////////////////////////////////////////////////////////////////
@@ -645,8 +652,6 @@ public class ReviewTagFragment extends Fragment {
                         bundle.putFloat("tag_review_studyPoint2", s10);
                         bundle.putFloat("tag_review_studyPoint3", s11);
                         bundle.putFloat("tag_review_studyPoint4", s12);
-                        bundle.putBoolean("flag", flag);
-                        bundle.putLong("reviewNum", reviewNum);
                         bundle.putInt("score1", score1);
                         bundle.putInt("score2", score2);
                         bundle.putInt("score3", score3);
@@ -696,6 +701,9 @@ public class ReviewTagFragment extends Fragment {
                         bundle.putLong("k2-34", (long) k2[33]);
                         bundle.putLong("k2-35", (long) k2[34]);
                         bundle.putLong("k2-36", (long) k2[35]);
+
+                        bundle.putBoolean("flag", flag);
+                        bundle.putLong("reviewNum", reviewNum);
 
                         navController.navigate(R.id.review_tag_to_review, bundle); // 번들과 함께 전달
                     }
@@ -722,8 +730,6 @@ public class ReviewTagFragment extends Fragment {
                         bundle.putFloat("tag_review_studyPoint2", s10);
                         bundle.putFloat("tag_review_studyPoint3", s11);
                         bundle.putFloat("tag_review_studyPoint4", s12);
-                        bundle.putBoolean("flag", flag);
-                        bundle.putLong("reviewNum", reviewNum);
                         bundle.putInt("score1", score1);
                         bundle.putInt("score2", score2);
                         bundle.putInt("score3", score3);
@@ -773,6 +779,9 @@ public class ReviewTagFragment extends Fragment {
                         bundle.putLong("k2-34", (long) k2[33]);
                         bundle.putLong("k2-35", (long) k2[34]);
                         bundle.putLong("k2-36", (long) k2[35]);
+
+                        bundle.putBoolean("flag", flag);
+                        bundle.putLong("reviewNum", reviewNum);
 
                         navController.navigate(R.id.review_tag_to_review, bundle); // 번들과 함께 전달
                     }
@@ -799,8 +808,6 @@ public class ReviewTagFragment extends Fragment {
                         bundle.putFloat("tag_review_studyPoint2", s10);
                         bundle.putFloat("tag_review_studyPoint3", s11);
                         bundle.putFloat("tag_review_studyPoint4", s12);
-                        bundle.putBoolean("flag", flag);
-                        bundle.putLong("reviewNum", reviewNum);
                         bundle.putInt("score1", score1);
                         bundle.putInt("score2", score2);
                         bundle.putInt("score3", score3);
@@ -850,6 +857,9 @@ public class ReviewTagFragment extends Fragment {
                         bundle.putLong("k2-34", (long) k2[33]);
                         bundle.putLong("k2-35", (long) k2[34]);
                         bundle.putLong("k2-36", (long) k2[35]);
+
+                        bundle.putBoolean("flag", flag);
+                        bundle.putLong("reviewNum", reviewNum);
 
                         navController.navigate(R.id.review_tag_to_review, bundle); // 번들과 함께 전달
                     }
