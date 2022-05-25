@@ -262,8 +262,6 @@ public class ReviewFragment extends Fragment {
                         bundle.putFloat("studyPoint2", rating_plug.getRating());
                         bundle.putFloat("studyPoint3", rating_quiet.getRating());
                         bundle.putFloat("studyPoint4", rating_light.getRating());
-                        bundle.putBoolean("flag", flag);
-                        bundle.putLong("reviewNum", reviewNum);
                         bundle.putLong("k2-1", (long) k2[0]);
                         bundle.putLong("k2-2", (long) k2[1]);
                         bundle.putLong("k2-3", (long) k2[2]);
@@ -312,6 +310,11 @@ public class ReviewFragment extends Fragment {
                         bundle.putInt("score10", score10.intValue());
                         bundle.putInt("score11", score11.intValue());
                         bundle.putInt("score12", score12.intValue());
+
+                        bundle.putString("comment", comment);
+
+                        bundle.putBoolean("flag", flag);
+                        bundle.putLong("reviewNum", reviewNum);
 
                         navController.navigate(R.id.review_to_review_tag, bundle);
                     }
@@ -334,8 +337,7 @@ public class ReviewFragment extends Fragment {
                         bundle.putFloat("studyPoint2", rating_plug.getRating());
                         bundle.putFloat("studyPoint3", rating_quiet.getRating());
                         bundle.putFloat("studyPoint4", rating_light.getRating());
-                        bundle.putBoolean("flag", flag);
-                        bundle.putLong("reviewNum", reviewNum);
+
                         bundle.putLong("k2-1", (long) k2[0]);
                         bundle.putLong("k2-2", (long) k2[1]);
                         bundle.putLong("k2-3", (long) k2[2]);
@@ -384,6 +386,11 @@ public class ReviewFragment extends Fragment {
                         bundle.putInt("score10", score10.intValue());
                         bundle.putInt("score11", score11.intValue());
                         bundle.putInt("score12", score12.intValue());
+
+                        bundle.putString("comment", comment);
+
+                        bundle.putBoolean("flag", flag);
+                        bundle.putLong("reviewNum", reviewNum);
 
                         Log.d("moreReview_to_tag_review4", String.valueOf(k2[3]));
                         Log.d("moreReview_to_tag_review5", String.valueOf(k2[4]));
@@ -412,8 +419,7 @@ public class ReviewFragment extends Fragment {
                         bundle.putFloat("studyPoint2", rating_plug.getRating());
                         bundle.putFloat("studyPoint3", rating_quiet.getRating());
                         bundle.putFloat("studyPoint4", rating_light.getRating());
-                        bundle.putBoolean("flag", flag);
-                        bundle.putLong("reviewNum", reviewNum);
+
                         bundle.putLong("k2-1", (long) k2[0]);
                         bundle.putLong("k2-2", (long) k2[1]);
                         bundle.putLong("k2-3", (long) k2[2]);
@@ -463,12 +469,12 @@ public class ReviewFragment extends Fragment {
                         bundle.putInt("score11", score11.intValue());
                         bundle.putInt("score12", score12.intValue());
 
-                        Log.d("myReview_to_tag_review4", String.valueOf(k2[3]));
-                        Log.d("myReview_to_tag_review5", String.valueOf(k2[4]));
-                        Log.d("myReview_to_tag_review6", String.valueOf(k2[5]));
-                        Log.d("myReview_to_tag_review7", String.valueOf(k2[6]));
-                        Log.d("myReview_to_tag_review8", String.valueOf(k2[7]));
-                        Log.d("myReview_to_tag_review9", String.valueOf(k2[8]));
+                        bundle.putString("comment", comment);
+
+                        bundle.putBoolean("flag", flag);
+                        bundle.putLong("reviewNum", reviewNum);
+
+                        Log.d("myReview_comment", comment);
 
                         navController.navigate(R.id.review_to_review_tag, bundle);
                     }
@@ -604,6 +610,8 @@ public class ReviewFragment extends Fragment {
                 k2[34] = argBundle.getLong("k2-35");
                 k2[35] = argBundle.getLong("k2-36");
 
+                comment = argBundle.getString("comment");
+                Log.d("태그 종료후 받은 comment", comment);
                 review_search_input.setTypeface(Typeface.DEFAULT_BOLD);  // 카페이름 Bold처리
                 review_search_input.setGravity(Gravity.CENTER);          // 카페 위치 Center로 변경
             }
@@ -1828,7 +1836,6 @@ public class ReviewFragment extends Fragment {
                                 map.put("studyPoint4", Integer.valueOf((int) rating_light.getRating()));
                                 map.put("cafeNum", cafeNum);
                                 map.put("likeCount", likeCount);
-                                map.put("reviewText", comment);
                                 map.put("memNum", mem_num);
                                 map.put("reviewText", comment);
                                 switch (setTag1.getText().toString()) {
