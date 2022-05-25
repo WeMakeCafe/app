@@ -89,10 +89,10 @@
         android:text="다인좌석"
         android:textColor="@color/black"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/viewPager_rating_manyseat"
+        app:layout_constraintBottom_toBottomOf="@+id/viewPager_rating_toilet"
         app:layout_constraintEnd_toStartOf="@+id/viewPager_rating_manyseat"
         app:layout_constraintStart_toEndOf="@+id/viewPager_rating_twoseat"
-        app:layout_constraintTop_toTopOf="@+id/viewPager_rating_manyseat" />
+        app:layout_constraintTop_toTopOf="@+id/viewPager_rating_toilet" />
 
     <RatingBar
         android:id="@+id/viewPager_rating_manyseat"
@@ -115,10 +115,10 @@
         android:text="화장실"
         android:textColor="@color/black"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/viewPager_rating_toilet"
+        app:layout_constraintBottom_toBottomOf="@+id/viewPager_rating_manyseat"
         app:layout_constraintEnd_toStartOf="@+id/viewPager_rating_toilet"
         app:layout_constraintStart_toEndOf="@+id/viewPager_rating_fourseat"
-        app:layout_constraintTop_toTopOf="@+id/viewPager_rating_toilet" />
+        app:layout_constraintTop_toTopOf="@+id/viewPager_rating_manyseat" />
 
     <RatingBar
         android:id="@+id/viewPager_rating_toilet"
