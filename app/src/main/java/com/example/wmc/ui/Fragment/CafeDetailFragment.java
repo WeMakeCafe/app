@@ -147,7 +147,6 @@ public class CafeDetailFragment extends Fragment {
         }
 
 
-
         //서버 호출
         RequestQueue requestQueue;
         Cache cache = new DiskBasedCache(getActivity().getCacheDir(), 1024 * 1024); // 1MB cap

@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,7 +24,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.BasicNetwork;
 import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HurlStack;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.wmc.MainActivity;
 import com.example.wmc.R;
 import com.example.wmc.database.Cafe;
@@ -33,9 +36,13 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONObject;
+
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CafeDeleteFragment extends Fragment {
     private FragmentCafeDeleteBinding binding;
@@ -44,6 +51,7 @@ public class CafeDeleteFragment extends Fragment {
     TextView delete_cafe_name_input;
     TextView delete_cafe_address_input;
     TextView requester_input;
+    TextView delete_cafe_reason_input;
     ArrayList<Personal> personal_list;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -55,10 +63,11 @@ public class CafeDeleteFragment extends Fragment {
         delete_cafe_name_input = root.findViewById(R.id.delete_cafe_name_input);
         delete_cafe_address_input = root.findViewById(R.id.delete_cafe_address_input);
         requester_input = root.findViewById(R.id.requester_input);
+        delete_cafe_reason_input = root.findViewById(R.id.delete_cafe_reason_input);
 
         String cafe_name = getArguments().getString("name");  //getArguments로 번들 검색해서 받기
         String cafe_address = getArguments().getString("address");
-
+        Long cafe_num = getArguments().getLong("cafeNum");
 
         delete_cafe_name_input.setText(cafe_name);
         delete_cafe_address_input.setText(cafe_address);
@@ -111,10 +120,47 @@ public class CafeDeleteFragment extends Fragment {
         delete_request_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navController.navigate(R.id.cafe_delete_to_cafe_detail);
+
+                Map map = new HashMap();
+                map.put("memNum", MainActivity.mem_num);
+                map.put("cafeNum", cafe_num);
+                map.put("requireReason", delete_cafe_reason_input.getText().toString());
+
+                String url = getResources().getString(R.string.url) + "Requirement";
+                JSONObject jsonObject = new JSONObject(map);
+                JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject,
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Log.d("testdelete", error.toString());
+                            }
+                        }) {
+                    @Override
+                    public String getBodyContentType() {
+                        return "application/json; charset=UTF-8";
+                    }
+                };
+                RequestQueue queue = Volley.newRequestQueue(requireContext());
+                queue.add(objectRequest);
+
+                Toast.makeText(getContext().getApplicationContext(), "삭제 요청이 완료되었습니다. 검토 후 삭제 처리 됩니다.", Toast.LENGTH_LONG).show();
+
+                navController.navigate(R.id.cafe_delete_to_home);
             }
         });
         return root;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        navController = Navigation.findNavController(view);
     }
 
     @Override

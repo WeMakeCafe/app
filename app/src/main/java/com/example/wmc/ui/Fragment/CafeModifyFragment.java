@@ -274,6 +274,7 @@ public class CafeModifyFragment extends Fragment {
                 Bundle bundle = new Bundle();
                 bundle.putString("name", cafe_name);
                 bundle.putString("address", cafe_address);
+                bundle.putLong("cafeNum", cafe_num);
                 navController.navigate(R.id.cafe_modify_to_cafe_delete, bundle);
             }
         });

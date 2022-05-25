@@ -227,6 +227,10 @@
         <action
             android:id="@+id/cafe_delete_to_cafe_detail"
             app:destination="@id/navigation_cafe_detail" />
+
+        <action
+            android:id="@+id/cafe_delete_to_home"
+            app:destination="@+id/navigation_home"/>
     </fragment>
 
     <fragment

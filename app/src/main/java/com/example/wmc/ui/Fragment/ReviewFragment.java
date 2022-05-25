@@ -1957,7 +1957,8 @@ public class ReviewFragment extends Fragment {
                                         map2.put("openTime", c.getOpenTime());
                                         map2.put("closeTime", c.getCloseTime());
                                         map2.put("scoreNum", c.getScoreNum());
-                                        Log.d("asdf", String.valueOf(k[0]-k2[0]));
+                                        Log.d("asdf1", String.valueOf(k[0]));
+                                        Log.d("asdf2", String.valueOf(k2[0]));
                                         map2.put("keyword1", c.getKeyword1() + k[0]-k2[0]);
                                         map2.put("keyword2", c.getKeyword2() + k[1]-k2[1]);
                                         map2.put("keyword3", c.getKeyword3() + k[2]-k2[2]);
