@@ -70,6 +70,12 @@ public class ReviewTagFragment extends Fragment {
     Integer score12;
     Long[] k2 = new Long[36];
 
+    Boolean floating_flag = false;
+    Boolean reviewCafeList_flag = false;
+    Boolean cafeDetail_reviewModify_flag = false;
+    Boolean moreReview_reviewModify_flag = false;
+    Boolean mypage_reviewModify_flag = false;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -90,77 +96,275 @@ public class ReviewTagFragment extends Fragment {
         Button tag3_delete_button = root.findViewById(R.id.tag3_delete_button); // 아래 태그 버튼 3개의 X버튼
         Button addTag_button3 = root.findViewById(R.id.addTag_button3); // 태그 선택 후, 추가하기 버튼
 
+        for(int i = 0; i < k2.length; i++)
+            k2[i] = (long) 0;
 
-        // ReviewFragment에서 Bundle로 태그를 추가할 카페이름 및 점수 받아오기
-        review_cafe_name = getArguments().getString("cafeName");
 
-        s1 = getArguments().getFloat("tastePoint1");
-        s2 = getArguments().getFloat("tastePoint2");
-        s3 = getArguments().getFloat("tastePoint3");
-        s4 = getArguments().getFloat("tastePoint4");
 
-        s5 = getArguments().getFloat("seatPoint1");
-        s6 = getArguments().getFloat("seatPoint2");
-        s7 = getArguments().getFloat("seatPoint3");
-        s8 = getArguments().getFloat("seatPoint4");
+        if(getArguments().getBoolean("floating_flag")){ // 플로팅에서 온 경우
 
-        s9 = getArguments().getFloat("studyPoint1");
-        s10 = getArguments().getFloat("studyPoint2");
-        s11 = getArguments().getFloat("studyPoint3");
-        s12 = getArguments().getFloat("studyPoint4");
-        flag = getArguments().getBoolean("flag");
-        reviewNum = getArguments().getLong("reviewNum");
+            floating_flag = getArguments().getBoolean("floating_flag");
 
-        score1 = getArguments().getInt("score1");
-        score2 = getArguments().getInt("score2");
-        score3 = getArguments().getInt("score3");
-        score4 = getArguments().getInt("score4");
-        score5 = getArguments().getInt("score5");
-        score6 = getArguments().getInt("score6");
-        score7 = getArguments().getInt("score7");
-        score8 = getArguments().getInt("score8");
-        score9 = getArguments().getInt("score9");
-        score10 = getArguments().getInt("score10");
-        score11 = getArguments().getInt("score11");
-        score12 = getArguments().getInt("score12");
+            review_cafe_name = getArguments().getString("floating_cafeName");
 
-        k2[0] = getArguments().getLong("k2-1");
-        k2[1] = getArguments().getLong("k2-2");
-        k2[2] = getArguments().getLong("k2-3");
-        k2[3] = getArguments().getLong("k2-4");
-        k2[4] = getArguments().getLong("k2-5");
-        k2[5] = getArguments().getLong("k2-6");
-        k2[6] = getArguments().getLong("k2-7");
-        k2[7] = getArguments().getLong("k2-8");
-        k2[8] = getArguments().getLong("k2-9");
-        k2[9] = getArguments().getLong("k2-10");
-        k2[10] = getArguments().getLong("k2-11");
-        k2[11] = getArguments().getLong("k2-12");
-        k2[12] = getArguments().getLong("k2-13");
-        k2[13] = getArguments().getLong("k2-14");
-        k2[14] = getArguments().getLong("k2-15");
-        k2[15] = getArguments().getLong("k2-16");
-        k2[16] = getArguments().getLong("k2-17");
-        k2[17] = getArguments().getLong("k2-18");
-        k2[18] = getArguments().getLong("k2-19");
-        k2[19] = getArguments().getLong("k2-20");
-        k2[20] = getArguments().getLong("k2-21");
-        k2[21] = getArguments().getLong("k2-22");
-        k2[22] = getArguments().getLong("k2-23");
-        k2[23] = getArguments().getLong("k2-24");
-        k2[24] = getArguments().getLong("k2-25");
-        k2[25] = getArguments().getLong("k2-26");
-        k2[26] = getArguments().getLong("k2-27");
-        k2[27] = getArguments().getLong("k2-28");
-        k2[28] = getArguments().getLong("k2-29");
-        k2[29] = getArguments().getLong("k2-30");
-        k2[30] = getArguments().getLong("k2-31");
-        k2[31] = getArguments().getLong("k2-32");
-        k2[32] = getArguments().getLong("k2-33");
-        k2[33] = getArguments().getLong("k2-34");
-        k2[34] = getArguments().getLong("k2-35");
-        k2[35] = getArguments().getLong("k2-36");
+            s1 = getArguments().getFloat("tastePoint1");
+            s2 = getArguments().getFloat("tastePoint2");
+            s3 = getArguments().getFloat("tastePoint3");
+            s4 = getArguments().getFloat("tastePoint4");
 
+            s5 = getArguments().getFloat("seatPoint1");
+            s6 = getArguments().getFloat("seatPoint2");
+            s7 = getArguments().getFloat("seatPoint3");
+            s8 = getArguments().getFloat("seatPoint4");
+
+            s9 = getArguments().getFloat("studyPoint1");
+            s10 = getArguments().getFloat("studyPoint2");
+            s11 = getArguments().getFloat("studyPoint3");
+            s12 = getArguments().getFloat("studyPoint4");
+
+        }
+
+        else if(getArguments().getBoolean("reviewCafeList_flag")){  // 하단바 리뷰 작성을 통해서 온 경우,
+            reviewCafeList_flag = getArguments().getBoolean("reviewCafeList_flag");
+
+            review_cafe_name = getArguments().getString("reviewCafeList_cafeName");
+
+            s1 = getArguments().getFloat("tastePoint1");
+            s2 = getArguments().getFloat("tastePoint2");
+            s3 = getArguments().getFloat("tastePoint3");
+            s4 = getArguments().getFloat("tastePoint4");
+
+            s5 = getArguments().getFloat("seatPoint1");
+            s6 = getArguments().getFloat("seatPoint2");
+            s7 = getArguments().getFloat("seatPoint3");
+            s8 = getArguments().getFloat("seatPoint4");
+
+            s9 = getArguments().getFloat("studyPoint1");
+            s10 = getArguments().getFloat("studyPoint2");
+            s11 = getArguments().getFloat("studyPoint3");
+            s12 = getArguments().getFloat("studyPoint4");
+        }
+
+        else if(getArguments().getBoolean("cafeDetail_reviewModify_flag")) {   // 리뷰 수정을 통해서 온 경우,
+            cafeDetail_reviewModify_flag = getArguments().getBoolean("cafeDetail_reviewModify_flag");
+
+            review_cafe_name = getArguments().getString("cafeName");
+
+            s1 = getArguments().getFloat("tastePoint1");
+            s2 = getArguments().getFloat("tastePoint2");
+            s3 = getArguments().getFloat("tastePoint3");
+            s4 = getArguments().getFloat("tastePoint4");
+
+            s5 = getArguments().getFloat("seatPoint1");
+            s6 = getArguments().getFloat("seatPoint2");
+            s7 = getArguments().getFloat("seatPoint3");
+            s8 = getArguments().getFloat("seatPoint4");
+
+            s9 = getArguments().getFloat("studyPoint1");
+            s10 = getArguments().getFloat("studyPoint2");
+            s11 = getArguments().getFloat("studyPoint3");
+            s12 = getArguments().getFloat("studyPoint4");
+            flag = getArguments().getBoolean("flag");
+            reviewNum = getArguments().getLong("reviewNum");
+
+            score1 = getArguments().getInt("score1");
+            score2 = getArguments().getInt("score2");
+            score3 = getArguments().getInt("score3");
+            score4 = getArguments().getInt("score4");
+            score5 = getArguments().getInt("score5");
+            score6 = getArguments().getInt("score6");
+            score7 = getArguments().getInt("score7");
+            score8 = getArguments().getInt("score8");
+            score9 = getArguments().getInt("score9");
+            score10 = getArguments().getInt("score10");
+            score11 = getArguments().getInt("score11");
+            score12 = getArguments().getInt("score12");
+
+            k2[0] = getArguments().getLong("k2-1");
+            k2[1] = getArguments().getLong("k2-2");
+            k2[2] = getArguments().getLong("k2-3");
+            k2[3] = getArguments().getLong("k2-4");
+            k2[4] = getArguments().getLong("k2-5");
+            k2[5] = getArguments().getLong("k2-6");
+            k2[6] = getArguments().getLong("k2-7");
+            k2[7] = getArguments().getLong("k2-8");
+            k2[8] = getArguments().getLong("k2-9");
+            k2[9] = getArguments().getLong("k2-10");
+            k2[10] = getArguments().getLong("k2-11");
+            k2[11] = getArguments().getLong("k2-12");
+            k2[12] = getArguments().getLong("k2-13");
+            k2[13] = getArguments().getLong("k2-14");
+            k2[14] = getArguments().getLong("k2-15");
+            k2[15] = getArguments().getLong("k2-16");
+            k2[16] = getArguments().getLong("k2-17");
+            k2[17] = getArguments().getLong("k2-18");
+            k2[18] = getArguments().getLong("k2-19");
+            k2[19] = getArguments().getLong("k2-20");
+            k2[20] = getArguments().getLong("k2-21");
+            k2[21] = getArguments().getLong("k2-22");
+            k2[22] = getArguments().getLong("k2-23");
+            k2[23] = getArguments().getLong("k2-24");
+            k2[24] = getArguments().getLong("k2-25");
+            k2[25] = getArguments().getLong("k2-26");
+            k2[26] = getArguments().getLong("k2-27");
+            k2[27] = getArguments().getLong("k2-28");
+            k2[28] = getArguments().getLong("k2-29");
+            k2[29] = getArguments().getLong("k2-30");
+            k2[30] = getArguments().getLong("k2-31");
+            k2[31] = getArguments().getLong("k2-32");
+            k2[32] = getArguments().getLong("k2-33");
+            k2[33] = getArguments().getLong("k2-34");
+            k2[34] = getArguments().getLong("k2-35");
+            k2[35] = getArguments().getLong("k2-36");
+
+        }
+
+        else if(getArguments().getBoolean("moreReview_reviewModify_flag")) {   // 리뷰 수정을 통해서 온 경우,
+            moreReview_reviewModify_flag = getArguments().getBoolean("moreReview_reviewModify_flag");
+
+            review_cafe_name = getArguments().getString("cafeName");
+
+            s1 = getArguments().getFloat("tastePoint1");
+            s2 = getArguments().getFloat("tastePoint2");
+            s3 = getArguments().getFloat("tastePoint3");
+            s4 = getArguments().getFloat("tastePoint4");
+
+            s5 = getArguments().getFloat("seatPoint1");
+            s6 = getArguments().getFloat("seatPoint2");
+            s7 = getArguments().getFloat("seatPoint3");
+            s8 = getArguments().getFloat("seatPoint4");
+
+            s9 = getArguments().getFloat("studyPoint1");
+            s10 = getArguments().getFloat("studyPoint2");
+            s11 = getArguments().getFloat("studyPoint3");
+            s12 = getArguments().getFloat("studyPoint4");
+            flag = getArguments().getBoolean("flag");
+            reviewNum = getArguments().getLong("reviewNum");
+
+            score1 = getArguments().getInt("score1");
+            score2 = getArguments().getInt("score2");
+            score3 = getArguments().getInt("score3");
+            score4 = getArguments().getInt("score4");
+            score5 = getArguments().getInt("score5");
+            score6 = getArguments().getInt("score6");
+            score7 = getArguments().getInt("score7");
+            score8 = getArguments().getInt("score8");
+            score9 = getArguments().getInt("score9");
+            score10 = getArguments().getInt("score10");
+            score11 = getArguments().getInt("score11");
+            score12 = getArguments().getInt("score12");
+
+            k2[0] = getArguments().getLong("k2-1");
+            k2[1] = getArguments().getLong("k2-2");
+            k2[2] = getArguments().getLong("k2-3");
+            k2[3] = getArguments().getLong("k2-4");
+            k2[4] = getArguments().getLong("k2-5");
+            k2[5] = getArguments().getLong("k2-6");
+            k2[6] = getArguments().getLong("k2-7");
+            k2[7] = getArguments().getLong("k2-8");
+            k2[8] = getArguments().getLong("k2-9");
+            k2[9] = getArguments().getLong("k2-10");
+            k2[10] = getArguments().getLong("k2-11");
+            k2[11] = getArguments().getLong("k2-12");
+            k2[12] = getArguments().getLong("k2-13");
+            k2[13] = getArguments().getLong("k2-14");
+            k2[14] = getArguments().getLong("k2-15");
+            k2[15] = getArguments().getLong("k2-16");
+            k2[16] = getArguments().getLong("k2-17");
+            k2[17] = getArguments().getLong("k2-18");
+            k2[18] = getArguments().getLong("k2-19");
+            k2[19] = getArguments().getLong("k2-20");
+            k2[20] = getArguments().getLong("k2-21");
+            k2[21] = getArguments().getLong("k2-22");
+            k2[22] = getArguments().getLong("k2-23");
+            k2[23] = getArguments().getLong("k2-24");
+            k2[24] = getArguments().getLong("k2-25");
+            k2[25] = getArguments().getLong("k2-26");
+            k2[26] = getArguments().getLong("k2-27");
+            k2[27] = getArguments().getLong("k2-28");
+            k2[28] = getArguments().getLong("k2-29");
+            k2[29] = getArguments().getLong("k2-30");
+            k2[30] = getArguments().getLong("k2-31");
+            k2[31] = getArguments().getLong("k2-32");
+            k2[32] = getArguments().getLong("k2-33");
+            k2[33] = getArguments().getLong("k2-34");
+            k2[34] = getArguments().getLong("k2-35");
+            k2[35] = getArguments().getLong("k2-36");
+        }
+
+        else if(getArguments().getBoolean("mypage_reviewModify_flag")) {   // 리뷰 수정을 통해서 온 경우,
+            mypage_reviewModify_flag = getArguments().getBoolean("mypage_reviewModify_flag");
+
+            review_cafe_name = getArguments().getString("cafeName");
+
+            s1 = getArguments().getFloat("tastePoint1");
+            s2 = getArguments().getFloat("tastePoint2");
+            s3 = getArguments().getFloat("tastePoint3");
+            s4 = getArguments().getFloat("tastePoint4");
+
+            s5 = getArguments().getFloat("seatPoint1");
+            s6 = getArguments().getFloat("seatPoint2");
+            s7 = getArguments().getFloat("seatPoint3");
+            s8 = getArguments().getFloat("seatPoint4");
+
+            s9 = getArguments().getFloat("studyPoint1");
+            s10 = getArguments().getFloat("studyPoint2");
+            s11 = getArguments().getFloat("studyPoint3");
+            s12 = getArguments().getFloat("studyPoint4");
+            flag = getArguments().getBoolean("flag");
+            reviewNum = getArguments().getLong("reviewNum");
+
+            score1 = getArguments().getInt("score1");
+            score2 = getArguments().getInt("score2");
+            score3 = getArguments().getInt("score3");
+            score4 = getArguments().getInt("score4");
+            score5 = getArguments().getInt("score5");
+            score6 = getArguments().getInt("score6");
+            score7 = getArguments().getInt("score7");
+            score8 = getArguments().getInt("score8");
+            score9 = getArguments().getInt("score9");
+            score10 = getArguments().getInt("score10");
+            score11 = getArguments().getInt("score11");
+            score12 = getArguments().getInt("score12");
+
+            k2[0] = getArguments().getLong("k2-1");
+            k2[1] = getArguments().getLong("k2-2");
+            k2[2] = getArguments().getLong("k2-3");
+            k2[3] = getArguments().getLong("k2-4");
+            k2[4] = getArguments().getLong("k2-5");
+            k2[5] = getArguments().getLong("k2-6");
+            k2[6] = getArguments().getLong("k2-7");
+            k2[7] = getArguments().getLong("k2-8");
+            k2[8] = getArguments().getLong("k2-9");
+            k2[9] = getArguments().getLong("k2-10");
+            k2[10] = getArguments().getLong("k2-11");
+            k2[11] = getArguments().getLong("k2-12");
+            k2[12] = getArguments().getLong("k2-13");
+            k2[13] = getArguments().getLong("k2-14");
+            k2[14] = getArguments().getLong("k2-15");
+            k2[15] = getArguments().getLong("k2-16");
+            k2[16] = getArguments().getLong("k2-17");
+            k2[17] = getArguments().getLong("k2-18");
+            k2[18] = getArguments().getLong("k2-19");
+            k2[19] = getArguments().getLong("k2-20");
+            k2[20] = getArguments().getLong("k2-21");
+            k2[21] = getArguments().getLong("k2-22");
+            k2[22] = getArguments().getLong("k2-23");
+            k2[23] = getArguments().getLong("k2-24");
+            k2[24] = getArguments().getLong("k2-25");
+            k2[25] = getArguments().getLong("k2-26");
+            k2[26] = getArguments().getLong("k2-27");
+            k2[27] = getArguments().getLong("k2-28");
+            k2[28] = getArguments().getLong("k2-29");
+            k2[29] = getArguments().getLong("k2-30");
+            k2[30] = getArguments().getLong("k2-31");
+            k2[31] = getArguments().getLong("k2-32");
+            k2[32] = getArguments().getLong("k2-33");
+            k2[33] = getArguments().getLong("k2-34");
+            k2[34] = getArguments().getLong("k2-35");
+            k2[35] = getArguments().getLong("k2-36");
+
+        }
 
         ////////////////////////////////////////////////////////////////////////////////////
         // 아래 3개 삭제 버튼 클릭 이벤트 작성
@@ -367,78 +571,288 @@ public class ReviewTagFragment extends Fragment {
                     Toast.makeText(getContext().getApplicationContext(), "선택한 태그 추가하기.", Toast.LENGTH_SHORT).show();
                     // 번들을 이용해 프래그먼트간 데이터 전달
 
-                    Bundle bundle = new Bundle(); // 프래그먼트 간 데이터 전달 위한 번들
+                    if(floating_flag){
+                        Bundle bundle = new Bundle(); // 프래그먼트 간 데이터 전달 위한 번들
 
-                    bundle.putString("review_cafeName", review_cafe_name);
+                        bundle.putBoolean("return_floating_flag", floating_flag);
+                        bundle.putString("review_cafeName", review_cafe_name);
 
-                    bundle.putString("key1",addTag1.getText().toString()); // 번들에 String 데이터를 전달. key1 을 키로 사용
-                    bundle.putString("key2",addTag2.getText().toString());
-                    bundle.putString("key3",addTag3.getText().toString());
+                        bundle.putString("key1",addTag1.getText().toString()); // 번들에 String 데이터를 전달. key1 을 키로 사용
+                        bundle.putString("key2",addTag2.getText().toString());
+                        bundle.putString("key3",addTag3.getText().toString());
 
-                    bundle.putFloat("tag_review_tastePoint1", s1);
-                    bundle.putFloat("tag_review_tastePoint2", s2);
-                    bundle.putFloat("tag_review_tastePoint3", s3);
-                    bundle.putFloat("tag_review_tastePoint4", s4);
-                    bundle.putFloat("tag_review_seatPoint1", s5);
-                    bundle.putFloat("tag_review_seatPoint2", s6);
-                    bundle.putFloat("tag_review_seatPoint3", s7);
-                    bundle.putFloat("tag_review_seatPoint4", s8);
-                    bundle.putFloat("tag_review_studyPoint1", s9);
-                    bundle.putFloat("tag_review_studyPoint2", s10);
-                    bundle.putFloat("tag_review_studyPoint3", s11);
-                    bundle.putFloat("tag_review_studyPoint4", s12);
-                    bundle.putBoolean("flag", flag);
-                    bundle.putLong("reviewNum", reviewNum);
-                    bundle.putInt("score1", score1);
-                    bundle.putInt("score2", score2);
-                    bundle.putInt("score3", score3);
-                    bundle.putInt("score4", score4);
-                    bundle.putInt("score5", score5);
-                    bundle.putInt("score6", score6);
-                    bundle.putInt("score7", score7);
-                    bundle.putInt("score8", score8);
-                    bundle.putInt("score9", score9);
-                    bundle.putInt("score10", score10);
-                    bundle.putInt("score11", score11);
-                    bundle.putInt("score12", score12);
+                        bundle.putFloat("tag_review_tastePoint1", s1);
+                        bundle.putFloat("tag_review_tastePoint2", s2);
+                        bundle.putFloat("tag_review_tastePoint3", s3);
+                        bundle.putFloat("tag_review_tastePoint4", s4);
+                        bundle.putFloat("tag_review_seatPoint1", s5);
+                        bundle.putFloat("tag_review_seatPoint2", s6);
+                        bundle.putFloat("tag_review_seatPoint3", s7);
+                        bundle.putFloat("tag_review_seatPoint4", s8);
+                        bundle.putFloat("tag_review_studyPoint1", s9);
+                        bundle.putFloat("tag_review_studyPoint2", s10);
+                        bundle.putFloat("tag_review_studyPoint3", s11);
+                        bundle.putFloat("tag_review_studyPoint4", s12);
 
-                    bundle.putLong("k2-1", k2[0]);
-                    bundle.putLong("k2-2", k2[1]);
-                    bundle.putLong("k2-3", k2[2]);
-                    bundle.putLong("k2-4", k2[3]);
-                    bundle.putLong("k2-5", k2[4]);
-                    bundle.putLong("k2-6", k2[5]);
-                    bundle.putLong("k2-7", k2[6]);
-                    bundle.putLong("k2-8", k2[7]);
-                    bundle.putLong("k2-9", k2[8]);
-                    bundle.putLong("k2-10", k2[9]);
-                    bundle.putLong("k2-11", k2[10]);
-                    bundle.putLong("k2-12", k2[11]);
-                    bundle.putLong("k2-13", k2[12]);
-                    bundle.putLong("k2-14", k2[13]);
-                    bundle.putLong("k2-15", k2[14]);
-                    bundle.putLong("k2-16", k2[15]);
-                    bundle.putLong("k2-17", k2[16]);
-                    bundle.putLong("k2-18", k2[17]);
-                    bundle.putLong("k2-19", k2[18]);
-                    bundle.putLong("k2-20", k2[19]);
-                    bundle.putLong("k2-21", k2[20]);
-                    bundle.putLong("k2-22", k2[21]);
-                    bundle.putLong("k2-23", k2[22]);
-                    bundle.putLong("k2-24", k2[23]);
-                    bundle.putLong("k2-25", k2[24]);
-                    bundle.putLong("k2-26", k2[25]);
-                    bundle.putLong("k2-27", k2[26]);
-                    bundle.putLong("k2-28", k2[27]);
-                    bundle.putLong("k2-29", k2[28]);
-                    bundle.putLong("k2-30", k2[29]);
-                    bundle.putLong("k2-31", k2[30]);
-                    bundle.putLong("k2-32", k2[31]);
-                    bundle.putLong("k2-33", k2[32]);
-                    bundle.putLong("k2-34", k2[33]);
-                    bundle.putLong("k2-35", k2[34]);
-                    bundle.putLong("k2-36", k2[35]);
-                    navController.navigate(R.id.review_tag_to_review, bundle); // 번들과 함께 전달
+                        navController.navigate(R.id.review_tag_to_review, bundle); // 번들과 함께 전달
+                    }
+
+                    else if(reviewCafeList_flag){
+                        Bundle bundle = new Bundle(); // 프래그먼트 간 데이터 전달 위한 번들
+
+                        bundle.putBoolean("return_reviewCafeList_flag", reviewCafeList_flag);
+                        bundle.putString("review_cafeName", review_cafe_name);
+
+                        bundle.putString("key1",addTag1.getText().toString()); // 번들에 String 데이터를 전달. key1 을 키로 사용
+                        bundle.putString("key2",addTag2.getText().toString());
+                        bundle.putString("key3",addTag3.getText().toString());
+
+                        bundle.putFloat("tag_review_tastePoint1", s1);
+                        bundle.putFloat("tag_review_tastePoint2", s2);
+                        bundle.putFloat("tag_review_tastePoint3", s3);
+                        bundle.putFloat("tag_review_tastePoint4", s4);
+                        bundle.putFloat("tag_review_seatPoint1", s5);
+                        bundle.putFloat("tag_review_seatPoint2", s6);
+                        bundle.putFloat("tag_review_seatPoint3", s7);
+                        bundle.putFloat("tag_review_seatPoint4", s8);
+                        bundle.putFloat("tag_review_studyPoint1", s9);
+                        bundle.putFloat("tag_review_studyPoint2", s10);
+                        bundle.putFloat("tag_review_studyPoint3", s11);
+                        bundle.putFloat("tag_review_studyPoint4", s12);
+
+                        navController.navigate(R.id.review_tag_to_review, bundle); // 번들과 함께 전달
+                    }
+
+                    else if(cafeDetail_reviewModify_flag){
+                        Bundle bundle = new Bundle(); // 프래그먼트 간 데이터 전달 위한 번들
+
+                        bundle.putBoolean("return_cafeDetail_reviewModify_flag", cafeDetail_reviewModify_flag);
+                        bundle.putString("review_cafeName", review_cafe_name);
+
+                        bundle.putString("key1",addTag1.getText().toString()); // 번들에 String 데이터를 전달. key1 을 키로 사용
+                        bundle.putString("key2",addTag2.getText().toString());
+                        bundle.putString("key3",addTag3.getText().toString());
+
+                        bundle.putFloat("tag_review_tastePoint1", s1);
+                        bundle.putFloat("tag_review_tastePoint2", s2);
+                        bundle.putFloat("tag_review_tastePoint3", s3);
+                        bundle.putFloat("tag_review_tastePoint4", s4);
+                        bundle.putFloat("tag_review_seatPoint1", s5);
+                        bundle.putFloat("tag_review_seatPoint2", s6);
+                        bundle.putFloat("tag_review_seatPoint3", s7);
+                        bundle.putFloat("tag_review_seatPoint4", s8);
+                        bundle.putFloat("tag_review_studyPoint1", s9);
+                        bundle.putFloat("tag_review_studyPoint2", s10);
+                        bundle.putFloat("tag_review_studyPoint3", s11);
+                        bundle.putFloat("tag_review_studyPoint4", s12);
+                        bundle.putBoolean("flag", flag);
+                        bundle.putLong("reviewNum", reviewNum);
+                        bundle.putInt("score1", score1);
+                        bundle.putInt("score2", score2);
+                        bundle.putInt("score3", score3);
+                        bundle.putInt("score4", score4);
+                        bundle.putInt("score5", score5);
+                        bundle.putInt("score6", score6);
+                        bundle.putInt("score7", score7);
+                        bundle.putInt("score8", score8);
+                        bundle.putInt("score9", score9);
+                        bundle.putInt("score10", score10);
+                        bundle.putInt("score11", score11);
+                        bundle.putInt("score12", score12);
+
+                        bundle.putLong("k2-1", (long) k2[0]);
+                        bundle.putLong("k2-2", (long) k2[1]);
+                        bundle.putLong("k2-3", (long) k2[2]);
+                        bundle.putLong("k2-4", (long) k2[3]);
+                        bundle.putLong("k2-5", (long) k2[4]);
+                        bundle.putLong("k2-6", (long) k2[5]);
+                        bundle.putLong("k2-7", (long) k2[6]);
+                        bundle.putLong("k2-8", (long) k2[7]);
+                        bundle.putLong("k2-9", (long) k2[8]);
+                        bundle.putLong("k2-10", (long) k2[9]);
+                        bundle.putLong("k2-11", (long) k2[10]);
+                        bundle.putLong("k2-12", (long) k2[11]);
+                        bundle.putLong("k2-13", (long) k2[12]);
+                        bundle.putLong("k2-14", (long) k2[13]);
+                        bundle.putLong("k2-15", (long) k2[14]);
+                        bundle.putLong("k2-16", (long) k2[15]);
+                        bundle.putLong("k2-17", (long) k2[16]);
+                        bundle.putLong("k2-18", (long) k2[17]);
+                        bundle.putLong("k2-19", (long) k2[18]);
+                        bundle.putLong("k2-20", (long) k2[19]);
+                        bundle.putLong("k2-21", (long) k2[20]);
+                        bundle.putLong("k2-22", (long) k2[21]);
+                        bundle.putLong("k2-23", (long) k2[22]);
+                        bundle.putLong("k2-24", (long) k2[23]);
+                        bundle.putLong("k2-25", (long) k2[24]);
+                        bundle.putLong("k2-26", (long) k2[25]);
+                        bundle.putLong("k2-27", (long) k2[26]);
+                        bundle.putLong("k2-28", (long) k2[27]);
+                        bundle.putLong("k2-29", (long) k2[28]);
+                        bundle.putLong("k2-30", (long) k2[29]);
+                        bundle.putLong("k2-31", (long) k2[30]);
+                        bundle.putLong("k2-32", (long) k2[31]);
+                        bundle.putLong("k2-33", (long) k2[32]);
+                        bundle.putLong("k2-34", (long) k2[33]);
+                        bundle.putLong("k2-35", (long) k2[34]);
+                        bundle.putLong("k2-36", (long) k2[35]);
+
+                        navController.navigate(R.id.review_tag_to_review, bundle); // 번들과 함께 전달
+                    }
+
+                    else if(moreReview_reviewModify_flag){
+                        Bundle bundle = new Bundle(); // 프래그먼트 간 데이터 전달 위한 번들
+
+                        bundle.putBoolean("return_moreReview_reviewModify_flag", moreReview_reviewModify_flag);
+                        bundle.putString("review_cafeName", review_cafe_name);
+
+                        bundle.putString("key1",addTag1.getText().toString()); // 번들에 String 데이터를 전달. key1 을 키로 사용
+                        bundle.putString("key2",addTag2.getText().toString());
+                        bundle.putString("key3",addTag3.getText().toString());
+
+                        bundle.putFloat("tag_review_tastePoint1", s1);
+                        bundle.putFloat("tag_review_tastePoint2", s2);
+                        bundle.putFloat("tag_review_tastePoint3", s3);
+                        bundle.putFloat("tag_review_tastePoint4", s4);
+                        bundle.putFloat("tag_review_seatPoint1", s5);
+                        bundle.putFloat("tag_review_seatPoint2", s6);
+                        bundle.putFloat("tag_review_seatPoint3", s7);
+                        bundle.putFloat("tag_review_seatPoint4", s8);
+                        bundle.putFloat("tag_review_studyPoint1", s9);
+                        bundle.putFloat("tag_review_studyPoint2", s10);
+                        bundle.putFloat("tag_review_studyPoint3", s11);
+                        bundle.putFloat("tag_review_studyPoint4", s12);
+                        bundle.putBoolean("flag", flag);
+                        bundle.putLong("reviewNum", reviewNum);
+                        bundle.putInt("score1", score1);
+                        bundle.putInt("score2", score2);
+                        bundle.putInt("score3", score3);
+                        bundle.putInt("score4", score4);
+                        bundle.putInt("score5", score5);
+                        bundle.putInt("score6", score6);
+                        bundle.putInt("score7", score7);
+                        bundle.putInt("score8", score8);
+                        bundle.putInt("score9", score9);
+                        bundle.putInt("score10", score10);
+                        bundle.putInt("score11", score11);
+                        bundle.putInt("score12", score12);
+
+                        bundle.putLong("k2-1", (long) k2[0]);
+                        bundle.putLong("k2-2", (long) k2[1]);
+                        bundle.putLong("k2-3", (long) k2[2]);
+                        bundle.putLong("k2-4", (long) k2[3]);
+                        bundle.putLong("k2-5", (long) k2[4]);
+                        bundle.putLong("k2-6", (long) k2[5]);
+                        bundle.putLong("k2-7", (long) k2[6]);
+                        bundle.putLong("k2-8", (long) k2[7]);
+                        bundle.putLong("k2-9", (long) k2[8]);
+                        bundle.putLong("k2-10", (long) k2[9]);
+                        bundle.putLong("k2-11", (long) k2[10]);
+                        bundle.putLong("k2-12", (long) k2[11]);
+                        bundle.putLong("k2-13", (long) k2[12]);
+                        bundle.putLong("k2-14", (long) k2[13]);
+                        bundle.putLong("k2-15", (long) k2[14]);
+                        bundle.putLong("k2-16", (long) k2[15]);
+                        bundle.putLong("k2-17", (long) k2[16]);
+                        bundle.putLong("k2-18", (long) k2[17]);
+                        bundle.putLong("k2-19", (long) k2[18]);
+                        bundle.putLong("k2-20", (long) k2[19]);
+                        bundle.putLong("k2-21", (long) k2[20]);
+                        bundle.putLong("k2-22", (long) k2[21]);
+                        bundle.putLong("k2-23", (long) k2[22]);
+                        bundle.putLong("k2-24", (long) k2[23]);
+                        bundle.putLong("k2-25", (long) k2[24]);
+                        bundle.putLong("k2-26", (long) k2[25]);
+                        bundle.putLong("k2-27", (long) k2[26]);
+                        bundle.putLong("k2-28", (long) k2[27]);
+                        bundle.putLong("k2-29", (long) k2[28]);
+                        bundle.putLong("k2-30", (long) k2[29]);
+                        bundle.putLong("k2-31", (long) k2[30]);
+                        bundle.putLong("k2-32", (long) k2[31]);
+                        bundle.putLong("k2-33", (long) k2[32]);
+                        bundle.putLong("k2-34", (long) k2[33]);
+                        bundle.putLong("k2-35", (long) k2[34]);
+                        bundle.putLong("k2-36", (long) k2[35]);
+
+                        navController.navigate(R.id.review_tag_to_review, bundle); // 번들과 함께 전달
+                    }
+
+                    else if(mypage_reviewModify_flag){
+                        Bundle bundle = new Bundle(); // 프래그먼트 간 데이터 전달 위한 번들
+
+                        bundle.putBoolean("return_mypage_reviewModify_flag", mypage_reviewModify_flag);
+                        bundle.putString("review_cafeName", review_cafe_name);
+
+                        bundle.putString("key1",addTag1.getText().toString()); // 번들에 String 데이터를 전달. key1 을 키로 사용
+                        bundle.putString("key2",addTag2.getText().toString());
+                        bundle.putString("key3",addTag3.getText().toString());
+
+                        bundle.putFloat("tag_review_tastePoint1", s1);
+                        bundle.putFloat("tag_review_tastePoint2", s2);
+                        bundle.putFloat("tag_review_tastePoint3", s3);
+                        bundle.putFloat("tag_review_tastePoint4", s4);
+                        bundle.putFloat("tag_review_seatPoint1", s5);
+                        bundle.putFloat("tag_review_seatPoint2", s6);
+                        bundle.putFloat("tag_review_seatPoint3", s7);
+                        bundle.putFloat("tag_review_seatPoint4", s8);
+                        bundle.putFloat("tag_review_studyPoint1", s9);
+                        bundle.putFloat("tag_review_studyPoint2", s10);
+                        bundle.putFloat("tag_review_studyPoint3", s11);
+                        bundle.putFloat("tag_review_studyPoint4", s12);
+                        bundle.putBoolean("flag", flag);
+                        bundle.putLong("reviewNum", reviewNum);
+                        bundle.putInt("score1", score1);
+                        bundle.putInt("score2", score2);
+                        bundle.putInt("score3", score3);
+                        bundle.putInt("score4", score4);
+                        bundle.putInt("score5", score5);
+                        bundle.putInt("score6", score6);
+                        bundle.putInt("score7", score7);
+                        bundle.putInt("score8", score8);
+                        bundle.putInt("score9", score9);
+                        bundle.putInt("score10", score10);
+                        bundle.putInt("score11", score11);
+                        bundle.putInt("score12", score12);
+
+                        bundle.putLong("k2-1", (long) k2[0]);
+                        bundle.putLong("k2-2", (long) k2[1]);
+                        bundle.putLong("k2-3", (long) k2[2]);
+                        bundle.putLong("k2-4", (long) k2[3]);
+                        bundle.putLong("k2-5", (long) k2[4]);
+                        bundle.putLong("k2-6", (long) k2[5]);
+                        bundle.putLong("k2-7", (long) k2[6]);
+                        bundle.putLong("k2-8", (long) k2[7]);
+                        bundle.putLong("k2-9", (long) k2[8]);
+                        bundle.putLong("k2-10", (long) k2[9]);
+                        bundle.putLong("k2-11", (long) k2[10]);
+                        bundle.putLong("k2-12", (long) k2[11]);
+                        bundle.putLong("k2-13", (long) k2[12]);
+                        bundle.putLong("k2-14", (long) k2[13]);
+                        bundle.putLong("k2-15", (long) k2[14]);
+                        bundle.putLong("k2-16", (long) k2[15]);
+                        bundle.putLong("k2-17", (long) k2[16]);
+                        bundle.putLong("k2-18", (long) k2[17]);
+                        bundle.putLong("k2-19", (long) k2[18]);
+                        bundle.putLong("k2-20", (long) k2[19]);
+                        bundle.putLong("k2-21", (long) k2[20]);
+                        bundle.putLong("k2-22", (long) k2[21]);
+                        bundle.putLong("k2-23", (long) k2[22]);
+                        bundle.putLong("k2-24", (long) k2[23]);
+                        bundle.putLong("k2-25", (long) k2[24]);
+                        bundle.putLong("k2-26", (long) k2[25]);
+                        bundle.putLong("k2-27", (long) k2[26]);
+                        bundle.putLong("k2-28", (long) k2[27]);
+                        bundle.putLong("k2-29", (long) k2[28]);
+                        bundle.putLong("k2-30", (long) k2[29]);
+                        bundle.putLong("k2-31", (long) k2[30]);
+                        bundle.putLong("k2-32", (long) k2[31]);
+                        bundle.putLong("k2-33", (long) k2[32]);
+                        bundle.putLong("k2-34", (long) k2[33]);
+                        bundle.putLong("k2-35", (long) k2[34]);
+                        bundle.putLong("k2-36", (long) k2[35]);
+
+                        navController.navigate(R.id.review_tag_to_review, bundle); // 번들과 함께 전달
+                    }
                 }
             }
         });

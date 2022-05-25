@@ -51,14 +51,12 @@ public class ListCafeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         viewHolder.cafeList_cafeImage.setImageResource(item.getCafeList_cafeImage());
         viewHolder.check_user_flag = item.getCheck_user_flag();
 
-
         if(viewHolder.check_user_flag){
             viewHolder.favorite_button.setChecked(true);
         }
         else{
             viewHolder.favorite_button.setChecked(false);
         }
-
 
         // 즐겨찾기 버튼 클릭 시,
         viewHolder.favorite_button.setOnClickListener(new View.OnClickListener() {

@@ -10,10 +10,13 @@ public class CafeDetailItem {
     int reviewImage;
     String good_count_textView;
     boolean check_user_flag;
+    boolean check_love_flag; // love 테이블에 memNum 일치 여부
     Long mem_num;
     Long get_cafe_num;
+    Long get_love_num;
+    Long get_review_num;
 
-    public CafeDetailItem(String reviewNickName, String level_and_location, String review_comment, String review_writeTime, int reviewProfile_image, int reviewImage, String good_count_textView, boolean check_user_flag, Long mem_num, Long get_cafe_num) {
+    public CafeDetailItem(String reviewNickName, String level_and_location, String review_comment, String review_writeTime, int reviewProfile_image, int reviewImage, String good_count_textView, boolean check_user_flag, boolean check_love_flag, Long mem_num, Long get_cafe_num, Long get_love_num, Long get_review_num) {
         this.reviewNickName = reviewNickName;
         this.level_and_location = level_and_location;
         this.review_comment = review_comment;
@@ -22,8 +25,11 @@ public class CafeDetailItem {
         this.reviewImage = reviewImage;
         this.good_count_textView = good_count_textView;
         this.check_user_flag = check_user_flag;
+        this.check_love_flag = check_love_flag;
         this.mem_num = mem_num;
         this.get_cafe_num = get_cafe_num;
+        this.get_love_num = get_love_num;
+        this.get_review_num = get_review_num;
     }
 
     public String getReviewNickName() {
@@ -86,7 +92,13 @@ public class CafeDetailItem {
         return check_user_flag;
     }
 
+    public boolean getCheck_love_flag(){ return check_love_flag; }
+
     public Long getMem_num() {return mem_num;}
 
     public Long getGet_cafe_num() {return get_cafe_num;}
+
+    public Long getGet_love_num() { return get_love_num; }
+
+    public Long getGet_review_num() { return get_review_num; }
 }

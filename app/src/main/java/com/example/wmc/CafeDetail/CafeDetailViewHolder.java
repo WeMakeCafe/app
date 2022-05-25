@@ -30,6 +30,7 @@ public class CafeDetailViewHolder extends RecyclerView.ViewHolder{
     ImageView good_button_image;
 
     boolean check_user_flag;
+    boolean check_love_flag;
 
     public static int REVIEW_VIEW_TYPE = R.layout.item_review;
 
