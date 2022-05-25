@@ -87,27 +87,27 @@
         android:id="@+id/viewPager_beverage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
         android:text="기타음료"
         android:textColor="@color/black"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/viewPager_sour"
-        app:layout_constraintStart_toEndOf="@+id/viewPager_rating_sour"
-        app:layout_constraintTop_toTopOf="@+id/viewPager_sour" />
+        app:layout_constraintBottom_toBottomOf="@+id/viewPager_acerbity"
+        app:layout_constraintStart_toEndOf="@+id/viewPager_rating_acerbity"
+        app:layout_constraintTop_toTopOf="@+id/viewPager_acerbity" />
 
     <RatingBar
         android:id="@+id/viewPager_rating_beverage"
         style="@style/Widget.AppCompat.RatingBar.Small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:isIndicator="true"
         android:layout_marginLeft="5dp"
+        android:isIndicator="true"
         android:numStars="5"
         android:progressDrawable="@drawable/rating_custom"
         android:stepSize="1"
-        app:layout_constraintBottom_toBottomOf="@+id/viewPager_rating_sour"
+        app:layout_constraintBottom_toBottomOf="@+id/viewPager_rating_acerbity"
         app:layout_constraintStart_toEndOf="@+id/viewPager_beverage"
-        app:layout_constraintTop_toTopOf="@+id/viewPager_rating_sour"
+        app:layout_constraintTop_toTopOf="@+id/viewPager_rating_acerbity"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -117,10 +117,10 @@
         android:text="디저트"
         android:textColor="@color/black"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/viewPager_acerbity"
+        app:layout_constraintBottom_toBottomOf="@+id/viewPager_sour"
         app:layout_constraintEnd_toEndOf="@+id/viewPager_beverage"
         app:layout_constraintStart_toStartOf="@+id/viewPager_beverage"
-        app:layout_constraintTop_toTopOf="@+id/viewPager_acerbity" />
+        app:layout_constraintTop_toTopOf="@+id/viewPager_sour" />
 
     <RatingBar
         android:id="@+id/viewPager_rating_dessert"
@@ -131,9 +131,9 @@
         android:numStars="5"
         android:progressDrawable="@drawable/rating_custom"
         android:stepSize="1"
-        app:layout_constraintBottom_toBottomOf="@+id/viewPager_rating_acerbity"
+        app:layout_constraintBottom_toBottomOf="@+id/viewPager_rating_sour"
         app:layout_constraintEnd_toEndOf="@+id/viewPager_rating_beverage"
         app:layout_constraintStart_toStartOf="@+id/viewPager_rating_beverage"
-        app:layout_constraintTop_toTopOf="@+id/viewPager_rating_acerbity" />
+        app:layout_constraintTop_toTopOf="@+id/viewPager_rating_sour" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
