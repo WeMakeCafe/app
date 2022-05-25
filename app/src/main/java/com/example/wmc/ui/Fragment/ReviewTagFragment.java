@@ -68,6 +68,7 @@ public class ReviewTagFragment extends Fragment {
     Integer score10;
     Integer score11;
     Integer score12;
+    String comment = "";
     Long[] k2 = new Long[36];
 
     Boolean floating_flag = false;
@@ -217,6 +218,7 @@ public class ReviewTagFragment extends Fragment {
             k2[34] = getArguments().getLong("k2-35");
             k2[35] = getArguments().getLong("k2-36");
 
+            comment = getArguments().getString("comment");
         }
 
         else if(getArguments().getBoolean("moreReview_reviewModify_flag")) {   // 리뷰 수정을 통해서 온 경우,
@@ -290,6 +292,8 @@ public class ReviewTagFragment extends Fragment {
             k2[33] = getArguments().getLong("k2-34");
             k2[34] = getArguments().getLong("k2-35");
             k2[35] = getArguments().getLong("k2-36");
+
+            comment = getArguments().getString("comment");
         }
 
         else if(getArguments().getBoolean("mypage_reviewModify_flag")) {   // 리뷰 수정을 통해서 온 경우,
@@ -363,6 +367,10 @@ public class ReviewTagFragment extends Fragment {
             k2[33] = getArguments().getLong("k2-34");
             k2[34] = getArguments().getLong("k2-35");
             k2[35] = getArguments().getLong("k2-36");
+
+            comment = getArguments().getString("comment");
+
+            Log.d("myReview에서 받은comment", comment);
 
         }
 
@@ -645,8 +653,6 @@ public class ReviewTagFragment extends Fragment {
                         bundle.putFloat("tag_review_studyPoint2", s10);
                         bundle.putFloat("tag_review_studyPoint3", s11);
                         bundle.putFloat("tag_review_studyPoint4", s12);
-                        bundle.putBoolean("flag", flag);
-                        bundle.putLong("reviewNum", reviewNum);
                         bundle.putInt("score1", score1);
                         bundle.putInt("score2", score2);
                         bundle.putInt("score3", score3);
@@ -696,6 +702,12 @@ public class ReviewTagFragment extends Fragment {
                         bundle.putLong("k2-34", (long) k2[33]);
                         bundle.putLong("k2-35", (long) k2[34]);
                         bundle.putLong("k2-36", (long) k2[35]);
+
+                        bundle.putBoolean("flag", flag);
+                        bundle.putLong("reviewNum", reviewNum);
+
+                        bundle.putString("comment", comment);
+                        Log.d("리뷰로 보내는comment", comment);
 
                         navController.navigate(R.id.review_tag_to_review, bundle); // 번들과 함께 전달
                     }
@@ -722,8 +734,6 @@ public class ReviewTagFragment extends Fragment {
                         bundle.putFloat("tag_review_studyPoint2", s10);
                         bundle.putFloat("tag_review_studyPoint3", s11);
                         bundle.putFloat("tag_review_studyPoint4", s12);
-                        bundle.putBoolean("flag", flag);
-                        bundle.putLong("reviewNum", reviewNum);
                         bundle.putInt("score1", score1);
                         bundle.putInt("score2", score2);
                         bundle.putInt("score3", score3);
@@ -773,6 +783,12 @@ public class ReviewTagFragment extends Fragment {
                         bundle.putLong("k2-34", (long) k2[33]);
                         bundle.putLong("k2-35", (long) k2[34]);
                         bundle.putLong("k2-36", (long) k2[35]);
+
+                        bundle.putBoolean("flag", flag);
+                        bundle.putLong("reviewNum", reviewNum);
+
+                        bundle.putString("comment", comment);
+                        Log.d("리뷰로 보내는comment", comment);
 
                         navController.navigate(R.id.review_tag_to_review, bundle); // 번들과 함께 전달
                     }
@@ -799,8 +815,6 @@ public class ReviewTagFragment extends Fragment {
                         bundle.putFloat("tag_review_studyPoint2", s10);
                         bundle.putFloat("tag_review_studyPoint3", s11);
                         bundle.putFloat("tag_review_studyPoint4", s12);
-                        bundle.putBoolean("flag", flag);
-                        bundle.putLong("reviewNum", reviewNum);
                         bundle.putInt("score1", score1);
                         bundle.putInt("score2", score2);
                         bundle.putInt("score3", score3);
@@ -851,6 +865,11 @@ public class ReviewTagFragment extends Fragment {
                         bundle.putLong("k2-35", (long) k2[34]);
                         bundle.putLong("k2-36", (long) k2[35]);
 
+                        bundle.putBoolean("flag", flag);
+                        bundle.putLong("reviewNum", reviewNum);
+
+                        bundle.putString("comment", comment);
+                        Log.d("리뷰로 보내는comment", comment);
                         navController.navigate(R.id.review_tag_to_review, bundle); // 번들과 함께 전달
                     }
                 }

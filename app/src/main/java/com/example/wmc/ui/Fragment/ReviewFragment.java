@@ -262,44 +262,42 @@ public class ReviewFragment extends Fragment {
                         bundle.putFloat("studyPoint2", rating_plug.getRating());
                         bundle.putFloat("studyPoint3", rating_quiet.getRating());
                         bundle.putFloat("studyPoint4", rating_light.getRating());
-                        bundle.putBoolean("flag", flag);
-                        bundle.putLong("reviewNum", reviewNum);
                         bundle.putLong("k2-1", (long) k2[0]);
                         bundle.putLong("k2-2", (long) k2[1]);
                         bundle.putLong("k2-3", (long) k2[2]);
                         bundle.putLong("k2-4", (long) k2[3]);
                         bundle.putLong("k2-5", (long) k2[4]);
                         bundle.putLong("k2-6", (long) k2[5]);
-                        bundle.putLong("k2-7", (long) k[6]);
-                        bundle.putLong("k2-8", (long) k[7]);
-                        bundle.putLong("k2-9", (long) k[8]);
-                        bundle.putLong("k2-10",(long)  k[9]);
-                        bundle.putLong("k2-11",(long)  k[10]);
-                        bundle.putLong("k2-12",(long)  k[11]);
-                        bundle.putLong("k2-13", (long) k[12]);
-                        bundle.putLong("k2-14", (long) k[13]);
-                        bundle.putLong("k2-15", (long) k[14]);
-                        bundle.putLong("k2-16", (long) k[15]);
-                        bundle.putLong("k2-17", (long) k[16]);
-                        bundle.putLong("k2-18", (long) k[17]);
-                        bundle.putLong("k2-19", (long) k[18]);
-                        bundle.putLong("k2-20", (long) k[19]);
-                        bundle.putLong("k2-21", (long) k[20]);
-                        bundle.putLong("k2-22", (long) k[21]);
-                        bundle.putLong("k2-23", (long) k[22]);
-                        bundle.putLong("k2-24", (long) k[23]);
-                        bundle.putLong("k2-25", (long) k[24]);
-                        bundle.putLong("k2-26", (long) k[25]);
-                        bundle.putLong("k2-27", (long) k[26]);
-                        bundle.putLong("k2-28", (long) k[27]);
-                        bundle.putLong("k2-29", (long) k[28]);
-                        bundle.putLong("k2-30", (long) k[29]);
-                        bundle.putLong("k2-31", (long) k[30]);
-                        bundle.putLong("k2-32", (long) k[31]);
-                        bundle.putLong("k2-33", (long) k[32]);
-                        bundle.putLong("k2-34", (long) k[33]);
-                        bundle.putLong("k2-35", (long) k[34]);
-                        bundle.putLong("k2-36", (long) k[35]);
+                        bundle.putLong("k2-7", (long) k2[6]);
+                        bundle.putLong("k2-8", (long) k2[7]);
+                        bundle.putLong("k2-9", (long) k2[8]);
+                        bundle.putLong("k2-10",(long)  k2[9]);
+                        bundle.putLong("k2-11",(long)  k2[10]);
+                        bundle.putLong("k2-12",(long)  k2[11]);
+                        bundle.putLong("k2-13", (long) k2[12]);
+                        bundle.putLong("k2-14", (long) k2[13]);
+                        bundle.putLong("k2-15", (long) k2[14]);
+                        bundle.putLong("k2-16", (long) k2[15]);
+                        bundle.putLong("k2-17", (long) k2[16]);
+                        bundle.putLong("k2-18", (long) k2[17]);
+                        bundle.putLong("k2-19", (long) k2[18]);
+                        bundle.putLong("k2-20", (long) k2[19]);
+                        bundle.putLong("k2-21", (long) k2[20]);
+                        bundle.putLong("k2-22", (long) k2[21]);
+                        bundle.putLong("k2-23", (long) k2[22]);
+                        bundle.putLong("k2-24", (long) k2[23]);
+                        bundle.putLong("k2-25", (long) k2[24]);
+                        bundle.putLong("k2-26", (long) k2[25]);
+                        bundle.putLong("k2-27", (long) k2[26]);
+                        bundle.putLong("k2-28", (long) k2[27]);
+                        bundle.putLong("k2-29", (long) k2[28]);
+                        bundle.putLong("k2-30", (long) k2[29]);
+                        bundle.putLong("k2-31", (long) k2[30]);
+                        bundle.putLong("k2-32", (long) k2[31]);
+                        bundle.putLong("k2-33", (long) k2[32]);
+                        bundle.putLong("k2-34", (long) k2[33]);
+                        bundle.putLong("k2-35", (long) k2[34]);
+                        bundle.putLong("k2-36", (long) k2[35]);
                         bundle.putInt("score1", score1.intValue());
                         bundle.putInt("score2", score2.intValue());
                         bundle.putInt("score3", score3.intValue());
@@ -312,6 +310,11 @@ public class ReviewFragment extends Fragment {
                         bundle.putInt("score10", score10.intValue());
                         bundle.putInt("score11", score11.intValue());
                         bundle.putInt("score12", score12.intValue());
+
+                        bundle.putString("comment", comment);
+
+                        bundle.putBoolean("flag", flag);
+                        bundle.putLong("reviewNum", reviewNum);
 
                         navController.navigate(R.id.review_to_review_tag, bundle);
                     }
@@ -334,44 +337,43 @@ public class ReviewFragment extends Fragment {
                         bundle.putFloat("studyPoint2", rating_plug.getRating());
                         bundle.putFloat("studyPoint3", rating_quiet.getRating());
                         bundle.putFloat("studyPoint4", rating_light.getRating());
-                        bundle.putBoolean("flag", flag);
-                        bundle.putLong("reviewNum", reviewNum);
+
                         bundle.putLong("k2-1", (long) k2[0]);
                         bundle.putLong("k2-2", (long) k2[1]);
                         bundle.putLong("k2-3", (long) k2[2]);
                         bundle.putLong("k2-4", (long) k2[3]);
                         bundle.putLong("k2-5", (long) k2[4]);
                         bundle.putLong("k2-6", (long) k2[5]);
-                        bundle.putLong("k2-7", (long) k[6]);
-                        bundle.putLong("k2-8", (long) k[7]);
-                        bundle.putLong("k2-9", (long) k[8]);
-                        bundle.putLong("k2-10",(long)  k[9]);
-                        bundle.putLong("k2-11",(long)  k[10]);
-                        bundle.putLong("k2-12",(long)  k[11]);
-                        bundle.putLong("k2-13", (long) k[12]);
-                        bundle.putLong("k2-14", (long) k[13]);
-                        bundle.putLong("k2-15", (long) k[14]);
-                        bundle.putLong("k2-16", (long) k[15]);
-                        bundle.putLong("k2-17", (long) k[16]);
-                        bundle.putLong("k2-18", (long) k[17]);
-                        bundle.putLong("k2-19", (long) k[18]);
-                        bundle.putLong("k2-20", (long) k[19]);
-                        bundle.putLong("k2-21", (long) k[20]);
-                        bundle.putLong("k2-22", (long) k[21]);
-                        bundle.putLong("k2-23", (long) k[22]);
-                        bundle.putLong("k2-24", (long) k[23]);
-                        bundle.putLong("k2-25", (long) k[24]);
-                        bundle.putLong("k2-26", (long) k[25]);
-                        bundle.putLong("k2-27", (long) k[26]);
-                        bundle.putLong("k2-28", (long) k[27]);
-                        bundle.putLong("k2-29", (long) k[28]);
-                        bundle.putLong("k2-30", (long) k[29]);
-                        bundle.putLong("k2-31", (long) k[30]);
-                        bundle.putLong("k2-32", (long) k[31]);
-                        bundle.putLong("k2-33", (long) k[32]);
-                        bundle.putLong("k2-34", (long) k[33]);
-                        bundle.putLong("k2-35", (long) k[34]);
-                        bundle.putLong("k2-36", (long) k[35]);
+                        bundle.putLong("k2-7", (long) k2[6]);
+                        bundle.putLong("k2-8", (long) k2[7]);
+                        bundle.putLong("k2-9", (long) k2[8]);
+                        bundle.putLong("k2-10",(long)  k2[9]);
+                        bundle.putLong("k2-11",(long)  k2[10]);
+                        bundle.putLong("k2-12",(long)  k2[11]);
+                        bundle.putLong("k2-13", (long) k2[12]);
+                        bundle.putLong("k2-14", (long) k2[13]);
+                        bundle.putLong("k2-15", (long) k2[14]);
+                        bundle.putLong("k2-16", (long) k2[15]);
+                        bundle.putLong("k2-17", (long) k2[16]);
+                        bundle.putLong("k2-18", (long) k2[17]);
+                        bundle.putLong("k2-19", (long) k2[18]);
+                        bundle.putLong("k2-20", (long) k2[19]);
+                        bundle.putLong("k2-21", (long) k2[20]);
+                        bundle.putLong("k2-22", (long) k2[21]);
+                        bundle.putLong("k2-23", (long) k2[22]);
+                        bundle.putLong("k2-24", (long) k2[23]);
+                        bundle.putLong("k2-25", (long) k2[24]);
+                        bundle.putLong("k2-26", (long) k2[25]);
+                        bundle.putLong("k2-27", (long) k2[26]);
+                        bundle.putLong("k2-28", (long) k2[27]);
+                        bundle.putLong("k2-29", (long) k2[28]);
+                        bundle.putLong("k2-30", (long) k2[29]);
+                        bundle.putLong("k2-31", (long) k2[30]);
+                        bundle.putLong("k2-32", (long) k2[31]);
+                        bundle.putLong("k2-33", (long) k2[32]);
+                        bundle.putLong("k2-34", (long) k2[33]);
+                        bundle.putLong("k2-35", (long) k2[34]);
+                        bundle.putLong("k2-36", (long) k2[35]);
                         bundle.putInt("score1", score1.intValue());
                         bundle.putInt("score2", score2.intValue());
                         bundle.putInt("score3", score3.intValue());
@@ -385,6 +387,17 @@ public class ReviewFragment extends Fragment {
                         bundle.putInt("score11", score11.intValue());
                         bundle.putInt("score12", score12.intValue());
 
+                        bundle.putString("comment", comment);
+
+                        bundle.putBoolean("flag", flag);
+                        bundle.putLong("reviewNum", reviewNum);
+
+                        Log.d("moreReview_to_tag_review4", String.valueOf(k2[3]));
+                        Log.d("moreReview_to_tag_review5", String.valueOf(k2[4]));
+                        Log.d("moreReview_to_tag_review6", String.valueOf(k2[5]));
+                        Log.d("moreReview_to_tag_review7", String.valueOf(k2[6]));
+                        Log.d("moreReview_to_tag_review8", String.valueOf(k2[7]));
+                        Log.d("moreReview_to_tag_review9", String.valueOf(k2[8]));
                         navController.navigate(R.id.review_to_review_tag, bundle);
                     }
 
@@ -406,44 +419,43 @@ public class ReviewFragment extends Fragment {
                         bundle.putFloat("studyPoint2", rating_plug.getRating());
                         bundle.putFloat("studyPoint3", rating_quiet.getRating());
                         bundle.putFloat("studyPoint4", rating_light.getRating());
-                        bundle.putBoolean("flag", flag);
-                        bundle.putLong("reviewNum", reviewNum);
+
                         bundle.putLong("k2-1", (long) k2[0]);
                         bundle.putLong("k2-2", (long) k2[1]);
                         bundle.putLong("k2-3", (long) k2[2]);
                         bundle.putLong("k2-4", (long) k2[3]);
                         bundle.putLong("k2-5", (long) k2[4]);
                         bundle.putLong("k2-6", (long) k2[5]);
-                        bundle.putLong("k2-7", (long) k[6]);
-                        bundle.putLong("k2-8", (long) k[7]);
-                        bundle.putLong("k2-9", (long) k[8]);
-                        bundle.putLong("k2-10",(long)  k[9]);
-                        bundle.putLong("k2-11",(long)  k[10]);
-                        bundle.putLong("k2-12",(long)  k[11]);
-                        bundle.putLong("k2-13", (long) k[12]);
-                        bundle.putLong("k2-14", (long) k[13]);
-                        bundle.putLong("k2-15", (long) k[14]);
-                        bundle.putLong("k2-16", (long) k[15]);
-                        bundle.putLong("k2-17", (long) k[16]);
-                        bundle.putLong("k2-18", (long) k[17]);
-                        bundle.putLong("k2-19", (long) k[18]);
-                        bundle.putLong("k2-20", (long) k[19]);
-                        bundle.putLong("k2-21", (long) k[20]);
-                        bundle.putLong("k2-22", (long) k[21]);
-                        bundle.putLong("k2-23", (long) k[22]);
-                        bundle.putLong("k2-24", (long) k[23]);
-                        bundle.putLong("k2-25", (long) k[24]);
-                        bundle.putLong("k2-26", (long) k[25]);
-                        bundle.putLong("k2-27", (long) k[26]);
-                        bundle.putLong("k2-28", (long) k[27]);
-                        bundle.putLong("k2-29", (long) k[28]);
-                        bundle.putLong("k2-30", (long) k[29]);
-                        bundle.putLong("k2-31", (long) k[30]);
-                        bundle.putLong("k2-32", (long) k[31]);
-                        bundle.putLong("k2-33", (long) k[32]);
-                        bundle.putLong("k2-34", (long) k[33]);
-                        bundle.putLong("k2-35", (long) k[34]);
-                        bundle.putLong("k2-36", (long) k[35]);
+                        bundle.putLong("k2-7", (long) k2[6]);
+                        bundle.putLong("k2-8", (long) k2[7]);
+                        bundle.putLong("k2-9", (long) k2[8]);
+                        bundle.putLong("k2-10",(long)  k2[9]);
+                        bundle.putLong("k2-11",(long)  k2[10]);
+                        bundle.putLong("k2-12",(long)  k2[11]);
+                        bundle.putLong("k2-13", (long) k2[12]);
+                        bundle.putLong("k2-14", (long) k2[13]);
+                        bundle.putLong("k2-15", (long) k2[14]);
+                        bundle.putLong("k2-16", (long) k2[15]);
+                        bundle.putLong("k2-17", (long) k2[16]);
+                        bundle.putLong("k2-18", (long) k2[17]);
+                        bundle.putLong("k2-19", (long) k2[18]);
+                        bundle.putLong("k2-20", (long) k2[19]);
+                        bundle.putLong("k2-21", (long) k2[20]);
+                        bundle.putLong("k2-22", (long) k2[21]);
+                        bundle.putLong("k2-23", (long) k2[22]);
+                        bundle.putLong("k2-24", (long) k2[23]);
+                        bundle.putLong("k2-25", (long) k2[24]);
+                        bundle.putLong("k2-26", (long) k2[25]);
+                        bundle.putLong("k2-27", (long) k2[26]);
+                        bundle.putLong("k2-28", (long) k2[27]);
+                        bundle.putLong("k2-29", (long) k2[28]);
+                        bundle.putLong("k2-30", (long) k2[29]);
+                        bundle.putLong("k2-31", (long) k2[30]);
+                        bundle.putLong("k2-32", (long) k2[31]);
+                        bundle.putLong("k2-33", (long) k2[32]);
+                        bundle.putLong("k2-34", (long) k2[33]);
+                        bundle.putLong("k2-35", (long) k2[34]);
+                        bundle.putLong("k2-36", (long) k2[35]);
                         bundle.putInt("score1", score1.intValue());
                         bundle.putInt("score2", score2.intValue());
                         bundle.putInt("score3", score3.intValue());
@@ -456,6 +468,13 @@ public class ReviewFragment extends Fragment {
                         bundle.putInt("score10", score10.intValue());
                         bundle.putInt("score11", score11.intValue());
                         bundle.putInt("score12", score12.intValue());
+
+                        bundle.putString("comment", comment);
+
+                        bundle.putBoolean("flag", flag);
+                        bundle.putLong("reviewNum", reviewNum);
+
+                        Log.d("myReview_comment", comment);
 
                         navController.navigate(R.id.review_to_review_tag, bundle);
                     }
@@ -591,6 +610,8 @@ public class ReviewFragment extends Fragment {
                 k2[34] = argBundle.getLong("k2-35");
                 k2[35] = argBundle.getLong("k2-36");
 
+                comment = argBundle.getString("comment");
+                Log.d("태그 종료후 받은 comment", comment);
                 review_search_input.setTypeface(Typeface.DEFAULT_BOLD);  // 카페이름 Bold처리
                 review_search_input.setGravity(Gravity.CENTER);          // 카페 위치 Center로 변경
             }
@@ -598,7 +619,7 @@ public class ReviewFragment extends Fragment {
 
 
         // 리뷰 리싸이클러뷰 수정버튼에서 정보 복원
-        Bundle argBundle2 = getArguments();
+        Bundle argBundle2 = getArguments(); // 카페 디테일에서의 수정, 리뷰 더보기에서의 수정, 마이페이지에서의 수정인지 확인하고 값을 가져옴
         if( argBundle2 != null ) {
             if (argBundle2.getBoolean("cafeDetail_reviewModify_flag") || argBundle2.getBoolean("moreReview_reviewModify_flag")
                                                                             || argBundle2.getBoolean("mypage_reviewModify_flag")) {
@@ -615,7 +636,6 @@ public class ReviewFragment extends Fragment {
                     mypage_reviewModify_flag = argBundle2.getBoolean("mypage_reviewModify_flag");
                 }
                 flag = true;
-//                cafeDetail_reviewModify_flag = argBundle2.getBoolean("cafeDetail_reviewModify_flag");
 
                 cafeNum = argBundle2.getLong("cafeNum");
                 mem_num = argBundle2.getLong("memNum");
@@ -1816,7 +1836,6 @@ public class ReviewFragment extends Fragment {
                                 map.put("studyPoint4", Integer.valueOf((int) rating_light.getRating()));
                                 map.put("cafeNum", cafeNum);
                                 map.put("likeCount", likeCount);
-                                map.put("reviewText", comment);
                                 map.put("memNum", mem_num);
                                 switch (setTag1.getText().toString()) {
                                     case ("#쓴맛"):
