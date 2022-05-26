@@ -115,6 +115,7 @@ public class CafeDetailFragment extends Fragment {
     int get_taste_point_total = 0;
 
     int point_counter = 0; // 리뷰가 몇 번 작성되었는지 count하여 카페 리뷰 점수 평균 구하기
+    boolean love_flag = false;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -669,6 +670,7 @@ public class CafeDetailFragment extends Fragment {
                                         for(Review r : review_list){
                                             if(r.getCafeNum().equals(get_cafe_num)) {
                                                 point_counter++;
+                                                love_flag = false;
 
                                                 // DB에서 받아온 리뷰 생성 시간을 변경하기 위한 코드
                                                 String creatTime = r.getCreateTime();
@@ -694,16 +696,23 @@ public class CafeDetailFragment extends Fragment {
                                                         if(!love_list.isEmpty()) { // love_list가 비어있지 않은 경우
                                                             for (Love l : love_list) {
                                                                 // love 테이블에 reviewNum이 같은 경우 && love 테이블에 사용자의 memNum이 같은 경우
-                                                                if (l.getReviewNum().equals(r.getReviewNum()) && l.getMemNum().equals(mem_num)) {
+                                                                if (l.getReviewNum().equals(r.getReviewNum()) && l.getMemNum().equals(mem_num)){
+                                                                    Log.d("love_for_if_test", "love_for_if_test");
+                                                                    love_flag = true;
                                                                     cafeDetailReviewItem.add(new CafeDetailItem(p.getNickName(), p.getGrade().toString(),
                                                                             r.getReviewText(), create_date, R.drawable.logo, R.drawable.logo_v2, r.getLikeCount().toString(), false, true, mem_num, get_cafe_num, l.getLoveNum(), r.getReviewNum()));
                                                                 }
                                                             }
                                                         }else{
+                                                            Log.d("love_not_test", "love_not_test");
                                                             cafeDetailReviewItem.add(new CafeDetailItem(p.getNickName(), p.getGrade().toString(),
                                                                     r.getReviewText(), create_date, R.drawable.logo, R.drawable.logo_v2, r.getLikeCount().toString(), false, false, mem_num, get_cafe_num, -1L, r.getReviewNum()));
                                                         }
-
+                                                        if(!love_flag){
+                                                            Log.d("love_not_test", "love_not_test");
+                                                            cafeDetailReviewItem.add(new CafeDetailItem(p.getNickName(), p.getGrade().toString(),
+                                                                    r.getReviewText(), create_date, R.drawable.logo, R.drawable.logo_v2, r.getLikeCount().toString(), false, false, mem_num, get_cafe_num, -1L, r.getReviewNum()));
+                                                        }
                                                     }
                                                 }
                                             }

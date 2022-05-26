@@ -90,10 +90,10 @@
         android:text="조용함"
         android:textColor="@color/black"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/viewPager_rating_quiet"
+        app:layout_constraintBottom_toBottomOf="@+id/viewPager_rating_light"
         app:layout_constraintEnd_toStartOf="@+id/viewPager_rating_quiet"
         app:layout_constraintStart_toEndOf="@+id/viewPager_rating_wifi"
-        app:layout_constraintTop_toTopOf="@+id/viewPager_rating_quiet" />
+        app:layout_constraintTop_toTopOf="@+id/viewPager_rating_light" />
 
     <RatingBar
         android:id="@+id/viewPager_rating_quiet"
@@ -116,10 +116,10 @@
         android:text="조명"
         android:textColor="@color/black"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/viewPager_rating_light"
+        app:layout_constraintBottom_toBottomOf="@+id/viewPager_rating_quiet"
         app:layout_constraintEnd_toStartOf="@+id/viewPager_rating_light"
         app:layout_constraintStart_toEndOf="@+id/viewPager_rating_plug"
-        app:layout_constraintTop_toTopOf="@+id/viewPager_rating_light" />
+        app:layout_constraintTop_toTopOf="@+id/viewPager_rating_quiet" />
 
     <RatingBar
         android:id="@+id/viewPager_rating_light"
