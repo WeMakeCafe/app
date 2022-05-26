@@ -17,5 +17,5 @@
     <string name="review_search">리뷰 검색</string>
     <string name="review_cafe_list">리뷰 검색 시 카페 목록</string>
     <string name="cafe_registration_tag">카페등록의 태그추가</string>
-    <string name="url">http://3.85.204.82:8080/</string>
+    <string name="url">http://52.90.60.43:8080/</string>
 </resources>
