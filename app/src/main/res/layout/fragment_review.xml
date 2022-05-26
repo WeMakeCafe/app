@@ -411,13 +411,14 @@
                     android:id="@+id/manyseat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
                     android:text="다인좌석"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@+id/rating_manyseat"
-                    app:layout_constraintHorizontal_bias="0.6"
+                    app:layout_constraintHorizontal_bias="0.61"
                     app:layout_constraintStart_toEndOf="@+id/rating_twoseat"
-                    app:layout_constraintTop_toTopOf="@+id/twoseat" />
+                    app:layout_constraintTop_toBottomOf="@+id/toilet" />
 
                 <RatingBar
                     android:id="@+id/rating_manyseat"
@@ -437,13 +438,12 @@
                     android:id="@+id/toilet"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
                     android:text="화장실"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="@+id/manyseat"
                     app:layout_constraintStart_toStartOf="@+id/manyseat"
-                    app:layout_constraintTop_toBottomOf="@+id/manyseat" />
+                    app:layout_constraintTop_toTopOf="@+id/twoseat" />
 
                 <RatingBar
                     android:id="@+id/rating_toilet"
@@ -547,13 +547,14 @@
                     android:id="@+id/quiet"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
                     android:text="조용함"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@+id/rating_quiet"
                     app:layout_constraintHorizontal_bias="0.6"
                     app:layout_constraintStart_toEndOf="@+id/rating_wifi"
-                    app:layout_constraintTop_toTopOf="@+id/wifi" />
+                    app:layout_constraintTop_toBottomOf="@+id/light" />
 
                 <RatingBar
                     android:id="@+id/rating_quiet"
@@ -573,13 +574,12 @@
                     android:id="@+id/light"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
                     android:text="조명"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="@+id/quiet"
                     app:layout_constraintStart_toStartOf="@+id/quiet"
-                    app:layout_constraintTop_toBottomOf="@+id/quiet" />
+                    app:layout_constraintTop_toTopOf="@+id/wifi" />
 
                 <RatingBar
                     android:id="@+id/rating_light"

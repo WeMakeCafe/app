@@ -115,7 +115,10 @@ public class CafeRegistrationFragment extends Fragment {
         test_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FileUploadUtils.goSend(file);
+
+                Long mem_num = 1L;
+                Long review_num = 1l;
+                FileUploadUtils.goSend(file, mem_num, review_num);
             }
         });
 
@@ -761,6 +764,7 @@ public class CafeRegistrationFragment extends Fragment {
                 cafeRegistrationImageRecyclerView.setAdapter(registrationAdapter);
                 cafeRegistrationImageRecyclerView.setLayoutManager(new LinearLayoutManager(getContext().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
             }
+
             else{      // 이미지를 여러장 선택한 경우
                 ClipData clipData = data.getClipData();
                 Log.e("clipData", String.valueOf(clipData.getItemCount()));
