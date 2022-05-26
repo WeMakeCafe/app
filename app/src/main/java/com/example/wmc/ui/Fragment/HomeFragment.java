@@ -878,13 +878,13 @@ public class HomeFragment extends Fragment {
                                                 int get_study_point_avg;
                                                 int get_taste_point_avg;
 
-                                                if(get_study_point_total == 0){
+                                                if(get_study_point_total == 0 || review_counter == 0){
                                                     get_study_point_avg = 0;
                                                 }
                                                 else
                                                     get_study_point_avg = get_study_point_total / review_counter;
 
-                                                if(get_taste_point_total == 0){
+                                                if(get_taste_point_total == 0 || review_counter == 0){
                                                     get_taste_point_avg = 0;
                                                 }
                                                 else
