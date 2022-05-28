@@ -84,6 +84,7 @@ public class CafeDeleteFragment extends Fragment {
             @Override
             public void onResponse(String response) {
                 // 한글깨짐 해결 코드
+                Log.d("test_onResponse", "onResponse실행");
                 String changeString = new String();
                 try {
                     changeString = new String(response.getBytes("8859_1"), "utf-8");
