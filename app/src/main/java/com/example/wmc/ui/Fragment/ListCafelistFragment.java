@@ -67,6 +67,9 @@ public class ListCafelistFragment extends Fragment {
     ArrayList<Bookmark> bookmark_list;
     Long mem_num = MainActivity.mem_num;
 
+    Long get_bookmark_num = 0L;
+    Long get_cafe_num = 0L;
+
     Long[] get_keyword = new Long[36]; // 카페 태그 임시 저장
     String tag1, tag2; // 태그 저장
 
@@ -176,6 +179,8 @@ public class ListCafelistFragment extends Fragment {
                                     for(Cafe c : cafe_list){
                                         boolean flag = false; // 즐겨찾기 여부
                                         if(c.getCafeName().contains(search)){ // 카페 이름에 검색어가 포함되는지 확인
+                                            get_cafe_num = c.getCafeNum();
+                                            get_bookmark_num = -1L;
                                             // 카페 태그 1, 2 키워드 받기
                                             get_keyword[0] = c.getKeyword1();
                                             get_keyword[1] = c.getKeyword2();
@@ -458,19 +463,20 @@ public class ListCafelistFragment extends Fragment {
                                             for(Bookmark b : bookmark_list) {
                                                 if (b.getCafeNum().equals(c.getCafeNum()) && b.getMemNum().equals(mem_num)) {
                                                     flag = true;
+                                                    get_bookmark_num = b.getBookmarkNum();
                                                 }
                                             }
                                             listCafeListItems.add(new ListCafeListItem(c.getCafeName(), c.getCafeAddress(),
                                                     c.getOpenTime().substring(0,2) + ":" + c.getOpenTime().substring(2,4)
                                                     + " ~ " + c.getCloseTime().substring(0,2) + ":" + c.getCloseTime().substring(2,4),
-                                                    tag1, tag2, R.drawable.logo, flag));
+                                                    tag1, tag2, R.drawable.logo, flag, get_cafe_num, get_bookmark_num));
                                         }
                                     }
 
                                     // Adapter 추가
                                     RecyclerView listCafeListRecyclerView = root.findViewById(R.id.cafeListRecyclerView);
 
-                                    ListCafeListAdapter listCafeListAdapter = new ListCafeListAdapter(listCafeListItems);
+                                    ListCafeListAdapter listCafeListAdapter = new ListCafeListAdapter(getContext() ,listCafeListItems, ListCafelistFragment.this);
                                     listCafeListRecyclerView.setAdapter(listCafeListAdapter);
 
                                     // Layout manager 추가
