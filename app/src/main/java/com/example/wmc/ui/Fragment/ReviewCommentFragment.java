@@ -73,7 +73,10 @@ public class ReviewCommentFragment extends Fragment {
     String tag2;
     String tag3;
     Long cafeNum;
+    String comment = "";
     String cafeName;
+    int likeCount = 0;
+    boolean flag = false;
     Long mem_num;
     Long[] k = new Long[36];
 
@@ -89,6 +92,12 @@ public class ReviewCommentFragment extends Fragment {
     Integer p10;
     Integer p11;
     Integer p12;
+
+    Boolean floating_flag = false;
+    Boolean reviewCafeList_flag = false;
+    Boolean cafeDetail_reviewModify_flag = false;
+    Boolean moreReview_reviewModify_flag = false;
+    Boolean mypage_reviewModify_flag = false;
 
     ArrayList<Cafe> cafe_list;
 
@@ -115,7 +124,7 @@ public class ReviewCommentFragment extends Fragment {
                 tag1 = argBundle.getString("tag1");
                 tag2 = argBundle.getString("tag2");
                 tag3 = argBundle.getString("tag3");
-                cafeNum = argBundle.getLong("cafeNum");
+
                 p1 = Integer.valueOf((int)argBundle.getFloat("tastePoint1"));
                 p2 = Integer.valueOf((int)argBundle.getFloat("tastePoint2"));
                 p3 = Integer.valueOf((int)argBundle.getFloat("tastePoint3"));
@@ -128,7 +137,15 @@ public class ReviewCommentFragment extends Fragment {
                 p10 = Integer.valueOf((int)argBundle.getFloat("studyPoint2"));
                 p11 = Integer.valueOf((int)argBundle.getFloat("studyPoint3"));
                 p12 = Integer.valueOf((int)argBundle.getFloat("studyPoint4"));
+
+                cafeNum = argBundle.getLong("cafeNum");
                 mem_num = argBundle.getLong("memNum");
+
+                comment = argBundle.getString("comment");
+                reviewComment_editText.setText(comment);
+
+                likeCount = argBundle.getInt("likeCount");
+                flag = argBundle.getBoolean("flag");
             }
         }
 

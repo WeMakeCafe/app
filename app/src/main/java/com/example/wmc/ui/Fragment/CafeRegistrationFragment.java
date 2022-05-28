@@ -53,6 +53,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -110,17 +111,17 @@ public class CafeRegistrationFragment extends Fragment {
         cafe_closeHours_hour_input = root.findViewById(R.id.cafe_closeHours_hour_input);
         cafe_closeHours_minute_input= root.findViewById(R.id.cafe_closeHours_minute_input);
 
-        Button test_Button = root.findViewById(R.id.test_Button);
-
-        test_Button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Long mem_num = 1L;
-                Long review_num = 1l;
-                FileUploadUtils.goSend(file, mem_num, review_num);
-            }
-        });
+//        Button test_Button = root.findViewById(R.id.test_Button);
+//
+//        test_Button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                Long mem_num = 1L;
+//                Long review_num = 1l;
+//                FileUploadUtils.goSend(file, mem_num, review_num);
+//            }
+//        });
 
         // 서버연산을 위한 long형 배열 초기화 코드
         for(int i = 0 ; i<=35; i++){
@@ -158,22 +159,23 @@ public class CafeRegistrationFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
 
-                        String overlap_cafeName = cafe_name_input.getText().toString().replaceAll(" ", "");; // 카페 이름 중복확인할 String
-
-                        // 데이터베이스에서 카페이름이 있는지 중복검사
-                        if(overlap_cafeName.equals("")) {
-                            Toast.makeText(getContext().getApplicationContext(), "카페 이름을 입력해주세요!", Toast.LENGTH_LONG).show();
-                        }
-                        else{
-                            for(Cafe c : cafe_list) {
-                                if (c.getCafeName().replaceAll(" ", "").equals(overlap_cafeName)) {
-                                    Toast.makeText(getContext().getApplicationContext(), "이미 있는 카페입니다!", Toast.LENGTH_LONG).show();
-                                    name_test = false;
-                                    break;
-                                } else { name_test = true; }
-                            }
-                            if( name_test ) Toast.makeText(getContext().getApplicationContext(), "가능한 카페입니다!", Toast.LENGTH_LONG).show();
-                        }
+                        name_test = true;
+//                        String overlap_cafeName = cafe_name_input.getText().toString().replaceAll(" ", "");; // 카페 이름 중복확인할 String
+//
+//                        // 데이터베이스에서 카페이름이 있는지 중복검사
+//                        if(overlap_cafeName.equals("")) {
+//                            Toast.makeText(getContext().getApplicationContext(), "카페 이름을 입력해주세요!", Toast.LENGTH_LONG).show();
+//                        }
+//                        else{
+//                            for(Cafe c : cafe_list) {
+//                                if (c.getCafeName().replaceAll(" ", "").equals(overlap_cafeName)) {
+//                                    Toast.makeText(getContext().getApplicationContext(), "이미 있는 카페입니다!", Toast.LENGTH_LONG).show();
+//                                    name_test = false;
+//                                    break;
+//                                } else { name_test = true; }
+//                            }
+//                            if( name_test ) Toast.makeText(getContext().getApplicationContext(), "가능한 카페입니다!", Toast.LENGTH_LONG).show();
+//                        }
                     }
                 });
 
@@ -586,7 +588,24 @@ public class CafeRegistrationFragment extends Fragment {
                                 new Response.Listener<JSONObject>() {
                                     @Override
                                     public void onResponse(JSONObject response) {
+                                        try {
+                                            long cafeNum = response.getLong("cafeNum");
 
+                                            for(Uri u : uriList){
+
+                                                // 이미지 절대주소 만들기
+                                                Cursor c = getContext().getContentResolver().query(Uri.parse(u.toString()), null,null,null,null);
+                                                c.moveToNext();
+                                                String absolutePath = c.getString(c.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA));
+                                                Log.d("test_check" , absolutePath);
+                                                file = new File(absolutePath);
+
+                                                // 이미지 서버로 전송
+                                                FileUploadUtils.sendCafeImage(file, cafeNum);
+                                            }
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
                                     }
                                 },
                                 new Response.ErrorListener() {
@@ -781,11 +800,11 @@ public class CafeRegistrationFragment extends Fragment {
                         if(uriList.size() <= 4){
                             Uri imageUri = clipData.getItemAt(i).getUri();  // 선택한 이미지들의 uri를 가져온다.
 
-                            Cursor c = getContext().getContentResolver().query(Uri.parse(imageUri.toString()), null,null,null,null);
-                            c.moveToNext();
-                            String absolutePath = c.getString(c.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA));
-                            Log.d("test_check" , absolutePath);
-                            file = new File(absolutePath);
+//                            Cursor c = getContext().getContentResolver().query(Uri.parse(imageUri.toString()), null,null,null,null);
+//                            c.moveToNext();
+//                            String absolutePath = c.getString(c.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA));
+//                            Log.d("test_check" , absolutePath);
+//                            file = new File(absolutePath);
 
                             try {
                                 uriList.add(imageUri);  //uri를 list에 담는다.
