@@ -456,6 +456,7 @@ public class ReviewFragment extends Fragment {
                         bundle.putLong("k2-34", (long) k2[33]);
                         bundle.putLong("k2-35", (long) k2[34]);
                         bundle.putLong("k2-36", (long) k2[35]);
+
                         bundle.putInt("score1", score1.intValue());
                         bundle.putInt("score2", score2.intValue());
                         bundle.putInt("score3", score3.intValue());
@@ -1249,29 +1250,126 @@ public class ReviewFragment extends Fragment {
                         }
 
                         else{
-                            Bundle bundle = new Bundle(); // 프래그먼트 간 데이터 전달 위한 번들
-                            bundle.putString("tag1", setTag1.getText().toString());
-                            bundle.putString("tag2", setTag2.getText().toString());
-                            bundle.putString("tag3", setTag3.getText().toString());
-                            bundle.putFloat("tastePoint1", rating_sour.getRating());
-                            bundle.putFloat("tastePoint2", rating_acerbity.getRating());
-                            bundle.putFloat("tastePoint3", rating_dessert.getRating());
-                            bundle.putFloat("tastePoint4", rating_beverage.getRating());
-                            bundle.putFloat("seatPoint1", rating_twoseat.getRating());
-                            bundle.putFloat("seatPoint2", rating_fourseat.getRating());
-                            bundle.putFloat("seatPoint3", rating_manyseat.getRating());
-                            bundle.putFloat("seatPoint4", rating_toilet.getRating());
-                            bundle.putFloat("studyPoint1", rating_wifi.getRating());
-                            bundle.putFloat("studyPoint2", rating_plug.getRating());
-                            bundle.putFloat("studyPoint3", rating_quiet.getRating());
-                            bundle.putFloat("studyPoint4", rating_light.getRating());
-                            bundle.putLong("cafeNum", cafeNum);
-                            bundle.putLong("memNum", mem_num);
-                            bundle.putString("comment", comment);
-                            bundle.putInt("likeCount", likeCount.intValue()); // likecount는 integer형임
-                            bundle.putBoolean("flag", flag);
-                            //이미지
-                            navController.navigate(R.id.review_to_review_comment, bundle);
+                            // 리뷰 처음 작성 시, 코멘터리로 전달할 것들
+                            if(flag == false) {
+                                Bundle bundle = new Bundle(); // 프래그먼트 간 데이터 전달 위한 번들
+                                bundle.putString("cafeName", review_search_input.getText().toString());
+
+                                bundle.putString("tag1", setTag1.getText().toString());
+                                bundle.putString("tag2", setTag2.getText().toString());
+                                bundle.putString("tag3", setTag3.getText().toString());
+
+                                bundle.putFloat("tastePoint1", rating_sour.getRating());
+                                bundle.putFloat("tastePoint2", rating_acerbity.getRating());
+                                bundle.putFloat("tastePoint3", rating_dessert.getRating());
+                                bundle.putFloat("tastePoint4", rating_beverage.getRating());
+                                bundle.putFloat("seatPoint1", rating_twoseat.getRating());
+                                bundle.putFloat("seatPoint2", rating_fourseat.getRating());
+                                bundle.putFloat("seatPoint3", rating_manyseat.getRating());
+                                bundle.putFloat("seatPoint4", rating_toilet.getRating());
+                                bundle.putFloat("studyPoint1", rating_wifi.getRating());
+                                bundle.putFloat("studyPoint2", rating_plug.getRating());
+                                bundle.putFloat("studyPoint3", rating_quiet.getRating());
+                                bundle.putFloat("studyPoint4", rating_light.getRating());
+
+                                bundle.putLong("cafeNum", cafeNum);
+                                bundle.putLong("memNum", mem_num);
+
+                                bundle.putBoolean("flag", flag);
+                                //이미지
+                                navController.navigate(R.id.review_to_review_comment, bundle);
+                            }
+
+                            // 리뷰 수정에서 온 경우,
+                            else if(flag == true) {
+                                Bundle bundle = new Bundle(); // 프래그먼트 간 데이터 전달 위한 번들
+                                bundle.putString("cafeName", review_search_input.getText().toString());
+
+                                bundle.putString("tag1", setTag1.getText().toString());
+                                bundle.putString("tag2", setTag2.getText().toString());
+                                bundle.putString("tag3", setTag3.getText().toString());
+
+                                bundle.putFloat("tastePoint1", rating_sour.getRating());
+                                bundle.putFloat("tastePoint2", rating_acerbity.getRating());
+                                bundle.putFloat("tastePoint3", rating_dessert.getRating());
+                                bundle.putFloat("tastePoint4", rating_beverage.getRating());
+                                bundle.putFloat("seatPoint1", rating_twoseat.getRating());
+                                bundle.putFloat("seatPoint2", rating_fourseat.getRating());
+                                bundle.putFloat("seatPoint3", rating_manyseat.getRating());
+                                bundle.putFloat("seatPoint4", rating_toilet.getRating());
+                                bundle.putFloat("studyPoint1", rating_wifi.getRating());
+                                bundle.putFloat("studyPoint2", rating_plug.getRating());
+                                bundle.putFloat("studyPoint3", rating_quiet.getRating());
+                                bundle.putFloat("studyPoint4", rating_light.getRating());
+
+                                bundle.putLong("k2-1", (long) k2[0]);
+                                bundle.putLong("k2-2", (long) k2[1]);
+                                bundle.putLong("k2-3", (long) k2[2]);
+                                bundle.putLong("k2-4", (long) k2[3]);
+                                bundle.putLong("k2-5", (long) k2[4]);
+                                bundle.putLong("k2-6", (long) k2[5]);
+                                bundle.putLong("k2-7", (long) k2[6]);
+                                bundle.putLong("k2-8", (long) k2[7]);
+                                bundle.putLong("k2-9", (long) k2[8]);
+                                bundle.putLong("k2-10",(long)  k2[9]);
+                                bundle.putLong("k2-11",(long)  k2[10]);
+                                bundle.putLong("k2-12",(long)  k2[11]);
+                                bundle.putLong("k2-13", (long) k2[12]);
+                                bundle.putLong("k2-14", (long) k2[13]);
+                                bundle.putLong("k2-15", (long) k2[14]);
+                                bundle.putLong("k2-16", (long) k2[15]);
+                                bundle.putLong("k2-17", (long) k2[16]);
+                                bundle.putLong("k2-18", (long) k2[17]);
+                                bundle.putLong("k2-19", (long) k2[18]);
+                                bundle.putLong("k2-20", (long) k2[19]);
+                                bundle.putLong("k2-21", (long) k2[20]);
+                                bundle.putLong("k2-22", (long) k2[21]);
+                                bundle.putLong("k2-23", (long) k2[22]);
+                                bundle.putLong("k2-24", (long) k2[23]);
+                                bundle.putLong("k2-25", (long) k2[24]);
+                                bundle.putLong("k2-26", (long) k2[25]);
+                                bundle.putLong("k2-27", (long) k2[26]);
+                                bundle.putLong("k2-28", (long) k2[27]);
+                                bundle.putLong("k2-29", (long) k2[28]);
+                                bundle.putLong("k2-30", (long) k2[29]);
+                                bundle.putLong("k2-31", (long) k2[30]);
+                                bundle.putLong("k2-32", (long) k2[31]);
+                                bundle.putLong("k2-33", (long) k2[32]);
+                                bundle.putLong("k2-34", (long) k2[33]);
+                                bundle.putLong("k2-35", (long) k2[34]);
+                                bundle.putLong("k2-36", (long) k2[35]);
+
+                                bundle.putInt("score1", score1.intValue());
+                                bundle.putInt("score2", score2.intValue());
+                                bundle.putInt("score3", score3.intValue());
+                                bundle.putInt("score4", score4.intValue());
+                                bundle.putInt("score5", score5.intValue());
+                                bundle.putInt("score6", score6.intValue());
+                                bundle.putInt("score7", score7.intValue());
+                                bundle.putInt("score8", score8.intValue());
+                                bundle.putInt("score9", score9.intValue());
+                                bundle.putInt("score10", score10.intValue());
+                                bundle.putInt("score11", score11.intValue());
+                                bundle.putInt("score12", score12.intValue());
+
+                                bundle.putLong("cafeNum", cafeNum);
+                                bundle.putLong("memNum", mem_num);
+
+                                bundle.putString("comment", comment);
+
+                                bundle.putInt("likeCount", likeCount.intValue()); // likecount는 integer형임
+                                bundle.putBoolean("flag", flag);
+
+                                Log.d("리뷰_to_comment -> flag", String.valueOf(flag));
+                                Log.d("리뷰_to_comment -> keyWord4", String.valueOf(k2[3]));
+                                Log.d("리뷰_to_comment -> keyWord5", String.valueOf(k2[4]));
+                                Log.d("리뷰_to_comment -> keyWord6", String.valueOf(k2[5]));
+                                Log.d("리뷰_to_comment -> keyWord7", String.valueOf(k2[6]));
+                                Log.d("리뷰_to_comment -> keyWord8", String.valueOf(k2[7]));
+                                Log.d("리뷰_to_comment -> keyWord9", String.valueOf(k2[8]));
+                                //이미지
+                                navController.navigate(R.id.review_to_review_comment, bundle);
+                            }
                         }
                     }
                 });
@@ -1313,6 +1411,7 @@ public class ReviewFragment extends Fragment {
                         }
 
                         else{
+                            // 리뷰 처음 작성 시,(수정 X)
                             if(flag == false) {
                                 Map map = new HashMap();
                                 map.put("tastePoint1", Integer.valueOf((int) rating_sour.getRating()));
