@@ -78,6 +78,7 @@ public class ReviewCommentFragment extends Fragment {
     int likeCount = 0;
     boolean flag = false;
     Long mem_num;
+    Long reviewNum;
     Long[] k = new Long[36];
     Long[] k2 = new Long[36];
 
@@ -201,6 +202,44 @@ public class ReviewCommentFragment extends Fragment {
 //                    k2[i] = argBundle.getLong("k2-" + String.valueOf(i+1));
 //                }
 
+                // 이번에 선택한 키워드
+                k[0] = getArguments().getLong("k-1");
+                k[1] = getArguments().getLong("k-2");
+                k[2] = getArguments().getLong("k-3");
+                k[3] = getArguments().getLong("k-4");
+                k[4] = getArguments().getLong("k-5");
+                k[5] = getArguments().getLong("k-6");
+                k[6] = getArguments().getLong("k-7");
+                k[7] = getArguments().getLong("k-8");
+                k[8] = getArguments().getLong("k-9");
+                k[9] = getArguments().getLong("k-10");
+                k[10] = getArguments().getLong("k-11");
+                k[11] = getArguments().getLong("k-12");
+                k[12] = getArguments().getLong("k-13");
+                k[13] = getArguments().getLong("k-14");
+                k[14] = getArguments().getLong("k-15");
+                k[15] = getArguments().getLong("k-16");
+                k[16] = getArguments().getLong("k-17");
+                k[17] = getArguments().getLong("k-18");
+                k[18] = getArguments().getLong("k-19");
+                k[19] = getArguments().getLong("k-20");
+                k[20] = getArguments().getLong("k-21");
+                k[21] = getArguments().getLong("k-22");
+                k[22] = getArguments().getLong("k-23");
+                k[23] = getArguments().getLong("k-24");
+                k[24] = getArguments().getLong("k-25");
+                k[25] = getArguments().getLong("k-26");
+                k[26] = getArguments().getLong("k-27");
+                k[27] = getArguments().getLong("k-28");
+                k[28] = getArguments().getLong("k-29");
+                k[29] = getArguments().getLong("k-30");
+                k[30] = getArguments().getLong("k-31");
+                k[31] = getArguments().getLong("k-32");
+                k[32] = getArguments().getLong("k-33");
+                k[33] = getArguments().getLong("k-34");
+                k[34] = getArguments().getLong("k-35");
+                k[35] = getArguments().getLong("k-36");
+
                 // 수정하기 전, 선택했던 태그가 저장되어있음
                 k2[0] = getArguments().getLong("k2-1");
                 k2[1] = getArguments().getLong("k2-2");
@@ -254,6 +293,7 @@ public class ReviewCommentFragment extends Fragment {
 
                 cafeNum = argBundle.getLong("cafeNum");
                 mem_num = argBundle.getLong("memNum");
+                reviewNum = argBundle.getLong("reviewNum");
 
                 comment = argBundle.getString("comment");
                 reviewComment_editText.setText(comment);                        // 코멘토리에 기존에 작성해놨던 리뷰 코멘토리 세팅
@@ -1239,7 +1279,7 @@ public class ReviewCommentFragment extends Fragment {
                             map.put("keyword35", k[34]);
                             map.put("keyword36", k[35]);
 
-                            String url2 = getResources().getString(R.string.url) + "review";
+                            String url2 = getResources().getString(R.string.url) + "review/" + reviewNum;
                             JSONObject jsonObject = new JSONObject(map);
                             JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.PUT, url2, jsonObject,
                                     new Response.Listener<JSONObject>() {
