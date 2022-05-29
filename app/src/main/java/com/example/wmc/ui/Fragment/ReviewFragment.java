@@ -665,8 +665,6 @@ public class ReviewFragment extends Fragment {
 
                         review_list = gson.fromJson(changeString, listType);
 
-                        // cafe 테이블의 튜플이 제대로 오는지 확인 (테스트 할 때만 만들어두고 해당 기능 다 개발 시 제거하는게 좋음)
-                        Log.d("test", String.valueOf(review_list.size()));
 
                         for(Review r : review_list){
                             if((r.getCafeNum()==cafeNum) && (r.getMemNum() == mem_num)) {

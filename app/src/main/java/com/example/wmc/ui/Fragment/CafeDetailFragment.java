@@ -691,6 +691,7 @@ public class CafeDetailFragment extends Fragment {
                                                     if (r.getMemNum().equals(mem_num) && p.getMemNum().equals(mem_num)) {
                                                         cafeDetailReviewItem.add( 0, new CafeDetailItem(p.getNickName(), p.getGrade().toString(),
                                                                 r.getReviewText(), create_date,R.drawable.logo, R.drawable.logo_v2, r.getLikeCount().toString(), true, false, mem_num, get_cafe_num, -1L, r.getReviewNum()));
+                                                        Log.d("review_check", r.getReviewNum().toString());
                                                     } // 2. 리뷰 작성자들의 닉네임, 회원 등급을 포함한 리뷰 Item 작성
                                                     else if (r.getMemNum().equals(p.getMemNum())) {
                                                         if(!love_list.isEmpty()) { // love_list가 비어있지 않은 경우
