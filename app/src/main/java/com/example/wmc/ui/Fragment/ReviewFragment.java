@@ -1302,6 +1302,43 @@ public class ReviewFragment extends Fragment {
                                 bundle.putFloat("studyPoint3", rating_quiet.getRating());
                                 bundle.putFloat("studyPoint4", rating_light.getRating());
 
+                                bundle.putLong("k-1", (long) k[0]);
+                                bundle.putLong("k-2", (long) k[1]);
+                                bundle.putLong("k-3", (long) k[2]);
+                                bundle.putLong("k-4", (long) k[3]);
+                                bundle.putLong("k-5", (long) k[4]);
+                                bundle.putLong("k-6", (long) k[5]);
+                                bundle.putLong("k-7", (long) k[6]);
+                                bundle.putLong("k-8", (long) k[7]);
+                                bundle.putLong("k-9", (long) k[8]);
+                                bundle.putLong("k-10",(long)  k[9]);
+                                bundle.putLong("k-11",(long)  k[10]);
+                                bundle.putLong("k-12",(long)  k[11]);
+                                bundle.putLong("k-13", (long) k[12]);
+                                bundle.putLong("k-14", (long) k[13]);
+                                bundle.putLong("k-15", (long) k[14]);
+                                bundle.putLong("k-16", (long) k[15]);
+                                bundle.putLong("k-17", (long) k[16]);
+                                bundle.putLong("k-18", (long) k[17]);
+                                bundle.putLong("k-19", (long) k[18]);
+                                bundle.putLong("k-20", (long) k[19]);
+                                bundle.putLong("k-21", (long) k[20]);
+                                bundle.putLong("k-22", (long) k[21]);
+                                bundle.putLong("k-23", (long) k[22]);
+                                bundle.putLong("k-24", (long) k[23]);
+                                bundle.putLong("k-25", (long) k[24]);
+                                bundle.putLong("k-26", (long) k[25]);
+                                bundle.putLong("k-27", (long) k[26]);
+                                bundle.putLong("k-28", (long) k[27]);
+                                bundle.putLong("k-29", (long) k[28]);
+                                bundle.putLong("k-30", (long) k[29]);
+                                bundle.putLong("k-31", (long) k[30]);
+                                bundle.putLong("k-32", (long) k[31]);
+                                bundle.putLong("k-33", (long) k[32]);
+                                bundle.putLong("k-34", (long) k[33]);
+                                bundle.putLong("k-35", (long) k[34]);
+                                bundle.putLong("k-36", (long) k[35]);
+
                                 bundle.putLong("k2-1", (long) k2[0]);
                                 bundle.putLong("k2-2", (long) k2[1]);
                                 bundle.putLong("k2-3", (long) k2[2]);
@@ -1354,6 +1391,7 @@ public class ReviewFragment extends Fragment {
 
                                 bundle.putLong("cafeNum", cafeNum);
                                 bundle.putLong("memNum", mem_num);
+                                bundle.putLong("reviewNum", reviewNum);
 
                                 bundle.putString("comment", comment);
 
