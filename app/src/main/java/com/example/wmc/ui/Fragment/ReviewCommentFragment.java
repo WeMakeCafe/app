@@ -2,6 +2,7 @@ package com.example.wmc.ui.Fragment;
 
 import android.content.ClipData;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -48,8 +49,10 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -115,6 +118,8 @@ public class ReviewCommentFragment extends Fragment {
     Boolean mypage_reviewModify_flag = false;
 
     ArrayList<Cafe> cafe_list;
+
+    File file;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -774,6 +779,26 @@ public class ReviewCommentFragment extends Fragment {
                                         @Override
                                         public void onResponse(JSONObject response) {
 
+                                            try {
+                                                long member_num = response.getLong("memNum");
+                                                long review_num = response.getLong("reviewNum");
+
+                                                for (Uri u : uriList) {
+
+                                                    // 이미지 절대주소 만들기
+                                                    Cursor c = getContext().getContentResolver().query(Uri.parse(u.toString()), null, null, null, null);
+                                                    c.moveToNext();
+                                                    String absolutePath = c.getString(c.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA));
+                                                    Log.d("test_check", absolutePath);
+                                                    file = new File(absolutePath);
+
+                                                    // 이미지 서버로 전송
+                                                    FileUploadUtils.sendReviewImage(file, member_num, review_num);
+                                                }
+                                            }
+                                            catch (JSONException e) {
+                                                e.printStackTrace();
+                                            }
                                         }
                                     },
                                     new Response.ErrorListener() {
