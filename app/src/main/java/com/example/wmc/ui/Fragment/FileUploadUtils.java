@@ -56,7 +56,7 @@ public class FileUploadUtils {
                 .build();
 
         Request request = new Request.Builder()
-                .url("http://14.47.42.79:8080/reviewImage/upload")
+                .url("http://52.90.60.43:8080/reviewImage/upload")
                 .post(requestBody)
                 .build();
 
