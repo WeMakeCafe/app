@@ -936,7 +936,7 @@ public class CafeDetailFragment extends Fragment {
         imageList = new ArrayList<>();
 
 
-        String get_cafeImage_url = getResources().getString(R.string.url) + "cafe_image";
+        String get_cafeImage_url = getResources().getString(R.string.url) + "cafeImage";
 
         StringRequest cafeImage_stringRequest = new StringRequest(Request.Method.GET, get_cafeImage_url, new Response.Listener<String>() {
             @RequiresApi(api = Build.VERSION_CODES.O)
@@ -956,6 +956,7 @@ public class CafeDetailFragment extends Fragment {
 
                 for(CafeImage ci : CafeImage_list){
                     if(ci.getCafeNum().equals(get_cafe_num)){
+                        Log.d("cafeImage URL", ci.getFileUrl());
                         imageList.add(ci.getFileUrl());
                     }
                 }
