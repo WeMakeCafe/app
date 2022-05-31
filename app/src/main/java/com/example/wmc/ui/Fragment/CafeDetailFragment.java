@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +35,7 @@ import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.example.wmc.CafeDetail.CafeDetailAdapter;
 import com.example.wmc.CafeDetail.CafeDetailItem;
 import com.example.wmc.CafeDetailImageViewPager.CafeDetailImageViewPagerAdapter;
@@ -43,6 +45,7 @@ import com.example.wmc.MainActivity;
 import com.example.wmc.R;
 import com.example.wmc.database.Bookmark;
 import com.example.wmc.database.Cafe;
+import com.example.wmc.database.CafeImage;
 import com.example.wmc.database.Category;
 import com.example.wmc.database.Love;
 import com.example.wmc.database.Personal;
@@ -86,7 +89,7 @@ public class CafeDetailFragment extends Fragment {
     TextView moreReview7; // 카페 태그 2
     RecyclerView recyclerView;
 
-    ArrayList<Integer> imageList;   // 카페 이미지 5장을 저장하는 ArrayList
+    ArrayList<String> imageList;   // 카페 이미지 5장을 저장하는 ArrayList
     ArrayList<CafeDetailRatingItem> ratingList; // 카페 평점을 저장하는 ArrayList
 
     ArrayList<Cafe> cafe_list;
@@ -94,6 +97,7 @@ public class CafeDetailFragment extends Fragment {
     ArrayList<Personal> personal_list;
     ArrayList<Bookmark> bookmark_list;
     ArrayList<Love> love_list;
+    ArrayList<CafeImage> CafeImage_list;
 
     Long mem_num = MainActivity.mem_num;
 
@@ -927,18 +931,49 @@ public class CafeDetailFragment extends Fragment {
         });
 
 
-        // 카페디테일에 해당하는 카페이미지 보여주기
         cafeImageViewPager = root.findViewById(R.id.cafeImageViewPager);
         cafeImageViewPager.setOffscreenPageLimit(5);
         imageList = new ArrayList<>();
 
-        imageList.add(R.drawable.logo);
-        imageList.add(R.drawable.logo_v2);
-        imageList.add(R.drawable.bean_grade1);
-        imageList.add(R.drawable.bean_grade2);
-        imageList.add(R.drawable.bean_grade3);
 
-        cafeImageViewPager.setAdapter(new CafeDetailImageViewPagerAdapter(getContext().getApplicationContext(), imageList));
+        String get_cafeImage_url = getResources().getString(R.string.url) + "cafe_image";
+
+        StringRequest cafeImage_stringRequest = new StringRequest(Request.Method.GET, get_cafeImage_url, new Response.Listener<String>() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onResponse(String response) {
+                // 한글깨짐 해결 코드
+                String changeString = new String();
+                try {
+                    changeString = new String(response.getBytes("8859_1"),"utf-8");
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                Type listType = new TypeToken<ArrayList<CafeImage>>(){}.getType();
+
+                CafeImage_list = gson.fromJson(changeString, listType);
+
+                for(CafeImage ci : CafeImage_list){
+                    if(ci.getCafeNum().equals(get_cafe_num)){
+                        imageList.add(ci.getFileUrl());
+                    }
+                }
+
+                cafeImageViewPager.setAdapter(new CafeDetailImageViewPagerAdapter(getContext().getApplicationContext(), imageList, CafeDetailFragment.this));
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("cafeImage_stringRequest_error",error.toString());
+            }
+        });
+
+
+        requestQueue.add(cafeImage_stringRequest);
+
+
 //        CafeDetailImagePagerAdapter cafeImageAdapter = new CafeDetailImagePagerAdapter(getActivity().getSupportFragmentManager());
 //
 //        CafeDetailImageViewPager1 page1 = new CafeDetailImageViewPager1();

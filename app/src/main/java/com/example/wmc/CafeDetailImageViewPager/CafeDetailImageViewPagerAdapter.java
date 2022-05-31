@@ -9,20 +9,24 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
+import com.bumptech.glide.Glide;
 import com.example.wmc.R;
+import com.example.wmc.ui.Fragment.CafeDetailFragment;
 
 import java.util.ArrayList;
 
 public class CafeDetailImageViewPagerAdapter extends PagerAdapter {
 
     private Context mContext;
-    private ArrayList<Integer> imageList;
+    private ArrayList<String> imageList;
     ImageView imageView;
+    CafeDetailFragment cafeDetailFragment;
 
 
-    public CafeDetailImageViewPagerAdapter(Context context, ArrayList<Integer> imageList){
+    public CafeDetailImageViewPagerAdapter(Context context, ArrayList<String> imageList, CafeDetailFragment cafeDetailFragment){
         mContext = context;
         this.imageList = imageList;
+        this.cafeDetailFragment = cafeDetailFragment;
     }
 
     @NonNull
@@ -32,7 +36,11 @@ public class CafeDetailImageViewPagerAdapter extends PagerAdapter {
         View view = inflater.inflate(R.layout.viewpager_cafe_detail_image1, null);
 
         imageView = view.findViewById(R.id.cafeDetail_image1);
-        imageView.setImageResource(imageList.get(position));
+        //imageView.setImageResource(imageList.get(position));
+
+        String url = imageList.get(position);
+
+        Glide.with(cafeDetailFragment.getActivity()).load(url).into(imageView);
 
         container.addView(view);
         return view;
