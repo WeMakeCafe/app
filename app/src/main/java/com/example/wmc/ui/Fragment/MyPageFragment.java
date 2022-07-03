@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +32,7 @@ import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.StringRequest;
 
+import com.bumptech.glide.Glide;
 import com.example.wmc.MainActivity;
 import com.example.wmc.MypageFavorite.MypageFavoriteAdapter;
 import com.example.wmc.MypageFavorite.MypageFavoriteItem;
@@ -54,6 +56,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.TimeZone;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class MyPageFragment extends Fragment {
 
     private FragmentMypageBinding binding;
@@ -67,9 +71,11 @@ public class MyPageFragment extends Fragment {
     TextView grade, nickname, fav1, fav2;
     Button modify;
     Button logout;
+    ImageView profileImage;
 
     Long mem_num = MainActivity.mem_num;
     String create_date; // 리뷰 등록 시간
+    String profile_Image = ""; // 프로필사진
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -82,6 +88,8 @@ public class MyPageFragment extends Fragment {
         fav2 = root.findViewById(R.id.second_important2);
         modify = root.findViewById(R.id.change_information_button2);
         logout = root.findViewById(R.id.logout_button2);
+//        mypage_profile_image2 = root.findViewById(R.id.mypage_profile_image2);
+        profileImage = root.findViewById(R.id.profileImage);
 
         // 서버 호출
         RequestQueue requestQueue;
@@ -175,6 +183,13 @@ public class MyPageFragment extends Fragment {
                                                 nickname.setText(p.getNickName() + "님");
                                                 fav1.setText("#" + p.getFavorite1());
                                                 fav2.setText("#" + p.getFavorite2());
+
+                                                if(p.getProfileImageUrl().equals(""))
+                                                    profile_Image = "https://w.namu.la/s/0c6301df01fc4f180ec65717bad3d0254258abf0be33299e55df7c261040f517518eb9008a1a2cd3d7b8b7777d70182c185bc891b1054dc57b11cc46fd29130a3474f1b75b816024dfdc16b692a0c77c";
+                                                else
+                                                    profile_Image = p.getProfileImageUrl();
+
+                                                Glide.with(MyPageFragment.this).load(profile_Image).into(profileImage);
                                             }
                                         }
 
