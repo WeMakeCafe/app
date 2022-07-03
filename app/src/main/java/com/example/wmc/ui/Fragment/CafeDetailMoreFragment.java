@@ -167,10 +167,20 @@ public class CafeDetailMoreFragment extends Fragment {
 
 
                                         for (Personal p : personal_list) {
+
+                                            String personalProfile = "";
+
+                                            // 프로필 사진을 설정했는지 확인하는 곳(설정 X시, 기본 프로필 사진으로 설정)
+                                            if(p.getProfileImageUrl().equals(""))
+                                                // 기본 이미지 URL입력하면 됨(현재 뚱이사진 예시)
+                                                personalProfile = "https://w.namu.la/s/0c6301df01fc4f180ec65717bad3d0254258abf0be33299e55df7c261040f517518eb9008a1a2cd3d7b8b7777d70182c185bc891b1054dc57b11cc46fd29130a3474f1b75b816024dfdc16b692a0c77c";
+                                            else
+                                                personalProfile = p.getProfileImageUrl();
+
                                             // 1. 어플 사용자가 해당 카페에 대한 리뷰를 작성한 경우, 리사이클러뷰 가장 처음에 나오도록 설정
                                             if (r.getMemNum().equals(mem_num) && p.getMemNum().equals(mem_num)) {
                                                 cafeDetailMoreReviewItem.add(0, new CafeDetailMoreItem(p.getNickName(), p.getGrade().toString(),
-                                                        r.getReviewText(), create_date, R.drawable.logo, R.drawable.logo_v2, R.drawable.bean_grade1, R.drawable.bean_grade3, r.getLikeCount().toString(), true, false, get_cafe_num, mem_num, -1L, r.getReviewNum()));
+                                                        r.getReviewText(), create_date, personalProfile, R.drawable.logo_v2, R.drawable.bean_grade1, R.drawable.bean_grade3, r.getLikeCount().toString(), true, false, get_cafe_num, mem_num, -1L, r.getReviewNum()));
                                             }
 
                                             // 2. 리뷰 작성자들의 닉네임, 회원 등급을 포함한 리뷰 Item 작성
@@ -182,18 +192,18 @@ public class CafeDetailMoreFragment extends Fragment {
                                                             Log.d("love_for_if_test", "love_for_if_test");
                                                             love_flag = true;
                                                             cafeDetailMoreReviewItem.add(new CafeDetailMoreItem(p.getNickName(), p.getGrade().toString(),
-                                                                    r.getReviewText(), create_date, R.drawable.logo, R.drawable.logo_v2, R.drawable.bean_grade1, R.drawable.bean_grade3, r.getLikeCount().toString(), false, true, get_cafe_num, mem_num, l.getLoveNum(), r.getReviewNum()));
+                                                                    r.getReviewText(), create_date, personalProfile, R.drawable.logo_v2, R.drawable.bean_grade1, R.drawable.bean_grade3, r.getLikeCount().toString(), false, true, get_cafe_num, mem_num, l.getLoveNum(), r.getReviewNum()));
                                                         }
                                                     }
                                                 }else{
                                                     cafeDetailMoreReviewItem.add(new CafeDetailMoreItem(p.getNickName(), p.getGrade().toString(),
-                                                            r.getReviewText(), create_date, R.drawable.logo, R.drawable.logo_v2, R.drawable.bean_grade1, R.drawable.bean_grade3, r.getLikeCount().toString(), false, false, get_cafe_num, mem_num, -1L, r.getReviewNum()));
+                                                            r.getReviewText(), create_date, personalProfile, R.drawable.logo_v2, R.drawable.bean_grade1, R.drawable.bean_grade3, r.getLikeCount().toString(), false, false, get_cafe_num, mem_num, -1L, r.getReviewNum()));
                                                 }
                                                 if(!love_flag){
                                                     Log.d("!love_flag", "!love_flag");
 
                                                     cafeDetailMoreReviewItem.add(new CafeDetailMoreItem(p.getNickName(), p.getGrade().toString(),
-                                                            r.getReviewText(), create_date, R.drawable.logo, R.drawable.logo_v2, R.drawable.bean_grade1, R.drawable.bean_grade3, r.getLikeCount().toString(), false, false, get_cafe_num, mem_num, -1L, r.getReviewNum()));
+                                                            r.getReviewText(), create_date, personalProfile, R.drawable.logo_v2, R.drawable.bean_grade1, R.drawable.bean_grade3, r.getLikeCount().toString(), false, false, get_cafe_num, mem_num, -1L, r.getReviewNum()));
                                                 }
                                             }
                                         }
