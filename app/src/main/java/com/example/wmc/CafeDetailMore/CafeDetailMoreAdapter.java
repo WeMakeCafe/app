@@ -30,6 +30,7 @@ import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.example.wmc.MainActivity;
 import com.example.wmc.R;
 import com.example.wmc.database.Love;
@@ -103,7 +104,8 @@ public class CafeDetailMoreAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         viewHolder.reviewMore_writeTime.setText(item.getReviewMore_writeTime());// 작성자가 리뷰를 작성한 시간
         viewHolder.good_count_textView.setText(item.getGood_count_textView());
 
-        viewHolder.reviewProfile_image.setImageResource(item.getReviewProfile_image());
+        Glide.with(cafeDetailMoreFragment.getActivity()).load(item.getReviewProfile_image()).into(viewHolder.reviewProfile_image);
+
         viewHolder.reviewMore_image1.setImageResource(item.getReviewImage1());
         viewHolder.reviewMore_image2.setImageResource(item.getReviewImage2());
         viewHolder.reviewMore_image3.setImageResource(item.getReviewImage3());

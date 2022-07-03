@@ -37,6 +37,7 @@ import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.example.wmc.MainActivity;
 import com.example.wmc.R;
 import com.example.wmc.database.Cafe;
@@ -132,7 +133,9 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             viewHolder.review_comment.setText(item.getReview_comment());
             viewHolder.review_writeTime.setText(item.getReview_writeTime());
             viewHolder.good_count_textView.setText(item.getGood_count_textView());
-            viewHolder.reviewProfile_image.setImageResource(item.getReviewProfile_image());
+
+            Glide.with(cafeDetailFragment.getActivity()).load(item.getReviewProfile_image()).into(viewHolder.reviewProfile_image);
+
             viewHolder.reviewImage.setImageResource(item.getReviewImage());
             viewHolder.check_user_flag = (item.getCheck_user_flag());
             viewHolder.check_love_flag = (item.getCheck_love_flag());

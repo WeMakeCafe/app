@@ -6,7 +6,7 @@ public class CafeDetailMoreItem {
     String level_and_location;
     String review_comment;
     String reviewMore_writeTime;
-    int reviewProfile_image;
+    String reviewProfile_image;
     int reviewImage1;
     int reviewImage2;
     int reviewImage3;
@@ -18,7 +18,7 @@ public class CafeDetailMoreItem {
     boolean check_user_flag;
     boolean check_love_flag;
 
-    public CafeDetailMoreItem(String reviewNickName, String level_and_location, String review_comment, String reviewMore_writeTime, int reviewProfile_image, int reviewImage1, int reviewImage2, int reviewImage3, String good_count_textView, boolean check_user_flag, boolean check_love_flag, Long get_cafe_num, Long mem_num, Long get_love_num, Long get_review_num) {
+    public CafeDetailMoreItem(String reviewNickName, String level_and_location, String review_comment, String reviewMore_writeTime, String reviewProfile_image, int reviewImage1, int reviewImage2, int reviewImage3, String good_count_textView, boolean check_user_flag, boolean check_love_flag, Long get_cafe_num, Long mem_num, Long get_love_num, Long get_review_num) {
         this.reviewNickName = reviewNickName;
         this.level_and_location = level_and_location;
         this.review_comment = review_comment;
@@ -68,11 +68,11 @@ public class CafeDetailMoreItem {
         this.reviewMore_writeTime = reviewMore_writeTime;
     }
 
-    public int getReviewProfile_image() {
+    public String getReviewProfile_image() {
         return reviewProfile_image;
     }
 
-    public void setReviewProfile_image(int reviewProfile_image) {
+    public void setReviewProfile_image(String reviewProfile_image) {
         this.reviewProfile_image = reviewProfile_image;
     }
 
