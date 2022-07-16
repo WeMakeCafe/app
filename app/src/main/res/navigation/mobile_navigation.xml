@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/home_to_list"
-            app:destination="@id/navigation_list" />
+            app:destination="@id/navigation_list_cafelist" />
         <action
             android:id="@+id/home_to_list_cafelist"
             app:destination="@id/navigation_list_cafelist" />
@@ -27,16 +27,31 @@
             app:destination="@id/navigation_myPage" />
     </fragment>
 
+
+<!--    <fragment-->
+<!--        android:id="@+id/navigation_list"-->
+<!--        android:name="com.example.wmc.a_No_USE_Files.ListFragment"-->
+<!--        android:label="@string/title_list"-->
+<!--        tools:layout="@layout/fragment_list" >-->
+<!--        <action-->
+<!--            android:id="@+id/list_to_list_search"-->
+<!--            app:destination="@id/navigation_list_search" />-->
+<!--        <action-->
+<!--            android:id="@+id/list_to_cafe_registration"-->
+<!--            app:destination="@id/navigation_cafe_registration" />-->
+<!--    </fragment>-->
     <fragment
-        android:id="@+id/navigation_list"
-        android:name="com.example.wmc.a_No_USE_Files.ListFragment"
-        android:label="@string/title_list"
-        tools:layout="@layout/fragment_list" >
+        android:id="@+id/navigation_list_cafelist"
+        android:name="com.example.wmc.ui.Fragment.ListCafelistFragment"
+        android:label="@string/cafe_list"
+        tools:layout="@layout/fragment_list_cafelist">
+
         <action
-            android:id="@+id/list_to_list_search"
-            app:destination="@id/navigation_list_search" />
+            android:id="@+id/list_cafelist_to_cafe_detail"
+            app:destination="@id/navigation_cafe_detail" />
+
         <action
-            android:id="@+id/list_to_cafe_registration"
+            android:id="@+id/list_cafelist_to_cafe_registration"
             app:destination="@id/navigation_cafe_registration" />
     </fragment>
 
@@ -172,22 +187,6 @@
         <action
             android:id="@+id/review_comment_to_cafe_detail"
             app:destination="@id/navigation_cafe_detail" />
-    </fragment>
-
-
-    <fragment
-        android:id="@+id/navigation_list_cafelist"
-        android:name="com.example.wmc.ui.Fragment.ListCafelistFragment"
-        android:label="@string/cafe_list"
-        tools:layout="@layout/fragment_list_cafelist">
-
-        <action
-            android:id="@+id/list_cafelist_to_cafe_detail"
-            app:destination="@id/navigation_cafe_detail" />
-
-        <action
-            android:id="@+id/list_cafelist_to_cafe_registration"
-            app:destination="@id/navigation_cafe_registration" />
     </fragment>
 
     <fragment
