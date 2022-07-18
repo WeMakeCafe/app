@@ -71,7 +71,9 @@
             app:destination="@id/navigation_review_cafelist" />
         <action
             android:id="@+id/review_to_cafe_detail"
-            app:destination="@id/navigation_cafe_detail" />
+            app:destination="@id/navigation_cafe_detail"
+            app:popUpTo="@id/navigation_cafe_detail"
+            app:popUpToInclusive="true"/>
     </fragment>
 
     <fragment
@@ -186,7 +188,9 @@
 
         <action
             android:id="@+id/review_comment_to_cafe_detail"
-            app:destination="@id/navigation_cafe_detail" />
+            app:destination="@id/navigation_cafe_detail"
+            app:popUpTo="@id/navigation_cafe_detail"
+            app:popUpToInclusive="true"/>
     </fragment>
 
     <fragment
