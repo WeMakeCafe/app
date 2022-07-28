@@ -38,12 +38,14 @@ import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.wmc.CafeDetailImageViewPager.CafeDetailImageViewPagerAdapter;
 import com.example.wmc.CafeModify.CafeModifyAdapter;
 import com.example.wmc.CafeModify.CafeModifyItem;
 import com.example.wmc.CafeRegistration.CafeRegistrationAdapter;
 import com.example.wmc.MainActivity;
 import com.example.wmc.R;
 import com.example.wmc.database.Cafe;
+import com.example.wmc.database.CafeImage;
 import com.example.wmc.database.Personal;
 import com.example.wmc.databinding.FragmentCafeModifyBinding;
 import com.google.gson.Gson;
@@ -68,6 +70,7 @@ public class CafeModifyFragment extends Fragment {
     RecyclerView cafeModifyImageRecyclerView;
 
     ArrayList<Uri> uriList = new ArrayList<>();     // 이미지의 uri를 담을 ArrayList 객체
+    ArrayList<CafeImage> CafeImage_list;
     CafeModifyAdapter cafeModifyAdapter;
     private static final int REQUEST_CODE = 2222;
     private static final String TAG = "CafeModifyFragment";
@@ -146,6 +149,45 @@ public class CafeModifyFragment extends Fragment {
                     }
                 }
 
+
+                String get_cafeImage_url = getResources().getString(R.string.url) + "cafeImage";
+
+                StringRequest cafeImage_stringRequest = new StringRequest(Request.Method.GET, get_cafeImage_url, new Response.Listener<String>() {
+                    @RequiresApi(api = Build.VERSION_CODES.O)
+                    @Override
+                    public void onResponse(String response) {
+                        // 한글깨짐 해결 코드
+                        String changeString = new String();
+                        try {
+                            changeString = new String(response.getBytes("8859_1"),"utf-8");
+                        } catch (UnsupportedEncodingException e) {
+                            e.printStackTrace();
+                        }
+                        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                        Type listType = new TypeToken<ArrayList<CafeImage>>(){}.getType();
+
+                        CafeImage_list = gson.fromJson(changeString, listType);
+
+                        for(CafeImage ci : CafeImage_list){
+                            if(ci.getCafeNum().equals(cafe_num)){
+                                Log.d("cafeImage URL", ci.getFileUrl());
+                                Uri i = Uri.parse(ci.getFileUrl());
+                                uriList.add(i);
+                            }
+                        }
+                        cafeModifyAdapter = new CafeModifyAdapter(uriList, getContext().getApplicationContext());
+                        cafeModifyImageRecyclerView.setAdapter(cafeModifyAdapter);
+                        cafeModifyImageRecyclerView.setLayoutManager(new LinearLayoutManager(getContext().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("cafeImage_stringRequest_error",error.toString());
+                    }
+                });
+
+
+                requestQueue.add(cafeImage_stringRequest);
                 modify_button.setOnClickListener(new View.OnClickListener() { // 카페 수정하기 버튼 누를 시
 
                     @Override
