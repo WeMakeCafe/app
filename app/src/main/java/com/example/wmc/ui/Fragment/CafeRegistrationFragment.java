@@ -1,7 +1,10 @@
 package com.example.wmc.ui.Fragment;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.ClipData;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -9,6 +12,7 @@ import android.graphics.BitmapFactory;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -23,6 +27,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -63,6 +68,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TimerTask;
 
 public class CafeRegistrationFragment extends Fragment {
 
@@ -622,11 +628,29 @@ public class CafeRegistrationFragment extends Fragment {
                             RequestQueue queue = Volley.newRequestQueue(requireContext());
                             queue.add(objectRequest);
 
+
                             // 카페 등록 완료 시 해당 카페 디테일로 넘어가기 - 송상화
-                            Bundle bundle = new Bundle();
-                            bundle.putString("cafeName", cafe_name_input.getText().toString());
-                            navController.navigate(R.id.cafe_registration_to_cafe_detail, bundle);
+//                            Bundle bundle = new Bundle();
+//                            bundle.putString("cafeName", cafe_name_input.getText().toString());
+//                            navController.navigate(R.id.cafe_registration_to_list_cafelist);
+
+                            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                            builder.setTitle("카페 등록").setMessage("카페가 등록되었습니다.").setIcon(R.drawable.logo);
+
+                            builder.setPositiveButton("확인", new DialogInterface.OnClickListener(){
+                                @Override
+                                public void onClick(DialogInterface dialog, int id)
+                                {
+                                    navController.navigate(R.id.cafe_registration_to_list_cafelist);
+                                }
+                            });
+
+                            AlertDialog alertDialog = builder.create();
+                            alertDialog.show();
+
+
                         }
+
                         else {
                             Toast.makeText(getContext().getApplicationContext(), "비어 있는 항목이 있거나 시간입력이 부적절합니다!", Toast.LENGTH_LONG).show();
                         }

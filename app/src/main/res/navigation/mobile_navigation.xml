@@ -132,9 +132,13 @@
         <action
             android:id="@+id/cafe_registration_to_cafe_registration_tag"
             app:destination="@id/navigation_cafe_registration_tag" />
+
         <action
-            android:id="@+id/cafe_registration_to_cafe_detail"
-            app:destination="@id/navigation_cafe_detail" />
+            android:id="@+id/cafe_registration_to_list_cafelist"
+            app:destination="@id/navigation_list_cafelist"
+            app:popUpTo="@id/navigation_list_cafelist"
+            app:popUpToInclusive="true"/>
+            <!--  페이지 스택 지우기 코드      -->
     </fragment>
 
     <fragment
@@ -244,7 +248,8 @@
 
         <action
             android:id="@+id/cafe_registration_tag_to_cafe_registration"
-            app:destination="@id/navigation_cafe_registration" />
+            app:destination="@id/navigation_cafe_registration"
+            />
     </fragment>
 
 
