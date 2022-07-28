@@ -1,6 +1,7 @@
 package com.example.wmc.ui.Fragment;
 
 import android.content.ClipData;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -908,7 +910,21 @@ public class ReviewCommentFragment extends Fragment {
                             Bundle bundle = new Bundle();
                             bundle.putString("cafeName",cafeName);
                             // 내가 리뷰를 작성한 카페의 카페디테일로 이동
-                            navController.navigate(R.id.review_comment_to_cafe_detail, bundle);
+
+                            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                            builder.setTitle("리뷰 작성").setMessage("리뷰가 등록되었습니다.").setIcon(R.drawable.logo);
+
+                            builder.setPositiveButton("확인", new DialogInterface.OnClickListener(){
+                                @Override
+                                public void onClick(DialogInterface dialog, int id)
+                                {
+                                    navController.navigate(R.id.review_comment_to_cafe_detail, bundle);
+                                }
+                            });
+
+                            AlertDialog alertDialog = builder.create();
+                            alertDialog.show();
+
                         }
 
                         // 리뷰 수정에서 온 경우, PUT
