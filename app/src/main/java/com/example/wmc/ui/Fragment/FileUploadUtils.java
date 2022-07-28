@@ -45,6 +45,7 @@ public class FileUploadUtils {
                 Log.d("test : ", response.body().string());
             }
         });
+        Log.d("end", "이미지 서버에 전송 완료");
     }
 
     public static void sendReviewImage(File file, Long mem_num, Long review_num) {
