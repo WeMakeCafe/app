@@ -12,10 +12,17 @@
     <string name="cafe_list">카페 리스트</string>
     <string name="list_search">카페 검색</string>
     <string name="myPage_grade">회원 등급</string>
+    <string name="mypage_review">마이페이지 리뷰 수정</string>
+    <string name="mypage_review_comment">마이페이지 리뷰 수정 코멘터리</string>
+    <string name="mypage_review_tag">마이페이지 리뷰 태그</string>
     <string name="review_comment">리뷰 코멘터리 작성</string>
     <string name="review_tag">리뷰 태그</string>
     <string name="review_search">리뷰 검색</string>
     <string name="review_cafe_list">리뷰 검색 시 카페 목록</string>
     <string name="cafe_registration_tag">카페등록의 태그추가</string>
+    <string name="bottom_review">하단바 리뷰 작성</string>
+    <string name="bottom_review_comment">하단바 리뷰 코멘터리</string>
+    <string name="bottom_review_tag">하단바 리뷰 태그</string>
+    <string name="bottom_review_cafe_list">하단바 리뷰 검색 시 카페 목록</string>
     <string name="url">http://3.90.202.187:8080/</string>
 </resources>
