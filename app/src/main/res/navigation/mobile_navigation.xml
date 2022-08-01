@@ -18,7 +18,7 @@
             app:destination="@id/navigation_list_cafelist" />
         <action
             android:id="@+id/home_to_review"
-            app:destination="@id/navigation_review" />
+            app:destination="@id/navigation_bottom_review" />
         <action
             android:id="@+id/home_to_cafe_detail"
             app:destination="@id/navigation_cafe_detail" />
@@ -90,6 +90,9 @@
         <action
             android:id="@+id/myPage_to_review"
             app:destination="@id/navigation_review" />
+        <action
+            android:id="@+id/myPage_to_mypage_review"
+            app:destination="@id/navigation_mypage_review" />
     </fragment>
 
 
@@ -248,9 +251,117 @@
 
         <action
             android:id="@+id/cafe_registration_tag_to_cafe_registration"
-            app:destination="@id/navigation_cafe_registration"
-            />
+            app:destination="@id/navigation_cafe_registration" />
     </fragment>
 
+
+<!--    ***************** 마이페이지에서 리뷰 수정 시 *****************      -->
+    <fragment
+        android:id="@+id/navigation_mypage_review"
+        android:name="com.example.wmc.ui.Fragment.MyPage_ReviewFragment"
+        android:label="@string/mypage_review"
+        tools:layout="@layout/fragment_review">
+
+        <action
+            android:id="@+id/mypage_review_to_mypage_review_tag"
+            app:destination="@id/navigation_mypage_review_tag" />
+        <action
+            android:id="@+id/mypage_review_to_mypage_review_comment"
+            app:destination="@id/navigation_mypage_review_comment" />
+        <action
+            android:id="@+id/mypage_review_to_mypage"
+            app:destination="@id/navigation_myPage" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_mypage_review_comment"
+        android:name="com.example.wmc.ui.Fragment.Mypage_ReviewCommentFragment"
+        android:label="@string/mypage_review_comment"
+        tools:layout="@layout/fragment_review_comment" >
+
+        <action
+            android:id="@+id/mypage_review_comment_to_mypage"
+            app:destination="@id/navigation_myPage"
+            app:popUpTo="@id/navigation_myPage"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_mypage_review_tag"
+        android:name="com.example.wmc.ui.Fragment.Mypage_ReviewTagFragment"
+        android:label="@string/mypage_review_tag"
+        tools:layout="@layout/fragment_review_tag" >
+
+        <action
+            android:id="@+id/mypage_review_tag_to_mypage_review"
+            app:destination="@id/navigation_mypage_review" />
+    </fragment>
+
+
+
+    <!--    ***************** 하단바에서 리뷰 작성 시 *****************      -->
+    <fragment
+        android:id="@+id/navigation_bottom_review"
+        android:name="com.example.wmc.ui.Fragment.Bottom_ReviewFragment"
+        android:label="@string/bottom_review"
+        tools:layout="@layout/fragment_review">
+
+        <action
+            android:id="@+id/bottom_review_to_bottom_review_tag"
+            app:destination="@id/navigation_bottom_review_tag" />
+        <action
+            android:id="@+id/bottom_review_to_bottom_review_comment"
+            app:destination="@id/navigation_bottom_review_comment"
+            app:popUpTo="@id/navigation_bottom_review_comment"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/bottom_review_to_bottom_review_cafelist"
+            app:destination="@id/navigation_bottom_review_cafelist" />
+        <action
+            android:id="@+id/bottom_review_to_bottom_review"
+            app:destination="@id/navigation_bottom_review"
+            app:popUpTo="@id/navigation_bottom_review"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/navigation_bottom_review_cafelist"
+        android:name="com.example.wmc.ui.Fragment.Bottom_ReviewCafeListFragment"
+        android:label="@string/bottom_review_cafe_list"
+        tools:layout="@layout/fragment_review_cafelist" >
+
+        <action
+            android:id="@+id/bottom_review_cafelist_to_bottom_review"
+            app:destination="@id/navigation_bottom_review"
+            app:popUpTo="@id/navigation_bottom_review"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_bottom_review_comment"
+        android:name="com.example.wmc.ui.Fragment.Bottom_ReviewCommentFragment"
+        android:label="@string/bottom_review_comment"
+        tools:layout="@layout/fragment_review_comment" >
+
+        <action
+            android:id="@+id/bottom_review_comment_to_bottom_review"
+            app:destination="@id/navigation_bottom_review"
+            app:popUpTo="@id/navigation_bottom_review"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_bottom_review_tag"
+        android:name="com.example.wmc.ui.Fragment.Bottom_ReviewTagFragment"
+        android:label="@string/bottom_review_tag"
+        tools:layout="@layout/fragment_review_tag" >
+
+        <action
+            android:id="@+id/bottom_review_tag_to_bottom_review"
+            app:destination="@id/navigation_bottom_review"
+            app:popUpTo="@id/navigation_bottom_review"
+            app:popUpToInclusive="true"/>
+    </fragment>
 
 </navigation>
