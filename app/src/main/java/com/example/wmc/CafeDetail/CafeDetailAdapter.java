@@ -207,7 +207,7 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                                         Log.d("test3", String.valueOf(review_list.size()));
 
                                         for(Review r : review_list){
-                                            if(item.get_review_num == r.getReviewNum()) {
+                                            if(item.get_review_num.equals(r.getReviewNum())) {
                                                 score1 = r.getTastePoint1();
                                                 score2 = r.getTastePoint2();
                                                 score3 = r.getTastePoint3();

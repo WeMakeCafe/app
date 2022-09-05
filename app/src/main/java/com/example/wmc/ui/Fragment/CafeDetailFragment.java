@@ -148,7 +148,6 @@ public class CafeDetailFragment extends Fragment {
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.detach(this).attach(this).commit();
 
-
         // cafeDetail 외부에서 Bundle로 이름 받아오기
         Bundle cafeNameBundle = getArguments();
         if(cafeNameBundle != null){
