@@ -17,7 +17,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -144,9 +143,6 @@ public class CafeDetailFragment extends Fragment {
         moreReview6 = root.findViewById(R.id.moreReview6); // 카페 태그 1
         moreReview7 = root.findViewById(R.id.moreReview7); // 카페 태그 2
         recyclerView = root.findViewById(R.id.cafeDetailReviewRecyclerView);
-
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.detach(this).attach(this).commit();
 
 
         // cafeDetail 외부에서 Bundle로 이름 받아오기
