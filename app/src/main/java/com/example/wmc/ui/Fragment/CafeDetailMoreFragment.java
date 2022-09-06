@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -73,6 +74,9 @@ public class CafeDetailMoreFragment extends Fragment {
 
         binding = FragmentCafeDetailMoreBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.detach(this).attach(this).commit();
 
         Bundle cafeNumBundle = getArguments();
         if(cafeNumBundle != null){
@@ -225,6 +229,7 @@ public class CafeDetailMoreFragment extends Fragment {
                                 cafeDetailMoreAdapter.setOnItemClickListener_cafeDetailMore(new CafeDetailMoreAdapter.OnItemClickEventListener_cafeDetailMore() {
                                     @Override
                                     public void onItemClick(View a_view, int a_position) {
+                                        Toast.makeText(getContext().getApplicationContext(), a_position + "번 리뷰 클릭.", Toast.LENGTH_SHORT).show();
                                     }
                                 });
 
