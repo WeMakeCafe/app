@@ -108,9 +108,11 @@
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/cafe_list_item.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_add_tag.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_app_loading.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_app_login.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_app_login.xml" value="0.33" />
+        <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_app_search_id.xml" value="0.33" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_app_search_id_pw.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_app_signup.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_app_search_pw.xml" value="0.33" />
+        <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_app_signup.xml" value="0.33" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_cafe_delete.xml" value="0.33" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_cafe_detail.xml" value="0.33" />
         <entry key="..\:/Users/oem/AndroidStudioProjects/app/app/src/main/res/layout/fragment_cafe_detail_more.xml" value="0.33" />
