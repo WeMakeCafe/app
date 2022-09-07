@@ -130,9 +130,6 @@ public class CafeDetailMoreAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         viewHolder.check_user_flag = (item.getCheck_user_flag());   // 작성자와 로그인한 유저가 같은지 확인
         viewHolder.check_love_flag = (item.getCheck_love_flag());
 
-        FragmentTransaction ft = cafeDetailMoreFragment.getFragmentManager().beginTransaction();
-        ft.detach(cafeDetailMoreFragment).attach(cafeDetailMoreFragment).commit();
-
         for(int i = 0 ; i<=35; i++){
             k[i] = (long) 0;
         }
@@ -288,6 +285,8 @@ public class CafeDetailMoreAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                             reviewMore_items.remove(item);    // 리사이클러뷰에서도 아이템 삭제
                             notifyDataSetChanged();
 
+
+
                             String cafe_url = cafeDetailMoreFragment.getResources().getString(R.string.url) + "cafe";
                             StringRequest stringRequest2= new StringRequest(Request.Method.GET, cafe_url, new Response.Listener<String>() {
                                 @Override
@@ -402,6 +401,7 @@ public class CafeDetailMoreAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                                 }
                             });
                             requestQueue.add(stringRequest2);
+
                             FragmentTransaction ft = cafeDetailMoreFragment.getFragmentManager().beginTransaction();
                             ft.detach(cafeDetailMoreFragment).attach(cafeDetailMoreFragment).commit();
                         }

@@ -75,8 +75,8 @@ public class CafeDetailMoreFragment extends Fragment {
         binding = FragmentCafeDetailMoreBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.detach(this).attach(this).commit();
+//        FragmentTransaction ft = getFragmentManager().beginTransaction();
+//        ft.detach(this).attach(this).commit();
 
         Bundle cafeNumBundle = getArguments();
         if(cafeNumBundle != null){
@@ -342,8 +342,6 @@ public class CafeDetailMoreFragment extends Fragment {
                         Log.e("cafeDetailMore_personal_stringRequest_error",error.toString());
                     }
                 });
-
-
                 requestQueue.add(personal_stringRequest);
             }
         }, new Response.ErrorListener() {
@@ -356,6 +354,8 @@ public class CafeDetailMoreFragment extends Fragment {
 
         requestQueue.add(review_stringRequest);
 
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.detach(this).attach(this).commit();
 
 
 
