@@ -12,8 +12,9 @@ public class MypageReviewItem {
     boolean check_user_flag;
     Long mem_num;
     Long get_cafe_num;
+    Long get_review_num;
 
-    public MypageReviewItem(String mypageReview_CafeName, String mypageReview_writeTime, String review_comment, int reviewImage1, int reviewImage2, int reviewImage3, String good_count_textView, boolean check_user_flag, Long mem_num, Long get_cafe_num) {
+    public MypageReviewItem(String mypageReview_CafeName, String mypageReview_writeTime, String review_comment, int reviewImage1, int reviewImage2, int reviewImage3, String good_count_textView, boolean check_user_flag, Long mem_num, Long get_cafe_num, Long get_review_num) {
         this.mypageReview_CafeName = mypageReview_CafeName;
         this.mypageReview_writeTime = mypageReview_writeTime;
         this.review_comment = review_comment;
@@ -24,7 +25,9 @@ public class MypageReviewItem {
         this.check_user_flag = check_user_flag;
         this.mem_num = mem_num;
         this.get_cafe_num = get_cafe_num;
+        this.get_review_num = get_review_num;
     }
+
 
     public String getMypageReview_CafeName() {
         return mypageReview_CafeName;
@@ -104,5 +107,13 @@ public class MypageReviewItem {
 
     public void setGet_cafe_num(Long get_cafe_num) {
         this.get_cafe_num = get_cafe_num;
+    }
+
+    public Long getGet_review_num() {
+        return get_review_num;
+    }
+
+    public void setGet_review_num(Long get_review_num) {
+        this.get_review_num = get_review_num;
     }
 }
