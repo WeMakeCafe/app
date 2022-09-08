@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -90,6 +91,9 @@ public class MyPageFragment extends Fragment {
         logout = root.findViewById(R.id.logout_button2);
 //        mypage_profile_image2 = root.findViewById(R.id.mypage_profile_image2);
         profileImage = root.findViewById(R.id.profileImage);
+
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.detach(this).attach(this).commit();
 
         // 서버 호출
         RequestQueue requestQueue;
@@ -267,7 +271,7 @@ public class MyPageFragment extends Fragment {
                                                         mypageReviewItems.add(new MypageReviewItem(c.getCafeName(), create_date,
                                                                 r.getReviewText(), R.drawable.logo, R.drawable.logo_v2,
                                                                 R.drawable.bean_grade1, r.getLikeCount().toString(),
-                                                                true, mem_num, r.getCafeNum()));
+                                                                true, mem_num, r.getCafeNum(), r.getReviewNum()));
                                                     }
                                                 }
                                             }
