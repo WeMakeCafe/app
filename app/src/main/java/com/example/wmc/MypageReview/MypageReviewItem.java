@@ -5,16 +5,16 @@ public class MypageReviewItem {
     String mypageReview_CafeName;
     String mypageReview_writeTime;
     String review_comment;
-    int reviewImage1;
-    int reviewImage2;
-    int reviewImage3;
+    String reviewImage1;
+    String reviewImage2;
+    String reviewImage3;
     String good_count_textView;
     boolean check_user_flag;
     Long mem_num;
     Long get_cafe_num;
     Long get_review_num;
 
-    public MypageReviewItem(String mypageReview_CafeName, String mypageReview_writeTime, String review_comment, int reviewImage1, int reviewImage2, int reviewImage3, String good_count_textView, boolean check_user_flag, Long mem_num, Long get_cafe_num, Long get_review_num) {
+    public MypageReviewItem(String mypageReview_CafeName, String mypageReview_writeTime, String review_comment, String reviewImage1, String reviewImage2, String reviewImage3, String good_count_textView, boolean check_user_flag, Long mem_num, Long get_cafe_num, Long get_review_num) {
         this.mypageReview_CafeName = mypageReview_CafeName;
         this.mypageReview_writeTime = mypageReview_writeTime;
         this.review_comment = review_comment;
@@ -53,27 +53,27 @@ public class MypageReviewItem {
         this.review_comment = review_comment;
     }
 
-    public int getReviewImage1() {
+    public String getReviewImage1() {
         return reviewImage1;
     }
 
-    public void setReviewImage1(int reviewImage1) {
+    public void setReviewImage1(String reviewImage1) {
         this.reviewImage1 = reviewImage1;
     }
 
-    public int getReviewImage2() {
+    public String getReviewImage2() {
         return reviewImage2;
     }
 
-    public void setReviewImage2(int reviewImage2) {
+    public void setReviewImage2(String reviewImage2) {
         this.reviewImage2 = reviewImage2;
     }
 
-    public int getReviewImage3() {
+    public String getReviewImage3() {
         return reviewImage3;
     }
 
-    public void setReviewImage3(int reviewImage3) {
+    public void setReviewImage3(String reviewImage3) {
         this.reviewImage3 = reviewImage3;
     }
 

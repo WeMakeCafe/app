@@ -31,6 +31,7 @@ import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.example.wmc.R;
 import com.example.wmc.database.Cafe;
 import com.example.wmc.database.Love;
@@ -105,9 +106,11 @@ public class MypageReviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         viewHolder.mypageReview_writeTime.setText(item.getMypageReview_writeTime());
         viewHolder.myPageReview_comment.setText(item.getReview_comment());
         viewHolder.good_count_textView.setText(item.getGood_count_textView());
-        viewHolder.myPageReview_image1.setImageResource(item.getReviewImage1());
-        viewHolder.myPageReview_image2.setImageResource(item.getReviewImage2());
-        viewHolder.myPageReview_image3.setImageResource(item.getReviewImage3());
+
+        Glide.with(myPageFragment.getActivity()).load(item.getReviewImage1()).into(viewHolder.myPageReview_image1);
+        Glide.with(myPageFragment.getActivity()).load(item.getReviewImage2()).into(viewHolder.myPageReview_image2);
+        Glide.with(myPageFragment.getActivity()).load(item.getReviewImage3()).into(viewHolder.myPageReview_image3);
+
 
         viewHolder.check_user_flag = (item.getCheck_user_flag());   // 작성자와 로그인한 유저가 같은지 확인
 
