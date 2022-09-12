@@ -135,8 +135,8 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             viewHolder.good_count_textView.setText(item.getGood_count_textView());
 
             Glide.with(cafeDetailFragment.getActivity()).load(item.getReviewProfile_image()).into(viewHolder.reviewProfile_image);
+            Glide.with(cafeDetailFragment.getActivity()).load(item.getReviewImage()).into(viewHolder.reviewImage);
 
-            viewHolder.reviewImage.setImageResource(item.getReviewImage());
             viewHolder.check_user_flag = (item.getCheck_user_flag());
             viewHolder.check_love_flag = (item.getCheck_love_flag());
             for(int i = 0 ; i<=35; i++){
