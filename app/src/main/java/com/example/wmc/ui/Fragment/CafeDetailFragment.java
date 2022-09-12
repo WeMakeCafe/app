@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +36,7 @@ import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.example.wmc.CafeDetail.CafeDetailAdapter;
 import com.example.wmc.CafeDetail.CafeDetailItem;
 import com.example.wmc.CafeDetailImageViewPager.CafeDetailImageViewPagerAdapter;
@@ -45,9 +47,11 @@ import com.example.wmc.R;
 import com.example.wmc.database.Bookmark;
 import com.example.wmc.database.Cafe;
 import com.example.wmc.database.CafeImage;
+import com.example.wmc.database.Category;
 import com.example.wmc.database.Love;
 import com.example.wmc.database.Personal;
 import com.example.wmc.database.Review;
+import com.example.wmc.database.ReviewImage;
 import com.example.wmc.databinding.FragmentCafeDetailBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
@@ -95,6 +99,7 @@ public class CafeDetailFragment extends Fragment {
     ArrayList<Personal> personal_list;
     ArrayList<Bookmark> bookmark_list;
     ArrayList<Love> love_list;
+    ArrayList<ReviewImage> reviewImage_list;
     ArrayList<CafeImage> CafeImage_list;
 
     Long mem_num = MainActivity.mem_num;
@@ -105,6 +110,7 @@ public class CafeDetailFragment extends Fragment {
     Long get_bookmark_num; // bookmark_num을 임시로 저장함.
 
     Long[] get_keyword = new Long[36]; // 카페 태그 임시 저장
+    String reviewImage;
 
     // 카페에 저장된 리뷰 점수 평균 저장
     int[] get_seat_point = new int[4];
@@ -689,7 +695,53 @@ public class CafeDetailFragment extends Fragment {
                                                     e.printStackTrace();
                                                 }
 
+                                                // 리뷰 이미지
+                                                String get_reviewImage_url = getResources().getString(R.string.url) + "reviewImage";
 
+                                                StringRequest reviewImage_stringRequest = new StringRequest(Request.Method.GET, get_reviewImage_url, new Response.Listener<String>() {
+                                                    @RequiresApi(api = Build.VERSION_CODES.O)
+                                                    @Override
+                                                    public void onResponse(String response) {
+                                                        // 한글깨짐 해결 코드
+                                                        String changeString = new String();
+                                                        try {
+                                                            changeString = new String(response.getBytes("8859_1"),"utf-8");
+                                                        } catch (UnsupportedEncodingException e) {
+                                                            e.printStackTrace();
+                                                        }
+                                                        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                                                        Type listType = new TypeToken<ArrayList<ReviewImage>>(){}.getType();
+
+                                                        reviewImage_list = gson.fromJson(changeString, listType);
+
+                                                        reviewImage = "";
+
+                                                        // 리뷰 이미지가 있을때
+                                                        for(ReviewImage ri : reviewImage_list) {
+                                                            if(ri.getReviewNum().equals(r.getReviewNum())){
+                                                                reviewImage = ri.getFileUrl();
+                                                                Log.d("reviewImage", ri.getFileUrl());
+                                                                break;
+                                                            }
+                                                        }
+
+                                                        // 리뷰 이미지가 없을때
+                                                        if(reviewImage == "")
+                                                            //(나중에 로고 올리고 바꾸기)
+                                                            reviewImage = "https://w.namu.la/s/0c6301df01fc4f180ec65717bad3d0254258abf0be33299e55df7c261040f517518eb9008a1a2cd3d7b8b7777d70182c185bc891b1054dc57b11cc46fd29130a3474f1b75b816024dfdc16b692a0c77c";
+
+                                                    }
+                                                }, new Response.ErrorListener() {
+                                                    @Override
+                                                    public void onErrorResponse(VolleyError error) {
+                                                        Log.e("reviewImage_stringRequest_error",error.toString());
+                                                    }
+                                                });
+                                                
+                                                requestQueue.add(reviewImage_stringRequest);
+
+
+                                                // 프로필 이미지
                                                 for (Personal p : personal_list) {
 
                                                     String personImage = "";
@@ -704,7 +756,7 @@ public class CafeDetailFragment extends Fragment {
                                                     // 1. 어플 사용자가 해당 카페에 대한 리뷰를 작성한 경우, 리사이클러뷰 가장 처음에 나오도록 설정
                                                     if (r.getMemNum().equals(mem_num) && p.getMemNum().equals(mem_num)) {
                                                         cafeDetailReviewItem.add( 0, new CafeDetailItem(p.getNickName(), p.getGrade().toString(),
-                                                                r.getReviewText(), create_date, personImage, R.drawable.logo_v2, r.getLikeCount().toString(), true, false, mem_num, get_cafe_num, -1L, r.getReviewNum()));
+                                                                r.getReviewText(), create_date, personImage, reviewImage, r.getLikeCount().toString(), true, false, mem_num, get_cafe_num, -1L, r.getReviewNum()));
                                                         Log.d("review_check", r.getReviewNum().toString());
                                                     } // 2. 리뷰 작성자들의 닉네임, 회원 등급을 포함한 리뷰 Item 작성
                                                     else if (r.getMemNum().equals(p.getMemNum())) {
@@ -715,21 +767,23 @@ public class CafeDetailFragment extends Fragment {
                                                                     Log.d("love_for_if_test", "love_for_if_test");
                                                                     love_flag = true;
                                                                     cafeDetailReviewItem.add(new CafeDetailItem(p.getNickName(), p.getGrade().toString(),
-                                                                            r.getReviewText(), create_date, personImage, R.drawable.logo_v2, r.getLikeCount().toString(), false, true, mem_num, get_cafe_num, l.getLoveNum(), r.getReviewNum()));
+                                                                            r.getReviewText(), create_date, personImage, reviewImage, r.getLikeCount().toString(), false, true, mem_num, get_cafe_num, l.getLoveNum(), r.getReviewNum()));
                                                                 }
                                                             }
                                                         }else{
                                                             Log.d("love_not_test", "love_not_test");
                                                             cafeDetailReviewItem.add(new CafeDetailItem(p.getNickName(), p.getGrade().toString(),
-                                                                    r.getReviewText(), create_date, personImage, R.drawable.logo_v2, r.getLikeCount().toString(), false, false, mem_num, get_cafe_num, -1L, r.getReviewNum()));
+                                                                    r.getReviewText(), create_date, personImage, reviewImage, r.getLikeCount().toString(), false, false, mem_num, get_cafe_num, -1L, r.getReviewNum()));
                                                         }
                                                         if(!love_flag){
                                                             Log.d("love_not_test", "love_not_test");
                                                             cafeDetailReviewItem.add(new CafeDetailItem(p.getNickName(), p.getGrade().toString(),
-                                                                    r.getReviewText(), create_date, personImage, R.drawable.logo_v2, r.getLikeCount().toString(), false, false, mem_num, get_cafe_num, -1L, r.getReviewNum()));
+                                                                    r.getReviewText(), create_date, personImage, reviewImage, r.getLikeCount().toString(), false, false, mem_num, get_cafe_num, -1L, r.getReviewNum()));
                                                         }
                                                     }
                                                 }
+
+
                                             }
                                         }
 
