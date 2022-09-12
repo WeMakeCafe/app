@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,7 +35,6 @@ import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
 import com.example.wmc.CafeDetail.CafeDetailAdapter;
 import com.example.wmc.CafeDetail.CafeDetailItem;
 import com.example.wmc.CafeDetailImageViewPager.CafeDetailImageViewPagerAdapter;
@@ -47,7 +45,6 @@ import com.example.wmc.R;
 import com.example.wmc.database.Bookmark;
 import com.example.wmc.database.Cafe;
 import com.example.wmc.database.CafeImage;
-import com.example.wmc.database.Category;
 import com.example.wmc.database.Love;
 import com.example.wmc.database.Personal;
 import com.example.wmc.database.Review;
@@ -730,6 +727,88 @@ public class CafeDetailFragment extends Fragment {
                                                             //(나중에 로고 올리고 바꾸기)
                                                             reviewImage = "https://w.namu.la/s/0c6301df01fc4f180ec65717bad3d0254258abf0be33299e55df7c261040f517518eb9008a1a2cd3d7b8b7777d70182c185bc891b1054dc57b11cc46fd29130a3474f1b75b816024dfdc16b692a0c77c";
 
+                                                        // 프로필 이미지
+                                                        for (Personal p : personal_list) {
+
+                                                            String personImage = "";
+
+                                                            // 프로필 사진을 설정했는지 확인하는 곳(설정 X시, 기본 프로필 사진으로 설정)
+                                                            if(p.getProfileImageUrl().equals(""))
+                                                                // 기본 이미지 URL입력하면 됨(현재 뚱이사진 예시)
+                                                                personImage = "https://w.namu.la/s/0c6301df01fc4f180ec65717bad3d0254258abf0be33299e55df7c261040f517518eb9008a1a2cd3d7b8b7777d70182c185bc891b1054dc57b11cc46fd29130a3474f1b75b816024dfdc16b692a0c77c";
+                                                            else
+                                                                personImage = p.getProfileImageUrl();
+
+                                                            // 1. 어플 사용자가 해당 카페에 대한 리뷰를 작성한 경우, 리사이클러뷰 가장 처음에 나오도록 설정
+                                                            if (r.getMemNum().equals(mem_num) && p.getMemNum().equals(mem_num)) {
+                                                                cafeDetailReviewItem.add( 0, new CafeDetailItem(p.getNickName(), p.getGrade().toString(),
+                                                                        r.getReviewText(), create_date, personImage, reviewImage, r.getLikeCount().toString(), true, false, mem_num, get_cafe_num, -1L, r.getReviewNum()));
+                                                                Log.d("review_check", r.getReviewNum().toString());
+                                                            } // 2. 리뷰 작성자들의 닉네임, 회원 등급을 포함한 리뷰 Item 작성
+                                                            else if (r.getMemNum().equals(p.getMemNum())) {
+                                                                if(!love_list.isEmpty()) { // love_list가 비어있지 않은 경우
+                                                                    for (Love l : love_list) {
+                                                                        // love 테이블에 reviewNum이 같은 경우 && love 테이블에 사용자의 memNum이 같은 경우
+                                                                        if (l.getReviewNum().equals(r.getReviewNum()) && l.getMemNum().equals(mem_num)){
+                                                                            Log.d("love_for_if_test", "love_for_if_test");
+                                                                            love_flag = true;
+                                                                            cafeDetailReviewItem.add(new CafeDetailItem(p.getNickName(), p.getGrade().toString(),
+                                                                                    r.getReviewText(), create_date, personImage, reviewImage, r.getLikeCount().toString(), false, true, mem_num, get_cafe_num, l.getLoveNum(), r.getReviewNum()));
+                                                                        }
+                                                                    }
+                                                                }else{
+                                                                    Log.d("love_not_test", "love_not_test");
+                                                                    cafeDetailReviewItem.add(new CafeDetailItem(p.getNickName(), p.getGrade().toString(),
+                                                                            r.getReviewText(), create_date, personImage, reviewImage, r.getLikeCount().toString(), false, false, mem_num, get_cafe_num, -1L, r.getReviewNum()));
+                                                                }
+                                                                if(!love_flag){
+                                                                    Log.d("love_not_test", "love_not_test");
+                                                                    cafeDetailReviewItem.add(new CafeDetailItem(p.getNickName(), p.getGrade().toString(),
+                                                                            r.getReviewText(), create_date, personImage, reviewImage, r.getLikeCount().toString(), false, false, mem_num, get_cafe_num, -1L, r.getReviewNum()));
+                                                                }
+                                                            }
+                                                        }
+
+                                                        while(cafeDetailReviewItem.size() > 3) {
+                                                            cafeDetailReviewItem.remove(cafeDetailReviewItem.size() - 1);   // 리뷰가 3개가 될 때까지 마지막 리뷰 지우기
+                                                        }
+
+
+                                                        // Recycler view
+                                                        // Adapter 추가
+                                                        CafeDetailAdapter adapter = new CafeDetailAdapter(getContext(), cafeDetailReviewItem, CafeDetailFragment.this);
+                                                        recyclerView.setAdapter(adapter);
+
+                                                        // Layout manager 추가
+                                                        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext().getApplicationContext(), LinearLayoutManager.VERTICAL, false);
+                                                        recyclerView.setLayoutManager(layoutManager);
+
+                                                        adapter.setOnItemClickListener_cafeDetail(new CafeDetailAdapter.OnItemClickEventListener_cafeDetail() {
+                                                            @Override
+                                                            public void onItemClick(View view, int position) {
+
+                                                                if(cafeDetailReviewItem.size() == 0){
+                                                                    Toast.makeText(getContext().getApplicationContext(), "작성된 리뷰가 없습니다.", Toast.LENGTH_SHORT).show();
+                                                                }
+                                                                else{
+                                                                    // 리뷰 더보기 클릭 시,
+                                                                    if(position == cafeDetailReviewItem.size()){
+                                                                        Toast.makeText(getContext().getApplicationContext(), "리뷰 더보기 클릭", Toast.LENGTH_SHORT).show();
+                                                                        Bundle bundle = new Bundle();
+                                                                        bundle.putString("cafeNum", get_cafe_num.toString());
+                                                                        //bundle.putString("name",moreReview3.getText().toString());
+                                                                        navController.navigate(R.id.cafe_detail_to_cafe_detail_more, bundle);
+                                                                    }
+
+                                                                    // 리뷰 클릭 시,
+                                                                    else {
+                                                                        final CafeDetailItem item = cafeDetailReviewItem.get(position);
+                                                                        Toast.makeText(getContext().getApplicationContext(), item.getReviewNickName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
+                                                                    }
+                                                                }
+                                                            }
+                                                        });
+
                                                     }
                                                 }, new Response.ErrorListener() {
                                                     @Override
@@ -741,91 +820,12 @@ public class CafeDetailFragment extends Fragment {
                                                 requestQueue.add(reviewImage_stringRequest);
 
 
-                                                // 프로필 이미지
-                                                for (Personal p : personal_list) {
 
-                                                    String personImage = "";
-
-                                                    // 프로필 사진을 설정했는지 확인하는 곳(설정 X시, 기본 프로필 사진으로 설정)
-                                                    if(p.getProfileImageUrl().equals(""))
-                                                        // 기본 이미지 URL입력하면 됨(현재 뚱이사진 예시)
-                                                        personImage = "https://w.namu.la/s/0c6301df01fc4f180ec65717bad3d0254258abf0be33299e55df7c261040f517518eb9008a1a2cd3d7b8b7777d70182c185bc891b1054dc57b11cc46fd29130a3474f1b75b816024dfdc16b692a0c77c";
-                                                    else
-                                                        personImage = p.getProfileImageUrl();
-
-                                                    // 1. 어플 사용자가 해당 카페에 대한 리뷰를 작성한 경우, 리사이클러뷰 가장 처음에 나오도록 설정
-                                                    if (r.getMemNum().equals(mem_num) && p.getMemNum().equals(mem_num)) {
-                                                        cafeDetailReviewItem.add( 0, new CafeDetailItem(p.getNickName(), p.getGrade().toString(),
-                                                                r.getReviewText(), create_date, personImage, reviewImage, r.getLikeCount().toString(), true, false, mem_num, get_cafe_num, -1L, r.getReviewNum()));
-                                                        Log.d("review_check", r.getReviewNum().toString());
-                                                    } // 2. 리뷰 작성자들의 닉네임, 회원 등급을 포함한 리뷰 Item 작성
-                                                    else if (r.getMemNum().equals(p.getMemNum())) {
-                                                        if(!love_list.isEmpty()) { // love_list가 비어있지 않은 경우
-                                                            for (Love l : love_list) {
-                                                                // love 테이블에 reviewNum이 같은 경우 && love 테이블에 사용자의 memNum이 같은 경우
-                                                                if (l.getReviewNum().equals(r.getReviewNum()) && l.getMemNum().equals(mem_num)){
-                                                                    Log.d("love_for_if_test", "love_for_if_test");
-                                                                    love_flag = true;
-                                                                    cafeDetailReviewItem.add(new CafeDetailItem(p.getNickName(), p.getGrade().toString(),
-                                                                            r.getReviewText(), create_date, personImage, reviewImage, r.getLikeCount().toString(), false, true, mem_num, get_cafe_num, l.getLoveNum(), r.getReviewNum()));
-                                                                }
-                                                            }
-                                                        }else{
-                                                            Log.d("love_not_test", "love_not_test");
-                                                            cafeDetailReviewItem.add(new CafeDetailItem(p.getNickName(), p.getGrade().toString(),
-                                                                    r.getReviewText(), create_date, personImage, reviewImage, r.getLikeCount().toString(), false, false, mem_num, get_cafe_num, -1L, r.getReviewNum()));
-                                                        }
-                                                        if(!love_flag){
-                                                            Log.d("love_not_test", "love_not_test");
-                                                            cafeDetailReviewItem.add(new CafeDetailItem(p.getNickName(), p.getGrade().toString(),
-                                                                    r.getReviewText(), create_date, personImage, reviewImage, r.getLikeCount().toString(), false, false, mem_num, get_cafe_num, -1L, r.getReviewNum()));
-                                                        }
-                                                    }
-                                                }
 
 
                                             }
                                         }
 
-                                        while(cafeDetailReviewItem.size() > 3) {
-                                            cafeDetailReviewItem.remove(cafeDetailReviewItem.size() - 1);   // 리뷰가 3개가 될 때까지 마지막 리뷰 지우기
-                                        }
-
-
-                                        // Recycler view
-                                        // Adapter 추가
-                                        CafeDetailAdapter adapter = new CafeDetailAdapter(getContext(), cafeDetailReviewItem, CafeDetailFragment.this);
-                                        recyclerView.setAdapter(adapter);
-
-                                        // Layout manager 추가
-                                        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext().getApplicationContext(), LinearLayoutManager.VERTICAL, false);
-                                        recyclerView.setLayoutManager(layoutManager);
-
-                                        adapter.setOnItemClickListener_cafeDetail(new CafeDetailAdapter.OnItemClickEventListener_cafeDetail() {
-                                            @Override
-                                            public void onItemClick(View view, int position) {
-
-                                                if(cafeDetailReviewItem.size() == 0){
-                                                    Toast.makeText(getContext().getApplicationContext(), "작성된 리뷰가 없습니다.", Toast.LENGTH_SHORT).show();
-                                                }
-                                                else{
-                                                    // 리뷰 더보기 클릭 시,
-                                                    if(position == cafeDetailReviewItem.size()){
-                                                        Toast.makeText(getContext().getApplicationContext(), "리뷰 더보기 클릭", Toast.LENGTH_SHORT).show();
-                                                        Bundle bundle = new Bundle();
-                                                        bundle.putString("cafeNum", get_cafe_num.toString());
-                                                        //bundle.putString("name",moreReview3.getText().toString());
-                                                        navController.navigate(R.id.cafe_detail_to_cafe_detail_more, bundle);
-                                                    }
-
-                                                    // 리뷰 클릭 시,
-                                                    else {
-                                                        final CafeDetailItem item = cafeDetailReviewItem.get(position);
-                                                        Toast.makeText(getContext().getApplicationContext(), item.getReviewNickName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
-                                                    }
-                                                }
-                                            }
-                                        });
 
                                         ////////////////////////////////////////////////////////////////////////////////////////
                                         // 카페 리뷰 점수 구하기.
