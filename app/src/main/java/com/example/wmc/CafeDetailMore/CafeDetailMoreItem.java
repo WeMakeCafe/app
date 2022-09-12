@@ -7,9 +7,9 @@ public class CafeDetailMoreItem {
     String review_comment;
     String reviewMore_writeTime;
     String reviewProfile_image;
-    int reviewImage1;
-    int reviewImage2;
-    int reviewImage3;
+    String reviewImage1;
+    String reviewImage2;
+    String reviewImage3;
     String good_count_textView;
     Long mem_num;
     Long get_cafe_num;
@@ -18,7 +18,7 @@ public class CafeDetailMoreItem {
     boolean check_user_flag;
     boolean check_love_flag;
 
-    public CafeDetailMoreItem(String reviewNickName, String level_and_location, String review_comment, String reviewMore_writeTime, String reviewProfile_image, int reviewImage1, int reviewImage2, int reviewImage3, String good_count_textView, boolean check_user_flag, boolean check_love_flag, Long get_cafe_num, Long mem_num, Long get_love_num, Long get_review_num) {
+    public CafeDetailMoreItem(String reviewNickName, String level_and_location, String review_comment, String reviewMore_writeTime, String reviewProfile_image, String reviewImage1, String reviewImage2, String reviewImage3, String good_count_textView, boolean check_user_flag, boolean check_love_flag, Long get_cafe_num, Long mem_num, Long get_love_num, Long get_review_num) {
         this.reviewNickName = reviewNickName;
         this.level_and_location = level_and_location;
         this.review_comment = review_comment;
@@ -76,27 +76,27 @@ public class CafeDetailMoreItem {
         this.reviewProfile_image = reviewProfile_image;
     }
 
-    public int getReviewImage1() {
+    public String getReviewImage1() {
         return reviewImage1;
     }
 
-    public void setReviewImage1(int reviewImage1) {
+    public void setReviewImage1(String reviewImage1) {
         this.reviewImage1 = reviewImage1;
     }
 
-    public int getReviewImage2() {
+    public String getReviewImage2() {
         return reviewImage2;
     }
 
-    public void setReviewImage2(int reviewImage2) {
+    public void setReviewImage2(String reviewImage2) {
         this.reviewImage2 = reviewImage2;
     }
 
-    public int getReviewImage3() {
+    public String getReviewImage3() {
         return reviewImage3;
     }
 
-    public void setReviewImage3(int reviewImage3) {
+    public void setReviewImage3(String reviewImage3) {
         this.reviewImage3 = reviewImage3;
     }
 

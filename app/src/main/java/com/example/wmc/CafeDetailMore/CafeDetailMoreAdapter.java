@@ -123,9 +123,9 @@ public class CafeDetailMoreAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
         Glide.with(cafeDetailMoreFragment.getActivity()).load(item.getReviewProfile_image()).into(viewHolder.reviewProfile_image);
 
-        viewHolder.reviewMore_image1.setImageResource(item.getReviewImage1());
-        viewHolder.reviewMore_image2.setImageResource(item.getReviewImage2());
-        viewHolder.reviewMore_image3.setImageResource(item.getReviewImage3());
+        Glide.with(cafeDetailMoreFragment.getActivity()).load(item.getReviewImage1()).into(viewHolder.reviewMore_image1);
+        Glide.with(cafeDetailMoreFragment.getActivity()).load(item.getReviewImage2()).into(viewHolder.reviewMore_image2);
+        Glide.with(cafeDetailMoreFragment.getActivity()).load(item.getReviewImage3()).into(viewHolder.reviewMore_image3);
 
         viewHolder.check_user_flag = (item.getCheck_user_flag());   // 작성자와 로그인한 유저가 같은지 확인
         viewHolder.check_love_flag = (item.getCheck_love_flag());

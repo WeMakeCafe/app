@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -34,6 +36,8 @@ import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.StringRequest;
 
 import com.bumptech.glide.Glide;
+import com.example.wmc.CafeDetailMore.CafeDetailMoreAdapter;
+import com.example.wmc.CafeDetailMore.CafeDetailMoreItem;
 import com.example.wmc.MainActivity;
 import com.example.wmc.MypageFavorite.MypageFavoriteAdapter;
 import com.example.wmc.MypageFavorite.MypageFavoriteItem;
@@ -42,8 +46,10 @@ import com.example.wmc.MypageReview.MypageReviewItem;
 import com.example.wmc.R;
 import com.example.wmc.database.Bookmark;
 import com.example.wmc.database.Cafe;
+import com.example.wmc.database.Love;
 import com.example.wmc.database.Personal;
 import com.example.wmc.database.Review;
+import com.example.wmc.database.ReviewImage;
 import com.example.wmc.databinding.FragmentMypageBinding;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -54,6 +60,8 @@ import java.lang.reflect.Type;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.TimeZone;
 
@@ -68,6 +76,8 @@ public class MyPageFragment extends Fragment {
     ArrayList<Bookmark> bookmark_list;
     ArrayList<Cafe> cafe_list;
     ArrayList<Review> review_list;
+    ArrayList<ReviewImage> reviewImage_list;
+    ArrayList<String> reviewImage = new ArrayList<>();
 
     TextView grade, nickname, fav1, fav2;
     Button modify;
@@ -77,6 +87,7 @@ public class MyPageFragment extends Fragment {
     Long mem_num = MainActivity.mem_num;
     String create_date; // 리뷰 등록 시간
     String profile_Image = ""; // 프로필사진
+    int reviewImageCounter = 0;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -235,19 +246,9 @@ public class MyPageFragment extends Fragment {
                                             }
                                         });
 
+
                                         // 내 리뷰를 위한 리사이클러뷰 아이템 arraylist 선언
                                         ArrayList<MypageReviewItem> mypageReviewItems = new ArrayList<>();
-
-                                        // Recycler view
-                                        RecyclerView mypageReviewRecyclerview = root.findViewById(R.id.review_mypage);
-
-                                        // Adapter 추가
-                                        MypageReviewAdapter reviewAdapter = new MypageReviewAdapter(getContext(), mypageReviewItems, MyPageFragment.this);
-                                        mypageReviewRecyclerview.setAdapter(reviewAdapter);
-
-                                        // Layout manager 추가
-                                        LinearLayoutManager reviewLayoutManager = new LinearLayoutManager(getContext().getApplicationContext(), LinearLayoutManager.VERTICAL, false);
-                                        mypageReviewRecyclerview.setLayoutManager(reviewLayoutManager);
 
                                         // 마이페이지의 내 리뷰 리사이클러뷰를 세팅
                                         for (Review r : review_list){
@@ -268,23 +269,91 @@ public class MyPageFragment extends Fragment {
                                             if (r.getMemNum().equals(mem_num)){
                                                 for(Cafe c : cafe_list){
                                                     if (c.getCafeNum().equals(r.getCafeNum())){
-                                                        mypageReviewItems.add(new MypageReviewItem(c.getCafeName(), create_date,
-                                                                r.getReviewText(), R.drawable.logo, R.drawable.logo_v2,
-                                                                R.drawable.bean_grade1, r.getLikeCount().toString(),
-                                                                true, mem_num, r.getCafeNum(), r.getReviewNum()));
+
+
+                                                        String get_reviewImage_url = getResources().getString(R.string.url) + "reviewImage";
+
+                                                        StringRequest reviewImage_stringRequest = new StringRequest(Request.Method.GET, get_reviewImage_url, new Response.Listener<String>() {
+                                                            @RequiresApi(api = Build.VERSION_CODES.O)
+                                                            @Override
+                                                            public void onResponse(String response) {
+                                                                // 한글깨짐 해결 코드
+                                                                String changeString = new String();
+                                                                try {
+                                                                    changeString = new String(response.getBytes("8859_1"),"utf-8");
+                                                                } catch (UnsupportedEncodingException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                                                                Type listType = new TypeToken<ArrayList<ReviewImage>>(){}.getType();
+
+                                                                reviewImage_list = gson.fromJson(changeString, listType);
+
+                                                                reviewImageCounter = 0;
+
+                                                                for(ReviewImage ri : reviewImage_list) {
+                                                                    if(ri.getReviewNum().equals(r.getReviewNum()) && reviewImageCounter < 3){
+                                                                        if(ri.getFileUrl().isEmpty()){
+                                                                            break;
+                                                                        }
+                                                                        reviewImage.add(ri.getFileUrl());
+                                                                        Log.d("reviewImage", ri.getFileUrl());
+                                                                        reviewImageCounter++;
+                                                                    }
+                                                                }
+
+                                                                // 리뷰 이미지가 없을때
+                                                                if(!(reviewImage.size() == 3)) {
+                                                                    //(나중에 로고 올리고 바꾸기)
+                                                                    while(reviewImage.size() < 3){
+                                                                        reviewImage.add("https://w.namu.la/s/0c6301df01fc4f180ec65717bad3d0254258abf0be33299e55df7c261040f517518eb9008a1a2cd3d7b8b7777d70182c185bc891b1054dc57b11cc46fd29130a3474f1b75b816024dfdc16b692a0c77c");
+                                                                    }
+                                                                }
+
+                                                                mypageReviewItems.add(new MypageReviewItem(c.getCafeName(), create_date,
+                                                                        r.getReviewText(), reviewImage.get(0), reviewImage.get(1),
+                                                                        reviewImage.get(2), r.getLikeCount().toString(),
+                                                                        true, mem_num, r.getCafeNum(), r.getReviewNum()));
+
+
+                                                                // 다음 리뷰로 넘어갈때, 리뷰 이미지 ArrayList 비워주는 코드
+                                                                if(!(reviewImage.isEmpty())) {
+                                                                    reviewImage.clear();
+                                                                }
+
+                                                                // Recycler view
+                                                                RecyclerView mypageReviewRecyclerview = root.findViewById(R.id.review_mypage);
+
+                                                                // Adapter 추가
+                                                                MypageReviewAdapter reviewAdapter = new MypageReviewAdapter(getContext(), mypageReviewItems, MyPageFragment.this);
+                                                                mypageReviewRecyclerview.setAdapter(reviewAdapter);
+
+                                                                // Layout manager 추가
+                                                                LinearLayoutManager reviewLayoutManager = new LinearLayoutManager(getContext().getApplicationContext(), LinearLayoutManager.VERTICAL, false);
+                                                                mypageReviewRecyclerview.setLayoutManager(reviewLayoutManager);
+
+
+                                                                // 내 리뷰 리사이클러뷰 아이템 클릭시 카페이름 토스트 출력
+                                                                reviewAdapter.setOnItemClickListener_MypageReview(new MypageReviewAdapter.OnItemClickEventListener_MyPageReview() {
+                                                                    @Override
+                                                                    public void onItemClick(View a_view, int a_position) {
+                                                                        final MypageReviewItem item = mypageReviewItems.get(a_position);
+                                                                        Toast.makeText(getContext().getApplicationContext(), item.getMypageReview_CafeName(), Toast.LENGTH_SHORT).show();
+                                                                    }
+                                                                });
+                                                            }
+                                                        }, new Response.ErrorListener() {
+                                                            @Override
+                                                            public void onErrorResponse(VolleyError error) {
+                                                                Log.e("reviewImage_stringRequest_error",error.toString());
+                                                            }
+                                                        });
+
+                                                        requestQueue.add(reviewImage_stringRequest);
                                                     }
                                                 }
                                             }
                                         }
-
-                                        // 내 리뷰 리사이클러뷰 아이템 클릭시 카페이름 토스트 출력
-                                        reviewAdapter.setOnItemClickListener_MypageReview(new MypageReviewAdapter.OnItemClickEventListener_MyPageReview() {
-                                            @Override
-                                            public void onItemClick(View a_view, int a_position) {
-                                                final MypageReviewItem item = mypageReviewItems.get(a_position);
-                                                Toast.makeText(getContext().getApplicationContext(), item.getMypageReview_CafeName(), Toast.LENGTH_SHORT).show();
-                                            }
-                                        });
                                     }
                                 }, new Response.ErrorListener() {
                                     @Override
