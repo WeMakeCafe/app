@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,7 +35,6 @@ import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
 import com.example.wmc.CafeDetail.CafeDetailAdapter;
 import com.example.wmc.CafeDetail.CafeDetailItem;
 import com.example.wmc.CafeDetailImageViewPager.CafeDetailImageViewPagerAdapter;
@@ -47,7 +45,6 @@ import com.example.wmc.R;
 import com.example.wmc.database.Bookmark;
 import com.example.wmc.database.Cafe;
 import com.example.wmc.database.CafeImage;
-import com.example.wmc.database.Category;
 import com.example.wmc.database.Love;
 import com.example.wmc.database.Personal;
 import com.example.wmc.database.Review;
@@ -691,6 +688,7 @@ public class CafeDetailFragment extends Fragment {
                                                 } catch (ParseException e) {
                                                     e.printStackTrace();
                                                 }
+
 
                                                 for (Personal p : personal_list) {
 
