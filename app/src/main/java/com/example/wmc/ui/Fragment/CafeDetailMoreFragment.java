@@ -184,7 +184,7 @@ public class CafeDetailMoreFragment extends Fragment {
                                             // 1. 어플 사용자가 해당 카페에 대한 리뷰를 작성한 경우, 리사이클러뷰 가장 처음에 나오도록 설정
                                             if (r.getMemNum().equals(mem_num) && p.getMemNum().equals(mem_num)) {
                                                 cafeDetailMoreReviewItem.add(0, new CafeDetailMoreItem(p.getNickName(), p.getGrade().toString(),
-                                                        r.getReviewText(), create_date, personalProfile, R.drawable.logo_v2, R.drawable.bean_grade1, R.drawable.bean_grade3, r.getLikeCount().toString(), true, false, get_cafe_num, mem_num, -1L, r.getReviewNum()));
+                                                        r.getReviewText(), create_date, personalProfile, "", "", "", r.getLikeCount().toString(), true, false, get_cafe_num, mem_num, -1L, r.getReviewNum()));
                                             }
 
                                             // 2. 리뷰 작성자들의 닉네임, 회원 등급을 포함한 리뷰 Item 작성
@@ -196,18 +196,18 @@ public class CafeDetailMoreFragment extends Fragment {
                                                             Log.d("love_for_if_test", "love_for_if_test");
                                                             love_flag = true;
                                                             cafeDetailMoreReviewItem.add(new CafeDetailMoreItem(p.getNickName(), p.getGrade().toString(),
-                                                                    r.getReviewText(), create_date, personalProfile, R.drawable.logo_v2, R.drawable.bean_grade1, R.drawable.bean_grade3, r.getLikeCount().toString(), false, true, get_cafe_num, mem_num, l.getLoveNum(), r.getReviewNum()));
+                                                                    r.getReviewText(), create_date, personalProfile, "", "", "", r.getLikeCount().toString(), false, true, get_cafe_num, mem_num, l.getLoveNum(), r.getReviewNum()));
                                                         }
                                                     }
                                                 }else{
                                                     cafeDetailMoreReviewItem.add(new CafeDetailMoreItem(p.getNickName(), p.getGrade().toString(),
-                                                            r.getReviewText(), create_date, personalProfile, R.drawable.logo_v2, R.drawable.bean_grade1, R.drawable.bean_grade3, r.getLikeCount().toString(), false, false, get_cafe_num, mem_num, -1L, r.getReviewNum()));
+                                                            r.getReviewText(), create_date, personalProfile, "", "", "", r.getLikeCount().toString(), false, false, get_cafe_num, mem_num, -1L, r.getReviewNum()));
                                                 }
                                                 if(!love_flag){
                                                     Log.d("!love_flag", "!love_flag");
 
                                                     cafeDetailMoreReviewItem.add(new CafeDetailMoreItem(p.getNickName(), p.getGrade().toString(),
-                                                            r.getReviewText(), create_date, personalProfile, R.drawable.logo_v2, R.drawable.bean_grade1, R.drawable.bean_grade3, r.getLikeCount().toString(), false, false, get_cafe_num, mem_num, -1L, r.getReviewNum()));
+                                                            r.getReviewText(), create_date, personalProfile, "", "","", r.getLikeCount().toString(), false, false, get_cafe_num, mem_num, -1L, r.getReviewNum()));
                                                 }
                                             }
                                         }
