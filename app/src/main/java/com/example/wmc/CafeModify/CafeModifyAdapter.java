@@ -53,6 +53,10 @@ public class CafeModifyAdapter extends RecyclerView.Adapter<CafeModifyViewHolder
             public void onClick(View v) {
                 Toast.makeText(v.getContext(), "이미지 삭제 버튼 클릭", Toast.LENGTH_SHORT).show();
                 modifyData.remove(image_uri);
+                //이미지 DELETE 코드 추가
+
+
+
                 notifyDataSetChanged();
             }
         });
