@@ -51,6 +51,7 @@ import com.example.wmc.database.Personal;
 import com.example.wmc.databinding.FragmentCafeModifyBinding;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
 
@@ -205,6 +206,7 @@ public class CafeModifyFragment extends Fragment {
                             if(c.getCafeNum().equals(cafe_num)) {  //bundle에서 가져온 카페아이디값 cafe_name에 넣어서 비교 연산
 
                                 Map map = new HashMap();
+
                                 map.put("cafeName", cafe_name_input.getText().toString());
                                 map.put("cafeAddress", cafe_address_input.getText().toString());
                                 map.put("openTime", cafe_openHours_hour_input.getText().toString() + cafe_openHours_minute_input.getText().toString());
@@ -263,8 +265,10 @@ public class CafeModifyFragment extends Fragment {
 
                                 if(!((c.getOpenTime().equals(cafe_openHours_hour_input.getText().toString() + cafe_openHours_minute_input.getText().toString())) &&
                                         (c.getCloseTime().equals(cafe_closeHours_hour_input.getText().toString() + cafe_closeHours_minute_input.getText().toString())))) {
-                                    
+
                                     JSONObject jsonObject = new JSONObject(map);
+
+                                    Log.d("test_jsonObject" , jsonObject.toString());
 
                                     String url2 = getResources().getString(R.string.url) + "cafe/" + c.getCafeNum().toString(); // 해당 카페에만 데이터 삽입하기 위함
 
@@ -303,8 +307,6 @@ public class CafeModifyFragment extends Fragment {
 //                                                            FileUploadUtils.sendCafeImage(file, c.getCafeNum());
 //                                                        }
 //                                                    }
-
-
 
                                                 }
                                             },

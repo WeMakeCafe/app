@@ -1326,13 +1326,14 @@ public class ReviewCommentFragment extends Fragment {
                                     new Response.Listener<JSONObject>() {
                                         @Override
                                         public void onResponse(JSONObject response) {
-
+                                            Log.d("test_check", "onResponse 응답");
                                         }
                                     },
                                     new Response.ErrorListener() {
                                         @Override
                                         public void onErrorResponse(VolleyError error) {
                                             Log.d("test1", error.toString());
+                                            Log.d("test_check_error", "에러발생");
                                         }
                                     }) {
                                 @Override
