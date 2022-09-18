@@ -6,6 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <Button
+        android:id="@+id/imageList_LOG"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="이미지 리스트 LOG"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/moreReview"
         android:layout_width="wrap_content"
@@ -267,7 +275,7 @@
                     android:background="@drawable/edge_top_back"
                     android:ems="10"
                     android:gravity="center_vertical"
-                    android:inputType="textPersonName"
+                    android:inputType="number"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:singleLine="true"
@@ -295,7 +303,7 @@
                     android:background="@drawable/edge_top_back"
                     android:ems="10"
                     android:gravity="center_vertical"
-                    android:inputType="textPersonName"
+                    android:inputType="number"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:singleLine="true"
@@ -325,7 +333,7 @@
                     android:background="@drawable/edge_top_back"
                     android:ems="10"
                     android:gravity="center_vertical"
-                    android:inputType="textPersonName"
+                    android:inputType="number"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:singleLine="true"
@@ -354,7 +362,7 @@
                     android:background="@drawable/edge_top_back"
                     android:ems="10"
                     android:gravity="center_vertical"
-                    android:inputType="textPersonName"
+                    android:inputType="number"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:singleLine="true"

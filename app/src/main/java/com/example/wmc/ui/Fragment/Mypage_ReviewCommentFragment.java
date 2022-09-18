@@ -83,18 +83,18 @@ public class Mypage_ReviewCommentFragment extends Fragment {
     Long[] k = new Long[36];
     Long[] k2 = new Long[36];
 
-    Integer p1; // 이번에 수정하면서 바뀐 점수 보관용
-    Integer p2;
-    Integer p3;
-    Integer p4;
-    Integer p5;
-    Integer p6;
-    Integer p7;
-    Integer p8;
-    Integer p9;
-    Integer p10;
-    Integer p11;
-    Integer p12;
+    Integer p1 = 0; // 이번에 수정하면서 바뀐 점수 보관용
+    Integer p2 = 0;
+    Integer p3 = 0;
+    Integer p4 = 0;
+    Integer p5 = 0;
+    Integer p6 = 0;
+    Integer p7 = 0;
+    Integer p8 = 0;
+    Integer p9 = 0;
+    Integer p10 = 0;
+    Integer p11 = 0;
+    Integer p12 = 0;
 
     Integer score1; // 본래의 리뷰에 있던 점수 보관용
     Integer score2;
@@ -298,9 +298,14 @@ public class Mypage_ReviewCommentFragment extends Fragment {
                 mem_num = argBundle.getLong("memNum");
                 reviewNum = argBundle.getLong("reviewNum");
 
-                comment = argBundle.getString("comment");
                 reviewComment_editText.setText(comment);                        // 코멘토리에 기존에 작성해놨던 리뷰 코멘토리 세팅
-                commentCount_textView.setText(comment.length() + "/200 Bytes"); // 코멘토리에 쓰여있는 글자 수 세팅
+
+                comment = argBundle.getString("comment");
+                if(comment.equals(""))
+                    commentCount_textView.setText("0/200 Bytes"); // 코멘토리에 쓰여있는 글자 수 세팅
+                else
+                    commentCount_textView.setText(comment.length() + "/200 Bytes"); // 코멘토리에 쓰여있는 글자 수 세팅
+
 
                 likeCount = argBundle.getInt("likeCount");
                 flag = argBundle.getBoolean("flag");    // 수정에서 넘어온 것인지 확인
@@ -1322,13 +1327,14 @@ public class Mypage_ReviewCommentFragment extends Fragment {
                                     new Response.Listener<JSONObject>() {
                                         @Override
                                         public void onResponse(JSONObject response) {
-
+                                            Log.d("test_check", "onResponse 응답");
                                         }
                                     },
                                     new Response.ErrorListener() {
                                         @Override
                                         public void onErrorResponse(VolleyError error) {
                                             Log.d("test1", error.toString());
+                                            Log.d("test_check_error", "에러발생");
                                         }
                                     }) {
                                 @Override
