@@ -1,5 +1,6 @@
 package com.example.wmc.ui.Fragment;
 
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Build;
 import android.content.ClipData;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -91,6 +93,8 @@ public class CafeModifyFragment extends Fragment {
     EditText cafe_closeHours_minute_input;
     Long cafe_num;
 
+    Button imageList_LOG;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -109,8 +113,18 @@ public class CafeModifyFragment extends Fragment {
         modify_button = root.findViewById(R.id.modify_button);
         request_deletion_textView = root.findViewById(R.id.request_deletion_textView);
 
+        imageList_LOG= root.findViewById(R.id.imageList_LOG);
+
         String cafe_name = getArguments().getString("name");  //getArguments로 번들 검색해서 받기
         String cafe_address = getArguments().getString("address");
+
+
+        imageList_LOG.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("서버에 전송될 image_List", uriList.toString());
+            }
+        });
 
 
         //// 서버 호출
@@ -183,7 +197,7 @@ public class CafeModifyFragment extends Fragment {
                             }
                         }
 
-                        cafeModifyAdapter = new CafeModifyAdapter(uriList, getContext().getApplicationContext());
+                        cafeModifyAdapter = new CafeModifyAdapter(getContext(), uriList, CafeModifyFragment.this);
                         cafeModifyImageRecyclerView.setAdapter(cafeModifyAdapter);
                         cafeModifyImageRecyclerView.setLayoutManager(new LinearLayoutManager(getContext().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
                     }
@@ -328,11 +342,48 @@ public class CafeModifyFragment extends Fragment {
 
 
 
-                                    // 카페 수정 완료 시 해당 카페 디테일로 넘어가기 - 송상화
-                                    Bundle cafebundle = new Bundle();
-                                    cafebundle.putString("cafeName", cafe_name_input.getText().toString());
+                                    // 리스트에있는 이미지들 서버로 전송하는 코드
+                                    // 갤러리에서 가져온 애들 서버로 전송
+                                    for(Uri u : uriList){
+                                        // 이미지 절대주소 만들기
+                                        if(u.toString().contains("http")) {
+                                            file = new File(u.toString());
 
-                                    navController.navigate(R.id.cafe_modify_to_cafe_detail, cafebundle);
+                                            // 이미지 서버로 전송
+                                            FileUploadUtils.sendCafeImage(file, c.getCafeNum());
+                                        }
+
+                                        else {
+                                            Cursor cursor = getContext().getContentResolver().query(Uri.parse(u.toString()), null,null,null,null);
+                                            cursor.moveToNext();
+                                            String absolutePath = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA));
+                                            Log.d("test_check" , absolutePath);
+                                            file = new File(absolutePath);
+
+                                            // 이미지 서버로 전송
+                                            FileUploadUtils.sendCafeImage(file, c.getCafeNum());
+                                        }
+                                    }
+
+
+                                    // 카페 수정 완료 시 해당 카페 디테일로 넘어가기 - 송상화
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                                    builder.setTitle("카페 수정").setMessage("카페가 수정되었습니다.").setIcon(R.drawable.logo);
+
+                                    builder.setPositiveButton("확인", new DialogInterface.OnClickListener(){
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int id)
+                                        {
+                                            Bundle cafebundle = new Bundle();
+                                            cafebundle.putString("cafeName", cafe_name_input.getText().toString());
+
+                                            navController.navigate(R.id.cafe_modify_to_cafe_detail, cafebundle);
+                                        }
+                                    });
+
+                                    AlertDialog alertDialog = builder.create();
+                                    alertDialog.show();
+
                                 }
 
                                 // -> 시간 변경이 없을 때 실행되는 문장
@@ -343,7 +394,7 @@ public class CafeModifyFragment extends Fragment {
                         }
                     }
 
-                });
+                }); // 수정하기 버튼 클릭 시, 동작 할 내용들
 
             }
         }, new Response.ErrorListener() {
@@ -437,7 +488,7 @@ public class CafeModifyFragment extends Fragment {
                     uriList.add(imageUri);
                 }
 
-                cafeModifyAdapter = new CafeModifyAdapter(uriList, getContext().getApplicationContext());
+                cafeModifyAdapter = new CafeModifyAdapter(getContext(), uriList, CafeModifyFragment.this);
                 cafeModifyImageRecyclerView.setAdapter(cafeModifyAdapter);
                 cafeModifyImageRecyclerView.setLayoutManager(new LinearLayoutManager(getContext().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
             }
@@ -469,7 +520,7 @@ public class CafeModifyFragment extends Fragment {
                         }
                     }
 
-                    cafeModifyAdapter = new CafeModifyAdapter(uriList, getContext().getApplicationContext());
+                    cafeModifyAdapter = new CafeModifyAdapter(getContext(), uriList, CafeModifyFragment.this);
                     cafeModifyImageRecyclerView.setAdapter(cafeModifyAdapter);   // 리사이클러뷰에 어댑터 세팅
                     cafeModifyImageRecyclerView.setLayoutManager(new LinearLayoutManager(getContext().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));     // 리사이클러뷰 수평 스크롤 적용
                 }
