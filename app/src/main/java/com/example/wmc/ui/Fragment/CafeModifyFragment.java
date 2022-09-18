@@ -1,11 +1,10 @@
 package com.example.wmc.ui.Fragment;
 
-import android.os.Build;
 import android.content.ClipData;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,7 +24,6 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Cache;
 import com.android.volley.Network;
 import com.android.volley.Request;
@@ -38,20 +36,14 @@ import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.wmc.CafeDetailImageViewPager.CafeDetailImageViewPagerAdapter;
 import com.example.wmc.CafeModify.CafeModifyAdapter;
-import com.example.wmc.CafeModify.CafeModifyItem;
-import com.example.wmc.CafeRegistration.CafeRegistrationAdapter;
-import com.example.wmc.MainActivity;
 import com.example.wmc.R;
 import com.example.wmc.database.Cafe;
 import com.example.wmc.database.CafeImage;
-import com.example.wmc.database.Personal;
 import com.example.wmc.databinding.FragmentCafeModifyBinding;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-
 
 import org.json.JSONObject;
 
@@ -256,6 +248,8 @@ public class CafeModifyFragment extends Fragment {
                                 if(!((c.getOpenTime().equals(cafe_openHours_hour_input.getText().toString() + cafe_openHours_minute_input.getText().toString())) &&
                                         (c.getCloseTime().equals(cafe_closeHours_hour_input.getText().toString() + cafe_closeHours_minute_input.getText().toString())))) {
                                     JSONObject jsonObject = new JSONObject(map);
+
+                                    Log.d("testing_jsonObject", jsonObject.toString());
 
                                     String url2 = getResources().getString(R.string.url) + "cafe/" + c.getCafeNum().toString(); // 해당 카페에만 데이터 삽입하기 위함
 
