@@ -823,7 +823,7 @@ public class CafeRegistrationFragment extends Fragment {
 
                         if(uriList.size() <= 4){
                             Uri imageUri = clipData.getItemAt(i).getUri();  // 선택한 이미지들의 uri를 가져온다.
-
+                            Log.d("imageUri" , imageUri.toString());
 //                            Cursor c = getContext().getContentResolver().query(Uri.parse(imageUri.toString()), null,null,null,null);
 //                            c.moveToNext();
 //                            String absolutePath = c.getString(c.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA));

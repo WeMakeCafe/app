@@ -1,10 +1,12 @@
 package com.example.wmc.ui.Fragment;
 
+import android.database.Cursor;
+import android.os.Build;
 import android.content.ClipData;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,6 +26,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Cache;
 import com.android.volley.Network;
 import com.android.volley.Request;
@@ -36,17 +39,25 @@ import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.wmc.CafeDetailImageViewPager.CafeDetailImageViewPagerAdapter;
 import com.example.wmc.CafeModify.CafeModifyAdapter;
+import com.example.wmc.CafeModify.CafeModifyItem;
+import com.example.wmc.CafeRegistration.CafeRegistrationAdapter;
+import com.example.wmc.MainActivity;
 import com.example.wmc.R;
 import com.example.wmc.database.Cafe;
 import com.example.wmc.database.CafeImage;
+import com.example.wmc.database.Personal;
 import com.example.wmc.databinding.FragmentCafeModifyBinding;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
+
 
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -61,9 +72,13 @@ public class CafeModifyFragment extends Fragment {
     TextView request_deletion_textView;
     RecyclerView cafeModifyImageRecyclerView;
 
-    ArrayList<Uri> uriList = new ArrayList<>();     // 이미지의 uri를 담을 ArrayList 객체
+    ArrayList<Uri> uriList = new ArrayList<>();     // 이미지의 uri를 담을 ArrayList 객체 (갤러리에서 가져온 사진)
+    ArrayList<Uri> cafeImage_uriList= new ArrayList<>();     //이미 설정되어있는 카페 사진(절대주소)
+    ArrayList<Uri> unify_uriList = new ArrayList<>();      // 수정할 카페 사진
     ArrayList<CafeImage> CafeImage_list;
     CafeModifyAdapter cafeModifyAdapter;
+    File file;
+
     private static final int REQUEST_CODE = 2222;
     private static final String TAG = "CafeModifyFragment";
 
@@ -167,6 +182,7 @@ public class CafeModifyFragment extends Fragment {
                                 uriList.add(i);
                             }
                         }
+
                         cafeModifyAdapter = new CafeModifyAdapter(uriList, getContext().getApplicationContext());
                         cafeModifyImageRecyclerView.setAdapter(cafeModifyAdapter);
                         cafeModifyImageRecyclerView.setLayoutManager(new LinearLayoutManager(getContext().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
@@ -177,9 +193,10 @@ public class CafeModifyFragment extends Fragment {
                         Log.e("cafeImage_stringRequest_error",error.toString());
                     }
                 });
-
-
                 requestQueue.add(cafeImage_stringRequest);
+
+
+
                 modify_button.setOnClickListener(new View.OnClickListener() { // 카페 수정하기 버튼 누를 시
 
                     @Override
@@ -189,6 +206,7 @@ public class CafeModifyFragment extends Fragment {
                             if(c.getCafeNum().equals(cafe_num)) {  //bundle에서 가져온 카페아이디값 cafe_name에 넣어서 비교 연산
 
                                 Map map = new HashMap();
+
                                 map.put("cafeName", cafe_name_input.getText().toString());
                                 map.put("cafeAddress", cafe_address_input.getText().toString());
                                 map.put("openTime", cafe_openHours_hour_input.getText().toString() + cafe_openHours_minute_input.getText().toString());
@@ -247,9 +265,10 @@ public class CafeModifyFragment extends Fragment {
 
                                 if(!((c.getOpenTime().equals(cafe_openHours_hour_input.getText().toString() + cafe_openHours_minute_input.getText().toString())) &&
                                         (c.getCloseTime().equals(cafe_closeHours_hour_input.getText().toString() + cafe_closeHours_minute_input.getText().toString())))) {
+
                                     JSONObject jsonObject = new JSONObject(map);
 
-                                    Log.d("testing_jsonObject", jsonObject.toString());
+                                    Log.d("test_jsonObject" , jsonObject.toString());
 
                                     String url2 = getResources().getString(R.string.url) + "cafe/" + c.getCafeNum().toString(); // 해당 카페에만 데이터 삽입하기 위함
 
@@ -258,14 +277,47 @@ public class CafeModifyFragment extends Fragment {
                                                 @Override
                                                 public void onResponse(JSONObject response) {
 
+//                                                    // 기존에 있던 이미지 서버로 전송
+//                                                    for(Uri u : cafeImage_uriList) {
+//                                                        file = new File(u.toString());
+//                                                        Log.d("test_check1" , u.toString());
+//                                                        // 이미지 서버로 전송
+//                                                        FileUploadUtils.sendCafeImage(file, c.getCafeNum());
+//                                                    }
+                                                    Log.d("test_check1" , "반응하냐");
+//
+//                                                    // 갤러리에서 가져온 애들 서버로 전송
+//                                                    for(Uri u : uriList){
+//                                                        // 이미지 절대주소 만들기
+//                                                        if(u.toString().contains("http")) {
+//                                                            file = new File(u.toString());
+//
+//                                                            // 이미지 서버로 전송
+//                                                            FileUploadUtils.sendCafeImage(file, c.getCafeNum());
+//                                                        }
+//
+//                                                        else {
+//                                                            Cursor cursor = getContext().getContentResolver().query(Uri.parse(u.toString()), null,null,null,null);
+//                                                            cursor.moveToNext();
+//                                                            String absolutePath = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA));
+//                                                            Log.d("test_check" , absolutePath);
+//                                                            file = new File(absolutePath);
+//
+//                                                            // 이미지 서버로 전송
+//                                                            FileUploadUtils.sendCafeImage(file, c.getCafeNum());
+//                                                        }
+//                                                    }
+
                                                 }
                                             },
                                             new Response.ErrorListener() {
                                                 @Override
                                                 public void onErrorResponse(VolleyError error) {
                                                  Log.d("test", error.toString());
+                                                 Log.d("test_check1_error", "에러 발생");
                                                 }
-                                            }) {
+                                            })
+                                    {
                                         @Override
                                         public String getBodyContentType() {
                                             return "application/json; charset=UTF-8";
@@ -405,6 +457,7 @@ public class CafeModifyFragment extends Fragment {
                             Uri imageUri = clipData.getItemAt(i).getUri();  // 선택한 이미지들의 uri를 가져온다.
                             try {
                                 uriList.add(imageUri);  //uri를 list에 담는다.
+                                Log.d("test_check_imageURI", imageUri.toString());
 
                             } catch (Exception e) {
                                 Log.e(TAG, "File select error", e);

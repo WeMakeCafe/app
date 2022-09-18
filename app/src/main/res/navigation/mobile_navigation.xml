@@ -164,7 +164,9 @@
 
         <action
             android:id="@+id/cafe_modify_to_cafe_detail"
-            app:destination="@id/navigation_cafe_detail" />
+            app:destination="@id/navigation_cafe_detail"
+            app:popUpTo="@id/navigation_cafe_detail"
+            app:popUpToInclusive="true"/>
         <action
             android:id="@+id/cafe_modify_to_cafe_delete"
             app:destination="@id/navigation_cafe_delete" />
@@ -241,6 +243,12 @@
         <action
             android:id="@+id/cafe_delete_to_home"
             app:destination="@+id/navigation_home"/>
+
+        <action
+            android:id="@+id/cafe_delete_to_list_cafeList"
+            app:destination="@+id/navigation_list_cafelist"
+            app:popUpTo="@+id/navigation_list_cafelist"
+            app:popUpToInclusive="true"/>
     </fragment>
 
     <fragment

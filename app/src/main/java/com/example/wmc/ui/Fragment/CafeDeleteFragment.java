@@ -152,7 +152,7 @@ public class CafeDeleteFragment extends Fragment {
 
                 Toast.makeText(getContext().getApplicationContext(), "삭제 요청이 완료되었습니다. 검토 후 삭제 처리 됩니다.", Toast.LENGTH_LONG).show();
 
-                navController.navigate(R.id.cafe_delete_to_home);
+                navController.navigate(R.id.cafe_delete_to_list_cafeList);
             }
         });
         return root;
