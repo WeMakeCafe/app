@@ -54,7 +54,7 @@ public class CafeModifyAdapter extends RecyclerView.Adapter<CafeModifyViewHolder
 
     ArrayList<CafeImage> cafeImageArrayList = new ArrayList<>();
     ArrayList<String> cafeImage_URL = new ArrayList<>();
-    Long delete_ImageNUM = (long) 1;
+    Long delete_ImageNUM;
 //    String cafeImage_URL = "";
 
     public CafeModifyAdapter(Context context, ArrayList<Uri> uriList, CafeModifyFragment cafeModifyFragment) {
@@ -108,9 +108,9 @@ public class CafeModifyAdapter extends RecyclerView.Adapter<CafeModifyViewHolder
                             requestQueue = new RequestQueue(cache, network);
                             requestQueue.start();
 
-                            String cafeImage_url = cafeModifyFragment.getResources().getString(R.string.url) + "cafeImage";
+                            String get_cafeImage_url = cafeModifyFragment.getResources().getString(R.string.url) + "cafeImage";
 
-                            StringRequest stringRequest = new StringRequest(Request.Method.GET, cafeImage_url, new Response.Listener<String>() {
+                            StringRequest stringRequest = new StringRequest(Request.Method.GET, get_cafeImage_url, new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {
                                     // 한글깨짐 해결 코드
@@ -128,28 +128,29 @@ public class CafeModifyAdapter extends RecyclerView.Adapter<CafeModifyViewHolder
 
                                     for(CafeImage ci : cafeImageArrayList){
                                         if(ci.getFileUrl().equals(image_uri.toString())){
-                                            delete_ImageNUM = ci.getcImageNum();
-                                            Log.d("delete_ImageNum", ci.getcImageNum() + ", " + ci.getCafeNum() +", " + ci.getFileUrl());
+                                            delete_ImageNUM = ci.getcimageNum();
+                                            Log.d("delete_ImageNum", ci.getcimageNum() + ", " + ci.getCafeNum() +", " + ci.getFileUrl());
                                         }
                                     }
 
+                                    // 서버에서 이미지 삭제
+                                    String delete_cafeImage = cafeModifyFragment.getResources().getString(R.string.url) + "cafeImage/" + delete_ImageNUM.toString();
 
-//                                    // 서버에서 이미지 삭제
-//                                    String delete_cafeImage = cafeModifyFragment.getResources().getString(R.string.url) + "cafeImage/" + String.valueOf(delete_ImageNUM);
-//                                    StringRequest delete_cafeImage_stringRequest = new StringRequest(Request.Method.DELETE, delete_cafeImage, new Response.Listener<String>() {
-//                                        @RequiresApi(api = Build.VERSION_CODES.O)
-//                                        @Override
-//                                        public void onResponse(String response) {
-//                                            Toast.makeText(v.getContext().getApplicationContext(), "리뷰가 삭제되었습니다.", Toast.LENGTH_SHORT).show();
-//                                        }
-//                                    }, new Response.ErrorListener() {
-//                                        @Override
-//                                        public void onErrorResponse(VolleyError error) {
-//                                            Log.e("delete_error",error.toString());
-//                                        }
-//                                    });
-//                                    requestQueue.add(delete_cafeImage_stringRequest);
-//                                    modifyData.remove(image_uri);
+                                    StringRequest delete_cafeImage_stringRequest = new StringRequest(Request.Method.DELETE, delete_cafeImage, new Response.Listener<String>() {
+                                        @RequiresApi(api = Build.VERSION_CODES.O)
+                                        @Override
+                                        public void onResponse(String response) {
+                                            Toast.makeText(v.getContext().getApplicationContext(), "리뷰가 삭제되었습니다.", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }, new Response.ErrorListener() {
+                                        @Override
+                                        public void onErrorResponse(VolleyError error) {
+                                            Log.e("delete_error",error.toString());
+                                        }
+                                    });
+                                    requestQueue.add(delete_cafeImage_stringRequest);
+                                    modifyData.remove(image_uri);
+                                    notifyDataSetChanged();
 
                                 }
                             }, new Response.ErrorListener() {
@@ -177,7 +178,27 @@ public class CafeModifyAdapter extends RecyclerView.Adapter<CafeModifyViewHolder
                 }
 
                 else {  // 방금 갤러리에서 올라온 사진은 List에서만 제거
-                    modifyData.remove(image_uri);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(cafeModifyFragment.getContext());
+                    builder.setTitle("이미지 삭제").setMessage("이미지를 삭제하시겠습니까?").setIcon(R.drawable.logo);
+
+                    builder.setPositiveButton("예", new DialogInterface.OnClickListener(){
+                        @Override
+                        public void onClick(DialogInterface dialog, int id)
+                        {
+                            modifyData.remove(image_uri);
+                        }
+                    });
+
+                    builder.setNegativeButton("아니오", new DialogInterface.OnClickListener(){
+                        @Override
+                        public void onClick(DialogInterface dialog, int id)
+                        {
+
+                        }
+                    });
+
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
                 }
                 notifyDataSetChanged();
             }
