@@ -139,6 +139,7 @@ public class MypageReviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     Bundle bundle = new Bundle();
                     bundle.putLong("cafeNum", item.getGet_cafe_num());
                     bundle.putLong("memNum", item.getMem_num());
+                    bundle.putLong("reviewNum", item.getGet_review_num());
                     bundle.putBoolean("mypage_reviewModify_flag", true);
 
                     navController.navigate(R.id.myPage_to_mypage_review, bundle);
