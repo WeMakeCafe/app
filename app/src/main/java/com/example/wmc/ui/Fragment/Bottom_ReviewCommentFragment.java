@@ -39,6 +39,7 @@ import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.wmc.BottomReviewComment.BottomReviewCommentAdapter;
 import com.example.wmc.R;
 import com.example.wmc.ReviewComment.ReviewCommentAdapter;
 import com.example.wmc.database.Cafe;
@@ -66,9 +67,9 @@ public class Bottom_ReviewCommentFragment extends Fragment {
     TextView commentCount_textView;
     RecyclerView reviewCommentImageRecyclerView;
     ArrayList<Uri> uriList = new ArrayList<>();     // 이미지의 uri를 담을 ArrayList 객체
-    ReviewCommentAdapter reviewCommentAdapter;
+    BottomReviewCommentAdapter bottomReviewCommentAdapter;
     private static final int REQUEST_CODE = 3333;
-    private static final String TAG = "ReviewCommentFragment";
+    private static final String TAG = "BottomReviewCommentFragment";
 
     String tag1;
     String tag2;
@@ -1529,8 +1530,8 @@ public class Bottom_ReviewCommentFragment extends Fragment {
                     uriList.add(imageUri);
                 }
 
-                reviewCommentAdapter = new ReviewCommentAdapter(uriList, getContext().getApplicationContext());
-                reviewCommentImageRecyclerView.setAdapter(reviewCommentAdapter);
+                bottomReviewCommentAdapter = new BottomReviewCommentAdapter(getContext(), uriList,  Bottom_ReviewCommentFragment.this);
+                reviewCommentImageRecyclerView.setAdapter(bottomReviewCommentAdapter);
                 reviewCommentImageRecyclerView.setLayoutManager(new LinearLayoutManager(getContext().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
             }
             else{      // 이미지를 여러장 선택한 경우
@@ -1560,8 +1561,8 @@ public class Bottom_ReviewCommentFragment extends Fragment {
                         }
                     }
 
-                    reviewCommentAdapter = new ReviewCommentAdapter(uriList, getContext().getApplicationContext());
-                    reviewCommentImageRecyclerView.setAdapter(reviewCommentAdapter);   // 리사이클러뷰에 어댑터 세팅
+                    bottomReviewCommentAdapter = new BottomReviewCommentAdapter(getContext(), uriList,  Bottom_ReviewCommentFragment.this);
+                    reviewCommentImageRecyclerView.setAdapter(bottomReviewCommentAdapter);   // 리사이클러뷰에 어댑터 세팅
                     reviewCommentImageRecyclerView.setLayoutManager(new LinearLayoutManager(getContext().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));     // 리사이클러뷰 수평 스크롤 적용
                 }
             }

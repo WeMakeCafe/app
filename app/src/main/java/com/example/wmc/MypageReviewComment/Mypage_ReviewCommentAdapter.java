@@ -1,4 +1,4 @@
-package com.example.wmc.ReviewComment;
+package com.example.wmc.MypageReviewComment;
 
 import android.content.Context;
 import android.net.Uri;
@@ -11,40 +11,39 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.wmc.CafeRegistration.CafeRegistrationItem;
-import com.example.wmc.CafeRegistration.CafeRegistrationViewHolder;
 import com.example.wmc.R;
+import com.example.wmc.ReviewComment.ReviewCommentViewHolder;
 import com.example.wmc.ui.Fragment.Mypage_ReviewCommentFragment;
 import com.example.wmc.ui.Fragment.ReviewCommentFragment;
 
 import java.util.ArrayList;
 
-public class ReviewCommentAdapter extends RecyclerView.Adapter<ReviewCommentViewHolder>{
+public class Mypage_ReviewCommentAdapter extends RecyclerView.Adapter<Mypage_ReviewCommentViewHolder>{
 
     private Context reviewContext = null;
     private ArrayList<Uri> reviewData = null;
-    ReviewCommentFragment reviewCommentFragment;
+    Mypage_ReviewCommentFragment mypage_reviewCommentFragment;
 
-    public ReviewCommentAdapter(Context context, ArrayList<Uri> list, ReviewCommentFragment reviewCommentFragment) {
+    public Mypage_ReviewCommentAdapter(Context context, ArrayList<Uri> list, Mypage_ReviewCommentFragment mypage_reviewCommentFragment) {
         reviewContext = context;
         reviewData = list ;
-        this.reviewCommentFragment = reviewCommentFragment;
+        this.mypage_reviewCommentFragment = mypage_reviewCommentFragment;
     }
 
     @NonNull
     @Override
-    public ReviewCommentViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+    public Mypage_ReviewCommentViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
 
         Context context = viewGroup.getContext() ;
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) ;    // context에서 LayoutInflater 객체를 얻는다.
         View view = inflater.inflate(R.layout.item_add_image, viewGroup, false) ;	// 리사이클러뷰에 들어갈 아이템뷰의 레이아웃을 inflate.
-        ReviewCommentViewHolder vh = new ReviewCommentViewHolder(view) ;
+        Mypage_ReviewCommentViewHolder vh = new Mypage_ReviewCommentViewHolder(view) ;
 
         return vh ;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ReviewCommentViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull Mypage_ReviewCommentViewHolder viewHolder, int position) {
         Uri image_uri = reviewData.get(position) ;
 
         Glide.with(reviewContext)
