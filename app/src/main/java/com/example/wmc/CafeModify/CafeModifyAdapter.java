@@ -186,6 +186,7 @@ public class CafeModifyAdapter extends RecyclerView.Adapter<CafeModifyViewHolder
                         public void onClick(DialogInterface dialog, int id)
                         {
                             modifyData.remove(image_uri);
+                            notifyDataSetChanged();
                         }
                     });
 
