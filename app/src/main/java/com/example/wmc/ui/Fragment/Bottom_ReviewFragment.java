@@ -635,6 +635,7 @@ public class Bottom_ReviewFragment extends Fragment {
 
                 cafeNum = argBundle2.getLong("cafeNum");
                 mem_num = argBundle2.getLong("memNum");
+                reviewNum = argBundle2.getLong("reviewNum");
                 Log.d("qwer1", cafeNum.toString());
                 Log.d("qwer2", mem_num.toString());
 
@@ -663,7 +664,7 @@ public class Bottom_ReviewFragment extends Fragment {
 
 
                         for(Review r : review_list){
-                            if((r.getCafeNum()==cafeNum) && (r.getMemNum() == mem_num)) {
+                            if(r.getReviewNum().equals(reviewNum)) {
 
                                 reviewNum = r.getReviewNum();
                                 Log.d("reviewNum", reviewNum.toString());

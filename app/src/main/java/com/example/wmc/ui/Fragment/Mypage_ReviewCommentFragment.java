@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.Editable;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
@@ -43,6 +45,7 @@ import com.example.wmc.MypageReviewComment.Mypage_ReviewCommentAdapter;
 import com.example.wmc.R;
 import com.example.wmc.ReviewComment.ReviewCommentAdapter;
 import com.example.wmc.database.Cafe;
+import com.example.wmc.database.ReviewImage;
 import com.example.wmc.databinding.FragmentReviewCommentBinding;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -67,6 +70,7 @@ public class Mypage_ReviewCommentFragment extends Fragment {
     TextView commentCount_textView;
     RecyclerView reviewCommentImageRecyclerView;
     ArrayList<Uri> uriList = new ArrayList<>();     // 이미지의 uri를 담을 ArrayList 객체
+    ArrayList<ReviewImage> reviewImage_list = new ArrayList<>();
     Mypage_ReviewCommentAdapter mypage_reviewCommentAdapter;
     private static final int REQUEST_CODE = 3333;
     private static final String TAG = "Mypage_ReviewCommentFragment";
@@ -299,7 +303,6 @@ public class Mypage_ReviewCommentFragment extends Fragment {
                 mem_num = argBundle.getLong("memNum");
                 reviewNum = argBundle.getLong("reviewNum");
 
-                reviewComment_editText.setText(comment);                        // 코멘토리에 기존에 작성해놨던 리뷰 코멘토리 세팅
 
                 comment = argBundle.getString("comment");
                 if(comment.equals(""))
@@ -307,9 +310,57 @@ public class Mypage_ReviewCommentFragment extends Fragment {
                 else
                     commentCount_textView.setText(comment.length() + "/200 Bytes"); // 코멘토리에 쓰여있는 글자 수 세팅
 
-
+                reviewComment_editText.setText(comment);
                 likeCount = argBundle.getInt("likeCount");
                 flag = argBundle.getBoolean("flag");    // 수정에서 넘어온 것인지 확인
+
+                RequestQueue requestQueue;
+                Cache cache = new DiskBasedCache(getActivity().getCacheDir(), 1024 * 1024); // 1MB cap
+                Network network = new BasicNetwork(new HurlStack());
+                requestQueue = new RequestQueue(cache, network);
+                requestQueue.start();
+
+                String get_reviewImage_url = getResources().getString(R.string.url) + "reviewImage";
+
+                StringRequest reviewImage_stringRequest = new StringRequest(Request.Method.GET, get_reviewImage_url, new Response.Listener<String>() {
+                    @RequiresApi(api = Build.VERSION_CODES.O)
+                    @Override
+                    public void onResponse(String response) {
+                        // 한글깨짐 해결 코드
+                        String changeString = new String();
+                        try {
+                            changeString = new String(response.getBytes("8859_1"),"utf-8");
+                        } catch (UnsupportedEncodingException e) {
+                            e.printStackTrace();
+                        }
+                        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                        Type listType = new TypeToken<ArrayList<ReviewImage>>(){}.getType();
+
+                        reviewImage_list = gson.fromJson(changeString, listType);
+                        Log.d("review_num", reviewNum.toString());
+
+                        for(ReviewImage ri : reviewImage_list){
+                            Log.d("review_ri.getReviewNum", ri.getReviewNum().toString());
+
+                            if(ri.getReviewNum().equals(reviewNum)){
+                                Log.d("reviewImage_URL", ri.getFileUrl());
+                                Uri i = Uri.parse(ri.getFileUrl());
+                                uriList.add(i);
+                            }
+                        }
+
+                        mypage_reviewCommentAdapter = new Mypage_ReviewCommentAdapter(getContext(), uriList, Mypage_ReviewCommentFragment.this);
+                        reviewCommentImageRecyclerView.setAdapter(mypage_reviewCommentAdapter);
+                        reviewCommentImageRecyclerView.setLayoutManager(new LinearLayoutManager(getContext().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("cafeImage_stringRequest_error",error.toString());
+                    }
+                });
+                requestQueue.add(reviewImage_stringRequest);
+
 
                 Log.d("리뷰에서 받음 -> flag", String.valueOf(flag));
                 Log.d("리뷰에서 받음 -> tag1", tag1);
@@ -1347,7 +1398,46 @@ public class Mypage_ReviewCommentFragment extends Fragment {
                             RequestQueue queue = Volley.newRequestQueue(requireContext());
                             queue.add(objectRequest);
 
-                            // 기존 리뷰의 이미지 가져오고 업로드하는 코드
+                            // 이미지 업로드하는 코드, 이미지 가져오는 코드는 위에다 작성해야할듯 + Adapter코드도 없음
+                            for(Uri u : uriList){
+                                // 이미지 절대주소 만들기
+                                if(u.toString().contains("http")) {
+                                    file = new File(u.toString());
+
+                                    // 이미지 서버로 전송
+                                    FileUploadUtils.sendReviewImage(file, mem_num, reviewNum);
+                                }
+
+                                else {
+                                    Cursor cursor = getContext().getContentResolver().query(Uri.parse(u.toString()), null,null,null,null);
+                                    cursor.moveToNext();
+                                    String absolutePath = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA));
+                                    Log.d("test_check" , absolutePath);
+                                    file = new File(absolutePath);
+
+                                    // 이미지 서버로 전송
+                                    FileUploadUtils.sendReviewImage(file, mem_num, reviewNum);
+                                }
+                            }
+
+
+//                            // 카페 수정 완료 시 해당 카페 디테일로 넘어가기 - 송상화
+//                            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+//                            builder.setTitle("리뷰 수정").setMessage("리뷰가 수정되었습니다.").setIcon(R.drawable.logo);
+//
+//                            builder.setPositiveButton("확인", new DialogInterface.OnClickListener(){
+//                                @Override
+//                                public void onClick(DialogInterface dialog, int id)
+//                                {
+//                                    Bundle cafebundle = new Bundle();
+//                                    cafebundle.putString("cafeName", cafe_name_input.getText().toString());
+//
+//                                    navController.navigate(R.id.cafe_modify_to_cafe_detail, cafebundle);
+//                                }
+//                            });
+//
+//                            AlertDialog alertDialog = builder.create();
+//                            alertDialog.show();
 
 
                             // 여기는 cafePut작업해야할 곳

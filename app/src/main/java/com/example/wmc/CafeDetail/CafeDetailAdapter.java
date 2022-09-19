@@ -161,7 +161,10 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                         Bundle bundle = new Bundle();
                         bundle.putLong("cafeNum", item.getGet_cafe_num());
                         bundle.putLong("memNum", item.getMem_num());
+                        bundle.putLong("reviewNum", item.getGet_review_num());
+                        Log.d("review->cafeDetailAdpater_reviewNUm", item.getGet_review_num().toString());
                         bundle.putBoolean("cafeDetail_reviewModify_flag", true);
+
                         navController.navigate(R.id.cafe_detail_to_review, bundle);
                     }
                 });
@@ -258,7 +261,7 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                                                 k[35] = r.getKeyword36();
                                                 // 리뷰 정보들 받아서 카페 테이블 put연산 해주어야함
                                                 Log.d("reviewnum", item.get_review_num.toString());
-                                                String delete_review = cafeDetailFragment.getResources().getString(R.string.url) + "review/" + item.get_review_num.toString();
+                                                String delete_review = cafeDetailFragment.getResources().getString(R.string.url) + "review/" + item.getGet_review_num().toString();
 
                                                 StringRequest delete_review_stringRequest = new StringRequest(Request.Method.DELETE, delete_review, new Response.Listener<String>() {
                                                     @RequiresApi(api = Build.VERSION_CODES.O)

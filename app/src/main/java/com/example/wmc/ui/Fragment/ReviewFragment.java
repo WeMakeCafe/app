@@ -640,8 +640,10 @@ public class ReviewFragment extends Fragment {
 
                 cafeNum = argBundle2.getLong("cafeNum");
                 mem_num = argBundle2.getLong("memNum");
+                reviewNum = argBundle2.getLong("reviewNum");
                 Log.d("qwer1", cafeNum.toString());
                 Log.d("qwer2", mem_num.toString());
+                Log.d("review <- cafeDetailAdpater", reviewNum.toString());
 
                 RequestQueue requestQueue;
                 Cache cache = new DiskBasedCache(getActivity().getCacheDir(), 1024 * 1024); // 1MB cap
@@ -668,10 +670,10 @@ public class ReviewFragment extends Fragment {
 
 
                         for(Review r : review_list){
-                            if((r.getCafeNum()==cafeNum) && (r.getMemNum() == mem_num)) {
+                            if(r.getReviewNum().equals(reviewNum)) {
 
                                 reviewNum = r.getReviewNum();
-                                Log.d("reviewNum", reviewNum.toString());
+                                Log.d("reviewNum_searchReviewNum", reviewNum.toString());
                                 comment = r.getReviewText();
                                 likeCount = r.getLikeCount();
                                 //이미지 코드
