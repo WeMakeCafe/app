@@ -1345,6 +1345,8 @@ public class ReviewCommentFragment extends Fragment {
                             RequestQueue queue = Volley.newRequestQueue(requireContext());
                             queue.add(objectRequest);
 
+                            // 이미지 업로드하는 코드, 이미지 가져오는 코드는 위에다 작성해야할듯 + Adapter코드도 없음
+
                             // 여기는 cafePut작업해야할 곳
                             for(Cafe c : cafe_list) {
                                 if(c.getCafeNum().equals(cafeNum)) {  //bundle에서 가져온 카페아이디값 cafe_name에 넣어서 비교 연산
@@ -1522,7 +1524,7 @@ public class ReviewCommentFragment extends Fragment {
                     uriList.add(imageUri);
                 }
 
-                reviewCommentAdapter = new ReviewCommentAdapter(uriList, getContext().getApplicationContext());
+                reviewCommentAdapter = new ReviewCommentAdapter(getContext(), uriList, ReviewCommentFragment.this);
                 reviewCommentImageRecyclerView.setAdapter(reviewCommentAdapter);
                 reviewCommentImageRecyclerView.setLayoutManager(new LinearLayoutManager(getContext().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
             }
@@ -1553,7 +1555,7 @@ public class ReviewCommentFragment extends Fragment {
                         }
                     }
 
-                    reviewCommentAdapter = new ReviewCommentAdapter(uriList, getContext().getApplicationContext());
+                    reviewCommentAdapter = new ReviewCommentAdapter(getContext(), uriList, ReviewCommentFragment.this);
                     reviewCommentImageRecyclerView.setAdapter(reviewCommentAdapter);   // 리사이클러뷰에 어댑터 세팅
                     reviewCommentImageRecyclerView.setLayoutManager(new LinearLayoutManager(getContext().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));     // 리사이클러뷰 수평 스크롤 적용
                 }
