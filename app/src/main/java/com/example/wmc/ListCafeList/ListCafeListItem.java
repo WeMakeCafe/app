@@ -7,13 +7,13 @@ public class ListCafeListItem {
     String openTime;
     String tag1;
     String tag2;
-    int cafeList_cafeImage;
+    String cafeList_cafeImage;
     boolean check_user_flag = false;
 
     Long get_cafe_num;
     Long get_bookmark_num;
 
-    public ListCafeListItem(String cafeList_cafeName, String cafeList_cafeAddress, String openTime, String tag1, String tag2, int cafeList_cafeImage, boolean check_user_flag, Long get_cafe_num, Long get_bookmark_num) {
+    public ListCafeListItem(String cafeList_cafeName, String cafeList_cafeAddress, String openTime, String tag1, String tag2, String cafeList_cafeImage, boolean check_user_flag, Long get_cafe_num, Long get_bookmark_num) {
         this.cafeList_cafeName = cafeList_cafeName;
         this.cafeList_cafeAddress = cafeList_cafeAddress;
         this.openTime = openTime;
@@ -65,11 +65,11 @@ public class ListCafeListItem {
         this.tag2 = tag2;
     }
 
-    public int getCafeList_cafeImage() {
+    public String getCafeList_cafeImage() {
         return cafeList_cafeImage;
     }
 
-    public void setCafeList_cafeImage(int cafeList_cafeImage) {
+    public void setCafeList_cafeImage(String cafeList_cafeImage) {
         this.cafeList_cafeImage = cafeList_cafeImage;
     }
 

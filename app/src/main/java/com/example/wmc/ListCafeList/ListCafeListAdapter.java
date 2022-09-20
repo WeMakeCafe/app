@@ -26,6 +26,7 @@ import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.example.wmc.MainActivity;
 import com.example.wmc.R;
 import com.example.wmc.database.Bookmark;
@@ -89,7 +90,9 @@ public class ListCafeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         viewHolder.opening_hours.setText(item.getOpenTime());
         viewHolder.cafeList_hashTag1.setText(item.getTag1());
         viewHolder.cafeList_hashTag2.setText(item.getTag2());
-        viewHolder.cafeList_cafeImage.setImageResource(item.getCafeList_cafeImage());
+
+        Glide.with(listCafelistFragment.getActivity()).load(item.getCafeList_cafeImage()).into(viewHolder.cafeList_cafeImage);
+
         viewHolder.check_user_flag = item.getCheck_user_flag();
 
 
