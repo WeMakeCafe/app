@@ -37,6 +37,7 @@ import com.example.wmc.R;
 import com.example.wmc.database.Cafe;
 import com.example.wmc.database.Love;
 import com.example.wmc.database.Review;
+import com.example.wmc.database.ReviewImage;
 import com.example.wmc.ui.Fragment.CafeDetailMoreFragment;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -58,8 +59,11 @@ public class CafeDetailMoreAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     private static NavController navController;
 
     ArrayList<Review> review_list;
+    ArrayList<ReviewImage> reviewImage_list = new ArrayList<>();
     ArrayList<Love> love_list;
     ArrayList<Cafe> cafe_list;
+
+    Long delete_ReviewImageNum;
 
     Long counter = 0L;
 
@@ -284,6 +288,60 @@ public class CafeDetailMoreAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                             requestQueue.add(stringRequest);
                             reviewMore_items.remove(item);    // 리사이클러뷰에서도 아이템 삭제
                             notifyDataSetChanged();
+
+
+                            // 리뷰 이미지 삭제
+                            String get_reviewImage_url = cafeDetailMoreFragment.getResources().getString(R.string.url) + "reviewImage";
+
+                            StringRequest delete_reviewImageRequest = new StringRequest(Request.Method.GET, get_reviewImage_url, new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+                                    // 한글깨짐 해결 코드
+                                    String changeString = new String();
+                                    try {
+                                        changeString = new String(response.getBytes("8859_1"), "utf-8");
+                                    } catch (UnsupportedEncodingException e) {
+                                        e.printStackTrace();
+                                    }
+                                    Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                                    Type listType = new TypeToken<ArrayList<ReviewImage>>() {
+                                    }.getType();
+
+                                    reviewImage_list = gson.fromJson(changeString, listType);
+
+                                    for (ReviewImage ri : reviewImage_list) {
+                                        if (ri.getReviewNum().equals(item.getGet_review_num())) {
+                                            Log.d("delete_ReviewImageNum", ri.getrimageNum() + ", " + ri.getReviewNum() + ", " + ri.getFileUrl());
+                                            delete_ReviewImageNum = ri.getrimageNum();
+
+                                            // 서버에서 이미지 삭제
+                                            String delete_reviewImage_URL = cafeDetailMoreFragment.getResources().getString(R.string.url) + "reviewImage/" + delete_ReviewImageNum.toString();
+
+                                            StringRequest delete_reviewImage_stringRequest = new StringRequest(Request.Method.DELETE, delete_reviewImage_URL, new Response.Listener<String>() {
+                                                @RequiresApi(api = Build.VERSION_CODES.O)
+                                                @Override
+                                                public void onResponse(String response) {
+                                                    Toast.makeText(v.getContext().getApplicationContext(), "리뷰 이미지가 삭제되었습니다.", Toast.LENGTH_SHORT).show();
+                                                }
+                                            }, new Response.ErrorListener() {
+                                                @Override
+                                                public void onErrorResponse(VolleyError error) {
+                                                    Log.e("delete_error", error.toString());
+                                                }
+                                            });
+                                            requestQueue.add(delete_reviewImage_stringRequest);
+                                        }
+                                    }
+                                }
+                            }, new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    // 에러가 뜬다면 왜 에러가 떴는지 확인하는 코드
+                                    Log.e("test_error", error.toString());
+                                }
+                            });
+                            requestQueue.add(delete_reviewImageRequest);
+                            // 여기까지 리뷰 이미지 삭제 코드
 
 
 
