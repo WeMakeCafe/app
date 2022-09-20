@@ -20,6 +20,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentHostCallback;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
@@ -43,6 +44,7 @@ import com.example.wmc.R;
 import com.example.wmc.database.Cafe;
 import com.example.wmc.database.Love;
 import com.example.wmc.database.Review;
+import com.example.wmc.database.ReviewImage;
 import com.example.wmc.ui.Fragment.CafeDetailFragment;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -67,8 +69,11 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     private static NavController navController;
 
     ArrayList<Review> review_list;
+    ArrayList<ReviewImage> reviewImage_list = new ArrayList<>();
     ArrayList<Love> love_list;
     ArrayList<Cafe> cafe_list;
+
+    Long delete_ReviewImageNum;
 
     Long mem_num = MainActivity.mem_num; // 임시 유저 넘버
     Long get_review_num = 0L;
@@ -278,8 +283,6 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                                                 requestQueue.add(delete_review_stringRequest);
                                             }
                                         }
-
-
                                     }
                                 }, new Response.ErrorListener() {
                                     @Override
@@ -291,6 +294,61 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                                 requestQueue.add(stringRequest);
                                 review_items.remove(item);    // 리사이클러뷰에서도 아이템 삭제
                                 notifyDataSetChanged();
+
+
+                                // 리뷰 이미지 삭제
+                                String get_reviewImage_url = cafeDetailFragment.getResources().getString(R.string.url) + "reviewImage";
+
+                                StringRequest delete_reviewImageRequest = new StringRequest(Request.Method.GET, get_reviewImage_url, new Response.Listener<String>() {
+                                    @Override
+                                    public void onResponse(String response) {
+                                        // 한글깨짐 해결 코드
+                                        String changeString = new String();
+                                        try {
+                                            changeString = new String(response.getBytes("8859_1"), "utf-8");
+                                        } catch (UnsupportedEncodingException e) {
+                                            e.printStackTrace();
+                                        }
+                                        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                                        Type listType = new TypeToken<ArrayList<ReviewImage>>() {
+                                        }.getType();
+
+                                        reviewImage_list = gson.fromJson(changeString, listType);
+
+                                        for (ReviewImage ri : reviewImage_list) {
+                                            if (ri.getReviewNum().equals(item.getGet_review_num())) {
+                                                Log.d("delete_ReviewImageNum", ri.getrimageNum() + ", " + ri.getReviewNum() + ", " + ri.getFileUrl());
+                                                delete_ReviewImageNum = ri.getrimageNum();
+
+                                                // 서버에서 이미지 삭제
+                                                String delete_reviewImage_URL = cafeDetailFragment.getResources().getString(R.string.url) + "reviewImage/" + delete_ReviewImageNum.toString();
+
+                                                StringRequest delete_reviewImage_stringRequest = new StringRequest(Request.Method.DELETE, delete_reviewImage_URL, new Response.Listener<String>() {
+                                                    @RequiresApi(api = Build.VERSION_CODES.O)
+                                                    @Override
+                                                    public void onResponse(String response) {
+                                                        Toast.makeText(v.getContext().getApplicationContext(), "리뷰 이미지가 삭제되었습니다.", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }, new Response.ErrorListener() {
+                                                    @Override
+                                                    public void onErrorResponse(VolleyError error) {
+                                                        Log.e("delete_error", error.toString());
+                                                    }
+                                                });
+                                                requestQueue.add(delete_reviewImage_stringRequest);
+                                            }
+                                        }
+                                    }
+                                }, new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        // 에러가 뜬다면 왜 에러가 떴는지 확인하는 코드
+                                        Log.e("test_error", error.toString());
+                                    }
+                                });
+                                requestQueue.add(delete_reviewImageRequest);
+                                // 여기까지 리뷰 이미지 삭제 코드
+
 
 
                                 String cafe_url = cafeDetailFragment.getResources().getString(R.string.url) + "cafe";
@@ -408,6 +466,9 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                                 });
                                 requestQueue.add(stringRequest2);
 
+
+//                                FragmentTransaction ft = cafeDetailFragment.getFragmentManager().beginTransaction();
+//                                ft.detach(cafeDetailFragment).attach(cafeDetailFragment).commit();
                             }
                         });
 
@@ -673,8 +734,6 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                                             Log.e("delete_love_stringRequest_error",error.toString());
                                         }
                                     });
-
-
                                     requestQueue.add(delete_love_stringRequest);
 
 
@@ -842,7 +901,9 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
         if (a_position == review_items.size()) {
             return CafeDetailFooterViewHolder.MORE_VIEW_TYPE;
-        } else {
+        }
+
+        else {
             return CafeDetailViewHolder.REVIEW_VIEW_TYPE;
         }
     }
