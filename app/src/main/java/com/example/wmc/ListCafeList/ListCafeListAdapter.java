@@ -2,7 +2,6 @@ package com.example.wmc.ListCafeList;
 
 import android.content.Context;
 import android.os.Build;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Cache;
@@ -31,14 +31,9 @@ import com.example.wmc.MainActivity;
 import com.example.wmc.R;
 import com.example.wmc.database.Bookmark;
 import com.example.wmc.ui.Fragment.ListCafelistFragment;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -140,6 +135,8 @@ public class ListCafeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                                 public void onResponse(JSONObject response) {
                                     // 북마크 추가 성공, 토스트 띄우기.
                                     Toast.makeText(listCafelistFragment.getActivity().getApplicationContext(), "즐겨찾기 추가", Toast.LENGTH_SHORT).show();
+                                    FragmentTransaction ft = listCafelistFragment.getFragmentManager().beginTransaction();
+                                    ft.detach(listCafelistFragment).attach(listCafelistFragment).commit();
                                 }
                             },
                             new Response.ErrorListener() {
@@ -164,6 +161,7 @@ public class ListCafeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     Toast.makeText(v.getContext().getApplicationContext(), "즐겨찾기 삭제", Toast.LENGTH_SHORT).show();
 
                     String bookmark_delete_url = listCafelistFragment.getResources().getString(R.string.url) + "bookmark/" + item.get_bookmark_num.toString();
+                    Log.d("checking_bookmark_num", item.get_bookmark_num.toString());
 
                     StringRequest bookmark_delete_stringRequest = new StringRequest(Request.Method.DELETE, bookmark_delete_url, new Response.Listener<String>() {
                         @RequiresApi(api = Build.VERSION_CODES.O)
@@ -171,6 +169,8 @@ public class ListCafeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                         public void onResponse(String response) {
                             // 북마크 제거 성공, 토스트 띄우기.
                             Toast.makeText(listCafelistFragment.getActivity().getApplicationContext(), "즐겨찾기 삭제", Toast.LENGTH_SHORT).show();
+                            FragmentTransaction ft = listCafelistFragment.getFragmentManager().beginTransaction();
+                            ft.detach(listCafelistFragment).attach(listCafelistFragment).commit();
                         }
                     }, new Response.ErrorListener() {
                         @Override
