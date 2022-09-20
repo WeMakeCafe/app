@@ -130,6 +130,8 @@ public class ListCafelistFragment extends Fragment {
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                represent_cafeImage_URL = "";
+
                 String search = searchText.getText().toString().replaceAll(" ", "");
                 if(search.equals("")){
                     Toast.makeText(getContext().getApplicationContext(), "검색어를 입력해주세요.", Toast.LENGTH_SHORT).show();

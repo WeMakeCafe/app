@@ -501,11 +501,7 @@ public class CafeDetailFragment extends Fragment {
                     }
                 }
 
-
-                ///////////////////////////////////////////////////////////////////////////////////////////////////
-                // 카페 북마크 여부 확인 및 등록, 삭제
                 String get_bookmark_url = getResources().getString(R.string.url) + "bookmark";
-
                 // 카페 북마크 여부 확인
                 StringRequest bookmark_stringRequest = new StringRequest(Request.Method.GET, get_bookmark_url, new Response.Listener<String>() {
                     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -530,14 +526,54 @@ public class CafeDetailFragment extends Fragment {
                                 favorite_checkbox.setChecked(true); // 즐겨찾기 버튼 true 세팅
                             }
                         }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("bookmark_stringRequest_error",error.toString());
+                    }
+                });
+                requestQueue.add(bookmark_stringRequest);
 
-                        // 즐겨찾기 버튼(별) 클릭 시,
-                        favorite_checkbox.setOnClickListener(new View.OnClickListener() {
+
+
+
+                // 즐겨찾기 버튼(별) 클릭 시,
+                favorite_checkbox.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        boolean checked = ((CheckBox) view).isChecked();    // 즐겨찾기가 됐는지 확인
+
+
+                        // 카페 북마크 여부 확인 및 등록, 삭제
+                        String get_bookmark_url = getResources().getString(R.string.url) + "bookmark";
+                        // 카페 북마크 여부 확인
+                        StringRequest bookmark_stringRequest = new StringRequest(Request.Method.GET, get_bookmark_url, new Response.Listener<String>() {
+                            @RequiresApi(api = Build.VERSION_CODES.O)
                             @Override
-                            public void onClick(View view) {
-                                boolean checked = ((CheckBox) view).isChecked();    // 즐겨찾기가 됐는지 확인
+                            public void onResponse(String response) {
+                                // 한글깨짐 해결 코드
+                                String changeString = new String();
+                                try {
+                                    changeString = new String(response.getBytes("8859_1"),"utf-8");
+                                } catch (UnsupportedEncodingException e) {
+                                    e.printStackTrace();
+                                }
+                                Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                                Type listType = new TypeToken<ArrayList<Bookmark>>(){}.getType();
 
-                                if(checked) {
+                                bookmark_list = gson.fromJson(changeString, listType);
+
+                                for(Bookmark b : bookmark_list){
+                                    // "북마크의 mem_num과 사용자의 mem_num이 일치 && 북마크의 cafe_num과 cafeDetail의 cafe_num이 일치"할 경우
+                                    if(b.getMemNum().equals(mem_num) && b.getCafeNum().equals(get_cafe_num)){
+                                        get_bookmark_num = b.getBookmarkNum(); // bookmark_num 일시 저장
+//                                        favorite_checkbox.setChecked(true); // 즐겨찾기 버튼 true 세팅
+                                    }
+                                }
+
+                                if(checked) {   // 불이 꺼져있을 때 누르는 경우,
                                     // 즐겨찾기 항목에 추가함
 
                                     Map map = new HashMap();
@@ -568,7 +604,9 @@ public class CafeDetailFragment extends Fragment {
                                     RequestQueue queue = Volley.newRequestQueue(requireContext());
                                     queue.add(objectRequest);
                                 }
-                                else {
+
+
+                                else {  // 불이 켜져있을 때 누르는 경우
                                     // 즐겨찾기 항목에서 제거됨
                                     String bookmark_delete_url = getResources().getString(R.string.url) + "bookmark/" + get_bookmark_num.toString();
                                     Log.e("bookmark_num", get_bookmark_num.toString());
@@ -585,23 +623,21 @@ public class CafeDetailFragment extends Fragment {
                                             Log.e("bookmark_delete_stringRequest_error",error.toString());
                                         }
                                     });
-
-
                                     requestQueue.add(bookmark_delete_stringRequest);
                                 }
+
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Log.e("bookmark_stringRequest_error",error.toString());
                             }
                         });
-
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.e("bookmark_stringRequest_error",error.toString());
+                        requestQueue.add(bookmark_stringRequest);
                     }
                 });
 
-
-                requestQueue.add(bookmark_stringRequest);
+                ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 
                 ///////////////////////////////////////////////////////////////////////////////////////////
