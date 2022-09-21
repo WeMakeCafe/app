@@ -218,7 +218,7 @@
 
     <fragment
         android:id="@+id/navigation_review_cafelist"
-        android:name="com.example.wmc.ui.Fragment.ReviewCafeListFragment"
+        android:name="com.example.wmc.a_No_USE_Files.ReviewCafeListFragment"
         android:label="@string/review_cafe_list"
         tools:layout="@layout/fragment_review_cafelist" >
 

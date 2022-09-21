@@ -171,7 +171,7 @@ public class Bottom_ReviewFragment extends Fragment {
         });
 
 
-        // ReviewCafeList에서 선택한 카페 이름 가져오기
+        // Bottom_ReviewCafeList에서 선택한 카페 이름 가져오기
         Bundle reviewCafeList_Bundle = getArguments();
         if(reviewCafeList_Bundle != null) {
             if (reviewCafeList_Bundle.getBoolean("reviewCafeList_flag")) {
