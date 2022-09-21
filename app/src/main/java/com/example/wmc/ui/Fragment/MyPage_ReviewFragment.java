@@ -160,6 +160,7 @@ public class MyPage_ReviewFragment extends Fragment {
         }
 
 
+//        카페 디테일에서 리뷰 작성으로 들어와서 이미 카페가 선택된 상태이기 때문에 카페 변경 불가하도록 함.
 //        // 카페 검색 창 클릭 시,
 //        review_search_input.setOnClickListener(new View.OnClickListener() {
 //            @Override
