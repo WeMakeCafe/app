@@ -5,9 +5,9 @@ public class HomeFavoriteItem {
     String cafeName;
     String tag1;
     String tag2;
-    int cafeImage;
+    String cafeImage;
 
-    public HomeFavoriteItem(String cafeName, String tag1, String tag2, int cafeImage) {
+    public HomeFavoriteItem(String cafeName, String tag1, String tag2, String cafeImage) {
         this.cafeName = cafeName;
         this.tag1 = tag1;
         this.tag2 = tag2;
@@ -39,11 +39,11 @@ public class HomeFavoriteItem {
         this.tag2 = tag2;
     }
 
-    public int getCafeImage() {
+    public String getCafeImage() {
         return cafeImage;
     }
 
-    public void setCafeImage(int cafeImage) {
+    public void setCafeImage(String cafeImage) {
         this.cafeImage = cafeImage;
     }
 }

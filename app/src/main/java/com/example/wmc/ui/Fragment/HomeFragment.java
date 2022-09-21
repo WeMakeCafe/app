@@ -41,6 +41,7 @@ import com.example.wmc.HomeTag2ViewPager.HomeTag2ViewPagerItem;
 import com.example.wmc.R;
 import com.example.wmc.database.Bookmark;
 import com.example.wmc.database.Cafe;
+import com.example.wmc.database.CafeImage;
 import com.example.wmc.database.Personal;
 import com.example.wmc.database.Review;
 import com.example.wmc.databinding.FragmentHomeBinding;
@@ -79,6 +80,7 @@ public class HomeFragment extends Fragment {
     ArrayList<Cafe> cafe_list;
     ArrayList<Bookmark> bookmark_list;
     ArrayList<Review> review_list;
+    ArrayList<CafeImage> cafeImage_list = new ArrayList<>();
 
     Long mem_num = MainActivity.mem_num; // 임시 멤버 넘버
     String get_user_fav;
@@ -88,6 +90,9 @@ public class HomeFragment extends Fragment {
     int get_study_point_total = 0;
     int get_taste_point_total = 0;
 
+    String tag1;
+    String tag2;
+    String represent_cafeImage_URL = "";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -124,6 +129,7 @@ public class HomeFragment extends Fragment {
         String get_personal_url = getResources().getString(R.string.url) + "personal";
         String get_cafe_url = getResources().getString(R.string.url) + "cafe";
         String get_bookmark_url = getResources().getString(R.string.url) + "bookmark";
+        String get_cafeImage_url = getResources().getString(R.string.url) + "cafeImage";
 
         // Personal 접근
         StringRequest personal_stringRequest = new StringRequest(Request.Method.GET, get_personal_url, new Response.Listener<String>() {
@@ -257,8 +263,8 @@ public class HomeFragment extends Fragment {
                                                 // 태그 검색이 되는지 확인용
                                                 Log.d("show_Max_and_secondMax", Max.toString() + ", " + secondMax.toString());
 
-                                                String tag1 = "쓴맛";
-                                                String tag2 = "신맛";
+                                                tag1 = "쓴맛";
+                                                tag2 = "신맛";
 
                                                 // 태그 1 세팅
                                                 switch (counter_max) {
@@ -485,43 +491,80 @@ public class HomeFragment extends Fragment {
                                                         break;
 
                                                 }
+                                                StringRequest cafeImage_stringRequest = new StringRequest(Request.Method.GET, get_cafeImage_url, new Response.Listener<String>() {
+                                                    @RequiresApi(api = Build.VERSION_CODES.O)
+                                                    @Override
+                                                    public void onResponse(String response) {
+                                                        // 한글깨짐 해결 코드
+                                                        String changeString = new String();
+                                                        try {
+                                                            changeString = new String(response.getBytes("8859_1"),"utf-8");
+                                                        } catch (UnsupportedEncodingException e) {
+                                                            e.printStackTrace();
+                                                        }
+                                                        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                                                        Type listType = new TypeToken<ArrayList<CafeImage>>(){}.getType();
+
+                                                        cafeImage_list = gson.fromJson(changeString, listType);
+
+                                                        // 다른페이지 갔다왔을때, URL 초기화 시켜야해서 추가해둠
+                                                        represent_cafeImage_URL = "";
+
+                                                        for(CafeImage ci : cafeImage_list){
+                                                            if(ci.getCafeNum().equals(c.getCafeNum())){
+                                                                Log.d("cafeNum", ci.getCafeNum() + ", " + c.getCafeNum());
+                                                                Log.d("cafeImage URL", ci.getFileUrl());
+                                                                represent_cafeImage_URL = ci.getFileUrl();
+                                                                break;
+                                                            }
+                                                        }
+
+                                                        if(represent_cafeImage_URL.equals(""))
+                                                            represent_cafeImage_URL = "https://w.namu.la/s/0c6301df01fc4f180ec65717bad3d0254258abf0be33299e55df7c261040f517518eb9008a1a2cd3d7b8b7777d70182c185bc891b1054dc57b11cc46fd29130a3474f1b75b816024dfdc16b692a0c77c";
 
 
+                                                        // 찜한 카페 recycler view에 추가하기
+                                                        homeFavoriteItems.add(new HomeFavoriteItem(c.getCafeName(), tag1, tag2 ,represent_cafeImage_URL));
 
-                                                // 찜한 카페 recycler view에 추가하기
-                                                homeFavoriteItems.add(new HomeFavoriteItem(c.getCafeName(), tag1, tag2 ,R.drawable.logo_v2));
+                                                        // Recycler view
+                                                        RecyclerView homeFavoriteRecyclerView = root.findViewById(R.id.favorite_recyclerView);
+
+                                                        // Adapter 추가
+                                                        HomeFavoriteAdapter favoriteAdapter = new HomeFavoriteAdapter(getContext() ,homeFavoriteItems, HomeFragment.this);
+                                                        homeFavoriteRecyclerView.setAdapter(favoriteAdapter);
+
+                                                        // Layout manager 추가
+                                                        LinearLayoutManager favoriteLayoutManager = new LinearLayoutManager(getContext().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
+                                                        homeFavoriteRecyclerView.setLayoutManager(favoriteLayoutManager);
+
+                                                        if (homeFavoriteItems.size() == 0){
+                                                            favoirte_default_textView.setVisibility(View.VISIBLE);
+                                                        }
+
+                                                        favoriteAdapter.setOnItemClickListener_HomeFavorite(new HomeFavoriteAdapter.OnItemClickEventListener_HomeFavorite() {
+                                                            @Override
+                                                            public void onItemClick(View a_view, int a_position) {
+                                                                final HomeFavoriteItem item = homeFavoriteItems.get(a_position);
+                                                                Toast.makeText(getContext().getApplicationContext(), item.getCafeName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
+
+                                                                Bundle bundle = new Bundle();
+                                                                bundle.putString("cafeName", item.getCafeName());
+                                                                navController.navigate(R.id.home_to_cafe_detail, bundle);
+                                                            }
+                                                        });
+                                                    }
+                                        }, new Response.ErrorListener() {
+                                            @Override
+                                            public void onErrorResponse(VolleyError error) {
+                                                Log.e("cafeImage_stringRequest_error",error.toString());
+                                            }
+                                        });
+                                        requestQueue.add(cafeImage_stringRequest);
+                                        // 여기까지 카페 대표 이미지 URL 가져오기
                                             }
                                         }
                                     }
                                 }
-
-                                // Recycler view
-                                RecyclerView homeFavoriteRecyclerView = root.findViewById(R.id.favorite_recyclerView);
-
-                                // Adapter 추가
-                                HomeFavoriteAdapter favoriteAdapter = new HomeFavoriteAdapter(homeFavoriteItems);
-                                homeFavoriteRecyclerView.setAdapter(favoriteAdapter);
-
-                                // Layout manager 추가
-                                LinearLayoutManager favoriteLayoutManager = new LinearLayoutManager(getContext().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
-                                homeFavoriteRecyclerView.setLayoutManager(favoriteLayoutManager);
-
-                                if (homeFavoriteItems.size() == 0){
-                                    favoirte_default_textView.setVisibility(View.VISIBLE);
-                                }
-
-                                favoriteAdapter.setOnItemClickListener_HomeFavorite(new HomeFavoriteAdapter.OnItemClickEventListener_HomeFavorite() {
-                                    @Override
-                                    public void onItemClick(View a_view, int a_position) {
-                                        final HomeFavoriteItem item = homeFavoriteItems.get(a_position);
-                                        Toast.makeText(getContext().getApplicationContext(), item.getCafeName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
-
-                                        Bundle bundle = new Bundle();
-                                        bundle.putString("cafeName", item.getCafeName());
-                                        navController.navigate(R.id.home_to_cafe_detail, bundle);
-                                    }
-                                });
-
 
                                 String get_review_url = getResources().getString(R.string.url) + "review";
 
