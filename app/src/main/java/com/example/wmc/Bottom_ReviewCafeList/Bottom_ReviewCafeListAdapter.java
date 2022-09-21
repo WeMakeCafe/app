@@ -1,5 +1,6 @@
-package com.example.wmc.ReviewCafeList;
+package com.example.wmc.Bottom_ReviewCafeList;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,18 +10,30 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.example.wmc.ListCafeList.ListCafeListItem;
+import com.example.wmc.ui.Fragment.Bottom_ReviewCafeListFragment;
+import com.example.wmc.ui.Fragment.ListCafelistFragment;
+
 import java.util.ArrayList;
 
-public class ReviewCafeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class Bottom_ReviewCafeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
-    private ArrayList<ReviewCafeListItem> reviewCafeList_items;
+    private ArrayList<Bottom_ReviewCafeListItem> bottom_reviewCafeListItems;
+    private Context context;
+    Bottom_ReviewCafeListFragment bottom_reviewCafeListFragment;
 
     public interface OnItemClickEventListener_ReviewCafeList { // 클릭 이벤트를 위한 인터페이스
         void onItemClick(View a_view, int a_position);
     }
-    private ReviewCafeListAdapter.OnItemClickEventListener_ReviewCafeList mItemClickListener_ReviewCafeList;    // 인터페이스 객체 생성
+    private Bottom_ReviewCafeListAdapter.OnItemClickEventListener_ReviewCafeList mItemClickListener_ReviewCafeList;    // 인터페이스 객체 생성
 
-    public ReviewCafeListAdapter(ArrayList<ReviewCafeListItem> list){ reviewCafeList_items = list; }
+    public Bottom_ReviewCafeListAdapter(Context context, ArrayList<Bottom_ReviewCafeListItem> list, Bottom_ReviewCafeListFragment bottom_reviewCafeListFragment)
+    {
+        this.context = context;
+        bottom_reviewCafeListItems = list;
+        this.bottom_reviewCafeListFragment = bottom_reviewCafeListFragment;
+    }
 
 
     @NonNull
@@ -29,7 +42,7 @@ public class ReviewCafeListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(viewType, viewGroup, false);
         final RecyclerView.ViewHolder viewHolder;
-        viewHolder = new ReviewCafeListViewHolder(view, mItemClickListener_ReviewCafeList);
+        viewHolder = new Bottom_ReviewCafeListViewHolder(view, mItemClickListener_ReviewCafeList);
 
         return viewHolder;
     }
@@ -37,15 +50,17 @@ public class ReviewCafeListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
-        final ReviewCafeListItem item = reviewCafeList_items.get(position);
-        ReviewCafeListViewHolder viewHolder = (ReviewCafeListViewHolder) holder;
+        final Bottom_ReviewCafeListItem item = bottom_reviewCafeListItems.get(position);
+        Bottom_ReviewCafeListViewHolder viewHolder = (Bottom_ReviewCafeListViewHolder) holder;
 
         viewHolder.cafeList_cafe_name_textView.setText(item.getCafeList_cafeName());
         viewHolder.cafeList_cafe_address_textView.setText(item.getCafeList_cafeAddress());
         viewHolder.opening_hours.setText(item.getOpenTime());
         viewHolder.cafeList_hashTag1.setText(item.getTag1());
         viewHolder.cafeList_hashTag2.setText(item.getTag2());
-        viewHolder.cafeList_cafeImage.setImageResource(item.getCafeList_cafeImage());
+
+        Glide.with(bottom_reviewCafeListFragment.getActivity()).load(item.getCafeList_cafeImage()).into(viewHolder.cafeList_cafeImage);
+
         viewHolder.check_user_flag = item.getCheck_user_flag();
 
         if(viewHolder.check_user_flag){
@@ -75,15 +90,15 @@ public class ReviewCafeListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     @Override
     public int getItemCount() {
-        return reviewCafeList_items.size();
+        return bottom_reviewCafeListItems.size();
     }
 
     @Override
     public int getItemViewType(int a_position) {
-        return ReviewCafeListViewHolder.REVIEWCAFELIST_VIEW_TYPE;
+        return Bottom_ReviewCafeListViewHolder.REVIEWCAFELIST_VIEW_TYPE;
     }
 
-    public void setOnItemClickListener_ReviewCafeList(ReviewCafeListAdapter.OnItemClickEventListener_ReviewCafeList listener) {
+    public void setOnItemClickListener_ReviewCafeList(Bottom_ReviewCafeListAdapter.OnItemClickEventListener_ReviewCafeList listener) {
         mItemClickListener_ReviewCafeList = listener;
     }
 }
