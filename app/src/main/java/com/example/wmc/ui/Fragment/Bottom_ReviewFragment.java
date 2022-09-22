@@ -125,6 +125,8 @@ public class Bottom_ReviewFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
+        Log.d("Bottom_ReviewFragment_check", "하단바 리뷰 작성 페이지");
+
         binding = FragmentReviewBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         review_search_input = root.findViewById(R.id.review_search_input);           // 검색창 클릭 시
@@ -188,6 +190,9 @@ public class Bottom_ReviewFragment extends Fragment {
         addTag_cafe_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Log.d("search_cafe", review_search_input.getText().toString() + ", " + floating_flag.toString() + ", " + mypage_reviewModify_flag.toString()
+                        + ", " + reviewCafeList_flag.toString());
 
                 // 리뷰 검색에서 리뷰를 작성할 카페를 선택하지 않았을 경우.
                 if(review_search_input.getText().toString().equals("")){

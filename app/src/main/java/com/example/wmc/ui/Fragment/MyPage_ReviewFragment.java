@@ -123,6 +123,8 @@ public class MyPage_ReviewFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
+        Log.d("MyPage_ReviewFragment_check", "마이페이지 리뷰 수정 페이지");
+
         binding = FragmentReviewBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         review_search_input = root.findViewById(R.id.review_search_input);           // 검색창 클릭 시
@@ -170,23 +172,35 @@ public class MyPage_ReviewFragment extends Fragment {
 //        });
 
 
-        // ReviewCafeList에서 선택한 카페 이름 가져오기
-        Bundle reviewCafeList_Bundle = getArguments();
-        if(reviewCafeList_Bundle != null) {
-            if (reviewCafeList_Bundle.getBoolean("reviewCafeList_flag")) {
-                review_search_input.setText(reviewCafeList_Bundle.getString("reviewCafeList_flag_cafeName"));
-                review_search_input.setTypeface(Typeface.DEFAULT_BOLD);  // 카페이름 Bold처리
-                review_search_input.setGravity(Gravity.CENTER);          // 카페 위치 Center로 변경
+        // 마이페이지에서 리뷰 수정 버튼 클릭 시, 카페 가져오기
+        Bundle mypage_Bundle = getArguments();
+        if (mypage_Bundle != null){
+            review_search_input.setText(mypage_Bundle.getString("cafeName"));
+            review_search_input.setTypeface(Typeface.DEFAULT_BOLD);  // 카페이름 Bold처리
+            review_search_input.setGravity(Gravity.CENTER);          // 카페 위치 Center로 변경
 
-                reviewCafeList_flag = reviewCafeList_Bundle.getBoolean("reviewCafeList_flag");
-            }
+            mypage_reviewModify_flag = mypage_Bundle.getBoolean("mypage_reviewModify_flag");
         }
+
+//        // ReviewCafeList에서 선택한 카페 이름 가져오기
+//        Bundle reviewCafeList_Bundle = getArguments();
+//        if(reviewCafeList_Bundle != null) {
+//            if (reviewCafeList_Bundle.getBoolean("reviewCafeList_flag")) {
+//                review_search_input.setText(reviewCafeList_Bundle.getString("reviewCafeList_flag_cafeName"));
+//                review_search_input.setTypeface(Typeface.DEFAULT_BOLD);  // 카페이름 Bold처리
+//                review_search_input.setGravity(Gravity.CENTER);          // 카페 위치 Center로 변경
+//
+//                reviewCafeList_flag = reviewCafeList_Bundle.getBoolean("reviewCafeList_flag");
+//            }
+//        }
 
 
         // 태그 추가 버튼 클릭 시,
         addTag_cafe_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Log.d("search_cafe", review_search_input.getText().toString() + ", " + floating_flag.toString() + ", " + mypage_reviewModify_flag.toString());
 
                 // 리뷰 검색에서 리뷰를 작성할 카페를 선택하지 않았을 경우.
                 if(review_search_input.getText().toString().equals("")){
@@ -606,6 +620,7 @@ public class MyPage_ReviewFragment extends Fragment {
                 k2[35] = argBundle.getLong("k2-36");
 
                 comment = argBundle.getString("comment");
+                mypage_reviewModify_flag = argBundle.getBoolean("return_mypage_reviewModify_flag");
                 Log.d("태그 종료후 받은 comment", comment);
                 review_search_input.setTypeface(Typeface.DEFAULT_BOLD);  // 카페이름 Bold처리
                 review_search_input.setGravity(Gravity.CENTER);          // 카페 위치 Center로 변경
