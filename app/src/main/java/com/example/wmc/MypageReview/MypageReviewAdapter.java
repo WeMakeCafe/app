@@ -141,6 +141,7 @@ public class MypageReviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     navController = Navigation.findNavController(v);
 
                     Bundle bundle = new Bundle();
+                    bundle.putString("cafeName", item.getMypageReview_CafeName());
                     bundle.putLong("cafeNum", item.getGet_cafe_num());
                     bundle.putLong("memNum", item.getMem_num());
                     bundle.putLong("reviewNum", item.getGet_review_num());

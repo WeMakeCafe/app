@@ -159,6 +159,7 @@ public class CafeDetailMoreAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                     Bundle bundle = new Bundle();
                     bundle.putLong("cafeNum", item.getGet_cafe_num());
                     bundle.putLong("memNum", item.getMem_num());
+                    bundle.putLong("reviewNum", item.getGet_review_num());
                     bundle.putBoolean("moreReview_reviewModify_flag", true);
                     navController.navigate(R.id.cafe_detail_more_to_review, bundle);
 

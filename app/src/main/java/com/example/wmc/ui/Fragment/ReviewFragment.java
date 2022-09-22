@@ -121,11 +121,12 @@ public class ReviewFragment extends Fragment {
     Boolean flag = false;
 
     Boolean floating_flag = false;
-    Boolean reviewCafeList_flag = false;
+    Boolean reviewCafeList_flag = false;    // 바텀 리뷰
     Boolean cafeDetail_reviewModify_flag = false;
     Boolean moreReview_reviewModify_flag = false;
     Boolean mypage_reviewModify_flag = false;
 
+    String cafeName;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -150,7 +151,6 @@ public class ReviewFragment extends Fragment {
         rating_plug = root.findViewById(R.id.rating_plug);
         rating_quiet = root.findViewById(R.id.rating_quiet);
         rating_light = root.findViewById(R.id.rating_light);
-
 
         // 태그 추가 페이지 (ReviewTagFragment) 에서 번들로 받아온 정보 반영 위한 코드
         TextView setTag1 = root.findViewById(R.id.select_tag1); // 태그 추가 완료 시 반영할 리뷰 작성 페이지의 태그 박스1
@@ -177,6 +177,7 @@ public class ReviewFragment extends Fragment {
 //        });
 
 
+
         // ReviewCafeList에서 선택한 카페 이름 가져오기
         Bundle reviewCafeList_Bundle = getArguments();
         if(reviewCafeList_Bundle != null) {
@@ -190,11 +191,21 @@ public class ReviewFragment extends Fragment {
         }
 
 
+        Log.d("ReviewFragment_check", "카페 디테일에서 들어온 리뷰 페이지");
+        Log.d("search_cafe_flag1", review_search_input.getText().toString());
+
+        Log.d("search_cafe_flag2", "floating_falg : " + floating_flag.toString());
+        Log.d("search_cafe_flag3", "reviewCafeList_flag : " + reviewCafeList_flag.toString());
+        Log.d("search_cafe_flag4", "cafeDetail_reviewModify_flag : " + cafeDetail_reviewModify_flag.toString());
+        Log.d("search_cafe_flag5", "moreReview_reviewModify_flag : " + moreReview_reviewModify_flag.toString());
+        Log.d("search_cafe_flag6", "mypage_reviewModify_flag : " + mypage_reviewModify_flag.toString());
+
         // 태그 추가 버튼 클릭 시,
         addTag_cafe_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                Log.d("search_cafe", review_search_input.getText().toString() + ", " + floating_flag.toString());
                 // 리뷰 검색에서 리뷰를 작성할 카페를 선택하지 않았을 경우.
                 if(review_search_input.getText().toString().equals("")){
                     Toast.makeText(getContext().getApplicationContext(), "리뷰를 작성할 카페를 검색해주세요.", Toast.LENGTH_SHORT).show();
@@ -522,7 +533,13 @@ public class ReviewFragment extends Fragment {
                 s12 = argBundle.getFloat("tag_review_studyPoint4");
 
                 review_search_input.setTypeface(Typeface.DEFAULT_BOLD);  // 카페이름 Bold처리
+                floating_flag = argBundle.getBoolean("return_floating_flag");
                 review_search_input.setGravity(Gravity.CENTER);          // 카페 위치 Center로 변경
+
+                if(argBundle.getBoolean("return_reviewCafeList_flag"))
+                    reviewCafeList_flag = argBundle.getBoolean("return_reviewCafeList_flag");
+                if(argBundle.getBoolean("return_floating_flag"))
+                    floating_flag = argBundle.getBoolean("return_floating_flag");
             }
 
             else if(argBundle.getBoolean("return_cafeDetail_reviewModify_flag")
@@ -613,9 +630,17 @@ public class ReviewFragment extends Fragment {
                 k2[35] = argBundle.getLong("k2-36");
 
                 comment = argBundle.getString("comment");
+
                 Log.d("태그 종료후 받은 comment", comment);
                 review_search_input.setTypeface(Typeface.DEFAULT_BOLD);  // 카페이름 Bold처리
                 review_search_input.setGravity(Gravity.CENTER);          // 카페 위치 Center로 변경
+
+                if(argBundle.getBoolean("return_cafeDetail_reviewModify_flag"))
+                    cafeDetail_reviewModify_flag = argBundle.getBoolean("return_cafeDetail_reviewModify_flag");
+                if(argBundle.getBoolean("return_moreReview_reviewModify_flag"))
+                    moreReview_reviewModify_flag = argBundle.getBoolean("return_moreReview_reviewModify_flag");
+                if(argBundle.getBoolean("return_mypage_reviewModify_flag"))
+                    mypage_reviewModify_flag = argBundle.getBoolean("return_mypage_reviewModify_flag");
             }
         }
 
@@ -1108,12 +1133,12 @@ public class ReviewFragment extends Fragment {
 
                                         cafe_list = gson.fromJson(changeString, listType);
 
-
+                                        Log.d("review_search_input", cafeNum.toString());
                                         for(Cafe c : cafe_list){
-                                            if(c.getCafeNum()==cafeNum) {
+                                            if(c.getCafeNum().equals(cafeNum)) {
+                                                review_search_input.setText(c.getCafeName());
                                                 review_search_input.setTypeface(Typeface.DEFAULT_BOLD);  // 카페이름 Bold처리
                                                 review_search_input.setGravity(Gravity.CENTER);          // 카페 위치 Center로 변경
-                                                review_search_input.setText(c.getCafeName());
                                             }
                                         }
 
@@ -1216,8 +1241,11 @@ public class ReviewFragment extends Fragment {
                 for(Cafe c : cafe_list) {
                     if(c.getCafeName().equals(review_search_input.getText().toString())) {
                         cafeNum = c.getCafeNum();
+//                        cafeName = c.getCafeName();
                     }
                 }
+
+//                review_search_input.setText(cafeName);
 
                 // 코멘터리 버튼 클릭 시,
                 comment_button.setOnClickListener(new View.OnClickListener() {

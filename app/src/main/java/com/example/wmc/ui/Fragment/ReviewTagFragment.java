@@ -374,6 +374,13 @@ public class ReviewTagFragment extends Fragment {
 
         }
 
+//        Log.d("where_flag", floating_flag.toString() + reviewCafeList_flag.toString() + cafeDetail_reviewModify_flag + moreReview_reviewModify_flag + mypage_reviewModify_flag);
+//
+////        Boolean floating_flag = false;
+////        Boolean reviewCafeList_flag = false;
+////        Boolean cafeDetail_reviewModify_flag = false;
+////        Boolean moreReview_reviewModify_flag = false;
+////        Boolean mypage_reviewModify_flag = false;
         ////////////////////////////////////////////////////////////////////////////////////
         // 아래 3개 삭제 버튼 클릭 이벤트 작성
 
