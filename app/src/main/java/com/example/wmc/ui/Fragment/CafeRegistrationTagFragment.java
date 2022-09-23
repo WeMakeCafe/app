@@ -1,6 +1,7 @@
 package com.example.wmc.ui.Fragment;
 
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -34,6 +35,8 @@ public class CafeRegistrationTagFragment extends Fragment {
     private FragmentReviewTagBinding binding;
     private static NavController navController;
 
+    ArrayList<Uri> uriList = new ArrayList<>();     // 이미지의 uri를 담을 ArrayList 객체
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -55,13 +58,17 @@ public class CafeRegistrationTagFragment extends Fragment {
         Button tag3_delete_button = root.findViewById(R.id.tag3_delete_button); // 아래 태그 버튼 3개의 X버튼
         Button addTag_button3 = root.findViewById(R.id.addTag_button3);    // 태그 선택 후, 추가하기 버튼
 
+
         String cafe_name = getArguments().getString("name");  //getArguments로 번들 검색해서 받기
         String cafe_address = getArguments().getString("address");
         String cafe_opentime = getArguments().getString("opentime");
         String cafe_closetime = getArguments().getString("closetime");
         Boolean cafe_nametest = getArguments().getBoolean("name_test");
+        uriList = getArguments().getParcelableArrayList("cafeImage");
 
-
+        for(Uri u : uriList) {
+            Log.d("uriList", u.toString());
+        }
         ////////////////////////////////////////////////////////////////////////////////////
         // 아래 3개 삭제 버튼 클릭 이벤트 작성
 
@@ -274,6 +281,7 @@ public class CafeRegistrationTagFragment extends Fragment {
                     bundle.putString("opentime", cafe_opentime);
                     bundle.putString("closetime", cafe_closetime);
                     bundle.putBoolean("name_test", cafe_nametest);
+                    bundle.putParcelableArrayList("cafeImage", uriList);
                     Log.d("test2",cafe_closetime);
                     navController.navigate(R.id.cafe_registration_tag_to_cafe_registration, bundle);
                 }

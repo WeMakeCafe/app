@@ -681,6 +681,16 @@ public class CafeRegistrationFragment extends Fragment {
                     bundle.putString("closetime", cafe_closeHours_hour_input.getText().toString() + cafe_closeHours_minute_input.getText().toString());
 //                }
 
+                bundle.putParcelableArrayList("cafeImage", uriList);
+
+                for(Uri u : uriList) {
+                    Log.d("cafeImage_URL", u.toString());
+                }
+//                for(int i = 0; i < uriList.size(); i++) {
+//                    bundle.putString("cafeImage" + String.valueOf((i + 1)), uriList.get(i).toString());
+//                    Log.d("cafeImage_URL", uriList.get(i).toString());
+//                }
+
                 navController.navigate(R.id.cafe_registration_to_cafe_registration_tag, bundle);
             }
         });
@@ -707,11 +717,20 @@ public class CafeRegistrationFragment extends Fragment {
                 cafe_closeHours_hour_input.setText(argBundle.getString("closetime"));
                 cafe_closeHours_minute_input.setText(argBundle.getString("closetime"));
 
+                uriList = argBundle.getParcelableArrayList("cafeImage");
+
+                for(Uri u : uriList){
+                    Log.d("Tag에서 전달받은 이미지", u.toString());
+                }
                 //카페이미지 문장
                 tag1 = argBundle.getString("key1");
                 tag2 = argBundle.getString("key2");
                 tag3 = argBundle.getString("key3");
             }
+
+            registrationAdapter = new CafeRegistrationAdapter(uriList, getContext().getApplicationContext());
+            cafeRegistrationImageRecyclerView.setAdapter(registrationAdapter);
+            cafeRegistrationImageRecyclerView.setLayoutManager(new LinearLayoutManager(getContext().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
         }
 
         String openhour_substring = cafe_openHours_hour_input.getText().toString();
