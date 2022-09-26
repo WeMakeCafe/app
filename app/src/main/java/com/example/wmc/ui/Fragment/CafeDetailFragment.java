@@ -768,12 +768,13 @@ public class CafeDetailFragment extends Fragment {
 
                                                             String personImage = "";
 
+//                                                            Log.d("profileUrl", p.getProfileImageUrl());
                                                             // 프로필 사진을 설정했는지 확인하는 곳(설정 X시, 기본 프로필 사진으로 설정)
-                                                            if(p.getProfileImageUrl().equals(""))
+                                                            if(p.getProfileimageurl() == null)
                                                                 // 기본 이미지 URL입력하면 됨(현재 뚱이사진 예시)
                                                                 personImage = "https://w.namu.la/s/0c6301df01fc4f180ec65717bad3d0254258abf0be33299e55df7c261040f517518eb9008a1a2cd3d7b8b7777d70182c185bc891b1054dc57b11cc46fd29130a3474f1b75b816024dfdc16b692a0c77c";
                                                             else
-                                                                personImage = p.getProfileImageUrl();
+                                                                personImage = p.getProfileimageurl();
 
                                                             // 1. 어플 사용자가 해당 카페에 대한 리뷰를 작성한 경우, 리사이클러뷰 가장 처음에 나오도록 설정
                                                             if (r.getMemNum().equals(mem_num) && p.getMemNum().equals(mem_num)) {

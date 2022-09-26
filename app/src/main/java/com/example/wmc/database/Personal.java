@@ -8,12 +8,12 @@ public class Personal {
     private Integer grade;
     private String address;
     private Integer phoneNum;
-    private String profileImageUrl;
+    private String profileimageurl;
     private String favorite1;
     private String favorite2;
 
     public Personal(Long memNum, String id, String pwd, String nickName, Integer grade, String address, Integer phoneNum,
-                    String profileImageUrl, String favorite1, String favorite2) {
+                    String profileimageurl, String favorite1, String favorite2) {
 
         this.memNum = memNum;
         this.id = id;
@@ -22,7 +22,7 @@ public class Personal {
         this.grade = grade;
         this.address = address;
         this.phoneNum = phoneNum;
-        this.profileImageUrl = profileImageUrl;
+        this.profileimageurl = profileimageurl;
         this.favorite1 = favorite1;
         this.favorite2 = favorite2;
     }
@@ -55,8 +55,8 @@ public class Personal {
         return phoneNum;
     }
 
-    public String getProfileImageUrl() {
-        return profileImageUrl;
+    public String getProfileimageurl() {
+        return profileimageurl;
     }
 
     public String getFavorite1() {
