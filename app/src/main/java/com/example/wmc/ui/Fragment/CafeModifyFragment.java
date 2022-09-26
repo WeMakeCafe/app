@@ -113,18 +113,18 @@ public class CafeModifyFragment extends Fragment {
         modify_button = root.findViewById(R.id.modify_button);
         request_deletion_textView = root.findViewById(R.id.request_deletion_textView);
 
-        imageList_LOG= root.findViewById(R.id.imageList_LOG);
+//        imageList_LOG= root.findViewById(R.id.imageList_LOG);
 
         String cafe_name = getArguments().getString("name");  //getArguments로 번들 검색해서 받기
         String cafe_address = getArguments().getString("address");
 
 
-        imageList_LOG.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("서버에 전송될 image_List", uriList.toString());
-            }
-        });
+//        imageList_LOG.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Log.d("서버에 전송될 image_List", uriList.toString());
+//            }
+//        });
 
 
         //// 서버 호출
