@@ -631,7 +631,7 @@ public class ReviewFragment extends Fragment {
 
                 comment = argBundle.getString("comment");
 
-                Log.d("태그 종료후 받은 comment", comment);
+//                Log.d("태그 종료후 받은 comment", comment);
                 review_search_input.setTypeface(Typeface.DEFAULT_BOLD);  // 카페이름 Bold처리
                 review_search_input.setGravity(Gravity.CENTER);          // 카페 위치 Center로 변경
 

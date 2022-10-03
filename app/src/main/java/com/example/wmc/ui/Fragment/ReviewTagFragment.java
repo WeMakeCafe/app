@@ -714,7 +714,7 @@ public class ReviewTagFragment extends Fragment {
                         bundle.putLong("reviewNum", reviewNum);
 
                         bundle.putString("comment", comment);
-                        Log.d("리뷰로 보내는comment", comment);
+//                        Log.d("리뷰로 보내는comment", comment);
 
                         navController.navigate(R.id.review_tag_to_review, bundle); // 번들과 함께 전달
                     }

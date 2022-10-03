@@ -9,22 +9,36 @@
         android:id="@+id/navigation_home"
         android:name="com.example.wmc.ui.Fragment.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
+
+<!--        <action-->
+<!--            android:id="@+id/home_to_list"-->
+<!--            app:destination="@id/navigation_list_cafelist" />-->
         <action
-            android:id="@+id/home_to_list"
-            app:destination="@id/navigation_list_cafelist" />
+            android:id="@+id/home_to_home"
+            app:destination="@id/navigation_home"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="true"/>
         <action
             android:id="@+id/home_to_list_cafelist"
-            app:destination="@id/navigation_list_cafelist" />
+            app:destination="@id/navigation_list_cafelist"
+            app:popUpTo="@id/navigation_list_cafelist"
+            app:popUpToInclusive="true"/>
         <action
             android:id="@+id/home_to_review"
-            app:destination="@id/navigation_bottom_review" />
+            app:destination="@id/navigation_bottom_review"
+            app:popUpTo="@id/navigation_bottom_review"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/home_to_mypage"
+            app:destination="@id/navigation_myPage"
+            app:popUpTo="@id/navigation_myPage"
+            app:popUpToInclusive="true"/>
+
         <action
             android:id="@+id/home_to_cafe_detail"
             app:destination="@id/navigation_cafe_detail" />
-        <action
-            android:id="@+id/home_to_mypage"
-            app:destination="@id/navigation_myPage" />
+
     </fragment>
 
 
@@ -47,12 +61,35 @@
         tools:layout="@layout/fragment_list_cafelist">
 
         <action
+            android:id="@+id/list_cafelist_to_home"
+            app:destination="@id/navigation_home"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/list_cafelist_to_list_cafelist"
+            app:destination="@id/navigation_list_cafelist"
+            app:popUpTo="@id/navigation_list_cafelist"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/list_cafelist_to_bottomReview"
+            app:destination="@id/navigation_bottom_review"
+            app:popUpTo="@id/navigation_bottom_review"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/list_cafelist_to_mypage"
+            app:destination="@id/navigation_myPage"
+            app:popUpTo="@id/navigation_myPage"
+            app:popUpToInclusive="true"/>
+
+
+        <action
             android:id="@+id/list_cafelist_to_cafe_detail"
             app:destination="@id/navigation_cafe_detail" />
 
         <action
             android:id="@+id/list_cafelist_to_cafe_registration"
             app:destination="@id/navigation_cafe_registration" />
+
     </fragment>
 
     <fragment
@@ -60,6 +97,28 @@
         android:name="com.example.wmc.ui.Fragment.ReviewFragment"
         android:label="@string/title_review"
         tools:layout="@layout/fragment_review" >
+
+        <action
+            android:id="@+id/review_to_home"
+            app:destination="@id/navigation_home"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/review_to_list_cafelist"
+            app:destination="@id/navigation_list_cafelist"
+            app:popUpTo="@id/navigation_list_cafelist"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/review_to_bottomReview"
+            app:destination="@id/navigation_bottom_review"
+            app:popUpTo="@id/navigation_bottom_review"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/review_to_mypage"
+            app:destination="@id/navigation_myPage"
+            app:popUpTo="@id/navigation_myPage"
+            app:popUpToInclusive="true"/>
+
         <action
             android:id="@+id/review_to_review_tag"
             app:destination="@id/navigation_review_tag" />
@@ -82,6 +141,27 @@
         android:label="@string/title_myPage"
         tools:layout="@layout/fragment_mypage" >
         <action
+            android:id="@+id/mypage_to_home"
+            app:destination="@id/navigation_home"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/mypage_to_list_cafelist"
+            app:destination="@id/navigation_list_cafelist"
+            app:popUpTo="@id/navigation_list_cafelist"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/mypage_to_bottomReview"
+            app:destination="@id/navigation_bottom_review"
+            app:popUpTo="@id/navigation_bottom_review"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/mypage_to_mypage"
+            app:destination="@id/navigation_myPage"
+            app:popUpTo="@id/navigation_myPage"
+            app:popUpToInclusive="true"/>
+
+        <action
             android:id="@+id/myPage_to_myPage_grade"
             app:destination="@id/navigation_myPage_grade" />
         <action
@@ -101,6 +181,28 @@
         android:name="com.example.wmc.ui.Fragment.CafeDetailFragment"
         android:label="@string/cafe_detail"
         tools:layout="@layout/fragment_cafe_detail" >
+
+        <action
+            android:id="@+id/cafe_detail_to_home"
+            app:destination="@id/navigation_home"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/cafe_detail_to_list_cafelist"
+            app:destination="@id/navigation_list_cafelist"
+            app:popUpTo="@id/navigation_list_cafelist"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/cafe_detail_to_bottomReview"
+            app:destination="@id/navigation_bottom_review"
+            app:popUpTo="@id/navigation_bottom_review"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/cafe_detail_to_mypage"
+            app:destination="@id/navigation_myPage"
+            app:popUpTo="@id/navigation_myPage"
+            app:popUpToInclusive="true"/>
+
         <action
             android:id="@+id/cafe_detail_to_cafe_detail_more"
             app:destination="@id/navigation_cafe_detail_more" />
@@ -112,19 +214,20 @@
             app:destination="@id/navigation_review" />
     </fragment>
 
-    <fragment
-        android:id="@+id/navigation_list_search"
-        android:name="com.example.wmc.a_No_USE_Files.ListSearchFragment"
-        android:label="@string/list_search"
-        tools:layout="@layout/fragment_list_search" >
 
-        <action
-            android:id="@+id/list_search_to_cafe_detail"
-            app:destination="@id/navigation_cafe_detail" />
-        <action
-            android:id="@+id/list_search_to_list_cafelist"
-            app:destination="@id/navigation_list_cafelist" />
-    </fragment>
+<!--    <fragment-->
+<!--        android:id="@+id/navigation_list_search"-->
+<!--        android:name="com.example.wmc.a_No_USE_Files.ListSearchFragment"-->
+<!--        android:label="@string/list_search"-->
+<!--        tools:layout="@layout/fragment_list_search" >-->
+
+<!--        <action-->
+<!--            android:id="@+id/list_search_to_cafe_detail"-->
+<!--            app:destination="@id/navigation_cafe_detail" />-->
+<!--        <action-->
+<!--            android:id="@+id/list_search_to_list_cafelist"-->
+<!--            app:destination="@id/navigation_list_cafelist" />-->
+<!--    </fragment>-->
 
     <fragment
         android:id="@+id/navigation_cafe_registration"
@@ -133,14 +236,30 @@
         tools:layout="@layout/fragment_cafe_registration" >
 
         <action
-            android:id="@+id/cafe_registration_to_cafe_registration_tag"
-            app:destination="@id/navigation_cafe_registration_tag" />
-
+            android:id="@+id/cafe_registration_to_home"
+            app:destination="@id/navigation_home"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="true"/>
         <action
             android:id="@+id/cafe_registration_to_list_cafelist"
             app:destination="@id/navigation_list_cafelist"
             app:popUpTo="@id/navigation_list_cafelist"
             app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/cafe_registration_to_bottomReview"
+            app:destination="@id/navigation_bottom_review"
+            app:popUpTo="@id/navigation_bottom_review"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/cafe_registration_to_mypage"
+            app:destination="@id/navigation_myPage"
+            app:popUpTo="@id/navigation_myPage"
+            app:popUpToInclusive="true"/>
+
+        <action
+            android:id="@+id/cafe_registration_to_cafe_registration_tag"
+            app:destination="@id/navigation_cafe_registration_tag" />
+
             <!--  페이지 스택 지우기 코드      -->
     </fragment>
 
@@ -149,6 +268,28 @@
         android:name="com.example.wmc.ui.Fragment.CafeDetailMoreFragment"
         android:label="@string/cafe_detail_more"
         tools:layout="@layout/fragment_cafe_detail_more" >
+
+        <action
+            android:id="@+id/cafe_detail_more_to_home"
+            app:destination="@id/navigation_home"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/cafe_detail_more_to_list_cafelist"
+            app:destination="@id/navigation_list_cafelist"
+            app:popUpTo="@id/navigation_list_cafelist"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/cafe_detail_more_to_bottomReview"
+            app:destination="@id/navigation_bottom_review"
+            app:popUpTo="@id/navigation_bottom_review"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/cafe_detail_more_to_mypage"
+            app:destination="@id/navigation_myPage"
+            app:popUpTo="@id/navigation_myPage"
+            app:popUpToInclusive="true"/>
+
 
         <action
             android:id="@+id/cafe_detail_more_to_review"
@@ -163,6 +304,28 @@
         tools:layout="@layout/fragment_cafe_modify" >
 
         <action
+            android:id="@+id/cafe_modify_to_home"
+            app:destination="@id/navigation_home"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/cafe_modify_to_list_cafelist"
+            app:destination="@id/navigation_list_cafelist"
+            app:popUpTo="@id/navigation_list_cafelist"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/cafe_modify_to_bottomReview"
+            app:destination="@id/navigation_bottom_review"
+            app:popUpTo="@id/navigation_bottom_review"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/cafe_modify_to_mypage"
+            app:destination="@id/navigation_myPage"
+            app:popUpTo="@id/navigation_myPage"
+            app:popUpToInclusive="true"/>
+
+
+        <action
             android:id="@+id/cafe_modify_to_cafe_detail"
             app:destination="@id/navigation_cafe_detail"
             app:popUpTo="@id/navigation_cafe_detail"
@@ -172,17 +335,62 @@
             app:destination="@id/navigation_cafe_delete" />
     </fragment>
 
+
     <fragment
         android:id="@+id/navigation_myPage_grade"
         android:name="com.example.wmc.ui.Fragment.MypageGradeFragment"
         android:label="@string/myPage_grade"
-        tools:layout="@layout/fragment_mypage_grade" />
+        tools:layout="@layout/fragment_mypage_grade" >
+
+        <action
+            android:id="@+id/myPage_grade_to_home"
+            app:destination="@id/navigation_home"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/myPage_grade_to_list_cafelist"
+            app:destination="@id/navigation_list_cafelist"
+            app:popUpTo="@id/navigation_list_cafelist"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/myPage_grade_to_bottomReview"
+            app:destination="@id/navigation_bottom_review"
+            app:popUpTo="@id/navigation_bottom_review"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/myPage_grade_to_mypage"
+            app:destination="@id/navigation_myPage"
+            app:popUpTo="@id/navigation_myPage"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
 
     <fragment
         android:id="@+id/navigation_review_tag"
         android:name="com.example.wmc.ui.Fragment.ReviewTagFragment"
         android:label="@string/review_tag"
         tools:layout="@layout/fragment_review_tag" >
+
+        <action
+            android:id="@+id/review_tag_to_home"
+            app:destination="@id/navigation_home"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/review_tag_to_list_cafelist"
+            app:destination="@id/navigation_list_cafelist"
+            app:popUpTo="@id/navigation_list_cafelist"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/review_tag_to_bottomReview"
+            app:destination="@id/navigation_bottom_review"
+            app:popUpTo="@id/navigation_bottom_review"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/review_tag_to_mypage"
+            app:destination="@id/navigation_myPage"
+            app:popUpTo="@id/navigation_myPage"
+            app:popUpToInclusive="true"/>
 
         <action
             android:id="@+id/review_tag_to_review"
@@ -196,6 +404,28 @@
         tools:layout="@layout/fragment_review_comment" >
 
         <action
+            android:id="@+id/review_comment_to_home"
+            app:destination="@id/navigation_home"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/review_comment_to_list_cafelist"
+            app:destination="@id/navigation_list_cafelist"
+            app:popUpTo="@id/navigation_list_cafelist"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/review_comment_to_bottomReview"
+            app:destination="@id/navigation_bottom_review"
+            app:popUpTo="@id/navigation_bottom_review"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/review_comment_to_mypage"
+            app:destination="@id/navigation_myPage"
+            app:popUpTo="@id/navigation_myPage"
+            app:popUpToInclusive="true"/>
+
+
+        <action
             android:id="@+id/review_comment_to_cafe_detail"
             app:destination="@id/navigation_cafe_detail"
             app:popUpTo="@id/navigation_cafe_detail"
@@ -207,6 +437,27 @@
         android:name="com.example.wmc.a_No_USE_Files.ReviewSearchFragment"
         android:label="@string/review_search"
         tools:layout="@layout/fragment_list_search" >
+
+        <action
+            android:id="@+id/review_search_to_home"
+            app:destination="@id/navigation_home"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/review_search_to_list_cafelist"
+            app:destination="@id/navigation_list_cafelist"
+            app:popUpTo="@id/navigation_list_cafelist"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/review_search_to_bottomReview"
+            app:destination="@id/navigation_bottom_review"
+            app:popUpTo="@id/navigation_bottom_review"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/review_search_to_mypage"
+            app:destination="@id/navigation_myPage"
+            app:popUpTo="@id/navigation_myPage"
+            app:popUpToInclusive="true"/>
 
         <action
             android:id="@+id/review_search_to_review"
@@ -223,6 +474,28 @@
         tools:layout="@layout/fragment_review_cafelist" >
 
         <action
+            android:id="@+id/review_cafelist_to_home"
+            app:destination="@id/navigation_home"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/review_cafelist_to_list_cafelist"
+            app:destination="@id/navigation_list_cafelist"
+            app:popUpTo="@id/navigation_list_cafelist"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/review_cafelist_to_bottomReview"
+            app:destination="@id/navigation_bottom_review"
+            app:popUpTo="@id/navigation_bottom_review"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/review_cafelist_to_mypage"
+            app:destination="@id/navigation_myPage"
+            app:popUpTo="@id/navigation_myPage"
+            app:popUpToInclusive="true"/>
+
+
+        <action
             android:id="@+id/review_cafelist_to_review"
             app:destination="@id/navigation_review" />
         <action
@@ -237,18 +510,31 @@
         tools:layout="@layout/fragment_cafe_delete" >
 
         <action
-            android:id="@+id/cafe_delete_to_cafe_detail"
-            app:destination="@id/navigation_cafe_detail" />
-
-        <action
             android:id="@+id/cafe_delete_to_home"
-            app:destination="@+id/navigation_home"/>
-
+            app:destination="@id/navigation_home"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="true"/>
         <action
             android:id="@+id/cafe_delete_to_list_cafeList"
             app:destination="@+id/navigation_list_cafelist"
             app:popUpTo="@+id/navigation_list_cafelist"
             app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/cafe_delete_to_bottomReview"
+            app:destination="@id/navigation_bottom_review"
+            app:popUpTo="@id/navigation_bottom_review"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/cafe_delete_to_mypage"
+            app:destination="@id/navigation_myPage"
+            app:popUpTo="@id/navigation_myPage"
+            app:popUpToInclusive="true"/>
+
+
+        <action
+            android:id="@+id/cafe_delete_to_cafe_detail"
+            app:destination="@id/navigation_cafe_detail" />
+
     </fragment>
 
     <fragment
@@ -256,6 +542,28 @@
         android:name="com.example.wmc.ui.Fragment.CafeRegistrationTagFragment"
         android:label="@string/cafe_registration_tag"
         tools:layout="@layout/fragment_review_tag">
+
+        <action
+            android:id="@+id/cafe_registration_tag_to_home"
+            app:destination="@id/navigation_home"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/cafe_registration_tag_to_list_cafelist"
+            app:destination="@id/navigation_list_cafelist"
+            app:popUpTo="@id/navigation_list_cafelist"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/cafe_registration_tag_to_bottomReview"
+            app:destination="@id/navigation_bottom_review"
+            app:popUpTo="@id/navigation_bottom_review"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/cafe_registration_tag_to_mypage"
+            app:destination="@id/navigation_myPage"
+            app:popUpTo="@id/navigation_myPage"
+            app:popUpToInclusive="true"/>
+
 
         <action
             android:id="@+id/cafe_registration_tag_to_cafe_registration"
@@ -271,14 +579,33 @@
         tools:layout="@layout/fragment_review">
 
         <action
+            android:id="@+id/mypage_review_to_home"
+            app:destination="@id/navigation_home"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/mypage_review_to_list_cafelist"
+            app:destination="@id/navigation_list_cafelist"
+            app:popUpTo="@id/navigation_list_cafelist"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/mypage_review_to_bottomReview"
+            app:destination="@id/navigation_bottom_review"
+            app:popUpTo="@id/navigation_bottom_review"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/mypage_review_to_mypage"
+            app:destination="@id/navigation_myPage"
+            app:popUpTo="@id/navigation_myPage"
+            app:popUpToInclusive="true"/>
+
+
+        <action
             android:id="@+id/mypage_review_to_mypage_review_tag"
             app:destination="@id/navigation_mypage_review_tag" />
         <action
             android:id="@+id/mypage_review_to_mypage_review_comment"
             app:destination="@id/navigation_mypage_review_comment" />
-        <action
-            android:id="@+id/mypage_review_to_mypage"
-            app:destination="@id/navigation_myPage" />
     </fragment>
 
     <fragment
@@ -287,6 +614,21 @@
         android:label="@string/mypage_review_comment"
         tools:layout="@layout/fragment_review_comment" >
 
+        <action
+            android:id="@+id/mypage_review_comment_to_home"
+            app:destination="@id/navigation_home"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/mypage_review_comment_to_list_cafelist"
+            app:destination="@id/navigation_list_cafelist"
+            app:popUpTo="@id/navigation_list_cafelist"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/mypage_review_comment_to_bottomReview"
+            app:destination="@id/navigation_bottom_review"
+            app:popUpTo="@id/navigation_bottom_review"
+            app:popUpToInclusive="true"/>
         <action
             android:id="@+id/mypage_review_comment_to_mypage"
             app:destination="@id/navigation_myPage"
@@ -299,6 +641,28 @@
         android:name="com.example.wmc.ui.Fragment.Mypage_ReviewTagFragment"
         android:label="@string/mypage_review_tag"
         tools:layout="@layout/fragment_review_tag" >
+
+        <action
+            android:id="@+id/mypage_review_tag_to_home"
+            app:destination="@id/navigation_home"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/mypage_review_tag_to_list_cafelist"
+            app:destination="@id/navigation_list_cafelist"
+            app:popUpTo="@id/navigation_list_cafelist"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/mypage_review_tag_to_bottomReview"
+            app:destination="@id/navigation_bottom_review"
+            app:popUpTo="@id/navigation_bottom_review"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/mypage_review_tag_to_mypage"
+            app:destination="@id/navigation_myPage"
+            app:popUpTo="@id/navigation_myPage"
+            app:popUpToInclusive="true"/>
+
 
         <action
             android:id="@+id/mypage_review_tag_to_mypage_review"
@@ -315,6 +679,28 @@
         tools:layout="@layout/fragment_review">
 
         <action
+            android:id="@+id/bottom_review_to_home"
+            app:destination="@id/navigation_home"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/bottom_review_to_list_cafelist"
+            app:destination="@id/navigation_list_cafelist"
+            app:popUpTo="@id/navigation_list_cafelist"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/bottom_review_to_bottom_review"
+            app:destination="@id/navigation_bottom_review"
+            app:popUpTo="@id/navigation_bottom_review"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/bottom_review_to_mypage"
+            app:destination="@id/navigation_myPage"
+            app:popUpTo="@id/navigation_myPage"
+            app:popUpToInclusive="true"/>
+
+
+        <action
             android:id="@+id/bottom_review_to_bottom_review_tag"
             app:destination="@id/navigation_bottom_review_tag" />
         <action
@@ -325,11 +711,6 @@
         <action
             android:id="@+id/bottom_review_to_bottom_review_cafelist"
             app:destination="@id/navigation_bottom_review_cafelist" />
-        <action
-            android:id="@+id/bottom_review_to_bottom_review"
-            app:destination="@id/navigation_bottom_review"
-            app:popUpTo="@id/navigation_bottom_review"
-            app:popUpToInclusive="true"/>
     </fragment>
 
 
@@ -340,11 +721,27 @@
         tools:layout="@layout/fragment_review_cafelist" >
 
         <action
+            android:id="@+id/bottom_review_cafelist_to_home"
+            app:destination="@id/navigation_home"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/bottom_review_cafelist_to_list_cafelist"
+            app:destination="@id/navigation_list_cafelist"
+            app:popUpTo="@id/navigation_list_cafelist"
+            app:popUpToInclusive="true"/>
+        <action
             android:id="@+id/bottom_review_cafelist_to_bottom_review"
             app:destination="@id/navigation_bottom_review"
             app:popUpTo="@id/navigation_bottom_review"
             app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/bottom_review_cafelist_to_mypage"
+            app:destination="@id/navigation_myPage"
+            app:popUpTo="@id/navigation_myPage"
+            app:popUpToInclusive="true"/>
     </fragment>
+
 
     <fragment
         android:id="@+id/navigation_bottom_review_comment"
@@ -353,9 +750,24 @@
         tools:layout="@layout/fragment_review_comment" >
 
         <action
+            android:id="@+id/bottom_review_comment_to_home"
+            app:destination="@id/navigation_home"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/bottom_review_comment_to_list_cafelist"
+            app:destination="@id/navigation_list_cafelist"
+            app:popUpTo="@id/navigation_list_cafelist"
+            app:popUpToInclusive="true"/>
+        <action
             android:id="@+id/bottom_review_comment_to_bottom_review"
             app:destination="@id/navigation_bottom_review"
             app:popUpTo="@id/navigation_bottom_review"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/bottom_review_comment_to_mypage"
+            app:destination="@id/navigation_myPage"
+            app:popUpTo="@id/navigation_myPage"
             app:popUpToInclusive="true"/>
     </fragment>
 
@@ -366,9 +778,24 @@
         tools:layout="@layout/fragment_review_tag" >
 
         <action
+            android:id="@+id/bottom_review_tag_to_home"
+            app:destination="@id/navigation_home"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/bottom_review_tag_to_list_cafelist"
+            app:destination="@id/navigation_list_cafelist"
+            app:popUpTo="@id/navigation_list_cafelist"
+            app:popUpToInclusive="true"/>
+        <action
             android:id="@+id/bottom_review_tag_to_bottom_review"
             app:destination="@id/navigation_bottom_review"
             app:popUpTo="@id/navigation_bottom_review"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/bottom_review_tag_to_mypage"
+            app:destination="@id/navigation_myPage"
+            app:popUpTo="@id/navigation_myPage"
             app:popUpToInclusive="true"/>
     </fragment>
 
