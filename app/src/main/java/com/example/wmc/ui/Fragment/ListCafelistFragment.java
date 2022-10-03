@@ -1,6 +1,7 @@
 package com.example.wmc.ui.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -35,6 +36,7 @@ import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.StringRequest;
 import com.example.wmc.ListCafeList.ListCafeListAdapter;
 import com.example.wmc.ListCafeList.ListCafeListItem;
+import com.example.wmc.LoginAcivity;
 import com.example.wmc.MainActivity;
 import com.example.wmc.R;
 import com.example.wmc.database.Bookmark;
@@ -96,6 +98,15 @@ public class ListCafelistFragment extends Fragment {
         cafeList_footer = root.findViewById(R.id.cafeList_footer);
         listCafeListRecyclerView = root.findViewById(R.id.cafeListRecyclerView);
         InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);  // 키보드 제어 InputManager
+        Button but = root.findViewById(R.id.button);
+
+        but.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), LoginAcivity.class);
+                startActivity(intent);
+            }
+        });
 
         // 기본 VISIBLE 설정
         cafeList_footer.setVisibility(View.INVISIBLE);      // 하단 Footer
@@ -121,6 +132,8 @@ public class ListCafelistFragment extends Fragment {
                 navController.navigate(R.id.list_cafelist_to_cafe_registration);
             }
         });
+
+
 
         // 카페 리스트 리싸이클러뷰
         listCafeListItems = new ArrayList<>();

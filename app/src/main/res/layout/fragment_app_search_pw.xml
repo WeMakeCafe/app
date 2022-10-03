@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/login_background_color">
+    android:background="@color/white">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -17,7 +17,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <LinearLayout
                 android:id="@+id/logoLayout"
@@ -35,13 +35,14 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
             </LinearLayout>
 
             <TextView
                 android:id="@+id/serachPW_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="30dp"
                 android:layout_marginTop="40dp"
                 android:text="비밀번호 찾기"
                 android:textColor="@color/black"
@@ -54,11 +55,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
-                android:hint="아이디를 입력하세요."
-                android:inputType="number"
-                android:maxLength="11"
+                android:hint="아이디를 입력해주세요."
+                android:inputType="textPersonName"
+                android:maxLength="12"
                 android:singleLine="true"
                 android:textSize="14sp" />
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="300dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp" />
 
             <LinearLayout
                 android:id="@+id/searchPWLayout"
@@ -68,14 +76,14 @@
 
 
                 <EditText
-                    android:id="@+id/searchIDPW_number_input2"
+                    android:id="@+id/searchIDPW_ID_input2"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="5dp"
-                    android:hint="내가 다닌 초등학교의 이름은?"
-                    android:inputType="number"
-                    android:maxLength="11"
+                    android:layout_marginTop="10dp"
+                    android:clickable="false"
+                    android:inputType="textPersonName"
+                    android:maxLength="20"
                     android:singleLine="true"
                     android:textSize="14sp" />
 
@@ -83,25 +91,47 @@
                     android:id="@+id/search_pw_button"
                     android:layout_width="70dp"
                     android:layout_height="40dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="5dp"
-                    android:text="찾기"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="10dp"
                     android:background="@drawable/edge_square_brown"
+                    android:text="찾기"
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold" />
+
             </LinearLayout>
 
-            <EditText
-                android:id="@+id/searchIDPW_PW_output"
-                android:layout_width="380dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="25dp"
-                android:enabled="false"
-                android:inputType="text"
-                android:textColor="@color/black" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/searchIDPW_PW_output"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="25dp"
+                    android:enabled="false"
+                    android:inputType="text"
+                    android:maxLength="20"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/search_pw_button2"
+                    android:layout_width="70dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/edge_square_brown"
+                    android:text="변경"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:visibility="invisible" />
+            </LinearLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -111,11 +141,11 @@
                     android:id="@+id/to_login_Page_textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:clickable="true"
                     android:gravity="center"
                     android:text="로그인"
                     android:textColor="@color/black"
-                    android:layout_marginTop="10dp"
                     android:textSize="14dp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -132,19 +162,43 @@
                     app:layout_constraintTop_toBottomOf="@+id/to_login_Page_textView" />
 
                 <TextView
-                    android:id="@+id/to_signUp_Page_textView"
+                    android:id="@+id/to_id_Page_textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:clickable="true"
                     android:gravity="center"
-                    android:text="회원가입"
+                    android:text="아이디 찾기"
                     android:textColor="@color/black"
-                    android:layout_marginTop="10dp"
                     android:textSize="14dp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/to_login_Page_textView" />
+
+                <TextView
+                    android:id="@+id/to_id_Page_Line"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/black"
+                    app:layout_constraintEnd_toEndOf="@+id/to_id_Page_textView"
+                    app:layout_constraintStart_toStartOf="@+id/to_id_Page_textView"
+                    app:layout_constraintTop_toBottomOf="@+id/to_id_Page_textView" />
+
+                <TextView
+                    android:id="@+id/to_signUp_Page_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:text="회원가입"
+                    android:textColor="@color/black"
+                    android:textSize="14dp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/to_id_Page_textView" />
 
                 <TextView
                     android:id="@+id/to_signUp_Page_Line"
