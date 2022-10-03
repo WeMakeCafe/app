@@ -58,7 +58,7 @@ public class ListSearchFragment extends Fragment {
                     // 무언가 검색했을 때,
                     Toast.makeText(getContext().getApplicationContext(), searchText.getText().toString() + " 검색됨.", Toast.LENGTH_SHORT).show();
                     imm.hideSoftInputFromWindow(search_button.getWindowToken(), 0);
-                    navController.navigate(R.id.list_search_to_list_cafelist);
+//                    navController.navigate(R.id.list_search_to_list_cafelist);
                 }
             }
         });
@@ -90,7 +90,7 @@ public class ListSearchFragment extends Fragment {
                 final ListSearchItem item = listSearchItems.get(a_position);
                 Toast.makeText(getContext().getApplicationContext(), item.getSearch_cafeName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
                 imm.hideSoftInputFromWindow(container.getWindowToken(), 0);
-                navController.navigate(R.id.list_search_to_list_cafelist);
+//                navController.navigate(R.id.list_search_to_list_cafelist);
             }
         });
 

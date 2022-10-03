@@ -164,7 +164,6 @@ public class CafeDetailFragment extends Fragment {
         requestQueue = new RequestQueue(cache, network);
         requestQueue.start();
 
-
         String get_cafe_url = getResources().getString(R.string.url) + "cafe";
 
         StringRequest cafe_stringRequest = new StringRequest(Request.Method.GET, get_cafe_url, new Response.Listener<String>() {
@@ -191,6 +190,42 @@ public class CafeDetailFragment extends Fragment {
                     if(c.getCafeName().equals(cafe_name)){
                         get_cafe_num = c.getCafeNum();
                         Log.d("check_cafe_num", get_cafe_num.toString()); // 카페 넘버가 제대로 들어오는지 확인
+
+                        String get_cafeImage_url = getResources().getString(R.string.url) + "cafeImage";
+
+                        StringRequest cafeImage_stringRequest = new StringRequest(Request.Method.GET, get_cafeImage_url, new Response.Listener<String>() {
+                            @RequiresApi(api = Build.VERSION_CODES.O)
+                            @Override
+                            public void onResponse(String response) {
+                                // 한글깨짐 해결 코드
+                                String changeString = new String();
+                                try {
+                                    changeString = new String(response.getBytes("8859_1"),"utf-8");
+                                } catch (UnsupportedEncodingException e) {
+                                    e.printStackTrace();
+                                }
+                                Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                                Type listType = new TypeToken<ArrayList<CafeImage>>(){}.getType();
+
+                                CafeImage_list = gson.fromJson(changeString, listType);
+
+                                for(CafeImage ci : CafeImage_list){
+                                    if(ci.getCafeNum().equals(get_cafe_num)){
+                                        Log.d("cafeImage URL", ci.getFileUrl());
+                                        imageList.add(ci.getFileUrl());
+                                    }
+                                }
+
+                                cafeImageViewPager.setAdapter(new CafeDetailImageViewPagerAdapter(getContext().getApplicationContext(), imageList, CafeDetailFragment.this));
+
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Log.e("cafeImage_stringRequest_error",error.toString());
+                            }
+                        });
+                        requestQueue.add(cafeImage_stringRequest);
 
                         moreReview2.setText(c.getCafeName());
                         moreReview3.setText(c.getCafeName());
@@ -1036,44 +1071,6 @@ public class CafeDetailFragment extends Fragment {
         cafeImageViewPager.setOffscreenPageLimit(5);
         imageList = new ArrayList<>();
 
-
-        String get_cafeImage_url = getResources().getString(R.string.url) + "cafeImage";
-
-        StringRequest cafeImage_stringRequest = new StringRequest(Request.Method.GET, get_cafeImage_url, new Response.Listener<String>() {
-            @RequiresApi(api = Build.VERSION_CODES.O)
-            @Override
-            public void onResponse(String response) {
-                // 한글깨짐 해결 코드
-                String changeString = new String();
-                try {
-                    changeString = new String(response.getBytes("8859_1"),"utf-8");
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
-                Gson gson = new GsonBuilder().setPrettyPrinting().create();
-                Type listType = new TypeToken<ArrayList<CafeImage>>(){}.getType();
-
-                CafeImage_list = gson.fromJson(changeString, listType);
-
-                for(CafeImage ci : CafeImage_list){
-                    if(ci.getCafeNum().equals(get_cafe_num)){
-                        Log.d("cafeImage URL", ci.getFileUrl());
-                        imageList.add(ci.getFileUrl());
-                    }
-                }
-
-                cafeImageViewPager.setAdapter(new CafeDetailImageViewPagerAdapter(getContext().getApplicationContext(), imageList, CafeDetailFragment.this));
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("cafeImage_stringRequest_error",error.toString());
-            }
-        });
-
-
-        requestQueue.add(cafeImage_stringRequest);
 
 
 //        CafeDetailImagePagerAdapter cafeImageAdapter = new CafeDetailImagePagerAdapter(getActivity().getSupportFragmentManager());

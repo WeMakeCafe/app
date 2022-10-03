@@ -520,6 +520,8 @@ public class Bottom_ReviewFragment extends Fragment {
                 s11 = argBundle.getFloat("tag_review_studyPoint3");
                 s12 = argBundle.getFloat("tag_review_studyPoint4");
 
+                if(argBundle.getBoolean("return_reviewCafeList_flag"))
+                    reviewCafeList_flag = argBundle.getBoolean("return_reviewCafeList_flag");
                 review_search_input.setTypeface(Typeface.DEFAULT_BOLD);  // 카페이름 Bold처리
                 review_search_input.setGravity(Gravity.CENTER);          // 카페 위치 Center로 변경
             }
