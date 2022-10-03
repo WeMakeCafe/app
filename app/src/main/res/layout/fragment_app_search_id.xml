@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/login_background_color">
+    android:background="@color/white">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -17,7 +17,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <LinearLayout
                 android:id="@+id/logoLayout"
@@ -41,10 +41,10 @@
                 android:id="@+id/serachID_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="30dp"
                 android:layout_marginTop="40dp"
                 android:text="아이디 찾기"
-                android:textColor="@color/black"
+                android:textColor="@color/brown"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -61,7 +61,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
-                    android:hint="전화번호를 입력해주세요."
+                    android:hint="전화번호를 입력해주세요 ('-'제외) "
                     android:inputType="number"
                     android:maxLength="11"
                     android:singleLine="true"
@@ -71,24 +71,25 @@
                     android:id="@+id/search_id_button"
                     android:layout_width="70dp"
                     android:layout_height="40dp"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="5dp"
                     android:layout_marginTop="10dp"
-                    android:text="찾기"
                     android:background="@drawable/edge_square_brown"
+                    android:text="찾기"
                     android:textColor="@color/white"
-                    android:textSize="20sp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
             </LinearLayout>
 
             <EditText
                 android:id="@+id/searchIDPW_ID_output"
-                android:layout_width="380dp"
+                android:layout_width="375dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="5dp"
                 android:enabled="false"
                 android:inputType="text"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="14sp" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -120,6 +121,30 @@
                     app:layout_constraintTop_toBottomOf="@+id/to_login_Page_textView" />
 
                 <TextView
+                    android:id="@+id/to_login_Page_textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:text="비밀번호 찾기"
+                    android:textColor="@color/black"
+                    android:textSize="14dp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/to_login_Page_Line" />
+
+                <TextView
+                    android:id="@+id/to_login_Page_Line2"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/black"
+                    app:layout_constraintEnd_toEndOf="@+id/to_login_Page_textView2"
+                    app:layout_constraintStart_toStartOf="@+id/to_login_Page_textView2"
+                    app:layout_constraintTop_toBottomOf="@+id/to_login_Page_textView2" />
+
+                <TextView
                     android:id="@+id/to_signUp_Page_textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -132,7 +157,7 @@
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/to_login_Page_textView" />
+                    app:layout_constraintTop_toBottomOf="@+id/to_login_Page_textView2" />
 
                 <TextView
                     android:id="@+id/to_signUp_Page_Line"
