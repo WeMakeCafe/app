@@ -66,6 +66,9 @@ public class CafeRegistrationTagFragment extends Fragment {
         Boolean cafe_nametest = getArguments().getBoolean("name_test");
         uriList = getArguments().getParcelableArrayList("cafeImage");
 
+        Log.d("opentime + tag", cafe_opentime);
+        Log.d("closetime + tag", cafe_closetime);
+
         for(Uri u : uriList) {
             Log.d("uriList", u.toString());
         }
