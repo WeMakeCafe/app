@@ -165,25 +165,32 @@ public class CafeRegistrationFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
 
-                        name_test = true;
-//                        String overlap_cafeName = cafe_name_input.getText().toString().replaceAll(" ", "");; // 카페 이름 중복확인할 String
-//
-//                        // 데이터베이스에서 카페이름이 있는지 중복검사
-//                        if(overlap_cafeName.equals("")) {
-//                            Toast.makeText(getContext().getApplicationContext(), "카페 이름을 입력해주세요!", Toast.LENGTH_LONG).show();
-//                        }
-//                        else{
-//                            for(Cafe c : cafe_list) {
-//                                if (c.getCafeName().replaceAll(" ", "").equals(overlap_cafeName)) {
-//                                    Toast.makeText(getContext().getApplicationContext(), "이미 있는 카페입니다!", Toast.LENGTH_LONG).show();
-//                                    name_test = false;
-//                                    break;
-//                                } else { name_test = true; }
-//                            }
-//                            if( name_test ) Toast.makeText(getContext().getApplicationContext(), "가능한 카페입니다!", Toast.LENGTH_LONG).show();
-//                        }
+                        String overlap_cafeName = cafe_name_input.getText().toString().replaceAll(" ", "");; // 카페 이름 중복확인할 String
+
+                        // 데이터베이스에서 카페이름이 있는지 중복검사
+                        if(overlap_cafeName.equals("")) {
+                            Toast.makeText(getContext().getApplicationContext(), "카페 이름을 입력해주세요!", Toast.LENGTH_LONG).show();
+                        }
+
+                        else{
+                            for(Cafe c : cafe_list) {
+                                // 이미 동일한 이름의 카페가 등록되어있는 경우
+                                if (c.getCafeName().replaceAll(" ", "").equals(overlap_cafeName)) {
+                                    Toast.makeText(getContext().getApplicationContext(), "이미 있는 카페입니다!", Toast.LENGTH_LONG).show();
+                                    name_test = false;
+                                    break;
+                                }
+
+                                // 카페 등록이 가능한경우(이미 등록된 카페가 없을 때)
+                                else
+                                    name_test = true;
+                            }
+
+                            if( name_test ) Toast.makeText(getContext().getApplicationContext(), "등록 가능한 카페입니다!", Toast.LENGTH_LONG).show();
+                        }
                     }
                 });
+
 
                 // 등록하기 버튼 클릭 시
                 registration_button.setOnClickListener(new View.OnClickListener() {
@@ -691,6 +698,8 @@ public class CafeRegistrationFragment extends Fragment {
 //                    Log.d("cafeImage_URL", uriList.get(i).toString());
 //                }
 
+                Log.d("opentime", cafe_openHours_hour_input.getText().toString() + cafe_openHours_minute_input.getText().toString());
+                Log.d("closetime", cafe_closeHours_hour_input.getText().toString() + cafe_closeHours_minute_input.getText().toString());
                 navController.navigate(R.id.cafe_registration_to_cafe_registration_tag, bundle);
             }
         });
@@ -701,7 +710,7 @@ public class CafeRegistrationFragment extends Fragment {
         TextView basic_tag3 = root.findViewById(R.id.basic_tag3); // 태그 추가 완료 시 반영할 카페 등록 페이지의 태그 박스3
 
 
-
+    // 태그 추가 후, 저장되었던 값 다시 가져오기
         Bundle argBundle = getArguments();
         if( argBundle != null ) {
             if (argBundle.getString("key1") != null) {
@@ -712,10 +721,26 @@ public class CafeRegistrationFragment extends Fragment {
                 cafe_address_input.setText(argBundle.getString("address"));
                 name_test = argBundle.getBoolean("name_test"); // 중복확인 여부
 
-                cafe_openHours_hour_input.setText(argBundle.getString("opentime"));
-                cafe_openHours_minute_input.setText(argBundle.getString("opentime"));
-                cafe_closeHours_hour_input.setText(argBundle.getString("closetime"));
-                cafe_closeHours_minute_input.setText(argBundle.getString("closetime"));
+
+                String openhour_substring = argBundle.getString("opentime");
+                String closehour_substring = argBundle.getString("closetime");
+
+                if(openhour_substring.length() >= 4 ){
+                    cafe_openHours_hour_input.setText(openhour_substring.substring(0,2));
+                    cafe_openHours_minute_input.setText(openhour_substring.substring(2,4));
+                }
+                if(closehour_substring.length() >= 4 ){
+                    cafe_closeHours_hour_input.setText(closehour_substring.substring(0,2));
+                    cafe_closeHours_minute_input.setText(closehour_substring.substring(2,4));
+                }
+                if(openhour_substring.length() < 4){
+                    cafe_openHours_hour_input.setText("");
+                    cafe_openHours_minute_input.setText("");
+                }
+                if( closehour_substring.length() < 4 ) {
+                    cafe_closeHours_hour_input.setText("");
+                    cafe_closeHours_minute_input.setText("");
+                }
 
                 uriList = argBundle.getParcelableArrayList("cafeImage");
 
@@ -733,23 +758,6 @@ public class CafeRegistrationFragment extends Fragment {
             cafeRegistrationImageRecyclerView.setLayoutManager(new LinearLayoutManager(getContext().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
         }
 
-        String openhour_substring = cafe_openHours_hour_input.getText().toString();
-        String closehour_substring = cafe_closeHours_hour_input.getText().toString();
-
-        if(openhour_substring.length() >= 4 ){
-            cafe_openHours_hour_input.setText(openhour_substring.substring(0,2));
-            cafe_openHours_minute_input.setText(openhour_substring.substring(2,4));
-        }
-        if(closehour_substring.length() >= 4 ){
-            cafe_closeHours_hour_input.setText(closehour_substring.substring(0,2));
-            cafe_closeHours_minute_input.setText(closehour_substring.substring(2,4));
-        }
-        if(openhour_substring.length() < 4 || closehour_substring.length() < 4 ){
-            cafe_openHours_hour_input.setText("");
-            cafe_openHours_minute_input.setText("");
-            cafe_closeHours_hour_input.setText("");
-            cafe_closeHours_minute_input.setText("");
-        }
 
 
 
