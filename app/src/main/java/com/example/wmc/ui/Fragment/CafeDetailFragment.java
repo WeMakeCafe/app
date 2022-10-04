@@ -747,7 +747,7 @@ public class CafeDetailFragment extends Fragment {
                                         // 3. 카페 디테일에서는 가장 최근 리뷰 3개만 나오도록 설정
                                         for(Review r : review_list){
                                             if(r.getCafeNum().equals(get_cafe_num)) {
-                                                point_counter++;
+                                                point_counter = point_counter + 1;
                                                 love_flag = false;
 
                                                 // DB에서 받아온 리뷰 생성 시간을 변경하기 위한 코드
@@ -1156,5 +1156,11 @@ public class CafeDetailFragment extends Fragment {
         binding = null;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
 
+        point_counter = 0;
+        return;
+    }
 }
