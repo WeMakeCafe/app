@@ -149,6 +149,7 @@ public class HomeFragment extends Fragment {
         String get_cafeImage_url = getResources().getString(R.string.url) + "cafeImage";
 
 
+        // 현재 내 위치 정보 가져오기(동까지)
         final LocationListener gpsLocationListener = new LocationListener() {
             public void onLocationChanged(Location location) {
                 // 위치 리스너는 위치정보를 전달할 때 호출되므로 onLocationChanged()메소드 안에 위지청보를 처리를 작업을 구현 해야합니다.
@@ -208,52 +209,7 @@ public class HomeFragment extends Fragment {
                     1,
                     gpsLocationListener);
         }
-
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if ( Build.VERSION.SDK_INT >= 23 &&
-//                        ContextCompat.checkSelfPermission( getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED ) {
-//                    ActivityCompat.requestPermissions( MainActivity.this, new String[] {
-//                            android.Manifest.permission.ACCESS_FINE_LOCATION}, 0 );
-//                }
-//                else{
-//                    // 가장최근 위치정보 가져오기
-//                    Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-//                    if(location != null) {
-//                        String provider = location.getProvider();
-//                        double longitude = location.getLongitude();
-//                        double latitude = location.getLatitude();
-//                        double altitude = location.getAltitude();
-//
-//                        textView.setText("위치정보 : " + provider + "\n" +
-//                                "위도 : " + longitude + "\n" +
-//                                "경도 : " + latitude + "\n" +
-//                                "고도  : " + altitude);
-//
-//                        try {
-//                            list = g.getFromLocation(latitude, longitude,10);
-//                            textView2.setText(list.get(0).getAddressLine(0));
-//                        } catch (IOException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//
-//                    // 위치정보를 원하는 시간, 거리마다 갱신해준다.
-//                    lm.requestLocationUpdates(LocationManager.GPS_PROVIDER,
-//                            1000,
-//                            1,
-//                            gpsLocationListener);
-//                    lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,
-//                            1000,
-//                            1,
-//                            gpsLocationListener);
-//                }
-//            }
-//        });
-
-
-
+        // 여기까지가 현재 내 위치 정보 가져오기(동까지)
 
 
         // Personal 접근
