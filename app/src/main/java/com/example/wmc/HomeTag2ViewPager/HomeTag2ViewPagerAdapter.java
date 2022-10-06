@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
 import com.example.wmc.R;
@@ -80,5 +81,13 @@ public class HomeTag2ViewPagerAdapter extends PagerAdapter {
     @Override
     public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
         return (view == (View) object);
+    }
+
+    //java.lang.UnsupportedOperationException 에러 해결용 코드 - 송상화
+    @Override
+    public void destroyItem(ViewGroup container, int position, Object object) {
+        // TODO Auto-generated method stub
+
+        ((ViewPager) container).removeView((View) object);
     }
 }
