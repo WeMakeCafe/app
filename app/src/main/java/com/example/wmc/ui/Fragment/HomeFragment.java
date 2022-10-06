@@ -186,7 +186,7 @@ public class HomeFragment extends Fragment {
 
         else{
             // 가장최근 위치정보 가져오기
-            Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            Location location = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
             if(location != null) {
                 double longitude = location.getLongitude();
                 double latitude = location.getLatitude();
@@ -197,7 +197,6 @@ public class HomeFragment extends Fragment {
                     Log.d("cafeList", list.get(5).getAddressLine(0).toString());
 
                     cafe_search_input.setText(list.get(0).getAddressLine(0).substring(5));
-
                     get_user_address = list.get(5).getAddressLine(0).substring(5);
 
                 } catch (IOException e) {
