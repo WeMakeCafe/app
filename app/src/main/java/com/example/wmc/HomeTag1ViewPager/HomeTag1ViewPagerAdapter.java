@@ -11,7 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
+import com.bumptech.glide.Glide;
 import com.example.wmc.R;
+import com.example.wmc.ui.Fragment.HomeFragment;
 
 import java.util.ArrayList;
 
@@ -19,6 +21,7 @@ public class HomeTag1ViewPagerAdapter extends PagerAdapter {
 
     private Context mContext;
     private ArrayList<HomeTag1ViewPagerItem> tag1_List;
+    HomeFragment homeFragment;
 
     TextView cafeName;
     TextView cafeAddress;
@@ -30,9 +33,10 @@ public class HomeTag1ViewPagerAdapter extends PagerAdapter {
     RatingBar rating_all;
 
 
-    public HomeTag1ViewPagerAdapter(Context context, ArrayList<HomeTag1ViewPagerItem> tag1_List){
+    public HomeTag1ViewPagerAdapter(Context context, ArrayList<HomeTag1ViewPagerItem> tag1_List, HomeFragment homeFragment){
         mContext = context;
         this.tag1_List = tag1_List;
+        this.homeFragment = homeFragment;
     }
 
     @NonNull
@@ -57,7 +61,7 @@ public class HomeTag1ViewPagerAdapter extends PagerAdapter {
         bestReview_example.setText(tag1_List.get(position).getReview());
 
         cafe_image = view.findViewById(R.id.cafe_image);
-        cafe_image.setImageResource(tag1_List.get(position).getCafeImage());
+        Glide.with(homeFragment.getActivity()).load(tag1_List.get(position).getCafeImage()).into(cafe_image);
 
         rating_all = view.findViewById(R.id.rating_all);
         rating_all.setRating(tag1_List.get(position).getRating());

@@ -44,10 +44,10 @@ import com.example.wmc.HomeFavorite.HomeFavoriteItem;
 import com.example.wmc.HomeTag1ViewPager.HomeTag1ViewPager;
 import com.example.wmc.HomeTag1ViewPager.HomeTag1ViewPagerAdapter;
 import com.example.wmc.HomeTag1ViewPager.HomeTag1ViewPagerItem;
-import com.example.wmc.MainActivity;
 import com.example.wmc.HomeTag2ViewPager.HomeTag2ViewPager;
 import com.example.wmc.HomeTag2ViewPager.HomeTag2ViewPagerAdapter;
 import com.example.wmc.HomeTag2ViewPager.HomeTag2ViewPagerItem;
+import com.example.wmc.MainActivity;
 import com.example.wmc.R;
 import com.example.wmc.database.Bookmark;
 import com.example.wmc.database.Cafe;
@@ -1020,38 +1020,89 @@ public class HomeFragment extends Fragment {
                                                 else
                                                     get_taste_point_avg = get_taste_point_total / review_counter;
 
-                                                if (get_user_fav.equals("스터디")) {
-                                                    if (get_study_point_total >= get_taste_point_total) {
 
-                                                        HomeTag1ViewPagerItem firstTag_item = new HomeTag1ViewPagerItem(c.getCafeName(), c.getCafeAddress(), "#스터디", tag1, tag2,
-                                                                get_review, R.drawable.logo, get_study_point_avg);
-                                                        tag1_List.add(firstTag_item);
-                                                    }
-                                                    else{
-                                                        HomeTag2ViewPagerItem secondTag_item = new HomeTag2ViewPagerItem(c.getCafeName(), c.getCafeAddress(), "#맛", tag1, tag2,
-                                                                get_review, R.drawable.logo, get_taste_point_avg);
-                                                        tag2_List.add(secondTag_item);
-                                                    }
-                                                }
-                                                else{
-                                                    if (get_study_point_total <= get_taste_point_total) {
+                                                String get_cafeImage_url = getResources().getString(R.string.url) + "cafeImage";
 
-                                                        HomeTag1ViewPagerItem firstTag_item = new HomeTag1ViewPagerItem(c.getCafeName(), c.getCafeAddress(), "#맛", tag1, tag2,
-                                                                get_review, R.drawable.logo, get_study_point_avg);
-                                                        tag1_List.add(firstTag_item);
+                                                StringRequest cafeImage_stringRequest1 = new StringRequest(Request.Method.GET, get_cafeImage_url, new Response.Listener<String>() {
+                                                    @RequiresApi(api = Build.VERSION_CODES.O)
+                                                    @Override
+                                                    public void onResponse(String response) {
+                                                        // 한글깨짐 해결 코드
+                                                        String changeString = new String();
+                                                        try {
+                                                            changeString = new String(response.getBytes("8859_1"), "utf-8");
+                                                        } catch (UnsupportedEncodingException e) {
+                                                            e.printStackTrace();
+                                                        }
+                                                        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                                                        Type listType = new TypeToken<ArrayList<CafeImage>>() {
+                                                        }.getType();
+
+                                                        cafeImage_list = gson.fromJson(changeString, listType);
+
+
+                                                        // 다른페이지 갔다왔을때, URL 초기화 시켜야해서 추가해둠
+                                                        represent_cafeImage_URL = "";
+
+                                                        for (CafeImage ci : cafeImage_list) {
+                                                            if (ci.getCafeNum().equals(c.getCafeNum())) {
+                                                                Log.d("cafeNum", ci.getCafeNum() + ", " + c.getCafeNum());
+                                                                Log.d("cafeImage URL", ci.getFileUrl());
+                                                                represent_cafeImage_URL = ci.getFileUrl();
+                                                                break;
+                                                            }
+                                                        }
+
+                                                        if (represent_cafeImage_URL.equals(""))
+                                                            represent_cafeImage_URL = "https://w.namu.la/s/0c6301df01fc4f180ec65717bad3d0254258abf0be33299e55df7c261040f517518eb9008a1a2cd3d7b8b7777d70182c185bc891b1054dc57b11cc46fd29130a3474f1b75b816024dfdc16b692a0c77c";
+
+
+                                                        if (get_user_fav.equals("스터디")) {
+                                                            if (get_study_point_total >= get_taste_point_total) {
+
+                                                                HomeTag1ViewPagerItem firstTag_item = new HomeTag1ViewPagerItem(c.getCafeName(), c.getCafeAddress(), "#스터디", tag1, tag2,
+                                                                        get_review, represent_cafeImage_URL, get_study_point_avg);
+                                                                tag1_List.add(firstTag_item);
+                                                            } else {
+                                                                HomeTag2ViewPagerItem secondTag_item = new HomeTag2ViewPagerItem(c.getCafeName(), c.getCafeAddress(), "#맛", tag1, tag2,
+                                                                        get_review, represent_cafeImage_URL, get_taste_point_avg);
+                                                                tag2_List.add(secondTag_item);
+                                                            }
+                                                        } else {
+                                                            if (get_study_point_total <= get_taste_point_total) {
+
+                                                                HomeTag1ViewPagerItem firstTag_item = new HomeTag1ViewPagerItem(c.getCafeName(), c.getCafeAddress(), "#맛", tag1, tag2,
+                                                                        get_review, represent_cafeImage_URL, get_study_point_avg);
+                                                                tag1_List.add(firstTag_item);
+                                                            } else {
+                                                                HomeTag2ViewPagerItem secondTag_item = new HomeTag2ViewPagerItem(c.getCafeName(), c.getCafeAddress(), "#스터디", tag1, tag2,
+                                                                        get_review, represent_cafeImage_URL, get_taste_point_avg);
+                                                                tag2_List.add(secondTag_item);
+                                                            }
+                                                        }
+
+
+                                                }, new Response.ErrorListener()
+
+                                                    {
+                                                        @Override
+                                                        public void onErrorResponse (VolleyError
+                                                        error){
+                                                        Log.e("cafeImage_stringRequest_error", error.toString());
                                                     }
-                                                    else{
-                                                        HomeTag2ViewPagerItem secondTag_item = new HomeTag2ViewPagerItem(c.getCafeName(), c.getCafeAddress(), "#스터디", tag1, tag2,
-                                                                get_review, R.drawable.logo, get_taste_point_avg);
-                                                        tag2_List.add(secondTag_item);
-                                                    }
+                                                });
+
+                                                requestQueue.add(cafeImage_stringRequest1);
+
+
+
                                                 }
                                             }
                                         }
 
 
-                                        first_viewPager.setAdapter(new HomeTag1ViewPagerAdapter(getContext().getApplicationContext(), tag1_List));
-                                        tag1Adapter = new HomeTag1ViewPagerAdapter(getContext().getApplicationContext(), tag1_List);
+                                        first_viewPager.setAdapter(new HomeTag1ViewPagerAdapter(getContext().getApplicationContext(), tag1_List, HomeFragment.this));
+                                        tag1Adapter = new HomeTag1ViewPagerAdapter(getContext().getApplicationContext(), tag1_List, HomeFragment.this);
 
 
                                         first_viewPager.setOnItemClickListener(new HomeTag1ViewPager.OnItemClickListener() {
