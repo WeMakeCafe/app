@@ -182,6 +182,7 @@ public class Mypage_ReviewCommentFragment extends Fragment {
                 Log.d("리뷰에서 받음 -> flag", String.valueOf(flag));
                 Log.d("리뷰에서 받음 -> tag1", String.valueOf(tag1));
                 Log.d("리뷰에서 받음 -> p1", String.valueOf(p1));
+                Log.d("리뷰에서 받음 -> location", String.valueOf(location_flag));
 
             }
 
@@ -370,6 +371,7 @@ public class Mypage_ReviewCommentFragment extends Fragment {
                 Log.d("리뷰에서 받음 -> 쓴맛", String.valueOf(p2));
                 Log.d("리뷰에서 받음 -> 디저트", String.valueOf(p3));
                 Log.d("리뷰에서 받음 -> 기타음료", String.valueOf(p4));
+                Log.d("리뷰에서 받음 -> location(코멘토리)", String.valueOf(location_flag));
             }
         }
 
@@ -454,6 +456,7 @@ public class Mypage_ReviewCommentFragment extends Fragment {
                             map.put("studyPoint2", p10);
                             map.put("studyPoint3", p11);
                             map.put("studyPoint4", p12);
+                            map.put("locationcheck", location_flag);
                             map.put("cafeNum", cafeNum);
                             map.put("likeCount", 0);
                             map.put("reviewText", reviewComment_editText.getText().toString());
@@ -997,6 +1000,7 @@ public class Mypage_ReviewCommentFragment extends Fragment {
                             map.put("studyPoint2", p10);
                             map.put("studyPoint3", p11);
                             map.put("studyPoint4", p12);
+                            map.put("locationcheck", location_flag);
                             map.put("cafeNum", cafeNum);
                             map.put("likeCount", likeCount);
                             map.put("memNum", mem_num);

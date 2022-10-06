@@ -200,159 +200,163 @@ public class CafeModifyFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
 
-                        for(Cafe c : cafe_list) {
-                            if(c.getCafeNum().equals(cafe_num)) {  //bundle에서 가져온 카페아이디값 cafe_name에 넣어서 비교 연산
+                        if(uriList.size() == 0) {
+                            AlertDialog.Builder mod = new AlertDialog.Builder(getActivity());
+                            mod.setTitle("잠깐!").setMessage("카페 사진이 한장도 없습니다!").setNeutralButton("확인", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
 
-                                Map map = new HashMap();
+                                }
+                            }).create().show();
+                        }
+                        else {
+                            for (Cafe c : cafe_list) {
+                                if (c.getCafeNum().equals(cafe_num)) {  //bundle에서 가져온 카페아이디값 cafe_name에 넣어서 비교 연산
 
-                                map.put("cafeName", cafe_name_input.getText().toString());
-                                map.put("cafeAddress", cafe_address_input.getText().toString());
-                                map.put("openTime", cafe_openHours_hour_input.getText().toString() + cafe_openHours_minute_input.getText().toString());
-                                map.put("closeTime", cafe_closeHours_hour_input.getText().toString() + cafe_closeHours_minute_input.getText().toString());
-//                                map.put("cafeImage", c.getCafeImage());
-//                                map.put("reviewNum", c.getReviewNum());
-                                map.put("keyword1", c.getKeyword1());
-                                map.put("keyword2", c.getKeyword2());
-                                map.put("keyword3", c.getKeyword3());
-                                map.put("keyword4", c.getKeyword4());
-                                map.put("keyword5", c.getKeyword5());
-                                map.put("keyword6", c.getKeyword6());
-                                map.put("keyword7", c.getKeyword7());
-                                map.put("keyword8", c.getKeyword8());
-                                map.put("keyword9", c.getKeyword9());
-                                map.put("keyword10", c.getKeyword10());
-                                map.put("keyword11", c.getKeyword11());
-                                map.put("keyword12", c.getKeyword12());
-                                map.put("keyword13", c.getKeyword13());
-                                map.put("keyword14", c.getKeyword14());
-                                map.put("keyword15", c.getKeyword15());
-                                map.put("keyword16", c.getKeyword16());
-                                map.put("keyword17", c.getKeyword17());
-                                map.put("keyword18", c.getKeyword18());
-                                map.put("keyword19", c.getKeyword19());
-                                map.put("keyword20", c.getKeyword20());
-                                map.put("keyword21", c.getKeyword21());
-                                map.put("keyword22", c.getKeyword22());
-                                map.put("keyword23", c.getKeyword23());
-                                map.put("keyword24", c.getKeyword24());
-                                map.put("keyword25", c.getKeyword25());
-                                map.put("keyword26", c.getKeyword26());
-                                map.put("keyword27", c.getKeyword27());
-                                map.put("keyword28", c.getKeyword28());
-                                map.put("keyword29", c.getKeyword29());
-                                map.put("keyword30", c.getKeyword30());
-                                map.put("keyword31", c.getKeyword31());
-                                map.put("keyword32", c.getKeyword32());
-                                map.put("keyword33", c.getKeyword33());
-                                map.put("keyword34", c.getKeyword34());
-                                map.put("keyword35", c.getKeyword35());
-                                map.put("keyword36", c.getKeyword36());
-                                map.put("scoreNum", c.getScoreNum());
-                                map.put("tastePoint1", c.getTastePoint1());
-                                map.put("tastePoint2", c.getTastePoint2());
-                                map.put("tastePoint3", c.getTastePoint3());
-                                map.put("tastePoint4", c.getTastePoint4());
-                                map.put("seatPoint1", c.getSeatPoint1());
-                                map.put("seatPoint2", c.getSeatPoint2());
-                                map.put("seatPoint3", c.getSeatPoint3());
-                                map.put("seatPoint4", c.getSeatPoint4());
-                                map.put("studyPoint1", c.getStudyPoint1());
-                                map.put("studyPoint2", c.getStudyPoint2());
-                                map.put("studyPoint3", c.getStudyPoint3());
-                                map.put("studyPoint4", c.getStudyPoint4());
+                                    Map map = new HashMap();
 
-                                if(!((c.getOpenTime().equals(cafe_openHours_hour_input.getText().toString() + cafe_openHours_minute_input.getText().toString())) &&
-                                        (c.getCloseTime().equals(cafe_closeHours_hour_input.getText().toString() + cafe_closeHours_minute_input.getText().toString())))) {
+                                    map.put("cafeName", cafe_name_input.getText().toString());
+                                    map.put("cafeAddress", cafe_address_input.getText().toString());
+                                    map.put("openTime", cafe_openHours_hour_input.getText().toString() + cafe_openHours_minute_input.getText().toString());
+                                    map.put("closeTime", cafe_closeHours_hour_input.getText().toString() + cafe_closeHours_minute_input.getText().toString());
+                                    map.put("keyword1", c.getKeyword1());
+                                    map.put("keyword2", c.getKeyword2());
+                                    map.put("keyword3", c.getKeyword3());
+                                    map.put("keyword4", c.getKeyword4());
+                                    map.put("keyword5", c.getKeyword5());
+                                    map.put("keyword6", c.getKeyword6());
+                                    map.put("keyword7", c.getKeyword7());
+                                    map.put("keyword8", c.getKeyword8());
+                                    map.put("keyword9", c.getKeyword9());
+                                    map.put("keyword10", c.getKeyword10());
+                                    map.put("keyword11", c.getKeyword11());
+                                    map.put("keyword12", c.getKeyword12());
+                                    map.put("keyword13", c.getKeyword13());
+                                    map.put("keyword14", c.getKeyword14());
+                                    map.put("keyword15", c.getKeyword15());
+                                    map.put("keyword16", c.getKeyword16());
+                                    map.put("keyword17", c.getKeyword17());
+                                    map.put("keyword18", c.getKeyword18());
+                                    map.put("keyword19", c.getKeyword19());
+                                    map.put("keyword20", c.getKeyword20());
+                                    map.put("keyword21", c.getKeyword21());
+                                    map.put("keyword22", c.getKeyword22());
+                                    map.put("keyword23", c.getKeyword23());
+                                    map.put("keyword24", c.getKeyword24());
+                                    map.put("keyword25", c.getKeyword25());
+                                    map.put("keyword26", c.getKeyword26());
+                                    map.put("keyword27", c.getKeyword27());
+                                    map.put("keyword28", c.getKeyword28());
+                                    map.put("keyword29", c.getKeyword29());
+                                    map.put("keyword30", c.getKeyword30());
+                                    map.put("keyword31", c.getKeyword31());
+                                    map.put("keyword32", c.getKeyword32());
+                                    map.put("keyword33", c.getKeyword33());
+                                    map.put("keyword34", c.getKeyword34());
+                                    map.put("keyword35", c.getKeyword35());
+                                    map.put("keyword36", c.getKeyword36());
+                                    map.put("scoreNum", c.getScoreNum());
+                                    map.put("tastePoint1", c.getTastePoint1());
+                                    map.put("tastePoint2", c.getTastePoint2());
+                                    map.put("tastePoint3", c.getTastePoint3());
+                                    map.put("tastePoint4", c.getTastePoint4());
+                                    map.put("seatPoint1", c.getSeatPoint1());
+                                    map.put("seatPoint2", c.getSeatPoint2());
+                                    map.put("seatPoint3", c.getSeatPoint3());
+                                    map.put("seatPoint4", c.getSeatPoint4());
+                                    map.put("studyPoint1", c.getStudyPoint1());
+                                    map.put("studyPoint2", c.getStudyPoint2());
+                                    map.put("studyPoint3", c.getStudyPoint3());
+                                    map.put("studyPoint4", c.getStudyPoint4());
 
-                                    JSONObject jsonObject = new JSONObject(map);
+                                    if (!((c.getOpenTime().equals(cafe_openHours_hour_input.getText().toString() + cafe_openHours_minute_input.getText().toString())) &&
+                                            (c.getCloseTime().equals(cafe_closeHours_hour_input.getText().toString() + cafe_closeHours_minute_input.getText().toString())))) {
 
-                                    String url2 = getResources().getString(R.string.url) + "cafe/" + c.getCafeNum().toString(); // 해당 카페에만 데이터 삽입하기 위함
+                                        JSONObject jsonObject = new JSONObject(map);
 
-                                    JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.PUT, url2, jsonObject,
-                                            new Response.Listener<JSONObject>() {
-                                                @Override
-                                                public void onResponse(JSONObject response) {
+                                        String url2 = getResources().getString(R.string.url) + "cafe/" + c.getCafeNum().toString(); // 해당 카페에만 데이터 삽입하기 위함
+
+                                        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.PUT, url2, jsonObject,
+                                                new Response.Listener<JSONObject>() {
+                                                    @Override
+                                                    public void onResponse(JSONObject response) {
 
 //
 
-                                                }
-                                            },
-                                            new Response.ErrorListener() {
-                                                @Override
-                                                public void onErrorResponse(VolleyError error) {
+                                                    }
+                                                },
+                                                new Response.ErrorListener() {
+                                                    @Override
+                                                    public void onErrorResponse(VolleyError error) {
 
-                                                }
-                                            })
-                                    {
-                                        @Override
-                                        public String getBodyContentType() {
-                                            return "application/json; charset=UTF-8";
+                                                    }
+                                                }) {
+                                            @Override
+                                            public String getBodyContentType() {
+                                                return "application/json; charset=UTF-8";
+                                            }
+                                        };
+                                        RequestQueue queue = Volley.newRequestQueue(requireContext());
+                                        queue.add(objectRequest);
+
+
+                                        // 리스트에있는 이미지들 서버로 전송하는 코드
+                                        // 갤러리에서 가져온 애들 서버로 전송
+                                        for (Uri u : uriList) {
+                                            // 이미지 절대주소 만들기
+                                            if (u.toString().contains("http")) {
+                                                file = new File(u.toString());
+
+                                                // 이미지 서버로 전송
+                                                FileUploadUtils.sendCafeImage(file, c.getCafeNum());
+                                            } else {
+                                                Cursor cursor = getContext().getContentResolver().query(Uri.parse(u.toString()), null, null, null, null);
+                                                cursor.moveToNext();
+                                                String absolutePath = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA));
+                                                file = new File(absolutePath);
+
+                                                // 이미지 서버로 전송
+                                                FileUploadUtils.sendCafeImage(file, c.getCafeNum());
+                                            }
                                         }
-                                    };
-                                    RequestQueue queue = Volley.newRequestQueue(requireContext());
-                                    queue.add(objectRequest);
 
 
+                                        // 카페 수정 완료 시 해당 카페 디테일로 넘어가기 - 송상화
+                                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                                        builder.setTitle("카페 수정").setMessage("카페가 수정되었습니다.").setIcon(R.drawable.logo);
 
-                                    // 리스트에있는 이미지들 서버로 전송하는 코드
-                                    // 갤러리에서 가져온 애들 서버로 전송
-                                    for(Uri u : uriList){
-                                        // 이미지 절대주소 만들기
-                                        if(u.toString().contains("http")) {
-                                            file = new File(u.toString());
+                                        builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int id) {
+                                                Bundle cafebundle = new Bundle();
+                                                cafebundle.putString("cafeName", cafe_name_input.getText().toString());
 
-                                            // 이미지 서버로 전송
-                                            FileUploadUtils.sendCafeImage(file, c.getCafeNum());
-                                        }
+                                                navController.navigate(R.id.cafe_modify_to_cafe_detail, cafebundle);
+                                            }
+                                        });
 
-                                        else {
-                                            Cursor cursor = getContext().getContentResolver().query(Uri.parse(u.toString()), null,null,null,null);
-                                            cursor.moveToNext();
-                                            String absolutePath = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA));
-                                            file = new File(absolutePath);
+                                        AlertDialog alertDialog = builder.create();
+                                        alertDialog.show();
 
-                                            // 이미지 서버로 전송
-                                            FileUploadUtils.sendCafeImage(file, c.getCafeNum());
-                                        }
                                     }
 
+                                    // -> 시간 변경이 없을 때 실행되는 문장
+                                    else {
+                                        AlertDialog.Builder mod = new AlertDialog.Builder(getActivity());
+                                        mod.setTitle("잠깐!").setMessage("시간이 변경되지 않았습니다!").setNeutralButton("확인", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
 
-                                    // 카페 수정 완료 시 해당 카페 디테일로 넘어가기 - 송상화
-                                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                                    builder.setTitle("카페 수정").setMessage("카페가 수정되었습니다.").setIcon(R.drawable.logo);
+                                            }
+                                        }).create().show();
 
-                                    builder.setPositiveButton("확인", new DialogInterface.OnClickListener(){
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int id)
-                                        {
-                                            Bundle cafebundle = new Bundle();
-                                            cafebundle.putString("cafeName", cafe_name_input.getText().toString());
-
-                                            navController.navigate(R.id.cafe_modify_to_cafe_detail, cafebundle);
-                                        }
-                                    });
-
-                                    AlertDialog alertDialog = builder.create();
-                                    alertDialog.show();
-
-                                }
-
-                                // -> 시간 변경이 없을 때 실행되는 문장
-                                else {
-                                    AlertDialog.Builder mod = new AlertDialog.Builder(getActivity());
-                                    mod.setTitle("잠깐!").setMessage("시간이 변경되지 않았습니다!").setNeutralButton("확인", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-
-                                        }
-                                    }).create().show();
-
+                                    }
                                 }
                             }
                         }
                     }
 
-                }); // 수정하기 버튼 클릭 시, 동작 할 내용들
+                });
 
             }
         }, new Response.ErrorListener() {

@@ -117,18 +117,6 @@ public class CafeRegistrationFragment extends Fragment {
         cafe_closeHours_hour_input = root.findViewById(R.id.cafe_closeHours_hour_input);
         cafe_closeHours_minute_input= root.findViewById(R.id.cafe_closeHours_minute_input);
 
-//        Button test_Button = root.findViewById(R.id.test_Button);
-//
-//        test_Button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                Long mem_num = 1L;
-//                Long review_num = 1l;
-//                FileUploadUtils.goSend(file, mem_num, review_num);
-//            }
-//        });
-
         // 서버연산을 위한 long형 배열 초기화 코드
         for(int i = 0 ; i<=35; i++){
             k[i] = (long) 0;
@@ -157,9 +145,6 @@ public class CafeRegistrationFragment extends Fragment {
 
                 cafe_list = gson.fromJson(changeString, listType);
 
-                // cafe 테이블의 튜플이 제대로 오는지 확인 (테스트 할 때만 만들어두고 해당 기능 다 개발 시 제거하는게 좋음)
-                Log.d("test", String.valueOf(cafe_list.size()));
-
                 // 중복확인 버튼 클릭 시,
                 checked_overlap_button.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -169,14 +154,26 @@ public class CafeRegistrationFragment extends Fragment {
 
                         // 데이터베이스에서 카페이름이 있는지 중복검사
                         if(overlap_cafeName.equals("")) {
-                            Toast.makeText(getContext().getApplicationContext(), "카페 이름을 입력해주세요!", Toast.LENGTH_LONG).show();
+                            AlertDialog.Builder mod = new AlertDialog.Builder(getActivity());
+                            mod.setTitle("잠깐!").setMessage("카페 이름을 입력해주세요!").setNeutralButton("확인", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            }).create().show();
                         }
 
                         else{
                             for(Cafe c : cafe_list) {
                                 // 이미 동일한 이름의 카페가 등록되어있는 경우
                                 if (c.getCafeName().replaceAll(" ", "").equals(overlap_cafeName)) {
-                                    Toast.makeText(getContext().getApplicationContext(), "이미 있는 카페입니다!", Toast.LENGTH_LONG).show();
+                                    AlertDialog.Builder mod = new AlertDialog.Builder(getActivity());
+                                    mod.setTitle("잠깐!").setMessage("이미 있는 카페입니다!").setNeutralButton("확인", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+
+                                        }
+                                    }).create().show();
                                     name_test = false;
                                     break;
                                 }
@@ -186,7 +183,15 @@ public class CafeRegistrationFragment extends Fragment {
                                     name_test = true;
                             }
 
-                            if( name_test ) Toast.makeText(getContext().getApplicationContext(), "등록 가능한 카페입니다!", Toast.LENGTH_LONG).show();
+                            if( name_test ) {
+                                AlertDialog.Builder mod = new AlertDialog.Builder(getActivity());
+                                mod.setTitle("정보").setMessage("등록 가능한 카페입니다.").setNeutralButton("확인", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                    }
+                                }).create().show();
+                            }
                         }
                     }
                 });
@@ -610,7 +615,6 @@ public class CafeRegistrationFragment extends Fragment {
                                                 Cursor c = getContext().getContentResolver().query(Uri.parse(u.toString()), null,null,null,null);
                                                 c.moveToNext();
                                                 String absolutePath = c.getString(c.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA));
-                                                Log.d("test_check" , absolutePath);
                                                 file = new File(absolutePath);
 
                                                 // 이미지 서버로 전송
@@ -624,7 +628,7 @@ public class CafeRegistrationFragment extends Fragment {
                                 new Response.ErrorListener() {
                                     @Override
                                     public void onErrorResponse(VolleyError error) {
-                                        Log.d("test", error.toString());
+
                                     }
                                 }) {
                             @Override
@@ -635,11 +639,6 @@ public class CafeRegistrationFragment extends Fragment {
                             RequestQueue queue = Volley.newRequestQueue(requireContext());
                             queue.add(objectRequest);
 
-
-                            // 카페 등록 완료 시 해당 카페 디테일로 넘어가기 - 송상화
-//                            Bundle bundle = new Bundle();
-//                            bundle.putString("cafeName", cafe_name_input.getText().toString());
-//                            navController.navigate(R.id.cafe_registration_to_list_cafelist);
 
                             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                             builder.setTitle("카페 등록").setMessage("카페가 등록되었습니다.").setIcon(R.drawable.logo);
@@ -655,11 +654,16 @@ public class CafeRegistrationFragment extends Fragment {
                             AlertDialog alertDialog = builder.create();
                             alertDialog.show();
 
-
                         }
 
                         else {
-                            Toast.makeText(getContext().getApplicationContext(), "비어 있는 항목이 있거나 시간입력이 부적절합니다!", Toast.LENGTH_LONG).show();
+                            AlertDialog.Builder mod = new AlertDialog.Builder(getActivity());
+                            mod.setTitle("잠깐!").setMessage("비어 있는 항목이 있거나 시간입력이 부적절합니다!").setNeutralButton("확인", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            }).create().show();
                         }
                     }
                 });
@@ -682,24 +686,13 @@ public class CafeRegistrationFragment extends Fragment {
                 bundle.putString("address", cafe_address_input.getText().toString());
                 bundle.putBoolean("name_test", name_test); // 중복확인 여부 전달
 
-//                if(!cafe_openHours_hour_input.getText().toString().equals("") && !cafe_openHours_minute_input.getText().toString().equals("") &&
-//                        !cafe_closeHours_hour_input.getText().toString().equals("") && !cafe_closeHours_minute_input.getText().toString().equals("")){
                     bundle.putString("opentime", cafe_openHours_hour_input.getText().toString() + cafe_openHours_minute_input.getText().toString());
                     bundle.putString("closetime", cafe_closeHours_hour_input.getText().toString() + cafe_closeHours_minute_input.getText().toString());
-//                }
 
                 bundle.putParcelableArrayList("cafeImage", uriList);
 
-                for(Uri u : uriList) {
-                    Log.d("cafeImage_URL", u.toString());
-                }
-//                for(int i = 0; i < uriList.size(); i++) {
-//                    bundle.putString("cafeImage" + String.valueOf((i + 1)), uriList.get(i).toString());
-//                    Log.d("cafeImage_URL", uriList.get(i).toString());
-//                }
 
-                Log.d("opentime", cafe_openHours_hour_input.getText().toString() + cafe_openHours_minute_input.getText().toString());
-                Log.d("closetime", cafe_closeHours_hour_input.getText().toString() + cafe_closeHours_minute_input.getText().toString());
+
                 navController.navigate(R.id.cafe_registration_to_cafe_registration_tag, bundle);
             }
         });
@@ -744,9 +737,6 @@ public class CafeRegistrationFragment extends Fragment {
 
                 uriList = argBundle.getParcelableArrayList("cafeImage");
 
-                for(Uri u : uriList){
-                    Log.d("Tag에서 전달받은 이미지", u.toString());
-                }
                 //카페이미지 문장
                 tag1 = argBundle.getString("key1");
                 tag2 = argBundle.getString("key2");
@@ -757,9 +747,6 @@ public class CafeRegistrationFragment extends Fragment {
             cafeRegistrationImageRecyclerView.setAdapter(registrationAdapter);
             cafeRegistrationImageRecyclerView.setLayoutManager(new LinearLayoutManager(getContext().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
         }
-
-
-
 
         // 카페 등록 페이지의 이미지 추가 버튼(+) 클릭 시,
         cafeRegistratin_add_image_button.setOnClickListener(new View.OnClickListener() {
@@ -774,36 +761,8 @@ public class CafeRegistrationFragment extends Fragment {
             }
         });
 
-
         // Adapter 추가
         RecyclerView registrationRecyclerView = root.findViewById(R.id.cafeRegistrationImageRecyclerView);
-
-//        // 카페 이미지 등록 리싸이클러뷰
-//        ArrayList<CafeRegistrationItem> registrationImageItems = new ArrayList<>();
-//
-//        registrationImageItems.add(new CafeRegistrationItem(R.drawable.logo));
-//        registrationImageItems.add(new CafeRegistrationItem(R.drawable.logo_v2));
-//        registrationImageItems.add(new CafeRegistrationItem(R.drawable.bean_grade1));
-//        registrationImageItems.add(new CafeRegistrationItem(R.drawable.bean_grade2));
-//        registrationImageItems.add(new CafeRegistrationItem(R.drawable.bean_grade3));
-//
-//        // Adapter 추가
-//        RecyclerView registrationRecyclerView = root.findViewById(R.id.cafeRegistrationImageRecyclerView);
-//
-//        CafeRegistrationAdapter registrationAdapter = new CafeRegistrationAdapter(registrationImageItems);
-//        registrationRecyclerView.setAdapter(registrationAdapter);
-//
-//        // Layout manager 추가
-//        LinearLayoutManager registrationLayoutManager = new LinearLayoutManager(getContext().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
-//        registrationRecyclerView.setLayoutManager(registrationLayoutManager);
-//
-//        registrationAdapter.setOnItemClickListener_CafeRegistration(new CafeRegistrationAdapter.OnItemClickEventListener_CafeRegistration() {
-//            @Override
-//            public void onItemClick(View a_view, int a_position) {
-//                final CafeRegistrationItem item = registrationImageItems.get(a_position);
-//                Toast.makeText(getContext().getApplicationContext(), item.getRegistrationImage() + " 클릭됨.", Toast.LENGTH_SHORT).show();
-//            }
-//        });
 
         return root;
     }
@@ -814,13 +773,25 @@ public class CafeRegistrationFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(data == null){   // 어떤 이미지도 선택하지 않은 경우
-            Toast.makeText(getContext().getApplicationContext(), "이미지를 선택하지 않았습니다.", Toast.LENGTH_LONG).show();
+            AlertDialog.Builder mod = new AlertDialog.Builder(getActivity());
+            mod.setTitle("잠깐!").setMessage("이미지를 선택하지 않았습니다!").setNeutralButton("확인", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            }).create().show();
         }
 
         else{   // 이미지를 하나라도 선택한 경우
             if(data.getClipData() == null){     // 이미지를 하나만 선택한 경우
                 if(uriList.size() >= 5) {
-                    Toast.makeText(getContext().getApplicationContext(), "이미지 5개를 모두 선택하셨습니다.", Toast.LENGTH_LONG).show();
+                    AlertDialog.Builder mod = new AlertDialog.Builder(getActivity());
+                    mod.setTitle("잠깐!").setMessage("이미지 5개를 모두 선택하셨습니다.").setNeutralButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    }).create().show();
                 }
 
                 else{
@@ -840,7 +811,13 @@ public class CafeRegistrationFragment extends Fragment {
                 Log.e("clipData", String.valueOf(clipData.getItemCount()));
 
                 if(clipData.getItemCount() > 5){   // 선택한 이미지가 6장 이상인 경우
-                    Toast.makeText(getContext().getApplicationContext(), "사진은 5장까지 선택 가능합니다.", Toast.LENGTH_LONG).show();
+                    AlertDialog.Builder mod = new AlertDialog.Builder(getActivity());
+                    mod.setTitle("잠깐!").setMessage("사진은 5장까지 선택 가능합니다.").setNeutralButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    }).create().show();
                 }
 
                 else{   // 선택한 이미지가 1장 이상 5장 이하인 경우
@@ -851,11 +828,6 @@ public class CafeRegistrationFragment extends Fragment {
                         if(uriList.size() <= 4){
                             Uri imageUri = clipData.getItemAt(i).getUri();  // 선택한 이미지들의 uri를 가져온다.
                             Log.d("imageUri" , imageUri.toString());
-//                            Cursor c = getContext().getContentResolver().query(Uri.parse(imageUri.toString()), null,null,null,null);
-//                            c.moveToNext();
-//                            String absolutePath = c.getString(c.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA));
-//                            Log.d("test_check" , absolutePath);
-//                            file = new File(absolutePath);
 
                             try {
                                 uriList.add(imageUri);  //uri를 list에 담는다.
@@ -865,7 +837,13 @@ public class CafeRegistrationFragment extends Fragment {
                             }
                         }
                         else {
-                            Toast.makeText(getContext().getApplicationContext(), "사진은 5장까지 선택 가능합니다.", Toast.LENGTH_LONG).show();
+                            AlertDialog.Builder mod = new AlertDialog.Builder(getActivity());
+                            mod.setTitle("잠깐!").setMessage("사진은 5장까지 선택 가능합니다.").setNeutralButton("확인", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            }).create().show();
                             break;
                         }
                     }
