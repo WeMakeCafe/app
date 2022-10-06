@@ -1,6 +1,7 @@
 package com.example.wmc.ui.Fragment;
 
 import android.annotation.SuppressLint;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -1059,11 +1060,16 @@ public class CafeDetailFragment extends Fragment {
                     if(ci.getCafeNum().equals(get_cafe_num)){
                         Log.d("cafeImage URL", ci.getFileUrl());
                         imageList.add(ci.getFileUrl());
+                        Log.d("cafeImage URL2", imageList.get(0)); // 여기 싹다 최초 실행시 실행x
+                       // Uri i = Uri.parse(ci.getFileUrl());
+                       // uriList.add(i);
                     }
                 }
 
                 cafeImageViewPager.setAdapter(new CafeDetailImageViewPagerAdapter(getContext().getApplicationContext(), imageList, CafeDetailFragment.this));
-
+                //  cafeModifyAdapter = new CafeModifyAdapter(getContext(), uriList, CafeModifyFragment.this);
+                //  cafeModifyImageRecyclerView.setAdapter(cafeModifyAdapter);
+                //  cafeModifyImageRecyclerView.setLayoutManager(new LinearLayoutManager(getContext().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
             }
         }, new Response.ErrorListener() {
             @Override
