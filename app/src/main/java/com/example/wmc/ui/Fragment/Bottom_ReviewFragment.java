@@ -1180,6 +1180,26 @@ public class Bottom_ReviewFragment extends Fragment {
                     Toast.makeText(getContext().getApplicationContext(), "리뷰를 작성할 카페를 검색해주세요.", Toast.LENGTH_SHORT).show();
 
                 else {
+
+                    // 가장최근 위치정보 가져오기
+                    Location location = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+
+                    if(location != null) {
+                        latitude1 = location.getLatitude();
+                        longitude1 = location.getLongitude();
+
+                        try {
+                            myLocation = g.getFromLocation(latitude1, longitude1,10);
+                            Log.d("reviewCafeAddress", myLocation.get(0).getAddressLine(0).toString());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            Toast.makeText(getContext().getApplicationContext(), "주소를 가져 올 수 없습니다.", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                    else
+                        Log.d("reviewCafeAddress", "주소를 가져올 수 없습니다.");
+
+
                     RequestQueue requestQueue2;
                     Cache cache = new DiskBasedCache(getActivity().getCacheDir(), 1024 * 1024); // 1MB cap
                     Network network = new BasicNetwork(new HurlStack());

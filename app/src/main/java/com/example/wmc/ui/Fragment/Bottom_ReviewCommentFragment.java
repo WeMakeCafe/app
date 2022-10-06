@@ -458,6 +458,7 @@ public class Bottom_ReviewCommentFragment extends Fragment {
                             map.put("cafeNum", cafeNum);
                             map.put("likeCount", 0);
                             map.put("locationcheck", location_flag);
+                            Log.d("locationcheck", location_flag.toString());
                             map.put("reviewText", reviewComment_editText.getText().toString());
                             map.put("memNum", mem_num);
                             // 이미지 처리 문장 올 곳
