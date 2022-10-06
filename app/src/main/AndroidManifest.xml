@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.wmc">
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -22,13 +24,15 @@
             android:windowSoftInputMode="adjustPan"
             android:exported="true"
             android:label="@string/app_name" > <!--키보드 입력될때 하단바 같이 올라오는것 수정위한 코드(winSoftInputMode) -->
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".FindpwActivity" />
+        <activity android:name=".FindidActivity" />
+        <activity android:name=".LoginAcivity" />
+        <activity android:name=".SignupActivity" />
     </application>
 
 </manifest>

@@ -125,6 +125,8 @@ public class ReviewCommentFragment extends Fragment {
     Boolean moreReview_reviewModify_flag = false;
     Boolean mypage_reviewModify_flag = false;
 
+    Boolean location_flag = false;
+
     ArrayList<Cafe> cafe_list;
 
     File file;
@@ -181,6 +183,7 @@ public class ReviewCommentFragment extends Fragment {
                 mem_num = argBundle.getLong("memNum");
 
                 flag = argBundle.getBoolean("flag");    // 수정에서 넘어온 것인지 확인
+                location_flag = argBundle.getBoolean("location_flag");
 
                 Log.d("리뷰에서 받음 -> flag", String.valueOf(flag));
                 Log.d("리뷰에서 받음 -> tag1", String.valueOf(tag1));
@@ -315,6 +318,7 @@ public class ReviewCommentFragment extends Fragment {
 
                 likeCount = argBundle.getInt("likeCount");
                 flag = argBundle.getBoolean("flag");    // 수정에서 넘어온 것인지 확인
+                location_flag = argBundle.getBoolean("location_flag");
 
                 RequestQueue requestQueue;
                 Cache cache = new DiskBasedCache(getActivity().getCacheDir(), 1024 * 1024); // 1MB cap

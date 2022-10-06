@@ -193,6 +193,42 @@ public class CafeDetailFragment extends Fragment {
                         get_cafe_num = c.getCafeNum();
                         Log.d("check_cafe_num", get_cafe_num.toString()); // 카페 넘버가 제대로 들어오는지 확인
 
+                        String get_cafeImage_url = getResources().getString(R.string.url) + "cafeImage";
+
+                        StringRequest cafeImage_stringRequest = new StringRequest(Request.Method.GET, get_cafeImage_url, new Response.Listener<String>() {
+                            @RequiresApi(api = Build.VERSION_CODES.O)
+                            @Override
+                            public void onResponse(String response) {
+                                // 한글깨짐 해결 코드
+                                String changeString = new String();
+                                try {
+                                    changeString = new String(response.getBytes("8859_1"),"utf-8");
+                                } catch (UnsupportedEncodingException e) {
+                                    e.printStackTrace();
+                                }
+                                Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                                Type listType = new TypeToken<ArrayList<CafeImage>>(){}.getType();
+
+                                CafeImage_list = gson.fromJson(changeString, listType);
+
+                                for(CafeImage ci : CafeImage_list){
+                                    if(ci.getCafeNum().equals(get_cafe_num)){
+                                        Log.d("cafeImage URL", ci.getFileUrl());
+                                        imageList.add(ci.getFileUrl());
+                                    }
+                                }
+
+                                cafeImageViewPager.setAdapter(new CafeDetailImageViewPagerAdapter(getContext().getApplicationContext(), imageList, CafeDetailFragment.this));
+
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Log.e("cafeImage_stringRequest_error",error.toString());
+                            }
+                        });
+                        requestQueue.add(cafeImage_stringRequest);
+
                         moreReview2.setText(c.getCafeName());
                         moreReview3.setText(c.getCafeName());
                         moreReview4.setText(c.getCafeAddress());
@@ -713,7 +749,7 @@ public class CafeDetailFragment extends Fragment {
                                         // 3. 카페 디테일에서는 가장 최근 리뷰 3개만 나오도록 설정
                                         for(Review r : review_list){
                                             if(r.getCafeNum().equals(get_cafe_num)) {
-                                                point_counter++;
+                                                point_counter = point_counter + 1;
                                                 love_flag = false;
 
                                                 // DB에서 받아온 리뷰 생성 시간을 변경하기 위한 코드
@@ -1038,49 +1074,6 @@ public class CafeDetailFragment extends Fragment {
         imageList = new ArrayList<>();
 
 
-        String get_cafeImage_url = getResources().getString(R.string.url) + "cafeImage";
-
-        StringRequest cafeImage_stringRequest = new StringRequest(Request.Method.GET, get_cafeImage_url, new Response.Listener<String>() {
-            @RequiresApi(api = Build.VERSION_CODES.O)
-            @Override
-            public void onResponse(String response) {
-                // 한글깨짐 해결 코드
-                String changeString = new String();
-                try {
-                    changeString = new String(response.getBytes("8859_1"),"utf-8");
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
-                Gson gson = new GsonBuilder().setPrettyPrinting().create();
-                Type listType = new TypeToken<ArrayList<CafeImage>>(){}.getType();
-
-                CafeImage_list = gson.fromJson(changeString, listType);
-
-                for(CafeImage ci : CafeImage_list){
-                    if(ci.getCafeNum().equals(get_cafe_num)){
-                        Log.d("cafeImage URL", ci.getFileUrl());
-                        imageList.add(ci.getFileUrl());
-                        Log.d("cafeImage URL2", imageList.get(0)); // 여기 싹다 최초 실행시 실행x
-                       // Uri i = Uri.parse(ci.getFileUrl());
-                       // uriList.add(i);
-                    }
-                }
-
-                cafeImageViewPager.setAdapter(new CafeDetailImageViewPagerAdapter(getContext().getApplicationContext(), imageList, CafeDetailFragment.this));
-                //  cafeModifyAdapter = new CafeModifyAdapter(getContext(), uriList, CafeModifyFragment.this);
-                //  cafeModifyImageRecyclerView.setAdapter(cafeModifyAdapter);
-                //  cafeModifyImageRecyclerView.setLayoutManager(new LinearLayoutManager(getContext().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("cafeImage_stringRequest_error",error.toString());
-            }
-        });
-
-
-        requestQueue.add(cafeImage_stringRequest);
-
 
 //        CafeDetailImagePagerAdapter cafeImageAdapter = new CafeDetailImagePagerAdapter(getActivity().getSupportFragmentManager());
 //
@@ -1165,5 +1158,11 @@ public class CafeDetailFragment extends Fragment {
         binding = null;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
 
+        point_counter = 0;
+        return;
+    }
 }

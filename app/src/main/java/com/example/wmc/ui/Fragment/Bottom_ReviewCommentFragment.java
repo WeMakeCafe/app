@@ -121,6 +121,8 @@ public class Bottom_ReviewCommentFragment extends Fragment {
     Boolean moreReview_reviewModify_flag = false;
     Boolean mypage_reviewModify_flag = false;
 
+    Boolean location_flag = false;
+
     ArrayList<Cafe> cafe_list;
 
     File file;
@@ -177,10 +179,12 @@ public class Bottom_ReviewCommentFragment extends Fragment {
                 mem_num = argBundle.getLong("memNum");
 
                 flag = argBundle.getBoolean("flag");    // 수정에서 넘어온 것인지 확인
+                location_flag = argBundle.getBoolean("location_flag");
 
                 Log.d("리뷰에서 받음 -> flag", String.valueOf(flag));
                 Log.d("리뷰에서 받음 -> tag1", String.valueOf(tag1));
                 Log.d("리뷰에서 받음 -> p1", String.valueOf(p1));
+                Log.d("리뷰에서 받음 -> location", String.valueOf(location_flag));
 
             }
 
@@ -206,6 +210,7 @@ public class Bottom_ReviewCommentFragment extends Fragment {
                 p11 = Integer.valueOf((int)argBundle.getFloat("studyPoint3"));
                 p12 = Integer.valueOf((int)argBundle.getFloat("studyPoint4"));
 
+                location_flag = argBundle.getBoolean("location_flag");
 
 //                for(int i = 0; i < k2.length; i++){
 //                    k2[i] = argBundle.getLong("k2-" + String.valueOf(i+1));
@@ -365,6 +370,7 @@ public class Bottom_ReviewCommentFragment extends Fragment {
                 Log.d("리뷰에서 받음 -> 쓴맛", String.valueOf(p2));
                 Log.d("리뷰에서 받음 -> 디저트", String.valueOf(p3));
                 Log.d("리뷰에서 받음 -> 기타음료", String.valueOf(p4));
+                Log.d("리뷰에서 받음 -> location(코멘토리)", String.valueOf(location_flag));
             }
         }
 
@@ -451,6 +457,7 @@ public class Bottom_ReviewCommentFragment extends Fragment {
                             map.put("studyPoint4", p12);
                             map.put("cafeNum", cafeNum);
                             map.put("likeCount", 0);
+                            map.put("locationcheck", location_flag);
                             map.put("reviewText", reviewComment_editText.getText().toString());
                             map.put("memNum", mem_num);
                             // 이미지 처리 문장 올 곳
@@ -994,6 +1001,7 @@ public class Bottom_ReviewCommentFragment extends Fragment {
                             map.put("studyPoint4", p12);
                             map.put("cafeNum", cafeNum);
                             map.put("likeCount", likeCount);
+                            map.put("locationcheck", location_flag);
                             map.put("memNum", mem_num);
                             map.put("reviewText", reviewComment_editText.getText().toString());
 

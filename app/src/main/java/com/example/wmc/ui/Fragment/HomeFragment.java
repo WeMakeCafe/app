@@ -1,5 +1,12 @@
 package com.example.wmc.ui.Fragment;
 
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -7,12 +14,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -49,9 +59,11 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 
 public class HomeFragment extends Fragment {
 
@@ -69,6 +81,7 @@ public class HomeFragment extends Fragment {
     TextView second_hashtag_textview;
     TextView first_hastage_cafelist_textview;
     TextView second_hastage_cafelist_textview;
+    EditText cafe_search_input;
 
     HomeTag1ViewPagerAdapter tag1Adapter;
     HomeTag2ViewPagerAdapter tag2Adapter;
@@ -94,6 +107,9 @@ public class HomeFragment extends Fragment {
     String tag2;
     String represent_cafeImage_URL = "";
 
+    List<Address> list = new ArrayList<>();
+    Geocoder g;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -110,8 +126,9 @@ public class HomeFragment extends Fragment {
         second_hashtag_textview = root.findViewById(R.id.second_hashtag_textView);
         first_hastage_cafelist_textview = root.findViewById(R.id.first_hashtag_cafeList_textView);
         second_hastage_cafelist_textview = root.findViewById(R.id.second_hashtag_cafeList_textView);
+        cafe_search_input = root.findViewById(R.id.cafe_search_input);
 
-
+        g = new Geocoder(getContext());
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Home 에서 찜한 카페에 대한 리사이클러뷰 작성
@@ -130,6 +147,70 @@ public class HomeFragment extends Fragment {
         String get_cafe_url = getResources().getString(R.string.url) + "cafe";
         String get_bookmark_url = getResources().getString(R.string.url) + "bookmark";
         String get_cafeImage_url = getResources().getString(R.string.url) + "cafeImage";
+
+
+        // 현재 내 위치 정보 가져오기(동까지)
+        final LocationListener gpsLocationListener = new LocationListener() {
+            public void onLocationChanged(Location location) {
+                // 위치 리스너는 위치정보를 전달할 때 호출되므로 onLocationChanged()메소드 안에 위지청보를 처리를 작업을 구현 해야합니다.
+                double longitude = location.getLongitude(); // 위도
+                double latitude = location.getLatitude(); // 경도
+
+                try {
+                    list = g.getFromLocation(latitude, longitude,10);
+                    cafe_search_input.setText(list.get(0).getAddressLine(0).substring(5));
+                } catch (IOException e) {
+                    Toast.makeText(getContext().getApplicationContext(), "주소를 가져 올 수 없습니다.", Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+            }
+
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+
+            } public void onProviderEnabled(String provider) {
+
+            } public void onProviderDisabled(String provider) {
+
+            }
+        };
+
+
+        final LocationManager lm = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+
+        if ( Build.VERSION.SDK_INT >= 23 &&
+                ContextCompat.checkSelfPermission( getActivity().getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED ) {
+            ActivityCompat.requestPermissions( getActivity(), new String[] {
+                    android.Manifest.permission.ACCESS_FINE_LOCATION}, 0 );
+        }
+
+        else{
+            // 가장최근 위치정보 가져오기
+            Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            if(location != null) {
+                double longitude = location.getLongitude();
+                double latitude = location.getLatitude();
+
+                try {
+                    list = g.getFromLocation(latitude, longitude,10);
+                    cafe_search_input.setText(list.get(0).getAddressLine(0).substring(5));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Toast.makeText(getContext().getApplicationContext(), "주소를 가져 올 수 없습니다.", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            // 위치정보를 원하는 시간, 거리마다 갱신해준다.
+            lm.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+                    1000,
+                    1,
+                    gpsLocationListener);
+            lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,
+                    1000,
+                    1,
+                    gpsLocationListener);
+        }
+        // 여기까지가 현재 내 위치 정보 가져오기(동까지)
+
 
         // Personal 접근
         StringRequest personal_stringRequest = new StringRequest(Request.Method.GET, get_personal_url, new Response.Listener<String>() {
@@ -590,7 +671,6 @@ public class HomeFragment extends Fragment {
                                         for (Personal p : personal_list){
                                             if(p.getMemNum().equals(mem_num)){
                                                 get_user_fav = p.getFavorite1();
-                                                get_user_address = p.getAddress();
                                             }
                                         }
 
@@ -600,6 +680,8 @@ public class HomeFragment extends Fragment {
 
                                         second_viewPager.setOffscreenPageLimit(5);
                                         tag2_List = new ArrayList<>();
+
+                                        get_user_address = cafe_search_input.getText().toString();
 
 
                                         for(Cafe c : cafe_list) {

@@ -6,13 +6,12 @@ public class Personal {
     private String pwd;
     private String nickName;
     private Integer grade;
-    private String address;
     private Integer phoneNum;
     private String profileimageurl;
     private String favorite1;
     private String favorite2;
 
-    public Personal(Long memNum, String id, String pwd, String nickName, Integer grade, String address, Integer phoneNum,
+    public Personal(Long memNum, String id, String pwd, String nickName, Integer grade, Integer phoneNum,
                     String profileimageurl, String favorite1, String favorite2) {
 
         this.memNum = memNum;
@@ -20,7 +19,6 @@ public class Personal {
         this.pwd = pwd;
         this.nickName = nickName;
         this.grade = grade;
-        this.address = address;
         this.phoneNum = phoneNum;
         this.profileimageurl = profileimageurl;
         this.favorite1 = favorite1;
@@ -47,9 +45,6 @@ public class Personal {
         return grade;
     }
 
-    public String getAddress() {
-        return address;
-    }
 
     public Integer getPhoneNum() {
         return phoneNum;
