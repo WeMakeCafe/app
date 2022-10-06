@@ -339,7 +339,6 @@ public class CafeModifyFragment extends Fragment {
 
                                 // -> 시간 변경이 없을 때 실행되는 문장
                                 else {
-                                    Toast.makeText(getActivity(), "시간이 변경되지 않았습니다.", Toast.LENGTH_LONG).show();
                                     AlertDialog.Builder mod = new AlertDialog.Builder(getActivity());
                                     mod.setTitle("잠깐!").setMessage("시간이 변경되지 않았습니다!").setNeutralButton("확인", new DialogInterface.OnClickListener() {
                                         @Override
@@ -399,13 +398,25 @@ public class CafeModifyFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(data == null){   // 어떤 이미지도 선택하지 않은 경우
-            Toast.makeText(getContext().getApplicationContext(), "이미지를 선택하지 않았습니다.", Toast.LENGTH_LONG).show();
+            AlertDialog.Builder mod = new AlertDialog.Builder(getActivity());
+            mod.setTitle("잠깐!").setMessage("이미지를 선택하지 않았습니다.").setNeutralButton("확인", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            }).create().show();
         }
 
         else{   // 이미지를 하나라도 선택한 경우
             if(data.getClipData() == null){     // 이미지를 하나만 선택한 경우
                 if(uriList.size() >= 5) {
-                    Toast.makeText(getContext().getApplicationContext(), "이미지 5개를 모두 선택하셨습니다.", Toast.LENGTH_LONG).show();
+                    AlertDialog.Builder mod = new AlertDialog.Builder(getActivity());
+                    mod.setTitle("잠깐!").setMessage("이미지 5개를 모두 선택하셨습니다!").setNeutralButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    }).create().show();
                 }
 
                 else{
@@ -423,7 +434,13 @@ public class CafeModifyFragment extends Fragment {
                 Log.e("clipData", String.valueOf(clipData.getItemCount()));
 
                 if(clipData.getItemCount() > 5){   // 선택한 이미지가 6장 이상인 경우
-                    Toast.makeText(getContext().getApplicationContext(), "사진은 5장까지 선택 가능합니다.", Toast.LENGTH_LONG).show();
+                    AlertDialog.Builder mod = new AlertDialog.Builder(getActivity());
+                    mod.setTitle("잠깐!").setMessage("사진은 5장까지 선택 가능합니다.").setNeutralButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    }).create().show();
                 }
                 else{   // 선택한 이미지가 1장 이상 5장 이하인 경우
                     Log.e(TAG, "multiple choice");
@@ -439,10 +456,7 @@ public class CafeModifyFragment extends Fragment {
                                 Log.e(TAG, "File select error", e);
                             }
                         }
-                        else {
-                            Toast.makeText(getContext().getApplicationContext(), "사진은 5장까지 선택 가능합니다.", Toast.LENGTH_LONG).show();
-                            break;
-                        }
+
                     }
 
                     cafeModifyAdapter = new CafeModifyAdapter(getContext(), uriList, CafeModifyFragment.this);
