@@ -106,6 +106,7 @@ public class HomeFragment extends Fragment {
     String tag1;
     String tag2;
     String represent_cafeImage_URL = "";
+    String get_review = "";
 
     List<Address> list = new ArrayList<>();
     Geocoder g;
@@ -691,6 +692,9 @@ public class HomeFragment extends Fragment {
                                         for(Cafe c : cafe_list) {
                                             if (c.getCafeAddress().contains(get_user_address)) {
                                                 Log.d("getCafeAddress", c.getCafeAddress().toString());
+                                                Log.d("cafeNumber", c.getCafeNum().toString());
+
+                                                Long tag1_cafeNum = c.getCafeNum();
 
                                                 get_taste_point_total = 0;
                                                 get_study_point_total = 0;
@@ -703,7 +707,7 @@ public class HomeFragment extends Fragment {
                                                 // Home에서 1순위 해시태그에 대한 뷰페이저 작성
 
                                                 int review_counter = 0;
-                                                String get_review = "";
+
                                                 int like_counter_max = 0;
 
                                                 for (Review r : review_list) {
@@ -776,8 +780,8 @@ public class HomeFragment extends Fragment {
                                                 // 태그 검색이 되는지 확인용
                                                 Log.d("show_Max_and_secondMax", Max.toString() + ", " + secondMax.toString());
 
-                                                String tag1 = "쓴맛";
-                                                String tag2 = "신맛";
+                                                tag1 = "쓴맛";
+                                                tag2 = "신맛";
 
                                                 // 태그 1 세팅
                                                 switch (counter_max) {
@@ -1080,7 +1084,7 @@ public class HomeFragment extends Fragment {
                                                                 tag2_List.add(secondTag_item);
                                                             }
                                                         }
-
+                                                    }
 
                                                 }, new Response.ErrorListener()
 
@@ -1096,7 +1100,7 @@ public class HomeFragment extends Fragment {
 
 
 
-                                                }
+
                                             }
                                         }
 
@@ -1139,8 +1143,8 @@ public class HomeFragment extends Fragment {
 
                                         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                         // Home에서 2순위 해시태그에 대한 뷰페이저 작성
-                                        second_viewPager.setAdapter(new HomeTag2ViewPagerAdapter(getContext().getApplicationContext(), tag2_List));
-                                        tag2Adapter = new HomeTag2ViewPagerAdapter(getContext().getApplicationContext(), tag2_List);
+                                        second_viewPager.setAdapter(new HomeTag2ViewPagerAdapter(getContext().getApplicationContext(), tag2_List, HomeFragment.this));
+                                        tag2Adapter = new HomeTag2ViewPagerAdapter(getContext().getApplicationContext(), tag2_List, HomeFragment.this);
 
 
                                         second_viewPager.setOnItemClickListener_second(new HomeTag2ViewPager.OnItemClickListener() {
