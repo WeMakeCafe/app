@@ -188,7 +188,7 @@ public class ReviewCommentFragment extends Fragment {
                 Log.d("리뷰에서 받음 -> flag", String.valueOf(flag));
                 Log.d("리뷰에서 받음 -> tag1", String.valueOf(tag1));
                 Log.d("리뷰에서 받음 -> p1", String.valueOf(p1));
-
+                Log.d("review -> location(코멘토리)", location_flag.toString());
             }
 
             // 리뷰 수정에서 온 경우,
@@ -319,6 +319,7 @@ public class ReviewCommentFragment extends Fragment {
                 likeCount = argBundle.getInt("likeCount");
                 flag = argBundle.getBoolean("flag");    // 수정에서 넘어온 것인지 확인
                 location_flag = argBundle.getBoolean("location_flag");
+                Log.d("review -> location(코멘토리)", location_flag.toString());
 
                 RequestQueue requestQueue;
                 Cache cache = new DiskBasedCache(getActivity().getCacheDir(), 1024 * 1024); // 1MB cap
@@ -457,6 +458,7 @@ public class ReviewCommentFragment extends Fragment {
                             map.put("studyPoint2", p10);
                             map.put("studyPoint3", p11);
                             map.put("studyPoint4", p12);
+                            map.put("locationcheck", location_flag);
                             map.put("cafeNum", cafeNum);
                             map.put("likeCount", 0);
                             map.put("reviewText", reviewComment_editText.getText().toString());
@@ -1000,6 +1002,7 @@ public class ReviewCommentFragment extends Fragment {
                             map.put("studyPoint2", p10);
                             map.put("studyPoint3", p11);
                             map.put("studyPoint4", p12);
+                            map.put("locationcheck", location_flag);
                             map.put("cafeNum", cafeNum);
                             map.put("likeCount", likeCount);
                             map.put("memNum", mem_num);

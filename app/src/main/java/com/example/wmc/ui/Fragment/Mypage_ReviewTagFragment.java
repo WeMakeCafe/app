@@ -880,6 +880,7 @@ public class Mypage_ReviewTagFragment extends Fragment {
                         Log.d("리뷰로 보내는comment", comment);
 
                         bundle.putBoolean("return_location_flag", location_flag);
+                        Log.d("tag -> location_flag", location_flag.toString());
 
                         navController.navigate(R.id.mypage_review_tag_to_mypage_review, bundle); // 번들과 함께 전달
                     }
