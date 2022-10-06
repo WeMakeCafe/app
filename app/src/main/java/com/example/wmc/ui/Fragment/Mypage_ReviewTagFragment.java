@@ -69,6 +69,8 @@ public class Mypage_ReviewTagFragment extends Fragment {
     Boolean moreReview_reviewModify_flag = false;
     Boolean mypage_reviewModify_flag = false;
 
+    Boolean location_flag = false;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -115,6 +117,7 @@ public class Mypage_ReviewTagFragment extends Fragment {
             s11 = getArguments().getFloat("studyPoint3");
             s12 = getArguments().getFloat("studyPoint4");
 
+            location_flag = getArguments().getBoolean("location_flag");
         }
 
         else if(getArguments().getBoolean("reviewCafeList_flag")){  // 하단바 리뷰 작성을 통해서 온 경우,
@@ -136,6 +139,8 @@ public class Mypage_ReviewTagFragment extends Fragment {
             s10 = getArguments().getFloat("studyPoint2");
             s11 = getArguments().getFloat("studyPoint3");
             s12 = getArguments().getFloat("studyPoint4");
+
+            location_flag = getArguments().getBoolean("location_flag");
         }
 
         else if(getArguments().getBoolean("cafeDetail_reviewModify_flag")) {   // 리뷰 수정을 통해서 온 경우,
@@ -211,6 +216,7 @@ public class Mypage_ReviewTagFragment extends Fragment {
             k2[35] = getArguments().getLong("k2-36");
 
             comment = getArguments().getString("comment");
+            location_flag = getArguments().getBoolean("location_flag");
         }
 
         else if(getArguments().getBoolean("moreReview_reviewModify_flag")) {   // 리뷰 수정을 통해서 온 경우,
@@ -286,6 +292,7 @@ public class Mypage_ReviewTagFragment extends Fragment {
             k2[35] = getArguments().getLong("k2-36");
 
             comment = getArguments().getString("comment");
+            location_flag = getArguments().getBoolean("location_flag");
         }
 
         else if(getArguments().getBoolean("mypage_reviewModify_flag")) {   // 리뷰 수정을 통해서 온 경우,
@@ -361,6 +368,7 @@ public class Mypage_ReviewTagFragment extends Fragment {
             k2[35] = getArguments().getLong("k2-36");
 
             comment = getArguments().getString("comment");
+            location_flag = getArguments().getBoolean("location_flag");
 
             Log.d("myReview에서 받은comment", comment);
 
@@ -594,6 +602,8 @@ public class Mypage_ReviewTagFragment extends Fragment {
                         bundle.putFloat("tag_review_studyPoint3", s11);
                         bundle.putFloat("tag_review_studyPoint4", s12);
 
+                        bundle.putBoolean("return_location_flag", location_flag);
+
                         navController.navigate(R.id.mypage_review_tag_to_mypage_review, bundle); // 번들과 함께 전달
                     }
 
@@ -619,6 +629,8 @@ public class Mypage_ReviewTagFragment extends Fragment {
                         bundle.putFloat("tag_review_studyPoint2", s10);
                         bundle.putFloat("tag_review_studyPoint3", s11);
                         bundle.putFloat("tag_review_studyPoint4", s12);
+
+                        bundle.putBoolean("return_location_flag", location_flag);
 
                         navController.navigate(R.id.mypage_review_tag_to_mypage_review, bundle); // 번들과 함께 전달
                     }
@@ -701,6 +713,8 @@ public class Mypage_ReviewTagFragment extends Fragment {
                         bundle.putString("comment", comment);
                         Log.d("리뷰로 보내는comment", comment);
 
+                        bundle.putBoolean("return_location_flag", location_flag);
+
                         navController.navigate(R.id.mypage_review_tag_to_mypage_review, bundle); // 번들과 함께 전달
                     }
 
@@ -782,6 +796,8 @@ public class Mypage_ReviewTagFragment extends Fragment {
                         bundle.putString("comment", comment);
                         Log.d("리뷰로 보내는comment", comment);
 
+                        bundle.putBoolean("return_location_flag", location_flag);
+
                         navController.navigate(R.id.mypage_review_tag_to_mypage_review, bundle); // 번들과 함께 전달
                     }
 
@@ -862,6 +878,9 @@ public class Mypage_ReviewTagFragment extends Fragment {
 
                         bundle.putString("comment", comment);
                         Log.d("리뷰로 보내는comment", comment);
+
+                        bundle.putBoolean("return_location_flag", location_flag);
+
                         navController.navigate(R.id.mypage_review_tag_to_mypage_review, bundle); // 번들과 함께 전달
                     }
                 }

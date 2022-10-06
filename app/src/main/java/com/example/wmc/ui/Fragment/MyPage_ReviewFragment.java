@@ -1,6 +1,13 @@
 package com.example.wmc.ui.Fragment;
 
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.graphics.Typeface;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -14,6 +21,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -41,10 +50,12 @@ import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class MyPage_ReviewFragment extends Fragment {
@@ -119,6 +130,18 @@ public class MyPage_ReviewFragment extends Fragment {
     Boolean moreReview_reviewModify_flag = false;
     Boolean mypage_reviewModify_flag = false;
 
+    // 여기는 위치인증 관련 변수
+    Geocoder g;
+    Boolean location_flag = false;
+    String reviewCafeAddress;
+    double latitude1 = 0;
+    double longitude1 = 0;
+    double latitude2 = 0;
+    double longitude2 = 0;
+    List<Address> myLocation = new ArrayList<>();
+    List<Address> cafeLocation = new ArrayList<>();
+    LocationManager lm;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -152,6 +175,9 @@ public class MyPage_ReviewFragment extends Fragment {
         TextView setTag2 = root.findViewById(R.id.select_tag2); // 태그 추가 완료 시 반영할 리뷰 작성 페이지의 태그 박스2
         TextView setTag3 = root.findViewById(R.id.select_tag3); // 태그 추가 완료 시 반영할 리뷰 작성 페이지의 태그 박스3
 
+        lm = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+        g = new Geocoder(getContext());
+
         // 서버연산을 위한 long형 배열 초기화 코드
         for(int i = 0 ; i<=35; i++){
             k[i] = (long) 0;
@@ -180,6 +206,7 @@ public class MyPage_ReviewFragment extends Fragment {
             review_search_input.setGravity(Gravity.CENTER);          // 카페 위치 Center로 변경
 
             mypage_reviewModify_flag = mypage_Bundle.getBoolean("mypage_reviewModify_flag");
+
         }
 
 //        // ReviewCafeList에서 선택한 카페 이름 가져오기
@@ -228,6 +255,7 @@ public class MyPage_ReviewFragment extends Fragment {
                         bundle.putFloat("studyPoint3", rating_quiet.getRating());
                         bundle.putFloat("studyPoint4", rating_light.getRating());
 
+                        bundle.putBoolean("location_flag", location_flag);
                         navController.navigate(R.id.mypage_review_to_mypage_review_tag, bundle);
                     }
 
@@ -248,6 +276,8 @@ public class MyPage_ReviewFragment extends Fragment {
                         bundle.putFloat("studyPoint2", rating_plug.getRating());
                         bundle.putFloat("studyPoint3", rating_quiet.getRating());
                         bundle.putFloat("studyPoint4", rating_light.getRating());
+
+                        bundle.putBoolean("location_flag", location_flag);
 
                         navController.navigate(R.id.mypage_review_to_mypage_review_tag, bundle);
                     }
@@ -324,6 +354,8 @@ public class MyPage_ReviewFragment extends Fragment {
                         bundle.putBoolean("flag", flag);
                         bundle.putLong("reviewNum", reviewNum);
 
+                        bundle.putBoolean("location_flag", location_flag);
+
                         navController.navigate(R.id.mypage_review_to_mypage_review_tag, bundle);
                     }
 
@@ -399,6 +431,7 @@ public class MyPage_ReviewFragment extends Fragment {
 
                         bundle.putBoolean("flag", flag);
                         bundle.putLong("reviewNum", reviewNum);
+                        bundle.putBoolean("location_flag", location_flag);
 
                         Log.d("moreReview_to_tag_review4", String.valueOf(k2[3]));
                         Log.d("moreReview_to_tag_review5", String.valueOf(k2[4]));
@@ -482,7 +515,7 @@ public class MyPage_ReviewFragment extends Fragment {
 
                         bundle.putBoolean("flag", flag);
                         bundle.putLong("reviewNum", reviewNum);
-
+                        bundle.putBoolean("location_flag", location_flag);
                         Log.d("myReview_comment", comment);
 
                         navController.navigate(R.id.mypage_review_to_mypage_review_tag, bundle);
@@ -621,6 +654,7 @@ public class MyPage_ReviewFragment extends Fragment {
 
                 comment = argBundle.getString("comment");
                 mypage_reviewModify_flag = argBundle.getBoolean("return_mypage_reviewModify_flag");
+                location_flag = argBundle.getBoolean("return_location_flag");
                 Log.d("태그 종료후 받은 comment", comment);
                 review_search_input.setTypeface(Typeface.DEFAULT_BOLD);  // 카페이름 Bold처리
                 review_search_input.setGravity(Gravity.CENTER);          // 카페 위치 Center로 변경
@@ -1156,8 +1190,103 @@ public class MyPage_ReviewFragment extends Fragment {
         location_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 위치 인증이 되면 아래 Toast를 띄움
-                Toast.makeText(getContext().getApplicationContext(), "위치인증이 완료되었습니다.", Toast.LENGTH_SHORT).show();
+                if(review_search_input.getText().toString().equals(""))
+                    Toast.makeText(getContext().getApplicationContext(), "리뷰를 작성할 카페를 검색해주세요.", Toast.LENGTH_SHORT).show();
+
+                else {
+                    RequestQueue requestQueue2;
+                    Cache cache = new DiskBasedCache(getActivity().getCacheDir(), 1024 * 1024); // 1MB cap
+                    Network network = new BasicNetwork(new HurlStack());
+                    requestQueue2 = new RequestQueue(cache, network);
+                    requestQueue2.start();
+
+                    String url = getResources().getString(R.string.url) + "cafe";
+                    StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            // 한글깨짐 해결 코드
+                            String changeString = new String();
+                            try {
+                                changeString = new String(response.getBytes("8859_1"), "utf-8");
+                            } catch (UnsupportedEncodingException e) {
+                                e.printStackTrace();
+                            }
+                            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                            Type listType = new TypeToken<ArrayList<Cafe>>() {
+                            }.getType();
+
+                            cafe_list = gson.fromJson(changeString, listType);
+
+
+                            for(Cafe c : cafe_list){
+                                if(c.getCafeName().equals(review_search_input.getText().toString())) {
+                                    reviewCafeAddress = c.getCafeAddress();
+                                    Log.d("reviewCafeAddress", c.getCafeAddress());
+                                }
+                            }
+
+                            // 현재 자신의 위치(위도, 경도 구하기)
+                            if ( Build.VERSION.SDK_INT >= 23 &&
+                                    ContextCompat.checkSelfPermission( getActivity().getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED ) {
+                                ActivityCompat.requestPermissions( getActivity(), new String[] {
+                                        android.Manifest.permission.ACCESS_FINE_LOCATION}, 0 );
+                            }
+                            else{
+                                // 가장최근 위치정보 가져오기
+                                Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                                if(location != null) {
+                                    Log.d("location1", String.valueOf(location.getLongitude()));
+                                    Log.d("location2", String.valueOf(location.getLatitude()));
+                                    latitude1 = location.getLatitude();
+                                    longitude1 = location.getLongitude();
+
+                                    try {
+                                        myLocation = g.getFromLocation(latitude1, longitude1,10);
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
+
+                                }
+                            }
+
+
+                            // 카페의 위치(위도, 경도 구하기)
+                            try {
+                                cafeLocation = g.getFromLocationName(reviewCafeAddress, 10);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+                            if(cafeLocation != null){
+                                if(cafeLocation.size() == 0)
+                                    Toast.makeText(getActivity().getApplicationContext(),"해당되는 주소 정보가 없습니다.", Toast.LENGTH_SHORT).show();
+
+                                else {
+                                    latitude2 = cafeLocation.get(0).getLatitude();
+                                    longitude2 = cafeLocation.get(0).getLongitude();
+
+                                    String distanceByCafe = String.format("%.2f", DistanceByCafe(latitude1, longitude1, latitude2, longitude2));
+                                    Toast.makeText(getActivity().getApplicationContext(),"나와 카페 사이의 거리 : " + distanceByCafe + "m", Toast.LENGTH_SHORT).show();
+
+                                    if(Double.parseDouble(distanceByCafe) <= 500.0) {
+                                        Toast.makeText(getActivity().getApplicationContext(),"위치인증 성공 !", Toast.LENGTH_SHORT).show();
+                                        location_flag = true;
+                                    }
+                                    else
+                                        Toast.makeText(getActivity().getApplicationContext(),"주변에 해당 카페가 존재하지않습니다.", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            // 에러가 뜬다면 왜 에러가 떴는지 확인하는 코드
+                            Log.e("test_error", error.toString());
+                        }
+                    });
+                    requestQueue2.add(stringRequest);
+                }
             }
         });
 
@@ -1286,6 +1415,7 @@ public class MyPage_ReviewFragment extends Fragment {
                                 bundle.putLong("memNum", mem_num);
 
                                 bundle.putBoolean("flag", flag);
+                                bundle.putBoolean("location_flag", location_flag);
                                 //이미지
                                 navController.navigate(R.id.mypage_review_to_mypage_review_comment, bundle);
                             }
@@ -1407,6 +1537,7 @@ public class MyPage_ReviewFragment extends Fragment {
 
                                 bundle.putInt("likeCount", likeCount.intValue()); // likecount는 integer형임
                                 bundle.putBoolean("flag", flag);
+                                bundle.putBoolean("location_flag", location_flag);
 
                                 Log.d("리뷰_to_comment -> flag", String.valueOf(flag));
                                 Log.d("리뷰_to_comment -> keyWord4", String.valueOf(k2[3]));
@@ -2497,5 +2628,20 @@ public class MyPage_ReviewFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    // 거리 구하는 함수
+    public double DistanceByCafe(double latitude1, double longitude1, double latitude2, double longitude2) {
+        Location startPos = new Location("PointA");
+        Location endPos = new Location("PointB");
+
+        startPos.setLatitude(latitude1);
+        startPos.setLongitude(longitude1);
+        endPos.setLatitude(latitude2);
+        endPos.setLongitude(longitude2);
+
+        double distance = startPos.distanceTo(endPos);
+
+        return distance;
     }
 }

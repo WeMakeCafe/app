@@ -1,7 +1,15 @@
 package com.example.wmc.ui.Fragment;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.pm.PackageManager;
 import android.graphics.Typeface;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -16,6 +24,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -43,10 +53,12 @@ import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Bottom_ReviewFragment extends Fragment {
@@ -60,7 +72,7 @@ public class Bottom_ReviewFragment extends Fragment {
     Button location_button;
     Button finish_button;
 
-    String comment ="";
+    String comment = "";
     Long cafeNum;
     Long reviewNum;
     Integer likeCount = 0;
@@ -121,6 +133,18 @@ public class Bottom_ReviewFragment extends Fragment {
     Boolean moreReview_reviewModify_flag = false;
     Boolean mypage_reviewModify_flag = false;
 
+    // 여기는 위치인증 관련 변수
+    Geocoder g;
+    Boolean location_flag = false;
+    String reviewCafeAddress;
+    double latitude1 = 0;
+    double longitude1 = 0;
+    double latitude2 = 0;
+    double longitude2 = 0;
+    List<Address> myLocation = new ArrayList<>();
+    List<Address> cafeLocation = new ArrayList<>();
+    LocationManager lm;
+    Location location;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -154,12 +178,15 @@ public class Bottom_ReviewFragment extends Fragment {
         TextView setTag2 = root.findViewById(R.id.select_tag2); // 태그 추가 완료 시 반영할 리뷰 작성 페이지의 태그 박스2
         TextView setTag3 = root.findViewById(R.id.select_tag3); // 태그 추가 완료 시 반영할 리뷰 작성 페이지의 태그 박스3
 
+        lm = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+        g = new Geocoder(getContext());
+
         // 서버연산을 위한 long형 배열 초기화 코드
-        for(int i = 0 ; i<=35; i++){
+        for (int i = 0; i <= 35; i++) {
             k[i] = (long) 0;
         }
 
-        for(int i = 0 ; i<=35; i++){
+        for (int i = 0; i <= 35; i++) {
             k2[i] = (long) 0;
         }
 
@@ -175,13 +202,15 @@ public class Bottom_ReviewFragment extends Fragment {
 
         // Bottom_ReviewCafeList에서 선택한 카페 이름 가져오기
         Bundle reviewCafeList_Bundle = getArguments();
-        if(reviewCafeList_Bundle != null) {
+        if (reviewCafeList_Bundle != null) {
             if (reviewCafeList_Bundle.getBoolean("reviewCafeList_flag")) {
                 review_search_input.setText(reviewCafeList_Bundle.getString("reviewCafeList_flag_cafeName"));
                 review_search_input.setTypeface(Typeface.DEFAULT_BOLD);  // 카페이름 Bold처리
                 review_search_input.setGravity(Gravity.CENTER);          // 카페 위치 Center로 변경
 
                 reviewCafeList_flag = reviewCafeList_Bundle.getBoolean("reviewCafeList_flag");
+
+                location_flag = false;
             }
         }
 
@@ -195,14 +224,14 @@ public class Bottom_ReviewFragment extends Fragment {
                         + ", " + reviewCafeList_flag.toString());
 
                 // 리뷰 검색에서 리뷰를 작성할 카페를 선택하지 않았을 경우.
-                if(review_search_input.getText().toString().equals("")){
+                if (review_search_input.getText().toString().equals("")) {
                     Toast.makeText(getContext().getApplicationContext(), "리뷰를 작성할 카페를 검색해주세요.", Toast.LENGTH_SHORT).show();
                 }
 
                 // 리뷰를 작성할 카페를 선택한 경우
-                else{
+                else {
 
-                    if(floating_flag){  // 플로팅 버튼로 Review에 들어온 경우
+                    if (floating_flag) {  // 플로팅 버튼로 Review에 들어온 경우
                         Bundle bundle = new Bundle();
                         bundle.putString("floating_cafeName", review_search_input.getText().toString());
                         bundle.putBoolean("floating_flag", floating_flag);
@@ -220,10 +249,10 @@ public class Bottom_ReviewFragment extends Fragment {
                         bundle.putFloat("studyPoint3", rating_quiet.getRating());
                         bundle.putFloat("studyPoint4", rating_light.getRating());
 
-                        navController.navigate(R.id.bottom_review_to_bottom_review_tag, bundle);
-                    }
+                        bundle.putBoolean("location_flag", location_flag);
 
-                    else if(reviewCafeList_flag){   // 하단바의 리뷰작성으로 Review에 들어온 경우
+                        navController.navigate(R.id.bottom_review_to_bottom_review_tag, bundle);
+                    } else if (reviewCafeList_flag) {   // 하단바의 리뷰작성으로 Review에 들어온 경우
                         Bundle bundle = new Bundle();
                         bundle.putString("reviewCafeList_cafeName", review_search_input.getText().toString());
                         bundle.putBoolean("reviewCafeList_flag", reviewCafeList_flag);
@@ -241,10 +270,10 @@ public class Bottom_ReviewFragment extends Fragment {
                         bundle.putFloat("studyPoint3", rating_quiet.getRating());
                         bundle.putFloat("studyPoint4", rating_light.getRating());
 
-                        navController.navigate(R.id.bottom_review_to_bottom_review_tag, bundle);
-                    }
+                        bundle.putBoolean("location_flag", location_flag);
 
-                    else if(cafeDetail_reviewModify_flag){ // 리뷰 수정의 버튼으로 Review에 들어온 경우
+                        navController.navigate(R.id.bottom_review_to_bottom_review_tag, bundle);
+                    } else if (cafeDetail_reviewModify_flag) { // 리뷰 수정의 버튼으로 Review에 들어온 경우
                         Bundle bundle = new Bundle();
 
                         bundle.putBoolean("cafeDetail_reviewModify_flag", cafeDetail_reviewModify_flag);
@@ -271,9 +300,9 @@ public class Bottom_ReviewFragment extends Fragment {
                         bundle.putLong("k2-7", (long) k2[6]);
                         bundle.putLong("k2-8", (long) k2[7]);
                         bundle.putLong("k2-9", (long) k2[8]);
-                        bundle.putLong("k2-10",(long)  k2[9]);
-                        bundle.putLong("k2-11",(long)  k2[10]);
-                        bundle.putLong("k2-12",(long)  k2[11]);
+                        bundle.putLong("k2-10", (long) k2[9]);
+                        bundle.putLong("k2-11", (long) k2[10]);
+                        bundle.putLong("k2-12", (long) k2[11]);
                         bundle.putLong("k2-13", (long) k2[12]);
                         bundle.putLong("k2-14", (long) k2[13]);
                         bundle.putLong("k2-15", (long) k2[14]);
@@ -315,11 +344,10 @@ public class Bottom_ReviewFragment extends Fragment {
 
                         bundle.putBoolean("flag", flag);
                         bundle.putLong("reviewNum", reviewNum);
+                        bundle.putBoolean("location_flag", location_flag);
 
                         navController.navigate(R.id.bottom_review_to_bottom_review_tag, bundle);
-                    }
-
-                    else if(moreReview_reviewModify_flag){
+                    } else if (moreReview_reviewModify_flag) {
                         Bundle bundle = new Bundle();
 
                         bundle.putBoolean("moreReview_reviewModify_flag", moreReview_reviewModify_flag);
@@ -347,9 +375,9 @@ public class Bottom_ReviewFragment extends Fragment {
                         bundle.putLong("k2-7", (long) k2[6]);
                         bundle.putLong("k2-8", (long) k2[7]);
                         bundle.putLong("k2-9", (long) k2[8]);
-                        bundle.putLong("k2-10",(long)  k2[9]);
-                        bundle.putLong("k2-11",(long)  k2[10]);
-                        bundle.putLong("k2-12",(long)  k2[11]);
+                        bundle.putLong("k2-10", (long) k2[9]);
+                        bundle.putLong("k2-11", (long) k2[10]);
+                        bundle.putLong("k2-12", (long) k2[11]);
                         bundle.putLong("k2-13", (long) k2[12]);
                         bundle.putLong("k2-14", (long) k2[13]);
                         bundle.putLong("k2-15", (long) k2[14]);
@@ -391,6 +419,7 @@ public class Bottom_ReviewFragment extends Fragment {
 
                         bundle.putBoolean("flag", flag);
                         bundle.putLong("reviewNum", reviewNum);
+                        bundle.putBoolean("location_flag", location_flag);
 
                         Log.d("moreReview_to_tag_review4", String.valueOf(k2[3]));
                         Log.d("moreReview_to_tag_review5", String.valueOf(k2[4]));
@@ -399,9 +428,7 @@ public class Bottom_ReviewFragment extends Fragment {
                         Log.d("moreReview_to_tag_review8", String.valueOf(k2[7]));
                         Log.d("moreReview_to_tag_review9", String.valueOf(k2[8]));
                         navController.navigate(R.id.bottom_review_to_bottom_review_tag, bundle);
-                    }
-
-                    else if (mypage_reviewModify_flag){
+                    } else if (mypage_reviewModify_flag) {
                         Bundle bundle = new Bundle();
 
                         bundle.putBoolean("mypage_reviewModify_flag", mypage_reviewModify_flag);
@@ -429,9 +456,9 @@ public class Bottom_ReviewFragment extends Fragment {
                         bundle.putLong("k2-7", (long) k2[6]);
                         bundle.putLong("k2-8", (long) k2[7]);
                         bundle.putLong("k2-9", (long) k2[8]);
-                        bundle.putLong("k2-10",(long)  k2[9]);
-                        bundle.putLong("k2-11",(long)  k2[10]);
-                        bundle.putLong("k2-12",(long)  k2[11]);
+                        bundle.putLong("k2-10", (long) k2[9]);
+                        bundle.putLong("k2-11", (long) k2[10]);
+                        bundle.putLong("k2-12", (long) k2[11]);
                         bundle.putLong("k2-13", (long) k2[12]);
                         bundle.putLong("k2-14", (long) k2[13]);
                         bundle.putLong("k2-15", (long) k2[14]);
@@ -474,6 +501,7 @@ public class Bottom_ReviewFragment extends Fragment {
 
                         bundle.putBoolean("flag", flag);
                         bundle.putLong("reviewNum", reviewNum);
+                        bundle.putBoolean("location_flag", location_flag);
 
                         Log.d("myReview_comment", comment);
 
@@ -486,7 +514,7 @@ public class Bottom_ReviewFragment extends Fragment {
 
         // ReviewTag에서 가져온 태그들 설정 및 카페이름을 기억해두기
         Bundle argBundle = getArguments();
-        if( argBundle != null ) {
+        if (argBundle != null) {
             if (argBundle.getBoolean("return_reviewCafeList_flag") || argBundle.getBoolean("return_floating_flag")) {
 
                 review_search_input.setText(argBundle.getString("review_cafeName"));
@@ -520,13 +548,14 @@ public class Bottom_ReviewFragment extends Fragment {
                 s11 = argBundle.getFloat("tag_review_studyPoint3");
                 s12 = argBundle.getFloat("tag_review_studyPoint4");
 
-                if(argBundle.getBoolean("return_reviewCafeList_flag"))
+                if (argBundle.getBoolean("return_reviewCafeList_flag"))
                     reviewCafeList_flag = argBundle.getBoolean("return_reviewCafeList_flag");
+
+                location_flag = argBundle.getBoolean("return_location_flag");
+                Log.d("tag -> location_flag", String.valueOf(argBundle.getBoolean("return_location_flag")));
                 review_search_input.setTypeface(Typeface.DEFAULT_BOLD);  // 카페이름 Bold처리
                 review_search_input.setGravity(Gravity.CENTER);          // 카페 위치 Center로 변경
-            }
-
-            else if(argBundle.getBoolean("return_cafeDetail_reviewModify_flag")
+            } else if (argBundle.getBoolean("return_cafeDetail_reviewModify_flag")
                     || argBundle.getBoolean("return_moreReview_reviewModify_flag")
                     || argBundle.getBoolean("return_mypage_reviewModify_flag")) {
 
@@ -623,19 +652,15 @@ public class Bottom_ReviewFragment extends Fragment {
 
         // 리뷰 리싸이클러뷰 수정버튼에서 정보 복원
         Bundle argBundle2 = getArguments(); // 카페 디테일에서의 수정, 리뷰 더보기에서의 수정, 마이페이지에서의 수정인지 확인하고 값을 가져옴
-        if( argBundle2 != null ) {
+        if (argBundle2 != null) {
             if (argBundle2.getBoolean("cafeDetail_reviewModify_flag") || argBundle2.getBoolean("moreReview_reviewModify_flag")
-                                                                            || argBundle2.getBoolean("mypage_reviewModify_flag")) {
+                    || argBundle2.getBoolean("mypage_reviewModify_flag")) {
 
-                if (argBundle2.getBoolean("cafeDetail_reviewModify_flag")){
+                if (argBundle2.getBoolean("cafeDetail_reviewModify_flag")) {
                     cafeDetail_reviewModify_flag = argBundle2.getBoolean("cafeDetail_reviewModify_flag");
-                }
-
-                else if (argBundle2.getBoolean("moreReview_reviewModify_flag")){
+                } else if (argBundle2.getBoolean("moreReview_reviewModify_flag")) {
                     moreReview_reviewModify_flag = argBundle2.getBoolean("moreReview_reviewModify_flag");
-                }
-
-                else if (argBundle2.getBoolean("mypage_reviewModify_flag")){
+                } else if (argBundle2.getBoolean("mypage_reviewModify_flag")) {
                     mypage_reviewModify_flag = argBundle2.getBoolean("mypage_reviewModify_flag");
                 }
                 flag = true;
@@ -670,13 +695,15 @@ public class Bottom_ReviewFragment extends Fragment {
                         review_list = gson.fromJson(changeString, listType);
 
 
-                        for(Review r : review_list){
-                            if(r.getReviewNum().equals(reviewNum)) {
+                        for (Review r : review_list) {
+                            if (r.getReviewNum().equals(reviewNum)) {
 
                                 reviewNum = r.getReviewNum();
                                 Log.d("reviewNum", reviewNum.toString());
                                 comment = r.getReviewText();
                                 likeCount = r.getLikeCount();
+                                location_flag = r.getLocationcheck();
+                                Log.d("수정복원 location_flag", location_flag.toString());
                                 //이미지 코드
                                 rating_sour.setRating(r.getTastePoint1());
                                 rating_acerbity.setRating(r.getTastePoint2());
@@ -741,20 +768,20 @@ public class Bottom_ReviewFragment extends Fragment {
                                 k2[34] = r.getKeyword35();
                                 k2[35] = r.getKeyword36();
 
-                                for(int i=0;i<35;i++) {
-                                    if(k2[i]==(long)1) {
+                                for (int i = 0; i < 35; i++) {
+                                    if (k2[i] == (long) 1) {
                                         t1 = i;
                                         break;
                                     }
                                 }
-                                for(int i=t1+1;i<35;i++) {
-                                    if(k2[i]==(long)1) {
+                                for (int i = t1 + 1; i < 35; i++) {
+                                    if (k2[i] == (long) 1) {
                                         t2 = i;
                                         break;
                                     }
                                 }
-                                for(int i=t2+1;i<35;i++) {
-                                    if(k2[i]==(long)1) {
+                                for (int i = t2 + 1; i < 35; i++) {
+                                    if (k2[i] == (long) 1) {
                                         t3 = i;
                                         break;
                                     }
@@ -1109,8 +1136,8 @@ public class Bottom_ReviewFragment extends Fragment {
                                         cafe_list = gson.fromJson(changeString, listType);
 
 
-                                        for(Cafe c : cafe_list){
-                                            if(c.getCafeNum()==cafeNum) {
+                                        for (Cafe c : cafe_list) {
+                                            if (c.getCafeNum() == cafeNum) {
                                                 review_search_input.setTypeface(Typeface.DEFAULT_BOLD);  // 카페이름 Bold처리
                                                 review_search_input.setGravity(Gravity.CENTER);          // 카페 위치 Center로 변경
                                                 review_search_input.setText(c.getCafeName());
@@ -1149,8 +1176,81 @@ public class Bottom_ReviewFragment extends Fragment {
         location_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 위치 인증이 되면 아래 Toast를 띄움
-                Toast.makeText(getContext().getApplicationContext(), "위치인증이 완료되었습니다.", Toast.LENGTH_SHORT).show();
+                if (review_search_input.getText().toString().equals(""))
+                    Toast.makeText(getContext().getApplicationContext(), "리뷰를 작성할 카페를 검색해주세요.", Toast.LENGTH_SHORT).show();
+
+                else {
+                    RequestQueue requestQueue2;
+                    Cache cache = new DiskBasedCache(getActivity().getCacheDir(), 1024 * 1024); // 1MB cap
+                    Network network = new BasicNetwork(new HurlStack());
+                    requestQueue2 = new RequestQueue(cache, network);
+                    requestQueue2.start();
+
+                    String url = getResources().getString(R.string.url) + "cafe";
+                    StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            // 한글깨짐 해결 코드
+                            String changeString = new String();
+                            try {
+                                changeString = new String(response.getBytes("8859_1"), "utf-8");
+                            } catch (UnsupportedEncodingException e) {
+                                e.printStackTrace();
+                            }
+                            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                            Type listType = new TypeToken<ArrayList<Cafe>>() {
+                            }.getType();
+
+                            cafe_list = gson.fromJson(changeString, listType);
+
+
+                            for (Cafe c : cafe_list) {
+                                if (c.getCafeName().equals(review_search_input.getText().toString())) {
+                                    reviewCafeAddress = c.getCafeAddress();
+                                    Log.d("reviewCafeAddress", c.getCafeAddress());
+                                }
+                            }
+                            // 카페의 위치(위도, 경도 구하기)
+                            try {
+                                cafeLocation = g.getFromLocationName(reviewCafeAddress, 10);
+                                Log.d("reviewCafeAddress", reviewCafeAddress);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+                            if(cafeLocation != null){
+                                if(cafeLocation.size() == 0)
+                                    Toast.makeText(getActivity().getApplicationContext(),"해당되는 주소 정보가 없습니다.", Toast.LENGTH_SHORT).show();
+
+                                else {
+                                    latitude2 = cafeLocation.get(0).getLatitude();
+                                    longitude2 = cafeLocation.get(0).getLongitude();
+
+                                    String distanceByCafe = String.format("%.2f", DistanceByCafe(latitude1, longitude1, latitude2, longitude2));
+                                    Toast.makeText(getActivity().getApplicationContext(),"나와 카페 사이의 거리 : " + distanceByCafe + "m", Toast.LENGTH_SHORT).show();
+
+                                    if(Double.parseDouble(distanceByCafe) <= 500.0) {
+                                        Toast.makeText(getActivity().getApplicationContext(),"위치인증 성공 !", Toast.LENGTH_SHORT).show();
+                                        location_flag = true;
+                                    }
+                                    else {
+                                        Toast.makeText(getActivity().getApplicationContext(),"주변에 해당 카페가 존재하지않습니다.", Toast.LENGTH_SHORT).show();
+                                        location_flag = false;
+                                    }
+                                }
+                            }
+
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            // 에러가 뜬다면 왜 에러가 떴는지 확인하는 코드
+                            Log.e("test_error", error.toString());
+                        }
+                    });
+                    requestQueue2.add(stringRequest);
+                }
+
             }
         });
 
@@ -1279,6 +1379,7 @@ public class Bottom_ReviewFragment extends Fragment {
                                 bundle.putLong("memNum", mem_num);
 
                                 bundle.putBoolean("flag", flag);
+                                bundle.putBoolean("location_flag", location_flag);
                                 //이미지
                                 navController.navigate(R.id.bottom_review_to_bottom_review_comment, bundle);
                             }
@@ -1398,8 +1499,10 @@ public class Bottom_ReviewFragment extends Fragment {
 
                                 bundle.putString("comment", comment);
 
+
                                 bundle.putInt("likeCount", likeCount.intValue()); // likecount는 integer형임
                                 bundle.putBoolean("flag", flag);
+                                bundle.putBoolean("location_flag", location_flag);
 
                                 Log.d("리뷰_to_comment -> flag", String.valueOf(flag));
                                 Log.d("리뷰_to_comment -> keyWord4", String.valueOf(k2[3]));
@@ -1408,6 +1511,7 @@ public class Bottom_ReviewFragment extends Fragment {
                                 Log.d("리뷰_to_comment -> keyWord7", String.valueOf(k2[6]));
                                 Log.d("리뷰_to_comment -> keyWord8", String.valueOf(k2[7]));
                                 Log.d("리뷰_to_comment -> keyWord9", String.valueOf(k2[8]));
+                                Log.d("리뷰_to_comment -> location_flag", String.valueOf(location_flag));
                                 //이미지
                                 navController.navigate(R.id.bottom_review_to_bottom_review_comment, bundle);
                             }
@@ -1467,6 +1571,7 @@ public class Bottom_ReviewFragment extends Fragment {
                                 map.put("studyPoint2", Integer.valueOf((int) rating_plug.getRating()));
                                 map.put("studyPoint3", Integer.valueOf((int) rating_quiet.getRating()));
                                 map.put("studyPoint4", Integer.valueOf((int) rating_light.getRating()));
+                                map.put("locationcheck", location_flag);
                                 map.put("cafeNum", cafeNum);
                                 map.put("likeCount", 0);
                                 map.put("reviewText", null);
@@ -1971,6 +2076,7 @@ public class Bottom_ReviewFragment extends Fragment {
                                 alertDialog.show();
 
                             }
+                            // 리뷰 수정에서 온 경우,
                             else if (flag == true) {
                                 Map map = new HashMap();
                                 map.put("tastePoint1", Integer.valueOf((int) rating_sour.getRating()));
@@ -1987,6 +2093,7 @@ public class Bottom_ReviewFragment extends Fragment {
                                 map.put("studyPoint4", Integer.valueOf((int) rating_light.getRating()));
                                 map.put("cafeNum", cafeNum);
                                 map.put("likeCount", likeCount);
+                                map.put("locationcheck", location_flag);
                                 map.put("memNum", mem_num);
                                 switch (setTag1.getText().toString()) {
                                     case ("#쓴맛"):
@@ -2516,5 +2623,20 @@ public class Bottom_ReviewFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    // 거리 구하는 함수
+    public double DistanceByCafe(double latitude1, double longitude1, double latitude2, double longitude2) {
+        Location startPos = new Location("PointA");
+        Location endPos = new Location("PointB");
+
+        startPos.setLatitude(latitude1);
+        startPos.setLongitude(longitude1);
+        endPos.setLatitude(latitude2);
+        endPos.setLongitude(longitude2);
+
+        double distance = startPos.distanceTo(endPos);
+
+        return distance;
     }
 }

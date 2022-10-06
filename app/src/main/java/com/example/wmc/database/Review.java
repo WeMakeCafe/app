@@ -60,6 +60,7 @@ public class Review {
     private Integer studyPoint2;
     private Integer studyPoint3;
     private Integer studyPoint4;
+    private Boolean locationcheck;
 
     public Review (Long reviewNum, Long cafeNum, byte[] reviewImage, Long categoryNum, Integer likeCount, String reviewText, String createTime,
                    Long keyword1, Long keyword2,Long keyword3,Long keyword4,Long keyword5,Long keyword6,Long keyword7,Long keyword8, Long keyword9,
@@ -68,7 +69,7 @@ public class Review {
                    Long keyword26,Long keyword27,Long keyword28, Long keyword29,Long keyword30,Long keyword31, Long keyword32, Long keyword33,
                    Long keyword34,Long keyword35,Long keyword36, Long memNum, Integer tastePoint1, Integer tastePoint2, Integer tastePoint3,
                    Integer tastePoint4, Integer seatPoint1, Integer seatPoint2, Integer seatPoint3, Integer seatPoint4, Integer studyPoint1,
-                   Integer studyPoint2, Integer studyPoint3, Integer studyPoint4) {
+                   Integer studyPoint2, Integer studyPoint3, Integer studyPoint4, Boolean locationcheck) {
 
         this.reviewNum = reviewNum;
         this.cafeNum = cafeNum;
@@ -129,6 +130,7 @@ public class Review {
         this.studyPoint2 = studyPoint2;
         this.studyPoint3 = studyPoint3;
         this.studyPoint4 = studyPoint4;
+        this.locationcheck = locationcheck;
     }
 
     public Long getReviewNum() {return reviewNum;}
@@ -205,5 +207,13 @@ public class Review {
     }
     public Integer getStudyPoint4() {
         return studyPoint4;
+    }
+
+    public Boolean getLocationcheck() {
+        return locationcheck;
+    }
+
+    public void setLocationcheck(Boolean locationcheck) {
+        this.locationcheck = locationcheck;
     }
 }
