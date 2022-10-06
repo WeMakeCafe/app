@@ -138,7 +138,7 @@ public class CafeModifyAdapter extends RecyclerView.Adapter<CafeModifyViewHolder
                                         @Override
                                         public void onResponse(String response) {
                                             AlertDialog.Builder mod = new AlertDialog.Builder(cafeModifyFragment.getContext());
-                                            mod.setTitle("정보").setMessage("리뷰가 삭제되었습니다.").setNeutralButton("확인", new DialogInterface.OnClickListener() {
+                                            mod.setTitle("정보").setMessage("이미지가 삭제되었습니다.").setNeutralButton("확인", new DialogInterface.OnClickListener() {
                                                 @Override
                                                 public void onClick(DialogInterface dialog, int which) {
 
