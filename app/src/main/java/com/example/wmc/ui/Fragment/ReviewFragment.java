@@ -356,7 +356,7 @@ public class ReviewFragment extends Fragment {
                         bundle.putBoolean("flag", flag);
                         bundle.putLong("reviewNum", reviewNum);
                         bundle.putBoolean("location_flag", location_flag);
-
+                        Log.d("review -> location_flag(tag))", location_flag.toString());
                         navController.navigate(R.id.review_to_review_tag, bundle);
                     }
 
@@ -665,7 +665,7 @@ public class ReviewFragment extends Fragment {
                 comment = argBundle.getString("comment");
 
                 location_flag = argBundle.getBoolean("return_location_flag");
-
+                Log.d("tag -> location_flag", location_flag.toString());
 //                Log.d("태그 종료후 받은 comment", comment);
                 review_search_input.setTypeface(Typeface.DEFAULT_BOLD);  // 카페이름 Bold처리
                 review_search_input.setGravity(Gravity.CENTER);          // 카페 위치 Center로 변경
@@ -735,6 +735,8 @@ public class ReviewFragment extends Fragment {
 
                                 reviewNum = r.getReviewNum();
                                 Log.d("reviewNum_searchReviewNum", reviewNum.toString());
+                                location_flag = r.getLocationcheck();
+                                Log.d("수정복원 -> location_flag", location_flag.toString());
                                 comment = r.getReviewText();
                                 likeCount = r.getLikeCount();
                                 //이미지 코드
@@ -1252,7 +1254,7 @@ public class ReviewFragment extends Fragment {
                             }
                             else{
                                 // 가장최근 위치정보 가져오기
-                                Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                                Location location = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
                                 if(location != null) {
                                     Log.d("location1", String.valueOf(location.getLongitude()));
                                     Log.d("location2", String.valueOf(location.getLatitude()));
@@ -1561,6 +1563,7 @@ public class ReviewFragment extends Fragment {
                                 bundle.putInt("likeCount", likeCount.intValue()); // likecount는 integer형임
                                 bundle.putBoolean("flag", flag);
                                 bundle.putBoolean("location_flag", location_flag);
+                                Log.d("review -> location_flag(코멘토리)", location_flag.toString());
 
                                 Log.d("리뷰_to_comment -> flag", String.valueOf(flag));
                                 Log.d("리뷰_to_comment -> keyWord4", String.valueOf(k2[3]));
@@ -1628,6 +1631,8 @@ public class ReviewFragment extends Fragment {
                                 map.put("studyPoint2", Integer.valueOf((int) rating_plug.getRating()));
                                 map.put("studyPoint3", Integer.valueOf((int) rating_quiet.getRating()));
                                 map.put("studyPoint4", Integer.valueOf((int) rating_light.getRating()));
+                                map.put("locationcheck", location_flag);
+                                Log.d("작성하는 리뷰의 location", location_flag.toString());
                                 map.put("cafeNum", cafeNum);
                                 map.put("likeCount", 0);
                                 map.put("reviewText", null);
@@ -2119,6 +2124,7 @@ public class ReviewFragment extends Fragment {
                                 navController.navigate(R.id.review_to_cafe_detail, bundle);
 
                             }
+                            // 수정에서 온 경우
                             else if (flag == true) {
                                 Map map = new HashMap();
                                 map.put("tastePoint1", Integer.valueOf((int) rating_sour.getRating()));
@@ -2133,6 +2139,8 @@ public class ReviewFragment extends Fragment {
                                 map.put("studyPoint2", Integer.valueOf((int) rating_plug.getRating()));
                                 map.put("studyPoint3", Integer.valueOf((int) rating_quiet.getRating()));
                                 map.put("studyPoint4", Integer.valueOf((int) rating_light.getRating()));
+                                map.put("locationcheck", location_flag);
+                                Log.d("수정하는 location", location_flag.toString());
                                 map.put("cafeNum", cafeNum);
                                 map.put("likeCount", likeCount);
                                 map.put("memNum", mem_num);

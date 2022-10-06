@@ -715,6 +715,7 @@ public class MyPage_ReviewFragment extends Fragment {
                             if(r.getReviewNum().equals(reviewNum)) {
 
                                 reviewNum = r.getReviewNum();
+                                location_flag = r.getLocationcheck();
                                 Log.d("reviewNum", reviewNum.toString());
                                 comment = r.getReviewText();
                                 likeCount = r.getLikeCount();
@@ -1233,7 +1234,7 @@ public class MyPage_ReviewFragment extends Fragment {
                             }
                             else{
                                 // 가장최근 위치정보 가져오기
-                                Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                                Location location = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
                                 if(location != null) {
                                     Log.d("location1", String.valueOf(location.getLongitude()));
                                     Log.d("location2", String.valueOf(location.getLatitude()));
@@ -1605,6 +1606,7 @@ public class MyPage_ReviewFragment extends Fragment {
                                 map.put("studyPoint2", Integer.valueOf((int) rating_plug.getRating()));
                                 map.put("studyPoint3", Integer.valueOf((int) rating_quiet.getRating()));
                                 map.put("studyPoint4", Integer.valueOf((int) rating_light.getRating()));
+                                map.put("locationcheck", location_flag);
                                 map.put("cafeNum", cafeNum);
                                 map.put("likeCount", 0);
                                 map.put("reviewText", null);
@@ -2096,6 +2098,8 @@ public class MyPage_ReviewFragment extends Fragment {
                                 navController.navigate(R.id.mypage_review_to_mypage, bundle);
 
                             }
+
+                            // 수정에서 온 경우,
                             else if (flag == true) {
                                 Map map = new HashMap();
                                 map.put("tastePoint1", Integer.valueOf((int) rating_sour.getRating()));
@@ -2110,6 +2114,7 @@ public class MyPage_ReviewFragment extends Fragment {
                                 map.put("studyPoint2", Integer.valueOf((int) rating_plug.getRating()));
                                 map.put("studyPoint3", Integer.valueOf((int) rating_quiet.getRating()));
                                 map.put("studyPoint4", Integer.valueOf((int) rating_light.getRating()));
+                                map.put("locationcheck", location_flag);
                                 map.put("cafeNum", cafeNum);
                                 map.put("likeCount", likeCount);
                                 map.put("memNum", mem_num);

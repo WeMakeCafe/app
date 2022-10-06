@@ -226,6 +226,7 @@ public class ReviewTagFragment extends Fragment {
             comment = getArguments().getString("comment");
 
             location_flag = getArguments().getBoolean("location_flag");
+            Log.d("review -> location(tag)", location_flag.toString());
         }
 
         else if(getArguments().getBoolean("moreReview_reviewModify_flag")) {   // 리뷰 수정을 통해서 온 경우,
@@ -303,6 +304,7 @@ public class ReviewTagFragment extends Fragment {
             comment = getArguments().getString("comment");
 
             location_flag = getArguments().getBoolean("location_flag");
+            Log.d("review -> location(tag)", location_flag.toString());
         }
 
         else if(getArguments().getBoolean("mypage_reviewModify_flag")) {   // 리뷰 수정을 통해서 온 경우,
@@ -380,6 +382,7 @@ public class ReviewTagFragment extends Fragment {
             comment = getArguments().getString("comment");
 
             location_flag = getArguments().getBoolean("location_flag");
+            Log.d("review -> location(tag)", location_flag.toString());
 
             Log.d("myReview에서 받은comment", comment);
 
