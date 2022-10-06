@@ -1,6 +1,7 @@
 package com.example.wmc.ui.Fragment;
 
 import android.annotation.SuppressLint;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -163,6 +164,7 @@ public class CafeDetailFragment extends Fragment {
         Network network = new BasicNetwork(new HurlStack());
         requestQueue = new RequestQueue(cache, network);
         requestQueue.start();
+
 
         String get_cafe_url = getResources().getString(R.string.url) + "cafe";
 
