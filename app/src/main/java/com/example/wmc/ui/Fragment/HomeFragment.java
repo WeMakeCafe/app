@@ -192,7 +192,13 @@ public class HomeFragment extends Fragment {
 
                 try {
                     list = g.getFromLocation(latitude, longitude,10);
+
+                    Log.d("cafeList", list.get(5).getAddressLine(0).toString());
+
                     cafe_search_input.setText(list.get(0).getAddressLine(0).substring(5));
+
+                    get_user_address = list.get(5).getAddressLine(0).substring(5);
+
                 } catch (IOException e) {
                     e.printStackTrace();
                     Toast.makeText(getContext().getApplicationContext(), "주소를 가져 올 수 없습니다.", Toast.LENGTH_LONG).show();
@@ -681,11 +687,10 @@ public class HomeFragment extends Fragment {
                                         second_viewPager.setOffscreenPageLimit(5);
                                         tag2_List = new ArrayList<>();
 
-                                        get_user_address = cafe_search_input.getText().toString();
-
 
                                         for(Cafe c : cafe_list) {
                                             if (c.getCafeAddress().contains(get_user_address)) {
+                                                Log.d("getCafeAddress", c.getCafeAddress().toString());
 
                                                 get_taste_point_total = 0;
                                                 get_study_point_total = 0;
