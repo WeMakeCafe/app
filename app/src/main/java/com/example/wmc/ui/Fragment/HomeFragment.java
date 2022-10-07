@@ -63,6 +63,9 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
@@ -714,7 +717,7 @@ public class HomeFragment extends Fragment {
 
                                                 for (Review r : review_list) {
                                                     if (r.getCafeNum().equals(c.getCafeNum())) {
-                                                        review_counter++;
+                                                        review_counter = review_counter + 1;
                                                         if (like_counter_max <= r.getLikeCount()) {
                                                             like_counter_max = r.getLikeCount();
                                                             get_review = r.getReviewText();
@@ -1018,15 +1021,17 @@ public class HomeFragment extends Fragment {
                                                     get_study_point_avg = 0;
                                                 }
                                                 else
-                                                    get_study_point_avg = (c.getStudyPoint1() + c.getStudyPoint2() + c.getStudyPoint3() + c.getStudyPoint4()) / review_counter;
+                                                    get_study_point_avg = (c.getStudyPoint1() + c.getStudyPoint2() + c.getStudyPoint3() + c.getStudyPoint4()) / review_counter / 4;
 
                                                 if((c.getTastePoint1() + c.getTastePoint2() + c.getTastePoint3() + c.getTastePoint4()) == 0 || review_counter == 0){
                                                     get_taste_point_avg = 0;
                                                 }
                                                 else
-                                                    get_taste_point_avg = (c.getTastePoint1() + c.getTastePoint2() + c.getTastePoint3() + c.getTastePoint4()) / review_counter;
+                                                    get_taste_point_avg = (c.getTastePoint1() + c.getTastePoint2() + c.getTastePoint3() + c.getTastePoint4()) / review_counter / 4;
 
 
+                                                Log.d("getTastePoint_AVG", String.valueOf(get_taste_point_avg));
+                                                Log.d("getstudyPoint_AVG", String.valueOf(get_study_point_avg));
                                                 String get_cafeImage_url = getResources().getString(R.string.url) + "cafeImage";
 
                                                 StringRequest cafeImage_stringRequest1 = new StringRequest(Request.Method.GET, get_cafeImage_url, new Response.Listener<String>() {
@@ -1079,7 +1084,7 @@ public class HomeFragment extends Fragment {
                                                             if ((c.getStudyPoint1() + c.getStudyPoint2() + c.getStudyPoint3() + c.getStudyPoint4()) <= (c.getTastePoint1() + c.getTastePoint2() + c.getTastePoint3() + c.getTastePoint4())) {
 
                                                                 HomeTag1ViewPagerItem firstTag_item = new HomeTag1ViewPagerItem(c.getCafeName(), c.getCafeAddress(), "#맛", tag1, tag2,
-                                                                        get_review, represent_cafeImage_URL, get_study_point_avg);
+                                                                        get_review, represent_cafeImage_URL, get_taste_point_avg);
                                                                 tag1_List.add(firstTag_item);
                                                             } else {
                                                                 Log.d("get_study_point_total", String.valueOf(get_study_point_total));
@@ -1087,11 +1092,13 @@ public class HomeFragment extends Fragment {
 
 
                                                                 HomeTag2ViewPagerItem secondTag_item = new HomeTag2ViewPagerItem(c.getCafeName(), c.getCafeAddress(), "#스터디", tag1, tag2,
-                                                                        get_review, represent_cafeImage_URL, get_taste_point_avg);
+                                                                        get_review, represent_cafeImage_URL, get_study_point_avg);
                                                                 tag2_List.add(secondTag_item);
                                                             }
                                                         }
 
+                                                        // tag1_List 별점 높은순으로 정렬
+                                                        Collections.sort(tag1_List, new tag1_ratingComparator());
                                                         first_viewPager.setAdapter(new HomeTag1ViewPagerAdapter(getContext().getApplicationContext(), tag1_List, HomeFragment.this));
                                                         tag1Adapter = new HomeTag1ViewPagerAdapter(getContext().getApplicationContext(), tag1_List, HomeFragment.this);
 
@@ -1130,6 +1137,9 @@ public class HomeFragment extends Fragment {
 
                                                         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                         // Home에서 2순위 해시태그에 대한 뷰페이저 작성
+
+                                                        // tag2_List 별점 높은순으로 정렬
+                                                        Collections.sort(tag2_List, new tag2_ratingComparator());
                                                         second_viewPager.setAdapter(new HomeTag2ViewPagerAdapter(getContext().getApplicationContext(), tag2_List, HomeFragment.this));
                                                         tag2Adapter = new HomeTag2ViewPagerAdapter(getContext().getApplicationContext(), tag2_List, HomeFragment.this);
 
@@ -1329,5 +1339,29 @@ public class HomeFragment extends Fragment {
         binding = null;
     }
 
+    class tag1_ratingComparator implements Comparator<HomeTag1ViewPagerItem> {
 
+        @Override
+        public int compare(HomeTag1ViewPagerItem o1, HomeTag1ViewPagerItem o2) {
+            if(o1.getRating() > o2.getRating())
+                return 1;
+            else if (o1.getRating() < o2.getRating())
+                return -1;
+
+            return 0;
+        }
+    }
+
+    class tag2_ratingComparator implements Comparator<HomeTag2ViewPagerItem> {
+
+        @Override
+        public int compare(HomeTag2ViewPagerItem o1, HomeTag2ViewPagerItem o2) {
+            if(o1.getRating() > o2.getRating())
+                return 1;
+            else if (o1.getRating() < o2.getRating())
+                return -1;
+
+            return 0;
+        }
+    }
 }
