@@ -63,7 +63,6 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -1098,7 +1097,7 @@ public class HomeFragment extends Fragment {
                                                         }
 
                                                         // tag1_List 별점 높은순으로 정렬
-                                                        Collections.sort(tag1_List, new tag1_ratingComparator());
+                                                        Collections.sort(tag1_List, new tag1_ratingComparator().reversed());
                                                         first_viewPager.setAdapter(new HomeTag1ViewPagerAdapter(getContext().getApplicationContext(), tag1_List, HomeFragment.this));
                                                         tag1Adapter = new HomeTag1ViewPagerAdapter(getContext().getApplicationContext(), tag1_List, HomeFragment.this);
 
@@ -1139,7 +1138,7 @@ public class HomeFragment extends Fragment {
                                                         // Home에서 2순위 해시태그에 대한 뷰페이저 작성
 
                                                         // tag2_List 별점 높은순으로 정렬
-                                                        Collections.sort(tag2_List, new tag2_ratingComparator());
+                                                        Collections.sort(tag2_List, new tag2_ratingComparator().reversed());
                                                         second_viewPager.setAdapter(new HomeTag2ViewPagerAdapter(getContext().getApplicationContext(), tag2_List, HomeFragment.this));
                                                         tag2Adapter = new HomeTag2ViewPagerAdapter(getContext().getApplicationContext(), tag2_List, HomeFragment.this);
 
