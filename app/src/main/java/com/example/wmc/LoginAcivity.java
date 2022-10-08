@@ -93,39 +93,45 @@ public class LoginAcivity extends AppCompatActivity {
                 id = id_input.getText().toString(); // 6자 이상, max_length 12자
                 pw = pw_input.getText().toString(); // 8자 이상, max_length 15자
 
-                HashMap<String,Object>params = new HashMap<String,Object>();
-                params.put("id",id);
-                params.put("password",pw);
-
-                String url = getResources().getString(R.string.url) + "login";
-                StringRequest request = new StringRequest(Request.Method.PUT, url, new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Log.d("login",response);
-                        if(response == "0")
-                            Toast.makeText(getApplicationContext(), "등록되지 않은 아이디입니다.", Toast.LENGTH_SHORT).show();
-                        else
-                            Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                            intent.putExtra("mem_num",response);
-                            startActivity(intent);
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.d("no_use",error.toString());
-                    }
+                if(id.equals("") || pw.equals("")){
+                    Toast.makeText(getApplicationContext(), "정보를 입력해주세요.", Toast.LENGTH_SHORT).show();
                 }
-                ){
-                    public byte[] getBody(){
-                        return new JSONObject(params).toString().getBytes();
-                    }
-                    public String getBodyContentType(){
-                        return "application/json";
-                    }
-                };
-                Volley.newRequestQueue(getApplicationContext()).add(request);
+                else {
+                    HashMap<String, Object> params = new HashMap<String, Object>();
+                    params.put("id", id);
+                    params.put("password", pw);
 
+                    String url = getResources().getString(R.string.url) + "login";
+                    StringRequest request = new StringRequest(Request.Method.PUT, url, new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            Log.d("login", response);
+                            if (response.equals("0")) { // 비밀번호가 다름
+                                Toast.makeText(getApplicationContext(), "아이디 또는 비밀번호가 다릅니다.", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                intent.putExtra("mem_num", response);
+                                startActivity(intent);
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) { // 아이디가 없음
+                            Toast.makeText(getApplicationContext(), "아이디 또는 비밀번호가 다릅니다.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    ) {
+                        public byte[] getBody() {
+                            return new JSONObject(params).toString().getBytes();
+                        }
+
+                        public String getBodyContentType() {
+                            return "application/json";
+                        }
+                    };
+                    Volley.newRequestQueue(getApplicationContext()).add(request);
+                }
             }
         });
     }
