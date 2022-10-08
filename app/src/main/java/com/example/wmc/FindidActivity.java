@@ -73,29 +73,22 @@ public class FindidActivity extends AppCompatActivity {
             public void onClick(View v) {
                 stringID = pn_input.getText().toString();
 
-                if(stringID.length() <= 9)
-                    Toast.makeText(getApplicationContext(), "전화번호는 10자리 이상 입력해주세요.", Toast.LENGTH_SHORT).show();
-                else if(!stringID.substring(0, 3).equals("010"))
-                    Toast.makeText(getApplicationContext(), "전화번호는 '010'으로 시작합니다.", Toast.LENGTH_SHORT).show();
-                else{
-
-                    String url = getResources().getString(R.string.url) + "find/id?phoneNumber=" + stringID;
-
-                    StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            String success_setting = "입력하신 전화번호로 가입된 아이디는 " + response + " 입니다.";
-                            id_output.setText(success_setting);
-                        }
+                String url = getResources().getString(R.string.url) + "find/id?phoneNumber=" + stringID;
+                StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        String success_setting = "입력하신 회원번호로 가입된 아이디는 " + response + " 입니다.";
+                        id_output.setText(success_setting);
+                    }
                     }, new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            String fail_setting = "입력하신 전화번호로 가입된 아이디가 없습니다.";
-                            id_output.setText(fail_setting);
-                        }
-                    });
-                    requestQueue.add(stringRequest);
-                }
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        String fail_setting = "입력하신 회원번호로 가입된 아이디가 없습니다.";
+                        id_output.setText(fail_setting);
+                    }
+                });
+                requestQueue.add(stringRequest);
             }
         });
     }

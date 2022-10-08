@@ -114,8 +114,8 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="25dp"
                     android:enabled="false"
-                    android:inputType="text"
-                    android:maxLength="20"
+                    android:inputType="textPassword"
+                    android:maxLength="15"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
 

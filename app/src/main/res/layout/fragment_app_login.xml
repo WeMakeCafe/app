@@ -50,7 +50,7 @@
                 android:layout_marginTop="15dp"
                 android:hint="비밀번호"
                 android:inputType="textPersonName"
-                android:maxLength="20"
+                android:maxLength="15"
                 android:singleLine="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

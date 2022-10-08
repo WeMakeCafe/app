@@ -1,5 +1,6 @@
 package com.example.wmc;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -56,6 +57,11 @@ public class MainActivity extends AppCompatActivity {
         bottom_reviewFragment = new Bottom_ReviewFragment();
         myPageFragment = new MyPageFragment();
 //        setContentView(R.layout.fragment_image_add_test); //페이지 확인하기
+
+//        Intent intent = getIntent();
+//        String text = intent.getStringExtra("mem_num");
+//        Long numLong = Long.parseLong(text);
+//        mem_num = numLong;
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
