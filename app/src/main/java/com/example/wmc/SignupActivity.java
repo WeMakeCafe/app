@@ -129,14 +129,14 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 checkFavorite1 = "스터디";
-                checkFavorite2 = "커피맛";
+                checkFavorite2 = "맛";
             }
         });
 
         favorite2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkFavorite1 = "커피맛";
+                checkFavorite1 = "맛";
                 checkFavorite2 = "스터디";
             }
         });
