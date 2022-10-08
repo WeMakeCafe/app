@@ -333,10 +333,19 @@ public class SignupActivity extends AppCompatActivity {
                     StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-                            Toast.makeText(getApplicationContext(), "회원가입 완료되었습니다.", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getApplicationContext(), LoginAcivity.class);
-                            startActivity(intent);
-                            finish();
+                            AlertDialog.Builder dlg = new AlertDialog.Builder(SignupActivity.this);
+                            dlg.setTitle("We Make Cafe");
+                            dlg.setMessage("회원가입 성공. 아이디 찾기를 위한 회원 고유번호는 " + numInt + "입니다.");
+//                    dlg.setIcon()
+                            dlg.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent intent = new Intent(getApplicationContext(), LoginAcivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            });
+                            dlg.show();
                             Log.d("signup1", response);
                         }
                     }, new Response.ErrorListener() {

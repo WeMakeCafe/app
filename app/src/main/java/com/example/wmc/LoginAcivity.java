@@ -113,6 +113,7 @@ public class LoginAcivity extends AppCompatActivity {
                                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                 intent.putExtra("mem_num", response);
                                 startActivity(intent);
+                                finish();
                             }
                         }
                     }, new Response.ErrorListener() {
