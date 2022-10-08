@@ -61,9 +61,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
-                    android:hint="전화번호를 입력해주세요 ('-'제외) "
+                    android:hint="회원가입시 받은 회원번호를 입력하세요 "
                     android:inputType="number"
-                    android:maxLength="11"
+                    android:maxLength="10"
                     android:singleLine="true"
                     android:textSize="14sp" />
 
