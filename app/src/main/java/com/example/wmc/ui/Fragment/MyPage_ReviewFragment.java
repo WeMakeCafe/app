@@ -1,6 +1,7 @@
 package com.example.wmc.ui.Fragment;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.location.Address;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -715,7 +717,7 @@ public class MyPage_ReviewFragment extends Fragment {
                             if(r.getReviewNum().equals(reviewNum)) {
 
                                 reviewNum = r.getReviewNum();
-                                location_flag = r.getLocationcheck();
+                                location_flag = r.getLocationCheck();
                                 Log.d("reviewNum", reviewNum.toString());
                                 comment = r.getReviewText();
                                 likeCount = r.getLikeCount();
@@ -1606,7 +1608,7 @@ public class MyPage_ReviewFragment extends Fragment {
                                 map.put("studyPoint2", Integer.valueOf((int) rating_plug.getRating()));
                                 map.put("studyPoint3", Integer.valueOf((int) rating_quiet.getRating()));
                                 map.put("studyPoint4", Integer.valueOf((int) rating_light.getRating()));
-                                map.put("locationcheck", location_flag);
+                                map.put("locationCheck", location_flag);
                                 map.put("cafeNum", cafeNum);
                                 map.put("likeCount", 0);
                                 map.put("reviewText", null);
@@ -2114,8 +2116,10 @@ public class MyPage_ReviewFragment extends Fragment {
                                 map.put("studyPoint2", Integer.valueOf((int) rating_plug.getRating()));
                                 map.put("studyPoint3", Integer.valueOf((int) rating_quiet.getRating()));
                                 map.put("studyPoint4", Integer.valueOf((int) rating_light.getRating()));
-                                map.put("locationcheck", location_flag);
+                                map.put("locationCheck", location_flag);
                                 map.put("cafeNum", cafeNum);
+
+                                map.put("reviewText", comment);
                                 map.put("likeCount", likeCount);
                                 map.put("memNum", mem_num);
                                 switch (setTag1.getText().toString()) {
@@ -2602,7 +2606,21 @@ public class MyPage_ReviewFragment extends Fragment {
 
                                 Bundle bundle = new Bundle();
                                 bundle.putString("cafeName", review_search_input.getText().toString());
-                                navController.navigate(R.id.mypage_review_to_mypage, bundle);
+                                // 내가 리뷰를 작성한 카페의 카페디테일로 이동
+
+                                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                                builder.setTitle("리뷰 작성").setMessage("리뷰가 등록되었습니다.").setIcon(R.drawable.logo);
+
+                                builder.setPositiveButton("확인", new DialogInterface.OnClickListener(){
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int id)
+                                    {
+                                        navController.navigate(R.id.mypage_review_to_mypage, bundle);
+                                    }
+                                });
+
+                                AlertDialog alertDialog = builder.create();
+                                alertDialog.show();
                             }
                         }
                     }

@@ -308,12 +308,13 @@ public class Mypage_ReviewCommentFragment extends Fragment {
                 location_flag = argBundle.getBoolean("location_flag");
 
                 comment = argBundle.getString("comment");
-                if(comment.equals(""))
+                if(comment == null)
                     commentCount_textView.setText("0/200 Bytes"); // 코멘토리에 쓰여있는 글자 수 세팅
-                else
+                else {
                     commentCount_textView.setText(comment.length() + "/200 Bytes"); // 코멘토리에 쓰여있는 글자 수 세팅
+                    reviewComment_editText.setText(comment);
+                }
 
-                reviewComment_editText.setText(comment);
                 likeCount = argBundle.getInt("likeCount");
                 flag = argBundle.getBoolean("flag");    // 수정에서 넘어온 것인지 확인
 
@@ -456,7 +457,7 @@ public class Mypage_ReviewCommentFragment extends Fragment {
                             map.put("studyPoint2", p10);
                             map.put("studyPoint3", p11);
                             map.put("studyPoint4", p12);
-                            map.put("locationcheck", location_flag);
+                            map.put("locationCheck", location_flag);
                             map.put("cafeNum", cafeNum);
                             map.put("likeCount", 0);
                             map.put("reviewText", reviewComment_editText.getText().toString());
@@ -1000,7 +1001,7 @@ public class Mypage_ReviewCommentFragment extends Fragment {
                             map.put("studyPoint2", p10);
                             map.put("studyPoint3", p11);
                             map.put("studyPoint4", p12);
-                            map.put("locationcheck", location_flag);
+                            map.put("locationCheck", location_flag);
                             map.put("cafeNum", cafeNum);
                             map.put("likeCount", likeCount);
                             map.put("memNum", mem_num);

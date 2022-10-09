@@ -702,7 +702,7 @@ public class Bottom_ReviewFragment extends Fragment {
                                 Log.d("reviewNum", reviewNum.toString());
                                 comment = r.getReviewText();
                                 likeCount = r.getLikeCount();
-                                location_flag = r.getLocationcheck();
+                                location_flag = r.getLocationCheck();
                                 Log.d("수정복원 location_flag", location_flag.toString());
                                 //이미지 코드
                                 rating_sour.setRating(r.getTastePoint1());
@@ -1591,7 +1591,7 @@ public class Bottom_ReviewFragment extends Fragment {
                                 map.put("studyPoint2", Integer.valueOf((int) rating_plug.getRating()));
                                 map.put("studyPoint3", Integer.valueOf((int) rating_quiet.getRating()));
                                 map.put("studyPoint4", Integer.valueOf((int) rating_light.getRating()));
-                                map.put("locationcheck", location_flag);
+                                map.put("locationCheck", location_flag);
                                 map.put("cafeNum", cafeNum);
                                 map.put("likeCount", 0);
                                 map.put("reviewText", null);
@@ -2113,7 +2113,7 @@ public class Bottom_ReviewFragment extends Fragment {
                                 map.put("studyPoint4", Integer.valueOf((int) rating_light.getRating()));
                                 map.put("cafeNum", cafeNum);
                                 map.put("likeCount", likeCount);
-                                map.put("locationcheck", location_flag);
+                                map.put("locationCheck", location_flag);
                                 map.put("memNum", mem_num);
                                 switch (setTag1.getText().toString()) {
                                     case ("#쓴맛"):

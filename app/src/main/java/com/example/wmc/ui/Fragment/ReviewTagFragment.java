@@ -624,7 +624,7 @@ public class ReviewTagFragment extends Fragment {
                         bundle.putFloat("tag_review_studyPoint4", s12);
 
                         bundle.putBoolean("return_location_flag", location_flag);
-
+                        Log.d("tag -> location_flag", location_flag.toString());
                         navController.navigate(R.id.review_tag_to_review, bundle); // 번들과 함께 전달
                     }
 
@@ -652,7 +652,7 @@ public class ReviewTagFragment extends Fragment {
                         bundle.putFloat("tag_review_studyPoint4", s12);
 
                         bundle.putBoolean("return_location_flag", location_flag);
-
+                        Log.d("tag -> location_flag", location_flag.toString());
                         navController.navigate(R.id.review_tag_to_review, bundle); // 번들과 함께 전달
                     }
 
@@ -735,7 +735,7 @@ public class ReviewTagFragment extends Fragment {
 //                        Log.d("리뷰로 보내는comment", comment);
 
                         bundle.putBoolean("return_location_flag", location_flag);
-
+                        Log.d("tag -> location_flag", location_flag.toString());
                         navController.navigate(R.id.review_tag_to_review, bundle); // 번들과 함께 전달
                     }
 
@@ -818,7 +818,7 @@ public class ReviewTagFragment extends Fragment {
                         Log.d("리뷰로 보내는comment", comment);
 
                         bundle.putBoolean("return_location_flag", location_flag);
-
+                        Log.d("tag -> location_flag", location_flag.toString());
                         navController.navigate(R.id.review_tag_to_review, bundle); // 번들과 함께 전달
                     }
 
@@ -901,7 +901,7 @@ public class ReviewTagFragment extends Fragment {
                         Log.d("리뷰로 보내는comment", comment);
 
                         bundle.putBoolean("return_location_flag", location_flag);
-
+                        Log.d("tag -> location_flag", location_flag.toString());
                         navController.navigate(R.id.review_tag_to_review, bundle); // 번들과 함께 전달
                     }
                 }
