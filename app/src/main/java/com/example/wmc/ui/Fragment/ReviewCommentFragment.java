@@ -313,8 +313,14 @@ public class ReviewCommentFragment extends Fragment {
                 reviewNum = argBundle.getLong("reviewNum");
 
                 comment = argBundle.getString("comment");
-                reviewComment_editText.setText(comment);                        // 코멘토리에 기존에 작성해놨던 리뷰 코멘토리 세팅
-                commentCount_textView.setText(comment.length() + "/200 Bytes"); // 코멘토리에 쓰여있는 글자 수 세팅
+                if(comment == null) {
+                    commentCount_textView.setText("0/200 Bytes"); // 코멘토리에 쓰여있는 글자 수 세팅
+                }
+
+                else {
+                    commentCount_textView.setText(comment.length() + "/200 Bytes"); // 코멘토리에 쓰여있는 글자 수 세팅
+                    reviewComment_editText.setText(comment);
+                }
 
                 likeCount = argBundle.getInt("likeCount");
                 flag = argBundle.getBoolean("flag");    // 수정에서 넘어온 것인지 확인
@@ -458,7 +464,7 @@ public class ReviewCommentFragment extends Fragment {
                             map.put("studyPoint2", p10);
                             map.put("studyPoint3", p11);
                             map.put("studyPoint4", p12);
-                            map.put("locationcheck", location_flag);
+                            map.put("locationCheck", location_flag);
                             map.put("cafeNum", cafeNum);
                             map.put("likeCount", 0);
                             map.put("reviewText", reviewComment_editText.getText().toString());
@@ -1002,7 +1008,7 @@ public class ReviewCommentFragment extends Fragment {
                             map.put("studyPoint2", p10);
                             map.put("studyPoint3", p11);
                             map.put("studyPoint4", p12);
-                            map.put("locationcheck", location_flag);
+                            map.put("locationCheck", location_flag);
                             map.put("cafeNum", cafeNum);
                             map.put("likeCount", likeCount);
                             map.put("memNum", mem_num);
@@ -1549,11 +1555,23 @@ public class ReviewCommentFragment extends Fragment {
                                 }
                             }
 
-
                             Bundle bundle = new Bundle();
                             bundle.putString("cafeName",cafeName);
                             // 내가 리뷰를 작성한 카페의 카페디테일로 이동
-                            navController.navigate(R.id.review_comment_to_cafe_detail, bundle);
+
+                            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                            builder.setTitle("리뷰 작성").setMessage("리뷰가 등록되었습니다.").setIcon(R.drawable.logo);
+
+                            builder.setPositiveButton("확인", new DialogInterface.OnClickListener(){
+                                @Override
+                                public void onClick(DialogInterface dialog, int id)
+                                {
+                                    navController.navigate(R.id.review_comment_to_cafe_detail, bundle);
+                                }
+                            });
+
+                            AlertDialog alertDialog = builder.create();
+                            alertDialog.show();
                         }
                     }
                 });

@@ -457,8 +457,8 @@ public class Bottom_ReviewCommentFragment extends Fragment {
                             map.put("studyPoint4", p12);
                             map.put("cafeNum", cafeNum);
                             map.put("likeCount", 0);
-                            map.put("locationcheck", location_flag);
-                            Log.d("locationcheck", location_flag.toString());
+                            map.put("locationCheck", location_flag);
+                            Log.d("locationCheck", location_flag.toString());
                             map.put("reviewText", reviewComment_editText.getText().toString());
                             map.put("memNum", mem_num);
                             // 이미지 처리 문장 올 곳
@@ -834,6 +834,7 @@ public class Bottom_ReviewCommentFragment extends Fragment {
 
                             String url2 = getResources().getString(R.string.url) + "review";
                             JSONObject jsonObject = new JSONObject(map);
+                            Log.d("review테이블에 전달되는 jsonObject", jsonObject.toString());
                             JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, url2, jsonObject,
                                     new Response.Listener<JSONObject>() {
                                         @Override
@@ -1002,7 +1003,7 @@ public class Bottom_ReviewCommentFragment extends Fragment {
                             map.put("studyPoint4", p12);
                             map.put("cafeNum", cafeNum);
                             map.put("likeCount", likeCount);
-                            map.put("locationcheck", location_flag);
+                            map.put("locationCheck", location_flag);
                             map.put("memNum", mem_num);
                             map.put("reviewText", reviewComment_editText.getText().toString());
 
