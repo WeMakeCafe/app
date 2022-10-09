@@ -313,7 +313,7 @@ public class MyPageFragment extends Fragment {
                                                                 mypageReviewItems.add(new MypageReviewItem(c.getCafeName(), create_date,
                                                                         r.getReviewText(), reviewImage.get(0), reviewImage.get(1),
                                                                         reviewImage.get(2), r.getLikeCount().toString(),
-                                                                        true, mem_num, r.getCafeNum(), r.getReviewNum()));
+                                                                        true, mem_num, r.getCafeNum(), r.getReviewNum(), r.getLocationCheck()));
 
 
                                                                 // 다음 리뷰로 넘어갈때, 리뷰 이미지 ArrayList 비워주는 코드
@@ -338,7 +338,7 @@ public class MyPageFragment extends Fragment {
                                                                     @Override
                                                                     public void onItemClick(View a_view, int a_position) {
                                                                         final MypageReviewItem item = mypageReviewItems.get(a_position);
-                                                                        Toast.makeText(getContext().getApplicationContext(), item.getMypageReview_CafeName(), Toast.LENGTH_SHORT).show();
+//                                                                        Toast.makeText(getContext().getApplicationContext(), item.getMypageReview_CafeName(), Toast.LENGTH_SHORT).show();
                                                                     }
                                                                 });
                                                             }
