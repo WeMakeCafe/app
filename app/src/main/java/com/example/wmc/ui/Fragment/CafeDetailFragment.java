@@ -816,7 +816,7 @@ public class CafeDetailFragment extends Fragment {
                                                             // 1. 어플 사용자가 해당 카페에 대한 리뷰를 작성한 경우, 리사이클러뷰 가장 처음에 나오도록 설정
                                                             if (r.getMemNum().equals(mem_num) && p.getMemNum().equals(mem_num)) {
                                                                 cafeDetailReviewItem.add( 0, new CafeDetailItem(p.getNickName(), p.getGrade().toString(),
-                                                                        r.getReviewText(), create_date, personImage, reviewImage, r.getLikeCount().toString(), true, false, mem_num, get_cafe_num, -1L, r.getReviewNum()));
+                                                                        r.getReviewText(), create_date, personImage, reviewImage, r.getLikeCount().toString(), true, false, mem_num, get_cafe_num, -1L, r.getReviewNum(), r.getLocationCheck()));
                                                                 Log.d("review_check", r.getReviewNum().toString());
                                                             } // 2. 리뷰 작성자들의 닉네임, 회원 등급을 포함한 리뷰 Item 작성
                                                             else if (r.getMemNum().equals(p.getMemNum())) {
@@ -827,18 +827,18 @@ public class CafeDetailFragment extends Fragment {
                                                                             Log.d("love_for_if_test", "love_for_if_test");
                                                                             love_flag = true;
                                                                             cafeDetailReviewItem.add(new CafeDetailItem(p.getNickName(), p.getGrade().toString(),
-                                                                                    r.getReviewText(), create_date, personImage, reviewImage, r.getLikeCount().toString(), false, true, mem_num, get_cafe_num, l.getLoveNum(), r.getReviewNum()));
+                                                                                    r.getReviewText(), create_date, personImage, reviewImage, r.getLikeCount().toString(), false, true, mem_num, get_cafe_num, l.getLoveNum(), r.getReviewNum(), r.getLocationCheck()));
                                                                         }
                                                                     }
                                                                 }else{
                                                                     Log.d("love_not_test", "love_not_test");
                                                                     cafeDetailReviewItem.add(new CafeDetailItem(p.getNickName(), p.getGrade().toString(),
-                                                                            r.getReviewText(), create_date, personImage, reviewImage, r.getLikeCount().toString(), false, false, mem_num, get_cafe_num, -1L, r.getReviewNum()));
+                                                                            r.getReviewText(), create_date, personImage, reviewImage, r.getLikeCount().toString(), false, false, mem_num, get_cafe_num, -1L, r.getReviewNum(), r.getLocationCheck()));
                                                                 }
                                                                 if(!love_flag){
                                                                     Log.d("love_not_test", "love_not_test");
                                                                     cafeDetailReviewItem.add(new CafeDetailItem(p.getNickName(), p.getGrade().toString(),
-                                                                            r.getReviewText(), create_date, personImage, reviewImage, r.getLikeCount().toString(), false, false, mem_num, get_cafe_num, -1L, r.getReviewNum()));
+                                                                            r.getReviewText(), create_date, personImage, reviewImage, r.getLikeCount().toString(), false, false, mem_num, get_cafe_num, -1L, r.getReviewNum(), r.getLocationCheck()));
                                                                 }
                                                             }
                                                         }
@@ -877,7 +877,7 @@ public class CafeDetailFragment extends Fragment {
                                                                     // 리뷰 클릭 시,
                                                                     else {
                                                                         final CafeDetailItem item = cafeDetailReviewItem.get(position);
-                                                                        Toast.makeText(getContext().getApplicationContext(), item.getReviewNickName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
+//                                                                        Toast.makeText(getContext().getApplicationContext(), item.getReviewNickName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
                                                                     }
                                                                 }
                                                             }
