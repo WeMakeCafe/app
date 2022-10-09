@@ -133,6 +133,8 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             Log.d("review_num_check", item.get_review_num.toString());
             CafeDetailViewHolder viewHolder = (CafeDetailViewHolder) a_holder;
 
+            if(item.isLocationCheck_flag())
+                viewHolder.location_text.setVisibility(View.VISIBLE);
             viewHolder.reviewNickName.setText(item.getReviewNickName());
             viewHolder.level_and_location.setText(item.getLevel_and_location());
             viewHolder.review_comment.setText(item.getReview_comment());

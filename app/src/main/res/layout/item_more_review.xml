@@ -83,6 +83,19 @@
                             app:layout_constraintStart_toEndOf="@+id/level" />
 
                         <TextView
+                            android:id="@+id/moreReview_location_text"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="3dp"
+                            android:singleLine="true"
+                            android:text="[위치인증]"
+                            android:textColor="@color/orange"
+                            android:textSize="10sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/nickName"
+                            app:layout_constraintStart_toEndOf="@+id/level_and_location"
+                            app:layout_constraintTop_toTopOf="@+id/nickName" />
+
+                        <TextView
                             android:id="@+id/reviewMore_writeTime"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
