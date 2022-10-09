@@ -91,6 +91,7 @@
                             android:text="[위치인증]"
                             android:textColor="@color/orange"
                             android:textSize="10sp"
+                            android:visibility="invisible"
                             app:layout_constraintBottom_toBottomOf="@+id/nickName"
                             app:layout_constraintStart_toEndOf="@+id/level_and_location"
                             app:layout_constraintTop_toTopOf="@+id/nickName" />
