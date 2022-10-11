@@ -519,7 +519,7 @@ public class ListCafelistFragment extends Fragment {
                                                     }
 
                                                     if(represent_cafeImage_URL.equals(""))
-                                                        represent_cafeImage_URL = "https://w.namu.la/s/0c6301df01fc4f180ec65717bad3d0254258abf0be33299e55df7c261040f517518eb9008a1a2cd3d7b8b7777d70182c185bc891b1054dc57b11cc46fd29130a3474f1b75b816024dfdc16b692a0c77c";
+                                                        represent_cafeImage_URL = getString(R.string.default_Review_Caefimage);
 
 
                                                     for(Bookmark b : bookmark_list) {
@@ -1007,7 +1007,7 @@ public class ListCafelistFragment extends Fragment {
                                             }
 
                                             if(represent_cafeImage_URL.equals(""))
-                                                represent_cafeImage_URL = "https://w.namu.la/s/0c6301df01fc4f180ec65717bad3d0254258abf0be33299e55df7c261040f517518eb9008a1a2cd3d7b8b7777d70182c185bc891b1054dc57b11cc46fd29130a3474f1b75b816024dfdc16b692a0c77c";
+                                                represent_cafeImage_URL = getString(R.string.default_Review_Caefimage);
 
 
                                             for(Bookmark b : bookmark_list) {
