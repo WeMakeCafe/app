@@ -867,7 +867,7 @@ public class CafeDetailFragment extends Fragment {
                                                                 else{
                                                                     // 리뷰 더보기 클릭 시,
                                                                     if(position == cafeDetailReviewItem.size()){
-                                                                        Toast.makeText(getContext().getApplicationContext(), "리뷰 더보기 클릭", Toast.LENGTH_SHORT).show();
+//                                                                        Toast.makeText(getContext().getApplicationContext(), "리뷰 더보기 클릭", Toast.LENGTH_SHORT).show();
                                                                         Bundle bundle = new Bundle();
                                                                         bundle.putString("cafeNum", get_cafe_num.toString());
                                                                         //bundle.putString("name",moreReview3.getText().toString());

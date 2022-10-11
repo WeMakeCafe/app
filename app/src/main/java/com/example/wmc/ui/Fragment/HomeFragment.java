@@ -634,7 +634,7 @@ public class HomeFragment extends Fragment {
                                                             @Override
                                                             public void onItemClick(View a_view, int a_position) {
                                                                 final HomeFavoriteItem item = homeFavoriteItems.get(a_position);
-                                                                Toast.makeText(getContext().getApplicationContext(), item.getCafeName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
+//                                                                Toast.makeText(getContext().getApplicationContext(), item.getCafeName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
 
                                                                 Bundle bundle = new Bundle();
                                                                 bundle.putString("cafeName", item.getCafeName());
@@ -1106,7 +1106,7 @@ public class HomeFragment extends Fragment {
                                                             @Override
                                                             public void onItemClick(int position) {
                                                                 final HomeTag1ViewPagerItem item = tag1_List.get(position);
-                                                                Toast.makeText(getContext().getApplicationContext(), item.getCafeName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
+//                                                                Toast.makeText(getContext().getApplicationContext(), item.getCafeName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
 
                                                                 Bundle bundle = new Bundle();
                                                                 bundle.putString("cafeName", item.getCafeName());
@@ -1147,7 +1147,7 @@ public class HomeFragment extends Fragment {
                                                             @Override
                                                             public void onItemClick(int position) {
                                                                 final HomeTag2ViewPagerItem item = tag2_List.get(position);
-                                                                Toast.makeText(getContext().getApplicationContext(), item.getCafeName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
+//                                                                Toast.makeText(getContext().getApplicationContext(), item.getCafeName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
 
                                                                 Bundle bundle = new Bundle();
                                                                 bundle.putString("cafeName", item.getCafeName());

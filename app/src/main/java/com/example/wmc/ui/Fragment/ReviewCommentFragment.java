@@ -1633,7 +1633,21 @@ public class ReviewCommentFragment extends Fragment {
         else{   // 이미지를 하나라도 선택한 경우
             if(data.getClipData() == null){     // 이미지를 하나만 선택한 경우
                 if(uriList.size() >= 3) {
-                    Toast.makeText(getContext().getApplicationContext(), "이미지 3개를 모두 선택하셨습니다.", Toast.LENGTH_LONG).show();
+//                    Toast.makeText(getContext().getApplicationContext(), "이미지 3개를 모두 선택하셨습니다.", Toast.LENGTH_LONG).show();
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setTitle("이미지 추가").setMessage("이미지 3개를 모두 선택하셨습니다.").setIcon(R.drawable.logo);
+
+                    builder.setPositiveButton("확인", new DialogInterface.OnClickListener(){
+                        @Override
+                        public void onClick(DialogInterface dialog, int id)
+                        {
+
+                        }
+                    });
+
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
                 }
 
                 else{
@@ -1651,7 +1665,21 @@ public class ReviewCommentFragment extends Fragment {
                 Log.e("clipData", String.valueOf(clipData.getItemCount()));
 
                 if(clipData.getItemCount() > 3){   // 선택한 이미지가 4장 이상인 경우
-                    Toast.makeText(getContext().getApplicationContext(), "사진은 3장까지 선택 가능합니다.", Toast.LENGTH_LONG).show();
+//                    Toast.makeText(getContext().getApplicationContext(), "사진은 3장까지 선택 가능합니다.", Toast.LENGTH_LONG).show();
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setTitle("이미지 추가").setMessage("사진은 3장까지 선택 가능합니다.").setIcon(R.drawable.logo);
+
+                    builder.setPositiveButton("확인", new DialogInterface.OnClickListener(){
+                        @Override
+                        public void onClick(DialogInterface dialog, int id)
+                        {
+
+                        }
+                    });
+
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
                 }
                 else{   // 선택한 이미지가 1장 이상 5장 이하인 경우
                     Log.e(TAG, "multiple choice");
@@ -1668,7 +1696,21 @@ public class ReviewCommentFragment extends Fragment {
                             }
                         }
                         else {
-                            Toast.makeText(getContext().getApplicationContext(), "사진은 3장까지 선택 가능합니다.", Toast.LENGTH_LONG).show();
+//                            Toast.makeText(getContext().getApplicationContext(), "사진은 3장까지 선택 가능합니다.", Toast.LENGTH_LONG).show();
+
+                            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                            builder.setTitle("이미지 추가").setMessage("사진은 3장까지 선택 가능합니다.").setIcon(R.drawable.logo);
+
+                            builder.setPositiveButton("확인", new DialogInterface.OnClickListener(){
+                                @Override
+                                public void onClick(DialogInterface dialog, int id)
+                                {
+
+                                }
+                            });
+
+                            AlertDialog alertDialog = builder.create();
+                            alertDialog.show();
                             break;
                         }
                     }

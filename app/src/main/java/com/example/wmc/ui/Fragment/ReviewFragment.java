@@ -235,7 +235,21 @@ public class ReviewFragment extends Fragment {
                 Log.d("search_cafe", review_search_input.getText().toString() + ", " + floating_flag.toString());
                 // 리뷰 검색에서 리뷰를 작성할 카페를 선택하지 않았을 경우.
                 if(review_search_input.getText().toString().equals("")){
-                    Toast.makeText(getContext().getApplicationContext(), "리뷰를 작성할 카페를 검색해주세요.", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getContext().getApplicationContext(), "리뷰를 작성할 카페를 검색해주세요.", Toast.LENGTH_SHORT).show();
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setTitle("리뷰 작성").setMessage("리뷰를 작성할 카페를 검색해주세요.").setIcon(R.drawable.logo);
+
+                    builder.setPositiveButton("확인", new DialogInterface.OnClickListener(){
+                        @Override
+                        public void onClick(DialogInterface dialog, int id)
+                        {
+
+                        }
+                    });
+
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
                 }
 
                 // 리뷰를 작성할 카페를 선택한 경우
@@ -1213,8 +1227,23 @@ public class ReviewFragment extends Fragment {
         location_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(review_search_input.getText().toString().equals(""))
-                    Toast.makeText(getContext().getApplicationContext(), "리뷰를 작성할 카페를 검색해주세요.", Toast.LENGTH_SHORT).show();
+                if(review_search_input.getText().toString().equals("")) {
+//                    Toast.makeText(getContext().getApplicationContext(), "리뷰를 작성할 카페를 검색해주세요.", Toast.LENGTH_SHORT).show();
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setTitle("리뷰 작성").setMessage("리뷰를 작성할 카페를 검색해주세요.").setIcon(R.drawable.logo);
+
+                    builder.setPositiveButton("확인", new DialogInterface.OnClickListener(){
+                        @Override
+                        public void onClick(DialogInterface dialog, int id)
+                        {
+
+                        }
+                    });
+
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                }
 
                 else {
                     RequestQueue requestQueue2;
@@ -1289,14 +1318,43 @@ public class ReviewFragment extends Fragment {
                                     longitude2 = cafeLocation.get(0).getLongitude();
 
                                     String distanceByCafe = String.format("%.2f", DistanceByCafe(latitude1, longitude1, latitude2, longitude2));
-                                    Toast.makeText(getActivity().getApplicationContext(),"나와 카페 사이의 거리 : " + distanceByCafe + "m", Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(getActivity().getApplicationContext(),"나와 카페 사이의 거리 : " + distanceByCafe + "m", Toast.LENGTH_SHORT).show();
 
                                     if(Double.parseDouble(distanceByCafe) <= 500.0) {
-                                        Toast.makeText(getActivity().getApplicationContext(),"위치인증 성공 !", Toast.LENGTH_SHORT).show();
+//                                        Toast.makeText(getActivity().getApplicationContext(),"위치인증 성공 !", Toast.LENGTH_SHORT).show();
                                         location_flag = true;
+
+                                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                                        builder.setTitle("위치 인증").setMessage("위치인증 성공 !").setIcon(R.drawable.logo);
+
+                                        builder.setPositiveButton("확인", new DialogInterface.OnClickListener(){
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int id)
+                                            {
+
+                                            }
+                                        });
+
+                                        AlertDialog alertDialog = builder.create();
+                                        alertDialog.show();
                                     }
-                                    else
-                                        Toast.makeText(getActivity().getApplicationContext(),"주변에 해당 카페가 존재하지않습니다.", Toast.LENGTH_SHORT).show();
+                                    else {
+//                                        Toast.makeText(getActivity().getApplicationContext(),"주변에 해당 카페가 존재하지않습니다.", Toast.LENGTH_SHORT).show();
+
+                                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                                        builder.setTitle("위치 인증").setMessage("주변에 해당 카페가 위치하지않습니다.").setIcon(R.drawable.logo);
+
+                                        builder.setPositiveButton("확인", new DialogInterface.OnClickListener(){
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int id)
+                                            {
+
+                                            }
+                                        });
+
+                                        AlertDialog alertDialog = builder.create();
+                                        alertDialog.show();
+                                    }
                                 }
                             }
 
