@@ -276,7 +276,7 @@ public class CafeDetailMoreFragment extends Fragment {
                                         cafeDetailMoreAdapter.setOnItemClickListener_cafeDetailMore(new CafeDetailMoreAdapter.OnItemClickEventListener_cafeDetailMore() {
                                             @Override
                                             public void onItemClick(View a_view, int a_position) {
-                                                Toast.makeText(getContext().getApplicationContext(), a_position + "번 리뷰 클릭.", Toast.LENGTH_SHORT).show();
+//                                                Toast.makeText(getContext().getApplicationContext(), a_position + "번 리뷰 클릭.", Toast.LENGTH_SHORT).show();
                                             }
                                         });
 

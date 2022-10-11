@@ -238,7 +238,7 @@ public class MyPageFragment extends Fragment {
                                             @Override
                                             public void onItemClick(View a_view, int a_position) {
                                                 final MypageFavoriteItem item = mypageFavoriteItems.get(a_position);
-                                                Toast.makeText(getContext().getApplicationContext(), item.getCafeName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
+//                                                Toast.makeText(getContext().getApplicationContext(), item.getCafeName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
 
                                                 Bundle bundle = new Bundle();
                                                 bundle.putString("cafeName", item.getCafeName());
