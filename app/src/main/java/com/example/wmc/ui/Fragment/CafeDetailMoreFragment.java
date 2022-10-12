@@ -209,7 +209,7 @@ public class CafeDetailMoreFragment extends Fragment {
                                                 if(!(reviewImage.size() == 3)) {
                                                     //(나중에 로고 올리고 바꾸기)
                                                     while(reviewImage.size() < 3){
-                                                        reviewImage.add(getString(R.string.default_Review_Caefimage));
+                                                        reviewImage.add(getString(R.string.default_Review_Cafeimage));
                                                     }
                                                 }
 

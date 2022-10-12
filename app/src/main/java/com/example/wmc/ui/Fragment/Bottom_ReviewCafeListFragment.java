@@ -479,7 +479,7 @@ public class Bottom_ReviewCafeListFragment extends Fragment {
                                                     }
 
                                                     if(represent_cafeImage_URL.equals(""))
-                                                        represent_cafeImage_URL = getString(R.string.default_Review_Caefimage);
+                                                        represent_cafeImage_URL = getString(R.string.default_Review_Cafeimage);
 
 
                                                     for(Bookmark b : bookmark_list) {

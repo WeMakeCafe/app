@@ -798,7 +798,7 @@ public class CafeDetailFragment extends Fragment {
                                                         // 리뷰 이미지가 없을때
                                                         if(reviewImage == "")
                                                             //(나중에 로고 올리고 바꾸기)
-                                                            reviewImage = getString(R.string.default_Review_Caefimage);
+                                                            reviewImage = getString(R.string.default_Review_Cafeimage);
 
                                                         // 프로필 이미지
                                                         for (Personal p : personal_list) {

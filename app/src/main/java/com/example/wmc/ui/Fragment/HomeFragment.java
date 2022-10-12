@@ -610,7 +610,7 @@ public class HomeFragment extends Fragment {
                                                         }
 
                                                         if(represent_cafeImage_URL.equals(""))
-                                                            represent_cafeImage_URL = getString(R.string.default_Review_Caefimage);
+                                                            represent_cafeImage_URL = getString(R.string.default_Review_Cafeimage);
 
 
                                                         // 찜한 카페 recycler view에 추가하기
