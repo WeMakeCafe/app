@@ -220,6 +220,7 @@ public class HomeFragment extends Fragment {
         // 여기까지가 현재 내 위치 정보 가져오기(동까지)
 
 
+        
         // Personal 접근
         StringRequest personal_stringRequest = new StringRequest(Request.Method.GET, get_personal_url, new Response.Listener<String>() {
             @RequiresApi(api = Build.VERSION_CODES.O)
