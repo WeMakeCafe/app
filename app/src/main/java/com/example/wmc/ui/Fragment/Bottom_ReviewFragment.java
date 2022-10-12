@@ -149,7 +149,6 @@ public class Bottom_ReviewFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        Log.d("Bottom_ReviewFragment_check", "하단바 리뷰 작성 페이지");
 
         binding = FragmentReviewBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
@@ -220,13 +219,8 @@ public class Bottom_ReviewFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Log.d("search_cafe", review_search_input.getText().toString() + ", " + floating_flag.toString() + ", " + mypage_reviewModify_flag.toString()
-                        + ", " + reviewCafeList_flag.toString());
-
                 // 리뷰 검색에서 리뷰를 작성할 카페를 선택하지 않았을 경우.
                 if (review_search_input.getText().toString().equals("")) {
-//                    Toast.makeText(getContext().getApplicationContext(), "리뷰를 작성할 카페를 검색해주세요.", Toast.LENGTH_SHORT).show();
-
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                     builder.setTitle("리뷰 작성").setMessage("리뷰를 작성할 카페를 검색해주세요.").setIcon(R.drawable.logo);
 
@@ -435,12 +429,6 @@ public class Bottom_ReviewFragment extends Fragment {
                         bundle.putLong("reviewNum", reviewNum);
                         bundle.putBoolean("location_flag", location_flag);
 
-                        Log.d("moreReview_to_tag_review4", String.valueOf(k2[3]));
-                        Log.d("moreReview_to_tag_review5", String.valueOf(k2[4]));
-                        Log.d("moreReview_to_tag_review6", String.valueOf(k2[5]));
-                        Log.d("moreReview_to_tag_review7", String.valueOf(k2[6]));
-                        Log.d("moreReview_to_tag_review8", String.valueOf(k2[7]));
-                        Log.d("moreReview_to_tag_review9", String.valueOf(k2[8]));
                         navController.navigate(R.id.bottom_review_to_bottom_review_tag, bundle);
                     } else if (mypage_reviewModify_flag) {
                         Bundle bundle = new Bundle();
@@ -517,7 +505,6 @@ public class Bottom_ReviewFragment extends Fragment {
                         bundle.putLong("reviewNum", reviewNum);
                         bundle.putBoolean("location_flag", location_flag);
 
-                        Log.d("myReview_comment", comment);
 
                         navController.navigate(R.id.bottom_review_to_bottom_review_tag, bundle);
                     }
@@ -566,7 +553,6 @@ public class Bottom_ReviewFragment extends Fragment {
                     reviewCafeList_flag = argBundle.getBoolean("return_reviewCafeList_flag");
 
                 location_flag = argBundle.getBoolean("return_location_flag");
-                Log.d("tag -> location_flag", String.valueOf(argBundle.getBoolean("return_location_flag")));
                 review_search_input.setTypeface(Typeface.DEFAULT_BOLD);  // 카페이름 Bold처리
                 review_search_input.setGravity(Gravity.CENTER);          // 카페 위치 Center로 변경
             } else if (argBundle.getBoolean("return_cafeDetail_reviewModify_flag")
@@ -657,7 +643,6 @@ public class Bottom_ReviewFragment extends Fragment {
                 k2[35] = argBundle.getLong("k2-36");
 
                 comment = argBundle.getString("comment");
-                Log.d("태그 종료후 받은 comment", comment);
                 review_search_input.setTypeface(Typeface.DEFAULT_BOLD);  // 카페이름 Bold처리
                 review_search_input.setGravity(Gravity.CENTER);          // 카페 위치 Center로 변경
             }
@@ -682,8 +667,7 @@ public class Bottom_ReviewFragment extends Fragment {
                 cafeNum = argBundle2.getLong("cafeNum");
                 mem_num = argBundle2.getLong("memNum");
                 reviewNum = argBundle2.getLong("reviewNum");
-                Log.d("qwer1", cafeNum.toString());
-                Log.d("qwer2", mem_num.toString());
+
 
                 RequestQueue requestQueue;
                 Cache cache = new DiskBasedCache(getActivity().getCacheDir(), 1024 * 1024); // 1MB cap
@@ -713,11 +697,9 @@ public class Bottom_ReviewFragment extends Fragment {
                             if (r.getReviewNum().equals(reviewNum)) {
 
                                 reviewNum = r.getReviewNum();
-                                Log.d("reviewNum", reviewNum.toString());
                                 comment = r.getReviewText();
                                 likeCount = r.getLikeCount();
                                 location_flag = r.getLocationCheck();
-                                Log.d("수정복원 location_flag", location_flag.toString());
                                 //이미지 코드
                                 rating_sour.setRating(r.getTastePoint1());
                                 rating_acerbity.setRating(r.getTastePoint2());
@@ -1191,8 +1173,6 @@ public class Bottom_ReviewFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (review_search_input.getText().toString().equals("")){
-//                    Toast.makeText(getContext().getApplicationContext(), "리뷰를 작성할 카페를 검색해주세요.", Toast.LENGTH_SHORT).show();
-
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                     builder.setTitle("리뷰 작성").setMessage("리뷰를 작성할 카페를 검색해주세요.").setIcon(R.drawable.logo);
 
@@ -1219,14 +1199,12 @@ public class Bottom_ReviewFragment extends Fragment {
 
                         try {
                             myLocation = g.getFromLocation(latitude1, longitude1,10);
-                            Log.d("reviewCafeAddress", myLocation.get(0).getAddressLine(0).toString());
+
                         } catch (IOException e) {
                             e.printStackTrace();
                             Toast.makeText(getContext().getApplicationContext(), "주소를 가져 올 수 없습니다.", Toast.LENGTH_LONG).show();
                         }
                     }
-                    else
-                        Log.d("reviewCafeAddress", "주소를 가져올 수 없습니다.");
 
 
                     RequestQueue requestQueue2;
@@ -1256,13 +1234,11 @@ public class Bottom_ReviewFragment extends Fragment {
                             for (Cafe c : cafe_list) {
                                 if (c.getCafeName().equals(review_search_input.getText().toString())) {
                                     reviewCafeAddress = c.getCafeAddress();
-                                    Log.d("reviewCafeAddress", c.getCafeAddress());
                                 }
                             }
                             // 카페의 위치(위도, 경도 구하기)
                             try {
                                 cafeLocation = g.getFromLocationName(reviewCafeAddress, 10);
-                                Log.d("reviewCafeAddress", reviewCafeAddress);
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -1276,10 +1252,8 @@ public class Bottom_ReviewFragment extends Fragment {
                                     longitude2 = cafeLocation.get(0).getLongitude();
 
                                     String distanceByCafe = String.format("%.2f", DistanceByCafe(latitude1, longitude1, latitude2, longitude2));
-//                                    Toast.makeText(getActivity().getApplicationContext(),"나와 카페 사이의 거리 : " + distanceByCafe + "m", Toast.LENGTH_SHORT).show();
 
                                     if(Double.parseDouble(distanceByCafe) <= 500.0) {
-//                                        Toast.makeText(getActivity().getApplicationContext(),"위치인증 성공 !", Toast.LENGTH_SHORT).show();
                                         location_flag = true;
 
                                         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -1297,7 +1271,6 @@ public class Bottom_ReviewFragment extends Fragment {
                                         alertDialog.show();
                                     }
                                     else {
-//                                        Toast.makeText(getActivity().getApplicationContext(),"주변에 해당 카페가 존재하지않습니다.", Toast.LENGTH_SHORT).show();
                                         location_flag = false;
 
                                         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -1402,7 +1375,6 @@ public class Bottom_ReviewFragment extends Fragment {
                     public void onClick(View v) {
 
                         if(rating_sour.getRating() == 0){
-//                            Toast.makeText(getContext().getApplicationContext(), "별점을 체크해주세요.", Toast.LENGTH_SHORT).show();
                             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                             builder.setTitle("리뷰 작성").setMessage("별점을 체크해주세요.").setIcon(R.drawable.logo);
 
@@ -1594,14 +1566,6 @@ public class Bottom_ReviewFragment extends Fragment {
                                 bundle.putBoolean("flag", flag);
                                 bundle.putBoolean("location_flag", location_flag);
 
-                                Log.d("리뷰_to_comment -> flag", String.valueOf(flag));
-                                Log.d("리뷰_to_comment -> keyWord4", String.valueOf(k2[3]));
-                                Log.d("리뷰_to_comment -> keyWord5", String.valueOf(k2[4]));
-                                Log.d("리뷰_to_comment -> keyWord6", String.valueOf(k2[5]));
-                                Log.d("리뷰_to_comment -> keyWord7", String.valueOf(k2[6]));
-                                Log.d("리뷰_to_comment -> keyWord8", String.valueOf(k2[7]));
-                                Log.d("리뷰_to_comment -> keyWord9", String.valueOf(k2[8]));
-                                Log.d("리뷰_to_comment -> location_flag", String.valueOf(location_flag));
                                 //이미지
                                 navController.navigate(R.id.bottom_review_to_bottom_review_comment, bundle);
                             }
@@ -1609,7 +1573,6 @@ public class Bottom_ReviewFragment extends Fragment {
                     }
                 });
 
-                Log.d("qwer4", mem_num.toString());
 
                 // 작성완료 버튼 클릭 시,
                 finish_button.setOnClickListener(new View.OnClickListener() {
@@ -1666,7 +1629,6 @@ public class Bottom_ReviewFragment extends Fragment {
                                 map.put("likeCount", 0);
                                 map.put("reviewText", null);
                                 map.put("memNum", mem_num);
-                                Log.d("qwer3", mem_num.toString());
                                 switch (setTag1.getText().toString()) {
                                     case ("#쓴맛"):
                                         k[0] = Long.valueOf(1);
@@ -2049,7 +2011,7 @@ public class Bottom_ReviewFragment extends Fragment {
                                         new Response.ErrorListener() {
                                             @Override
                                             public void onErrorResponse(VolleyError error) {
-                                                Log.d("test1", error.toString());
+
                                             }
                                         }) {
                                     @Override
@@ -2134,7 +2096,6 @@ public class Bottom_ReviewFragment extends Fragment {
                                                 new Response.ErrorListener() {
                                                     @Override
                                                     public void onErrorResponse(VolleyError error) {
-                                                        Log.d("error", error.toString());
                                                     }
                                                 }) {
                                             @Override
@@ -2566,7 +2527,6 @@ public class Bottom_ReviewFragment extends Fragment {
                                         new Response.ErrorListener() {
                                             @Override
                                             public void onErrorResponse(VolleyError error) {
-                                                Log.d("test3", error.toString());
                                             }
                                         }) {
                                     @Override
@@ -2587,8 +2547,6 @@ public class Bottom_ReviewFragment extends Fragment {
                                         map2.put("openTime", c.getOpenTime());
                                         map2.put("closeTime", c.getCloseTime());
                                         map2.put("scoreNum", c.getScoreNum());
-                                        Log.d("asdf1", String.valueOf(k[0]));
-                                        Log.d("asdf2", String.valueOf(k2[0]));
                                         map2.put("keyword1", c.getKeyword1() + k[0]-k2[0]);
                                         map2.put("keyword2", c.getKeyword2() + k[1]-k2[1]);
                                         map2.put("keyword3", c.getKeyword3() + k[2]-k2[2]);
@@ -2653,7 +2611,7 @@ public class Bottom_ReviewFragment extends Fragment {
                                                 new Response.ErrorListener() {
                                                     @Override
                                                     public void onErrorResponse(VolleyError error) {
-                                                        Log.d("error", error.toString());
+
                                                     }
                                                 }) {
                                             @Override

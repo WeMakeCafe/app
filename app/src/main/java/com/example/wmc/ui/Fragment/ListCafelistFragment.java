@@ -121,7 +121,6 @@ public class ListCafelistFragment extends Fragment {
         add_cafe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Toast.makeText(getContext().getApplicationContext(), "카페 등록으로 이동", Toast.LENGTH_SHORT).show();
                 navController.navigate(R.id.list_cafelist_to_cafe_registration);
             }
         });
@@ -130,7 +129,6 @@ public class ListCafelistFragment extends Fragment {
         add_cafe_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Toast.makeText(getContext().getApplicationContext(), "카페 등록으로 이동", Toast.LENGTH_SHORT).show();
                 navController.navigate(R.id.list_cafelist_to_cafe_registration);
             }
         });
@@ -149,8 +147,6 @@ public class ListCafelistFragment extends Fragment {
 
                 String search = searchText.getText().toString().replaceAll(" ", "");
                 if(search.equals("")){
-//                    Toast.makeText(getContext().getApplicationContext(), "검색어를 입력해주세요.", Toast.LENGTH_SHORT).show();
-
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                     builder.setTitle("카페 검색").setMessage("검색어를 입력해주세요.").setIcon(R.drawable.logo);
 
@@ -167,7 +163,6 @@ public class ListCafelistFragment extends Fragment {
                 }
                 else{
                     // 검색어와 관련된 아이템들 출력
-//                    Toast.makeText(getContext().getApplicationContext(), search + " 검색됨.", Toast.LENGTH_SHORT).show();
                     imm.hideSoftInputFromWindow(searchButton.getWindowToken(), 0);
 
                     listCafeListItems.clear();  // 이전에 보였던 리싸이클러뷰 아이템 모두 제거 후, 검색관련 아이템을 띄움
@@ -243,9 +238,7 @@ public class ListCafelistFragment extends Fragment {
                                                 flag = false; // 즐겨찾기 여부
                                                 if(c.getCafeName().contains(search)){ // 카페 이름에 검색어가 포함되는지 확인
                                                     get_cafe_num = c.getCafeNum();
-                                                    Log.d("for -> getCafeNum", get_cafe_num.toString());
                                                     get_bookmark_num = -1L;
-                                                    // 카페 태그 1, 2 키워드 받기
                                                     get_keyword[0] = c.getKeyword1();
                                                     get_keyword[1] = c.getKeyword2();
                                                     get_keyword[2] = c.getKeyword3();
@@ -527,8 +520,6 @@ public class ListCafelistFragment extends Fragment {
 
                                                     for(CafeImage ci : cafeImage_list){
                                                         if(ci.getCafeNum().equals(c.getCafeNum())){
-                                                            Log.d("cafeNum", ci.getCafeNum() + ", " + c.getCafeNum());
-                                                            Log.d("cafeImage URL", ci.getFileUrl());
                                                             represent_cafeImage_URL = ci.getFileUrl();
                                                             break;
                                                         }
@@ -551,10 +542,6 @@ public class ListCafelistFragment extends Fragment {
                                                                     + " ~ " + c.getCloseTime().substring(0,2) + ":" + c.getCloseTime().substring(2,4),
                                                             tag1, tag2, represent_cafeImage_URL, flag, c.getCafeNum(), get_bookmark_num));
 
-                                                    Log.d("checking_listItems", represent_cafeImage_URL + ", " + flag + ", " + c.getCafeNum() + ", " + get_bookmark_num);
-
-
-
                                                     // Adapter 추가
                                                     listCafeListAdapter = new ListCafeListAdapter(getContext() ,listCafeListItems, ListCafelistFragment.this);
                                                     listCafeListRecyclerView.setAdapter(listCafeListAdapter);
@@ -569,7 +556,6 @@ public class ListCafelistFragment extends Fragment {
                                                         @Override
                                                         public void onItemClick(View a_view, int a_position) {
                                                             final ListCafeListItem item = listCafeListItems.get(a_position);
-//                                                            Toast.makeText(getContext().getApplicationContext(), item.getCafeList_cafeName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
 
                                                             Bundle bundle = new Bundle();
                                                             bundle.putString("cafeName", item.getCafeList_cafeName());
@@ -671,8 +657,6 @@ public class ListCafelistFragment extends Fragment {
 
         } else {
             // 검색어와 관련된 아이템들 출력
-//            Toast.makeText(getContext().getApplicationContext(), search + " 검색됨.", Toast.LENGTH_SHORT).show();
-
             listCafeListItems.clear();  // 이전에 보였던 리싸이클러뷰 아이템 모두 제거 후, 검색관련 아이템을 띄움
 
             // 서버 연결하여 cafe_list 검색
@@ -746,9 +730,7 @@ public class ListCafelistFragment extends Fragment {
                                         flag = false; // 즐겨찾기 여부
                                         if(c.getCafeName().contains(search)){ // 카페 이름에 검색어가 포함되는지 확인
                                             get_cafe_num = c.getCafeNum();
-                                            Log.d("for -> getCafeNum", get_cafe_num.toString());
                                             get_bookmark_num = -1L;
-                                            // 카페 태그 1, 2 키워드 받기
                                             get_keyword[0] = c.getKeyword1();
                                             get_keyword[1] = c.getKeyword2();
                                             get_keyword[2] = c.getKeyword3();
@@ -1030,8 +1012,6 @@ public class ListCafelistFragment extends Fragment {
 
                                             for(CafeImage ci : cafeImage_list){
                                                 if(ci.getCafeNum().equals(c.getCafeNum())){
-                                                    Log.d("cafeNum", ci.getCafeNum() + ", " + c.getCafeNum());
-                                                    Log.d("cafeImage URL", ci.getFileUrl());
                                                     represent_cafeImage_URL = ci.getFileUrl();
                                                     break;
                                                 }
@@ -1054,7 +1034,6 @@ public class ListCafelistFragment extends Fragment {
                                                             + " ~ " + c.getCloseTime().substring(0,2) + ":" + c.getCloseTime().substring(2,4),
                                                     tag1, tag2, represent_cafeImage_URL, flag, c.getCafeNum(), get_bookmark_num));
 
-                                            Log.d("checking_listItems", represent_cafeImage_URL + ", " + flag + ", " + c.getCafeNum() + ", " + get_bookmark_num);
 
 
 
@@ -1072,8 +1051,6 @@ public class ListCafelistFragment extends Fragment {
                                                 @Override
                                                 public void onItemClick(View a_view, int a_position) {
                                                     final ListCafeListItem item = listCafeListItems.get(a_position);
-//                                                    Toast.makeText(getContext().getApplicationContext(), item.getCafeList_cafeName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
-
                                                     Bundle bundle = new Bundle();
                                                     bundle.putString("cafeName", item.getCafeList_cafeName());
                                                     navController.navigate(R.id.list_cafelist_to_cafe_detail, bundle);
@@ -1094,7 +1071,6 @@ public class ListCafelistFragment extends Fragment {
                                         cafe_add_textView.setVisibility(View.VISIBLE);
                                         add_cafe_button.setVisibility(View.VISIBLE);
 
-//                                        Toast.makeText(getContext().getApplicationContext(), "검색한 카페가 존재하지 않습니다.", Toast.LENGTH_SHORT).show();
                                         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                                         builder.setTitle("카페 검색").setMessage("검색한 카페가 존재하지 않습니다.").setIcon(R.drawable.logo);
 

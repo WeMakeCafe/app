@@ -228,7 +228,6 @@ public class ReviewTagFragment extends Fragment {
             comment = getArguments().getString("comment");
 
             location_flag = getArguments().getBoolean("location_flag");
-            Log.d("review -> location(tag)", location_flag.toString());
         }
 
         else if(getArguments().getBoolean("moreReview_reviewModify_flag")) {   // 리뷰 수정을 통해서 온 경우,
@@ -306,7 +305,6 @@ public class ReviewTagFragment extends Fragment {
             comment = getArguments().getString("comment");
 
             location_flag = getArguments().getBoolean("location_flag");
-            Log.d("review -> location(tag)", location_flag.toString());
         }
 
         else if(getArguments().getBoolean("mypage_reviewModify_flag")) {   // 리뷰 수정을 통해서 온 경우,
@@ -384,20 +382,9 @@ public class ReviewTagFragment extends Fragment {
             comment = getArguments().getString("comment");
 
             location_flag = getArguments().getBoolean("location_flag");
-            Log.d("review -> location(tag)", location_flag.toString());
-
-            Log.d("myReview에서 받은comment", comment);
 
         }
 
-//        Log.d("where_flag", floating_flag.toString() + reviewCafeList_flag.toString() + cafeDetail_reviewModify_flag + moreReview_reviewModify_flag + mypage_reviewModify_flag);
-//
-////        Boolean floating_flag = false;
-////        Boolean reviewCafeList_flag = false;
-////        Boolean cafeDetail_reviewModify_flag = false;
-////        Boolean moreReview_reviewModify_flag = false;
-////        Boolean mypage_reviewModify_flag = false;
-        ////////////////////////////////////////////////////////////////////////////////////
         // 아래 3개 삭제 버튼 클릭 이벤트 작성
 
         tag1_delete_button.setOnClickListener(new View.OnClickListener() {
@@ -439,7 +426,7 @@ public class ReviewTagFragment extends Fragment {
             }
         });
 
-        ///////////////////////////////////////////////////////////////////////////////////////////
+
         // 태그 추가 페이지의 태그 리사이클러뷰 작성
 
         ArrayList<ReviewTagItem> reviewTagItems = new ArrayList<>();
@@ -497,7 +484,6 @@ public class ReviewTagFragment extends Fragment {
                         addTag3.setText(selectedTag);
                 }
                 else {
-//                    Toast.makeText(getContext().getApplicationContext(), "태그3개를 모두 선택했습니다.", Toast.LENGTH_SHORT).show();
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                     builder.setTitle("태그 추가").setMessage("태그3개를 모두 선택했습니다.").setIcon(R.drawable.logo);
@@ -610,7 +596,6 @@ public class ReviewTagFragment extends Fragment {
             public void onClick(View v) {
                 // 태그를 하나도 선택하지 않았을 경우
                 if(addTag1.getText().toString().equals("") && addTag2.getText().toString().equals("") && addTag3.getText().toString().equals("")){
-//                    Toast.makeText(getContext().getApplicationContext(), "최소 1개의 태그를 선택해주세요.", Toast.LENGTH_SHORT).show();
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                     builder.setTitle("태그 추가").setMessage("최소 1개의 태그를 선택해주세요.").setIcon(R.drawable.logo);
@@ -628,7 +613,6 @@ public class ReviewTagFragment extends Fragment {
                 }
 
                 else{
-//                    Toast.makeText(getContext().getApplicationContext(), "선택한 태그 추가하기.", Toast.LENGTH_SHORT).show();
                     // 번들을 이용해 프래그먼트간 데이터 전달
 
                     if(floating_flag){
@@ -655,7 +639,6 @@ public class ReviewTagFragment extends Fragment {
                         bundle.putFloat("tag_review_studyPoint4", s12);
 
                         bundle.putBoolean("return_location_flag", location_flag);
-                        Log.d("tag -> location_flag", location_flag.toString());
                         navController.navigate(R.id.review_tag_to_review, bundle); // 번들과 함께 전달
                     }
 
@@ -683,7 +666,6 @@ public class ReviewTagFragment extends Fragment {
                         bundle.putFloat("tag_review_studyPoint4", s12);
 
                         bundle.putBoolean("return_location_flag", location_flag);
-                        Log.d("tag -> location_flag", location_flag.toString());
                         navController.navigate(R.id.review_tag_to_review, bundle); // 번들과 함께 전달
                     }
 
@@ -763,10 +745,8 @@ public class ReviewTagFragment extends Fragment {
                         bundle.putLong("reviewNum", reviewNum);
 
                         bundle.putString("comment", comment);
-//                        Log.d("리뷰로 보내는comment", comment);
 
                         bundle.putBoolean("return_location_flag", location_flag);
-                        Log.d("tag -> location_flag", location_flag.toString());
                         navController.navigate(R.id.review_tag_to_review, bundle); // 번들과 함께 전달
                     }
 
@@ -846,10 +826,8 @@ public class ReviewTagFragment extends Fragment {
                         bundle.putLong("reviewNum", reviewNum);
 
                         bundle.putString("comment", comment);
-                        Log.d("리뷰로 보내는comment", comment);
 
                         bundle.putBoolean("return_location_flag", location_flag);
-                        Log.d("tag -> location_flag", location_flag.toString());
                         navController.navigate(R.id.review_tag_to_review, bundle); // 번들과 함께 전달
                     }
 
@@ -929,10 +907,8 @@ public class ReviewTagFragment extends Fragment {
                         bundle.putLong("reviewNum", reviewNum);
 
                         bundle.putString("comment", comment);
-                        Log.d("리뷰로 보내는comment", comment);
 
                         bundle.putBoolean("return_location_flag", location_flag);
-                        Log.d("tag -> location_flag", location_flag.toString());
                         navController.navigate(R.id.review_tag_to_review, bundle); // 번들과 함께 전달
                     }
                 }

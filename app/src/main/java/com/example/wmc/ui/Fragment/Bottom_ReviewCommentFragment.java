@@ -1473,7 +1473,7 @@ public class Bottom_ReviewCommentFragment extends Fragment {
                                             new Response.ErrorListener() {
                                                 @Override
                                                 public void onErrorResponse(VolleyError error) {
-                                                    Log.d("qwer", error.toString());
+
                                                 }
                                             }) {
                                         @Override
@@ -1528,13 +1528,21 @@ public class Bottom_ReviewCommentFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(data == null){   // 어떤 이미지도 선택하지 않은 경우
-            Toast.makeText(getContext().getApplicationContext(), "이미지를 선택하지 않았습니다.", Toast.LENGTH_LONG).show();
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setTitle("정보").setMessage("이미지를 선택하지 않았습니다.").setIcon(R.drawable.logo);
+
+            builder.setPositiveButton("확인", new DialogInterface.OnClickListener(){
+                @Override
+                public void onClick(DialogInterface dialog, int id)
+                {
+
+                }
+            });
         }
 
         else{   // 이미지를 하나라도 선택한 경우
             if(data.getClipData() == null){     // 이미지를 하나만 선택한 경우
                 if(uriList.size() >= 3) {
-//                    Toast.makeText(getContext().getApplicationContext(), "이미지 3개를 모두 선택하셨습니다.", Toast.LENGTH_LONG).show();
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                     builder.setTitle("이미지 추가").setMessage("이미지 3개를 모두 선택하셨습니다.").setIcon(R.drawable.logo);
 
@@ -1565,7 +1573,6 @@ public class Bottom_ReviewCommentFragment extends Fragment {
                 Log.e("clipData", String.valueOf(clipData.getItemCount()));
 
                 if(clipData.getItemCount() > 3){   // 선택한 이미지가 4장 이상인 경우
-//                    Toast.makeText(getContext().getApplicationContext(), "사진은 3장까지 선택 가능합니다.", Toast.LENGTH_LONG).show();
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                     builder.setTitle("이미지 추가").setMessage("사진은 3장까지 선택 가능합니다.").setIcon(R.drawable.logo);
 

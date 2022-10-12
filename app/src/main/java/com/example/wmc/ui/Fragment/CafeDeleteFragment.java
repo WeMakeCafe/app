@@ -86,7 +86,6 @@ public class CafeDeleteFragment extends Fragment {
             @Override
             public void onResponse(String response) {
                 // 한글깨짐 해결 코드
-                Log.d("test_onResponse", "onResponse실행");
                 String changeString = new String();
                 try {
                     changeString = new String(response.getBytes("8859_1"), "utf-8");
@@ -98,9 +97,6 @@ public class CafeDeleteFragment extends Fragment {
                 }.getType();
 
                 personal_list = gson.fromJson(changeString, listType);
-
-                // cafe 테이블의 튜플이 제대로 오는지 확인 (테스트 할 때만 만들어두고 해당 기능 다 개발 시 제거하는게 좋음)
-                Log.d("test", String.valueOf(personal_list.size()));
 
                 for(Personal p : personal_list){
                     if(p.getMemNum()==MainActivity.mem_num) {
@@ -141,7 +137,7 @@ public class CafeDeleteFragment extends Fragment {
                         new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                Log.d("testdelete", error.toString());
+
                             }
                         }) {
                     @Override
@@ -152,7 +148,6 @@ public class CafeDeleteFragment extends Fragment {
                 RequestQueue queue = Volley.newRequestQueue(requireContext());
                 queue.add(objectRequest);
 
-//                Toast.makeText(getContext().getApplicationContext(), "삭제 요청이 완료되었습니다. 검토 후 삭제 처리 됩니다.", Toast.LENGTH_LONG).show();
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle("카페 삭제").setMessage("삭제 요청이 완료되었습니다. 검토 후 삭제 처리 됩니다.").setIcon(R.drawable.logo);

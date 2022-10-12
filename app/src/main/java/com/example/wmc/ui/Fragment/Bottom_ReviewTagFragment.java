@@ -376,7 +376,6 @@ public class Bottom_ReviewTagFragment extends Fragment {
 
             location_flag = getArguments().getBoolean("location_flag");
 
-            Log.d("myReview에서 받은comment", comment);
 
         }
 
@@ -591,7 +590,6 @@ public class Bottom_ReviewTagFragment extends Fragment {
             public void onClick(View v) {
                 // 태그를 하나도 선택하지 않았을 경우
                 if(addTag1.getText().toString().equals("") && addTag2.getText().toString().equals("") && addTag3.getText().toString().equals("")){
-//                    Toast.makeText(getContext().getApplicationContext(), "최소 1개의 태그를 선택해주세요.", Toast.LENGTH_SHORT).show();
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                     builder.setTitle("태그 추가").setMessage("최소 1개의 태그를 선택해주세요.").setIcon(R.drawable.logo);
@@ -609,7 +607,6 @@ public class Bottom_ReviewTagFragment extends Fragment {
                 }
 
                 else{
-//                    Toast.makeText(getContext().getApplicationContext(), "선택한 태그 추가하기.", Toast.LENGTH_SHORT).show();
                     // 번들을 이용해 프래그먼트간 데이터 전달
 
                     if(floating_flag){
@@ -664,7 +661,6 @@ public class Bottom_ReviewTagFragment extends Fragment {
                         bundle.putFloat("tag_review_studyPoint4", s12);
 
                         bundle.putBoolean("return_location_flag", location_flag);
-                        Log.d("review -> location_flag", location_flag.toString());
                         navController.navigate(R.id.bottom_review_tag_to_bottom_review, bundle); // 번들과 함께 전달
                     }
 
@@ -744,7 +740,6 @@ public class Bottom_ReviewTagFragment extends Fragment {
                         bundle.putLong("reviewNum", reviewNum);
 
                         bundle.putString("comment", comment);
-                        Log.d("리뷰로 보내는comment", comment);
 
                         bundle.putBoolean("return_location_flag", location_flag);
 
@@ -827,7 +822,6 @@ public class Bottom_ReviewTagFragment extends Fragment {
                         bundle.putLong("reviewNum", reviewNum);
 
                         bundle.putString("comment", comment);
-                        Log.d("리뷰로 보내는comment", comment);
 
                         bundle.putBoolean("return_location_flag", location_flag);
 
@@ -910,7 +904,6 @@ public class Bottom_ReviewTagFragment extends Fragment {
                         bundle.putLong("reviewNum", reviewNum);
 
                         bundle.putString("comment", comment);
-                        Log.d("리뷰로 보내는comment", comment);
 
                         bundle.putBoolean("return_location_flag", location_flag);
 

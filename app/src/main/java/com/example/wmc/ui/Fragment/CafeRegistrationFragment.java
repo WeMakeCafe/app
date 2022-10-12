@@ -155,7 +155,7 @@ public class CafeRegistrationFragment extends Fragment {
                         // 데이터베이스에서 카페이름이 있는지 중복검사
                         if(overlap_cafeName.equals("")) {
                             AlertDialog.Builder mod = new AlertDialog.Builder(getActivity());
-                            mod.setTitle("잠깐!").setMessage("카페 이름을 입력해주세요!").setNeutralButton("확인", new DialogInterface.OnClickListener() {
+                            mod.setTitle("잠깐!").setMessage("카페 이름을 입력해주세요!").setIcon(R.drawable.logo).setNeutralButton("확인", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
 
@@ -168,7 +168,7 @@ public class CafeRegistrationFragment extends Fragment {
                                 // 이미 동일한 이름의 카페가 등록되어있는 경우
                                 if (c.getCafeName().replaceAll(" ", "").equals(overlap_cafeName)) {
                                     AlertDialog.Builder mod = new AlertDialog.Builder(getActivity());
-                                    mod.setTitle("잠깐!").setMessage("이미 있는 카페입니다!").setNeutralButton("확인", new DialogInterface.OnClickListener() {
+                                    mod.setTitle("잠깐!").setMessage("이미 있는 카페입니다!").setIcon(R.drawable.logo).setNeutralButton("확인", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
 
@@ -185,7 +185,7 @@ public class CafeRegistrationFragment extends Fragment {
 
                             if( name_test ) {
                                 AlertDialog.Builder mod = new AlertDialog.Builder(getActivity());
-                                mod.setTitle("정보").setMessage("등록 가능한 카페입니다.").setNeutralButton("확인", new DialogInterface.OnClickListener() {
+                                mod.setTitle("정보").setMessage("등록 가능한 카페입니다.").setIcon(R.drawable.logo).setNeutralButton("확인", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
 
@@ -216,8 +216,6 @@ public class CafeRegistrationFragment extends Fragment {
                              map.put("cafeAddress", cafe_address_input.getText().toString());
                              map.put("openTime", cafe_openHours_hour_input.getText().toString() + cafe_openHours_minute_input.getText().toString());
                              map.put("closeTime", cafe_closeHours_hour_input.getText().toString() + cafe_closeHours_minute_input.getText().toString());
-                            // 이미지 추가 코드 작성 할 곳
-                            // 태그 문자열형식을 숫자로 변환
                             switch (tag1) {
                                 case ("#쓴맛"):
                                     k[0] = Long.valueOf(1);
@@ -658,7 +656,7 @@ public class CafeRegistrationFragment extends Fragment {
 
                         else {
                             AlertDialog.Builder mod = new AlertDialog.Builder(getActivity());
-                            mod.setTitle("잠깐!").setMessage("비어 있는 항목이 있거나 시간입력이 부적절합니다!").setNeutralButton("확인", new DialogInterface.OnClickListener() {
+                            mod.setTitle("잠깐!").setMessage("비어 있는 항목이 있거나 시간입력이 부적절합니다!").setIcon(R.drawable.logo).setNeutralButton("확인", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
 
@@ -774,7 +772,7 @@ public class CafeRegistrationFragment extends Fragment {
 
         if(data == null){   // 어떤 이미지도 선택하지 않은 경우
             AlertDialog.Builder mod = new AlertDialog.Builder(getActivity());
-            mod.setTitle("잠깐!").setMessage("이미지를 선택하지 않았습니다!").setNeutralButton("확인", new DialogInterface.OnClickListener() {
+            mod.setTitle("잠깐!").setMessage("이미지를 선택하지 않았습니다!").setIcon(R.drawable.logo).setNeutralButton("확인", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
 
@@ -786,7 +784,7 @@ public class CafeRegistrationFragment extends Fragment {
             if(data.getClipData() == null){     // 이미지를 하나만 선택한 경우
                 if(uriList.size() >= 5) {
                     AlertDialog.Builder mod = new AlertDialog.Builder(getActivity());
-                    mod.setTitle("잠깐!").setMessage("이미지 5개를 모두 선택하셨습니다.").setNeutralButton("확인", new DialogInterface.OnClickListener() {
+                    mod.setTitle("잠깐!").setMessage("이미지 5개를 모두 선택하셨습니다.").setIcon(R.drawable.logo).setNeutralButton("확인", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
@@ -812,7 +810,7 @@ public class CafeRegistrationFragment extends Fragment {
 
                 if(clipData.getItemCount() > 5){   // 선택한 이미지가 6장 이상인 경우
                     AlertDialog.Builder mod = new AlertDialog.Builder(getActivity());
-                    mod.setTitle("잠깐!").setMessage("사진은 5장까지 선택 가능합니다.").setNeutralButton("확인", new DialogInterface.OnClickListener() {
+                    mod.setTitle("잠깐!").setMessage("사진은 5장까지 선택 가능합니다.").setIcon(R.drawable.logo).setNeutralButton("확인", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
@@ -827,7 +825,6 @@ public class CafeRegistrationFragment extends Fragment {
 
                         if(uriList.size() <= 4){
                             Uri imageUri = clipData.getItemAt(i).getUri();  // 선택한 이미지들의 uri를 가져온다.
-                            Log.d("imageUri" , imageUri.toString());
 
                             try {
                                 uriList.add(imageUri);  //uri를 list에 담는다.
@@ -838,7 +835,7 @@ public class CafeRegistrationFragment extends Fragment {
                         }
                         else {
                             AlertDialog.Builder mod = new AlertDialog.Builder(getActivity());
-                            mod.setTitle("잠깐!").setMessage("사진은 5장까지 선택 가능합니다.").setNeutralButton("확인", new DialogInterface.OnClickListener() {
+                            mod.setTitle("잠깐!").setMessage("사진은 5장까지 선택 가능합니다.").setIcon(R.drawable.logo).setNeutralButton("확인", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
 

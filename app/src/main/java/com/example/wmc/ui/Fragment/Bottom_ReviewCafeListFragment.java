@@ -189,7 +189,6 @@ public class Bottom_ReviewCafeListFragment extends Fragment {
                                                 flag = false; // 즐겨찾기 여부
                                                 if(c.getCafeName().contains(search)){ // 카페 이름에 검색어가 포함되는지 확인
                                                     get_cafe_num = c.getCafeNum();
-                                                    Log.d("for -> getCafeNum", get_cafe_num.toString());
                                                     get_bookmark_num = -1L;
                                                     // 카페 태그 1, 2 키워드 받기
                                                     get_keyword[0] = c.getKeyword1();
@@ -510,8 +509,6 @@ public class Bottom_ReviewCafeListFragment extends Fragment {
                                                         @Override
                                                         public void onItemClick(View a_view, int a_position) {
                                                             final Bottom_ReviewCafeListItem item = bottom_reviewCafeListItems.get(a_position);
-                                                            Toast.makeText(getContext().getApplicationContext(), item.getCafeList_cafeName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
-
                                                             Bundle bundle = new Bundle();
                                                             bundle.putBoolean("reviewCafeList_flag", true);
                                                             bundle.putString("reviewCafeList_flag_cafeName", item.getCafeList_cafeName());
@@ -522,16 +519,15 @@ public class Bottom_ReviewCafeListFragment extends Fragment {
 
                                                     // 리사이클러뷰의 아이템을 갱신해주는 코드
                                                     bottom_reviewCafeListAdapter.notifyItemInserted(bottom_reviewCafeListItems.size());
-
-                                                    // 리싸이클러뷰 아이템이 없을 경우, 카페 추가 버튼과 설명 글 생성
-                                                    if(bottom_reviewCafeListItems.size() == 0) {
-                                                        cafeList_footer.setVisibility(View.INVISIBLE);
-                                                        Toast.makeText(getContext().getApplicationContext(), "검색한 카페가 존재하지 않습니다.", Toast.LENGTH_SHORT).show();
-                                                    }
-                                                    else{   // 아이템이 있을 경우
-                                                        cafeList_footer.setVisibility(View.VISIBLE);
-                                                    }
                                                 }
+                                            }
+                                            // 리싸이클러뷰 아이템이 없을 경우, 카페 추가 버튼과 설명 글 생성
+                                            if(bottom_reviewCafeListItems.size() == 0) {
+                                                cafeList_footer.setVisibility(View.INVISIBLE);
+                                                Toast.makeText(getContext().getApplicationContext(), "검색한 카페가 존재하지 않습니다.", Toast.LENGTH_SHORT).show();
+                                            }
+                                            else{   // 아이템이 있을 경우
+                                                cafeList_footer.setVisibility(View.VISIBLE);
                                             }
                                         }
                                     }, new Response.ErrorListener() {

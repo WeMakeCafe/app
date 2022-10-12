@@ -195,9 +195,6 @@ public class HomeFragment extends Fragment {
 
                 try {
                     list = g.getFromLocation(latitude, longitude,10);
-
-                    Log.d("cafeList", list.get(5).getAddressLine(0).toString());
-
                     cafe_search_input.setText(list.get(0).getAddressLine(0).substring(5));
                     get_user_address = list.get(5).getAddressLine(0).substring(5);
 
@@ -348,10 +345,6 @@ public class HomeFragment extends Fragment {
                                                         counter_max = i;
                                                     }
                                                 }
-
-
-                                                // 태그 검색이 되는지 확인용
-                                                Log.d("show_Max_and_secondMax", Max.toString() + ", " + secondMax.toString());
 
                                                 tag1 = "쓴맛";
                                                 tag2 = "신맛";
@@ -602,8 +595,6 @@ public class HomeFragment extends Fragment {
 
                                                         for(CafeImage ci : cafeImage_list){
                                                             if(ci.getCafeNum().equals(c.getCafeNum())){
-                                                                Log.d("cafeNum", ci.getCafeNum() + ", " + c.getCafeNum());
-                                                                Log.d("cafeImage URL", ci.getFileUrl());
                                                                 represent_cafeImage_URL = ci.getFileUrl();
                                                                 break;
                                                             }
@@ -635,8 +626,6 @@ public class HomeFragment extends Fragment {
                                                             @Override
                                                             public void onItemClick(View a_view, int a_position) {
                                                                 final HomeFavoriteItem item = homeFavoriteItems.get(a_position);
-//                                                                Toast.makeText(getContext().getApplicationContext(), item.getCafeName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
-
                                                                 Bundle bundle = new Bundle();
                                                                 bundle.putString("cafeName", item.getCafeName());
                                                                 navController.navigate(R.id.home_to_cafe_detail, bundle);
@@ -696,16 +685,10 @@ public class HomeFragment extends Fragment {
                                             get_study_point_total = 0;
 
                                             if (c.getCafeAddress().contains(get_user_address)) {
-                                                Log.d("getCafeAddress", c.getCafeAddress().toString());
-                                                Log.d("cafeNumber", c.getCafeNum().toString());
-
-
 
                                                 get_taste_point_total = c.getTastePoint1() + c.getTastePoint2() + c.getTastePoint3() + c.getTastePoint4();
-                                                Log.d("get_taste_point_total_checking", String.valueOf(get_taste_point_total));
 
                                                 get_study_point_total = c.getStudyPoint1() + c.getStudyPoint2() + c.getStudyPoint3() + c.getStudyPoint4();
-                                                Log.d("get_study_point_total_checking", String.valueOf(get_study_point_total));
 
 
                                                 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -780,10 +763,6 @@ public class HomeFragment extends Fragment {
                                                         counter_max = i;
                                                     }
                                                 }
-
-
-                                                // 태그 검색이 되는지 확인용
-                                                Log.d("show_Max_and_secondMax", Max.toString() + ", " + secondMax.toString());
 
                                                 tag1 = "쓴맛";
                                                 tag2 = "신맛";
@@ -1029,9 +1008,6 @@ public class HomeFragment extends Fragment {
                                                 else
                                                     get_taste_point_avg = (c.getTastePoint1() + c.getTastePoint2() + c.getTastePoint3() + c.getTastePoint4()) / review_counter / 4;
 
-
-                                                Log.d("getTastePoint_AVG", String.valueOf(get_taste_point_avg));
-                                                Log.d("getstudyPoint_AVG", String.valueOf(get_study_point_avg));
                                                 String get_cafeImage_url = getResources().getString(R.string.url) + "cafeImage";
 
                                                 StringRequest cafeImage_stringRequest1 = new StringRequest(Request.Method.GET, get_cafeImage_url, new Response.Listener<String>() {
@@ -1056,10 +1032,8 @@ public class HomeFragment extends Fragment {
                                                         represent_cafeImage_URL = "";
 
                                                         for (CafeImage ci : cafeImage_list) {
-                                                            Log.d("ci.getCafeNum", ci.getCafeNum().toString());
-                                                            Log.d("c.getCafeNumcheck", c.getCafeNum().toString());
+
                                                             if (ci.getCafeNum().equals(c.getCafeNum())) {
-                                                                Log.d("Checking_equal", "True");
                                                                 represent_cafeImage_URL = ci.getFileUrl();
                                                                 break;
                                                             }
@@ -1087,10 +1061,6 @@ public class HomeFragment extends Fragment {
                                                                         get_review, represent_cafeImage_URL, get_taste_point_avg);
                                                                 tag1_List.add(firstTag_item);
                                                             } else {
-                                                                Log.d("get_study_point_total", String.valueOf(get_study_point_total));
-                                                                Log.d("get_taste_point_total", String.valueOf(get_taste_point_total));
-
-
                                                                 HomeTag2ViewPagerItem secondTag_item = new HomeTag2ViewPagerItem(c.getCafeName(), c.getCafeAddress(), "#스터디", tag1, tag2,
                                                                         get_review, represent_cafeImage_URL, get_study_point_avg);
                                                                 tag2_List.add(secondTag_item);
@@ -1107,8 +1077,6 @@ public class HomeFragment extends Fragment {
                                                             @Override
                                                             public void onItemClick(int position) {
                                                                 final HomeTag1ViewPagerItem item = tag1_List.get(position);
-//                                                                Toast.makeText(getContext().getApplicationContext(), item.getCafeName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
-
                                                                 Bundle bundle = new Bundle();
                                                                 bundle.putString("cafeName", item.getCafeName());
                                                                 navController.navigate(R.id.home_to_cafe_detail, bundle);
@@ -1148,8 +1116,6 @@ public class HomeFragment extends Fragment {
                                                             @Override
                                                             public void onItemClick(int position) {
                                                                 final HomeTag2ViewPagerItem item = tag2_List.get(position);
-//                                                                Toast.makeText(getContext().getApplicationContext(), item.getCafeName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
-
                                                                 Bundle bundle = new Bundle();
                                                                 bundle.putString("cafeName", item.getCafeName());
                                                                 navController.navigate(R.id.home_to_cafe_detail, bundle);
@@ -1251,78 +1217,6 @@ public class HomeFragment extends Fragment {
         });
 
         requestQueue.add(personal_stringRequest);
-
-
-//        ArrayList<HomeTag1Item> homeTag1Items = new ArrayList<>();
-//
-//        homeTag1Items.add(new HomeTag1Item("이디야커피 수원대점", "경기도 화성시 와우리 46", "#가성비", "#마카롱", "#디저트",
-//                "테이블이 매우 협소합니다. \n" + "하지만, 가격이 매우 저렴하고 맛있습니다!\n" + "마카롱이 진짜 최고에요ㅠ", R.drawable.logo, 3));
-//        homeTag1Items.add(new HomeTag1Item("할리스커피 수원대점", "경기도 화성시 와우리 41-17", "#다인석", "#회의실", "#힙한",
-//                "테이블이 협소해서 공부하기는 어렵지만\n" + "노래도 나오고 친구들이랑 같이 이야기하기에는좋아요.", R.drawable.logo, 2));
-//        homeTag1Items.add(new HomeTag1Item("메가커피 성균관대점", "경기도 수원시 탑동 801-4", "#맛집", "#스터디", "#조용한",
-//                "징짜 맛있음\n징짜 맛있음\n징짜 맛있음", R.drawable.logo_v2, 5));
-//
-//
-//        // Recycler view
-//        RecyclerView tag1RecyclerView = root.findViewById(R.id.first_recyclerView);
-//
-//        // Adapter 추가
-//        HomeTag1Adapter tag1Adapter = new HomeTag1Adapter(homeTag1Items);
-//        tag1RecyclerView.setAdapter(tag1Adapter);
-//
-//        // Layout manager 추가
-//        LinearLayoutManager tag1LayoutManager = new LinearLayoutManager(getContext().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
-//        tag1RecyclerView.setLayoutManager(tag1LayoutManager);
-//
-//        tag1Adapter.setOnItemClickListener_HomeTag1(new HomeTag1Adapter.OnItemClickEventListener_HomeTag1() {
-//            @Override
-//            public void onItemClick(View a_view, int a_position) {
-//                final HomeTag1Item item = homeTag1Items.get(a_position);
-//                Toast.makeText(getContext().getApplicationContext(), item.getCafeName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
-//
-//                Bundle bundle = new Bundle();
-//                bundle.putString("cafeName", item.getCafeName());
-//                navController.navigate(R.id.home_to_cafe_detail, bundle);
-//            }
-//        });
-
-
-
-
-//        ArrayList<HomeTag2Item> homeTag2Items = new ArrayList<>();
-//
-//        homeTag2Items.add(new HomeTag2Item("뺵다방 홍대점", "서울시 ~~~~ 167", "#가성비", "#신나는", "#디저트",
-//                "테이블이 매우 협소합니다. \n" + "하지만, 가격이 매우 저렴하고 맛있습니다!\n" + "마카롱이 진짜 최고에요ㅠ", R.drawable.logo, 1));
-//        homeTag2Items.add(new HomeTag2Item("잇츠커피 수원대점", "경기도 화성시 와우리 42-11", "#화장실", "#애견", "#레트로",
-//                "테이블이 협소해서 공부하기는 어렵지만\n" + "노래도 나오고 친구들이랑 같이 이야기하기에는좋아요.", R.drawable.logo, 3));
-//        homeTag2Items.add(new HomeTag2Item("스타벅스 수원역점", "경기도 수원시 수원역 ~~~ 84-4", "#분위기", "#스터디", "#감성",
-//                "징짜 맛있음\n징짜 맛있음\n징짜 맛있음", R.drawable.logo_v2, 4));
-//
-//
-//        // Recycler view
-//        RecyclerView tag2RecyclerView = root.findViewById(R.id.second_recyclerView);
-//
-//        // Adapter 추가
-//        HomeTag2Adapter tag2Adapter = new HomeTag2Adapter(homeTag2Items);
-//        tag2RecyclerView.setAdapter(tag2Adapter);
-//
-//        // Layout manager 추가
-//        LinearLayoutManager tag2LayoutManager = new LinearLayoutManager(getContext().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
-//        tag2RecyclerView.setLayoutManager(tag2LayoutManager);
-//
-//        tag2Adapter.setOnItemClickListener_HomeTag2(new HomeTag2Adapter.OnItemClickEventListener_HomeTag2() {
-//            @Override
-//            public void onItemClick(View a_view, int a_position) {
-//                final HomeTag2Item item = homeTag2Items.get(a_position);
-//                Toast.makeText(getContext().getApplicationContext(), item.getCafeName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
-//
-//                Bundle bundle = new Bundle();
-//                bundle.putString("cafeName", item.getCafeName());
-//                navController.navigate(R.id.home_to_cafe_detail, bundle);
-//            }
-//        });
-
-
         return root;
     }
 

@@ -100,7 +100,6 @@ public class MyPageFragment extends Fragment {
         fav2 = root.findViewById(R.id.second_important2);
         modify = root.findViewById(R.id.change_information_button2);
         logout = root.findViewById(R.id.logout_button2);
-//        mypage_profile_image2 = root.findViewById(R.id.mypage_profile_image2);
         profileImage = root.findViewById(R.id.profileImage);
 
         FragmentTransaction ft = getFragmentManager().beginTransaction();
@@ -238,8 +237,6 @@ public class MyPageFragment extends Fragment {
                                             @Override
                                             public void onItemClick(View a_view, int a_position) {
                                                 final MypageFavoriteItem item = mypageFavoriteItems.get(a_position);
-//                                                Toast.makeText(getContext().getApplicationContext(), item.getCafeName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
-
                                                 Bundle bundle = new Bundle();
                                                 bundle.putString("cafeName", item.getCafeName());
                                                 navController.navigate(R.id.myPage_to_cafe_detail, bundle);
@@ -297,7 +294,6 @@ public class MyPageFragment extends Fragment {
                                                                             break;
                                                                         }
                                                                         reviewImage.add(ri.getFileUrl());
-                                                                        Log.d("reviewImage", ri.getFileUrl());
                                                                         reviewImageCounter++;
                                                                     }
                                                                 }
@@ -338,7 +334,6 @@ public class MyPageFragment extends Fragment {
                                                                     @Override
                                                                     public void onItemClick(View a_view, int a_position) {
                                                                         final MypageReviewItem item = mypageReviewItems.get(a_position);
-//                                                                        Toast.makeText(getContext().getApplicationContext(), item.getMypageReview_CafeName(), Toast.LENGTH_SHORT).show();
                                                                     }
                                                                 });
                                                             }

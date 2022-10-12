@@ -403,7 +403,7 @@ public class CafeModifyFragment extends Fragment {
 
         if(data == null){   // 어떤 이미지도 선택하지 않은 경우
             AlertDialog.Builder mod = new AlertDialog.Builder(getActivity());
-            mod.setTitle("잠깐!").setMessage("이미지를 선택하지 않았습니다.").setNeutralButton("확인", new DialogInterface.OnClickListener() {
+            mod.setTitle("잠깐!").setMessage("이미지를 선택하지 않았습니다.").setIcon(R.drawable.logo).setNeutralButton("확인", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
 
@@ -415,7 +415,7 @@ public class CafeModifyFragment extends Fragment {
             if(data.getClipData() == null){     // 이미지를 하나만 선택한 경우
                 if(uriList.size() >= 5) {
                     AlertDialog.Builder mod = new AlertDialog.Builder(getActivity());
-                    mod.setTitle("잠깐!").setMessage("이미지 5개를 모두 선택하셨습니다!").setNeutralButton("확인", new DialogInterface.OnClickListener() {
+                    mod.setTitle("잠깐!").setMessage("이미지 5개를 모두 선택하셨습니다!").setIcon(R.drawable.logo).setNeutralButton("확인", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
@@ -439,7 +439,7 @@ public class CafeModifyFragment extends Fragment {
 
                 if(clipData.getItemCount() > 5){   // 선택한 이미지가 6장 이상인 경우
                     AlertDialog.Builder mod = new AlertDialog.Builder(getActivity());
-                    mod.setTitle("잠깐!").setMessage("사진은 5장까지 선택 가능합니다.").setNeutralButton("확인", new DialogInterface.OnClickListener() {
+                    mod.setTitle("잠깐!").setMessage("사진은 5장까지 선택 가능합니다.").setIcon(R.drawable.logo).setNeutralButton("확인", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 

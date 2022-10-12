@@ -68,12 +68,7 @@ public class CafeRegistrationTagFragment extends Fragment {
         Boolean cafe_nametest = getArguments().getBoolean("name_test");
         uriList = getArguments().getParcelableArrayList("cafeImage");
 
-        Log.d("opentime + tag", cafe_opentime);
-        Log.d("closetime + tag", cafe_closetime);
 
-        for(Uri u : uriList) {
-            Log.d("uriList", u.toString());
-        }
         ////////////////////////////////////////////////////////////////////////////////////
         // 아래 3개 삭제 버튼 클릭 이벤트 작성
 
@@ -174,7 +169,6 @@ public class CafeRegistrationTagFragment extends Fragment {
                         addTag3.setText(selectedTag);
                 }
                 else {
-//                    Toast.makeText(getContext().getApplicationContext(), "태그3개를 모두 선택했습니다.", Toast.LENGTH_SHORT).show();
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                     builder.setTitle("태그 추가").setMessage("태그 3개를 모두 선택했습니다.").setIcon(R.drawable.logo);
@@ -287,7 +281,6 @@ public class CafeRegistrationTagFragment extends Fragment {
             public void onClick(View v) {
                 // 태그를 하나도 선택하지 않았을 경우
                 if(addTag1.getText().toString().equals("") || addTag2.getText().toString().equals("") || addTag3.getText().toString().equals("")){
-//                    Toast.makeText(getContext().getApplicationContext(), "3개의 태그를 모두 선택해 주세요!", Toast.LENGTH_SHORT).show();
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                     builder.setTitle("태그 추가").setMessage("3개의 태그를 모두 선택해 주세요!").setIcon(R.drawable.logo);
@@ -305,7 +298,6 @@ public class CafeRegistrationTagFragment extends Fragment {
                 }
 
                 else{
-//                    Toast.makeText(getContext().getApplicationContext(), "선택한 태그 추가하기.", Toast.LENGTH_SHORT).show();
                     Bundle bundle = new Bundle(); // 프래그먼트 간 데이터 전달 위한 번들
                     bundle.putString("key1",addTag1.getText().toString()); // 번들에 String 데이터를 전달. key1 을 키로 사용
                     bundle.putString("key2",addTag2.getText().toString());
@@ -316,7 +308,6 @@ public class CafeRegistrationTagFragment extends Fragment {
                     bundle.putString("closetime", cafe_closetime);
                     bundle.putBoolean("name_test", cafe_nametest);
                     bundle.putParcelableArrayList("cafeImage", uriList);
-                    Log.d("test2",cafe_closetime);
                     navController.navigate(R.id.cafe_registration_tag_to_cafe_registration, bundle);
                 }
             }

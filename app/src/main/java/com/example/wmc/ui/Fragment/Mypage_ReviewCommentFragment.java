@@ -179,11 +179,6 @@ public class Mypage_ReviewCommentFragment extends Fragment {
                 flag = argBundle.getBoolean("flag");    // 수정에서 넘어온 것인지 확인
                 location_flag = argBundle.getBoolean("location_flag");
 
-                Log.d("리뷰에서 받음 -> flag", String.valueOf(flag));
-                Log.d("리뷰에서 받음 -> tag1", String.valueOf(tag1));
-                Log.d("리뷰에서 받음 -> p1", String.valueOf(p1));
-                Log.d("리뷰에서 받음 -> location", String.valueOf(location_flag));
-
             }
 
             // 리뷰 수정에서 온 경우,
@@ -207,11 +202,6 @@ public class Mypage_ReviewCommentFragment extends Fragment {
                 p10 = Integer.valueOf((int)argBundle.getFloat("studyPoint2"));
                 p11 = Integer.valueOf((int)argBundle.getFloat("studyPoint3"));
                 p12 = Integer.valueOf((int)argBundle.getFloat("studyPoint4"));
-
-
-//                for(int i = 0; i < k2.length; i++){
-//                    k2[i] = argBundle.getLong("k2-" + String.valueOf(i+1));
-//                }
 
                 // 이번에 선택한 키워드
                 k[0] = getArguments().getLong("k-1");
@@ -341,13 +331,9 @@ public class Mypage_ReviewCommentFragment extends Fragment {
                         Type listType = new TypeToken<ArrayList<ReviewImage>>(){}.getType();
 
                         reviewImage_list = gson.fromJson(changeString, listType);
-                        Log.d("review_num", reviewNum.toString());
 
                         for(ReviewImage ri : reviewImage_list){
-                            Log.d("review_ri.getReviewNum", ri.getReviewNum().toString());
-
                             if(ri.getReviewNum().equals(reviewNum)){
-                                Log.d("reviewImage_URL", ri.getFileUrl());
                                 Uri i = Uri.parse(ri.getFileUrl());
                                 uriList.add(i);
                             }
@@ -364,15 +350,6 @@ public class Mypage_ReviewCommentFragment extends Fragment {
                     }
                 });
                 requestQueue.add(reviewImage_stringRequest);
-
-
-                Log.d("리뷰에서 받음 -> flag", String.valueOf(flag));
-                Log.d("리뷰에서 받음 -> tag1", tag1);
-                Log.d("리뷰에서 받음 -> 산미", String.valueOf(p1));
-                Log.d("리뷰에서 받음 -> 쓴맛", String.valueOf(p2));
-                Log.d("리뷰에서 받음 -> 디저트", String.valueOf(p3));
-                Log.d("리뷰에서 받음 -> 기타음료", String.valueOf(p4));
-                Log.d("리뷰에서 받음 -> location(코멘토리)", String.valueOf(location_flag));
             }
         }
 
@@ -850,7 +827,6 @@ public class Mypage_ReviewCommentFragment extends Fragment {
                                                     Cursor c = getContext().getContentResolver().query(Uri.parse(u.toString()), null, null, null, null);
                                                     c.moveToNext();
                                                     String absolutePath = c.getString(c.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA));
-                                                    Log.d("test_check", absolutePath);
                                                     file = new File(absolutePath);
 
                                                     // 이미지 서버로 전송
@@ -865,7 +841,7 @@ public class Mypage_ReviewCommentFragment extends Fragment {
                                     new Response.ErrorListener() {
                                         @Override
                                         public void onErrorResponse(VolleyError error) {
-                                            Log.d("test1", error.toString());
+
                                         }
                                     }) {
                                 @Override
@@ -951,7 +927,7 @@ public class Mypage_ReviewCommentFragment extends Fragment {
                                             new Response.ErrorListener() {
                                                 @Override
                                                 public void onErrorResponse(VolleyError error) {
-                                                    Log.d("qwer", error.toString());
+
                                                 }
                                             }) {
                                         @Override
@@ -1007,8 +983,7 @@ public class Mypage_ReviewCommentFragment extends Fragment {
                             map.put("memNum", mem_num);
                             map.put("reviewText", reviewComment_editText.getText().toString());
 
-                            Log.d("들어가는 point 산미", String.valueOf(p1));
-                            Log.d("들어가는 point 쓴맛", String.valueOf(p1));
+
 
                             // 이미지 처리 문장 올 곳
                             switch (tag1) {
@@ -1386,14 +1361,13 @@ public class Mypage_ReviewCommentFragment extends Fragment {
                                     new Response.Listener<JSONObject>() {
                                         @Override
                                         public void onResponse(JSONObject response) {
-                                            Log.d("test_check", "onResponse 응답");
+
                                         }
                                     },
                                     new Response.ErrorListener() {
                                         @Override
                                         public void onErrorResponse(VolleyError error) {
-                                            Log.d("test1", error.toString());
-                                            Log.d("test_check_error", "에러발생");
+
                                         }
                                     }) {
                                 @Override
@@ -1419,32 +1393,12 @@ public class Mypage_ReviewCommentFragment extends Fragment {
                                     Cursor cursor = getContext().getContentResolver().query(Uri.parse(u.toString()), null,null,null,null);
                                     cursor.moveToNext();
                                     String absolutePath = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA));
-                                    Log.d("test_check" , absolutePath);
                                     file = new File(absolutePath);
 
                                     // 이미지 서버로 전송
                                     FileUploadUtils.sendReviewImage(file, mem_num, reviewNum);
                                 }
                             }
-
-
-//                            // 카페 수정 완료 시 해당 카페 디테일로 넘어가기 - 송상화
-//                            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-//                            builder.setTitle("리뷰 수정").setMessage("리뷰가 수정되었습니다.").setIcon(R.drawable.logo);
-//
-//                            builder.setPositiveButton("확인", new DialogInterface.OnClickListener(){
-//                                @Override
-//                                public void onClick(DialogInterface dialog, int id)
-//                                {
-//                                    Bundle cafebundle = new Bundle();
-//                                    cafebundle.putString("cafeName", cafe_name_input.getText().toString());
-//
-//                                    navController.navigate(R.id.cafe_modify_to_cafe_detail, cafebundle);
-//                                }
-//                            });
-//
-//                            AlertDialog alertDialog = builder.create();
-//                            alertDialog.show();
 
 
                             // 여기는 cafePut작업해야할 곳
@@ -1457,20 +1411,6 @@ public class Mypage_ReviewCommentFragment extends Fragment {
                                     map2.put("closeTime", c.getCloseTime());
                                     map2.put("bookmarkNum", c.getBookmarkNum());
                                     map2.put("scoreNum", c.getScoreNum());
-
-                                    Log.d("asdf k-keyWord4", String.valueOf(k[3]));
-                                    Log.d("asdf k2-keyWord4", String.valueOf(k2[3]));
-                                    Log.d("asdf k-keyWord5", String.valueOf(k[4]));
-                                    Log.d("asdf k2-keyWord5", String.valueOf(k2[4]));
-                                    Log.d("asdf k-keyWord6", String.valueOf(k[5]));
-                                    Log.d("asdf k2-keyWord6", String.valueOf(k2[5]));
-                                    Log.d("asdf k-keyWord7", String.valueOf(k[6]));
-                                    Log.d("asdf k2-keyWord7", String.valueOf(k2[6]));
-                                    Log.d("asdf k-keyWord8", String.valueOf(k[7]));
-                                    Log.d("asdf k2-keyWord8", String.valueOf(k2[7]));
-                                    Log.d("asdf k-keyWord9", String.valueOf(k[8]));
-                                    Log.d("asdf k2-keyWord9", String.valueOf(k2[8]));
-
                                     map2.put("keyword1", c.getKeyword1()+k[0] - k2[0]);
                                     map2.put("keyword2", c.getKeyword2()+k[1] - k2[1]);
                                     map2.put("keyword3", c.getKeyword3()+k[2] - k2[2]);
@@ -1535,7 +1475,7 @@ public class Mypage_ReviewCommentFragment extends Fragment {
                                             new Response.ErrorListener() {
                                                 @Override
                                                 public void onErrorResponse(VolleyError error) {
-                                                    Log.d("qwer", error.toString());
+
                                                 }
                                             }) {
                                         @Override
@@ -1581,38 +1521,6 @@ public class Mypage_ReviewCommentFragment extends Fragment {
             }
         });
         requestQueue.add(stringRequest);
-
-
-
-
-//        // 이미지 추가 리싸이클러뷰
-//        ArrayList<ReviewCommentItem> reviewCommentImageItems = new ArrayList<>();
-//
-//        reviewCommentImageItems.add(new ReviewCommentItem(R.drawable.logo));
-//        reviewCommentImageItems.add(new ReviewCommentItem(R.drawable.logo_v2));
-//        reviewCommentImageItems.add(new ReviewCommentItem(R.drawable.bean_grade1));
-//        reviewCommentImageItems.add(new ReviewCommentItem(R.drawable.bean_grade2));
-//        reviewCommentImageItems.add(new ReviewCommentItem(R.drawable.bean_grade3));
-//
-//        // Adapter 추가
-//        RecyclerView reviewCommentRecyclerView = root.findViewById(R.id.reviewCommentImageRecyclerView);
-//
-//        ReviewCommentAdapter reviewCommentAdapter = new ReviewCommentAdapter(reviewCommentImageItems);
-//        reviewCommentRecyclerView.setAdapter(reviewCommentAdapter);
-//
-//        // Layout manager 추가
-//        LinearLayoutManager reviewCommentLayoutManager = new LinearLayoutManager(getContext().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
-//        reviewCommentRecyclerView.setLayoutManager(reviewCommentLayoutManager);
-//
-//        // 이미지 아이템 클릭 시,
-//        reviewCommentAdapter.setOnItemClickListener_ReviewComment(new ReviewCommentAdapter.OnItemClickEventListener_ReviewComment() {
-//            @Override
-//            public void onItemClick(View view, int position) {
-//                final ReviewCommentItem item = reviewCommentImageItems.get(position);
-//                Toast.makeText(getContext().getApplicationContext(), item.getReviewCommentImage() + " 클릭됨.", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-
         return root;
     }
 
@@ -1622,13 +1530,18 @@ public class Mypage_ReviewCommentFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(data == null){   // 어떤 이미지도 선택하지 않은 경우
-            Toast.makeText(getContext().getApplicationContext(), "이미지를 선택하지 않았습니다.", Toast.LENGTH_LONG).show();
+            AlertDialog.Builder mod = new AlertDialog.Builder(getActivity());
+            mod.setTitle("잠깐!").setMessage("이미지를 선택하지 않았습니다.").setIcon(R.drawable.logo).setNeutralButton("확인", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            }).create().show();
         }
 
         else{   // 이미지를 하나라도 선택한 경우
             if(data.getClipData() == null){     // 이미지를 하나만 선택한 경우
                 if(uriList.size() >= 3) {
-//                    Toast.makeText(getContext().getApplicationContext(), "이미지 3개를 모두 선택하셨습니다.", Toast.LENGTH_LONG).show();
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                     builder.setTitle("이미지 추가").setMessage("이미지 3개를 모두 선택하셨습니다.").setIcon(R.drawable.logo);
@@ -1660,7 +1573,6 @@ public class Mypage_ReviewCommentFragment extends Fragment {
                 Log.e("clipData", String.valueOf(clipData.getItemCount()));
 
                 if(clipData.getItemCount() > 3){   // 선택한 이미지가 4장 이상인 경우
-//                    Toast.makeText(getContext().getApplicationContext(), "사진은 3장까지 선택 가능합니다.", Toast.LENGTH_LONG).show();
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                     builder.setTitle("이미지 추가").setMessage("사진은 3장까지 선택 가능합니다.").setIcon(R.drawable.logo);
@@ -1691,8 +1603,6 @@ public class Mypage_ReviewCommentFragment extends Fragment {
                             }
                         }
                         else {
-//                            Toast.makeText(getContext().getApplicationContext(), "사진은 3장까지 선택 가능합니다.", Toast.LENGTH_LONG).show();
-
                             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                             builder.setTitle("이미지 추가").setMessage("사진은 3장까지 선택 가능합니다.").setIcon(R.drawable.logo);
 

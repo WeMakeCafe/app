@@ -1,6 +1,7 @@
 package com.example.wmc.ui.Fragment;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
@@ -213,7 +215,6 @@ public class CafeDetailFragment extends Fragment {
 
                                 for(CafeImage ci : CafeImage_list){
                                     if(ci.getCafeNum().equals(get_cafe_num)){
-                                        Log.d("cafeImage URL", ci.getFileUrl());
                                         imageList.add(ci.getFileUrl());
                                     }
                                 }
@@ -291,8 +292,6 @@ public class CafeDetailFragment extends Fragment {
                             }
                         }
 
-                        // 태그 검색이 되는지 확인용
-                        Log.d("show_Max_and_secondMax", Max.toString() + ", " + secondMax.toString());
 
                         // 태그 1 세팅
                         switch (counter_max){
@@ -629,7 +628,7 @@ public class CafeDetailFragment extends Fragment {
                                             new Response.ErrorListener() {
                                                 @Override
                                                 public void onErrorResponse(VolleyError error) {
-                                                    Log.d("bookmark_jsonObject_error", error.toString());
+
                                                 }
                                             }) {
                                         @Override
@@ -637,7 +636,6 @@ public class CafeDetailFragment extends Fragment {
                                             return "application/json; charset=UTF-8";
                                         }
                                     };
-                                    Log.d("json", bookmark_jsonObject.toString());
                                     RequestQueue queue = Volley.newRequestQueue(requireContext());
                                     queue.add(objectRequest);
                                 }
@@ -790,7 +788,6 @@ public class CafeDetailFragment extends Fragment {
                                                         for(ReviewImage ri : reviewImage_list) {
                                                             if(ri.getReviewNum().equals(r.getReviewNum())){
                                                                 reviewImage = ri.getFileUrl();
-                                                                Log.d("reviewImage", ri.getFileUrl());
                                                                 break;
                                                             }
                                                         }
@@ -805,7 +802,6 @@ public class CafeDetailFragment extends Fragment {
 
                                                             String personImage = "";
 
-//                                                            Log.d("profileUrl", p.getProfileImageUrl());
                                                             // 프로필 사진을 설정했는지 확인하는 곳(설정 X시, 기본 프로필 사진으로 설정)
                                                             if(p.getProfileimageurl() == null)
                                                                 // 기본 이미지 URL입력하면 됨(현재 뚱이사진 예시)
@@ -817,26 +813,22 @@ public class CafeDetailFragment extends Fragment {
                                                             if (r.getMemNum().equals(mem_num) && p.getMemNum().equals(mem_num)) {
                                                                 cafeDetailReviewItem.add( 0, new CafeDetailItem(p.getNickName(), p.getGrade().toString(),
                                                                         r.getReviewText(), create_date, personImage, reviewImage, r.getLikeCount().toString(), true, false, mem_num, get_cafe_num, -1L, r.getReviewNum(), r.getLocationCheck()));
-                                                                Log.d("review_check", r.getReviewNum().toString());
                                                             } // 2. 리뷰 작성자들의 닉네임, 회원 등급을 포함한 리뷰 Item 작성
                                                             else if (r.getMemNum().equals(p.getMemNum())) {
                                                                 if(!love_list.isEmpty()) { // love_list가 비어있지 않은 경우
                                                                     for (Love l : love_list) {
                                                                         // love 테이블에 reviewNum이 같은 경우 && love 테이블에 사용자의 memNum이 같은 경우
                                                                         if (l.getReviewNum().equals(r.getReviewNum()) && l.getMemNum().equals(mem_num)){
-                                                                            Log.d("love_for_if_test", "love_for_if_test");
                                                                             love_flag = true;
                                                                             cafeDetailReviewItem.add(new CafeDetailItem(p.getNickName(), p.getGrade().toString(),
                                                                                     r.getReviewText(), create_date, personImage, reviewImage, r.getLikeCount().toString(), false, true, mem_num, get_cafe_num, l.getLoveNum(), r.getReviewNum(), r.getLocationCheck()));
                                                                         }
                                                                     }
                                                                 }else{
-                                                                    Log.d("love_not_test", "love_not_test");
                                                                     cafeDetailReviewItem.add(new CafeDetailItem(p.getNickName(), p.getGrade().toString(),
                                                                             r.getReviewText(), create_date, personImage, reviewImage, r.getLikeCount().toString(), false, false, mem_num, get_cafe_num, -1L, r.getReviewNum(), r.getLocationCheck()));
                                                                 }
                                                                 if(!love_flag){
-                                                                    Log.d("love_not_test", "love_not_test");
                                                                     cafeDetailReviewItem.add(new CafeDetailItem(p.getNickName(), p.getGrade().toString(),
                                                                             r.getReviewText(), create_date, personImage, reviewImage, r.getLikeCount().toString(), false, false, mem_num, get_cafe_num, -1L, r.getReviewNum(), r.getLocationCheck()));
                                                                 }
@@ -862,12 +854,20 @@ public class CafeDetailFragment extends Fragment {
                                                             public void onItemClick(View view, int position) {
 
                                                                 if(cafeDetailReviewItem.size() == 0){
-                                                                    Toast.makeText(getContext().getApplicationContext(), "작성된 리뷰가 없습니다.", Toast.LENGTH_SHORT).show();
+                                                                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                                                                    builder.setTitle("정보").setMessage("작성된 리뷰가 없습니다.").setIcon(R.drawable.logo);
+
+                                                                    builder.setPositiveButton("확인", new DialogInterface.OnClickListener(){
+                                                                        @Override
+                                                                        public void onClick(DialogInterface dialog, int id)
+                                                                        {
+
+                                                                        }
+                                                                    });
                                                                 }
                                                                 else{
                                                                     // 리뷰 더보기 클릭 시,
                                                                     if(position == cafeDetailReviewItem.size()){
-//                                                                        Toast.makeText(getContext().getApplicationContext(), "리뷰 더보기 클릭", Toast.LENGTH_SHORT).show();
                                                                         Bundle bundle = new Bundle();
                                                                         bundle.putString("cafeNum", get_cafe_num.toString());
                                                                         //bundle.putString("name",moreReview3.getText().toString());
@@ -877,7 +877,6 @@ public class CafeDetailFragment extends Fragment {
                                                                     // 리뷰 클릭 시,
                                                                     else {
                                                                         final CafeDetailItem item = cafeDetailReviewItem.get(position);
-//                                                                        Toast.makeText(getContext().getApplicationContext(), item.getReviewNickName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
                                                                     }
                                                                 }
                                                             }
@@ -1033,16 +1032,6 @@ public class CafeDetailFragment extends Fragment {
         requestQueue.add(cafe_stringRequest);
 
 
-
-        // 카페 운영 시간 가져오기
-//        Bundle cafeModifyBundle = getArguments();
-//        if(cafeModifyBundle != null){
-//            if(cafeModifyBundle.getString("time_open_Modi") != null ){
-//                moreReview10.setText(cafeModifyBundle.getString("time_open_Modi"));
-//                moreReview8.setText(cafeModifyBundle.getString("time_close_Modi"));
-//            }
-//        }
-
         // 카페 수정(연필) 버튼 클릭 시,
         cafe_modify_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1073,76 +1062,8 @@ public class CafeDetailFragment extends Fragment {
         cafeImageViewPager.setOffscreenPageLimit(5);
         imageList = new ArrayList<>();
 
-
-
-//        CafeDetailImagePagerAdapter cafeImageAdapter = new CafeDetailImagePagerAdapter(getActivity().getSupportFragmentManager());
-//
-//        CafeDetailImageViewPager1 page1 = new CafeDetailImageViewPager1();
-//        cafeImageAdapter.cafeImageAddItem(page1);
-//        CafeDetailImageViewPager2 page2 = new CafeDetailImageViewPager2();
-//        cafeImageAdapter.cafeImageAddItem(page2);
-//        CafeDetailImageViewPager3 page3 = new CafeDetailImageViewPager3();
-//        cafeImageAdapter.cafeImageAddItem(page3);
-//        CafeDetailImageViewPager4 page4 = new CafeDetailImageViewPager4();
-//        cafeImageAdapter.cafeImageAddItem(page4);
-//        CafeDetailImageViewPager5 page5 = new CafeDetailImageViewPager5();
-//        cafeImageAdapter.cafeImageAddItem(page5);
-
-
-
-        // 카페디테일에 해당하는 카페별점 보여주기
-
-
         return root;
     }
-
-    // 카페디테일 카페이미지 뷰페이저
-//    class CafeDetailImagePagerAdapter extends FragmentStatePagerAdapter {
-//
-//        ArrayList<Fragment> imageItems = new ArrayList<>();
-//        public CafeDetailImagePagerAdapter(FragmentManager fm){
-//            super(fm);
-//        }
-//
-//        public void cafeImageAddItem(Fragment item){
-//            imageItems.add(item);   // Fragment 추가
-//        }
-//
-//        @NonNull
-//        @Override
-//        public Fragment getItem(int position) {
-//            return imageItems.get(position);    // 프래그먼트 가져오기
-//        }
-//
-//        @Override
-//        public int getCount() {
-//            return imageItems.size();   // 프래그먼트 개수반환
-//        }
-//    }
-
-
-    // 카페디테일 별점 뷰페이저
-//    class CafeDetailRatingPagerAdapter extends FragmentStatePagerAdapter {
-//        ArrayList<Fragment> ratingItems = new ArrayList<>();
-//        public CafeDetailRatingPagerAdapter(FragmentManager ratingFm) {
-//            super(ratingFm);
-//        }
-//
-//        public void cafeRatingAddItem(Fragment item){
-//            ratingItems.add(item);
-//        }
-//
-//        @NonNull
-//        @Override
-//        public Fragment getItem(int position) {
-//            return ratingItems.get(position);
-//        }
-//
-//        @Override
-//        public int getCount() {
-//            return ratingItems.size();
-//        }
-//    }
 
 
     @Override

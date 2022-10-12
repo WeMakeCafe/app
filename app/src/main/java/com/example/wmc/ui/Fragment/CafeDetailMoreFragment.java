@@ -77,8 +77,6 @@ public class CafeDetailMoreFragment extends Fragment {
         binding = FragmentCafeDetailMoreBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-//        FragmentTransaction ft = getFragmentManager().beginTransaction();
-//        ft.detach(this).attach(this).commit();
 
         Bundle cafeNumBundle = getArguments();
         if(cafeNumBundle != null){
@@ -86,7 +84,6 @@ public class CafeDetailMoreFragment extends Fragment {
                 get_cafe_num = Long.parseLong(cafeNumBundle.getString("cafeNum"));
             }
         }
-
 
         RequestQueue requestQueue;
         Cache cache = new DiskBasedCache(getActivity().getCacheDir(), 1024 * 1024); // 1MB cap
@@ -200,7 +197,6 @@ public class CafeDetailMoreFragment extends Fragment {
                                                             break;
                                                         }
                                                         reviewImage.add(ri.getFileUrl());
-                                                        Log.d("reviewImage", ri.getFileUrl());
                                                         reviewImageCounter++;
                                                     }
                                                 }
@@ -237,7 +233,6 @@ public class CafeDetailMoreFragment extends Fragment {
                                                             for (Love l : love_list) {
                                                                 // love 테이블에 reviewNum이 같은 경우 && love 테이블에 사용자의 memNum이 같은 경우
                                                                 if (l.getReviewNum().equals(r.getReviewNum()) && l.getMemNum().equals(mem_num)) {
-                                                                    Log.d("love_for_if_test", "love_for_if_test");
                                                                     love_flag = true;
                                                                     cafeDetailMoreReviewItem.add(new CafeDetailMoreItem(p.getNickName(), p.getGrade().toString(),
                                                                             r.getReviewText(), create_date, personalProfile, reviewImage.get(0), reviewImage.get(1), reviewImage.get(2), r.getLikeCount().toString(), false, true, get_cafe_num, mem_num, l.getLoveNum(), r.getReviewNum(), r.getLocationCheck()));
@@ -248,8 +243,6 @@ public class CafeDetailMoreFragment extends Fragment {
                                                                     r.getReviewText(), create_date, personalProfile, reviewImage.get(0), reviewImage.get(1), reviewImage.get(2), r.getLikeCount().toString(), false, false, get_cafe_num, mem_num, -1L, r.getReviewNum(), r.getLocationCheck()));
                                                         }
                                                         if(!love_flag){
-                                                            Log.d("!love_flag", "!love_flag");
-
                                                             cafeDetailMoreReviewItem.add(new CafeDetailMoreItem(p.getNickName(), p.getGrade().toString(),
                                                                     r.getReviewText(), create_date, personalProfile, reviewImage.get(0), reviewImage.get(1), reviewImage.get(2), r.getLikeCount().toString(), false, false, get_cafe_num, mem_num, -1L, r.getReviewNum(), r.getLocationCheck()));
                                                         }
@@ -276,7 +269,6 @@ public class CafeDetailMoreFragment extends Fragment {
                                         cafeDetailMoreAdapter.setOnItemClickListener_cafeDetailMore(new CafeDetailMoreAdapter.OnItemClickEventListener_cafeDetailMore() {
                                             @Override
                                             public void onItemClick(View a_view, int a_position) {
-//                                                Toast.makeText(getContext().getApplicationContext(), a_position + "번 리뷰 클릭.", Toast.LENGTH_SHORT).show();
                                             }
                                         });
 
@@ -422,19 +414,7 @@ public class CafeDetailMoreFragment extends Fragment {
 
 
 
-        /*// 아이템 추가 시, 앞에 index 0을 붙이면 최근에 쓴 아이템 부터 보이기 시작함.
-        cafeDetailMoreReviewItem.add(0, new CafeDetailMoreItem("지코", "Lv.3", "테이블이 매우 협소합니다.",
-                R.drawable.logo, R.drawable.logo_v2, R.drawable.bean_grade1, R.drawable.bean_grade3, "4"));
-        cafeDetailMoreReviewItem.add(0, new CafeDetailMoreItem("아이유", "Lv.1(위치인증완료)", "징짜 맛있음\n징짜 맛있음\n징짜 맛있음",
-                R.drawable.logo, R.drawable.logo_v2, R.drawable.bean_grade1, R.drawable.bean_grade3, "1"));
-        cafeDetailMoreReviewItem.add(0, new CafeDetailMoreItem("애쉬", "Lv.3", "테이블이 매우 협소합니다. \n" +
-                "하지만, 가격이 매우 저렴하고 맛있습니다!\n" +
-                "마카롱이 진짜 최고에요ㅠ",
-                R.drawable.logo, R.drawable.logo_v2, R.drawable.bean_grade1, R.drawable.bean_grade3, "7"));
-        cafeDetailMoreReviewItem.add(0, new CafeDetailMoreItem("스키니", "Lv.3", "테이블이 매우 협소합니다. \n" +
-                "하지만, 가격이 매우 저렴하고 맛있습니다!\n" +
-                "마카롱이 진짜 최고에요ㅠ",
-                R.drawable.logo, R.drawable.logo_v2, R.drawable.bean_grade1, R.drawable.bean_grade3, "3"));*/
+
 
 
         return root;
