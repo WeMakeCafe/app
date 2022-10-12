@@ -126,7 +126,6 @@ public class CafeModifyAdapter extends RecyclerView.Adapter<CafeModifyViewHolder
                                     for(CafeImage ci : cafeImageArrayList){
                                         if(ci.getFileUrl().equals(image_uri.toString())){
                                             delete_ImageNUM = ci.getcimageNum();
-                                            Log.d("delete_ImageNum", ci.getcimageNum() + ", " + ci.getCafeNum() +", " + ci.getFileUrl());
                                         }
                                     }
 

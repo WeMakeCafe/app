@@ -21,23 +21,4 @@ public class CafeModifyViewHolder extends RecyclerView.ViewHolder{
         imageDeleteButton = itemView.findViewById(R.id.imageDeleteButton);
     }
 
-//
-//    public static int CAFEMODIFY_VIEW_TYPE = R.layout.item_add_image;
-//
-//    public CafeModifyViewHolder(@NonNull View itemView, final CafeModifyAdapter.OnItemClickEventListener_CafeModify a_itemClickListener) {
-//        super(itemView);
-//
-//        add_modify_imageView = itemView.findViewById(R.id.add_modify_imageView);
-//        imageDeleteButton = itemView.findViewById(R.id.imageDeleteButton);
-//
-//        itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View a_view) {
-//                final int position = getAdapterPosition();
-//                if (position != RecyclerView.NO_POSITION) {
-//                    a_itemClickListener.onItemClick(a_view, position);
-//                }
-//            }
-//        });
-//    }
 }

@@ -145,7 +145,6 @@ public class ListCafeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
                             if(b.getMemNum().equals(mem_num) && b.getCafeNum().equals(item.getGet_cafe_num())){
                                 get_bookmark_num = b.getBookmarkNum(); // bookmark_num 일시 저장
-//                                        favorite_checkbox.setChecked(true); // 즐겨찾기 버튼 true 세팅
                             }
                         }
 
@@ -176,7 +175,6 @@ public class ListCafeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                                     return "application/json; charset=UTF-8";
                                 }
                             };
-                            Log.d("json", bookmark_jsonObject.toString());
                             RequestQueue queue = Volley.newRequestQueue(listCafelistFragment.requireContext());
                             queue.add(objectRequest);
                         }
@@ -185,7 +183,6 @@ public class ListCafeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                         else {  // 불이 켜져있을 때 누르는 경우
                             // 즐겨찾기 항목에서 제거됨
                             String bookmark_delete_url = listCafelistFragment.getResources().getString(R.string.url) + "bookmark/" + get_bookmark_num.toString();
-                            Log.e("bookmark_num", get_bookmark_num.toString());
                             StringRequest bookmark_delete_stringRequest = new StringRequest(Request.Method.DELETE, bookmark_delete_url, new Response.Listener<String>() {
                                 @RequiresApi(api = Build.VERSION_CODES.O)
                                 @Override

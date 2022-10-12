@@ -54,7 +54,6 @@ public class CafeRegistrationAdapter extends RecyclerView.Adapter<CafeRegistrati
         holder.imageDeleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(v.getContext(), "이미지 삭제 버튼 클릭", Toast.LENGTH_SHORT).show();
                 mData.remove(image_uri);
                 notifyDataSetChanged();
             }
