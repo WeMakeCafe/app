@@ -156,8 +156,7 @@ public class Bottom_ReviewCafeListAdapter extends RecyclerView.Adapter<RecyclerV
                                     new Response.Listener<JSONObject>() {
                                         @Override
                                         public void onResponse(JSONObject response) {
-                                            // 북마크 추가 성공, 토스트 띄우기.
-                                            Toast.makeText(view.getContext().getApplicationContext(), "즐겨찾기 추가", Toast.LENGTH_SHORT).show();
+
                                         }
                                     },
                                     new Response.ErrorListener() {
@@ -185,8 +184,7 @@ public class Bottom_ReviewCafeListAdapter extends RecyclerView.Adapter<RecyclerV
                                 @RequiresApi(api = Build.VERSION_CODES.O)
                                 @Override
                                 public void onResponse(String response) {
-                                    // 북마크 제거 성공, 토스트 띄우기.
-                                    Toast.makeText(view.getContext().getApplicationContext(), "즐겨찾기 삭제", Toast.LENGTH_SHORT).show();
+
                                 }
                             }, new Response.ErrorListener() {
                                 @Override

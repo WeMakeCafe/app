@@ -471,8 +471,6 @@ public class Bottom_ReviewCafeListFragment extends Fragment {
 
                                                     for(CafeImage ci : cafeImage_list){
                                                         if(ci.getCafeNum().equals(c.getCafeNum())){
-                                                            Log.d("cafeNum", ci.getCafeNum() + ", " + c.getCafeNum());
-                                                            Log.d("cafeImage URL", ci.getFileUrl());
                                                             represent_cafeImage_URL = ci.getFileUrl();
                                                             break;
                                                         }
@@ -489,19 +487,11 @@ public class Bottom_ReviewCafeListFragment extends Fragment {
                                                         }
                                                     }
 
-//                                                    Log.d("check_item", bottom_reviewCafeListItems.toString());
 
                                                     bottom_reviewCafeListItems.add(new Bottom_ReviewCafeListItem(c.getCafeName(), c.getCafeAddress(),
                                                             c.getOpenTime().substring(0,2) + ":" + c.getOpenTime().substring(2,4)
                                                                     + " ~ " + c.getCloseTime().substring(0,2) + ":" + c.getCloseTime().substring(2,4),
                                                             tag1, tag2, represent_cafeImage_URL, flag, c.getCafeNum(), get_bookmark_num));
-
-//                                                    bottom_reviewCafeListItems.add(new Bottom_ReviewCafeListItem(c.getCafeName(), c.getCafeAddress(), c.getOpenTime().substring(0,2)
-//                                                    + ":" + c.getOpenTime().substring(2,4) + " ~ " + c.getCloseTime().substring(0, 2) + ":" + c.getCloseTime().substring(2, 4),
-//                                                            tag1, tag2, represent_cafeImage_URL, flag, c.getCafeNum(), get_bookmark_num));
-
-                                                    Log.d("checking_listItems", represent_cafeImage_URL + ", " + flag + ", " + c.getCafeNum() + ", " + get_bookmark_num);
-
 
 
                                                     // Adapter 추가
@@ -534,18 +524,10 @@ public class Bottom_ReviewCafeListFragment extends Fragment {
                                                     // 리싸이클러뷰 아이템이 없을 경우, 카페 추가 버튼과 설명 글 생성
                                                     if(bottom_reviewCafeListItems.size() == 0) {
                                                         cafeList_footer.setVisibility(View.INVISIBLE);
-//                                                        add_cafe.setVisibility(View.INVISIBLE);
-//                                                        cafe_search_textView.setVisibility(View.VISIBLE);
-//                                                        cafe_add_textView.setVisibility(View.VISIBLE);
-//                                                        add_cafe_button.setVisibility(View.VISIBLE);
                                                         Toast.makeText(getContext().getApplicationContext(), "검색한 카페가 존재하지 않습니다.", Toast.LENGTH_SHORT).show();
                                                     }
                                                     else{   // 아이템이 있을 경우
                                                         cafeList_footer.setVisibility(View.VISIBLE);
-//                                                        add_cafe.setVisibility(View.VISIBLE);
-//                                                        cafe_search_textView.setVisibility(View.INVISIBLE);
-//                                                        cafe_add_textView.setVisibility(View.INVISIBLE);
-//                                                        add_cafe_button.setVisibility(View.INVISIBLE);
                                                     }
                                                 }
                                             }
