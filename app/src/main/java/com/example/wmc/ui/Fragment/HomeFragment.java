@@ -1066,7 +1066,7 @@ public class HomeFragment extends Fragment {
                                                         }
 
                                                         if (represent_cafeImage_URL.equals(""))
-                                                            represent_cafeImage_URL = getString(R.string.default_Review_Caefimage);
+                                                            represent_cafeImage_URL = getString(R.string.default_Review_Cafeimage);
 
 
                                                         if (get_user_fav.equals("스터디")) {
