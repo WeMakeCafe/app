@@ -1,5 +1,6 @@
 package com.example.wmc;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
@@ -44,6 +46,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Map;
+import java.util.Random;
+import java.util.regex.Pattern;
 
 import okhttp3.FormBody;
 import okhttp3.MediaType;
@@ -53,32 +57,30 @@ import okio.BufferedSink;
 public class SignupActivity extends AppCompatActivity {
     String[] items = {"내가 다닌 초등학교의 이름은?","나의 어머님의 성함은?","내가 가장 감명깊게 본 영화는?"}; // 스피너 변수
     String checkid; // 아이디 변수
-    String checkPn; // 전화번호 변수
-    String checkPw; // 비밀번호 변수
+    String checkPw1; // 비밀번호 변수
+    String checkPw2; // 비밀번호 변수
     String checkQuestion; // 질문
     String checkAnswer; // 답변
-    String checkAddress; // 주소
-    String checkFavorite1; // 선호도
+    String checkFavorite1 = "미선택"; // 선호도
     String checkFavorite2; // 선호도
+    Boolean id_boolean = false; // 아이디 중복값
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_app_signup);
 
-        Spinner spinner = findViewById(R.id.spinner4); // 스피너
-        TextView textView = findViewById(R.id.signUp_nickName_input); // 스피너 텍스트뷰
         TextView login_textview = findViewById(R.id.searchID_PW_button3); // 로그인 버튼
         TextView id_textview = findViewById(R.id.searchID_PW_button); // 아이디찾기 버튼
         TextView pw_textview = findViewById(R.id.searchID_PW_button2); // 비밀번호 찾기 버튼
+
+        Spinner spinner = findViewById(R.id.spinner4); // 스피너
+        TextView textView = findViewById(R.id.signUp_nickName_input); // 스피너 텍스트뷰
         RadioButton favorite1 = findViewById(R.id.radio_study); // 선호도 라디오 그룹1
         RadioButton favorite2 = findViewById(R.id.radio_taste); // 선호도 라디오 그룹2
         Button id_button = findViewById(R.id.signUp_button2); // 아이디 중복확인 버튼
         TextView id_input = findViewById(R.id.signUp_id_input); // 아이디 입력 텍스트뷰
         TextView pw_input1 = findViewById(R.id.signUp_pw_input); // 비밀번호 입력 텍뷰1
         TextView pw_input2 = findViewById(R.id.signUp_verifyPw_input); // 비밀번호 입력 텍뷰2
-        TextView phone_input = findViewById(R.id.signUp_nubmer_input); // 전화번호 입력 텍뷰
-        TextView addr_input = findViewById(R.id.signUp_address_input); // 주소 입력 텍뷰
-        Button phone_button = findViewById(R.id.signUp_button); // 전화번호 중복확인 버튼
         Button signup = findViewById(R.id.signUp_button1); // 회원가입 버튼
 
         login_textview.setOnClickListener(new View.OnClickListener(){
@@ -127,14 +129,14 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 checkFavorite1 = "스터디";
-                checkFavorite2 = "커피맛";
+                checkFavorite2 = "맛";
             }
         });
 
         favorite2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkFavorite1 = "커피맛";
+                checkFavorite1 = "맛";
                 checkFavorite2 = "스터디";
             }
         });
@@ -152,7 +154,19 @@ public class SignupActivity extends AppCompatActivity {
             public void onClick(View v) {
                 checkid = id_input.getText().toString();
 
-                if(checkid.length() <= 5) Toast.makeText(getApplicationContext(), "아이디는 6자 이상부터 가능합니다.", Toast.LENGTH_SHORT).show();
+                if(checkid.length() <= 5) {
+                    AlertDialog.Builder dlg = new AlertDialog.Builder(SignupActivity.this);
+                    dlg.setTitle("We Make Cafe");
+                    dlg.setMessage("아이디는 6자 이상부터 가능합니다.");
+//                                dlg.setIcon()
+                    dlg.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+                    dlg.show();
+                }
                 else {
                     String url = getResources().getString(R.string.url) + "check/id?checkId=" + checkid;
 
@@ -162,16 +176,40 @@ public class SignupActivity extends AppCompatActivity {
                         public void onResponse(String response) {
                             Log.d("test", response);
                             if (response.equals("true")) {
-                                Toast.makeText(getApplicationContext(), "사용 가능한 아이디입니다.", Toast.LENGTH_SHORT).show();
+                                AlertDialog.Builder dlg = new AlertDialog.Builder(SignupActivity.this);
+                                dlg.setTitle("We Make Cafe");
+                                dlg.setMessage("사용 가능한 아이디입니다.");
+//                                dlg.setIcon()
+                                dlg.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                    }
+                                });
+                                dlg.show();
+                                id_input.setEnabled(false);
+                                id_button.setVisibility(View.INVISIBLE);
+                                id_boolean = true;
                             } else {
-                                Toast.makeText(getApplicationContext(), "가입된 아이디입니다.", Toast.LENGTH_SHORT).show();
+                                AlertDialog.Builder dlg = new AlertDialog.Builder(SignupActivity.this);
+                                dlg.setTitle("We Make Cafe");
+                                dlg.setMessage("이미 가입된 아이디입니다.");
+//                                dlg.setIcon()
+                                dlg.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                    }
+                                });
+                                dlg.show();
+                                id_boolean = false;
                             }
                         }
                     }, new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             // 에러가 뜬다면 왜 에러가 떴는지 확인하는 코드
-                            Log.e("test_error2", error.toString());
+                            Log.e("id_error2", error.toString());
                         }
                     });
                     requestQueue.add(stringRequest);
@@ -179,90 +217,155 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
 
-        // 전화번호 중복확인 버튼 클릭시
-        phone_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                checkPn = phone_input.getText().toString();
-
-                if(checkPn.length() <= 9) Toast.makeText(getApplicationContext(), "전화번호는 10자리 이상 입력해주세요.", Toast.LENGTH_SHORT).show();
-                else {
-                    String url = getResources().getString(R.string.url) + "check/pn?checkPN=" + checkPn;
-
-                    StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-                        @RequiresApi(api = Build.VERSION_CODES.O)
-                        @Override
-                        public void onResponse(String response) {
-                            Log.d("test", response);
-                            if (response.equals("true")) {
-                                Toast.makeText(getApplicationContext(), "사용 가능한 전화번호입니다.", Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toast.makeText(getApplicationContext(), "가입된 전화번호입니다.", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    }, new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            // 에러가 뜬다면 왜 에러가 떴는지 확인하는 코드
-                            Log.e("test_error2", error.toString());
-                        }
-                    });
-                    requestQueue.add(stringRequest);
-                }
-            }
-        });
-
-        // 회원가입 완료 버튼 클릭시 *미완
+        // 회원가입 완료 버튼 클릭이벤트
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 checkid = id_input.getText().toString();
-                checkPn = phone_input.getText().toString();
-                checkPw = pw_input1.getText().toString();
+                checkPw1 = pw_input1.getText().toString();
+                checkPw2 = pw_input2.getText().toString();
                 checkQuestion = spinner.getSelectedItem().toString();
                 checkAnswer = textView.getText().toString();
-                checkAddress = addr_input.getText().toString();
-                int numInt = Integer.parseInt(checkPn);
 
-                HashMap<String,Object>params = new HashMap<String, Object>();
-                params.put("id",checkid);
-                params.put("pwd",checkPw);
-                params.put("nickName",checkid);
-                params.put("grade",1);
-                params.put("address",checkAddress);
-                params.put("phoneNum",numInt);
-                params.put("favorite1",checkFavorite1);
-                params.put("favorite2",checkFavorite2);
-                params.put("personalQuestion",checkQuestion);
-                params.put("personalAnswer",checkAnswer);
+                // 아이디 중복 확인
+                if(!id_boolean){
+                    AlertDialog.Builder dlg = new AlertDialog.Builder(SignupActivity.this);
+                    dlg.setTitle("We Make Cafe");
+                    dlg.setMessage("아이디 중복확인을 완료해주세요.");
+//                    dlg.setIcon()
+                    dlg.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
 
-                String url = getResources().getString(R.string.url) + "signup";
-                StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Toast.makeText(getApplicationContext(), "회원가입 완료되었습니다.", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getApplicationContext(), LoginAcivity.class);
-                        startActivity(intent);
-                        finish();
-                        Log.d("signup1",response);
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.d("signup2",error.toString());
-                    }
+                        }
+                    });
+                    dlg.show();
                 }
-                ){
-                    public byte[] getBody(){
-                        return new JSONObject(params).toString().getBytes();
+
+                // 비밀번호 유효성 검사
+                else if (!Pattern.matches("^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*#?&]).{8,15}.$", checkPw1)) {
+                    AlertDialog.Builder dlg = new AlertDialog.Builder(SignupActivity.this);
+                    dlg.setTitle("We Make Cafe");
+                    dlg.setMessage("비밀번호는 숫자,문자,특수문자를 모두 포함한 8~15자입니다.");
+//                    dlg.setIcon()
+                    dlg.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+                    dlg.show();
+                }
+
+                // 비밀번호 확인 검사
+                else if (!checkPw1.equals(checkPw2)){
+                    AlertDialog.Builder dlg = new AlertDialog.Builder(SignupActivity.this);
+                    dlg.setTitle("We Make Cafe");
+                    dlg.setMessage("비밀번호와 비밀번호 확인이 다릅니다.");
+//                    dlg.setIcon()
+                    dlg.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+                    dlg.show();
+                }
+
+                // 비밀번호 확인 답변 검사
+                else if(checkAnswer.equals("")){
+                    AlertDialog.Builder dlg = new AlertDialog.Builder(SignupActivity.this);
+                    dlg.setTitle("We Make Cafe");
+                    dlg.setMessage("비밀번호 확인 질문에 대한 답변을 입력해주세요.");
+//                    dlg.setIcon()
+                    dlg.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+                    dlg.show();
+                }
+
+                // 우선순위 검사
+                else if(checkFavorite1.equals("미선택")){
+                    AlertDialog.Builder dlg = new AlertDialog.Builder(SignupActivity.this);
+                    dlg.setTitle("We Make Cafe");
+                    dlg.setMessage("우선순위를 선택해주세요.");
+//                    dlg.setIcon()
+                    dlg.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+                    dlg.show();
+                }
+
+                // 모든 요소 입력완료
+                else {
+                    Random random = new Random();
+                    int createNum = 0;
+                    String ranNum = "";
+                    int letter = 6;
+                    String resultNum = "";
+
+                    for(int i = 0; i<letter; i++) {
+                        createNum = random.nextInt(9);
+                        ranNum = Integer.toString(createNum);
+                        resultNum += ranNum;
                     }
-                    public String getBodyContentType(){
-                        return "application/json";
+                    int numInt = Integer.parseInt(resultNum);
+                    Toast.makeText(getApplicationContext(), numInt+"입니다", Toast.LENGTH_SHORT).show();
+
+                    HashMap<String, Object> params = new HashMap<String, Object>();
+                    params.put("id", checkid);
+                    params.put("pwd", checkPw1);
+                    params.put("nickName", checkid);
+                    params.put("grade", 3);
+                    params.put("phoneNum", numInt);
+                    params.put("favorite1", checkFavorite1);
+                    params.put("favorite2", checkFavorite2);
+                    params.put("personalQuestion", checkQuestion);
+                    params.put("personalAnswer", checkAnswer);
+
+                    String url = getResources().getString(R.string.url) + "signup";
+                    StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            AlertDialog.Builder dlg = new AlertDialog.Builder(SignupActivity.this);
+                            dlg.setTitle("We Make Cafe");
+                            dlg.setMessage("회원가입 성공. 아이디 찾기를 위한 회원 고유번호는 " + numInt + "입니다.");
+//                    dlg.setIcon()
+                            dlg.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent intent = new Intent(getApplicationContext(), LoginAcivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            });
+                            dlg.show();
+                            Log.d("signup1", response);
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Log.d("signup2", error.toString());
+                        }
                     }
-                };
-                Volley.newRequestQueue(getApplicationContext()).add(request);
+                    ) {
+                        public byte[] getBody() {
+                            return new JSONObject(params).toString().getBytes();
+                        }
+
+                        public String getBodyContentType() {
+                            return "application/json";
+                        }
+                    };
+                    Volley.newRequestQueue(getApplicationContext()).add(request);
+                }
             }
         });
-        /////////////////
     }
 }

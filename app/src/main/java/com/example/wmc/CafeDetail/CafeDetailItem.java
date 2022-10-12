@@ -15,8 +15,9 @@ public class CafeDetailItem {
     Long get_cafe_num;
     Long get_love_num;
     Long get_review_num;
+    boolean locationCheck_flag;
 
-    public CafeDetailItem(String reviewNickName, String level_and_location, String review_comment, String review_writeTime, String reviewProfile_image, String reviewImage, String good_count_textView, boolean check_user_flag, boolean check_love_flag, Long mem_num, Long get_cafe_num, Long get_love_num, Long get_review_num) {
+    public CafeDetailItem(String reviewNickName, String level_and_location, String review_comment, String review_writeTime, String reviewProfile_image, String reviewImage, String good_count_textView, boolean check_user_flag, boolean check_love_flag, Long mem_num, Long get_cafe_num, Long get_love_num, Long get_review_num, Boolean locationCheck_flag) {
         this.reviewNickName = reviewNickName;
         this.level_and_location = level_and_location;
         this.review_comment = review_comment;
@@ -30,6 +31,7 @@ public class CafeDetailItem {
         this.get_cafe_num = get_cafe_num;
         this.get_love_num = get_love_num;
         this.get_review_num = get_review_num;
+        this.locationCheck_flag = locationCheck_flag;
     }
 
     public String getReviewNickName() {
@@ -101,4 +103,12 @@ public class CafeDetailItem {
     public Long getGet_love_num() { return get_love_num; }
 
     public Long getGet_review_num() { return get_review_num; }
+
+    public boolean isLocationCheck_flag() {
+        return locationCheck_flag;
+    }
+
+    public void setLocationCheck_flag(boolean locationCheck_flag) {
+        this.locationCheck_flag = locationCheck_flag;
+    }
 }

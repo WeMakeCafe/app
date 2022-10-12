@@ -1,5 +1,6 @@
 package com.example.wmc.ui.Fragment;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -150,9 +152,21 @@ public class CafeDeleteFragment extends Fragment {
                 RequestQueue queue = Volley.newRequestQueue(requireContext());
                 queue.add(objectRequest);
 
-                Toast.makeText(getContext().getApplicationContext(), "삭제 요청이 완료되었습니다. 검토 후 삭제 처리 됩니다.", Toast.LENGTH_LONG).show();
+//                Toast.makeText(getContext().getApplicationContext(), "삭제 요청이 완료되었습니다. 검토 후 삭제 처리 됩니다.", Toast.LENGTH_LONG).show();
 
-                navController.navigate(R.id.cafe_delete_to_list_cafeList);
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("카페 삭제").setMessage("삭제 요청이 완료되었습니다. 검토 후 삭제 처리 됩니다.").setIcon(R.drawable.logo);
+
+                builder.setPositiveButton("확인", new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialog, int id)
+                    {
+                        navController.navigate(R.id.cafe_delete_to_list_cafeList);
+                    }
+                });
+
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
             }
         });
         return root;

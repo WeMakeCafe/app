@@ -13,8 +13,9 @@ public class MypageReviewItem {
     Long mem_num;
     Long get_cafe_num;
     Long get_review_num;
+    boolean location_flag;
 
-    public MypageReviewItem(String mypageReview_CafeName, String mypageReview_writeTime, String review_comment, String reviewImage1, String reviewImage2, String reviewImage3, String good_count_textView, boolean check_user_flag, Long mem_num, Long get_cafe_num, Long get_review_num) {
+    public MypageReviewItem(String mypageReview_CafeName, String mypageReview_writeTime, String review_comment, String reviewImage1, String reviewImage2, String reviewImage3, String good_count_textView, boolean check_user_flag, Long mem_num, Long get_cafe_num, Long get_review_num, Boolean location_flag) {
         this.mypageReview_CafeName = mypageReview_CafeName;
         this.mypageReview_writeTime = mypageReview_writeTime;
         this.review_comment = review_comment;
@@ -26,6 +27,7 @@ public class MypageReviewItem {
         this.mem_num = mem_num;
         this.get_cafe_num = get_cafe_num;
         this.get_review_num = get_review_num;
+        this.location_flag = location_flag;
     }
 
 
@@ -115,5 +117,13 @@ public class MypageReviewItem {
 
     public void setGet_review_num(Long get_review_num) {
         this.get_review_num = get_review_num;
+    }
+
+    public boolean isLocation_flag() {
+        return location_flag;
+    }
+
+    public void setLocation_flag(boolean location_flag) {
+        this.location_flag = location_flag;
     }
 }

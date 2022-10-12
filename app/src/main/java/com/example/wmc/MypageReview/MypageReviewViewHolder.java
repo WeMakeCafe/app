@@ -26,6 +26,7 @@ public class MypageReviewViewHolder extends RecyclerView.ViewHolder{
     TextView myPageReview_deleteLine;
     CheckBox good_button;
     ImageView good_button_imageView;
+    TextView mypage_location_text;
     boolean check_user_flag;
 
     public static int MYPAGE_REVIEW_VIEW_TYPE = R.layout.item_mypage_review;
@@ -47,6 +48,7 @@ public class MypageReviewViewHolder extends RecyclerView.ViewHolder{
         myPageReview_deleteLine = itemView.findViewById(R.id.myPageReview_deleteLine);  // 마이페이지 리뷰의 삭제 버튼의 밑줄
         good_button = itemView.findViewById(R.id.good_button);      // 마이페이지 리뷰의 좋아요버튼
         good_button_imageView = itemView.findViewById(R.id.good_button_imageView);  // 마이페이지 리뷰의 좋아요 버튼 이미지
+        mypage_location_text = itemView.findViewById(R.id.mypage_location_text);
 
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -200,7 +200,7 @@ public class MyPageFragment extends Fragment {
                                                 fav2.setText("#" + p.getFavorite2());
 
                                                 if(p.getProfileimageurl() == null)
-                                                    profile_Image = "https://w.namu.la/s/0c6301df01fc4f180ec65717bad3d0254258abf0be33299e55df7c261040f517518eb9008a1a2cd3d7b8b7777d70182c185bc891b1054dc57b11cc46fd29130a3474f1b75b816024dfdc16b692a0c77c";
+                                                    profile_Image = getString(R.string.default_Profileimage);
                                                 else
                                                     profile_Image = p.getProfileimageurl();
 
@@ -238,7 +238,7 @@ public class MyPageFragment extends Fragment {
                                             @Override
                                             public void onItemClick(View a_view, int a_position) {
                                                 final MypageFavoriteItem item = mypageFavoriteItems.get(a_position);
-                                                Toast.makeText(getContext().getApplicationContext(), item.getCafeName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
+//                                                Toast.makeText(getContext().getApplicationContext(), item.getCafeName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
 
                                                 Bundle bundle = new Bundle();
                                                 bundle.putString("cafeName", item.getCafeName());
@@ -306,14 +306,14 @@ public class MyPageFragment extends Fragment {
                                                                 if(!(reviewImage.size() == 3)) {
                                                                     //(나중에 로고 올리고 바꾸기)
                                                                     while(reviewImage.size() < 3){
-                                                                        reviewImage.add("https://w.namu.la/s/0c6301df01fc4f180ec65717bad3d0254258abf0be33299e55df7c261040f517518eb9008a1a2cd3d7b8b7777d70182c185bc891b1054dc57b11cc46fd29130a3474f1b75b816024dfdc16b692a0c77c");
+                                                                        reviewImage.add(getString(R.string.default_Review_Caefimage));
                                                                     }
                                                                 }
 
                                                                 mypageReviewItems.add(new MypageReviewItem(c.getCafeName(), create_date,
                                                                         r.getReviewText(), reviewImage.get(0), reviewImage.get(1),
                                                                         reviewImage.get(2), r.getLikeCount().toString(),
-                                                                        true, mem_num, r.getCafeNum(), r.getReviewNum()));
+                                                                        true, mem_num, r.getCafeNum(), r.getReviewNum(), r.getLocationCheck()));
 
 
                                                                 // 다음 리뷰로 넘어갈때, 리뷰 이미지 ArrayList 비워주는 코드
@@ -338,7 +338,7 @@ public class MyPageFragment extends Fragment {
                                                                     @Override
                                                                     public void onItemClick(View a_view, int a_position) {
                                                                         final MypageReviewItem item = mypageReviewItems.get(a_position);
-                                                                        Toast.makeText(getContext().getApplicationContext(), item.getMypageReview_CafeName(), Toast.LENGTH_SHORT).show();
+//                                                                        Toast.makeText(getContext().getApplicationContext(), item.getMypageReview_CafeName(), Toast.LENGTH_SHORT).show();
                                                                     }
                                                                 });
                                                             }

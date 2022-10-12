@@ -10,9 +10,11 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
-import com.example.wmc.HomeTag1ViewPager.HomeTag1ViewPagerItem;
+import com.bumptech.glide.Glide;
 import com.example.wmc.R;
+import com.example.wmc.ui.Fragment.HomeFragment;
 
 import java.util.ArrayList;
 
@@ -20,6 +22,7 @@ public class HomeTag2ViewPagerAdapter extends PagerAdapter {
 
     private Context mContext;
     private ArrayList<HomeTag2ViewPagerItem> tag2_List;
+    HomeFragment homeFragment;
 
     TextView cafeName;
     TextView cafeAddress;
@@ -31,9 +34,10 @@ public class HomeTag2ViewPagerAdapter extends PagerAdapter {
     RatingBar rating_all;
 
 
-    public HomeTag2ViewPagerAdapter(Context context, ArrayList<HomeTag2ViewPagerItem> tag2_List){
+    public HomeTag2ViewPagerAdapter(Context context, ArrayList<HomeTag2ViewPagerItem> tag2_List, HomeFragment homeFragment){
         mContext = context;
         this.tag2_List = tag2_List;
+        this.homeFragment = homeFragment;
     }
 
     @NonNull
@@ -58,7 +62,7 @@ public class HomeTag2ViewPagerAdapter extends PagerAdapter {
         bestReview_example.setText(tag2_List.get(position).getReview());
 
         cafe_image = view.findViewById(R.id.cafe_image);
-        cafe_image.setImageResource(tag2_List.get(position).getCafeImage());
+        Glide.with(homeFragment.getActivity()).load(tag2_List.get(position).getCafeImage()).into(cafe_image);
 
         rating_all = view.findViewById(R.id.rating_all);
         rating_all.setRating(tag2_List.get(position).getRating());
@@ -77,5 +81,13 @@ public class HomeTag2ViewPagerAdapter extends PagerAdapter {
     @Override
     public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
         return (view == (View) object);
+    }
+
+    //java.lang.UnsupportedOperationException 에러 해결용 코드 - 송상화
+    @Override
+    public void destroyItem(ViewGroup container, int position, Object object) {
+        // TODO Auto-generated method stub
+
+        ((ViewPager) container).removeView((View) object);
     }
 }

@@ -44,10 +44,10 @@ import com.example.wmc.HomeFavorite.HomeFavoriteItem;
 import com.example.wmc.HomeTag1ViewPager.HomeTag1ViewPager;
 import com.example.wmc.HomeTag1ViewPager.HomeTag1ViewPagerAdapter;
 import com.example.wmc.HomeTag1ViewPager.HomeTag1ViewPagerItem;
-import com.example.wmc.MainActivity;
 import com.example.wmc.HomeTag2ViewPager.HomeTag2ViewPager;
 import com.example.wmc.HomeTag2ViewPager.HomeTag2ViewPagerAdapter;
 import com.example.wmc.HomeTag2ViewPager.HomeTag2ViewPagerItem;
+import com.example.wmc.MainActivity;
 import com.example.wmc.R;
 import com.example.wmc.database.Bookmark;
 import com.example.wmc.database.Cafe;
@@ -63,6 +63,8 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
@@ -106,6 +108,7 @@ public class HomeFragment extends Fragment {
     String tag1;
     String tag2;
     String represent_cafeImage_URL = "";
+    String get_review = "";
 
     List<Address> list = new ArrayList<>();
     Geocoder g;
@@ -185,14 +188,19 @@ public class HomeFragment extends Fragment {
 
         else{
             // 가장최근 위치정보 가져오기
-            Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            Location location = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
             if(location != null) {
                 double longitude = location.getLongitude();
                 double latitude = location.getLatitude();
 
                 try {
                     list = g.getFromLocation(latitude, longitude,10);
+
+                    Log.d("cafeList", list.get(5).getAddressLine(0).toString());
+
                     cafe_search_input.setText(list.get(0).getAddressLine(0).substring(5));
+                    get_user_address = list.get(5).getAddressLine(0).substring(5);
+
                 } catch (IOException e) {
                     e.printStackTrace();
                     Toast.makeText(getContext().getApplicationContext(), "주소를 가져 올 수 없습니다.", Toast.LENGTH_LONG).show();
@@ -601,7 +609,7 @@ public class HomeFragment extends Fragment {
                                                         }
 
                                                         if(represent_cafeImage_URL.equals(""))
-                                                            represent_cafeImage_URL = "https://w.namu.la/s/0c6301df01fc4f180ec65717bad3d0254258abf0be33299e55df7c261040f517518eb9008a1a2cd3d7b8b7777d70182c185bc891b1054dc57b11cc46fd29130a3474f1b75b816024dfdc16b692a0c77c";
+                                                            represent_cafeImage_URL = getString(R.string.default_Review_Caefimage);
 
 
                                                         // 찜한 카페 recycler view에 추가하기
@@ -626,7 +634,7 @@ public class HomeFragment extends Fragment {
                                                             @Override
                                                             public void onItemClick(View a_view, int a_position) {
                                                                 final HomeFavoriteItem item = homeFavoriteItems.get(a_position);
-                                                                Toast.makeText(getContext().getApplicationContext(), item.getCafeName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
+//                                                                Toast.makeText(getContext().getApplicationContext(), item.getCafeName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
 
                                                                 Bundle bundle = new Bundle();
                                                                 bundle.putString("cafeName", item.getCafeName());
@@ -681,29 +689,34 @@ public class HomeFragment extends Fragment {
                                         second_viewPager.setOffscreenPageLimit(5);
                                         tag2_List = new ArrayList<>();
 
-                                        get_user_address = cafe_search_input.getText().toString();
-
 
                                         for(Cafe c : cafe_list) {
-                                            if (c.getCafeAddress().contains(get_user_address)) {
+                                            get_taste_point_total = 0;
+                                            get_study_point_total = 0;
 
-                                                get_taste_point_total = 0;
-                                                get_study_point_total = 0;
+                                            if (c.getCafeAddress().contains(get_user_address)) {
+                                                Log.d("getCafeAddress", c.getCafeAddress().toString());
+                                                Log.d("cafeNumber", c.getCafeNum().toString());
+
+
 
                                                 get_taste_point_total = c.getTastePoint1() + c.getTastePoint2() + c.getTastePoint3() + c.getTastePoint4();
+                                                Log.d("get_taste_point_total_checking", String.valueOf(get_taste_point_total));
+
                                                 get_study_point_total = c.getStudyPoint1() + c.getStudyPoint2() + c.getStudyPoint3() + c.getStudyPoint4();
+                                                Log.d("get_study_point_total_checking", String.valueOf(get_study_point_total));
 
 
                                                 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                 // Home에서 1순위 해시태그에 대한 뷰페이저 작성
 
                                                 int review_counter = 0;
-                                                String get_review = "";
+
                                                 int like_counter_max = 0;
 
                                                 for (Review r : review_list) {
                                                     if (r.getCafeNum().equals(c.getCafeNum())) {
-                                                        review_counter++;
+                                                        review_counter = review_counter + 1;
                                                         if (like_counter_max <= r.getLikeCount()) {
                                                             like_counter_max = r.getLikeCount();
                                                             get_review = r.getReviewText();
@@ -771,8 +784,8 @@ public class HomeFragment extends Fragment {
                                                 // 태그 검색이 되는지 확인용
                                                 Log.d("show_Max_and_secondMax", Max.toString() + ", " + secondMax.toString());
 
-                                                String tag1 = "쓴맛";
-                                                String tag2 = "신맛";
+                                                tag1 = "쓴맛";
+                                                tag2 = "신맛";
 
                                                 // 태그 1 세팅
                                                 switch (counter_max) {
@@ -1003,120 +1016,190 @@ public class HomeFragment extends Fragment {
                                                 int get_study_point_avg;
                                                 int get_taste_point_avg;
 
-                                                if(get_study_point_total == 0 || review_counter == 0){
+                                                if((c.getStudyPoint1() + c.getStudyPoint2() + c.getStudyPoint3() + c.getStudyPoint4()) == 0 || review_counter == 0){
                                                     get_study_point_avg = 0;
                                                 }
                                                 else
-                                                    get_study_point_avg = get_study_point_total / review_counter;
+                                                    get_study_point_avg = (c.getStudyPoint1() + c.getStudyPoint2() + c.getStudyPoint3() + c.getStudyPoint4()) / review_counter / 4;
 
-                                                if(get_taste_point_total == 0 || review_counter == 0){
+                                                if((c.getTastePoint1() + c.getTastePoint2() + c.getTastePoint3() + c.getTastePoint4()) == 0 || review_counter == 0){
                                                     get_taste_point_avg = 0;
                                                 }
                                                 else
-                                                    get_taste_point_avg = get_taste_point_total / review_counter;
+                                                    get_taste_point_avg = (c.getTastePoint1() + c.getTastePoint2() + c.getTastePoint3() + c.getTastePoint4()) / review_counter / 4;
 
-                                                if (get_user_fav.equals("스터디")) {
-                                                    if (get_study_point_total >= get_taste_point_total) {
 
-                                                        HomeTag1ViewPagerItem firstTag_item = new HomeTag1ViewPagerItem(c.getCafeName(), c.getCafeAddress(), "#스터디", tag1, tag2,
-                                                                get_review, R.drawable.logo, get_study_point_avg);
-                                                        tag1_List.add(firstTag_item);
-                                                    }
-                                                    else{
-                                                        HomeTag2ViewPagerItem secondTag_item = new HomeTag2ViewPagerItem(c.getCafeName(), c.getCafeAddress(), "#맛", tag1, tag2,
-                                                                get_review, R.drawable.logo, get_taste_point_avg);
-                                                        tag2_List.add(secondTag_item);
-                                                    }
-                                                }
-                                                else{
-                                                    if (get_study_point_total <= get_taste_point_total) {
+                                                Log.d("getTastePoint_AVG", String.valueOf(get_taste_point_avg));
+                                                Log.d("getstudyPoint_AVG", String.valueOf(get_study_point_avg));
+                                                String get_cafeImage_url = getResources().getString(R.string.url) + "cafeImage";
 
-                                                        HomeTag1ViewPagerItem firstTag_item = new HomeTag1ViewPagerItem(c.getCafeName(), c.getCafeAddress(), "#맛", tag1, tag2,
-                                                                get_review, R.drawable.logo, get_study_point_avg);
-                                                        tag1_List.add(firstTag_item);
+                                                StringRequest cafeImage_stringRequest1 = new StringRequest(Request.Method.GET, get_cafeImage_url, new Response.Listener<String>() {
+                                                    @RequiresApi(api = Build.VERSION_CODES.O)
+                                                    @Override
+                                                    public void onResponse(String response) {
+                                                        // 한글깨짐 해결 코드
+                                                        String changeString = new String();
+                                                        try {
+                                                            changeString = new String(response.getBytes("8859_1"), "utf-8");
+                                                        } catch (UnsupportedEncodingException e) {
+                                                            e.printStackTrace();
+                                                        }
+                                                        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                                                        Type listType = new TypeToken<ArrayList<CafeImage>>() {
+                                                        }.getType();
+
+                                                        cafeImage_list = gson.fromJson(changeString, listType);
+
+
+                                                        // 다른페이지 갔다왔을때, URL 초기화 시켜야해서 추가해둠
+                                                        represent_cafeImage_URL = "";
+
+                                                        for (CafeImage ci : cafeImage_list) {
+                                                            Log.d("ci.getCafeNum", ci.getCafeNum().toString());
+                                                            Log.d("c.getCafeNumcheck", c.getCafeNum().toString());
+                                                            if (ci.getCafeNum().equals(c.getCafeNum())) {
+                                                                Log.d("Checking_equal", "True");
+                                                                represent_cafeImage_URL = ci.getFileUrl();
+                                                                break;
+                                                            }
+                                                        }
+
+                                                        if (represent_cafeImage_URL.equals(""))
+                                                            represent_cafeImage_URL = getString(R.string.default_Review_Caefimage);
+
+
+                                                        if (get_user_fav.equals("스터디")) {
+                                                            if ((c.getStudyPoint1() + c.getStudyPoint2() + c.getStudyPoint3() + c.getStudyPoint4()) >= (c.getTastePoint1() + c.getTastePoint2() + c.getTastePoint3() + c.getTastePoint4())) {
+
+                                                                HomeTag1ViewPagerItem firstTag_item = new HomeTag1ViewPagerItem(c.getCafeName(), c.getCafeAddress(), "#스터디", tag1, tag2,
+                                                                        get_review, represent_cafeImage_URL, get_study_point_avg);
+                                                                tag1_List.add(firstTag_item);
+                                                            } else {
+                                                                HomeTag2ViewPagerItem secondTag_item = new HomeTag2ViewPagerItem(c.getCafeName(), c.getCafeAddress(), "#맛", tag1, tag2,
+                                                                        get_review, represent_cafeImage_URL, get_taste_point_avg);
+                                                                tag2_List.add(secondTag_item);
+                                                            }
+                                                        } else {
+                                                            if ((c.getStudyPoint1() + c.getStudyPoint2() + c.getStudyPoint3() + c.getStudyPoint4()) <= (c.getTastePoint1() + c.getTastePoint2() + c.getTastePoint3() + c.getTastePoint4())) {
+
+                                                                HomeTag1ViewPagerItem firstTag_item = new HomeTag1ViewPagerItem(c.getCafeName(), c.getCafeAddress(), "#맛", tag1, tag2,
+                                                                        get_review, represent_cafeImage_URL, get_taste_point_avg);
+                                                                tag1_List.add(firstTag_item);
+                                                            } else {
+                                                                Log.d("get_study_point_total", String.valueOf(get_study_point_total));
+                                                                Log.d("get_taste_point_total", String.valueOf(get_taste_point_total));
+
+
+                                                                HomeTag2ViewPagerItem secondTag_item = new HomeTag2ViewPagerItem(c.getCafeName(), c.getCafeAddress(), "#스터디", tag1, tag2,
+                                                                        get_review, represent_cafeImage_URL, get_study_point_avg);
+                                                                tag2_List.add(secondTag_item);
+                                                            }
+                                                        }
+
+                                                        // tag1_List 별점 높은순으로 정렬
+                                                        Collections.sort(tag1_List, new tag1_ratingComparator().reversed());
+                                                        first_viewPager.setAdapter(new HomeTag1ViewPagerAdapter(getContext().getApplicationContext(), tag1_List, HomeFragment.this));
+                                                        tag1Adapter = new HomeTag1ViewPagerAdapter(getContext().getApplicationContext(), tag1_List, HomeFragment.this);
+
+
+                                                        first_viewPager.setOnItemClickListener(new HomeTag1ViewPager.OnItemClickListener() {
+                                                            @Override
+                                                            public void onItemClick(int position) {
+                                                                final HomeTag1ViewPagerItem item = tag1_List.get(position);
+//                                                                Toast.makeText(getContext().getApplicationContext(), item.getCafeName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
+
+                                                                Bundle bundle = new Bundle();
+                                                                bundle.putString("cafeName", item.getCafeName());
+                                                                navController.navigate(R.id.home_to_cafe_detail, bundle);
+                                                            }
+                                                        });
+
+                                                        // 첫번째 태그 카페목록의 좌측 버튼 클릭 시, 카페 목록 넘어감
+                                                        first_previousButton.setOnClickListener(new View.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(View v) {
+                                                                int pageNum = first_viewPager.getCurrentItem();
+                                                                first_viewPager.setCurrentItem(pageNum - 1, true);
+                                                            }
+                                                        });
+
+
+                                                        // 첫번째 태그 카페목록의 우측 버튼 클릭 시, 카페 목록 넘어감
+                                                        first_nextButton.setOnClickListener(new View.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(View v) {
+                                                                int pageNum = first_viewPager.getCurrentItem();
+                                                                first_viewPager.setCurrentItem(pageNum + 1, true);
+                                                            }
+                                                        });
+
+
+                                                        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                        // Home에서 2순위 해시태그에 대한 뷰페이저 작성
+
+                                                        // tag2_List 별점 높은순으로 정렬
+                                                        Collections.sort(tag2_List, new tag2_ratingComparator().reversed());
+                                                        second_viewPager.setAdapter(new HomeTag2ViewPagerAdapter(getContext().getApplicationContext(), tag2_List, HomeFragment.this));
+                                                        tag2Adapter = new HomeTag2ViewPagerAdapter(getContext().getApplicationContext(), tag2_List, HomeFragment.this);
+
+
+                                                        second_viewPager.setOnItemClickListener_second(new HomeTag2ViewPager.OnItemClickListener() {
+                                                            @Override
+                                                            public void onItemClick(int position) {
+                                                                final HomeTag2ViewPagerItem item = tag2_List.get(position);
+//                                                                Toast.makeText(getContext().getApplicationContext(), item.getCafeName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
+
+                                                                Bundle bundle = new Bundle();
+                                                                bundle.putString("cafeName", item.getCafeName());
+                                                                navController.navigate(R.id.home_to_cafe_detail, bundle);
+                                                            }
+                                                        });
+
+                                                        // 두번째 태그 카페목록의 좌측 버튼 클릭 시, 카페 목록 넘어감
+                                                        second_previousButton.setOnClickListener(new View.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(View v) {
+                                                                int pageNum = second_viewPager.getCurrentItem();
+                                                                second_viewPager.setCurrentItem(pageNum - 1, true);
+                                                            }
+                                                        });
+
+
+                                                        // 두번째 태그 카페목록의 우측 버튼 클릭 시, 카페 목록 넘어감
+                                                        second_nextButton.setOnClickListener(new View.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(View v) {
+                                                                int pageNum = second_viewPager.getCurrentItem();
+                                                                second_viewPager.setCurrentItem(pageNum + 1, true);
+                                                            }
+                                                        });
+
+
+
+
                                                     }
-                                                    else{
-                                                        HomeTag2ViewPagerItem secondTag_item = new HomeTag2ViewPagerItem(c.getCafeName(), c.getCafeAddress(), "#스터디", tag1, tag2,
-                                                                get_review, R.drawable.logo, get_taste_point_avg);
-                                                        tag2_List.add(secondTag_item);
+
+                                                }, new Response.ErrorListener()
+
+                                                    {
+                                                        @Override
+                                                        public void onErrorResponse (VolleyError
+                                                        error){
+                                                        Log.e("cafeImage_stringRequest_error", error.toString());
                                                     }
-                                                }
+                                                });
+
+                                                requestQueue.add(cafeImage_stringRequest1);
+
+
+
+
                                             }
                                         }
 
 
-                                        first_viewPager.setAdapter(new HomeTag1ViewPagerAdapter(getContext().getApplicationContext(), tag1_List));
-                                        tag1Adapter = new HomeTag1ViewPagerAdapter(getContext().getApplicationContext(), tag1_List);
 
 
-                                        first_viewPager.setOnItemClickListener(new HomeTag1ViewPager.OnItemClickListener() {
-                                            @Override
-                                            public void onItemClick(int position) {
-                                                final HomeTag1ViewPagerItem item = tag1_List.get(position);
-                                                Toast.makeText(getContext().getApplicationContext(), item.getCafeName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
-
-                                                Bundle bundle = new Bundle();
-                                                bundle.putString("cafeName", item.getCafeName());
-                                                navController.navigate(R.id.home_to_cafe_detail, bundle);
-                                            }
-                                        });
-
-                                        // 첫번째 태그 카페목록의 좌측 버튼 클릭 시, 카페 목록 넘어감
-                                        first_previousButton.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                int pageNum = first_viewPager.getCurrentItem();
-                                                first_viewPager.setCurrentItem(pageNum - 1, true);
-                                            }
-                                        });
-
-
-                                        // 첫번째 태그 카페목록의 우측 버튼 클릭 시, 카페 목록 넘어감
-                                        first_nextButton.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                int pageNum = first_viewPager.getCurrentItem();
-                                                first_viewPager.setCurrentItem(pageNum + 1, true);
-                                            }
-                                        });
-
-
-                                        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                                        // Home에서 2순위 해시태그에 대한 뷰페이저 작성
-                                        second_viewPager.setAdapter(new HomeTag2ViewPagerAdapter(getContext().getApplicationContext(), tag2_List));
-                                        tag2Adapter = new HomeTag2ViewPagerAdapter(getContext().getApplicationContext(), tag2_List);
-
-
-                                        second_viewPager.setOnItemClickListener_second(new HomeTag2ViewPager.OnItemClickListener() {
-                                            @Override
-                                            public void onItemClick(int position) {
-                                                final HomeTag2ViewPagerItem item = tag2_List.get(position);
-                                                Toast.makeText(getContext().getApplicationContext(), item.getCafeName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
-
-                                                Bundle bundle = new Bundle();
-                                                bundle.putString("cafeName", item.getCafeName());
-                                                navController.navigate(R.id.home_to_cafe_detail, bundle);
-                                            }
-                                        });
-
-                                        // 두번째 태그 카페목록의 좌측 버튼 클릭 시, 카페 목록 넘어감
-                                        second_previousButton.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                int pageNum = second_viewPager.getCurrentItem();
-                                                second_viewPager.setCurrentItem(pageNum - 1, true);
-                                            }
-                                        });
-
-
-                                        // 두번째 태그 카페목록의 우측 버튼 클릭 시, 카페 목록 넘어감
-                                        second_nextButton.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                int pageNum = second_viewPager.getCurrentItem();
-                                                second_viewPager.setCurrentItem(pageNum + 1, true);
-                                            }
-                                        });
 
 
                                     }
@@ -1255,5 +1338,29 @@ public class HomeFragment extends Fragment {
         binding = null;
     }
 
+    class tag1_ratingComparator implements Comparator<HomeTag1ViewPagerItem> {
 
+        @Override
+        public int compare(HomeTag1ViewPagerItem o1, HomeTag1ViewPagerItem o2) {
+            if(o1.getRating() > o2.getRating())
+                return 1;
+            else if (o1.getRating() < o2.getRating())
+                return -1;
+
+            return 0;
+        }
+    }
+
+    class tag2_ratingComparator implements Comparator<HomeTag2ViewPagerItem> {
+
+        @Override
+        public int compare(HomeTag2ViewPagerItem o1, HomeTag2ViewPagerItem o2) {
+            if(o1.getRating() > o2.getRating())
+                return 1;
+            else if (o1.getRating() < o2.getRating())
+                return -1;
+
+            return 0;
+        }
+    }
 }

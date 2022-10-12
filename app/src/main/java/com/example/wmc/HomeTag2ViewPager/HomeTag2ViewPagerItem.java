@@ -8,10 +8,10 @@ public class HomeTag2ViewPagerItem {
     String tag2;
     String tag3;
     String review;
-    int cafeImage;
+    String cafeImage;
     int rating;
 
-    public HomeTag2ViewPagerItem(String cafeName, String cafeAddress, String tag1, String tag2, String tag3, String review, int cafeImage, int rating) {
+    public HomeTag2ViewPagerItem(String cafeName, String cafeAddress, String tag1, String tag2, String tag3, String review, String cafeImage, int rating) {
         this.cafeName = cafeName;
         this.cafeAddress = cafeAddress;
         this.tag1 = tag1;
@@ -70,11 +70,11 @@ public class HomeTag2ViewPagerItem {
         this.review = review;
     }
 
-    public int getCafeImage() {
+    public String getCafeImage() {
         return cafeImage;
     }
 
-    public void setCafeImage(int cafeImage) {
+    public void setCafeImage(String cafeImage) {
         this.cafeImage = cafeImage;
     }
 

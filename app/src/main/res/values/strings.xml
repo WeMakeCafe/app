@@ -25,4 +25,6 @@
     <string name="bottom_review_tag">하단바 리뷰 태그</string>
     <string name="bottom_review_cafe_list">하단바 리뷰 검색 시 카페 목록</string>
     <string name="url">http://3.90.202.187:8080/</string>
+    <string name="default_Review_Caefimage">https://w.namu.la/s/0c6301df01fc4f180ec65717bad3d0254258abf0be33299e55df7c261040f517518eb9008a1a2cd3d7b8b7777d70182c185bc891b1054dc57b11cc46fd29130a3474f1b75b816024dfdc16b692a0c77c</string>
+    <string name="default_Profileimage">https://w.namu.la/s/0c6301df01fc4f180ec65717bad3d0254258abf0be33299e55df7c261040f517518eb9008a1a2cd3d7b8b7777d70182c185bc891b1054dc57b11cc46fd29130a3474f1b75b816024dfdc16b692a0c77c</string>
 </resources>

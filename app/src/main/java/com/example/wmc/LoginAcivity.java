@@ -91,34 +91,43 @@ public class LoginAcivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 id = id_input.getText().toString(); // 6자 이상, max_length 12자
-                pw = pw_input.getText().toString(); // 8자 이상, max_length 20자
+                pw = pw_input.getText().toString(); // 8자 이상, max_length 15자
 
-                if(id.length() <= 5)
-                    Toast.makeText(getApplicationContext(), "아이디는 6자 이상입니다.", Toast.LENGTH_SHORT).show();
-                else if(pw.length() <= 7)
-                    Toast.makeText(getApplicationContext(), "비밀번호는 8자 이상입니다.", Toast.LENGTH_SHORT).show();
+                if(id.equals("") || pw.equals("")){
+                    Toast.makeText(getApplicationContext(), "정보를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                }
                 else {
-                    HashMap<String,Object>params = new HashMap<String,Object>();
-                    params.put("id",id);
-                    params.put("password",pw);
+                    HashMap<String, Object> params = new HashMap<String, Object>();
+                    params.put("id", id);
+                    params.put("password", pw);
 
                     String url = getResources().getString(R.string.url) + "login";
                     StringRequest request = new StringRequest(Request.Method.PUT, url, new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-                            Log.d("login1",response);
+                            Log.d("login", response);
+                            if (response.equals("0")) { // 비밀번호가 다름
+                                Toast.makeText(getApplicationContext(), "아이디 또는 비밀번호가 다릅니다.", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                intent.putExtra("mem_num", response);
+                                startActivity(intent);
+                                finish();
+                            }
                         }
                     }, new Response.ErrorListener() {
                         @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Log.d("login2",error.toString());
+                        public void onErrorResponse(VolleyError error) { // 아이디가 없음
+                            Toast.makeText(getApplicationContext(), "아이디 또는 비밀번호가 다릅니다.", Toast.LENGTH_SHORT).show();
                         }
                     }
-                    ){
-                        public byte[] getBody(){
+                    ) {
+                        public byte[] getBody() {
                             return new JSONObject(params).toString().getBytes();
                         }
-                        public String getBodyContentType(){
+
+                        public String getBodyContentType() {
                             return "application/json";
                         }
                     };

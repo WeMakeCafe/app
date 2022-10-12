@@ -1,6 +1,7 @@
 package com.example.wmc.ui.Fragment;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.location.Address;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -231,7 +233,21 @@ public class MyPage_ReviewFragment extends Fragment {
 
                 // 리뷰 검색에서 리뷰를 작성할 카페를 선택하지 않았을 경우.
                 if(review_search_input.getText().toString().equals("")){
-                    Toast.makeText(getContext().getApplicationContext(), "리뷰를 작성할 카페를 검색해주세요.", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getContext().getApplicationContext(), "리뷰를 작성할 카페를 검색해주세요.", Toast.LENGTH_SHORT).show();
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setTitle("리뷰 작성").setMessage("리뷰를 작성할 카페를 검색해주세요.").setIcon(R.drawable.logo);
+
+                    builder.setPositiveButton("확인", new DialogInterface.OnClickListener(){
+                        @Override
+                        public void onClick(DialogInterface dialog, int id)
+                        {
+
+                        }
+                    });
+
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
                 }
 
                 // 리뷰를 작성할 카페를 선택한 경우
@@ -715,7 +731,7 @@ public class MyPage_ReviewFragment extends Fragment {
                             if(r.getReviewNum().equals(reviewNum)) {
 
                                 reviewNum = r.getReviewNum();
-                                location_flag = r.getLocationcheck();
+                                location_flag = r.getLocationCheck();
                                 Log.d("reviewNum", reviewNum.toString());
                                 comment = r.getReviewText();
                                 likeCount = r.getLikeCount();
@@ -1191,8 +1207,23 @@ public class MyPage_ReviewFragment extends Fragment {
         location_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(review_search_input.getText().toString().equals(""))
-                    Toast.makeText(getContext().getApplicationContext(), "리뷰를 작성할 카페를 검색해주세요.", Toast.LENGTH_SHORT).show();
+                if(review_search_input.getText().toString().equals("")) {
+//                    Toast.makeText(getContext().getApplicationContext(), "리뷰를 작성할 카페를 검색해주세요.", Toast.LENGTH_SHORT).show();
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setTitle("리뷰 작성").setMessage("리뷰를 작성할 카페를 검색해주세요.").setIcon(R.drawable.logo);
+
+                    builder.setPositiveButton("확인", new DialogInterface.OnClickListener(){
+                        @Override
+                        public void onClick(DialogInterface dialog, int id)
+                        {
+
+                        }
+                    });
+
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                }
 
                 else {
                     RequestQueue requestQueue2;
@@ -1267,14 +1298,44 @@ public class MyPage_ReviewFragment extends Fragment {
                                     longitude2 = cafeLocation.get(0).getLongitude();
 
                                     String distanceByCafe = String.format("%.2f", DistanceByCafe(latitude1, longitude1, latitude2, longitude2));
-                                    Toast.makeText(getActivity().getApplicationContext(),"나와 카페 사이의 거리 : " + distanceByCafe + "m", Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(getActivity().getApplicationContext(),"나와 카페 사이의 거리 : " + distanceByCafe + "m", Toast.LENGTH_SHORT).show();
 
                                     if(Double.parseDouble(distanceByCafe) <= 500.0) {
-                                        Toast.makeText(getActivity().getApplicationContext(),"위치인증 성공 !", Toast.LENGTH_SHORT).show();
+//                                        Toast.makeText(getActivity().getApplicationContext(),"위치인증 성공 !", Toast.LENGTH_SHORT).show();
+
                                         location_flag = true;
+
+                                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                                        builder.setTitle("위치 인증").setMessage("위치인증 성공 !").setIcon(R.drawable.logo);
+
+                                        builder.setPositiveButton("확인", new DialogInterface.OnClickListener(){
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int id)
+                                            {
+
+                                            }
+                                        });
+
+                                        AlertDialog alertDialog = builder.create();
+                                        alertDialog.show();
                                     }
-                                    else
-                                        Toast.makeText(getActivity().getApplicationContext(),"주변에 해당 카페가 존재하지않습니다.", Toast.LENGTH_SHORT).show();
+                                    else {
+//                                        Toast.makeText(getActivity().getApplicationContext(),"주변에 해당 카페가 존재하지않습니다.", Toast.LENGTH_SHORT).show();
+
+                                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                                        builder.setTitle("위치 인증").setMessage("주변에 해당 카페가 위치하지않습니다.").setIcon(R.drawable.logo);
+
+                                        builder.setPositiveButton("확인", new DialogInterface.OnClickListener(){
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int id)
+                                            {
+
+                                            }
+                                        });
+
+                                        AlertDialog alertDialog = builder.create();
+                                        alertDialog.show();
+                                    }
                                 }
                             }
 
@@ -1606,7 +1667,7 @@ public class MyPage_ReviewFragment extends Fragment {
                                 map.put("studyPoint2", Integer.valueOf((int) rating_plug.getRating()));
                                 map.put("studyPoint3", Integer.valueOf((int) rating_quiet.getRating()));
                                 map.put("studyPoint4", Integer.valueOf((int) rating_light.getRating()));
-                                map.put("locationcheck", location_flag);
+                                map.put("locationCheck", location_flag);
                                 map.put("cafeNum", cafeNum);
                                 map.put("likeCount", 0);
                                 map.put("reviewText", null);
@@ -2114,8 +2175,10 @@ public class MyPage_ReviewFragment extends Fragment {
                                 map.put("studyPoint2", Integer.valueOf((int) rating_plug.getRating()));
                                 map.put("studyPoint3", Integer.valueOf((int) rating_quiet.getRating()));
                                 map.put("studyPoint4", Integer.valueOf((int) rating_light.getRating()));
-                                map.put("locationcheck", location_flag);
+                                map.put("locationCheck", location_flag);
                                 map.put("cafeNum", cafeNum);
+
+                                map.put("reviewText", comment);
                                 map.put("likeCount", likeCount);
                                 map.put("memNum", mem_num);
                                 switch (setTag1.getText().toString()) {
@@ -2602,7 +2665,21 @@ public class MyPage_ReviewFragment extends Fragment {
 
                                 Bundle bundle = new Bundle();
                                 bundle.putString("cafeName", review_search_input.getText().toString());
-                                navController.navigate(R.id.mypage_review_to_mypage, bundle);
+                                // 내가 리뷰를 작성한 카페의 카페디테일로 이동
+
+                                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                                builder.setTitle("리뷰 작성").setMessage("리뷰가 등록되었습니다.").setIcon(R.drawable.logo);
+
+                                builder.setPositiveButton("확인", new DialogInterface.OnClickListener(){
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int id)
+                                    {
+                                        navController.navigate(R.id.mypage_review_to_mypage, bundle);
+                                    }
+                                });
+
+                                AlertDialog alertDialog = builder.create();
+                                alertDialog.show();
                             }
                         }
                     }

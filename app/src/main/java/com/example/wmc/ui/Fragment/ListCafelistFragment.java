@@ -1,6 +1,7 @@
 package com.example.wmc.ui.Fragment;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -119,7 +121,7 @@ public class ListCafelistFragment extends Fragment {
         add_cafe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext().getApplicationContext(), "카페 등록으로 이동", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext().getApplicationContext(), "카페 등록으로 이동", Toast.LENGTH_SHORT).show();
                 navController.navigate(R.id.list_cafelist_to_cafe_registration);
             }
         });
@@ -128,7 +130,7 @@ public class ListCafelistFragment extends Fragment {
         add_cafe_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext().getApplicationContext(), "카페 등록으로 이동", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext().getApplicationContext(), "카페 등록으로 이동", Toast.LENGTH_SHORT).show();
                 navController.navigate(R.id.list_cafelist_to_cafe_registration);
             }
         });
@@ -147,11 +149,25 @@ public class ListCafelistFragment extends Fragment {
 
                 String search = searchText.getText().toString().replaceAll(" ", "");
                 if(search.equals("")){
-                    Toast.makeText(getContext().getApplicationContext(), "검색어를 입력해주세요.", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getContext().getApplicationContext(), "검색어를 입력해주세요.", Toast.LENGTH_SHORT).show();
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setTitle("카페 검색").setMessage("검색어를 입력해주세요.").setIcon(R.drawable.logo);
+
+                    builder.setPositiveButton("확인", new DialogInterface.OnClickListener(){
+                        @Override
+                        public void onClick(DialogInterface dialog, int id)
+                        {
+
+                        }
+                    });
+
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
                 }
                 else{
                     // 검색어와 관련된 아이템들 출력
-                    Toast.makeText(getContext().getApplicationContext(), search + " 검색됨.", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getContext().getApplicationContext(), search + " 검색됨.", Toast.LENGTH_SHORT).show();
                     imm.hideSoftInputFromWindow(searchButton.getWindowToken(), 0);
 
                     listCafeListItems.clear();  // 이전에 보였던 리싸이클러뷰 아이템 모두 제거 후, 검색관련 아이템을 띄움
@@ -519,7 +535,7 @@ public class ListCafelistFragment extends Fragment {
                                                     }
 
                                                     if(represent_cafeImage_URL.equals(""))
-                                                        represent_cafeImage_URL = "https://w.namu.la/s/0c6301df01fc4f180ec65717bad3d0254258abf0be33299e55df7c261040f517518eb9008a1a2cd3d7b8b7777d70182c185bc891b1054dc57b11cc46fd29130a3474f1b75b816024dfdc16b692a0c77c";
+                                                        represent_cafeImage_URL = getString(R.string.default_Review_Caefimage);
 
 
                                                     for(Bookmark b : bookmark_list) {
@@ -553,7 +569,7 @@ public class ListCafelistFragment extends Fragment {
                                                         @Override
                                                         public void onItemClick(View a_view, int a_position) {
                                                             final ListCafeListItem item = listCafeListItems.get(a_position);
-                                                            Toast.makeText(getContext().getApplicationContext(), item.getCafeList_cafeName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
+//                                                            Toast.makeText(getContext().getApplicationContext(), item.getCafeList_cafeName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
 
                                                             Bundle bundle = new Bundle();
                                                             bundle.putString("cafeName", item.getCafeList_cafeName());
@@ -564,24 +580,39 @@ public class ListCafelistFragment extends Fragment {
 
                                                     // 리사이클러뷰의 아이템을 갱신해주는 코드
                                                     listCafeListAdapter.notifyItemInserted(listCafeListItems.size());
-
-                                                    // 리싸이클러뷰 아이템이 없을 경우, 카페 추가 버튼과 설명 글 생성
-                                                    if(listCafeListItems.size() == 0) {
-                                                        cafeList_footer.setVisibility(View.INVISIBLE);
-                                                        add_cafe.setVisibility(View.INVISIBLE);
-                                                        cafe_search_textView.setVisibility(View.VISIBLE);
-                                                        cafe_add_textView.setVisibility(View.VISIBLE);
-                                                        add_cafe_button.setVisibility(View.VISIBLE);
-                                                    }
-                                                    else{   // 아이템이 있을 경우
-                                                        cafeList_footer.setVisibility(View.VISIBLE);
-                                                        add_cafe.setVisibility(View.VISIBLE);
-                                                        cafe_search_textView.setVisibility(View.INVISIBLE);
-                                                        cafe_add_textView.setVisibility(View.INVISIBLE);
-                                                        add_cafe_button.setVisibility(View.INVISIBLE);
-                                                    }
                                                 }
                                             }
+
+                                            // 리싸이클러뷰 아이템이 없을 경우, 카페 추가 버튼과 설명 글 생성
+                                            if(listCafeListItems.size() == 0) {
+                                                cafeList_footer.setVisibility(View.INVISIBLE);
+                                                add_cafe.setVisibility(View.INVISIBLE);
+                                                cafe_search_textView.setVisibility(View.VISIBLE);
+                                                cafe_add_textView.setVisibility(View.VISIBLE);
+                                                add_cafe_button.setVisibility(View.VISIBLE);
+
+                                                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                                                builder.setTitle("카페 검색").setMessage("검색한 카페가 존재하지 않습니다.").setIcon(R.drawable.logo);
+
+                                                builder.setPositiveButton("확인", new DialogInterface.OnClickListener(){
+                                                    @Override
+                                                    public void onClick(DialogInterface dialog, int id)
+                                                    {
+
+                                                    }
+                                                });
+
+                                                AlertDialog alertDialog = builder.create();
+                                                alertDialog.show();
+                                            }
+                                            else{   // 아이템이 있을 경우
+                                                cafeList_footer.setVisibility(View.VISIBLE);
+                                                add_cafe.setVisibility(View.VISIBLE);
+                                                cafe_search_textView.setVisibility(View.INVISIBLE);
+                                                cafe_add_textView.setVisibility(View.INVISIBLE);
+                                                add_cafe_button.setVisibility(View.INVISIBLE);
+                                            }
+
                                         }
                                     }, new Response.ErrorListener() {
                                         @Override
@@ -640,7 +671,7 @@ public class ListCafelistFragment extends Fragment {
 
         } else {
             // 검색어와 관련된 아이템들 출력
-            Toast.makeText(getContext().getApplicationContext(), search + " 검색됨.", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getContext().getApplicationContext(), search + " 검색됨.", Toast.LENGTH_SHORT).show();
 
             listCafeListItems.clear();  // 이전에 보였던 리싸이클러뷰 아이템 모두 제거 후, 검색관련 아이템을 띄움
 
@@ -1007,7 +1038,7 @@ public class ListCafelistFragment extends Fragment {
                                             }
 
                                             if(represent_cafeImage_URL.equals(""))
-                                                represent_cafeImage_URL = "https://w.namu.la/s/0c6301df01fc4f180ec65717bad3d0254258abf0be33299e55df7c261040f517518eb9008a1a2cd3d7b8b7777d70182c185bc891b1054dc57b11cc46fd29130a3474f1b75b816024dfdc16b692a0c77c";
+                                                represent_cafeImage_URL = getString(R.string.default_Review_Caefimage);
 
 
                                             for(Bookmark b : bookmark_list) {
@@ -1041,7 +1072,7 @@ public class ListCafelistFragment extends Fragment {
                                                 @Override
                                                 public void onItemClick(View a_view, int a_position) {
                                                     final ListCafeListItem item = listCafeListItems.get(a_position);
-                                                    Toast.makeText(getContext().getApplicationContext(), item.getCafeList_cafeName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
+//                                                    Toast.makeText(getContext().getApplicationContext(), item.getCafeList_cafeName() + " 클릭됨.", Toast.LENGTH_SHORT).show();
 
                                                     Bundle bundle = new Bundle();
                                                     bundle.putString("cafeName", item.getCafeList_cafeName());
@@ -1052,23 +1083,38 @@ public class ListCafelistFragment extends Fragment {
 
                                             // 리사이클러뷰의 아이템을 갱신해주는 코드
                                             listCafeListAdapter.notifyItemInserted(listCafeListItems.size());
-
-                                            // 리싸이클러뷰 아이템이 없을 경우, 카페 추가 버튼과 설명 글 생성
-                                            if(listCafeListItems.size() == 0) {
-                                                cafeList_footer.setVisibility(View.INVISIBLE);
-                                                add_cafe.setVisibility(View.INVISIBLE);
-                                                cafe_search_textView.setVisibility(View.VISIBLE);
-                                                cafe_add_textView.setVisibility(View.VISIBLE);
-                                                add_cafe_button.setVisibility(View.VISIBLE);
-                                            }
-                                            else{   // 아이템이 있을 경우
-                                                cafeList_footer.setVisibility(View.VISIBLE);
-                                                add_cafe.setVisibility(View.VISIBLE);
-                                                cafe_search_textView.setVisibility(View.INVISIBLE);
-                                                cafe_add_textView.setVisibility(View.INVISIBLE);
-                                                add_cafe_button.setVisibility(View.INVISIBLE);
-                                            }
                                         }
+                                    }
+
+                                    // 리싸이클러뷰 아이템이 없을 경우, 카페 추가 버튼과 설명 글 생성
+                                    if(listCafeListItems.size() == 0) {
+                                        cafeList_footer.setVisibility(View.INVISIBLE);
+                                        add_cafe.setVisibility(View.INVISIBLE);
+                                        cafe_search_textView.setVisibility(View.VISIBLE);
+                                        cafe_add_textView.setVisibility(View.VISIBLE);
+                                        add_cafe_button.setVisibility(View.VISIBLE);
+
+//                                        Toast.makeText(getContext().getApplicationContext(), "검색한 카페가 존재하지 않습니다.", Toast.LENGTH_SHORT).show();
+                                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                                        builder.setTitle("카페 검색").setMessage("검색한 카페가 존재하지 않습니다.").setIcon(R.drawable.logo);
+
+                                        builder.setPositiveButton("확인", new DialogInterface.OnClickListener(){
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int id)
+                                            {
+
+                                            }
+                                        });
+
+                                        AlertDialog alertDialog = builder.create();
+                                        alertDialog.show();
+                                    }
+                                    else{   // 아이템이 있을 경우
+                                        cafeList_footer.setVisibility(View.VISIBLE);
+                                        add_cafe.setVisibility(View.VISIBLE);
+                                        cafe_search_textView.setVisibility(View.INVISIBLE);
+                                        cafe_add_textView.setVisibility(View.INVISIBLE);
+                                        add_cafe_button.setVisibility(View.INVISIBLE);
                                     }
                                 }
                             }, new Response.ErrorListener() {
