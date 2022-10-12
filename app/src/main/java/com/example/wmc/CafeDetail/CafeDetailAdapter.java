@@ -130,7 +130,6 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         } else {
             // 기본적으로 header 를 빼고 item 을 구한다.
             final CafeDetailItem item = review_items.get(a_position);
-            Log.d("review_num_check", item.get_review_num.toString());
             CafeDetailViewHolder viewHolder = (CafeDetailViewHolder) a_holder;
 
             if(item.isLocationCheck_flag())
@@ -163,13 +162,11 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 viewHolder.reviewModify.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(v.getContext(), "리뷰 수정 버튼 클릭", Toast.LENGTH_SHORT).show();
                         navController = Navigation.findNavController(v);
                         Bundle bundle = new Bundle();
                         bundle.putLong("cafeNum", item.getGet_cafe_num());
                         bundle.putLong("memNum", item.getMem_num());
                         bundle.putLong("reviewNum", item.getGet_review_num());
-                        Log.d("review->cafeDetailAdpater_reviewNUm", item.getGet_review_num().toString());
                         bundle.putBoolean("cafeDetail_reviewModify_flag", true);
 
                         navController.navigate(R.id.cafe_detail_to_review, bundle);
@@ -180,7 +177,6 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 viewHolder.reviewDelete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(v.getContext(), "리뷰 삭제 버튼 클릭", Toast.LENGTH_SHORT).show();
 
                         AlertDialog.Builder builder = new AlertDialog.Builder(cafeDetailFragment.getActivity());
                         builder.setTitle("리뷰 삭제").setMessage("리뷰를 삭제하시겠습니까?").setIcon(R.drawable.logo);
@@ -214,7 +210,6 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                                         review_list = gson.fromJson(changeString, listType);
 
                                         // cafe 테이블의 튜플이 제대로 오는지 확인 (테스트 할 때만 만들어두고 해당 기능 다 개발 시 제거하는게 좋음)
-                                        Log.d("test3", String.valueOf(review_list.size()));
 
                                         for(Review r : review_list){
                                             if(item.get_review_num.equals(r.getReviewNum())) {
@@ -267,7 +262,6 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                                                 k[34] = r.getKeyword35();
                                                 k[35] = r.getKeyword36();
                                                 // 리뷰 정보들 받아서 카페 테이블 put연산 해주어야함
-                                                Log.d("reviewnum", item.get_review_num.toString());
                                                 String delete_review = cafeDetailFragment.getResources().getString(R.string.url) + "review/" + item.getGet_review_num().toString();
 
                                                 StringRequest delete_review_stringRequest = new StringRequest(Request.Method.DELETE, delete_review, new Response.Listener<String>() {
@@ -275,6 +269,20 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                                                     @Override
                                                     public void onResponse(String response) {
                                                         Toast.makeText(v.getContext().getApplicationContext(), "리뷰가 삭제되었습니다.", Toast.LENGTH_SHORT).show();
+
+//                                                        AlertDialog.Builder builder = new AlertDialog.Builder(cafeDetailFragment.getActivity());
+//                                                        builder.setTitle("리뷰 삭제").setMessage("리뷰가 삭제되었습니다.").setIcon(R.drawable.logo);
+//
+//                                                        builder.setPositiveButton("확인", new DialogInterface.OnClickListener(){
+//                                                            @Override
+//                                                            public void onClick(DialogInterface dialog, int id)
+//                                                            {
+//
+//                                                            }
+//                                                        });
+//
+//                                                        AlertDialog alertDialog = builder.create();
+//                                                        alertDialog.show();
                                                     }
                                                 }, new Response.ErrorListener() {
                                                     @Override
@@ -319,7 +327,6 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
                                         for (ReviewImage ri : reviewImage_list) {
                                             if (ri.getReviewNum().equals(item.getGet_review_num())) {
-                                                Log.d("delete_ReviewImageNum", ri.getrimageNum() + ", " + ri.getReviewNum() + ", " + ri.getFileUrl());
                                                 delete_ReviewImageNum = ri.getrimageNum();
 
                                                 // 서버에서 이미지 삭제
@@ -467,10 +474,6 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                                     }
                                 });
                                 requestQueue.add(stringRequest2);
-
-
-//                                FragmentTransaction ft = cafeDetailFragment.getFragmentManager().beginTransaction();
-//                                ft.detach(cafeDetailFragment).attach(cafeDetailFragment).commit();
                             }
                         });
 
@@ -555,7 +558,6 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                                     return "application/json; charset=UTF-8";
                                 }
                             };
-                            Log.d("json", love_jsonObject.toString());
                             RequestQueue queue = Volley.newRequestQueue(v.getContext());
                             queue.add(love_objectRequest);
 
@@ -650,8 +652,6 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                                             new Response.Listener<JSONObject>() {
                                                 @Override
                                                 public void onResponse(JSONObject response) {
-                                                    // 좋아요 추가 성공, 토스트 띄우기.
-                                                    Log.d("add_good", "좋아요 추가 성공");
                                                 }
                                             },
                                             new Response.ErrorListener() {
@@ -665,7 +665,6 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                                             return "application/json; charset=UTF-8";
                                         }
                                     };
-                                    Log.d("json", update_review_jsonObject.toString());
                                     RequestQueue review_queue = Volley.newRequestQueue(v.getContext());
                                     review_queue.add(update_review_objectRequest);
 
@@ -716,9 +715,6 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                                             get_love_num = l.getLoveNum();
                                         }
                                     }
-
-
-                                    Log.d("check_loveNum", get_love_num.toString()); // love_num 확인
 
 
                                     // 2. love_num 가지고 해당 love 테이블 삭제
@@ -779,7 +775,6 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                                                     review_map2.put("studyPoint4", r.getStudyPoint4());
                                                     review_map2.put("cafeNum", r.getCafeNum());
                                                     review_map2.put("likeCount", r.getLikeCount() - 1);
-                                                    Log.d("likecount", r.getLikeCount().toString());
                                                     review_map2.put("reviewText", r.getReviewText());
                                                     review_map2.put("memNum", r.getMemNum());
                                                     review_map2.put("keyword1", r.getKeyword1());
@@ -821,10 +816,6 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                                                 }
                                             }
 
-
-                                            Log.d("review_map2", review_map2.toString());
-
-
                                             // 2. review (likeCount - 1) PUT 해주기
                                             String update_review_url = cafeDetailFragment.getResources().getString(R.string.url) + "review/" + item.get_review_num.toString();
 
@@ -833,8 +824,6 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                                                     new Response.Listener<JSONObject>() {
                                                         @Override
                                                         public void onResponse(JSONObject response) {
-                                                            // 좋아요 삭제 성공, 토스트 띄우기.
-                                                            Log.d("add_good", "좋아요 삭제 성공");
 
                                                             ////////////////////////////////////////////////////////////////////////
                                                             // 같은 화면에서 좋아요 버튼 여러 번 누를 때 발생하는 오류 방지
@@ -855,7 +844,6 @@ public class CafeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                                                     return "application/json; charset=UTF-8";
                                                 }
                                             };
-                                            Log.d("json", update_review_jsonObject2.toString());
                                             RequestQueue review_queue = Volley.newRequestQueue(v.getContext());
                                             review_queue.add(update_review_objectRequest);
 

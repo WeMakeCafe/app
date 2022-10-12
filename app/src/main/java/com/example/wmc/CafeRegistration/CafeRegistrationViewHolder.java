@@ -23,25 +23,4 @@ public class CafeRegistrationViewHolder extends RecyclerView.ViewHolder{
         imageDeleteButton = itemView.findViewById(R.id.imageDeleteButton);
     }
 
-//    ImageView add_modify_imageView;
-//    Button imageDeleteButton;
-//
-//    public static int CAFEREGISTRATION_VIEW_TYPE = R.layout.item_add_image;
-//
-//    public CafeRegistrationViewHolder(@NonNull View itemView, final CafeRegistrationAdapter.OnItemClickEventListener_CafeRegistration a_itemClickListener) {
-//        super(itemView);
-//
-//        add_modify_imageView = itemView.findViewById(R.id.add_modify_imageView);
-//        imageDeleteButton = itemView.findViewById(R.id.imageDeleteButton);
-//
-//        itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View a_view) {
-//                final int position = getAdapterPosition();
-//                if (position != RecyclerView.NO_POSITION) {
-//                    a_itemClickListener.onItemClick(a_view, position);
-//                }
-//            }
-//        });
-//    }
 }

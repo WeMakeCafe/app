@@ -170,7 +170,6 @@ public class Bottom_ReviewCafeListAdapter extends RecyclerView.Adapter<RecyclerV
                                     return "application/json; charset=UTF-8";
                                 }
                             };
-                            Log.d("json", bookmark_jsonObject.toString());
                             RequestQueue queue = Volley.newRequestQueue(bottom_reviewCafeListFragment.requireContext());
                             queue.add(objectRequest);
                         }

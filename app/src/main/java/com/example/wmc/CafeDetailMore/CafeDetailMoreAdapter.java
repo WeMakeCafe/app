@@ -156,7 +156,6 @@ public class CafeDetailMoreAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             viewHolder.review_modify.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(v.getContext(), "리뷰 수정 버튼 클릭", Toast.LENGTH_SHORT).show();
 
                     navController = Navigation.findNavController(v);
                     Bundle bundle = new Bundle();
@@ -174,7 +173,6 @@ public class CafeDetailMoreAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             viewHolder.review_delete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(v.getContext(), "리뷰 삭제 버튼 클릭", Toast.LENGTH_SHORT).show();
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(cafeDetailMoreFragment.getActivity());
                     builder.setTitle("리뷰 삭제").setMessage("리뷰를 삭제하시겠습니까?").setIcon(R.drawable.logo);
@@ -315,7 +313,6 @@ public class CafeDetailMoreAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
                                     for (ReviewImage ri : reviewImage_list) {
                                         if (ri.getReviewNum().equals(item.getGet_review_num())) {
-                                            Log.d("delete_ReviewImageNum", ri.getrimageNum() + ", " + ri.getReviewNum() + ", " + ri.getFileUrl());
                                             delete_ReviewImageNum = ri.getrimageNum();
 
                                             // 서버에서 이미지 삭제
@@ -554,7 +551,6 @@ public class CafeDetailMoreAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                                 return "application/json; charset=UTF-8";
                             }
                         };
-                        Log.d("json", love_jsonObject.toString());
                         RequestQueue queue = Volley.newRequestQueue(v.getContext());
                         queue.add(love_objectRequest);
 
@@ -649,8 +645,6 @@ public class CafeDetailMoreAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                                         new Response.Listener<JSONObject>() {
                                             @Override
                                             public void onResponse(JSONObject response) {
-                                                // 좋아요 추가 성공, 토스트 띄우기.
-                                                Log.d("add_good", "좋아요 추가 성공");
                                             }
                                         },
                                         new Response.ErrorListener() {
@@ -664,7 +658,6 @@ public class CafeDetailMoreAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                                         return "application/json; charset=UTF-8";
                                     }
                                 };
-                                Log.d("json", update_review_jsonObject.toString());
                                 RequestQueue review_queue = Volley.newRequestQueue(v.getContext());
                                 review_queue.add(update_review_objectRequest);
 
@@ -716,9 +709,6 @@ public class CafeDetailMoreAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                                         get_love_num = l.getLoveNum();
                                     }
                                 }
-
-
-                                Log.d("check_loveNum", get_love_num.toString()); // love_num 확인
 
 
                                 // 2. love_num 가지고 해당 love 테이블 삭제
@@ -781,7 +771,6 @@ public class CafeDetailMoreAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                                                 review_map2.put("studyPoint4", r.getStudyPoint4());
                                                 review_map2.put("cafeNum", r.getCafeNum());
                                                 review_map2.put("likeCount", r.getLikeCount() - 1);
-                                                Log.d("likecount", r.getLikeCount().toString());
                                                 review_map2.put("reviewText", r.getReviewText());
                                                 review_map2.put("memNum", r.getMemNum());
                                                 review_map2.put("keyword1", r.getKeyword1());
@@ -824,9 +813,6 @@ public class CafeDetailMoreAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                                         }
 
 
-                                        Log.d("review_map2", review_map2.toString());
-
-
                                         // 2. review (likeCount - 1) PUT 해주기
                                         String update_review_url = cafeDetailMoreFragment.getResources().getString(R.string.url) + "review/" + item.get_review_num.toString();
 
@@ -835,8 +821,6 @@ public class CafeDetailMoreAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                                                 new Response.Listener<JSONObject>() {
                                                     @Override
                                                     public void onResponse(JSONObject response) {
-                                                        // 좋아요 삭제 성공, 토스트 띄우기.
-                                                        Log.d("add_good", "좋아요 삭제 성공");
 
                                                         ////////////////////////////////////////////////////////////////////////
                                                         // 같은 화면에서 좋아요 버튼 여러 번 누를 때 발생하는 오류 방지
@@ -857,7 +841,6 @@ public class CafeDetailMoreAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                                                 return "application/json; charset=UTF-8";
                                             }
                                         };
-                                        Log.d("json", update_review_jsonObject2.toString());
                                         RequestQueue review_queue = Volley.newRequestQueue(v.getContext());
                                         review_queue.add(update_review_objectRequest);
 

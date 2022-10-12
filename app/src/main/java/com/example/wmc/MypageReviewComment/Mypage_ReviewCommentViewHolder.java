@@ -20,23 +20,4 @@ public class Mypage_ReviewCommentViewHolder extends RecyclerView.ViewHolder{
         reviewComment_imageView = itemView.findViewById(R.id.add_modify_imageView);
         imageDeleteButton = itemView.findViewById(R.id.imageDeleteButton);
     }
-
-//    public static int REVIEWCOMMENT_VIEW_TYPE = R.layout.item_add_image;
-//
-//    public ReviewCommentViewHolder(@NonNull View itemView, final ReviewCommentAdapter.OnItemClickEventListener_ReviewComment itemClickListener) {
-//        super(itemView);
-//
-//        reviewComment_imageView = itemView.findViewById(R.id.add_modify_imageView);
-//        imageDeleteButton = itemView.findViewById(R.id.imageDeleteButton);
-//
-//        itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View a_view) {
-//                final int position = getAdapterPosition();
-//                if (position != RecyclerView.NO_POSITION) {
-//                    itemClickListener.onItemClick(a_view, position);
-//                }
-//            }
-//        });
-//    }
 }

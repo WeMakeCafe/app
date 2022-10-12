@@ -36,7 +36,6 @@ public class CafeDetailImageViewPagerAdapter extends PagerAdapter {
         View view = inflater.inflate(R.layout.viewpager_cafe_detail_image1, null);
 
         imageView = view.findViewById(R.id.cafeDetail_image1);
-        //imageView.setImageResource(imageList.get(position));
 
         String url = imageList.get(position);
 

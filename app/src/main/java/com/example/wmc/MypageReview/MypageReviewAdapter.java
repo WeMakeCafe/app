@@ -140,7 +140,6 @@ public class MypageReviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             viewHolder.myPageReview_modify.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(v.getContext(), "리뷰 수정 버튼 클릭", Toast.LENGTH_SHORT).show();
                     navController = Navigation.findNavController(v);
 
                     Bundle bundle = new Bundle();
@@ -160,7 +159,7 @@ public class MypageReviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             viewHolder.myPageReview_delete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(v.getContext(), "리뷰 삭제 버튼 클릭", Toast.LENGTH_SHORT).show();
+
                     AlertDialog.Builder builder = new AlertDialog.Builder(myPageFragment.getActivity());
                     builder.setTitle("리뷰 삭제").setMessage("리뷰를 삭제하시겠습니까?").setIcon(R.drawable.logo);
 
@@ -277,8 +276,6 @@ public class MypageReviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                             requestQueue.add(stringRequest);
                             myPageReview_items.remove(item);    // 리사이클러뷰에서도 아이템 삭제
                             notifyDataSetChanged();
-//                            FragmentTransaction ft = myPageFragment.getFragmentManager().beginTransaction();
-//                            ft.detach(myPageFragment).attach(myPageFragment).commit();
 
                             // 리뷰 이미지 삭제
                             String get_reviewImage_url = myPageFragment.getResources().getString(R.string.url) + "reviewImage";
@@ -301,7 +298,6 @@ public class MypageReviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
                                     for (ReviewImage ri : reviewImage_list) {
                                         if (ri.getReviewNum().equals(item.getGet_review_num())) {
-                                            Log.d("delete_ReviewImageNum", ri.getrimageNum() + ", " + ri.getReviewNum() + ", " + ri.getFileUrl());
                                             delete_ReviewImageNum = ri.getrimageNum();
 
                                             // 서버에서 이미지 삭제
