@@ -154,26 +154,39 @@ public class CafeRegistrationFragment extends Fragment {
 
                         // 데이터베이스에서 카페이름이 있는지 중복검사
                         if(overlap_cafeName.equals("")) {
+
                             AlertDialog.Builder mod = new AlertDialog.Builder(getActivity());
-                            mod.setTitle("잠깐!").setMessage("카페 이름을 입력해주세요!").setIcon(R.drawable.logo).setNeutralButton("확인", new DialogInterface.OnClickListener() {
+                            mod.setTitle("잠깐!").setMessage("카페 이름을 입력해주세요!").setIcon(R.drawable.logo);
+                            mod.setPositiveButton("확인", new DialogInterface.OnClickListener(){
                                 @Override
-                                public void onClick(DialogInterface dialog, int which) {
+                                public void onClick(DialogInterface dialog, int id)
+                                {
 
                                 }
-                            }).create().show();
+                            });
+
+                            AlertDialog alertDialog = mod.create();
+                            alertDialog.show();
                         }
 
                         else{
                             for(Cafe c : cafe_list) {
                                 // 이미 동일한 이름의 카페가 등록되어있는 경우
                                 if (c.getCafeName().replaceAll(" ", "").equals(overlap_cafeName)) {
+
                                     AlertDialog.Builder mod = new AlertDialog.Builder(getActivity());
-                                    mod.setTitle("잠깐!").setMessage("이미 있는 카페입니다!").setIcon(R.drawable.logo).setNeutralButton("확인", new DialogInterface.OnClickListener() {
+                                    mod.setTitle("잠깐!").setMessage("이미 있는 카페입니다!").setIcon(R.drawable.logo);
+                                    mod.setPositiveButton("확인", new DialogInterface.OnClickListener(){
                                         @Override
-                                        public void onClick(DialogInterface dialog, int which) {
+                                        public void onClick(DialogInterface dialog, int id)
+                                        {
 
                                         }
-                                    }).create().show();
+                                    });
+
+                                    AlertDialog alertDialog = mod.create();
+                                    alertDialog.show();
+                                    
                                     name_test = false;
                                     break;
                                 }
@@ -184,13 +197,19 @@ public class CafeRegistrationFragment extends Fragment {
                             }
 
                             if( name_test ) {
+
                                 AlertDialog.Builder mod = new AlertDialog.Builder(getActivity());
-                                mod.setTitle("정보").setMessage("등록 가능한 카페입니다.").setIcon(R.drawable.logo).setNeutralButton("확인", new DialogInterface.OnClickListener() {
+                                mod.setTitle("잠깐!").setMessage("등록 가능한 카페입니다.").setIcon(R.drawable.logo);
+                                mod.setPositiveButton("확인", new DialogInterface.OnClickListener(){
                                     @Override
-                                    public void onClick(DialogInterface dialog, int which) {
+                                    public void onClick(DialogInterface dialog, int id)
+                                    {
 
                                     }
-                                }).create().show();
+                                });
+
+                                AlertDialog alertDialog = mod.create();
+                                alertDialog.show();
                             }
                         }
                     }
@@ -208,7 +227,8 @@ public class CafeRegistrationFragment extends Fragment {
                                 && (Integer.parseInt(cafe_openHours_hour_input.getText().toString()) >=0) && (Integer.parseInt(cafe_openHours_hour_input.getText().toString()) <= 24)
                                 && (Integer.parseInt(cafe_openHours_minute_input.getText().toString()) >=0) && (Integer.parseInt(cafe_openHours_minute_input.getText().toString()) < 60)
                                 && (Integer.parseInt(cafe_closeHours_hour_input.getText().toString()) >=0) && (Integer.parseInt(cafe_closeHours_hour_input.getText().toString()) <= 24)
-                                && (Integer.parseInt(cafe_closeHours_minute_input.getText().toString()) >=0) && (Integer.parseInt(cafe_closeHours_minute_input.getText().toString()) < 60))
+                                && (Integer.parseInt(cafe_closeHours_minute_input.getText().toString()) >=0) && (Integer.parseInt(cafe_closeHours_minute_input.getText().toString()) < 60)
+                                && uriList.size() > 0)
                         {
                              Map map = new HashMap();
                                 // 이미지, 키워드 추가 코드 작성 할 곳
@@ -656,12 +676,17 @@ public class CafeRegistrationFragment extends Fragment {
 
                         else {
                             AlertDialog.Builder mod = new AlertDialog.Builder(getActivity());
-                            mod.setTitle("잠깐!").setMessage("비어 있는 항목이 있거나 시간입력이 부적절합니다!").setIcon(R.drawable.logo).setNeutralButton("확인", new DialogInterface.OnClickListener() {
+                            mod.setTitle("잠깐!").setMessage("비어 있는 항목이 있거나 시간입력이 부적절합니다!").setIcon(R.drawable.logo);
+                            mod.setPositiveButton("확인", new DialogInterface.OnClickListener(){
                                 @Override
-                                public void onClick(DialogInterface dialog, int which) {
+                                public void onClick(DialogInterface dialog, int id)
+                                {
 
                                 }
-                            }).create().show();
+                            });
+
+                            AlertDialog alertDialog = mod.create();
+                            alertDialog.show();
                         }
                     }
                 });
