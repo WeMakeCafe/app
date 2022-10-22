@@ -32,6 +32,7 @@ public class HomeTag2ViewPagerAdapter extends PagerAdapter {
     TextView bestReview_example;
     ImageView cafe_image;
     RatingBar rating_all;
+    TextView cafeDistance;
 
 
     public HomeTag2ViewPagerAdapter(Context context, ArrayList<HomeTag2ViewPagerItem> tag2_List, HomeFragment homeFragment){

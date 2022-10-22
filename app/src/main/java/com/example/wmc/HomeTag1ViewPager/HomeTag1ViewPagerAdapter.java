@@ -32,6 +32,7 @@ public class HomeTag1ViewPagerAdapter extends PagerAdapter {
     TextView bestReview_example;
     ImageView cafe_image;
     RatingBar rating_all;
+    TextView cafeDistance;
 
 
     public HomeTag1ViewPagerAdapter(Context context, ArrayList<HomeTag1ViewPagerItem> tag1_List, HomeFragment homeFragment){
@@ -66,6 +67,7 @@ public class HomeTag1ViewPagerAdapter extends PagerAdapter {
 
         rating_all = view.findViewById(R.id.rating_all);
         rating_all.setRating(tag1_List.get(position).getRating());
+
 
         container.addView(view);
 
