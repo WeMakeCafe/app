@@ -10,8 +10,9 @@ public class HomeTag1ViewPagerItem {
     String review;
     String cafeImage;
     int rating;
+    Double cafe_distance;
 
-    public HomeTag1ViewPagerItem(String cafeName, String cafeAddress, String tag1, String tag2, String tag3, String review, String cafeImage, int rating) {
+    public HomeTag1ViewPagerItem(String cafeName, String cafeAddress, String tag1, String tag2, String tag3, String review, String cafeImage, int rating, Double cafe_distance) {
         this.cafeName = cafeName;
         this.cafeAddress = cafeAddress;
         this.tag1 = tag1;
@@ -20,6 +21,7 @@ public class HomeTag1ViewPagerItem {
         this.review = review;
         this.cafeImage = cafeImage;
         this.rating = rating;
+        this.cafe_distance = cafe_distance;
     }
 
     public String getCafeName() {
@@ -84,5 +86,13 @@ public class HomeTag1ViewPagerItem {
 
     public void setRating(int rating) {
         this.rating = rating;
+    }
+
+    public Double getCafe_distance() {
+        return cafe_distance;
+    }
+
+    public void setCafe_distance(Double cafe_distance) {
+        this.cafe_distance = cafe_distance;
     }
 }
