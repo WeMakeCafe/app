@@ -100,15 +100,6 @@ public class ListCafelistFragment extends Fragment {
         cafeList_footer = root.findViewById(R.id.cafeList_footer);
         listCafeListRecyclerView = root.findViewById(R.id.cafeListRecyclerView);
         InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);  // 키보드 제어 InputManager
-        Button but = root.findViewById(R.id.button);
-
-        but.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), LoginAcivity.class);
-                startActivity(intent);
-            }
-        });
 
         // 기본 VISIBLE 설정
         cafeList_footer.setVisibility(View.INVISIBLE);      // 하단 Footer

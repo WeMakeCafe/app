@@ -158,7 +158,7 @@ public class SignupActivity extends AppCompatActivity {
                     AlertDialog.Builder dlg = new AlertDialog.Builder(SignupActivity.this);
                     dlg.setTitle("We Make Cafe");
                     dlg.setMessage("아이디는 6자 이상부터 가능합니다.");
-//                                dlg.setIcon()
+                    dlg.setIcon(R.drawable.logo);
                     dlg.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -179,7 +179,7 @@ public class SignupActivity extends AppCompatActivity {
                                 AlertDialog.Builder dlg = new AlertDialog.Builder(SignupActivity.this);
                                 dlg.setTitle("We Make Cafe");
                                 dlg.setMessage("사용 가능한 아이디입니다.");
-//                                dlg.setIcon()
+                                dlg.setIcon(R.drawable.logo);
                                 dlg.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
@@ -194,7 +194,7 @@ public class SignupActivity extends AppCompatActivity {
                                 AlertDialog.Builder dlg = new AlertDialog.Builder(SignupActivity.this);
                                 dlg.setTitle("We Make Cafe");
                                 dlg.setMessage("이미 가입된 아이디입니다.");
-//                                dlg.setIcon()
+                                dlg.setIcon(R.drawable.logo);
                                 dlg.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
@@ -232,7 +232,7 @@ public class SignupActivity extends AppCompatActivity {
                     AlertDialog.Builder dlg = new AlertDialog.Builder(SignupActivity.this);
                     dlg.setTitle("We Make Cafe");
                     dlg.setMessage("아이디 중복확인을 완료해주세요.");
-//                    dlg.setIcon()
+                    dlg.setIcon(R.drawable.logo);
                     dlg.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -243,11 +243,11 @@ public class SignupActivity extends AppCompatActivity {
                 }
 
                 // 비밀번호 유효성 검사
-                else if (!Pattern.matches("^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*#?&]).{8,15}.$", checkPw1)) {
+                else if (!Pattern.matches("^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*#?&]).{7,15}.$", checkPw1)) {
                     AlertDialog.Builder dlg = new AlertDialog.Builder(SignupActivity.this);
                     dlg.setTitle("We Make Cafe");
-                    dlg.setMessage("비밀번호는 숫자,문자,특수문자를 모두 포함한 8~15자입니다.");
-//                    dlg.setIcon()
+                    dlg.setMessage("비밀번호는 숫자,문자,특수문자(@!%*#?&)를 모두 포함한 8~15자입니다.");
+                    dlg.setIcon(R.drawable.logo);
                     dlg.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -262,7 +262,7 @@ public class SignupActivity extends AppCompatActivity {
                     AlertDialog.Builder dlg = new AlertDialog.Builder(SignupActivity.this);
                     dlg.setTitle("We Make Cafe");
                     dlg.setMessage("비밀번호와 비밀번호 확인이 다릅니다.");
-//                    dlg.setIcon()
+                    dlg.setIcon(R.drawable.logo);
                     dlg.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -277,7 +277,7 @@ public class SignupActivity extends AppCompatActivity {
                     AlertDialog.Builder dlg = new AlertDialog.Builder(SignupActivity.this);
                     dlg.setTitle("We Make Cafe");
                     dlg.setMessage("비밀번호 확인 질문에 대한 답변을 입력해주세요.");
-//                    dlg.setIcon()
+                    dlg.setIcon(R.drawable.logo);
                     dlg.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -292,7 +292,7 @@ public class SignupActivity extends AppCompatActivity {
                     AlertDialog.Builder dlg = new AlertDialog.Builder(SignupActivity.this);
                     dlg.setTitle("We Make Cafe");
                     dlg.setMessage("우선순위를 선택해주세요.");
-//                    dlg.setIcon()
+                    dlg.setIcon(R.drawable.logo);
                     dlg.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -304,26 +304,24 @@ public class SignupActivity extends AppCompatActivity {
 
                 // 모든 요소 입력완료
                 else {
-                    Random random = new Random();
-                    int createNum = 0;
-                    String ranNum = "";
-                    int letter = 6;
-                    String resultNum = "";
-
-                    for(int i = 0; i<letter; i++) {
-                        createNum = random.nextInt(9);
-                        ranNum = Integer.toString(createNum);
-                        resultNum += ranNum;
-                    }
-                    int numInt = Integer.parseInt(resultNum);
-                    Toast.makeText(getApplicationContext(), numInt+"입니다", Toast.LENGTH_SHORT).show();
+//                    Random random = new Random();
+//                    int createNum = 0;
+//                    String ranNum = "";
+//                    int letter = 6;
+//                    String resultNum = "";
+//
+//                    for(int i = 0; i<letter; i++) {
+//                        createNum = random.nextInt(9);
+//                        ranNum = Integer.toString(createNum);
+//                        resultNum += ranNum;
+//                    }
+//                    int numInt = Integer.parseInt(resultNum); 난수 발생 위해 만들었던 코드. 서버작업으로 필요없어짐
 
                     HashMap<String, Object> params = new HashMap<String, Object>();
                     params.put("id", checkid);
                     params.put("pwd", checkPw1);
                     params.put("nickName", checkid);
                     params.put("grade", 3);
-                    params.put("phoneNum", numInt);
                     params.put("favorite1", checkFavorite1);
                     params.put("favorite2", checkFavorite2);
                     params.put("personalQuestion", checkQuestion);
@@ -335,8 +333,8 @@ public class SignupActivity extends AppCompatActivity {
                         public void onResponse(String response) {
                             AlertDialog.Builder dlg = new AlertDialog.Builder(SignupActivity.this);
                             dlg.setTitle("We Make Cafe");
-                            dlg.setMessage("회원가입 성공. 아이디 찾기를 위한 회원 고유번호는 " + numInt + "입니다.");
-//                    dlg.setIcon()
+                            dlg.setMessage("회원가입 성공. 아이디 찾기를 위한 회원코드는 " + response + "입니다. 꼭 기억해주세요!");
+                            dlg.setIcon(R.drawable.logo);
                             dlg.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {

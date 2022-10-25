@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/login_background_color">
+    android:background="@color/white">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -16,66 +17,62 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/mpModify_modifyLayout"
+                android:id="@+id/logoLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/mpModify_textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="155dp"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginBottom="5dp"
-                    android:text="정보수정"
-                    android:textColor="@color/black"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
-
+                <ImageView
+                    android:id="@+id/logo"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="150dp"
+                    android:layout_marginTop="50dp"
+                    android:src="@drawable/logo_v2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/mpModify_requiredLayout"
+                android:id="@+id/requiredLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/mpModify_CautionMark"
+                    android:id="@+id/CautionMark"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="18"
-                    android:layout_marginTop="50dp"
                     android:gravity="right"
                     android:paddingRight="5dp"
                     android:text="*"
                     android:textColor="#FF0000" />
 
                 <TextView
-                    android:id="@+id/mpModify_caution_required_fields"
+                    android:id="@+id/caution_required_fields"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:layout_marginTop="50dp"
                     android:gravity="left"
                     android:paddingRight="20dp"
                     android:text="표시는 필수 기입란입니다." />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/mpModify_idLayout"
+                android:id="@+id/pwLayout0"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/mpModify_idCautionMark"
+                    android:id="@+id/pwCautionMark0"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="right"
@@ -86,22 +83,25 @@
                     android:textColor="#FF0000" />
 
                 <EditText
-                    android:id="@+id/mpModify_id_input"
+                    android:id="@+id/signUp_pw_input0"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
-                    android:hint="ID"
-                    android:inputType="textPersonName" />
+                    android:hint="닉네임 변경 (6~12자)"
+                    android:inputType="text"
+                    android:maxLength="12"
+                    android:singleLine="true"
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/mpModify_pwLayout"
+                android:id="@+id/pwLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/mpModify_pwCautionMark"
+                    android:id="@+id/pwCautionMark"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="right"
@@ -112,22 +112,25 @@
                     android:textColor="#FF0000" />
 
                 <EditText
-                    android:id="@+id/mpModify_pw_input"
+                    android:id="@+id/signUp_pw_input"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
-                    android:hint="Password"
-                    android:inputType="textPersonName" />
+                    android:hint="비밀번호 변경 (8~15자)"
+                    android:inputType="textPassword"
+                    android:maxLength="15"
+                    android:singleLine="true"
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/mpModify_verifyPwLayout"
+                android:id="@+id/verifyPwLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/mpModify_verifyPwCautionMark"
+                    android:id="@+id/verifyPwCautionMark"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="right"
@@ -138,22 +141,24 @@
                     android:textColor="#FF0000" />
 
                 <EditText
-                    android:id="@+id/mpModify_verifyPw_input"
+                    android:id="@+id/signUp_verifyPw_input"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
-                    android:hint="Verify Password"
-                    android:inputType="textPersonName" />
+                    android:hint="비밀번호 확인"
+                    android:inputType="textPassword"
+                    android:maxLength="15"
+                    android:singleLine="true"
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/mpModify_nickNameLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/mpModify_nickNameCautionMark"
+                    android:id="@+id/nickNameCautionMark2"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="right"
@@ -162,77 +167,67 @@
                     android:paddingRight="5dp"
                     android:text="*"
                     android:textColor="#FF0000" />
+
+                <Spinner
+                    android:id="@+id/spinner4"
+                    android:layout_width="300dp"
+                    android:layout_height="match_parent"
+                    android:textColor="#0000ff"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/nickNameLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/nickNameCautionMark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="right"
+                    android:paddingLeft="50dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="5dp"
+                    android:text="*"
+                    android:textColor="#00FF0000" />
 
                 <EditText
-                    android:id="@+id/mpModify_nickName_input"
+                    android:id="@+id/signUp_nickName_input"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
-                    android:hint="닉네임"
-                    android:inputType="textPersonName" />
+                    android:hint="비밀번호 확인 질문"
+                    android:inputType="textPersonName"
+                    android:maxLength="20"
+                    android:singleLine="true"
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/mpModify_phoneNumLayout"
+                android:id="@+id/phoneNumLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/mpModify_nubmerCautionMark"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="right"
-                    android:paddingLeft="50dp"
-                    android:paddingTop="10dp"
-                    android:paddingRight="5dp"
-                    android:text="*"
-                    android:textColor="#FF0000" />
-
-                <EditText
-                    android:id="@+id/mpModify_nubmer_input"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:hint="전화번호"
-                    android:inputType="number"
-                    android:maxLength="11" />
-            </LinearLayout>
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"/>
 
             <LinearLayout
-                android:id="@+id/mpModify_addressLayout"
+                android:id="@+id/addressLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/mpModify_addressCautionMark"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="right"
-                    android:paddingLeft="50dp"
-                    android:paddingTop="10dp"
-                    android:paddingRight="5dp"
-                    android:text="*"
-                    android:textColor="#FF0000" />
-
-                <EditText
-                    android:id="@+id/mpModify_address_input"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:hint="주소"
-                    android:inputType="textPersonName" />
-            </LinearLayout>
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"/>
 
             <LinearLayout
-                android:id="@+id/mpModify_preferenceLayout"
+                android:id="@+id/preferenceLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/mpModify_preferenceCautionMark"
+                    android:id="@+id/preferenceCautionMark"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="right"
@@ -243,17 +238,17 @@
                     android:textColor="#FF0000" />
 
                 <TextView
-                    android:id="@+id/mpModify_preference_textView"
+                    android:id="@+id/signUp_preference_textView"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:inputType="textPersonName"
                     android:paddingTop="10dp"
                     android:text="우선순위"
                     android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:textSize="14sp" />
 
                 <RadioGroup
-                    android:id="@+id/mpModify_preferenceGroup"
+                    android:id="@+id/preferenceGroup"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
@@ -261,27 +256,27 @@
                     android:orientation="horizontal">
 
                     <RadioButton
-                        android:id="@+id/mpModify_radio_study"
+                        android:id="@+id/radio_study"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="스터디"
                         android:textColor="#000000"
-                        android:textSize="20sp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <RadioButton
-                        android:id="@+id/mpModify_radio_taste"
+                        android:id="@+id/radio_taste"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:text="커피맛"
-                        android:textSize="20sp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
                 </RadioGroup>
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/mpModify_profileImageLayout"
+                android:id="@+id/profileImageLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
@@ -299,7 +294,7 @@
                     android:textColor="@color/login_background_color" />
 
                 <EditText
-                    android:id="@+id/mpModify_profileImage_input"
+                    android:id="@+id/signUp_profileImage_input"
                     android:layout_width="280dp"
                     android:layout_height="wrap_content"
                     android:enabled="false"
@@ -307,34 +302,25 @@
                     android:inputType="textPersonName" />
 
                 <Button
-                    android:id="@+id/mpModify_add_profileImage_button"
+                    android:id="@+id/add_profileImage_button"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_marginLeft="5dp"
                     android:background="@drawable/add_profileimage_button" />
             </LinearLayout>
+
             <Button
-                android:id="@+id/mpModify_button"
+                android:id="@+id/signUp_button1"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/edge_square_brown"
-                android:text="수정완료"
+                android:text="정보수정"
                 android:textColor="#FFFFFF"
-                android:textSize="30sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <LinearLayout
-                android:id="@+id/mypageModify_footer"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:orientation="horizontal"
-                android:padding="20dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/modify_button_deleteLayout"/>
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

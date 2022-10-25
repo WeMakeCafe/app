@@ -73,18 +73,18 @@ public class FindidActivity extends AppCompatActivity {
             public void onClick(View v) {
                 stringID = pn_input.getText().toString();
 
-                String url = getResources().getString(R.string.url) + "find/id?phoneNumber=" + stringID;
+                String url = getResources().getString(R.string.url) + "find/id?confirmString=" + stringID;
                 StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        String success_setting = "입력하신 회원번호로 가입된 아이디는 " + response + " 입니다.";
+                        String success_setting = "입력하신 회원코드로 가입된 아이디는 " + response + " 입니다.";
                         id_output.setText(success_setting);
                     }
                     }, new Response.ErrorListener() {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        String fail_setting = "입력하신 회원번호로 가입된 아이디가 없습니다.";
+                        String fail_setting = "입력하신 회원코드로 가입된 아이디가 없습니다.";
                         id_output.setText(fail_setting);
                     }
                 });
