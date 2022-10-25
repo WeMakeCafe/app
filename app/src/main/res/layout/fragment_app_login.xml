@@ -143,6 +143,16 @@
                 app:layout_constraintStart_toStartOf="@+id/search_id_pw_button2"
                 app:layout_constraintTop_toBottomOf="@+id/search_id_pw_button2" />
 
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="로그인 생략-개발"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

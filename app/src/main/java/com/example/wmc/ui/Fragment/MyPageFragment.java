@@ -1,5 +1,7 @@
 package com.example.wmc.ui.Fragment;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +18,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
@@ -33,12 +36,16 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.BasicNetwork;
 import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HurlStack;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 
+import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.example.wmc.CafeDetailMore.CafeDetailMoreAdapter;
 import com.example.wmc.CafeDetailMore.CafeDetailMoreItem;
+import com.example.wmc.LoginAcivity;
 import com.example.wmc.MainActivity;
+import com.example.wmc.ModifyActivity;
 import com.example.wmc.MypageFavorite.MypageFavoriteAdapter;
 import com.example.wmc.MypageFavorite.MypageFavoriteItem;
 import com.example.wmc.MypageReview.MypageReviewAdapter;
@@ -55,6 +62,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONObject;
+
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.text.ParseException;
@@ -63,6 +72,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.TimeZone;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -397,7 +408,9 @@ public class MyPageFragment extends Fragment {
         modify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                navController.navigate(R.id.); // 정보수정 Fragment로 이동
+                Intent intent = new Intent(getActivity(), ModifyActivity.class);
+                intent.putExtra("mem_num",mem_num.toString());
+                startActivity(intent);
             }
         });
 
@@ -405,7 +418,10 @@ public class MyPageFragment extends Fragment {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                navController.navigate(R.id.); // 로그인Fragment 이동
+                Intent intent = new Intent(getActivity(), LoginAcivity.class);
+                startActivity(intent);
+
+                // 로그인으로 돌아는 가는데 이전 액티비티, 프래그먼트 다 지워야함
             }
         });
 

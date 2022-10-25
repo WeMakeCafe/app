@@ -115,7 +115,7 @@ public class FindpwActivity extends AppCompatActivity {
                     AlertDialog.Builder dlg = new AlertDialog.Builder(FindpwActivity.this);
                     dlg.setTitle("We Make Cafe");
                     dlg.setMessage("아이디는 6자 이상입니다.");
-//                    dlg.setIcon()
+                    dlg.setIcon(R.drawable.logo);
                     dlg.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -149,11 +149,11 @@ public class FindpwActivity extends AppCompatActivity {
                                     @Override
                                     public void onClick(View v) {
                                         string_pw = pw_output.getText().toString();
-                                        if (!Pattern.matches("^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*#?&]).{8,15}.$", string_pw)) {
+                                        if (!Pattern.matches("^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*#?&]).{7,15}.$", string_pw)) {
                                             AlertDialog.Builder dlg = new AlertDialog.Builder(FindpwActivity.this);
                                             dlg.setTitle("We Make Cafe");
-                                            dlg.setMessage("비밀번호는 숫자,문자,특수문자를 모두 포함한 8~15자입니다.");
-//                                              dlg.setIcon()
+                                            dlg.setMessage("비밀번호는 숫자,문자,특수문자(@!%*#?&)를 모두 포함한 8~15자입니다.");
+                                            dlg.setIcon(R.drawable.logo);
                                             dlg.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                                                 @Override
                                                 public void onClick(DialogInterface dialog, int which) {

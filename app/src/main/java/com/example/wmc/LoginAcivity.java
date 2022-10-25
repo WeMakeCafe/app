@@ -58,10 +58,23 @@ public class LoginAcivity extends AppCompatActivity {
         TextView pw_input = findViewById(R.id.login_pw_input); // 비밀번호 텍스트뷰
         Button login = findViewById(R.id.login_button); // 로그인 버튼
 
+        Button test = findViewById(R.id.button2);
+
+        test.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.putExtra("mem_num", "1");
+                startActivity(intent);
+                finish();
+            }
+        });
+
         signup_textview.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
                 startActivity(intent);
+                finish();
             }
         }); // 회원가입 액티비티 이동
 
@@ -69,6 +82,7 @@ public class LoginAcivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), FindidActivity.class);
                 startActivity(intent);
+                finish();
             }
         }); // 아이디 찾기 액티비티 이동
 
@@ -76,6 +90,7 @@ public class LoginAcivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), FindpwActivity.class);
                 startActivity(intent);
+                finish();
             }
         }); // 비밀번호 찾기 액티비티 이동
 
@@ -109,7 +124,7 @@ public class LoginAcivity extends AppCompatActivity {
                             if (response.equals("0")) { // 비밀번호가 다름
                                 Toast.makeText(getApplicationContext(), "아이디 또는 비밀번호가 다릅니다.", Toast.LENGTH_SHORT).show();
                             } else {
-                                Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "반갑습니다!", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                 intent.putExtra("mem_num", response);
                                 startActivity(intent);

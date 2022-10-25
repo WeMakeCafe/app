@@ -58,10 +58,10 @@ public class MainActivity extends AppCompatActivity {
         myPageFragment = new MyPageFragment();
 //        setContentView(R.layout.fragment_image_add_test); //페이지 확인하기
 
-//        Intent intent = getIntent();
-//        String text = intent.getStringExtra("mem_num");
-//        Long numLong = Long.parseLong(text);
-//        mem_num = numLong;
+        Intent intent = getIntent();
+        String text = intent.getStringExtra("mem_num");
+        Long numLong = Long.parseLong(text);
+        mem_num = numLong;
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());

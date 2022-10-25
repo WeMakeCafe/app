@@ -20,7 +20,7 @@
 
 
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginAcivity"
             android:windowSoftInputMode="adjustPan"
             android:exported="true"
             android:label="@string/app_name" > <!--키보드 입력될때 하단바 같이 올라오는것 수정위한 코드(winSoftInputMode) -->
@@ -31,8 +31,9 @@
         </activity>
         <activity android:name=".FindpwActivity" />
         <activity android:name=".FindidActivity" />
-        <activity android:name=".LoginAcivity" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".SignupActivity" />
+        <activity android:name=".ModifyActivity" />
     </application>
 
 </manifest>
