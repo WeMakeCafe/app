@@ -136,7 +136,9 @@ public class ListCafelistFragment extends Fragment {
             public void onClick(View v) {
                 represent_cafeImage_URL = "";
 
-                String search = searchText.getText().toString().replaceAll(" ", "");
+                String search_text = searchText.getText().toString().replaceAll(" ", "");
+                String search = search_text.toUpperCase();
+
                 if(search.equals("")){
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                     builder.setTitle("카페 검색").setMessage("검색어를 입력해주세요.").setIcon(R.drawable.logo);
@@ -227,7 +229,7 @@ public class ListCafelistFragment extends Fragment {
                                             // 카페 이름으로 찾기
                                             for(Cafe c : cafe_list){
                                                 flag = false; // 즐겨찾기 여부
-                                                if(c.getCafeName().contains(search)){ // 카페 이름에 검색어가 포함되는지 확인
+                                                if(c.getCafeName().toUpperCase().contains(search)){ // 카페 이름에 검색어가 포함되는지 확인
                                                     get_cafe_num = c.getCafeNum();
                                                     get_bookmark_num = -1L;
                                                     get_keyword[0] = c.getKeyword1();
