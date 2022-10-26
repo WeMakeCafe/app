@@ -28,6 +28,7 @@ import com.android.volley.toolbox.BasicNetwork;
 import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.StringRequest;
+import com.example.wmc.CafeDetail.CafeDetailItem;
 import com.example.wmc.CafeDetailMore.CafeDetailMoreAdapter;
 import com.example.wmc.CafeDetailMore.CafeDetailMoreItem;
 import com.example.wmc.MainActivity;
@@ -239,6 +240,10 @@ public class CafeDetailMoreFragment extends Fragment {
                                                                 }
                                                             }
                                                         }else{
+                                                            cafeDetailMoreReviewItem.add(new CafeDetailMoreItem(p.getNickName(), p.getGrade().toString(),
+                                                                    r.getReviewText(), create_date, personalProfile, reviewImage.get(0), reviewImage.get(1), reviewImage.get(2), r.getLikeCount().toString(), false, false, get_cafe_num, mem_num, -1L, r.getReviewNum(), r.getLocationCheck()));
+                                                        }
+                                                        if(!love_flag){
                                                             cafeDetailMoreReviewItem.add(new CafeDetailMoreItem(p.getNickName(), p.getGrade().toString(),
                                                                     r.getReviewText(), create_date, personalProfile, reviewImage.get(0), reviewImage.get(1), reviewImage.get(2), r.getLikeCount().toString(), false, false, get_cafe_num, mem_num, -1L, r.getReviewNum(), r.getLocationCheck()));
                                                         }
