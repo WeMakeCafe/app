@@ -242,10 +242,6 @@ public class CafeDetailMoreFragment extends Fragment {
                                                             cafeDetailMoreReviewItem.add(new CafeDetailMoreItem(p.getNickName(), p.getGrade().toString(),
                                                                     r.getReviewText(), create_date, personalProfile, reviewImage.get(0), reviewImage.get(1), reviewImage.get(2), r.getLikeCount().toString(), false, false, get_cafe_num, mem_num, -1L, r.getReviewNum(), r.getLocationCheck()));
                                                         }
-                                                        if(!love_flag){
-                                                            cafeDetailMoreReviewItem.add(new CafeDetailMoreItem(p.getNickName(), p.getGrade().toString(),
-                                                                    r.getReviewText(), create_date, personalProfile, reviewImage.get(0), reviewImage.get(1), reviewImage.get(2), r.getLikeCount().toString(), false, false, get_cafe_num, mem_num, -1L, r.getReviewNum(), r.getLocationCheck()));
-                                                        }
                                                     }
                                                 }
                                             }
