@@ -89,6 +89,7 @@ public class CafeDetailFragment extends Fragment {
     TextView moreReview5; // 카페 키워드
     TextView moreReview6; // 카페 태그 1
     TextView moreReview7; // 카페 태그 2
+    TextView reviewpls;
     RecyclerView recyclerView;
 
     ArrayList<String> imageList;   // 카페 이미지 5장을 저장하는 ArrayList
@@ -147,6 +148,7 @@ public class CafeDetailFragment extends Fragment {
         moreReview6 = root.findViewById(R.id.moreReview6); // 카페 태그 1
         moreReview7 = root.findViewById(R.id.moreReview7); // 카페 태그 2
         recyclerView = root.findViewById(R.id.cafeDetailReviewRecyclerView);
+        reviewpls = root.findViewById(R.id.favoirte_default_textView4);
 
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.detach(this).attach(this).commit();
@@ -881,6 +883,10 @@ public class CafeDetailFragment extends Fragment {
                                                                 }
                                                             }
                                                         });
+
+                                                        if (cafeDetailReviewItem.size() != 0){
+                                                            reviewpls.setVisibility(View.INVISIBLE);
+                                                        }
 
                                                     }
                                                 }, new Response.ErrorListener() {
