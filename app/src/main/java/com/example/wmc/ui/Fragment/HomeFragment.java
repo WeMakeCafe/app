@@ -147,6 +147,8 @@ public class HomeFragment extends Fragment {
 
         g = new Geocoder(getContext());
 
+        favoirte_default_textView.setVisibility(View.VISIBLE);
+
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Home 에서 찜한 카페에 대한 리사이클러뷰 작성
         ArrayList<HomeFavoriteItem> homeFavoriteItems = new ArrayList<>();
@@ -634,8 +636,8 @@ public class HomeFragment extends Fragment {
                                                         LinearLayoutManager favoriteLayoutManager = new LinearLayoutManager(getContext().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
                                                         homeFavoriteRecyclerView.setLayoutManager(favoriteLayoutManager);
 
-                                                        if (homeFavoriteItems.size() == 0){
-                                                            favoirte_default_textView.setVisibility(View.VISIBLE);
+                                                        if (homeFavoriteItems.size() != 0){
+                                                            favoirte_default_textView.setVisibility(View.INVISIBLE);
                                                         }
 
                                                         favoriteAdapter.setOnItemClickListener_HomeFavorite(new HomeFavoriteAdapter.OnItemClickEventListener_HomeFavorite() {

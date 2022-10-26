@@ -90,7 +90,7 @@ public class MyPageFragment extends Fragment {
     ArrayList<ReviewImage> reviewImage_list;
     ArrayList<String> reviewImage = new ArrayList<>();
 
-    TextView grade, nickname, fav1, fav2;
+    TextView grade, nickname, fav1, fav2,lovetext;
     Button modify;
     Button logout;
     ImageView profileImage;
@@ -112,6 +112,9 @@ public class MyPageFragment extends Fragment {
         modify = root.findViewById(R.id.change_information_button2);
         logout = root.findViewById(R.id.logout_button2);
         profileImage = root.findViewById(R.id.profileImage);
+        lovetext = root.findViewById(R.id.favoirte_default_textView3);
+
+        lovetext.setVisibility(View.VISIBLE);
 
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.detach(this).attach(this).commit();
@@ -241,6 +244,10 @@ public class MyPageFragment extends Fragment {
                                                     }
                                                 }
                                             }
+                                        }
+
+                                        if (mypageFavoriteItems.size() != 0){
+                                            lovetext.setVisibility(View.INVISIBLE);
                                         }
 
                                         // 찜한카페 아이템 클릭 시 카페 디테일로 네비게이트
