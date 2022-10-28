@@ -51,8 +51,8 @@
 
                         <ImageView
                             android:id="@+id/location_false_image"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
                             app:layout_constraintBottom_toBottomOf="@+id/mypageReview_CafeName"
                             app:layout_constraintStart_toEndOf="@+id/mypageReview_CafeName"
                             app:layout_constraintTop_toTopOf="@+id/mypageReview_CafeName"
@@ -60,8 +60,8 @@
 
                         <ImageView
                             android:id="@+id/location_true_image"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
                             android:visibility="invisible"
                             app:layout_constraintBottom_toBottomOf="@+id/mypageReview_CafeName"
                             app:layout_constraintStart_toEndOf="@+id/mypageReview_CafeName"
