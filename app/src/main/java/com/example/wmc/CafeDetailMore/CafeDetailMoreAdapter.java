@@ -118,8 +118,10 @@ public class CafeDetailMoreAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         final CafeDetailMoreItem item = reviewMore_items.get(position);
         CafeDetailMoreViewHolder viewHolder = (CafeDetailMoreViewHolder) holder;
 
-        if (item.isLocation_flag())
-            viewHolder.moreReview_location_text.setVisibility(View.VISIBLE);
+        if (item.isLocation_flag()) {
+            viewHolder.location_false_image.setVisibility(View.INVISIBLE);
+            viewHolder.location_true_image.setVisibility(View.VISIBLE);
+        }
 
 //        viewHolder.cafeName.setText(item.getCafeName());
         viewHolder.nickName.setText(item.getReviewNickName());
