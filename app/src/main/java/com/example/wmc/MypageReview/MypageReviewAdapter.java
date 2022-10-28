@@ -106,8 +106,10 @@ public class MypageReviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         final MypageReviewItem item = myPageReview_items.get(a_position);
         MypageReviewViewHolder viewHolder = (MypageReviewViewHolder) a_holder;
 
-        if(item.isLocation_flag())
-            viewHolder.mypage_location_text.setVisibility(View.VISIBLE);
+        if(item.isLocation_flag()) {
+            viewHolder.location_false_image.setVisibility(View.INVISIBLE);
+            viewHolder.location_true_image.setVisibility(View.VISIBLE);
+        }
 
         viewHolder.mypageReview_CafeName.setText(item.getMypageReview_CafeName());
         viewHolder.mypageReview_writeTime.setText(item.getMypageReview_writeTime());

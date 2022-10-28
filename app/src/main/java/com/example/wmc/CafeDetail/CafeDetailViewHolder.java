@@ -28,6 +28,9 @@ public class CafeDetailViewHolder extends RecyclerView.ViewHolder{
     TextView reviewDeleteLine;
     CheckBox good_button;
     ImageView good_button_image;
+    ImageView location_false_image;
+    ImageView location_true_image;
+
 
     TextView location_text;
     boolean check_user_flag;
@@ -51,7 +54,9 @@ public class CafeDetailViewHolder extends RecyclerView.ViewHolder{
         reviewDeleteLine = itemView.findViewById(R.id.reviewDeleteLine);    // 리뷰에서 삭제 버튼의 밑줄
         good_button = itemView.findViewById(R.id.good_button);      // 리뷰에서 좋아요 버튼
         good_button_image = itemView.findViewById(R.id.good_button_image);
-        location_text = itemView.findViewById(R.id.location_text);
+        location_false_image = itemView.findViewById(R.id.location_false_image);
+        location_true_image = itemView.findViewById(R.id.location_true_image);
+
 
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
