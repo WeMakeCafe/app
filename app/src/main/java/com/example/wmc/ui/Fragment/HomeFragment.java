@@ -215,8 +215,8 @@ public class HomeFragment extends Fragment {
                     list = g.getFromLocation(latitude, longitude,10);
                     cafe_search_input.setText(list.get(0).getAddressLine(0).substring(5));
                     String now_location[] = list.get(2).getAddressLine(0).split(" ");
-
-                    get_user_address = now_location[4];
+                    
+                    get_user_address = now_location[3] + " " + now_location[4];
                     Log.d("get_user_address", get_user_address);
 //                    get_user_address = list.get(5).getAddressLine(0).substring(5);
 
@@ -1054,6 +1054,10 @@ public class HomeFragment extends Fragment {
 
                                                                 if (like_counter_max <= r.getLikeCount()) {
                                                                     like_counter_max = r.getLikeCount();
+                                                                    // 만약 리뷰가 없는 카페에서 get_review가 오류 발생 시, 이 부분에
+                                                                    // if(r.getReviewText() == null) get_review = ""
+                                                                    // else get_review = r.getReviewText();
+                                                                    // 문장 추가해보기
                                                                     get_review = r.getReviewText();
                                                                 }
                                                             }
