@@ -214,7 +214,11 @@ public class HomeFragment extends Fragment {
                 try {
                     list = g.getFromLocation(latitude, longitude,10);
                     cafe_search_input.setText(list.get(0).getAddressLine(0).substring(5));
-                    get_user_address = list.get(5).getAddressLine(0).substring(5);
+                    String now_location[] = list.get(2).getAddressLine(0).split(" ");
+
+                    get_user_address = now_location[4];
+                    Log.d("get_user_address", get_user_address);
+//                    get_user_address = list.get(5).getAddressLine(0).substring(5);
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -705,6 +709,7 @@ public class HomeFragment extends Fragment {
                                             // get_user_address는 현재 내 위치 주소
                                             // 현재 내 위치의 '동'인 카페만 출력
                                             if (c.getCafeAddress().contains(get_user_address)) {
+                                                Log.d("get_user_address", get_user_address);
 
 
                                                 String get_cafeImage_url = getResources().getString(R.string.url) + "cafeImage";
